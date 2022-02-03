@@ -1,6 +1,18 @@
 /// The accessibilityFeature property provides a list of all the applicable accessibility characteristics of the content.
 /// It allows a user agent to discover these characteristics without having to parse or interpret the structure of the content.
 ///
+/// The EPUB format requires that some accessibility features will always be present (e.g., a table of contents).
+/// Do not exclude these features from the accessibility metadata, as users typically are not aware what features
+/// are built into a format. Failing to include entries will reduce the discoverability of the publication when
+/// users search for specific features.
+///
+/// The following example shows the metadata entries for an EPUB 3 Publication that has both MathML and alternative text.
+///
+/// ```html
+/// <meta property="schema:accessibilityFeature">MathML</meta>
+/// <meta property="schema:accessibilityFeature">alternativeText</meta>
+/// ```
+///
 /// https://www.w3.org/2021/a11y-discov-vocab/latest/#accessibilityFeature
 enum AccessibilityFeature {
   // ******************** Structure and Navigation Terms ********************
@@ -14,7 +26,7 @@ enum AccessibilityFeature {
 
   /// The work includes an index to the content.
   ///
-  /// Actual text used is `index` but that can't be used in an enum
+  /// Actual text used in the meta tag is `index` but that cannot be used in a Dart enum
   contentIndex,
 
   /// The work includes equivalent print page numbers. This setting is most commonly used with ebooks for which there is a print equivalent.
