@@ -1,3 +1,4 @@
+import '../enums/accessibility_control.dart';
 import '../enums/enums.dart';
 
 class PackageMetadata {
@@ -9,6 +10,7 @@ class PackageMetadata {
     this.accessibilitySummaryByLanguage,
     this.accessModeSufficientList,
     this.accessibilityAPIs,
+    this.accessibilityControls,
   });
 
   /// A human sensory perceptual system or cognitive faculty necessary to process or perceive the content (e.g., textual, visual, auditory, tactile).
@@ -69,7 +71,7 @@ class PackageMetadata {
   /// create EPUB Publications that contain dynamic content — such as scripting and custom controls — do need to pay
   /// attention to the compatibility of such content, as Assistive Technologies may not receive sufficient information
   /// to provide an accessible interface.
-  /// 
+  ///
   /// In the case of scripted content, the static picture of the content that an Assistive Technology initially
   /// generates will not get updated unless the Author follows the accessibility practices in [WAI-ARIA 1.1](https://www.w3.org/TR/wai-aria-1.1/).
   /// Similarly, although Assistive Technologies have access to information about native [HTML](https://www.w3.org/TR/html/) form elements
@@ -77,4 +79,7 @@ class PackageMetadata {
   /// of [WAI-ARIA 1.1](https://www.w3.org/TR/wai-aria-1.1/) roles, state and properties  (e.g., checkboxes made out of images). Users want to know that
   /// such content has been made compatible with Reading System that support ARIA.
   List<String>? accessibilityAPIs;
+
+  /// Identifies input methods that can be used to access the content (e.g., keyboard, mouse).
+  List<AccessibilityControl>? accessibilityControls;
 }
