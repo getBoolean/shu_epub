@@ -52,4 +52,4 @@ enum AccessMode {
 /// ```
 ///
 /// http://idpf.org/epub/a11y/techniques/#meta-002
-typedef AccessModeSufficient = List<AccessMode>;
+typedef AccessModesSufficient = List<AccessMode>;
