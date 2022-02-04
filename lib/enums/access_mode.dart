@@ -28,6 +28,22 @@ enum AccessMode {
   tactile,
 }
 
+extension AccessModeExtension on AccessMode {
+  ///  Access the string equivalent of this constant used in EPUBs
+  String get value {
+    switch (this) {
+      case AccessMode.textual:
+        return 'texual';
+      case AccessMode.visual:
+        return 'visual';
+      case AccessMode.auditory:
+        return 'auditory';
+      case AccessMode.tactile:
+        return 'tactile';
+    }
+  }
+}
+
 /// The access modes sufficient to consume an EPUB Publication.
 ///
 /// Where the basic access modes identify the default nature of the media used in the publication,
