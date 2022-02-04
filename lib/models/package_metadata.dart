@@ -59,8 +59,6 @@ class PackageMetadata {
   /// in an EPUB Publication follows [WAI-ARIA 1.1](https://www.w3.org/TR/wai-aria-1.1/) authoring practices, as
   /// compatibility with operating system accessibility APIs is a concern for Reading Systems.
   ///
-  /// Consists of a list of strings are that are static constants from the [AccessibilityAPIs] class
-  ///
   /// Users of Assistive Technologies are able to interact with EPUB Publications through the accessibility
   /// APIs built into whichever platform they use (Windows, Mac, iOS, Linux, etc.). These APIs allow the
   /// Assistive Technology to communicate with the Reading System to read the text or control the interface, as needed.
@@ -77,7 +75,7 @@ class PackageMetadata {
   /// (e.g., buttons and inputs), Authors often create custom elements whose state is opaque without correct use
   /// of [WAI-ARIA 1.1](https://www.w3.org/TR/wai-aria-1.1/) roles, state and properties  (e.g., checkboxes made out of images). Users want to know that
   /// such content has been made compatible with Reading System that support ARIA.
-  List<String>? accessibilityAPIs;
+  List<AccessibilityAPI>? accessibilityAPIs;
 
   /// Identifies input methods that can be used to access the content (e.g., keyboard, mouse).
   List<AccessibilityControl>? accessibilityControls;

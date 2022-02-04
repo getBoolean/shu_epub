@@ -11,51 +11,69 @@
 /// necessarily mean that the content will be fully accessible to any given user group.
 /// 
 /// https://www.w3.org/2021/a11y-discov-vocab/latest/#accessibilityAPI
-class AccessibilityAPIs {
-  static List<String> get values => [
-        androidAccessibility,
-        aria,
-        atk,
-        atspi,
-        blackberryAccessibility,
-        iAccessible2,
-        iOSAccessibility,
-        javaAccessibility,
-        macOSXAccessibility,
-        msaa,
-        uiAutomation,
-      ];
-
+enum AccessibilityAPI {
   /// Indicates the resource is compatible with the Android Accessibility API.
-  static const String androidAccessibility = 'AndroidAccessibility';
+  androidAccessibility,
 
   /// Indicates the resource uses ARIA markup to improve interoperability with platform APIs.
-  static const String aria = 'ARIA';
+  aria,
 
   /// Indicates the resource is compatible with the Accessibility Toolkit (ATK) API for GNOME.
-  static const String atk = 'ATK';
+  atk,
 
   /// Indicates the resource is compatible with the Assistive Technology Service Provider Interface (AT-SPI) API for GNOME.
-  static const String atspi = 'AT-SPI';
+  atspi,
 
   /// Indicates the resource is compatible with the Blackberry Accessibility API.
-  static const String blackberryAccessibility = 'BlackberryAccessibility';
+  blackberryAccessibility,
 
   /// Indicates the resource is compatible with the iAccessible2 API for Windows.
-  static const String iAccessible2 = 'iAccessible2';
+  iAccessible2,
 
   /// Indicates the resource is compatible with the iAccessible2 API for Apple iOS devices.
-  static const String iOSAccessibility = 'iOSAccessibility';
+  iOSAccessibility,
 
   /// Indicates the resource is compatible with the Java Accessibility API (JAAPI).
-  static const String javaAccessibility = 'JavaAccessibility';
+  javaAccessibility,
 
   /// Indicates the resource is compatible with the iAccessible2 API for Windows.
-  static const String macOSXAccessibility = 'MacOSXAccessibility';
+  macOSXAccessibility,
 
   /// Indicates the resource is compatible with the Microsoft Active Accessibility (MSAA) API for Windows.
-  static const String msaa = 'MSAA';
+  msaa,
 
   /// Indicates the resource is compatible with the User Interface Automation API for Windows.
-  static const String uiAutomation = 'UIAutomation';
+  uiAutomation,
+}
+
+
+
+extension AccessibilityAPIsExtension on AccessibilityAPI {
+  ///  Access the string equivalent of this constant used in EPUBs
+  String get value {
+    switch (this) {
+      case AccessibilityAPI.androidAccessibility:
+        return 'AndroidAccessibility';
+      case AccessibilityAPI.aria:
+        return 'ARIA';
+      case AccessibilityAPI.atk:
+        return 'ATK';
+      case AccessibilityAPI.atspi:
+        return 'AT-SPI';
+      case AccessibilityAPI.blackberryAccessibility:
+        return 'BlackberryAccessibility';
+      case AccessibilityAPI.iAccessible2:
+        return 'iAccessible2';
+      case AccessibilityAPI.iOSAccessibility:
+        return 'iOSAccessibility';
+      case AccessibilityAPI.javaAccessibility:
+        return 'JavaAccessibility';
+      case AccessibilityAPI.macOSXAccessibility:
+        return 'MacOSXAccessibility';
+      case AccessibilityAPI.msaa:
+        return 'MSAA';
+      case AccessibilityAPI.uiAutomation:
+        return 'UIAutomation';
+    }
+  }
 }
