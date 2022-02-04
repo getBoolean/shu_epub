@@ -1,6 +1,10 @@
+import 'dart:convert';
+
+import 'package:equatable/equatable.dart';
+
 import '../enums/enums.dart';
 
-class PackageMetadata {
+class PackageMetadata extends Equatable {
   PackageMetadata({
     required this.accessModes,
     required this.accessibilityFeatures,
@@ -79,4 +83,108 @@ class PackageMetadata {
 
   /// Identifies input methods that can be used to access the content (e.g., keyboard, mouse).
   final List<AccessibilityControl>? accessibilityControls;
+
+  PackageMetadata copyWith({
+    List<AccessMode>? accessModes,
+    List<AccessibilityFeature>? accessibilityFeatures,
+    List<AccessibilityHazard>? accessibilityHazards,
+    String? accessibilitySummary,
+    Map<String, String>? accessibilitySummaryByLanguage,
+    List<AccessModesSufficient>? accessModeSufficientList,
+    List<AccessibilityAPI>? accessibilityAPIs,
+    List<AccessibilityControl>? accessibilityControls,
+  }) {
+    return PackageMetadata(
+      accessModes: accessModes ?? this.accessModes,
+      accessibilityFeatures:
+          accessibilityFeatures ?? this.accessibilityFeatures,
+      accessibilityHazards: accessibilityHazards ?? this.accessibilityHazards,
+      accessibilitySummary: accessibilitySummary ?? this.accessibilitySummary,
+      accessibilitySummaryByLanguage:
+          accessibilitySummaryByLanguage ?? this.accessibilitySummaryByLanguage,
+      accessModeSufficientList:
+          accessModeSufficientList ?? this.accessModeSufficientList,
+      accessibilityAPIs: accessibilityAPIs ?? this.accessibilityAPIs,
+      accessibilityControls:
+          accessibilityControls ?? this.accessibilityControls,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'accessModes': accessModes.map((x) => x.name).toList(),
+      'accessibilityFeatures':
+          accessibilityFeatures.map((x) => x.name).toList(),
+      'accessibilityHazards': accessibilityHazards.map((x) => x.name).toList(),
+      'accessibilitySummary': accessibilitySummary,
+      'accessibilitySummaryByLanguage': accessibilitySummaryByLanguage,
+      'accessModeSufficientList': accessModeSufficientList
+          ?.map(
+            (accessModeSufficient) => accessModeSufficient.map(
+              (accessMode) => accessMode.name,
+            ),
+          )
+          .toList(),
+      'accessibilityAPIs': accessibilityAPIs?.map((x) => x.name).toList(),
+      'accessibilityControls':
+          accessibilityControls?.map((x) => x.name).toList(),
+    };
+  }
+
+  factory PackageMetadata.fromMap(Map<String, dynamic> map) {
+    return PackageMetadata(
+      accessModes: List<AccessMode>.from(
+          map['accessModes']?.map((x) => AccessMode.values.byName(x))),
+      accessibilityFeatures: List<AccessibilityFeature>.from(
+          map['accessibilityFeatures']
+              ?.map((x) => AccessibilityFeature.values.byName(x))),
+      accessibilityHazards: List<AccessibilityHazard>.from(
+          map['accessibilityHazards']
+              ?.map((x) => AccessibilityHazard.values.byName(x))),
+      accessibilitySummary: map['accessibilitySummary'] ?? '',
+      accessibilitySummaryByLanguage:
+          Map<String, String>.from(map['accessibilitySummaryByLanguage']),
+      accessModeSufficientList: map['accessModeSufficientList'] != null
+          ? List<AccessModesSufficient>.from(
+              map['accessModeSufficientList']?.map(
+                  (accessModeSufficientMap) => accessModeSufficientMap.map(
+                        (accessModeMap) =>
+                            AccessMode.values.byName(accessModeMap),
+                      )),
+            )
+          : null,
+      accessibilityAPIs: map['accessibilityAPIs'] != null
+          ? List<AccessibilityAPI>.from(map['accessibilityAPIs']
+              ?.map((x) => AccessibilityAPI.values.byName(x)))
+          : null,
+      accessibilityControls: map['accessibilityControls'] != null
+          ? List<AccessibilityControl>.from(map['accessibilityControls']
+              ?.map((x) => AccessibilityControl.values.byName(x)))
+          : null,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory PackageMetadata.fromJson(String source) =>
+      PackageMetadata.fromMap(json.decode(source));
+
+  @override
+  String toString() {
+    return 'PackageMetadata(accessModes: $accessModes, accessibilityFeatures: $accessibilityFeatures, accessibilityHazards: $accessibilityHazards, accessibilitySummary: $accessibilitySummary, accessibilitySummaryByLanguage: $accessibilitySummaryByLanguage, accessModeSufficientList: $accessModeSufficientList, accessibilityAPIs: $accessibilityAPIs, accessibilityControls: $accessibilityControls)';
+  }
+
+  @override
+  List<Object> get props {
+    return [
+      accessModes,
+      accessibilityFeatures,
+      accessibilityHazards,
+      accessibilitySummary,
+      accessibilitySummaryByLanguage ?? '',
+      accessModeSufficientList ?? '',
+      accessibilityAPIs ?? '',
+      accessibilityControls ?? '',
+    ];
+  }
 }
