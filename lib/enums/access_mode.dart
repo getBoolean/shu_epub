@@ -29,7 +29,7 @@ enum AccessMode {
 }
 
 extension AccessModeExtension on AccessMode {
-  ///  Access the string equivalent of this constant used in EPUBs
+  /// The string equivalent of this constant property used in EPUBs
   String get value {
     switch (this) {
       case AccessMode.textual:

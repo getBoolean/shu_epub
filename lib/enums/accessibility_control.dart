@@ -31,7 +31,7 @@ enum AccessibilityControl {
 }
 
 extension AccessibilityControlExtension on AccessibilityControl {
-  ///  The string equivalent of this constant property used in EPUBs
+  /// The string equivalent of this constant property used in EPUBs
   String get value {
     switch (this) {
       case AccessibilityControl.fullKeyboardControl:

@@ -49,7 +49,7 @@ enum AccessibilityAPI {
 
 
 extension AccessibilityAPIExtension on AccessibilityAPI {
-  ///  The string equivalent of this constant property used in EPUBs
+  /// The string equivalent of this constant property used in EPUBs
   String get value {
     switch (this) {
       case AccessibilityAPI.androidAccessibility:
