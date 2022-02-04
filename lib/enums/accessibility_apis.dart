@@ -48,7 +48,7 @@ enum AccessibilityAPI {
 
 
 
-extension AccessibilityAPIsExtension on AccessibilityAPI {
+extension AccessibilityAPIExtension on AccessibilityAPI {
   ///  Access the string equivalent of this constant used in EPUBs
   String get value {
     switch (this) {
