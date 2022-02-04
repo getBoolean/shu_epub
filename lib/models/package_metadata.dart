@@ -13,13 +13,13 @@ class PackageMetadata {
   });
 
   /// A human sensory perceptual system or cognitive faculty necessary to process or perceive the content (e.g., textual, visual, auditory, tactile).
-  List<AccessMode> accessModes;
+  final List<AccessMode> accessModes;
 
   /// Features and adaptations that contribute to the overall accessibility of the content (e.g., alternative text, extended descriptions, captions).
-  List<AccessibilityFeature> accessibilityFeatures;
+  final List<AccessibilityFeature> accessibilityFeatures;
 
   /// Any potential hazards that the content presents (e.g., flashing, motion simulation, sound).
-  List<AccessibilityHazard> accessibilityHazards;
+  final List<AccessibilityHazard> accessibilityHazards;
 
   /// A human-readable summary of the overall accessibility, which includes a description of any known deficiencies (e.g., lack of extended descriptions, specific hazards).
   ///
@@ -41,18 +41,18 @@ class PackageMetadata {
   /// be at a disadvantage.
   /// </meta>
   /// ```
-  String accessibilitySummary;
+  final String accessibilitySummary;
 
   static const kDefaultAccessibilitySummaryKey = 'default';
 
   /// Included summaries with the language as the key
-  Map<String, String>? accessibilitySummaryByLanguage;
+  final Map<String, String>? accessibilitySummaryByLanguage;
 
   /// A set of one or more [AccessModesSufficient] to consume the content without significant loss of information.
   /// An EPUB Publication might have more than one set of sufficient access modes for its consumption depending
   /// on the types of content it includes (i.e., unlike [AccessMode], this property takes into account any affordances
   /// for content that is not broadly accessible, such as the inclusion of transcripts for audio content).
-  List<AccessModesSufficient>? accessModeSufficientList;
+  final List<AccessModesSufficient>? accessModeSufficientList;
 
   /// Indicates the resource is compatible with the specified accessibility API.
   /// This property is typically only used to indicate that the use of scripting
@@ -75,8 +75,8 @@ class PackageMetadata {
   /// (e.g., buttons and inputs), Authors often create custom elements whose state is opaque without correct use
   /// of [WAI-ARIA 1.1](https://www.w3.org/TR/wai-aria-1.1/) roles, state and properties  (e.g., checkboxes made out of images). Users want to know that
   /// such content has been made compatible with Reading System that support ARIA.
-  List<AccessibilityAPI>? accessibilityAPIs;
+  final List<AccessibilityAPI>? accessibilityAPIs;
 
   /// Identifies input methods that can be used to access the content (e.g., keyboard, mouse).
-  List<AccessibilityControl>? accessibilityControls;
+  final List<AccessibilityControl>? accessibilityControls;
 }
