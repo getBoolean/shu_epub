@@ -48,7 +48,7 @@ class Epub3MediaTypes {
   static const kPronounciationLexiconMimeType = 'application/pls+xml';
 
   /// All mime types supported by EPUB 3
-  static List<String> get all => [
+  static List<String> get values => [
         ...kImageMimeTypes,
         ...kAudioMimeTypes,
         ...kFontMimeTypes,
