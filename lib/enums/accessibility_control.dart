@@ -29,3 +29,23 @@ enum AccessibilityControl {
   /// Users can fully control the resource through voice input.
   fullVoiceControl,
 }
+
+extension AccessibilityControlExtension on AccessibilityControl {
+  ///  The string equivalent of this constant property used in EPUBs
+  String get value {
+    switch (this) {
+      case AccessibilityControl.fullKeyboardControl:
+        return 'fullKeyboardControl';
+      case AccessibilityControl.fullMouseControl:
+        return 'fullMouseControl';
+      case AccessibilityControl.fullSwitchControl:
+        return 'fullSwitchControl';
+      case AccessibilityControl.fullTouchControl:
+        return 'fullTouchControl';
+      case AccessibilityControl.fullVideoControl:
+        return 'fullVideoControl';
+      case AccessibilityControl.fullVoiceControl:
+        return 'fullVoiceControl';
+    }
+  }
+}
