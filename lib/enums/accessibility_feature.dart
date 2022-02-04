@@ -169,3 +169,71 @@ enum AccessibilityFeature {
   /// Indicates that the resource does not contain any accessibility features.
   none,
 }
+
+extension AccessibilityFeatureExtension on AccessibilityFeature {
+  /// The string equivalent of this constant property used in EPUBs
+  String get value {
+    switch (this) {
+      case AccessibilityFeature.annotations:
+        return 'annotations';
+      case AccessibilityFeature.bookmarks:
+        return 'bookmarks';
+      case AccessibilityFeature.contentIndex:
+        return 'index';
+      case AccessibilityFeature.printPageNumbers:
+        return 'printPageNumbers';
+      case AccessibilityFeature.readingOrder:
+        return 'readingOrder';
+      case AccessibilityFeature.structuralNavigation:
+        return 'structuralNavigation';
+      case AccessibilityFeature.taggedPDF:
+        return 'taggedPDF';
+      case AccessibilityFeature.alternativeText:
+        return 'alternativeText';
+      case AccessibilityFeature.audioDescription:
+        return 'audioDescription';
+      case AccessibilityFeature.captions:
+        return 'captions';
+      case AccessibilityFeature.describedMath:
+        return 'describedMath';
+      case AccessibilityFeature.longDescription:
+        return 'longDescription';
+      case AccessibilityFeature.rubyAnnotations:
+        return 'rubyAnnotations';
+      case AccessibilityFeature.signLanguage:
+        return 'signLanguage';
+      case AccessibilityFeature.transcript:
+        return 'transcript';
+      case AccessibilityFeature.displayTransformability:
+        return 'displayTransformability';
+      case AccessibilityFeature.synchronizedAudioText:
+        return 'synchronizedAudioText';
+      case AccessibilityFeature.timingControl:
+        return 'timingControl';
+      case AccessibilityFeature.unlocked:
+        return 'unlocked';
+      case AccessibilityFeature.chemML:
+        return 'ChemML';
+      case AccessibilityFeature.latex:
+        return 'latex';
+      case AccessibilityFeature.mathML:
+        return 'MathML';
+      case AccessibilityFeature.ttsMarkup:
+        return 'ttsMarkup';
+      case AccessibilityFeature.highContrastAudio:
+        return 'highContrastAudio';
+      case AccessibilityFeature.highContrastDisplay:
+        return 'highContrastDisplay';
+      case AccessibilityFeature.largePrint:
+        return 'largePrint';
+      case AccessibilityFeature.braille:
+        return 'braille';
+      case AccessibilityFeature.tactileGraphic:
+        return 'tactileGraphic';
+      case AccessibilityFeature.tactileObject:
+        return 'tactileObject';
+      case AccessibilityFeature.none:
+        return 'none';
+    }
+  }
+}
