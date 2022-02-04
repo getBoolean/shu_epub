@@ -1,9 +1,9 @@
 class EpubMasterConstants {
-  static const kAccessModeProperty = 'accessMode';
-  static const kAccessibilityFeatureProperty = 'accessibilityFeature';
-  static const kAccessibilitySummaryProperty = 'accessibilitySummary';
-  static const kAccessibilityHazardProperty = 'accessibilityHazard';
-  static const kAccessModeSufficientProperty = 'accessModeSufficient';
-  static const kAccessibilityAPIProperty = 'accessibilityAPI';
-  static const kAccessibilityControlProperty = 'accessibilityControl';
+  static const kAccessModeProperty = 'schema:accessMode';
+  static const kAccessibilityFeatureProperty = 'schema:accessibilityFeature';
+  static const kAccessibilitySummaryProperty = 'schema:accessibilitySummary';
+  static const kAccessibilityHazardProperty = 'schema:accessibilityHazard';
+  static const kAccessModeSufficientProperty = 'schema:accessModeSufficient';
+  static const kAccessibilityAPIProperty = 'schema:accessibilityAPI';
+  static const kAccessibilityControlProperty = 'schema:accessibilityControl';
 }
