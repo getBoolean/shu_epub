@@ -9,22 +9,22 @@ import '../../epub_master.dart';
 /// for all containers that conform to this version of the specification.
 ///
 /// The rootfiles element MUST contain at least one <rootfile> element that has a media-type of `application/oebps-package+xml`.
-class EpubContainerFile extends Equatable {
+class ContainerFile extends Equatable {
   static const filepath = 'META-INF/container.xml';
   final List<RootFile> rootfileList;
   final String version;
 
-  EpubContainerFile({
+  ContainerFile({
     required this.rootfileList,
     required this.version,
   });
 
-  EpubContainerFile copyWith({
-    List<RootFile>? rootfiles,
+  ContainerFile copyWith({
+    List<RootFile>? rootfileList,
     String? version,
   }) {
-    return EpubContainerFile(
-      rootfileList: rootfiles ?? this.rootfileList,
+    return ContainerFile(
+      rootfileList: rootfileList ?? this.rootfileList,
       version: version ?? this.version,
     );
   }
@@ -36,8 +36,8 @@ class EpubContainerFile extends Equatable {
     };
   }
 
-  factory EpubContainerFile.fromMap(Map<String, dynamic> map) {
-    return EpubContainerFile(
+  factory ContainerFile.fromMap(Map<String, dynamic> map) {
+    return ContainerFile(
       rootfileList: List<RootFile>.from(map['rootfiles']?.map((x) => RootFile.fromMap(x))),
       version: map['version'] ?? '',
     );
@@ -45,8 +45,8 @@ class EpubContainerFile extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubContainerFile.fromJson(String source) =>
-      EpubContainerFile.fromMap(json.decode(source));
+  factory ContainerFile.fromJson(String source) =>
+      ContainerFile.fromMap(json.decode(source));
 
   @override
   String toString() => 'EpubContainerFile(rootfiles: $rootfileList, version: $version)';
