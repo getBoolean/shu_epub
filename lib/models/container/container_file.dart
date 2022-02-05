@@ -54,7 +54,7 @@ class ContainerFile extends Equatable {
 
   @override
   String toString() =>
-      'EpubContainerFile(rootfiles: $rootfileList, version: $version)';
+      'ContainerFile(rootfiles: $rootfileList, version: $version)';
 
   @override
   List<Object> get props => [rootfileList, version];
