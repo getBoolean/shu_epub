@@ -1,4 +1,5 @@
 export 'epub.dart';
+export 'exception.dart';
 export 'media_types.dart';
 export 'package/epub_package.dart';
 export 'package/epub_package_identity.dart';
