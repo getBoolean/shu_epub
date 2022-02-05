@@ -1,4 +1,4 @@
-class EpubMasterConstants {
+class EpubConstants {
   static const kAccessModeProperty = 'schema:accessMode';
   static const kAccessibilityFeatureProperty = 'schema:accessibilityFeature';
   static const kAccessibilitySummaryProperty = 'schema:accessibilitySummary';
