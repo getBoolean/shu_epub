@@ -4,16 +4,14 @@ import 'package:archive/archive.dart';
 import '../models/exception.dart';
 
 class FileUtils {
-
   /// Find the mediatype of the file
-  /// 
+  ///
   /// Throws an [EpubException] if it cannot be parsed or it doesn't exist
   static String getMediaType(Archive archive) {
     for (final file in archive.files) {
       if (file.name == 'mimetype') {
-        final Uint8List content = file.content;
-
         try {
+          final Uint8List content = file.content;
           final mimetype = String.fromCharCodes(content);
 
           return mimetype;
