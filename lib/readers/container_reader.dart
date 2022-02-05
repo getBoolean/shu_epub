@@ -19,7 +19,7 @@ class ContainerReader {
     final containerElement = _getContainerElement(containerFile);
     if (containerElement == null) {
       throw EpubException(
-        'Epub Parsing Exception: Could not find container element in "${ContainerFile.filepath}"',
+        'Epub Parsing Exception: Could not find <${EpubConstants.kContainerName}> element in "${ContainerFile.filepath}"',
       );
     }
 
@@ -27,7 +27,7 @@ class ContainerReader {
 
     if (version == null) {
       throw EpubException(
-        'Epub Parsing Exception: Could not find version for container element in "${ContainerFile.filepath}"',
+        'Epub Parsing Exception: Could not find version attribute for container element in "${ContainerFile.filepath}"',
       );
     }
 
@@ -41,7 +41,7 @@ class ContainerReader {
 
     if (!containsOPSPackageElement(rootfileList)) {
       throw EpubException(
-        'Epub Parsing Exception: EPUB container at path "${ContainerFile.filepath}" does not contain an element with media type "application/oebps-package+xml"',
+        'Epub Parsing Exception: EPUB container at path "${ContainerFile.filepath}" does not contain an element with media-type attribute value of "${EpubConstants.kOPFMimeType}"',
       );
     }
 
@@ -54,7 +54,7 @@ class ContainerReader {
   static bool containsOPSPackageElement(List<RootFile> rootfileList) {
     return rootfileList
         .where(
-          (element) => element.mediaType == 'application/oebps-package+xml',
+          (element) => element.mediaType == EpubConstants.kOPFMimeType,
         )
         .isNotEmpty;
   }
@@ -68,10 +68,16 @@ class ContainerReader {
         containerElement.findElements('rootfiles').firstOrNull;
     if (rootfilesElement == null) {
       throw EpubException(
-        'Epub Parsing Exception: EPUB container at path "${ContainerFile.filepath}" did not have a "rootfiles" element',
+        'Epub Parsing Exception: EPUB container at path "${ContainerFile.filepath}" did not have a <rootfiles> element',
       );
     }
     final rootfilesXml = rootfilesElement.findElements('rootfile').toList();
+    if (rootfilesXml.isEmpty) {
+      throw EpubException(
+        'Epub Parsing Exception: EPUB container at path "${ContainerFile.filepath}" did not have any <rootfile> elements',
+      );
+    }
+
     final rootfiles = _rootfilesXmlToRootFileList(rootfilesXml);
 
     return rootfiles;
@@ -106,8 +112,8 @@ class ContainerReader {
       // Find container element which MUST have namespace `urn:oasis:names:tc:opendocument:xmlns:container`
       final container = document
           .findAllElements(
-            'container',
-            namespace: 'urn:oasis:names:tc:opendocument:xmlns:container',
+            EpubConstants.kContainerName,
+            namespace: EpubConstants.kContainerNamespace,
           )
           .firstOrNull;
       return container;

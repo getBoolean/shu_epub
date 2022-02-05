@@ -41,7 +41,8 @@ class ContainerFile extends Equatable {
 
   factory ContainerFile.fromMap(Map<String, dynamic> map) {
     return ContainerFile(
-      rootfileList: List<RootFile>.from(map['rootfiles']?.map((x) => RootFile.fromMap(x))),
+      rootfileList: List<RootFile>.from(
+          map['rootfiles']?.map((x) => RootFile.fromMap(x))),
       version: map['version'] ?? '',
     );
   }
@@ -52,7 +53,8 @@ class ContainerFile extends Equatable {
       ContainerFile.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubContainerFile(rootfiles: $rootfileList, version: $version)';
+  String toString() =>
+      'EpubContainerFile(rootfiles: $rootfileList, version: $version)';
 
   @override
   List<Object> get props => [rootfileList, version];

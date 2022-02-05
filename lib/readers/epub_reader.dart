@@ -7,8 +7,7 @@ import '../utils/file_utils.dart';
 class EpubReader {
   final Archive archive;
 
-  EpubReader(Uint8List bytes)
-      : archive = ArchiveService.instance.decodeZip(bytes);
+  EpubReader(Uint8List bytes) : archive = ArchiveService.decodeZip(bytes);
 
   Epub readBook() {
     final isEpub = FileUtils.isEpubFile(archive);
@@ -16,7 +15,13 @@ class EpubReader {
       throw EpubException('File was not an EPUB');
     }
 
-    final packageMetadata = PackageReader().readMetadata(archive);
-    return Epub(packageMetadata: packageMetadata);
+    final epubContainerFile = ContainerReader.parse(archive);
+    final packageMetadata = PackageReader.readMetadata(archive);
+
+    print(epubContainerFile);
+    return Epub(
+      packageMetadata: packageMetadata,
+      containerFile: epubContainerFile,
+    );
   }
 }

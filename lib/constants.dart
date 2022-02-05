@@ -7,4 +7,7 @@ class EpubConstants {
   static const kAccessibilityAPIProperty = 'schema:accessibilityAPI';
   static const kAccessibilityControlProperty = 'schema:accessibilityControl';
   static const kOPFMimeType = 'application/oebps-package+xml';
+  static const kContainerName = 'container';
+  static const kContainerNamespace =
+      'urn:oasis:names:tc:opendocument:xmlns:container';
 }
