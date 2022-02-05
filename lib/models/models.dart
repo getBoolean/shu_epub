@@ -1,3 +1,4 @@
+export 'container/root_file.dart';
 export 'epub.dart';
 export 'exception.dart';
 export 'media_types.dart';
