@@ -6,4 +6,5 @@ class EpubConstants {
   static const kAccessModeSufficientProperty = 'schema:accessModeSufficient';
   static const kAccessibilityAPIProperty = 'schema:accessibilityAPI';
   static const kAccessibilityControlProperty = 'schema:accessibilityControl';
+  static const kOPFMimeType = 'application/oebps-package+xml';
 }
