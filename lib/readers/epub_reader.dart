@@ -18,7 +18,6 @@ class EpubReader {
     final epubContainerFile = ContainerReader.parse(archive);
     final packageMetadata = PackageReader.readMetadata(archive);
 
-    print(epubContainerFile);
     return Epub(
       packageMetadata: packageMetadata,
       containerFile: epubContainerFile,
