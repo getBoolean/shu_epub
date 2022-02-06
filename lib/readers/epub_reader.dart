@@ -19,11 +19,11 @@ class EpubReader {
     final ContainerFile epubContainerFile =
         _handleContainerFileReadFails(archive);
 
-    final PackageMetadata packageMetadata =
-        PackageMetadata.read(archive, epubContainerFile);
+    final PackageFile packageFile =
+        PackageFile.read(archive, epubContainerFile);
 
     return Epub(
-      packageMetadata: packageMetadata,
+      packageFile: packageFile,
       containerFile: epubContainerFile,
     );
   }

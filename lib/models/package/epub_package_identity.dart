@@ -18,6 +18,14 @@ class EpubPackageIdentity extends Equatable {
 
   final String? id;
 
+  factory EpubPackageIdentity.zero() {
+    return EpubPackageIdentity(
+      version: 'unknown',
+      uniqueIdentifier: 'unknown',
+      packageContent: ''
+    );
+  }
+
   EpubPackageIdentity copyWith({
     String? version,
     String? uniqueIdentifier,
@@ -61,5 +69,6 @@ class EpubPackageIdentity extends Equatable {
   }
 
   @override
-  List<Object> get props => [version, uniqueIdentifier, packageContent, id ?? ''];
+  List<Object> get props =>
+      [version, uniqueIdentifier, packageContent, id ?? ''];
 }

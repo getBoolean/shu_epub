@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:archive/archive.dart';
+import 'package:equatable/equatable.dart';
 
 import '../../readers/package_reader.dart';
 import '../models.dart';
@@ -16,16 +19,12 @@ import '../models.dart';
 /// this functionality.
 ///
 /// This specification neither precludes nor requires the inclusion of the OPF Package Schema in a Publication.
-class PackageFile {
+class PackageFile extends Equatable {
   static const kPackageFileMimeType = 'application/oebps-package+xml';
 
   PackageFile({
-    required this.packageIdentity,
-    // required this.publicationMetadata,
-    // required this.manifest,
-    // required this.spine,
     // this.tours,
-    // required this.guide,
+    required this.packageIdentity,
   });
 
   /// Includes a unique identifier for the OPS Publication as a whole. This should NOT
@@ -73,4 +72,34 @@ class PackageFile {
   factory PackageFile.read(Archive archive, ContainerFile containerFile) {
     return PackageReader.parse(archive, containerFile);
   }
+
+  PackageFile copyWith({
+    EpubPackageIdentity? packageIdentity,
+  }) {
+    return PackageFile(
+      packageIdentity: packageIdentity ?? this.packageIdentity,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'packageIdentity': packageIdentity.toMap(),
+    };
+  }
+
+  factory PackageFile.fromMap(Map<String, dynamic> map) {
+    return PackageFile(
+      packageIdentity: EpubPackageIdentity.fromMap(map['packageIdentity']),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory PackageFile.fromJson(String source) => PackageFile.fromMap(json.decode(source));
+
+  @override
+  String toString() => 'PackageFile(packageIdentity: $packageIdentity)';
+
+  @override
+  List<Object> get props => [packageIdentity];
 }

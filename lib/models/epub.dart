@@ -8,11 +8,11 @@ import '../readers/epub_reader.dart';
 
 class Epub extends Equatable {
   Epub({
-    required this.packageMetadata,
+    required this.packageFile,
     required this.containerFile,
   });
 
-  final PackageMetadata packageMetadata;
+  final PackageFile packageFile;
   final ContainerFile containerFile;
 
   factory Epub.read(Uint8List bytes) {
@@ -20,25 +20,25 @@ class Epub extends Equatable {
   }
 
   Epub copyWith({
-    PackageMetadata? packageMetadata,
+    PackageFile? packageFile,
     ContainerFile? containerFile,
   }) {
     return Epub(
-      packageMetadata: packageMetadata ?? this.packageMetadata,
+      packageFile: packageFile ?? this.packageFile,
       containerFile: containerFile ?? this.containerFile,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'packageMetadata': packageMetadata.toMap(),
+      'packageFile': packageFile.toMap(),
       'containerFile': containerFile.toMap(),
     };
   }
 
   factory Epub.fromMap(Map<String, dynamic> map) {
     return Epub(
-      packageMetadata: PackageMetadata.fromMap(map['packageMetadata']),
+      packageFile: PackageFile.fromMap(map['packageFile']),
       containerFile: ContainerFile.fromMap(map['containerFile']),
     );
   }
@@ -48,9 +48,8 @@ class Epub extends Equatable {
   factory Epub.fromJson(String source) => Epub.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'Epub(packageMetadata: $packageMetadata, containerFile: $containerFile)';
+  String toString() => 'Epub(packageFile: $packageFile, containerFile: $containerFile)';
 
   @override
-  List<Object> get props => [packageMetadata, containerFile];
+  List<Object> get props => [packageFile, containerFile];
 }
