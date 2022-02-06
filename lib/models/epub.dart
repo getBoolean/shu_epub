@@ -15,8 +15,8 @@ class Epub extends Equatable {
   final PackageMetadata packageMetadata;
   final ContainerFile containerFile;
 
-  factory Epub.readBook(Uint8List bytes) {
-    return EpubReader.readBook(bytes);
+  factory Epub.read(Uint8List bytes) {
+    return EpubReader.read(bytes);
   }
 
   Epub copyWith({

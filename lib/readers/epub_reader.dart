@@ -7,7 +7,7 @@ import '../utils/file_utils.dart';
 class EpubReader {
   const EpubReader();
 
-  static Epub readBook(Uint8List bytes) {
+  static Epub read(Uint8List bytes) {
     final archive = ArchiveService.decodeZip(bytes);
     final isEpub = FileUtils.isEpubFile(archive);
     if (!isEpub) {
