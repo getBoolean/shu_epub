@@ -4,12 +4,12 @@ import 'package:equatable/equatable.dart';
 
 class PackageIdentity extends Equatable {
   PackageIdentity({
-    required this.version,
+    required this.epubVersion,
     required this.uniqueIdentifier,
     this.id,
   });
 
-  final String version;
+  final String epubVersion;
 
   final String uniqueIdentifier;
 
@@ -17,18 +17,18 @@ class PackageIdentity extends Equatable {
 
   factory PackageIdentity.zero() {
     return PackageIdentity(
-      version: 'unknown',
+      epubVersion: 'unknown',
       uniqueIdentifier: 'unknown',
     );
   }
 
   PackageIdentity copyWith({
-    String? version,
+    String? epubVersion,
     String? uniqueIdentifier,
     String? id,
   }) {
     return PackageIdentity(
-      version: version ?? this.version,
+      epubVersion: epubVersion ?? this.epubVersion,
       uniqueIdentifier: uniqueIdentifier ?? this.uniqueIdentifier,
       id: id ?? this.id,
     );
@@ -36,7 +36,7 @@ class PackageIdentity extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'version': version,
+      'epubVersion': epubVersion,
       'uniqueIdentifier': uniqueIdentifier,
       'id': id,
     };
@@ -44,7 +44,7 @@ class PackageIdentity extends Equatable {
 
   factory PackageIdentity.fromMap(Map<String, dynamic> map) {
     return PackageIdentity(
-      version: map['version'] ?? '',
+      epubVersion: map['epubVersion'] ?? '',
       uniqueIdentifier: map['uniqueIdentifier'] ?? '',
       id: map['id'],
     );
@@ -56,9 +56,8 @@ class PackageIdentity extends Equatable {
       PackageIdentity.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'PackageIdentity(version: $version, uniqueIdentifier: $uniqueIdentifier, id: $id)';
+  String toString() => 'PackageIdentity(epubVersion: $epubVersion, uniqueIdentifier: $uniqueIdentifier, id: $id)';
 
   @override
-  List<Object> get props => [version, uniqueIdentifier, id ?? 'No id included'];
+  List<Object> get props => [epubVersion, uniqueIdentifier, id];
 }

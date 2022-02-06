@@ -49,7 +49,7 @@ class PackageReader {
 
     final packageIdentity = PackageIdentity(
       uniqueIdentifier: uniqueIdentifier,
-      version: version,
+      epubVersion: version,
       id: id,
     );
     return packageIdentity;
