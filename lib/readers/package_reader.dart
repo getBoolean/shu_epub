@@ -3,8 +3,8 @@ import 'package:archive/archive.dart';
 import '../epub_master.dart';
 
 class PackageReader {
-  static PackageFile parse(Archive archive, ContainerFile containerFile) {
-    return PackageFile(
+  static PackageMetadata parse(Archive archive, ContainerFile containerFile) {
+    return PackageMetadata(
       accessibilityFeatures: [],
       accessibilityHazards: [],
       accessibilitySummary: '',

@@ -7,10 +7,10 @@ import '../../enums/enums.dart';
 import '../../readers/package_reader.dart';
 import '../container/container_file.dart';
 
-class PackageFile extends Equatable {
+class PackageMetadata extends Equatable {
   static const kPackageFileMimeType = 'application/oebps-package+xml';
 
-  PackageFile({
+  PackageMetadata({
     this.accessModes,
     this.accessibilityFeatures,
     this.accessibilityHazards,
@@ -89,11 +89,11 @@ class PackageFile extends Equatable {
   /// Identifies input methods that can be used to access the content (e.g., keyboard, mouse).
   final List<AccessibilityControl>? accessibilityControls;
 
-  factory PackageFile.read(Archive archive, ContainerFile containerFile) {
+  factory PackageMetadata.read(Archive archive, ContainerFile containerFile) {
     return PackageReader.parse(archive, containerFile);
   }
 
-  PackageFile copyWith({
+  PackageMetadata copyWith({
     List<AccessMode>? accessModes,
     List<AccessibilityFeature>? accessibilityFeatures,
     List<AccessibilityHazard>? accessibilityHazards,
@@ -103,7 +103,7 @@ class PackageFile extends Equatable {
     List<AccessibilityAPI>? accessibilityAPIs,
     List<AccessibilityControl>? accessibilityControls,
   }) {
-    return PackageFile(
+    return PackageMetadata(
       accessModes: accessModes ?? this.accessModes,
       accessibilityFeatures:
           accessibilityFeatures ?? this.accessibilityFeatures,
@@ -140,8 +140,8 @@ class PackageFile extends Equatable {
     };
   }
 
-  factory PackageFile.fromMap(Map<String, dynamic> map) {
-    return PackageFile(
+  factory PackageMetadata.fromMap(Map<String, dynamic> map) {
+    return PackageMetadata(
       accessModes: map['accessModes'] == null
           ? null
           : List<AccessMode>.from(
@@ -188,8 +188,8 @@ class PackageFile extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory PackageFile.fromJson(String source) =>
-      PackageFile.fromMap(json.decode(source));
+  factory PackageMetadata.fromJson(String source) =>
+      PackageMetadata.fromMap(json.decode(source));
 
   @override
   String toString() {
