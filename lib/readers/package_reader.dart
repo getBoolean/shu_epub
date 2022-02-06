@@ -25,6 +25,13 @@ class PackageReader {
     final PackageIdentity packageIdentity =
         _handleParsePackageIdentity(packageElement, rootfilePath);
 
+    final XmlElement? metadataElement = _getMetadataElement(packageElement);
+    if (metadataElement == null) {
+      throw EpubException(
+        'Epub Parsing Exception: Could not find <${EpubConstants.kMetadataName}> element in "$rootfilePath"',
+      );
+    }
+
     return PackageFile(
       packageIdentity: packageIdentity,
     );
@@ -65,6 +72,12 @@ class PackageReader {
 
   static String? _getOptionalId(XmlElement packageElement) {
     return packageElement.getAttribute('id');
+  }
+
+  static XmlElement? _getMetadataElement(XmlElement packageElement) {
+    return packageElement
+        .findElements('metadata')
+        .firstOrNull;
   }
 
   static XmlElement? _getPackageElement(ArchiveFile packageFile) {

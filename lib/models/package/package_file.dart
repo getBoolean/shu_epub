@@ -23,7 +23,6 @@ class PackageFile extends Equatable {
   static const kPackageFileMimeType = 'application/oebps-package+xml';
 
   PackageFile({
-    // this.tours,
     required this.packageIdentity,
   });
 

@@ -13,4 +13,5 @@ class EpubConstants {
       'urn:oasis:names:tc:opendocument:xmlns:container';
   static const kPackageName = 'package';
   static const kPackageNamespace = 'http://www.idpf.org/2007/opf';
+  static const kMetadataName = 'metadata';
 }
