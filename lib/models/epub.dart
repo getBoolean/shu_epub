@@ -12,7 +12,7 @@ class Epub extends Equatable {
     required this.containerFile,
   });
 
-  final PackageMetadata packageMetadata;
+  final PackageFile packageMetadata;
   final ContainerFile containerFile;
 
   factory Epub.read(Uint8List bytes) {
@@ -20,7 +20,7 @@ class Epub extends Equatable {
   }
 
   Epub copyWith({
-    PackageMetadata? packageMetadata,
+    PackageFile? packageMetadata,
     ContainerFile? containerFile,
   }) {
     return Epub(
@@ -38,7 +38,7 @@ class Epub extends Equatable {
 
   factory Epub.fromMap(Map<String, dynamic> map) {
     return Epub(
-      packageMetadata: PackageMetadata.fromMap(map['packageMetadata']),
+      packageMetadata: PackageFile.fromMap(map['packageMetadata']),
       containerFile: ContainerFile.fromMap(map['containerFile']),
     );
   }

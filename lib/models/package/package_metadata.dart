@@ -6,8 +6,8 @@ import 'package:equatable/equatable.dart';
 import '../../enums/enums.dart';
 import '../../readers/package_reader.dart';
 
-class PackageMetadata extends Equatable {
-  PackageMetadata({
+class PackageFile extends Equatable {
+  PackageFile({
     required this.accessModes,
     required this.accessibilityFeatures,
     required this.accessibilityHazards,
@@ -86,11 +86,11 @@ class PackageMetadata extends Equatable {
   /// Identifies input methods that can be used to access the content (e.g., keyboard, mouse).
   final List<AccessibilityControl>? accessibilityControls;
 
-  factory PackageMetadata.read(Archive archive) {
+  factory PackageFile.read(Archive archive) {
     return PackageReader.parse(archive);
   }
 
-  PackageMetadata copyWith({
+  PackageFile copyWith({
     List<AccessMode>? accessModes,
     List<AccessibilityFeature>? accessibilityFeatures,
     List<AccessibilityHazard>? accessibilityHazards,
@@ -100,7 +100,7 @@ class PackageMetadata extends Equatable {
     List<AccessibilityAPI>? accessibilityAPIs,
     List<AccessibilityControl>? accessibilityControls,
   }) {
-    return PackageMetadata(
+    return PackageFile(
       accessModes: accessModes ?? this.accessModes,
       accessibilityFeatures:
           accessibilityFeatures ?? this.accessibilityFeatures,
@@ -137,8 +137,8 @@ class PackageMetadata extends Equatable {
     };
   }
 
-  factory PackageMetadata.fromMap(Map<String, dynamic> map) {
-    return PackageMetadata(
+  factory PackageFile.fromMap(Map<String, dynamic> map) {
+    return PackageFile(
       accessModes: List<AccessMode>.from(
           map['accessModes']?.map((x) => AccessMode.values.byName(x))),
       accessibilityFeatures: List<AccessibilityFeature>.from(
@@ -172,8 +172,8 @@ class PackageMetadata extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory PackageMetadata.fromJson(String source) =>
-      PackageMetadata.fromMap(json.decode(source));
+  factory PackageFile.fromJson(String source) =>
+      PackageFile.fromMap(json.decode(source));
 
   @override
   String toString() {
