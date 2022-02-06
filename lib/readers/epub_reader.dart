@@ -1,22 +1,23 @@
 import 'dart:typed_data';
-import 'package:archive/archive.dart';
 
 import '../epub_master.dart';
+import '../service/archive_service.dart';
 import '../utils/file_utils.dart';
+import 'container_reader.dart';
+import 'package_reader.dart';
 
 class EpubReader {
-  final Archive archive;
+  const EpubReader();
 
-  EpubReader(Uint8List bytes) : archive = ArchiveService.decodeZip(bytes);
-
-  Epub readBook() {
+  static Epub readBook(Uint8List bytes) {
+    final archive = ArchiveService.decodeZip(bytes);
     final isEpub = FileUtils.isEpubFile(archive);
     if (!isEpub) {
       throw EpubException('File was not an EPUB');
     }
 
-    final epubContainerFile = ContainerReader.parse(archive);
-    final packageMetadata = PackageReader.readMetadata(archive);
+    final ContainerFile epubContainerFile = ContainerReader.parse(archive);
+    final PackageMetadata packageMetadata = PackageReader.readMetadata(archive);
 
     return Epub(
       packageMetadata: packageMetadata,

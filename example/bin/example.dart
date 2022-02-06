@@ -9,7 +9,7 @@ Future<void> main(List<String> arguments) async {
 
   final File file = File(filePath);
 
-  final reader = EpubReader(file.readAsBytesSync());
-  final book = reader.readBook();
+  final bytes = await file.readAsBytes();
+  final book = Epub.readBook(bytes);
   print(book);
 }
