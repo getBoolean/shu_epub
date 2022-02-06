@@ -44,7 +44,7 @@ class PackageFile extends Equatable {
   /// Notwithstanding the requirement for uniqueness, Reading Systems must not
   /// fail catastrophically if they encounter two distinct packages with the same
   /// purportedly unique primary identifier.
-  final EpubPackageIdentity packageIdentity;
+  final PackageIdentity packageIdentity;
 
   // /// Publication metadata (title, author, publisher, etc.).
   // final EpubPublicationMetadata publicationMetadata;
@@ -74,7 +74,7 @@ class PackageFile extends Equatable {
   }
 
   PackageFile copyWith({
-    EpubPackageIdentity? packageIdentity,
+    PackageIdentity? packageIdentity,
   }) {
     return PackageFile(
       packageIdentity: packageIdentity ?? this.packageIdentity,
@@ -89,7 +89,7 @@ class PackageFile extends Equatable {
 
   factory PackageFile.fromMap(Map<String, dynamic> map) {
     return PackageFile(
-      packageIdentity: EpubPackageIdentity.fromMap(map['packageIdentity']),
+      packageIdentity: PackageIdentity.fromMap(map['packageIdentity']),
     );
   }
 

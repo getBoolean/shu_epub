@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
-class EpubPackageIdentity extends Equatable {
-  EpubPackageIdentity({
+class PackageIdentity extends Equatable {
+  PackageIdentity({
     required this.version,
     required this.uniqueIdentifier,
     required this.packageContent,
@@ -18,21 +18,21 @@ class EpubPackageIdentity extends Equatable {
 
   final String? id;
 
-  factory EpubPackageIdentity.zero() {
-    return EpubPackageIdentity(
+  factory PackageIdentity.zero() {
+    return PackageIdentity(
       version: 'unknown',
       uniqueIdentifier: 'unknown',
       packageContent: ''
     );
   }
 
-  EpubPackageIdentity copyWith({
+  PackageIdentity copyWith({
     String? version,
     String? uniqueIdentifier,
     String? packageContent,
     String? id,
   }) {
-    return EpubPackageIdentity(
+    return PackageIdentity(
       version: version ?? this.version,
       uniqueIdentifier: uniqueIdentifier ?? this.uniqueIdentifier,
       packageContent: packageContent ?? this.packageContent,
@@ -49,8 +49,8 @@ class EpubPackageIdentity extends Equatable {
     };
   }
 
-  factory EpubPackageIdentity.fromMap(Map<String, dynamic> map) {
-    return EpubPackageIdentity(
+  factory PackageIdentity.fromMap(Map<String, dynamic> map) {
+    return PackageIdentity(
       version: map['version'] ?? '',
       uniqueIdentifier: map['uniqueIdentifier'] ?? '',
       packageContent: map['packageContent'] ?? '',
@@ -60,8 +60,8 @@ class EpubPackageIdentity extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubPackageIdentity.fromJson(String source) =>
-      EpubPackageIdentity.fromMap(json.decode(source));
+  factory PackageIdentity.fromJson(String source) =>
+      PackageIdentity.fromMap(json.decode(source));
 
   @override
   String toString() {
