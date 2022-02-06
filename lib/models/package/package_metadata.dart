@@ -87,10 +87,6 @@ class PackageMetadata extends Equatable {
   /// Identifies input methods that can be used to access the content (e.g., keyboard, mouse).
   final List<AccessibilityControl>? accessibilityControls;
 
-  factory PackageMetadata.read(Archive archive, ContainerFile containerFile) {
-    return PackageReader.parse(archive, containerFile);
-  }
-
   PackageMetadata copyWith({
     List<AccessMode>? accessModes,
     List<AccessibilityFeature>? accessibilityFeatures,

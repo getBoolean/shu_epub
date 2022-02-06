@@ -1,3 +1,6 @@
+import 'package:archive/archive.dart';
+
+import '../../readers/package_reader.dart';
 import '../models.dart';
 
 /// A publication conforming to this specification must include exactly one XML OPF
@@ -64,4 +67,10 @@ class PackageFile {
   // /// A set of references to fundamental structural features of the publication, such
   // /// as table of contents, foreword, bibliography, etc.
   // final EpubGuide guide;
+
+  
+
+  factory PackageFile.read(Archive archive, ContainerFile containerFile) {
+    return PackageReader.parse(archive, containerFile);
+  }
 }
