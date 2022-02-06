@@ -1,11 +1,8 @@
 import 'dart:convert';
 
-import 'package:archive/archive.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../enums/enums.dart';
-import '../../readers/package_reader.dart';
-import '../container/container_file.dart';
 
 class PackageMetadata extends Equatable {
   PackageMetadata({
