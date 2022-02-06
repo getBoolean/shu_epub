@@ -75,9 +75,7 @@ class PackageReader {
   }
 
   static XmlElement? _getMetadataElement(XmlElement packageElement) {
-    return packageElement
-        .findElements('metadata')
-        .firstOrNull;
+    return packageElement.findElements('metadata').firstOrNull;
   }
 
   static XmlElement? _getPackageElement(ArchiveFile packageFile) {
