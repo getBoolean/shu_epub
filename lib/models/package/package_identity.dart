@@ -56,8 +56,9 @@ class PackageIdentity extends Equatable {
       PackageIdentity.fromMap(json.decode(source));
 
   @override
-  String toString() => 'PackageIdentity(epubVersion: $epubVersion, uniqueIdentifier: $uniqueIdentifier, id: $id)';
+  String toString() =>
+      'PackageIdentity(epubVersion: $epubVersion, uniqueIdentifier: $uniqueIdentifier, id: $id)';
 
   @override
-  List<Object> get props => [epubVersion, uniqueIdentifier, id];
+  List<Object> get props => [epubVersion, uniqueIdentifier, id ?? ''];
 }
