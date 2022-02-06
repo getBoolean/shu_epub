@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:archive/archive.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../epub_master.dart';
+import '../../readers/container_reader.dart';
 
 /// The container.xml file contains XML that uses the `urn:oasis:names:tc:opendocument:xmlns:container`
 /// namespace for all of its elements and attributes. The `version="1.0"` attribute MUST be included
@@ -20,7 +22,12 @@ class ContainerFile extends Equatable {
   });
 
   /// If there are multiple [RootFile]s with mime type [EpubConstants.kOPFMimeType], the first one will be considered the rootfile
-  RootFile get rootfile => rootfileList.firstWhere((element) => element.mediaType == EpubConstants.kOPFMimeType);
+  RootFile get rootfile => rootfileList
+      .firstWhere((element) => element.mediaType == EpubConstants.kOPFMimeType);
+
+  factory ContainerFile.read(Archive archive) {
+    return ContainerReader.parse(archive);
+  }
 
   ContainerFile copyWith({
     List<RootFile>? rootfileList,

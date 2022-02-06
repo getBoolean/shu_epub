@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:archive/archive.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../enums/enums.dart';
+import '../../readers/package_reader.dart';
 
 class PackageMetadata extends Equatable {
   PackageMetadata({
@@ -83,6 +85,10 @@ class PackageMetadata extends Equatable {
 
   /// Identifies input methods that can be used to access the content (e.g., keyboard, mouse).
   final List<AccessibilityControl>? accessibilityControls;
+
+  factory PackageMetadata.read(Archive archive) {
+    return PackageReader.readMetadata(archive);
+  }
 
   PackageMetadata copyWith({
     List<AccessMode>? accessModes,
