@@ -87,7 +87,7 @@ class PackageMetadata extends Equatable {
   final List<AccessibilityControl>? accessibilityControls;
 
   factory PackageMetadata.read(Archive archive) {
-    return PackageReader.readMetadata(archive);
+    return PackageReader.parse(archive);
   }
 
   PackageMetadata copyWith({
