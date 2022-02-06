@@ -1,6 +1,8 @@
+import 'dart:convert' as convert;
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
+import '../constants.dart';
 import '../models/exception.dart';
 
 class FileUtils {
@@ -30,9 +32,17 @@ class FileUtils {
     );
   }
 
+  static String convertUtf8ToString(Uint8List data) {
+    return convert.utf8.decode(data, allowMalformed: true);
+  }
+
+  static String convertUtf16ToString(Uint8List data) {
+    return String.fromCharCodes(data);
+  }
+
   static bool isEpubFile(Archive archive) {
     final String mimeType = getMediaType(archive);
-    if (mimeType.contains('application/epub+zip')) {
+    if (mimeType.contains(EpubConstants.kEpubMimeType)) {
       return true;
     }
 
