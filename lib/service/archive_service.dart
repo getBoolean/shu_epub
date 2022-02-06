@@ -2,7 +2,7 @@ import 'dart:typed_data';
 import 'package:archive/archive.dart';
 
 import '../models/container/root_file.dart';
-import '../models/package/package_metadata.dart';
+import '../models/package/epub_package.dart';
 
 class ArchiveService {
   /// Decode epub data
@@ -23,7 +23,7 @@ class ArchiveService {
       if (fileExtension == 'opf') {
         return RootFile(
           fullPath: file.name,
-          mediaType: PackageMetadata.kPackageFileMimeType,
+          mediaType: PackageFile.kPackageFileMimeType,
         );
       }
     }

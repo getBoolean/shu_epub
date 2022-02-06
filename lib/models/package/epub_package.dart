@@ -13,8 +13,10 @@ import '../models.dart';
 /// this functionality.
 ///
 /// This specification neither precludes nor requires the inclusion of the OPF Package Schema in a Publication.
-class EpubPackage {
-  EpubPackage({
+class PackageFile {
+  static const kPackageFileMimeType = 'application/oebps-package+xml';
+
+  PackageFile({
     required this.packageIdentity,
     // required this.publicationMetadata,
     // required this.manifest,
