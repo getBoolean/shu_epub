@@ -5,8 +5,11 @@ import 'package:equatable/equatable.dart';
 
 import '../../enums/enums.dart';
 import '../../readers/package_reader.dart';
+import '../container/container_file.dart';
 
 class PackageFile extends Equatable {
+  static const kPackageFileMimeType = 'application/oebps-package+xml';
+
   PackageFile({
     this.accessModes,
     this.accessibilityFeatures,
@@ -86,8 +89,8 @@ class PackageFile extends Equatable {
   /// Identifies input methods that can be used to access the content (e.g., keyboard, mouse).
   final List<AccessibilityControl>? accessibilityControls;
 
-  factory PackageFile.read(Archive archive) {
-    return PackageReader.parse(archive);
+  factory PackageFile.read(Archive archive, ContainerFile containerFile) {
+    return PackageReader.parse(archive, containerFile);
   }
 
   PackageFile copyWith({

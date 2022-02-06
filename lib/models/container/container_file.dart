@@ -30,6 +30,10 @@ class ContainerFile extends Equatable {
         },
       );
 
+  factory ContainerFile.error(RootFile epubRootfile) {
+    return ContainerFile(rootfileList: [epubRootfile], version: 'unknown');
+  }
+
   factory ContainerFile.read(Archive archive) {
     return ContainerReader.parse(archive);
   }
