@@ -2,7 +2,7 @@ import 'dart:typed_data';
 import 'package:archive/archive.dart';
 
 import '../models/container/root_file.dart';
-import '../models/package/epub_package.dart';
+import '../models/package/package_file.dart';
 
 class ArchiveService {
   /// Decode epub data
