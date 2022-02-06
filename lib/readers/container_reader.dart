@@ -23,7 +23,7 @@ class ContainerReader {
       );
     }
 
-    final version = getVersion(containerElement);
+    final version = _getVersion(containerElement);
 
     if (version == null) {
       throw EpubException(
@@ -59,7 +59,7 @@ class ContainerReader {
         .isNotEmpty;
   }
 
-  static String? getVersion(XmlElement containerElement) {
+  static String? _getVersion(XmlElement containerElement) {
     return containerElement.getAttribute('version');
   }
 
