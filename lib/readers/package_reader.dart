@@ -22,14 +22,16 @@ class PackageReader {
       );
     }
 
-    final PackageIdentity packageIdentity = _handleParsePackageIdentity(packageElement, rootfilePath);
+    final PackageIdentity packageIdentity =
+        _handleParsePackageIdentity(packageElement, rootfilePath);
 
     return PackageFile(
       packageIdentity: packageIdentity,
     );
   }
 
-  static PackageIdentity _handleParsePackageIdentity(XmlElement packageElement, String rootfilePath) {
+  static PackageIdentity _handleParsePackageIdentity(
+      XmlElement packageElement, String rootfilePath) {
     final version = _getVersion(packageElement);
     if (version == null) {
       throw EpubException(
@@ -42,10 +44,13 @@ class PackageReader {
         'Epub Parsing Exception: Could not find unique-identifier attribute in "$rootfilePath"',
       );
     }
-    
+
+    final id = _getOptionalId(packageElement);
+
     final packageIdentity = PackageIdentity(
       uniqueIdentifier: uniqueIdentifier,
       version: version,
+      id: id,
     );
     return packageIdentity;
   }
@@ -56,6 +61,10 @@ class PackageReader {
 
   static String? _getUniqueIdentifier(XmlElement packageElement) {
     return packageElement.getAttribute('unique-identifier');
+  }
+
+  static String? _getOptionalId(XmlElement packageElement) {
+    return packageElement.getAttribute('id');
   }
 
   static XmlElement? _getPackageElement(ArchiveFile packageFile) {
