@@ -7,7 +7,6 @@ class PackageIdentity extends Equatable {
     required this.version,
     required this.uniqueIdentifier,
     required this.packageContent,
-    this.id,
   });
 
   final String version;
@@ -15,8 +14,6 @@ class PackageIdentity extends Equatable {
   final String uniqueIdentifier;
 
   final String packageContent;
-
-  final String? id;
 
   factory PackageIdentity.zero() {
     return PackageIdentity(
@@ -30,13 +27,11 @@ class PackageIdentity extends Equatable {
     String? version,
     String? uniqueIdentifier,
     String? packageContent,
-    String? id,
   }) {
     return PackageIdentity(
       version: version ?? this.version,
       uniqueIdentifier: uniqueIdentifier ?? this.uniqueIdentifier,
       packageContent: packageContent ?? this.packageContent,
-      id: id ?? this.id,
     );
   }
 
@@ -45,7 +40,6 @@ class PackageIdentity extends Equatable {
       'version': version,
       'uniqueIdentifier': uniqueIdentifier,
       'packageContent': packageContent,
-      'id': id,
     };
   }
 
@@ -54,7 +48,6 @@ class PackageIdentity extends Equatable {
       version: map['version'] ?? '',
       uniqueIdentifier: map['uniqueIdentifier'] ?? '',
       packageContent: map['packageContent'] ?? '',
-      id: map['id'],
     );
   }
 
@@ -64,11 +57,8 @@ class PackageIdentity extends Equatable {
       PackageIdentity.fromMap(json.decode(source));
 
   @override
-  String toString() {
-    return 'EpubPackageIdentity(version: $version, uniqueIdentifier: $uniqueIdentifier, packageContent: $packageContent, id: $id)';
-  }
+  String toString() => 'PackageIdentity(version: $version, uniqueIdentifier: $uniqueIdentifier, packageContent: $packageContent)';
 
   @override
-  List<Object> get props =>
-      [version, uniqueIdentifier, packageContent, id ?? ''];
+  List<Object> get props => [version, uniqueIdentifier, packageContent];
 }
