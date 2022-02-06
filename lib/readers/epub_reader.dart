@@ -1,5 +1,7 @@
 import 'dart:typed_data';
 
+import 'package:archive/archive.dart';
+
 import '../epub_master.dart';
 import '../service/archive_service.dart';
 import '../utils/file_utils.dart';
@@ -14,6 +16,19 @@ class EpubReader {
       throw EpubException('File was not an EPUB');
     }
 
+    final ContainerFile epubContainerFile =
+        _handleContainerFileReadFails(archive);
+
+    final PackageFile packageMetadata =
+        PackageFile.read(archive, epubContainerFile);
+
+    return Epub(
+      packageMetadata: packageMetadata,
+      containerFile: epubContainerFile,
+    );
+  }
+
+  static ContainerFile _handleContainerFileReadFails(Archive archive) {
     ContainerFile epubContainerFile;
     try {
       epubContainerFile = ContainerFile.read(archive);
@@ -26,13 +41,6 @@ class EpubReader {
       }
       epubContainerFile = ContainerFile.error(epubRootfile);
     }
-
-    final PackageFile packageMetadata =
-        PackageFile.read(archive, epubContainerFile);
-
-    return Epub(
-      packageMetadata: packageMetadata,
-      containerFile: epubContainerFile,
-    );
+    return epubContainerFile;
   }
 }
