@@ -8,8 +8,6 @@ import '../../readers/package_reader.dart';
 import '../container/container_file.dart';
 
 class PackageMetadata extends Equatable {
-  static const kPackageFileMimeType = 'application/oebps-package+xml';
-
   PackageMetadata({
     this.accessModes,
     this.accessibilityFeatures,
