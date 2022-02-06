@@ -8,10 +8,10 @@ import '../../readers/package_reader.dart';
 
 class PackageFile extends Equatable {
   PackageFile({
-    required this.accessModes,
-    required this.accessibilityFeatures,
-    required this.accessibilityHazards,
-    required this.accessibilitySummary,
+    this.accessModes,
+    this.accessibilityFeatures,
+    this.accessibilityHazards,
+    this.accessibilitySummary,
     this.accessibilitySummaryByLanguage,
     this.accessModeSufficientList,
     this.accessibilityAPIs,
@@ -19,13 +19,13 @@ class PackageFile extends Equatable {
   });
 
   /// A human sensory perceptual system or cognitive faculty necessary to process or perceive the content (e.g., textual, visual, auditory, tactile).
-  final List<AccessMode> accessModes;
+  final List<AccessMode>? accessModes;
 
   /// Features and adaptations that contribute to the overall accessibility of the content (e.g., alternative text, extended descriptions, captions).
-  final List<AccessibilityFeature> accessibilityFeatures;
+  final List<AccessibilityFeature>? accessibilityFeatures;
 
   /// Any potential hazards that the content presents (e.g., flashing, motion simulation, sound).
-  final List<AccessibilityHazard> accessibilityHazards;
+  final List<AccessibilityHazard>? accessibilityHazards;
 
   /// A human-readable summary of the overall accessibility, which includes a description of any known deficiencies (e.g., lack of extended descriptions, specific hazards).
   ///
@@ -47,7 +47,7 @@ class PackageFile extends Equatable {
   /// be at a disadvantage.
   /// </meta>
   /// ```
-  final String accessibilitySummary;
+  final String? accessibilitySummary;
 
   static const kDefaultAccessibilitySummaryKey = 'default';
 
@@ -118,10 +118,10 @@ class PackageFile extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'accessModes': accessModes.map((x) => x.name).toList(),
+      'accessModes': accessModes?.map((x) => x.name).toList(),
       'accessibilityFeatures':
-          accessibilityFeatures.map((x) => x.name).toList(),
-      'accessibilityHazards': accessibilityHazards.map((x) => x.name).toList(),
+          accessibilityFeatures?.map((x) => x.name).toList(),
+      'accessibilityHazards': accessibilityHazards?.map((x) => x.name).toList(),
       'accessibilitySummary': accessibilitySummary,
       'accessibilitySummaryByLanguage': accessibilitySummaryByLanguage,
       'accessModeSufficientList': accessModeSufficientList
@@ -139,34 +139,47 @@ class PackageFile extends Equatable {
 
   factory PackageFile.fromMap(Map<String, dynamic> map) {
     return PackageFile(
-      accessModes: List<AccessMode>.from(
-          map['accessModes']?.map((x) => AccessMode.values.byName(x))),
-      accessibilityFeatures: List<AccessibilityFeature>.from(
-          map['accessibilityFeatures']
-              ?.map((x) => AccessibilityFeature.values.byName(x))),
-      accessibilityHazards: List<AccessibilityHazard>.from(
-          map['accessibilityHazards']
-              ?.map((x) => AccessibilityHazard.values.byName(x))),
+      accessModes: map['accessModes'] == null
+          ? null
+          : List<AccessMode>.from(
+              map['accessModes']?.map((x) => AccessMode.values.byName(x)),
+            ),
+      accessibilityFeatures: map['accessibilityFeatures'] == null
+          ? null
+          : List<AccessibilityFeature>.from(
+              map['accessibilityFeatures']
+                  ?.map((x) => AccessibilityFeature.values.byName(x)),
+            ),
+      accessibilityHazards: map['accessibilityHazards'] == null
+          ? null
+          : List<AccessibilityHazard>.from(
+              map['accessibilityHazards']
+                  ?.map((x) => AccessibilityHazard.values.byName(x)),
+            ),
       accessibilitySummary: map['accessibilitySummary'] ?? '',
       accessibilitySummaryByLanguage:
-          Map<String, String>.from(map['accessibilitySummaryByLanguage']),
-      accessModeSufficientList: map['accessModeSufficientList'] != null
-          ? List<AccessModesSufficient>.from(
+          map['accessibilitySummaryByLanguage'] == null
+              ? null
+              : Map<String, String>.from(
+                  map['accessibilitySummaryByLanguage'],
+                ),
+      accessModeSufficientList: map['accessModeSufficientList'] == null
+          ? null
+          : List<AccessModesSufficient>.from(
               map['accessModeSufficientList']?.map(
                   (accessModeSufficientMap) => accessModeSufficientMap.map(
                         (accessModeMap) =>
                             AccessMode.values.byName(accessModeMap),
                       )),
-            )
-          : null,
-      accessibilityAPIs: map['accessibilityAPIs'] != null
-          ? List<AccessibilityAPI>.from(map['accessibilityAPIs']
-              ?.map((x) => AccessibilityAPI.values.byName(x)))
-          : null,
-      accessibilityControls: map['accessibilityControls'] != null
-          ? List<AccessibilityControl>.from(map['accessibilityControls']
-              ?.map((x) => AccessibilityControl.values.byName(x)))
-          : null,
+            ),
+      accessibilityAPIs: map['accessibilityAPIs'] == null
+          ? null
+          : List<AccessibilityAPI>.from(map['accessibilityAPIs']
+              ?.map((x) => AccessibilityAPI.values.byName(x))),
+      accessibilityControls: map['accessibilityControls'] == null
+          ? null
+          : List<AccessibilityControl>.from(map['accessibilityControls']
+              ?.map((x) => AccessibilityControl.values.byName(x))),
     );
   }
 
@@ -183,14 +196,14 @@ class PackageFile extends Equatable {
   @override
   List<Object> get props {
     return [
-      accessModes,
-      accessibilityFeatures,
-      accessibilityHazards,
-      accessibilitySummary,
-      accessibilitySummaryByLanguage ?? '',
-      accessModeSufficientList ?? '',
-      accessibilityAPIs ?? '',
-      accessibilityControls ?? '',
+      accessModes ?? [],
+      accessibilityFeatures ?? [],
+      accessibilityHazards ?? [],
+      accessibilitySummary ?? '',
+      accessibilitySummaryByLanguage ?? {},
+      accessModeSufficientList ?? [],
+      accessibilityAPIs ?? [],
+      accessibilityControls ?? [],
     ];
   }
 }
