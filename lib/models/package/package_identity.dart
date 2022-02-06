@@ -6,32 +6,26 @@ class PackageIdentity extends Equatable {
   PackageIdentity({
     required this.version,
     required this.uniqueIdentifier,
-    required this.packageContent,
   });
 
   final String version;
 
   final String uniqueIdentifier;
 
-  final String packageContent;
-
   factory PackageIdentity.zero() {
     return PackageIdentity(
       version: 'unknown',
       uniqueIdentifier: 'unknown',
-      packageContent: ''
     );
   }
 
   PackageIdentity copyWith({
     String? version,
     String? uniqueIdentifier,
-    String? packageContent,
   }) {
     return PackageIdentity(
       version: version ?? this.version,
       uniqueIdentifier: uniqueIdentifier ?? this.uniqueIdentifier,
-      packageContent: packageContent ?? this.packageContent,
     );
   }
 
@@ -39,7 +33,6 @@ class PackageIdentity extends Equatable {
     return {
       'version': version,
       'uniqueIdentifier': uniqueIdentifier,
-      'packageContent': packageContent,
     };
   }
 
@@ -47,7 +40,6 @@ class PackageIdentity extends Equatable {
     return PackageIdentity(
       version: map['version'] ?? '',
       uniqueIdentifier: map['uniqueIdentifier'] ?? '',
-      packageContent: map['packageContent'] ?? '',
     );
   }
 
@@ -57,8 +49,9 @@ class PackageIdentity extends Equatable {
       PackageIdentity.fromMap(json.decode(source));
 
   @override
-  String toString() => 'PackageIdentity(version: $version, uniqueIdentifier: $uniqueIdentifier, packageContent: $packageContent)';
+  String toString() =>
+      'PackageIdentity(version: $version, uniqueIdentifier: $uniqueIdentifier)';
 
   @override
-  List<Object> get props => [version, uniqueIdentifier, packageContent];
+  List<Object> get props => [version, uniqueIdentifier];
 }
