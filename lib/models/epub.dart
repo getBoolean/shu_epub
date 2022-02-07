@@ -10,7 +10,13 @@ class Epub extends Equatable {
   final PackageFile packageFile;
   final ContainerFile containerFile;
 
-  factory Epub.read(Uint8List bytes) {
+  /// Load an EPUB file into memory and return the parsed [Epub] object
+  ///
+  /// ```
+  /// final file = File("Guardian.epub");
+  /// final epub = Epub.loadFromData(file.readAsBytesSync());
+  /// ```
+  factory Epub.loadFromData(Uint8List bytes) {
     return EpubReader.read(bytes);
   }
 
