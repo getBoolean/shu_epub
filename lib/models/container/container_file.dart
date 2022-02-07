@@ -16,11 +16,6 @@ class ContainerFile extends Equatable {
   final List<RootFile> rootfileList;
   final String containerVersion;
 
-  ContainerFile({
-    required this.rootfileList,
-    required this.containerVersion,
-  });
-
   /// If there are multiple [RootFile]s with mime type [EpubConstants.kOPFMimeType], the first one will be considered the rootfile
   RootFile get rootfile => rootfileList.firstWhere(
         (element) => element.mediaType == EpubConstants.kOPFMimeType,
@@ -39,6 +34,11 @@ class ContainerFile extends Equatable {
   }
 
   // GENERATED DO NOT MODOFY
+
+  ContainerFile({
+    required this.rootfileList,
+    required this.containerVersion,
+  });
 
   ContainerFile copyWith({
     List<RootFile>? rootfileList,

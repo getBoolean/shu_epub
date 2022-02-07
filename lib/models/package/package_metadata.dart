@@ -5,17 +5,6 @@ import 'package:equatable/equatable.dart';
 import '../../enums/enums.dart';
 
 class PackageMetadata extends Equatable {
-  PackageMetadata({
-    this.accessModes,
-    this.accessibilityFeatures,
-    this.accessibilityHazards,
-    this.accessibilitySummary,
-    this.accessibilitySummaryByLanguage,
-    this.accessModeSufficientList,
-    this.accessibilityAPIs,
-    this.accessibilityControls,
-  });
-
   /// A human sensory perceptual system or cognitive faculty necessary to process or perceive the content (e.g., textual, visual, auditory, tactile).
   final List<AccessMode>? accessModes;
 
@@ -83,6 +72,19 @@ class PackageMetadata extends Equatable {
 
   /// Identifies input methods that can be used to access the content (e.g., keyboard, mouse).
   final List<AccessibilityControl>? accessibilityControls;
+
+  // GENERATED DO NOT MODOFY
+
+  PackageMetadata({
+    this.accessModes,
+    this.accessibilityFeatures,
+    this.accessibilityHazards,
+    this.accessibilitySummary,
+    this.accessibilitySummaryByLanguage,
+    this.accessModeSufficientList,
+    this.accessibilityAPIs,
+    this.accessibilityControls,
+  });
 
   PackageMetadata copyWith({
     List<AccessMode>? accessModes,

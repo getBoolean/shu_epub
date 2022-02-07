@@ -3,12 +3,6 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class PackageIdentity extends Equatable {
-  PackageIdentity({
-    required this.epubVersion,
-    required this.uniqueIdentifier,
-    this.id,
-  });
-
   final String epubVersion;
 
   final String uniqueIdentifier;
@@ -21,6 +15,14 @@ class PackageIdentity extends Equatable {
       uniqueIdentifier: 'unknown',
     );
   }
+
+  // GENERATED DO NOT MODOFY
+
+  PackageIdentity({
+    required this.epubVersion,
+    required this.uniqueIdentifier,
+    this.id,
+  });
 
   PackageIdentity copyWith({
     String? epubVersion,

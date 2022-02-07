@@ -7,17 +7,19 @@ import '../epub_master.dart';
 import '../readers/epub_reader.dart';
 
 class Epub extends Equatable {
-  Epub({
-    required this.packageFile,
-    required this.containerFile,
-  });
-
   final PackageFile packageFile;
   final ContainerFile containerFile;
 
   factory Epub.read(Uint8List bytes) {
     return EpubReader.read(bytes);
   }
+
+  // GENERATED DO NOT MODOFY
+
+  Epub({
+    required this.packageFile,
+    required this.containerFile,
+  });
 
   Epub copyWith({
     PackageFile? packageFile,
@@ -48,7 +50,8 @@ class Epub extends Equatable {
   factory Epub.fromJson(String source) => Epub.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Epub(packageFile: $packageFile, containerFile: $containerFile)';
+  String toString() =>
+      'Epub(packageFile: $packageFile, containerFile: $containerFile)';
 
   @override
   List<Object> get props => [packageFile, containerFile];

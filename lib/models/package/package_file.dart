@@ -22,10 +22,6 @@ import '../models.dart';
 class PackageFile extends Equatable {
   static const kPackageFileMimeType = 'application/oebps-package+xml';
 
-  PackageFile({
-    required this.packageIdentity,
-  });
-
   /// Includes a unique identifier for the OPS Publication as a whole. This should NOT
   /// be relied upon to be unique across all EPUB publications.
   ///
@@ -66,11 +62,15 @@ class PackageFile extends Equatable {
   // /// as table of contents, foreword, bibliography, etc.
   // final EpubGuide guide;
 
-  
-
   factory PackageFile.read(Archive archive, ContainerFile containerFile) {
     return PackageReader.parse(archive, containerFile);
   }
+
+  // GENERATED DO NOT MODOFY
+
+  PackageFile({
+    required this.packageIdentity,
+  });
 
   PackageFile copyWith({
     PackageIdentity? packageIdentity,

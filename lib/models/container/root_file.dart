@@ -9,6 +9,8 @@ class RootFile extends Equatable {
   /// Mimetype of the file
   final String mediaType;
 
+  // GENERATED DO NOT MODOFY
+
   RootFile({
     required this.fullPath,
     required this.mediaType,
