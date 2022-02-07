@@ -20,6 +20,26 @@ class Epub extends Equatable {
     return EpubReader.read(bytes);
   }
 
+  // /// Load a cached EPUB into memory and return the parsed [Epub] object. This is preferred over `Epub.loadFromData`
+  // /// because it only loads the parts of the Epub file it needs into memory.
+  // ///
+  // /// Not available on Web.
+  // ///
+  // /// ```
+  // /// final file = File("Guardian.epub");
+  // /// final epub = Epub.loadFromData(file.readAsBytesSync());
+  // /// ```
+  // factory Epub.loadFromCache(String id) {
+  //   return EpubReader.loadFromCache(id);
+  // }
+
+  // /// Cache an epub on the device for faster loading times when using `Epub.loadFromCache`
+  // ///
+  // /// Not available on Web.
+  // static String saveToCache(Uint8List bytes, String path, {String? id}) {
+
+  // }
+
   // GENERATED DO NOT MODOFY
 
   Epub({
