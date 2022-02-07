@@ -47,7 +47,7 @@ class ContainerReader {
 
     return ContainerFile(
       rootfileList: rootfileList,
-      version: version,
+      containerVersion: version,
     );
   }
 

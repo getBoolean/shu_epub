@@ -14,11 +14,11 @@ import '../../readers/container_reader.dart';
 class ContainerFile extends Equatable {
   static const filepath = 'META-INF/container.xml';
   final List<RootFile> rootfileList;
-  final String version;
+  final String containerVersion;
 
   ContainerFile({
     required this.rootfileList,
-    required this.version,
+    required this.containerVersion,
   });
 
   /// If there are multiple [RootFile]s with mime type [EpubConstants.kOPFMimeType], the first one will be considered the rootfile
@@ -31,35 +31,36 @@ class ContainerFile extends Equatable {
       );
 
   factory ContainerFile.error(RootFile epubRootfile) {
-    return ContainerFile(rootfileList: [epubRootfile], version: 'unknown');
+    return ContainerFile(rootfileList: [epubRootfile], containerVersion: 'unknown');
   }
 
   factory ContainerFile.read(Archive archive) {
     return ContainerReader.parse(archive);
   }
 
+  // GENERATED DO NOT MODOFY
+
   ContainerFile copyWith({
     List<RootFile>? rootfileList,
-    String? version,
+    String? containerVersion,
   }) {
     return ContainerFile(
       rootfileList: rootfileList ?? this.rootfileList,
-      version: version ?? this.version,
+      containerVersion: containerVersion ?? this.containerVersion,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'rootfiles': rootfileList.map((x) => x.toMap()).toList(),
-      'version': version,
+      'rootfileList': rootfileList.map((x) => x.toMap()).toList(),
+      'containerVersion': containerVersion,
     };
   }
 
   factory ContainerFile.fromMap(Map<String, dynamic> map) {
     return ContainerFile(
-      rootfileList: List<RootFile>.from(
-          map['rootfiles']?.map((x) => RootFile.fromMap(x))),
-      version: map['version'] ?? '',
+      rootfileList: List<RootFile>.from(map['rootfileList']?.map((x) => RootFile.fromMap(x))),
+      containerVersion: map['containerVersion'] ?? '',
     );
   }
 
@@ -69,9 +70,8 @@ class ContainerFile extends Equatable {
       ContainerFile.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'ContainerFile(rootfiles: $rootfileList, version: $version)';
+  String toString() => 'ContainerFile(rootfileList: $rootfileList, containerVersion: $containerVersion)';
 
   @override
-  List<Object> get props => [rootfileList, version];
+  List<Object> get props => [rootfileList, containerVersion];
 }
