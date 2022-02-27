@@ -11,7 +11,7 @@ and more...
 
 ## Plans
 
-* dart_epub (this package)
+* shu_epub (this package)
   * Models
   * Parsers which parse individual files, they do not need the entire
   EPUB loaded into memory. Parser take the bytes of the file needed to
@@ -20,7 +20,7 @@ and more...
   * EPUB Reader which takes the entire bytes of a `.epub` file
   * Export Parsers and Models to allow custom platform specific
   implementations that could involve caching.
-* flutter_epub
+* flutter_shu_epub
   * Uses Models and Parsers from dart_epub
   * Platform specific implementation to handle caching, only loads the
   files it needs into memory
