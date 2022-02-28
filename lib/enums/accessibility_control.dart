@@ -1,3 +1,5 @@
+part of epub_master.enums;
+
 /// Identifies one or more input methods that allow access to all of the application functionality.
 ///
 /// The `accessibilityControl` property is used to describe the ability of users to interact with the

@@ -1,3 +1,5 @@
+part of epub_master.enums;
+
 /// Indicates that the resource is compatible with the referenced accessibility API.
 ///
 /// Compatibility with an accessibility API indicates that assistive technologies on the platform should be able to access the resource.

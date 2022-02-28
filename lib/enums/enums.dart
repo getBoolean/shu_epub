@@ -1,5 +1,7 @@
-export 'access_mode.dart';
-export 'accessibility_apis.dart';
-export 'accessibility_control.dart';
-export 'accessibility_feature.dart';
-export 'accessibility_hazard.dart';
+library epub_master.enums;
+
+part 'access_mode.dart';
+part 'accessibility_apis.dart';
+part 'accessibility_control.dart';
+part 'accessibility_feature.dart';
+part 'accessibility_hazard.dart';

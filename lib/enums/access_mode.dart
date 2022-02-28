@@ -1,3 +1,5 @@
+part of epub_master.enums;
+
 /// In order for a user to determine whether an EPUB Publication is suitable for their needs,
 /// they need to know which of these access modes are required to consume the content.
 ///

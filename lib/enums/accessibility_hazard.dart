@@ -1,3 +1,5 @@
+part of epub_master.enums;
+
 /// There are three widely-recognized hazards that can affect readers of digital content:
 ///
 /// * flashing — if a resource flashes more than three times a second, it can cause seizures (e.g., videos and animations). See also [WCAG 2.0 Guideline 2.3](http://www.w3.org/TR/WCAG20/#seizure).
