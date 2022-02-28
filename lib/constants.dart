@@ -1,3 +1,5 @@
+library epub_master;
+
 class EpubConstants {
   static const kAccessModeProperty = 'schema:accessMode';
   static const kAccessibilityFeatureProperty = 'schema:accessibilityFeature';

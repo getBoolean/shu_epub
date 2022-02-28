@@ -1,3 +1,5 @@
+part of epub_master.models;
+
 class Epub3MediaTypes {
   /// GIF, JPEG, PNG, and SVG
   static const kImageMimeTypes = [

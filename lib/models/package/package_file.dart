@@ -1,10 +1,4 @@
-import 'dart:convert';
-
-import 'package:archive/archive.dart';
-import 'package:equatable/equatable.dart';
-
-import '../../readers/package_reader.dart';
-import '../models.dart';
+part of epub_master.models;
 
 /// A publication conforming to this specification must include exactly one XML OPF
 /// Package Document, which specifies the OPS Content Documents, images, and other

@@ -1,8 +1,19 @@
-export 'container/container_file.dart';
-export 'container/root_file.dart';
-export 'epub.dart';
-export 'exception.dart';
-export 'media_types.dart';
-export 'package/package_file.dart';
-export 'package/package_identity.dart';
-export 'package/package_metadata.dart';
+library epub_master.models;
+
+import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:archive/archive.dart';
+import 'package:equatable/equatable.dart';
+
+import '../epub_master.dart';
+import '../readers/readers.dart';
+
+part 'container/container_file.dart';
+part 'container/root_file.dart';
+part 'epub.dart';
+part 'exception.dart';
+part 'media_types.dart';
+part 'package/package_file.dart';
+part 'package/package_identity.dart';
+part 'package/package_metadata.dart';

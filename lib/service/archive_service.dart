@@ -1,8 +1,4 @@
-import 'dart:typed_data';
-import 'package:archive/archive.dart';
-
-import '../models/container/root_file.dart';
-import '../models/package/package_file.dart';
+part of epub_master.services;
 
 class ArchiveService {
   /// Decode epub data

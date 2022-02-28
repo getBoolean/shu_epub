@@ -1,10 +1,4 @@
-import 'dart:typed_data';
-
-import 'package:archive/archive.dart';
-
-import '../epub_master.dart';
-import '../service/archive_service.dart';
-import '../utils/file_utils.dart';
+part of epub_master.readers;
 
 class EpubReader {
   const EpubReader();

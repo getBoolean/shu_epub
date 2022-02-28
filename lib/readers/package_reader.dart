@@ -1,11 +1,4 @@
-import 'dart:typed_data';
-
-import 'package:archive/archive.dart';
-import 'package:xml/xml.dart';
-
-import '../epub_master.dart';
-import '../utils/collection_utils.dart';
-import '../utils/file_utils.dart';
+part of epub_master.readers;
 
 class PackageReader {
   static PackageFile parse(Archive archive, ContainerFile packageFile) {

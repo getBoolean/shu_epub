@@ -1,8 +1,4 @@
-import 'dart:convert';
-
-import 'package:equatable/equatable.dart';
-
-import '../../enums/enums.dart';
+part of epub_master.models;
 
 class PackageMetadata extends Equatable {
   /// A human sensory perceptual system or cognitive faculty necessary to process or perceive the content (e.g., textual, visual, auditory, tactile).

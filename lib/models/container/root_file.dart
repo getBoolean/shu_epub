@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:equatable/equatable.dart';
+part of epub_master.models;
 
 class RootFile extends Equatable {
   /// Relative to the root directory for the Abstract Container and not relative to the META-INF/ directory

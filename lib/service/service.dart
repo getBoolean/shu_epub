@@ -1,1 +1,8 @@
-export 'archive_service.dart';
+library epub_master.services;
+
+import 'dart:typed_data';
+import 'package:archive/archive.dart';
+
+import '../models/models.dart';
+
+part 'archive_service.dart';

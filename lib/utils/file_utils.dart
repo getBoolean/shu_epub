@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
 import '../constants.dart';
-import '../models/exception.dart';
+import '../models/models.dart';
 
 class FileUtils {
   /// Find the mediatype of the file

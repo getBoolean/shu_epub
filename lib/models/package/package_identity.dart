@@ -1,6 +1,4 @@
-import 'dart:convert';
-
-import 'package:equatable/equatable.dart';
+part of epub_master.models;
 
 class PackageIdentity extends Equatable {
   final String epubVersion;

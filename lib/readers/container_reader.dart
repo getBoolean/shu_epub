@@ -1,10 +1,4 @@
-import 'dart:convert' as convert;
-import 'dart:typed_data';
-
-import 'package:archive/archive.dart';
-import 'package:xml/xml.dart';
-import '../epub_master.dart';
-import '../utils/collection_utils.dart';
+part of epub_master.readers;
 
 class ContainerReader {
   static ContainerFile parse(Archive archive) {

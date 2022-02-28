@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of epub_master.models;
 
 class EpubException extends Equatable implements Exception {
   final String message;

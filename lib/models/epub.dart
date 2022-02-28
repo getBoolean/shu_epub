@@ -1,10 +1,4 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
-import 'package:equatable/equatable.dart';
-
-import '../epub_master.dart';
-import '../readers/epub_reader.dart';
+part of epub_master.models;
 
 class Epub extends Equatable {
   final PackageFile packageFile;
