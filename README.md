@@ -15,11 +15,17 @@ and more...
 
 ### shu_epub (this package)
 
-* Readers which read individual files, they do not need the entire
+* Provided EpubArchiveController for reading EPUB files, independent from dart:io
+* Abstract EpubController for custom implementations, such as serving epubs from
+the web or caching epubs on the file system.
+* Readers which read individual file data, they do not need the entire
 EPUB loaded into memory. This allows the device to save memory.
-* Export Models, Readers, and Controllers to allow custom platform specific
-implementations (such as caching).
 * Models
+  * Epub
+  * Container
+  * Package
+  * Exception
+  * ... (tbd)
 * File Readers/Parsers
   * **EpubContainerReader**
   * **EpubPackageReader**
@@ -27,8 +33,8 @@ implementations (such as caching).
 * Controllers
   * **EpubController**
     * Abstract
-    * getFilePaths - Method to get filepaths to all files
-    * getFileBytes - Method to get bytes of file from filepath
+    * Future getFilePaths - Method to get filepaths to all files
+    * Future getFileBytes - Method to get bytes of file from filepath
     * Create instance of EPUB object when controller is created
     * Getter for EPUB object
   * **EpubArchiveController** extends **EpubController**
@@ -47,7 +53,7 @@ implementations (such as caching).
     * Uses **EpubXHtmlFileReader**
     * Returns parsed content with inline images
 
-### flutter_shu_epub
+### flutter_shu_epub (tenative)
 
 * Uses Models and Parsers from dart_epub
 * Platform specific implementation to handle caching, only loads the
