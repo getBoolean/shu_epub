@@ -1,4 +1,4 @@
-part of epub_master.enums;
+part of shu_epub.enums;
 
 /// Indicates that the resource is compatible with the referenced accessibility API.
 ///

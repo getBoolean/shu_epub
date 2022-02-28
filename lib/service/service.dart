@@ -1,4 +1,4 @@
-library epub_master.services;
+library shu_epub.services;
 
 import 'dart:typed_data';
 import 'package:archive/archive.dart';

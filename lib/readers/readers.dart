@@ -1,4 +1,4 @@
-library epub_master.readers;
+library shu_epub.readers;
 
 import 'dart:convert' as convert;
 import 'dart:typed_data';

@@ -1,4 +1,4 @@
-library epub_master.models;
+library shu_epub.models;
 
 import 'dart:convert';
 import 'dart:typed_data';

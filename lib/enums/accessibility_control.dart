@@ -1,4 +1,4 @@
-part of epub_master.enums;
+part of shu_epub.enums;
 
 /// Identifies one or more input methods that allow access to all of the application functionality.
 ///

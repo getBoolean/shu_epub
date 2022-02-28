@@ -1,4 +1,4 @@
-library epub_master.enums;
+library shu_epub.enums;
 
 part 'access_mode.dart';
 part 'accessibility_apis.dart';

@@ -7,7 +7,7 @@ environment:
   sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
-  epub_master:
+  shu_epub:
     path: ../
   path: ^1.8.1
 

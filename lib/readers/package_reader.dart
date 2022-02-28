@@ -1,4 +1,4 @@
-part of epub_master.readers;
+part of shu_epub.readers;
 
 class PackageReader {
   static PackageFile parse(Archive archive, ContainerFile packageFile) {

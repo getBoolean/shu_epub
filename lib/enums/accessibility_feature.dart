@@ -1,4 +1,4 @@
-part of epub_master.enums;
+part of shu_epub.enums;
 
 /// The accessibilityFeature property provides a list of all the applicable accessibility characteristics of the content.
 /// It allows a user agent to discover these characteristics without having to parse or interpret the structure of the content.

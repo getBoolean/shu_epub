@@ -1,4 +1,4 @@
-part of epub_master.services;
+part of shu_epub.services;
 
 class ArchiveService {
   /// Decode epub data

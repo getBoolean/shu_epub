@@ -1,4 +1,4 @@
-part of epub_master.models;
+part of shu_epub.models;
 
 class PackageIdentity extends Equatable {
   final String epubVersion;

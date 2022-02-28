@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:epub_master/epub_master.dart';
+import 'package:shu_epub/shu_epub.dart';
 import 'package:path/path.dart' as p;
 
 Future<void> main(List<String> arguments) async {

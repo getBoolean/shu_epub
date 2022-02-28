@@ -1,4 +1,4 @@
-# epub_master
+# shu_epub
 
 A Flutter package build from the ground up for parsing EPUB files.
 

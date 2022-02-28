@@ -1,4 +1,4 @@
-part of epub_master.models;
+part of shu_epub.models;
 
 class EpubException extends Equatable implements Exception {
   final String message;

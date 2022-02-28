@@ -1,4 +1,4 @@
-part of epub_master.enums;
+part of shu_epub.enums;
 
 /// There are three widely-recognized hazards that can affect readers of digital content:
 ///

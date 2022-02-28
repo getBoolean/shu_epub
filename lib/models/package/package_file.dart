@@ -1,4 +1,4 @@
-part of epub_master.models;
+part of shu_epub.models;
 
 /// A publication conforming to this specification must include exactly one XML OPF
 /// Package Document, which specifies the OPS Content Documents, images, and other

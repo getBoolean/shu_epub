@@ -1,4 +1,4 @@
-part of epub_master.models;
+part of shu_epub.models;
 
 class PackageMetadata extends Equatable {
   /// A human sensory perceptual system or cognitive faculty necessary to process or perceive the content (e.g., textual, visual, auditory, tactile).

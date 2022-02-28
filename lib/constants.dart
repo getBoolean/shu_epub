@@ -1,4 +1,4 @@
-library epub_master;
+library shu_epub;
 
 class EpubConstants {
   static const kAccessModeProperty = 'schema:accessMode';

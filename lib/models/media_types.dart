@@ -1,4 +1,4 @@
-part of epub_master.models;
+part of shu_epub.models;
 
 class Epub3MediaTypes {
   /// GIF, JPEG, PNG, and SVG

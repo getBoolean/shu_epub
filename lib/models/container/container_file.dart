@@ -1,4 +1,4 @@
-part of epub_master.models;
+part of shu_epub.models;
 
 /// The container.xml file contains XML that uses the `urn:oasis:names:tc:opendocument:xmlns:container`
 /// namespace for all of its elements and attributes. The `version="1.0"` attribute MUST be included

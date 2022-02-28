@@ -1,4 +1,4 @@
-part of epub_master.models;
+part of shu_epub.models;
 
 class RootFile extends Equatable {
   /// Relative to the root directory for the Abstract Container and not relative to the META-INF/ directory
