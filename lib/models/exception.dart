@@ -22,7 +22,8 @@ class EpubException extends Equatable implements Exception {
   }
 
   @override
-  String toString() => 'EpubException(message: $message, error: $error, stackTrace: $stackTrace)';
+  String toString() =>
+      'EpubException(message: $message, error: $error, stackTrace: $stackTrace)';
 
   @override
   List<Object> get props => [message, error ?? '', stackTrace ?? ''];

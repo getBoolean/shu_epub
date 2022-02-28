@@ -88,7 +88,8 @@ class PackageFile extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory PackageFile.fromJson(String source) => PackageFile.fromMap(json.decode(source));
+  factory PackageFile.fromJson(String source) =>
+      PackageFile.fromMap(json.decode(source));
 
   @override
   String toString() => 'PackageFile(packageIdentity: $packageIdentity)';

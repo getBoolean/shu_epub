@@ -1,15 +1,15 @@
 /// Indicates that the resource is compatible with the referenced accessibility API.
 ///
 /// Compatibility with an accessibility API indicates that assistive technologies on the platform should be able to access the resource.
-/// 
+///
 /// The property is not applicable to resources that are not tightly integrated with their user interface.
 /// It can describe whether a word processing document that only opens in a specific application will work
 /// on a given platform, for example, but is not a useful indicator of whether an HTML document will, as
 /// there are numerous user agents a user could use to render it.
-/// 
+///
 /// Setting the property means that the resource is compatible with the given API(s). It does not
 /// necessarily mean that the content will be fully accessible to any given user group.
-/// 
+///
 /// https://www.w3.org/2021/a11y-discov-vocab/latest/#accessibilityAPI
 enum AccessibilityAPI {
   /// Indicates the resource is compatible with the Android Accessibility API.
@@ -45,8 +45,6 @@ enum AccessibilityAPI {
   /// Indicates the resource is compatible with the User Interface Automation API for Windows.
   uiAutomation,
 }
-
-
 
 extension AccessibilityAPIExtension on AccessibilityAPI {
   /// The string equivalent of this constant property used in EPUBs

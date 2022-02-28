@@ -20,7 +20,8 @@ class ContainerFile extends Equatable {
       );
 
   factory ContainerFile.error(RootFile epubRootfile) {
-    return ContainerFile(rootfileList: [epubRootfile], containerVersion: 'unknown');
+    return ContainerFile(
+        rootfileList: [epubRootfile], containerVersion: 'unknown');
   }
 
   factory ContainerFile.read(Archive archive) {
@@ -53,7 +54,8 @@ class ContainerFile extends Equatable {
 
   factory ContainerFile.fromMap(Map<String, dynamic> map) {
     return ContainerFile(
-      rootfileList: List<RootFile>.from(map['rootfileList']?.map((x) => RootFile.fromMap(x))),
+      rootfileList: List<RootFile>.from(
+          map['rootfileList']?.map((x) => RootFile.fromMap(x))),
       containerVersion: map['containerVersion'] ?? '',
     );
   }
@@ -64,7 +66,8 @@ class ContainerFile extends Equatable {
       ContainerFile.fromMap(json.decode(source));
 
   @override
-  String toString() => 'ContainerFile(rootfileList: $rootfileList, containerVersion: $containerVersion)';
+  String toString() =>
+      'ContainerFile(rootfileList: $rootfileList, containerVersion: $containerVersion)';
 
   @override
   List<Object> get props => [rootfileList, containerVersion];
