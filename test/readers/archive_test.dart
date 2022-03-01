@@ -9,7 +9,7 @@ void main() {
   late final Uint8List bytes;
 
   setUpAll(() async {
-    bytes = await io.File('test/Guardians.epub').readAsBytes();
+    bytes = await io.File('assets/Guardians.epub').readAsBytes();
   });
 
   group('decodeZip', () {

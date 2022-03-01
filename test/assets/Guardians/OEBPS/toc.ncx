@@ -1,0 +1,66 @@
+<?xml version="1.0"?>                                                                                                                                                                                                                                                                                                
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+<head>
+<meta name="dtb:uid" content="978-0-545-50980-0"/>
+<meta name="dtb:depth" content="1"/>
+<meta name="dtb:totalPageCount" content="301"/>
+<meta name="dtb:maxPageNumber" content="301"/>
+</head>
+<docTitle><text>Guardians Of Ga&#8217;Hoole: The Rise Of a Legend</text></docTitle>
+<docAuthor><text>Kathryn Lasky</text></docAuthor>
+<navMap>
+<navPoint id="cover" playOrder="1"><navLabel><text>Cover</text></navLabel><content src="cover.html"/></navPoint>
+<navPoint id="title001" playOrder="2"><navLabel><text>Title Page</text></navLabel><content src="e9780545509800_title001.html"/></navPoint>
+<navPoint id="ded001" playOrder="3"><navLabel><text>Dedication</text></navLabel><content src="e9780545509800_ded001.html"/></navPoint>
+<navPoint id="toc001" playOrder="4"><navLabel><text>Contents</text></navLabel><content src="e9780545509800_toc001.html"/></navPoint>
+<navPoint id="fm001" playOrder="5"><navLabel><text>Map</text></navLabel><content src="e9780545509800_fm001.html"/></navPoint>
+<navPoint id="fm002" playOrder="6"><navLabel><text>Prologue</text></navLabel><content src="e9780545509800_fm002.html"/></navPoint>
+<navPoint id="fm003" playOrder="7"><navLabel><text>THE BOOK OF EZYLRYB</text></navLabel><content src="e9780545509800_fm003.html"/></navPoint>
+<navPoint id="pt001" playOrder="8"><navLabel><text>THE OWLET MOONS</text></navLabel><content src="e9780545509800_pt001.html"/>
+<navPoint id="ch001" playOrder="9"><navLabel><text>CHAPTER 1: I Hatch Out</text></navLabel><content src="e9780545509800_ch001.html"/></navPoint>
+<navPoint id="ch002" playOrder="10"><navLabel><text>CHAPTER 2: Fuzzball to Fledgling</text></navLabel><content src="e9780545509800_ch002.html"/></navPoint>
+<navPoint id="ch003" playOrder="11"><navLabel><text>CHAPTER 3: First Feathers</text></navLabel><content src="e9780545509800_ch003.html"/></navPoint>
+<navPoint id="ch004" playOrder="12"><navLabel><text>CHAPTER 4: Moss and Me</text></navLabel><content src="e9780545509800_ch004.html"/></navPoint>
+<navPoint id="ch005" playOrder="13"><navLabel><text>CHAPTER 5: A Snake Named Hoke</text></navLabel><content src="e9780545509800_ch005.html"/></navPoint>
+<navPoint id="ch006" playOrder="14"><navLabel><text>CHAPTER 6: Sea Smoke</text></navLabel><content src="e9780545509800_ch006.html"/></navPoint>
+<navPoint id="ch007" playOrder="15"><navLabel><text>CHAPTER 7: Ice Dagger</text></navLabel><content src="e9780545509800_ch007.html"/></navPoint>
+<navPoint id="ch008" playOrder="16"><navLabel><text>CHAPTER 8: A Place of Fire and Song</text></navLabel><content src="e9780545509800_ch008.html"/></navPoint>
+<navPoint id="ch009" playOrder="17"><navLabel><text>CHAPTER 9: A Flyaway</text></navLabel><content src="e9780545509800_ch009.html"/></navPoint>
+<navPoint id="ch010" playOrder="18"><navLabel><text>CHAPTER 10: Lysa!</text></navLabel><content src="e9780545509800_ch010.html"/></navPoint>
+<navPoint id="ch011" playOrder="19"><navLabel><text>CHAPTER 11: A Visit from Tantya Hanja</text></navLabel><content src="e9780545509800_ch011.html"/></navPoint>
+<navPoint id="ch012" playOrder="20"><navLabel><text>CHAPTER 12: The Molt of a Warrior</text></navLabel><content src="e9780545509800_ch012.html"/></navPoint></navPoint>
+<navPoint id="pt002" playOrder="21"><navLabel><text>THE CADET MOONS</text></navLabel><content src="e9780545509800_pt002.html"/>
+<navPoint id="ch013" playOrder="22"><navLabel><text>CHAPTER 13: The Academy</text></navLabel><content src="e9780545509800_ch013.html"/></navPoint>
+<navPoint id="ch014" playOrder="23"><navLabel><text>CHAPTER 14: Ice Squires</text></navLabel><content src="e9780545509800_ch014.html"/></navPoint>
+<navPoint id="ch015" playOrder="24"><navLabel><text>CHAPTER 15: What Thora Saw</text></navLabel><content src="e9780545509800_ch015.html"/></navPoint>
+<navPoint id="ch016" playOrder="25"><navLabel><text>CHAPTER 16: A Strategy Is Planned</text></navLabel><content src="e9780545509800_ch016.html"/></navPoint>
+<navPoint id="ch017" playOrder="26"><navLabel><text>CHAPTER 17: The Deadly Sisters</text></navLabel><content src="e9780545509800_ch017.html"/></navPoint>
+<navPoint id="ch018" playOrder="27"><navLabel><text>CHAPTER 18: An Odd Welcome</text></navLabel><content src="e9780545509800_ch018.html"/></navPoint>
+<navPoint id="ch019" playOrder="28"><navLabel><text>CHAPTER 19: A New Hollow and a New Owlet</text></navLabel><content src="e9780545509800_ch019.html"/></navPoint>
+<navPoint id="ch020" playOrder="29"><navLabel><text>CHAPTER 20: For a Kingdom?</text></navLabel><content src="e9780545509800_ch020.html"/></navPoint>
+<navPoint id="ch021" playOrder="30"><navLabel><text>CHAPTER 21: General Andricus Speaks</text></navLabel><content src="e9780545509800_ch021.html"/></navPoint>
+<navPoint id="ch022" playOrder="31"><navLabel><text>CHAPTER 22: Strumajen Strix</text></navLabel><content src="e9780545509800_ch022.html"/></navPoint>
+<navPoint id="ch023" playOrder="32"><navLabel><text>CHAPTER 23: Glaux &#43; Speed &#61; ?</text></navLabel><content src="e9780545509800_ch023.html"/></navPoint>
+<navPoint id="ch024" playOrder="33"><navLabel><text>CHAPTER 24: I Meet Octavia</text></navLabel><content src="e9780545509800_ch024.html"/></navPoint>
+<navPoint id="ch025" playOrder="34"><navLabel><text>CHAPTER 25: Octavia Flies</text></navLabel><content src="e9780545509800_ch025.html"/></navPoint>
+<navPoint id="ch026" playOrder="35"><navLabel><text>CHAPTER 26: Virtual Light and True Black</text></navLabel><content src="e9780545509800_ch026.html"/></navPoint>
+<navPoint id="ch027" playOrder="36"><navLabel><text>CHAPTER 27: Myth Meets Truth</text></navLabel><content src="e9780545509800_ch027.html"/></navPoint>
+<navPoint id="ch028" playOrder="37"><navLabel><text>CHAPTER 28: Half Beak and Three Talons</text></navLabel><content src="e9780545509800_ch028.html"/></navPoint>
+<navPoint id="ch029" playOrder="38"><navLabel><text>CHAPTER 29: Spikes in the Night</text></navLabel><content src="e9780545509800_ch029.html"/></navPoint>
+<navPoint id="ch030" playOrder="39"><navLabel><text>CHAPTER 30: Wingfast</text></navLabel><content src="e9780545509800_ch030.html"/></navPoint></navPoint>
+<navPoint id="pt003" playOrder="40"><navLabel><text>THE WAR MOONS</text></navLabel><content src="e9780545509800_pt003.html"/>
+<navPoint id="ch031" playOrder="41"><navLabel><text>CHAPTER 31: For Shame!</text></navLabel><content src="e9780545509800_ch031.html"/></navPoint>
+<navPoint id="ch032" playOrder="42"><navLabel><text>CHAPTER 32: &#8220;The Price We Pay! The Price of War!&#8221;</text></navLabel><content src="e9780545509800_ch032.html"/></navPoint>
+<navPoint id="ch033" playOrder="43"><navLabel><text>CHAPTER 33: Into the Ice Talons</text></navLabel><content src="e9780545509800_ch033.html"/></navPoint>
+<navPoint id="ch034" playOrder="44"><navLabel><text>CHAPTER 34: Separate Paths, One Cause</text></navLabel><content src="e9780545509800_ch034.html"/></navPoint>
+<navPoint id="ch035" playOrder="45"><navLabel><text>CHAPTER 35: Operation Ice Shield</text></navLabel><content src="e9780545509800_ch035.html"/></navPoint></navPoint>
+<navPoint id="pt004" playOrder="46"><navLabel><text>THE LONG MOONS OF THE RETREAT</text></navLabel><content src="e9780545509800_pt004.html"/>
+<navPoint id="ch036" playOrder="47"><navLabel><text>CHAPTER 36: End Game</text></navLabel><content src="e9780545509800_ch036.html"/></navPoint>
+<navPoint id="ch037" playOrder="48"><navLabel><text>CHAPTER 37: A Reprise</text></navLabel><content src="e9780545509800_ch037.html"/></navPoint></navPoint>
+<navPoint id="bm001" playOrder="49"><navLabel><text>Epilogue</text></navLabel><content src="e9780545509800_bm001.html"/></navPoint>
+<navPoint id="bm002" playOrder="50"><navLabel><text>Author&#8217;s Note</text></navLabel><content src="e9780545509800_bm002.html"/></navPoint>
+<navPoint id="bm003" playOrder="51"><navLabel><text>Preview: Horses of the Dawn</text></navLabel><content src="e9780545509800_bm003.html"/></navPoint>
+<navPoint id="About_the_Author" playOrder="52"><navLabel><text>About the Author</text></navLabel><content src="e9780545509800_About_the_Author.html"/></navPoint>
+<navPoint id="copy001" playOrder="53"><navLabel><text>Copyright</text></navLabel><content src="e9780545509800_copy001.html"/></navPoint>
+</navMap>
+</ncx>
