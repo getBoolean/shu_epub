@@ -23,15 +23,28 @@ the web or caching epubs on the file system.
 * Readers which read individual file data, they do not need the entire
 EPUB loaded into memory. This allows the device to save memory.
 * Models
-  * Epub
+  * **Epub**
   * Container
+    * **ContainerFile**
+    * **RootFile**
   * Package
-  * Exception
+    * **PackageFile**
+    * **PackageIdentity**
+    * **PackageMetadata**
+  * **Exception**
   * ... (tbd)
 * File Readers/Parsers
   * **EpubContainerReader**
+    * Given String XML content of `container.xml`
+    * Parses using package:xml
+    * Returns **ContainerFile**
   * **EpubPackageReader**
+    * Given String XML content
+    * Parses using package:xml
+    * Returns **PackageFile**
   * **EpubXHtmlFileReader**
+    * Given String XHtml content
+    * Implementation TBD
 * Controllers
   * **EpubController**
     * Abstract
