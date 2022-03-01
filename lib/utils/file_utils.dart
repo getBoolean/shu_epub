@@ -2,7 +2,6 @@ import 'dart:convert' as convert;
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
-import '../constants.dart';
 import '../models/models.dart';
 
 class FileUtils {
@@ -42,7 +41,7 @@ class FileUtils {
 
   static bool isEpubFile(Archive archive) {
     final String mimeType = getMediaType(archive);
-    if (mimeType.contains(EpubConstants.kEpubMimeType)) {
+    if (mimeType.contains(EpubMediaTypes.kEpubMimeType)) {
       return true;
     }
 

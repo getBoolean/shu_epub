@@ -11,7 +11,7 @@ class PackageReader {
     final XmlElement? packageElement = _getPackageElement(file);
     if (packageElement == null) {
       throw EpubException(
-        'Epub Parsing Exception: Could not find <${EpubConstants.kPackageName}> element in "$rootfilePath"',
+        'Epub Parsing Exception: Could not find <${EpubXMLConstants.kPackageName}> element in "$rootfilePath"',
       );
     }
 
@@ -21,7 +21,7 @@ class PackageReader {
     final XmlElement? metadataElement = _getMetadataElement(packageElement);
     if (metadataElement == null) {
       throw EpubException(
-        'Epub Parsing Exception: Could not find <${EpubConstants.kMetadataName}> element in "$rootfilePath"',
+        'Epub Parsing Exception: Could not find <${EpubXMLConstants.kMetadataName}> element in "$rootfilePath"',
       );
     }
 
@@ -91,8 +91,8 @@ class PackageReader {
       // Find container element which MUST have namespace `http://www.idpf.org/2007/opf`
       final package = packageFileStr
           .findAllElements(
-            EpubConstants.kPackageName,
-            namespace: EpubConstants.kPackageNamespace,
+            EpubXMLConstants.kPackageName,
+            namespace: EpubXMLConstants.kPackageNamespace,
           )
           .firstOrNull;
       return package;

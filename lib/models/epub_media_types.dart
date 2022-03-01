@@ -1,6 +1,12 @@
 part of shu_epub.models;
 
-class Epub3MediaTypes {
+class EpubMediaTypes {
+  /// Epub media type
+  static const kEpubMimeType = 'application/epub+zip';
+
+  /// Epub rootfile (.opf) media type
+  static const kOPFMimeType = 'application/oebps-package+xml';
+
   /// GIF, JPEG, PNG, and SVG
   static const kImageMimeTypes = [
     'image/gif',

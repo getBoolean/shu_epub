@@ -10,12 +10,12 @@ class ContainerFile extends Equatable {
   final List<RootFile> rootfileList;
   final String containerVersion;
 
-  /// If there are multiple [RootFile]s with mime type [EpubConstants.kOPFMimeType], the first one will be considered the rootfile
+  /// If there are multiple [RootFile]s with mime type [EpubXMLConstants.kOPFMimeType], the first one will be considered the rootfile
   RootFile get rootfile => rootfileList.firstWhere(
-        (element) => element.mediaType == EpubConstants.kOPFMimeType,
+        (element) => element.mediaType == EpubMediaTypes.kOPFMimeType,
         orElse: () {
           throw EpubException(
-              'Epub Parsing Exception: EPUB container at path "${ContainerFile.filepath}" does not contain an element with media-type attribute value of "${EpubConstants.kOPFMimeType}"');
+              'Epub Parsing Exception: EPUB container at path "${ContainerFile.filepath}" does not contain an element with media-type attribute value of "${EpubMediaTypes.kOPFMimeType}"');
         },
       );
 
