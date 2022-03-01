@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+test/assets/** linguist-vendored
+example/assets/** linguist-vendored
+
