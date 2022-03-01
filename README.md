@@ -100,6 +100,7 @@ files it needs into memory
   * Table of Contents Panel (Side panel, bottom sheet, or whole/half page)
   * Contents View (Vertical scrolling or paged)
     * Loading view while reading from `.xhtml` file
+    * How HTML+CSS is rendered is TBD
     * Text selection
       * Add buttons to popup
       * Custom text selection popup builder
