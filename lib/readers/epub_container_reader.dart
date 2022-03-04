@@ -27,7 +27,7 @@ class EpubContainerReader {
 
     final List<RootFile> rootfileList = _readRootfiles(containerElement);
 
-    if (!containsOPSPackageElement(rootfileList)) {
+    if (!_rootfilesContainsOPSPackageElement(rootfileList)) {
       throw EpubException(
         'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.filepath}" does not contain an element with media-type attribute value of "${EpubMediaTypes.kOPFMimeType}"',
       );
@@ -113,7 +113,7 @@ class EpubContainerReader {
     }).toList();
   }
 
-  static bool containsOPSPackageElement(List<RootFile> rootfileList) {
+  static bool _rootfilesContainsOPSPackageElement(List<RootFile> rootfileList) {
     return rootfileList
         .where(
           (element) => element.mediaType == EpubMediaTypes.kOPFMimeType,
