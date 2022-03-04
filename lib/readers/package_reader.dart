@@ -1,7 +1,7 @@
 part of shu_epub.readers;
 
 class PackageReader {
-  static PackageFile parse(Archive archive, ContainerFile packageFile) {
+  static PackageFile parse(Archive archive, EpubContainerFile packageFile) {
     final rootfilePath = packageFile.rootfile.fullPath;
     final ArchiveFile? file = archive.findFile(rootfilePath);
     if (file == null) {

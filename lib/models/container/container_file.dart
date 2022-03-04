@@ -5,7 +5,7 @@ part of shu_epub.models;
 /// for all containers that conform to this version of the specification.
 ///
 /// The rootfiles element MUST contain at least one <rootfile> element that has a media-type of `application/oebps-package+xml`.
-class ContainerFile extends Equatable {
+class EpubContainerFile extends Equatable {
   static const filepath = 'META-INF/container.xml';
   final List<RootFile> rootfileList;
   final String containerVersion;
@@ -15,31 +15,43 @@ class ContainerFile extends Equatable {
         (element) => element.mediaType == EpubMediaTypes.kOPFMimeType,
         orElse: () {
           throw EpubException(
-              'Epub Parsing Exception: EPUB container at path "${ContainerFile.filepath}" does not contain an element with media-type attribute value of "${EpubMediaTypes.kOPFMimeType}"');
+              'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.filepath}" does not contain an element with media-type attribute value of "${EpubMediaTypes.kOPFMimeType}"');
         },
       );
 
-  factory ContainerFile.error(RootFile epubRootfile) {
-    return ContainerFile(
+  factory EpubContainerFile.error(RootFile epubRootfile) {
+    return EpubContainerFile(
         rootfileList: [epubRootfile], containerVersion: 'unknown');
   }
 
-  factory ContainerFile.read(Archive archive) {
-    return ContainerReader.parse(archive);
+  factory EpubContainerFile.fromData(Uint8List data) {
+    return EpubContainerReader.fromData(data);
+  }
+
+  factory EpubContainerFile.fromArchive(Archive archive) {
+    // Find `META-INF/container.xml` file.
+    final ArchiveFile? containerFile = archive.files
+        .firstWhereOrNull((element) => element.name == EpubContainerFile.filepath);
+    if (containerFile == null) {
+      throw EpubException(
+          'Epub Parsing Exception: Could not find "${EpubContainerFile.filepath}"');
+    }
+
+    return EpubContainerReader.fromData(containerFile.content);
   }
 
   // GENERATED DO NOT MODOFY
 
-  ContainerFile({
+  EpubContainerFile({
     required this.rootfileList,
     required this.containerVersion,
   });
 
-  ContainerFile copyWith({
+  EpubContainerFile copyWith({
     List<RootFile>? rootfileList,
     String? containerVersion,
   }) {
-    return ContainerFile(
+    return EpubContainerFile(
       rootfileList: rootfileList ?? this.rootfileList,
       containerVersion: containerVersion ?? this.containerVersion,
     );
@@ -52,8 +64,8 @@ class ContainerFile extends Equatable {
     };
   }
 
-  factory ContainerFile.fromMap(Map<String, dynamic> map) {
-    return ContainerFile(
+  factory EpubContainerFile.fromMap(Map<String, dynamic> map) {
+    return EpubContainerFile(
       rootfileList: List<RootFile>.from(
           map['rootfileList']?.map((x) => RootFile.fromMap(x))),
       containerVersion: map['containerVersion'] ?? '',
@@ -62,8 +74,8 @@ class ContainerFile extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory ContainerFile.fromJson(String source) =>
-      ContainerFile.fromMap(json.decode(source));
+  factory EpubContainerFile.fromJson(String source) =>
+      EpubContainerFile.fromMap(json.decode(source));
 
   @override
   String toString() =>

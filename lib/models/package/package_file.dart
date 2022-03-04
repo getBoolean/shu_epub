@@ -56,7 +56,7 @@ class PackageFile extends Equatable {
   // /// as table of contents, foreword, bibliography, etc.
   // final EpubGuide guide;
 
-  factory PackageFile.read(Archive archive, ContainerFile containerFile) {
+  factory PackageFile.read(Archive archive, EpubContainerFile containerFile) {
     return PackageReader.parse(archive, containerFile);
   }
 
