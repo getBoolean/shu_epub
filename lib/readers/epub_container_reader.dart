@@ -21,7 +21,7 @@ class EpubContainerReader {
 
     if (version != '1.0') {
       throw EpubException(
-        'Epub Parsing Exception: OCF Container version $version not supported from file "${EpubContainerFile.filepath}"',
+        'Epub Parsing Exception: Epub OCF Container version $version not supported from file "${EpubContainerFile.filepath}"',
       );
     }
 
