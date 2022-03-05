@@ -68,21 +68,6 @@ class EpubPackageReader {
 
   static XmlElement? _getPackageElementFromXmlDocument(XmlDocument document) {
     try {
-      // final containerFileContent = packageFile.content;
-
-      // final bool isU8 = packageFile.content is Uint8List;
-      // final bool isU16 = packageFile.content is Uint16List;
-      // final String xmlString;
-      // if (isU8) {
-      //   xmlString = FileUtils.convertUtf8ToString(containerFileContent);
-      // } else if (isU16) {
-      //   xmlString = FileUtils.convertUtf16ToString(containerFileContent);
-      // } else {
-      //   throw EpubException(
-      //     'Epub Parsing Error: ${packageFile.name} was not encoded in UTF-8 or UTF-16. Only UTF-8 or UTF-16 is supported.',
-      //   );
-      // }
-      // final packageFileStr = XmlDocument.parse(xmlString);
       // Find container element which MUST have namespace `http://www.idpf.org/2007/opf`
       final package = document
           .findAllElements(
