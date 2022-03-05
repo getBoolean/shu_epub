@@ -9,7 +9,7 @@ class RootFile extends Equatable {
 
   // GENERATED DO NOT MODOFY
 
-  RootFile({
+  const RootFile({
     required this.fullPath,
     required this.mediaType,
   });

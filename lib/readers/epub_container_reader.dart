@@ -7,7 +7,7 @@ class EpubContainerReader {
     final containerElement = _handleFindContainerElement(document);
     if (containerElement == null) {
       throw EpubException(
-        'Epub Parsing Exception: Could not find <${EpubXMLConstants.kContainerName}> element in "${EpubContainerFile.filepath}"',
+        'Epub Parsing Exception: Could not find <${EpubXMLConstants.kContainerName}> element in "${EpubContainerFile.kFilePath}"',
       );
     }
 
@@ -15,13 +15,13 @@ class EpubContainerReader {
 
     if (version == null) {
       throw EpubException(
-        'Epub Parsing Exception: Could not find version attribute for container element in "${EpubContainerFile.filepath}"',
+        'Epub Parsing Exception: Could not find version attribute for container element in "${EpubContainerFile.kFilePath}"',
       );
     }
 
     if (version != '1.0') {
       throw EpubException(
-        'Epub Parsing Exception: Epub OCF Container version $version not supported from file "${EpubContainerFile.filepath}"',
+        'Epub Parsing Exception: Epub OCF Container version $version not supported from file "${EpubContainerFile.kFilePath}"',
       );
     }
 
@@ -29,7 +29,7 @@ class EpubContainerReader {
 
     if (!_rootfilesContainsOPSPackageElement(rootfileList)) {
       throw EpubException(
-        'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.filepath}" does not contain an element with media-type attribute value of "${EpubMediaTypes.kOPFMimeType}"',
+        'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.kFilePath}" does not contain an element with media-type attribute value of "${EpubMediaTypes.kOPFMimeType}"',
       );
     }
 
@@ -77,13 +77,13 @@ class EpubContainerReader {
         containerElement.findElements('rootfiles').firstOrNull;
     if (rootfilesElement == null) {
       throw EpubException(
-        'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.filepath}" did not have a <rootfiles> element',
+        'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.kFilePath}" did not have a <rootfiles> element',
       );
     }
     final rootfilesXml = rootfilesElement.findElements('rootfile').toList();
     if (rootfilesXml.isEmpty) {
       throw EpubException(
-        'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.filepath}" did not have any <rootfile> elements',
+        'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.kFilePath}" did not have any <rootfile> elements',
       );
     }
 
@@ -100,13 +100,13 @@ class EpubContainerReader {
       final fullPath = childElement.getAttribute('full-path');
       if (fullPath == null) {
         throw EpubException(
-          'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.filepath}" rootfile element did not have a "full-path" attribute',
+          'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.kFilePath}" rootfile element did not have a "full-path" attribute',
         );
       }
       final mediaType = childElement.getAttribute('media-type');
       if (mediaType == null) {
         throw EpubException(
-          'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.filepath}" rootfile element did not have a "media-type" attribute',
+          'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.kFilePath}" rootfile element did not have a "media-type" attribute',
         );
       }
       return RootFile(fullPath: fullPath, mediaType: mediaType);

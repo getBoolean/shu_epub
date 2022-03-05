@@ -6,7 +6,7 @@ part of shu_epub.models;
 ///
 /// The rootfiles element MUST contain at least one <rootfile> element that has a media-type of `application/oebps-package+xml`.
 class EpubContainerFile extends Equatable {
-  static const filepath = 'META-INF/container.xml';
+  static const kFilePath = 'META-INF/container.xml';
   final List<RootFile> rootfileList;
   final String containerVersion;
 
@@ -15,7 +15,7 @@ class EpubContainerFile extends Equatable {
         (element) => element.mediaType == EpubMediaTypes.kOPFMimeType,
         orElse: () {
           throw EpubException(
-              'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.filepath}" does not contain an element with media-type attribute value of "${EpubMediaTypes.kOPFMimeType}"');
+              'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.kFilePath}" does not contain an element with media-type attribute value of "${EpubMediaTypes.kOPFMimeType}"');
         },
       );
 
@@ -31,10 +31,10 @@ class EpubContainerFile extends Equatable {
   factory EpubContainerFile.fromArchive(Archive archive) {
     // Find `META-INF/container.xml` file.
     final ArchiveFile? containerFile = archive.files
-        .firstWhereOrNull((element) => element.name == EpubContainerFile.filepath);
+        .firstWhereOrNull((element) => element.name == EpubContainerFile.kFilePath);
     if (containerFile == null) {
       throw EpubException(
-          'Epub Parsing Exception: Could not find "${EpubContainerFile.filepath}"');
+          'Epub Parsing Exception: Could not find "${EpubContainerFile.kFilePath}"');
     }
 
     return EpubContainerReader.fromData(containerFile.content);
@@ -42,7 +42,7 @@ class EpubContainerFile extends Equatable {
 
   // GENERATED DO NOT MODOFY
 
-  EpubContainerFile({
+  const EpubContainerFile({
     required this.rootfileList,
     required this.containerVersion,
   });
@@ -79,7 +79,7 @@ class EpubContainerFile extends Equatable {
 
   @override
   String toString() =>
-      'ContainerFile(rootfileList: $rootfileList, containerVersion: $containerVersion)';
+      'EpubContainerFile(rootfileList: $rootfileList, containerVersion: $containerVersion)';
 
   @override
   List<Object> get props => [rootfileList, containerVersion];
