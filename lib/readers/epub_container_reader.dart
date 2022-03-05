@@ -43,7 +43,8 @@ class EpubContainerReader {
     try {
       return XmlDocument.parse(content);
     } on XmlParserException catch (e, st) {
-      throw EpubException('Epub Parsing Exception: Uint8List given was not an xml file', e, st);
+      throw EpubException(
+          'Epub Parsing Exception: Uint8List given was not an xml file', e, st);
     }
   }
 

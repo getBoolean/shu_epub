@@ -36,26 +36,24 @@ void main() {
     'parses epub file, returns EpubContainerFile',
     () async {
       // arrange
-        final data = await io.File(
-                'test/assets/Guardians.epub')
-            .readAsBytes();
-        final archive = ArchiveService.decodeZip(data);
-        final EpubContainerFile? expectedValue = const EpubContainerFile(
-          rootfileList: [
-            RootFile(
-              fullPath: 'OEBPS/package.opf',
-              mediaType: EpubMediaTypes.kOPFMimeType,
-            ),
-          ],
-          containerVersion: '1.0',
-        );
+      final data = await io.File('test/assets/Guardians.epub').readAsBytes();
+      final archive = ArchiveService.decodeZip(data);
+      final EpubContainerFile? expectedValue = const EpubContainerFile(
+        rootfileList: [
+          RootFile(
+            fullPath: 'OEBPS/package.opf',
+            mediaType: EpubMediaTypes.kOPFMimeType,
+          ),
+        ],
+        containerVersion: '1.0',
+      );
 
-        // act
-        final EpubContainerFile containerFile =
-            EpubContainerFile.fromArchive(archive);
+      // act
+      final EpubContainerFile containerFile =
+          EpubContainerFile.fromArchive(archive);
 
-        // assert
-        expect(containerFile, expectedValue);
+      // assert
+      expect(containerFile, expectedValue);
     },
   );
 }

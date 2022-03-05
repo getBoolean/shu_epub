@@ -30,8 +30,8 @@ class EpubContainerFile extends Equatable {
 
   factory EpubContainerFile.fromArchive(Archive archive) {
     // Find `META-INF/container.xml` file.
-    final ArchiveFile? containerFile = archive.files
-        .firstWhereOrNull((element) => element.name == EpubContainerFile.kFilePath);
+    final ArchiveFile? containerFile = archive.files.firstWhereOrNull(
+        (element) => element.name == EpubContainerFile.kFilePath);
     if (containerFile == null) {
       throw EpubException(
           'Epub Parsing Exception: Could not find "${EpubContainerFile.kFilePath}"');
