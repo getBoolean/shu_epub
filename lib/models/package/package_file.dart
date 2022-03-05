@@ -64,7 +64,6 @@ class EpubPackageFile extends Equatable {
     return EpubPackageReader.fromArchiveFile(archiveFile);
   }
 
-
   // GENERATED DO NOT MODOFY
 
   const EpubPackageFile({
