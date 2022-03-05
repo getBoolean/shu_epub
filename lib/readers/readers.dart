@@ -13,4 +13,4 @@ import '../utils/file_utils.dart';
 
 part 'epub_container_reader.dart';
 part 'epub_reader.dart';
-part 'package_reader.dart';
+part 'epub_package_reader.dart';
