@@ -24,7 +24,7 @@ void main() {
 
         // act
         final EpubContainerFile containerFile =
-            EpubContainerFile.fromData(data);
+            EpubContainerReader.fromData(data);
 
         // assert
         expect(containerFile, expectedValue);
@@ -50,7 +50,7 @@ void main() {
 
       // act
       final EpubContainerFile containerFile =
-          EpubContainerFile.fromArchive(archive);
+          EpubContainerReader.fromArchive(archive);
 
       // assert
       expect(containerFile, expectedValue);

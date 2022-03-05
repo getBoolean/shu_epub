@@ -39,6 +39,18 @@ class EpubContainerReader {
     );
   }
 
+  static EpubContainerFile fromArchive(Archive archive) {
+    // Find `META-INF/container.xml` file.
+    final ArchiveFile? containerFile = archive.files.firstWhereOrNull(
+        (element) => element.name == EpubContainerFile.kFilePath);
+    if (containerFile == null) {
+      throw EpubException(
+          'Epub Parsing Exception: Could not find "${EpubContainerFile.kFilePath}"');
+    }
+
+    return fromData(containerFile.content);
+  }
+
   static XmlDocument _handleStringToXmlDocument(String content) {
     try {
       return XmlDocument.parse(content);
