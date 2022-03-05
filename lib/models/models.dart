@@ -15,6 +15,6 @@ part 'epub.dart';
 part 'exception.dart';
 part 'epub_media_types.dart';
 part 'epub_xml_constants.dart';
-part 'package/package_file.dart';
+part 'package/epub_package_file.dart';
 part 'package/package_identity.dart';
 part 'package/package_metadata.dart';
