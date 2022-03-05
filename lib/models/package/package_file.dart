@@ -57,7 +57,7 @@ class PackageFile extends Equatable {
   // final EpubGuide guide;
 
   factory PackageFile.read(Archive archive, EpubContainerFile containerFile) {
-    return PackageReader.parse(archive, containerFile);
+    return EpubPackageReader.parse(archive, containerFile);
   }
 
   // GENERATED DO NOT MODOFY
