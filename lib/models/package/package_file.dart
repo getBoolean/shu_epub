@@ -13,7 +13,7 @@ part of shu_epub.models;
 /// this functionality.
 ///
 /// This specification neither precludes nor requires the inclusion of the OPF Package Schema in a Publication.
-class PackageFile extends Equatable {
+class EpubPackageFile extends Equatable {
   static const kPackageFileMimeType = 'application/oebps-package+xml';
 
   /// Includes a unique identifier for the OPS Publication as a whole. This should NOT
@@ -56,20 +56,21 @@ class PackageFile extends Equatable {
   // /// as table of contents, foreword, bibliography, etc.
   // final EpubGuide guide;
 
-  factory PackageFile.read(Archive archive, EpubContainerFile containerFile) {
+  factory EpubPackageFile.read(
+      Archive archive, EpubContainerFile containerFile) {
     return EpubPackageReader.parse(archive, containerFile);
   }
 
   // GENERATED DO NOT MODOFY
 
-  PackageFile({
+  EpubPackageFile({
     required this.packageIdentity,
   });
 
-  PackageFile copyWith({
+  EpubPackageFile copyWith({
     PackageIdentity? packageIdentity,
   }) {
-    return PackageFile(
+    return EpubPackageFile(
       packageIdentity: packageIdentity ?? this.packageIdentity,
     );
   }
@@ -80,19 +81,19 @@ class PackageFile extends Equatable {
     };
   }
 
-  factory PackageFile.fromMap(Map<String, dynamic> map) {
-    return PackageFile(
+  factory EpubPackageFile.fromMap(Map<String, dynamic> map) {
+    return EpubPackageFile(
       packageIdentity: PackageIdentity.fromMap(map['packageIdentity']),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory PackageFile.fromJson(String source) =>
-      PackageFile.fromMap(json.decode(source));
+  factory EpubPackageFile.fromJson(String source) =>
+      EpubPackageFile.fromMap(json.decode(source));
 
   @override
-  String toString() => 'PackageFile(packageIdentity: $packageIdentity)';
+  String toString() => 'EpubPackageFile(packageIdentity: $packageIdentity)';
 
   @override
   List<Object> get props => [packageIdentity];

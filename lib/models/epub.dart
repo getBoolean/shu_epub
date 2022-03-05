@@ -1,7 +1,7 @@
 part of shu_epub.models;
 
 class Epub extends Equatable {
-  final PackageFile packageFile;
+  final EpubPackageFile packageFile;
   final EpubContainerFile containerFile;
 
   /// Load an EPUB file into memory and return the parsed [Epub] object
@@ -42,7 +42,7 @@ class Epub extends Equatable {
   });
 
   Epub copyWith({
-    PackageFile? packageFile,
+    EpubPackageFile? packageFile,
     EpubContainerFile? containerFile,
   }) {
     return Epub(
@@ -60,7 +60,7 @@ class Epub extends Equatable {
 
   factory Epub.fromMap(Map<String, dynamic> map) {
     return Epub(
-      packageFile: PackageFile.fromMap(map['packageFile']),
+      packageFile: EpubPackageFile.fromMap(map['packageFile']),
       containerFile: EpubContainerFile.fromMap(map['containerFile']),
     );
   }

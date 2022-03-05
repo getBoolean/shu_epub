@@ -19,7 +19,7 @@ class ArchiveService {
       if (fileExtension == 'opf') {
         return RootFile(
           fullPath: file.name,
-          mediaType: PackageFile.kPackageFileMimeType,
+          mediaType: EpubPackageFile.kPackageFileMimeType,
         );
       }
     }
