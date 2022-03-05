@@ -1,6 +1,8 @@
 part of shu_epub.readers;
 
 class EpubContainerReader {
+  /// Given the data of the META-INF/container.xml file,
+  /// parse the XML and return [EpubContainerFile]
   static EpubContainerFile fromData(Uint8List data) {
     final xmlString = _handleDataToString(data);
     final document = _handleStringToXmlDocument(xmlString);
