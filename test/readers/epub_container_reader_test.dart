@@ -32,28 +32,30 @@ void main() {
     );
   });
 
-  test(
-    'parses epub file, returns EpubContainerFile',
-    () async {
-      // arrange
-      final data = await io.File('test/assets/Guardians.epub').readAsBytes();
-      final archive = ArchiveService.decodeZip(data);
-      final EpubContainerFile? expectedValue = const EpubContainerFile(
-        rootfileList: [
-          RootFile(
-            fullPath: 'OEBPS/package.opf',
-            mediaType: EpubMediaTypes.kOPFMimeType,
-          ),
-        ],
-        containerVersion: '1.0',
-      );
+  group('fromArchive', () {
+    test(
+      'parses epub file, returns EpubContainerFile',
+      () async {
+        // arrange
+        final data = await io.File('test/assets/Guardians.epub').readAsBytes();
+        final archive = ArchiveService.decodeZip(data);
+        final EpubContainerFile? expectedValue = const EpubContainerFile(
+          rootfileList: [
+            RootFile(
+              fullPath: 'OEBPS/package.opf',
+              mediaType: EpubMediaTypes.kOPFMimeType,
+            ),
+          ],
+          containerVersion: '1.0',
+        );
 
-      // act
-      final EpubContainerFile containerFile =
-          EpubContainerReader.fromArchive(archive);
+        // act
+        final EpubContainerFile containerFile =
+            EpubContainerReader.fromArchive(archive);
 
-      // assert
-      expect(containerFile, expectedValue);
-    },
-  );
+        // assert
+        expect(containerFile, expectedValue);
+      },
+    );
+  });
 }
