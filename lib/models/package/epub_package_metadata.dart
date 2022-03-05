@@ -1,6 +1,6 @@
 part of shu_epub.models;
 
-class PackageMetadata extends Equatable {
+class EpubPackageMetadata extends Equatable {
   /// A human sensory perceptual system or cognitive faculty necessary to process or perceive the content (e.g., textual, visual, auditory, tactile).
   final List<AccessMode>? accessModes;
 
@@ -71,7 +71,7 @@ class PackageMetadata extends Equatable {
 
   // GENERATED DO NOT MODOFY
 
-  PackageMetadata({
+  EpubPackageMetadata({
     this.accessModes,
     this.accessibilityFeatures,
     this.accessibilityHazards,
@@ -82,7 +82,7 @@ class PackageMetadata extends Equatable {
     this.accessibilityControls,
   });
 
-  PackageMetadata copyWith({
+  EpubPackageMetadata copyWith({
     List<AccessMode>? accessModes,
     List<AccessibilityFeature>? accessibilityFeatures,
     List<AccessibilityHazard>? accessibilityHazards,
@@ -92,7 +92,7 @@ class PackageMetadata extends Equatable {
     List<AccessibilityAPI>? accessibilityAPIs,
     List<AccessibilityControl>? accessibilityControls,
   }) {
-    return PackageMetadata(
+    return EpubPackageMetadata(
       accessModes: accessModes ?? this.accessModes,
       accessibilityFeatures:
           accessibilityFeatures ?? this.accessibilityFeatures,
@@ -129,8 +129,8 @@ class PackageMetadata extends Equatable {
     };
   }
 
-  factory PackageMetadata.fromMap(Map<String, dynamic> map) {
-    return PackageMetadata(
+  factory EpubPackageMetadata.fromMap(Map<String, dynamic> map) {
+    return EpubPackageMetadata(
       accessModes: map['accessModes'] == null
           ? null
           : List<AccessMode>.from(
@@ -177,12 +177,12 @@ class PackageMetadata extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory PackageMetadata.fromJson(String source) =>
-      PackageMetadata.fromMap(json.decode(source));
+  factory EpubPackageMetadata.fromJson(String source) =>
+      EpubPackageMetadata.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'PackageMetadata(accessModes: $accessModes, accessibilityFeatures: $accessibilityFeatures, accessibilityHazards: $accessibilityHazards, accessibilitySummary: $accessibilitySummary, accessibilitySummaryByLanguage: $accessibilitySummaryByLanguage, accessModeSufficientList: $accessModeSufficientList, accessibilityAPIs: $accessibilityAPIs, accessibilityControls: $accessibilityControls)';
+    return 'EpubPackageMetadata(accessModes: $accessModes, accessibilityFeatures: $accessibilityFeatures, accessibilityHazards: $accessibilityHazards, accessibilitySummary: $accessibilitySummary, accessibilitySummaryByLanguage: $accessibilitySummaryByLanguage, accessModeSufficientList: $accessModeSufficientList, accessibilityAPIs: $accessibilityAPIs, accessibilityControls: $accessibilityControls)';
   }
 
   @override
