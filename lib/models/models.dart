@@ -10,7 +10,7 @@ import '../enums/enums.dart';
 import '../readers/readers.dart';
 import '../utils/collection_utils.dart';
 
-part 'container/container_file.dart';
+part 'container/epub_container_file.dart';
 part 'container/root_file.dart';
 part 'epub.dart';
 part 'exception.dart';
