@@ -19,6 +19,7 @@ class EpubContainerReader {
       );
     }
 
+    // TODO(@getBoolean): Remove if epubs are found with greator version and parsing still works
     if (version != '1.0') {
       throw EpubException(
         'Epub Parsing Exception: Epub OCF Container version $version not supported from file "${EpubContainerFile.kFilePath}"',
