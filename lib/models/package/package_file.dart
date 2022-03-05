@@ -56,14 +56,18 @@ class EpubPackageFile extends Equatable {
   // /// as table of contents, foreword, bibliography, etc.
   // final EpubGuide guide;
 
-  factory EpubPackageFile.read(
-      Archive archive, EpubContainerFile containerFile) {
-    return EpubPackageReader.parse(archive, containerFile);
+  factory EpubPackageFile.fromData(Uint8List data) {
+    return EpubPackageReader.fromData(data);
   }
+
+  factory EpubPackageFile.fromArchiveFile(ArchiveFile archiveFile) {
+    return EpubPackageReader.fromArchiveFile(archiveFile);
+  }
+
 
   // GENERATED DO NOT MODOFY
 
-  EpubPackageFile({
+  const EpubPackageFile({
     required this.packageIdentity,
   });
 

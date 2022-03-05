@@ -1,27 +1,29 @@
 part of shu_epub.readers;
 
 class EpubPackageReader {
-  static EpubPackageFile parse(Archive archive, EpubContainerFile packageFile) {
-    final rootfilePath = packageFile.rootfile.fullPath;
-    final ArchiveFile? file = archive.findFile(rootfilePath);
-    if (file == null) {
-      throw EpubException('Epub Parsing Error: Could not find OPF file');
-    }
+  static EpubPackageFile fromArchiveFile(ArchiveFile archiveFile) {
+    final data = archiveFile.content;
+    return fromData(data);
+  }
 
-    final XmlElement? packageElement = _getPackageElement(file);
+  static EpubPackageFile fromData(Uint8List data) {
+    final String content = _handleDataToString(data);
+    final XmlDocument xmlDocument = _handleStringToXmlDocument(content);
+    final XmlElement? packageElement =
+        _getPackageElementFromXmlDocument(xmlDocument);
     if (packageElement == null) {
       throw EpubException(
-        'Epub Parsing Exception: Could not find <${EpubXMLConstants.kPackageName}> element in "$rootfilePath"',
+        'Epub Parsing Exception: Could not find <${EpubXMLConstants.kPackageName}> element in data',
       );
     }
 
     final PackageIdentity packageIdentity =
-        _handleParsePackageIdentity(packageElement, rootfilePath);
+        _handleParsePackageIdentityFromXmlElement(packageElement);
 
     final XmlElement? metadataElement = _getMetadataElement(packageElement);
     if (metadataElement == null) {
       throw EpubException(
-        'Epub Parsing Exception: Could not find <${EpubXMLConstants.kMetadataName}> element in "$rootfilePath"',
+        'Epub Parsing Exception: Could not find <${EpubXMLConstants.kMetadataName}> element in data',
       );
     }
 
@@ -30,18 +32,27 @@ class EpubPackageReader {
     );
   }
 
-  static PackageIdentity _handleParsePackageIdentity(
-      XmlElement packageElement, String rootfilePath) {
+  static XmlDocument _handleStringToXmlDocument(String content) {
+    try {
+      return XmlDocument.parse(content);
+    } on XmlParserException catch (e, st) {
+      throw EpubException(
+          'Epub Parsing Exception: Uint8List given was not an xml file', e, st);
+    }
+  }
+
+  static PackageIdentity _handleParsePackageIdentityFromXmlElement(
+      XmlElement packageElement) {
     final version = _getVersion(packageElement);
     if (version == null) {
       throw EpubException(
-        'Epub Parsing Exception: Could not find version attribute in "$rootfilePath"',
+        'Epub Parsing Exception: Could not find version attribute in data',
       );
     }
     final uniqueIdentifier = _getUniqueIdentifier(packageElement);
     if (uniqueIdentifier == null) {
       throw EpubException(
-        'Epub Parsing Exception: Could not find unique-identifier attribute in "$rootfilePath"',
+        'Epub Parsing Exception: Could not find unique-identifier attribute in data',
       );
     }
 
@@ -53,6 +64,44 @@ class EpubPackageReader {
       id: id,
     );
     return packageIdentity;
+  }
+
+  static XmlElement? _getPackageElementFromXmlDocument(XmlDocument document) {
+    try {
+      // final containerFileContent = packageFile.content;
+
+      // final bool isU8 = packageFile.content is Uint8List;
+      // final bool isU16 = packageFile.content is Uint16List;
+      // final String xmlString;
+      // if (isU8) {
+      //   xmlString = FileUtils.convertUtf8ToString(containerFileContent);
+      // } else if (isU16) {
+      //   xmlString = FileUtils.convertUtf16ToString(containerFileContent);
+      // } else {
+      //   throw EpubException(
+      //     'Epub Parsing Error: ${packageFile.name} was not encoded in UTF-8 or UTF-16. Only UTF-8 or UTF-16 is supported.',
+      //   );
+      // }
+      // final packageFileStr = XmlDocument.parse(xmlString);
+      // Find container element which MUST have namespace `http://www.idpf.org/2007/opf`
+      final package = document
+          .findAllElements(
+            EpubXMLConstants.kPackageName,
+            namespace: EpubXMLConstants.kPackageNamespace,
+          )
+          .firstOrNull;
+      return package;
+    } on Exception catch (e, st) {
+      throw EpubException(
+        'Epub Parsing Exception: Could not read package file',
+        e,
+        st,
+      );
+    }
+  }
+
+  static String _handleDataToString(Uint8List data) {
+    return convert.utf8.decode(data, allowMalformed: true);
   }
 
   static String? _getVersion(XmlElement packageElement) {
@@ -69,39 +118,5 @@ class EpubPackageReader {
 
   static XmlElement? _getMetadataElement(XmlElement packageElement) {
     return packageElement.findElements('metadata').firstOrNull;
-  }
-
-  static XmlElement? _getPackageElement(ArchiveFile packageFile) {
-    try {
-      final containerFileContent = packageFile.content;
-
-      final bool isU8 = packageFile.content is Uint8List;
-      final bool isU16 = packageFile.content is Uint16List;
-      final String xmlString;
-      if (isU8) {
-        xmlString = FileUtils.convertUtf8ToString(containerFileContent);
-      } else if (isU16) {
-        xmlString = FileUtils.convertUtf16ToString(containerFileContent);
-      } else {
-        throw EpubException(
-          'Epub Parsing Error: ${packageFile.name} was not encoded in UTF-8 or UTF-16. Only UTF-8 or UTF-16 is supported.',
-        );
-      }
-      final packageFileStr = XmlDocument.parse(xmlString);
-      // Find container element which MUST have namespace `http://www.idpf.org/2007/opf`
-      final package = packageFileStr
-          .findAllElements(
-            EpubXMLConstants.kPackageName,
-            namespace: EpubXMLConstants.kPackageNamespace,
-          )
-          .firstOrNull;
-      return package;
-    } on Exception catch (e, st) {
-      throw EpubException(
-        'Epub Parsing Exception: Could not read ${packageFile.name}',
-        e,
-        st,
-      );
-    }
   }
 }

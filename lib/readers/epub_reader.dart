@@ -10,11 +10,29 @@ class EpubReader {
       throw EpubException('File was not an EPUB');
     }
 
+    // Parse container.xml
     final EpubContainerFile epubContainerFile =
         _handleContainerFileReadFails(archive);
 
+    // Find the rootfile
+    final rootfilePath = epubContainerFile.rootfile.fullPath;
+    ArchiveFile? rootfile =
+        archive.firstWhereOrNull((file) => file.name == rootfilePath);
+
+    rootfile ??= archive.firstWhereOrNull(
+        (file) => file.name == ArchiveService.findRootfile(archive)?.fullPath);
+
+    if (rootfile == null) {
+      rootfile = archive.firstWhereOrNull((file) =>
+          file.name == ArchiveService.findRootfile(archive)?.fullPath);
+      throw EpubException(
+        'Epub Parsing Error: Could not find OPF file defined in container.xml',
+      );
+    }
+
+    // Parse the rootfile
     final EpubPackageFile packageFile =
-        EpubPackageFile.read(archive, epubContainerFile);
+        EpubPackageFile.fromData(rootfile.content);
 
     return Epub(
       packageFile: packageFile,

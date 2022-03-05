@@ -16,7 +16,7 @@ class PackageIdentity extends Equatable {
 
   // GENERATED DO NOT MODOFY
 
-  PackageIdentity({
+  const PackageIdentity({
     required this.epubVersion,
     required this.uniqueIdentifier,
     this.id,
