@@ -6,8 +6,8 @@ A Flutter package build from the ground up for parsing EPUB files.
 
 ## Features
 
-* [x] Package Parser
-* [ ] Container Parser
+* [x] Container Parser
+* [ ] Package Parser
 * [ ] EPUB Parser
 * [ ] CFI Generator
 
