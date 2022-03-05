@@ -17,7 +17,7 @@ class EpubPackageReader {
       );
     }
 
-    final PackageIdentity packageIdentity =
+    final EpubPackageIdentity packageIdentity =
         _handleParsePackageIdentityFromXmlElement(packageElement);
 
     final XmlElement? metadataElement = _getMetadataElement(packageElement);
@@ -41,7 +41,7 @@ class EpubPackageReader {
     }
   }
 
-  static PackageIdentity _handleParsePackageIdentityFromXmlElement(
+  static EpubPackageIdentity _handleParsePackageIdentityFromXmlElement(
       XmlElement packageElement) {
     final version = _getVersion(packageElement);
     if (version == null) {
@@ -58,7 +58,7 @@ class EpubPackageReader {
 
     final id = _getOptionalId(packageElement);
 
-    final packageIdentity = PackageIdentity(
+    final packageIdentity = EpubPackageIdentity(
       uniqueIdentifier: uniqueIdentifier,
       epubVersion: version,
       id: id,

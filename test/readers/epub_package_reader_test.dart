@@ -15,7 +15,7 @@ void main() {
             .readAsBytes();
 
         final expectedValue = const EpubPackageFile(
-          packageIdentity: PackageIdentity(
+          packageIdentity: EpubPackageIdentity(
             epubVersion: '2.0',
             uniqueIdentifier: 'isbn_9780545509800',
             id: null,
@@ -43,7 +43,7 @@ void main() {
             .firstWhereOrNull((file) => file.name.contains('.opf'))!;
 
         final expectedValue = const EpubPackageFile(
-          packageIdentity: PackageIdentity(
+          packageIdentity: EpubPackageIdentity(
             epubVersion: '2.0',
             uniqueIdentifier: 'isbn_9780545509800',
             id: null,

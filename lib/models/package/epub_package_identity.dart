@@ -1,14 +1,14 @@
 part of shu_epub.models;
 
-class PackageIdentity extends Equatable {
+class EpubPackageIdentity extends Equatable {
   final String epubVersion;
 
   final String uniqueIdentifier;
 
   final String? id;
 
-  factory PackageIdentity.zero() {
-    return PackageIdentity(
+  factory EpubPackageIdentity.zero() {
+    return EpubPackageIdentity(
       epubVersion: 'unknown',
       uniqueIdentifier: 'unknown',
     );
@@ -16,18 +16,18 @@ class PackageIdentity extends Equatable {
 
   // GENERATED DO NOT MODOFY
 
-  const PackageIdentity({
+  const EpubPackageIdentity({
     required this.epubVersion,
     required this.uniqueIdentifier,
     this.id,
   });
 
-  PackageIdentity copyWith({
+  EpubPackageIdentity copyWith({
     String? epubVersion,
     String? uniqueIdentifier,
     String? id,
   }) {
-    return PackageIdentity(
+    return EpubPackageIdentity(
       epubVersion: epubVersion ?? this.epubVersion,
       uniqueIdentifier: uniqueIdentifier ?? this.uniqueIdentifier,
       id: id ?? this.id,
@@ -42,8 +42,8 @@ class PackageIdentity extends Equatable {
     };
   }
 
-  factory PackageIdentity.fromMap(Map<String, dynamic> map) {
-    return PackageIdentity(
+  factory EpubPackageIdentity.fromMap(Map<String, dynamic> map) {
+    return EpubPackageIdentity(
       epubVersion: map['epubVersion'] ?? '',
       uniqueIdentifier: map['uniqueIdentifier'] ?? '',
       id: map['id'],
@@ -52,12 +52,12 @@ class PackageIdentity extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory PackageIdentity.fromJson(String source) =>
-      PackageIdentity.fromMap(json.decode(source));
+  factory EpubPackageIdentity.fromJson(String source) =>
+      EpubPackageIdentity.fromMap(json.decode(source));
 
   @override
   String toString() =>
-      'PackageIdentity(epubVersion: $epubVersion, uniqueIdentifier: $uniqueIdentifier, id: $id)';
+      'EpubPackageIdentity(epubVersion: $epubVersion, uniqueIdentifier: $uniqueIdentifier, id: $id)';
 
   @override
   List<Object> get props => [epubVersion, uniqueIdentifier, id ?? ''];
