@@ -1,7 +1,7 @@
 part of shu_epub.services;
 
 class ArchiveService {
-  static bool isArchiveEpubFile(Archive archive) {
+  static bool isEpubFile(Archive archive) {
     final String mimeType = getMediaType(archive);
     if (mimeType.contains(EpubMediaTypes.kEpubMimeType)) {
       return true;

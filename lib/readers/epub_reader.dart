@@ -5,7 +5,7 @@ class EpubReader {
 
   static Epub read(Uint8List bytes) {
     final archive = ArchiveService.decodeZip(bytes);
-    final isEpub = ArchiveService.isArchiveEpubFile(archive);
+    final isEpub = ArchiveService.isEpubFile(archive);
     if (!isEpub) {
       throw EpubException('File was not an EPUB');
     }
