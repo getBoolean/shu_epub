@@ -29,6 +29,10 @@ class EpubPackageReader {
 
     return EpubPackageFile(
       packageIdentity: packageIdentity,
+      guide: null,
+      manifest: [],
+      publicationMetadata: EpubPublicationMetadata.zero(),
+      spine: EpubSpine.zero(),
     );
   }
 

@@ -53,10 +53,10 @@ EPUB loaded into memory. This allows the device to save memory.
     * Create instance of EPUB object when controller is created
     * Getter for EPUB object
   * **EpubArchiveController** extends **EpubController**
-    * Creates EPUB object from loaded `.epub` file bytes
+    * Creates EPUB object from loaded `.epub` file bytes, and supported media types
     * Overrides getFilePaths and getFileBytes to use `Archive`/`ArchiveFile`
   * **EpubContainerController**
-    * Given container (`META-INF/container.xml`) file bytes
+    * Given container (`META-INF/container.xml`) file bytes, and supported media types
     * Uses **EpubContainerReader**
     * Returns list of rootfiles and container version
   * **EpubMetadataController**

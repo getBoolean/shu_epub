@@ -14,12 +14,15 @@ void main() {
         final data = await io.File('test/assets/Guardians/OEBPS/package.opf')
             .readAsBytes();
 
-        final expectedValue = const EpubPackageFile(
+        final expectedValue = EpubPackageFile(
           packageIdentity: EpubPackageIdentity(
             epubVersion: '2.0',
             uniqueIdentifier: 'isbn_9780545509800',
             id: null,
           ),
+          manifest: [],
+          publicationMetadata: EpubPublicationMetadata.zero(),
+          spine: EpubSpine.zero(),
         );
 
         // act
@@ -42,12 +45,15 @@ void main() {
         final ArchiveFile archiveFile = archive.files
             .firstWhereOrNull((file) => file.name.contains('.opf'))!;
 
-        final expectedValue = const EpubPackageFile(
+        final expectedValue = EpubPackageFile(
           packageIdentity: EpubPackageIdentity(
             epubVersion: '2.0',
             uniqueIdentifier: 'isbn_9780545509800',
             id: null,
           ),
+          manifest: [],
+          publicationMetadata: EpubPublicationMetadata.zero(),
+          spine: EpubSpine.zero(),
         );
 
         // act

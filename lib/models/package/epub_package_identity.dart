@@ -53,7 +53,9 @@ class EpubPackageIdentity extends Equatable {
   String toJson() => json.encode(toMap());
 
   factory EpubPackageIdentity.fromJson(String source) =>
-      EpubPackageIdentity.fromMap(json.decode(source));
+      EpubPackageIdentity.fromMap(
+        json.decode(source),
+      );
 
   @override
   String toString() =>

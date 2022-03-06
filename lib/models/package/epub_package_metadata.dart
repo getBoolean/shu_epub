@@ -129,6 +129,11 @@ class EpubPackageMetadata extends Equatable {
     };
   }
 
+  /// Create an [EpubPackageMetadata] object with null for all values
+  factory EpubPackageMetadata.zero() {
+    return EpubPackageMetadata();
+  }
+
   factory EpubPackageMetadata.fromMap(Map<String, dynamic> map) {
     return EpubPackageMetadata(
       accessModes: map['accessModes'] == null
