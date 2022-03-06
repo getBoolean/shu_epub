@@ -37,7 +37,7 @@ class EpubPackageFile extends Equatable {
 
   /// Publication metadata (title, author, publisher, etc.).
   ///
-  /// TODO(@getBoolean): Model, Implementation
+  /// TODO(@getBoolean): Implementation
   final EpubPublicationMetadata publicationMetadata;
 
   /// A list of files (documents, images, style sheets, etc.) that make up the publication.
