@@ -117,7 +117,6 @@ files it needs into memory
   * Search Panel/Page
     * Search current chapter or all chapters
 
-
 ## Testing
 
 Run tests with the following command

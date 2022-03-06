@@ -1,6 +1,41 @@
 part of shu_epub.services;
 
 class ArchiveService {
+  static bool isArchiveEpubFile(Archive archive) {
+    final String mimeType = getMediaType(archive);
+    if (mimeType.contains(EpubMediaTypes.kEpubMimeType)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /// Find the mediatype of the file
+  ///
+  /// Throws an [EpubException] if it cannot be parsed or it doesn't exist
+  static String getMediaType(Archive archive) {
+    for (final file in archive.files) {
+      if (file.name == 'mimetype') {
+        try {
+          final Uint8List content = file.content;
+          final mimetype = String.fromCharCodes(content);
+
+          return mimetype.trim();
+        } on Exception catch (e, st) {
+          throw EpubException(
+            'Contents of mimetype file could not be parsed.',
+            e,
+            st,
+          );
+        }
+      }
+    }
+
+    throw EpubException(
+      'Could not find mimetype file. This may not be an EPUB file.',
+    );
+  }
+
   /// Decode epub data
   ///
   /// TODO: Implement using Isolate (or Worker on web)

@@ -9,7 +9,6 @@ import 'package:xml/xml.dart';
 import '../models/models.dart';
 import '../service/service.dart';
 import '../utils/collection_utils.dart';
-import '../utils/file_utils.dart';
 
 part 'epub_container_reader.dart';
 part 'epub_reader.dart';
