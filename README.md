@@ -117,6 +117,21 @@ files it needs into memory
   * Search Panel/Page
     * Search current chapter or all chapters
 
+
+## Testing
+
+Run tests with the following command
+
+> `dart test`
+
+### Test Coverage
+
+Generate test coverage by running the following commands
+
+1. `dart pub global activate coverage`
+2. `dart test --coverage="coverage"`
+3. `dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage.lcov --packages=.packages --report-on=lib`
+
 ## Resources
 
 * [EPUB Specifications](http://idpf.org/epub/dir/)
