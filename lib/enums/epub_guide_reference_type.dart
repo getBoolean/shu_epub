@@ -25,7 +25,7 @@ enum EpubGuideReferenceType {
   foreword,
 }
 
-extension AccessibilityAPIExtension on EpubGuideReferenceType {
+extension EpubGuideReferenceTypeExtension on EpubGuideReferenceType {
   /// The string equivalent of this constant property used in EPUBs
   String get value {
     switch (this) {
