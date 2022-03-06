@@ -10,7 +10,6 @@ class EpubPackageReader {
     final controller = EpubPackageController(data);
     final EpubPackageIdentity packageIdentity = controller.getPackageIdentity();
 
-
     final XmlElement packageElement = controller.packageElement;
     final XmlElement? metadataElement = _getMetadataElement(packageElement);
     if (metadataElement == null) {
