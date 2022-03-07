@@ -10,14 +10,6 @@ class EpubPackageReader {
     final controller = EpubPackageController(data);
     final EpubPackageIdentity packageIdentity = controller.getPackageIdentity();
 
-    final XmlElement packageElement = controller.packageElement;
-    final XmlElement? metadataElement = _getMetadataElement(packageElement);
-    if (metadataElement == null) {
-      throw EpubException(
-        'Epub Parsing Exception: Could not find <${EpubXMLConstants.kMetadataName}> element in data',
-      );
-    }
-
     return EpubPackageFile(
       packageIdentity: packageIdentity,
       guide: null,
@@ -25,9 +17,5 @@ class EpubPackageReader {
       publicationMetadata: EpubPublicationMetadata.zero(),
       spine: EpubSpine.zero(),
     );
-  }
-
-  static XmlElement? _getMetadataElement(XmlElement packageElement) {
-    return packageElement.findElements('metadata').firstOrNull;
   }
 }

@@ -3,10 +3,24 @@ part of shu_epub.controllers;
 class EpubPackageController {
   final XmlDocument xmlDocument;
   final XmlElement packageElement;
+  final XmlElement metadataElement;
+  final XmlElement manifestElement;
+  final XmlElement spineElement;
+  final XmlElement? guideElement;
+  final XmlElement? tourElement;
+
+  bool get hasGuide => guideElement != null;
+
+  bool get hasTour => !hasGuide && tourElement != null;
 
   const EpubPackageController._({
     required this.xmlDocument,
     required this.packageElement,
+    required this.metadataElement,
+    required this.manifestElement,
+    required this.spineElement,
+    this.guideElement,
+    this.tourElement,
   });
 
   /// Create a [EpubPackageController] from the bytes of the EPUB package file
@@ -18,9 +32,25 @@ class EpubPackageController {
     final XmlDocument xmlDocument = _handleStringToXmlDocument(content);
     final XmlElement packageElement =
         _getPackageElementFromXmlDocument(xmlDocument);
+    final XmlElement metadataElement =
+        _getElementFromPackageElement('metadata', packageElement)!;
+    final XmlElement manifestElement =
+        _getElementFromPackageElement('manifest', packageElement)!;
+    final XmlElement spineElement =
+        _getElementFromPackageElement('spine', packageElement)!;
+    final XmlElement? guideElement =
+        _getElementFromPackageElement('guide', packageElement, require: false);
+    final XmlElement? tourElement =
+        _getElementFromPackageElement('tour', packageElement, require: false);
+
     return EpubPackageController._(
       xmlDocument: xmlDocument,
       packageElement: packageElement,
+      metadataElement: metadataElement,
+      manifestElement: manifestElement,
+      spineElement: spineElement,
+      guideElement: guideElement,
+      tourElement: tourElement,
     );
   }
 
@@ -40,10 +70,8 @@ class EpubPackageController {
     try {
       // Find container element which MUST have namespace `http://www.idpf.org/2007/opf`
       final package = document
-          .findAllElements(
-            EpubXMLConstants.kPackageName,
-            namespace: EpubXMLConstants.kPackageNamespace,
-          )
+          .findAllElements(EpubXMLConstants.kPackageName,
+              namespace: EpubXMLConstants.kPackageNamespace)
           .firstOrNull;
 
       if (package == null) {
@@ -62,6 +90,22 @@ class EpubPackageController {
         st,
       );
     }
+  }
+
+  static XmlElement? _getElementFromPackageElement(
+    String targetElement,
+    XmlElement packageElement, {
+    bool require = true,
+  }) {
+    final metadataElement =
+        packageElement.findElements(targetElement).firstOrNull;
+    if (metadataElement == null && require) {
+      throw EpubException(
+        'Epub Parsing Exception: Could not find <${EpubXMLConstants.kMetadataName}> element in package (OPF) data',
+      );
+    }
+
+    return metadataElement;
   }
 
   EpubPackageIdentity getPackageIdentity() {
