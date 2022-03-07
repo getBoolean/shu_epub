@@ -31,7 +31,10 @@ void main() {
         expect(packageFile.publicationMetadata.identifiers, isNotEmpty);
 
         // contains one primary identifier
-        expect(packageFile.publicationMetadata.identifiers.firstWhereOrNull((identifier) => identifier.isPrimary), isNotNull);
+        expect(
+            packageFile.publicationMetadata.identifiers
+                .firstWhereOrNull((identifier) => identifier.isPrimary),
+            isNotNull);
 
         // manifest should have at least one item
         expect(packageFile.manifest, isNotEmpty);
@@ -68,7 +71,10 @@ void main() {
         expect(packageFile.publicationMetadata.identifiers, isNotEmpty);
 
         // contains one primary identifier
-        expect(packageFile.publicationMetadata.identifiers.firstWhereOrNull((identifier) => identifier.isPrimary), isNotNull);
+        expect(
+            packageFile.publicationMetadata.identifiers
+                .firstWhereOrNull((identifier) => identifier.isPrimary),
+            isNotNull);
 
         // manifest should have at least one item
         expect(packageFile.manifest, isNotEmpty);
