@@ -1,6 +1,6 @@
 part of shu_epub.models;
 
-class RootFile extends Equatable {
+class Rootfile extends Equatable {
   /// Relative to the root directory for the Abstract Container and not relative to the META-INF/ directory
   final String fullPath;
 
@@ -9,16 +9,16 @@ class RootFile extends Equatable {
 
   // GENERATED DO NOT MODOFY
 
-  const RootFile({
+  const Rootfile({
     required this.fullPath,
     required this.mediaType,
   });
 
-  RootFile copyWith({
+  Rootfile copyWith({
     String? fullPath,
     String? mediaType,
   }) {
-    return RootFile(
+    return Rootfile(
       fullPath: fullPath ?? this.fullPath,
       mediaType: mediaType ?? this.mediaType,
     );
@@ -31,8 +31,8 @@ class RootFile extends Equatable {
     };
   }
 
-  factory RootFile.fromMap(Map<String, dynamic> map) {
-    return RootFile(
+  factory Rootfile.fromMap(Map<String, dynamic> map) {
+    return Rootfile(
       fullPath: map['fullPath'] ?? '',
       mediaType: map['mediaType'] ?? '',
     );
@@ -40,8 +40,8 @@ class RootFile extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory RootFile.fromJson(String source) =>
-      RootFile.fromMap(json.decode(source));
+  factory Rootfile.fromJson(String source) =>
+      Rootfile.fromMap(json.decode(source));
 
   @override
   String toString() => 'RootFile(fullPath: $fullPath, mediaType: $mediaType)';

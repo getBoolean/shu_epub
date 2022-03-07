@@ -14,7 +14,7 @@ void main() {
             .readAsBytes();
         final EpubContainerFile? expectedValue = const EpubContainerFile(
           rootfileList: [
-            RootFile(
+            Rootfile(
               fullPath: 'OEBPS/package.opf',
               mediaType: EpubMediaTypes.kOPFMimeType,
             ),
@@ -41,7 +41,7 @@ void main() {
         final archive = ArchiveService.decodeZip(data);
         final EpubContainerFile? expectedValue = const EpubContainerFile(
           rootfileList: [
-            RootFile(
+            Rootfile(
               fullPath: 'OEBPS/package.opf',
               mediaType: EpubMediaTypes.kOPFMimeType,
             ),

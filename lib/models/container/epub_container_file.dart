@@ -7,11 +7,11 @@ part of shu_epub.models;
 /// The rootfiles element MUST contain at least one <rootfile> element that has a media-type of `application/oebps-package+xml`.
 class EpubContainerFile extends Equatable {
   static const kFilePath = 'META-INF/container.xml';
-  final List<RootFile> rootfileList;
+  final List<Rootfile> rootfileList;
   final String containerVersion;
 
-  /// If there are multiple [RootFile]s with mime type [EpubXMLConstants.kOPFMimeType], the first one will be considered the rootfile
-  RootFile get rootfile => rootfileList.firstWhere(
+  /// If there are multiple [Rootfile]s with mime type [EpubXMLConstants.kOPFMimeType], the first one will be considered the rootfile
+  Rootfile get rootfile => rootfileList.firstWhere(
         (element) => element.mediaType == EpubMediaTypes.kOPFMimeType,
         orElse: () {
           throw EpubException(
@@ -19,7 +19,7 @@ class EpubContainerFile extends Equatable {
         },
       );
 
-  factory EpubContainerFile.error(RootFile epubRootfile) {
+  factory EpubContainerFile.error(Rootfile epubRootfile) {
     return EpubContainerFile(
         rootfileList: [epubRootfile], containerVersion: 'unknown');
   }
@@ -40,7 +40,7 @@ class EpubContainerFile extends Equatable {
   });
 
   EpubContainerFile copyWith({
-    List<RootFile>? rootfileList,
+    List<Rootfile>? rootfileList,
     String? containerVersion,
   }) {
     return EpubContainerFile(
@@ -58,8 +58,8 @@ class EpubContainerFile extends Equatable {
 
   factory EpubContainerFile.fromMap(Map<String, dynamic> map) {
     return EpubContainerFile(
-      rootfileList: List<RootFile>.from(
-          map['rootfileList']?.map((x) => RootFile.fromMap(x))),
+      rootfileList: List<Rootfile>.from(
+          map['rootfileList']?.map((x) => Rootfile.fromMap(x))),
       containerVersion: map['containerVersion'] ?? '',
     );
   }

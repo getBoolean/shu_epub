@@ -9,3 +9,4 @@ import '../models/models.dart';
 import '../utils/collection_utils.dart';
 
 part 'epub_package_controller.dart';
+part 'epub_container_controller.dart';

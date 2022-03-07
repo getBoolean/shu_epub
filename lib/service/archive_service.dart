@@ -47,12 +47,12 @@ class ArchiveService {
   ///
   /// According to the epub specs, the Opf file SHOULD end in `.opf` but it is not required,
   /// so this should only be used if the rootfile could not be found in `container.xml`
-  static RootFile? findRootfile(Archive archive) {
+  static Rootfile? findRootfile(Archive archive) {
     for (final ArchiveFile file in archive.files) {
       final filename = file.name;
       final fileExtension = filename.substring(filename.lastIndexOf('.') + 1);
       if (fileExtension == 'opf') {
-        return RootFile(
+        return Rootfile(
           fullPath: file.name,
           mediaType: EpubPackageFile.kPackageFileMimeType,
         );
