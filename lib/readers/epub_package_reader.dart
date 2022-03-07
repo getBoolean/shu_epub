@@ -8,7 +8,8 @@ class EpubPackageReader {
 
   static EpubPackageFile fromData(Uint8List data) {
     final controller = EpubPackageController(data);
-    final EpubPackageIdentity packageIdentity = controller.getPackageIdentity();
+    
+    final packageIdentity = controller.getPackageIdentity();
     final metadata = controller.getPublicationMetadata();
 
     return EpubPackageFile(
