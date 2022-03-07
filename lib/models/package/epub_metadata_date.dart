@@ -5,7 +5,7 @@ class EpubMetadataDate extends Equatable {
   ///
   /// Represented in the form `YYYY[-MM[-DD]]`: a required 4-digit year, an optional 2-digit month, and if the month is given, an optional 2-digit day of month.
   final String date;
-  
+
   /// The set of values for event are not defined by the EPUB specification; possible values may include: `creation`, `publication`, and `modification`.
   final String? event;
 
@@ -40,7 +40,8 @@ class EpubMetadataDate extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubMetadataDate.fromJson(String source) => EpubMetadataDate.fromMap(json.decode(source));
+  factory EpubMetadataDate.fromJson(String source) =>
+      EpubMetadataDate.fromMap(json.decode(source));
 
   @override
   String toString() => 'EpubMetadataDate(date: $date, event: $event)';

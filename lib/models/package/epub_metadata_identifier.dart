@@ -58,8 +58,10 @@ class EpubMetadataIdentifier extends Equatable {
       EpubMetadataIdentifier.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubMetadataIdentifier(value: $value, id: $id, scheme: $scheme)';
+  String toString() =>
+      'EpubMetadataIdentifier(value: $value, id: $id, scheme: $scheme)';
 
   @override
-  List<Object> get props => [value, id ?? 'no id given', scheme ?? 'no scheme given'];
+  List<Object> get props =>
+      [value, id ?? 'no id given', scheme ?? 'no scheme given'];
 }
