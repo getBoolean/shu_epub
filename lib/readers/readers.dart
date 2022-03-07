@@ -3,7 +3,6 @@ library shu_epub.readers;
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
-import 'package:xml/xml.dart';
 
 import '../controllers/controllers.dart';
 import '../models/models.dart';
