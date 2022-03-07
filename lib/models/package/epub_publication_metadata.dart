@@ -10,19 +10,19 @@ class EpubPublicationMetadata extends Equatable {
   /// The order of creator elements should be the order
   /// in which the creators' names are presented by
   /// the Reading System.
-  final List<EpubMetadataContributer>? creators;
+  final List<EpubMetadataContributer> creators;
 
   /// Contains a list of arbitrary phrases or keywords. There is no
   /// standardized list of subjects.
-  final List<String>? subjects;
+  final List<String> subjects;
 
   final String? description;
 
   final String? publisher;
 
-  final List<EpubMetadataContributer>? contributers;
+  final List<EpubMetadataContributer> contributers;
 
-  final List<EpubExtraMetadata>? extraMetadataItems;
+  final List<EpubExtraMetadata> extraMetadataItems;
 
   /// Date of publication, in the format defined by
   /// ["Date and Time Formats"](http://www.w3.org/TR/NOTE-datetime)
@@ -34,7 +34,7 @@ class EpubPublicationMetadata extends Equatable {
   /// The date element has one optional OPF event attribute. The set
   /// of values for event are not defined by this specification;
   /// possible values may include: creation, publication, and modification.
-  final String? publicationDate;
+  final EpubMetadataDate? date;
 
   /// Includes terms describing general categories, functions, genres,
   /// or aggregation levels for content.
@@ -81,13 +81,13 @@ class EpubPublicationMetadata extends Equatable {
 
   const EpubPublicationMetadata({
     required this.allTitles,
-    this.creators,
-    this.subjects,
+    this.creators = const [],
+    this.subjects = const [],
     this.description,
     this.publisher,
-    this.contributers,
-    this.extraMetadataItems,
-    this.publicationDate,
+    this.contributers = const [],
+    this.extraMetadataItems = const [],
+    this.date,
     this.type,
     this.format,
     required this.identifiers,
@@ -106,7 +106,7 @@ class EpubPublicationMetadata extends Equatable {
     String? publisher,
     List<EpubMetadataContributer>? contributers,
     List<EpubExtraMetadata>? extraMetadataItems,
-    String? publicationDate,
+    EpubMetadataDate? date,
     String? type,
     String? format,
     List<EpubMetadataIdentifier>? identifiers,
@@ -124,7 +124,7 @@ class EpubPublicationMetadata extends Equatable {
       publisher: publisher ?? this.publisher,
       contributers: contributers ?? this.contributers,
       extraMetadataItems: extraMetadataItems ?? this.extraMetadataItems,
-      publicationDate: publicationDate ?? this.publicationDate,
+      date: date ?? this.date,
       type: type ?? this.type,
       format: format ?? this.format,
       identifiers: identifiers ?? this.identifiers,
@@ -139,13 +139,13 @@ class EpubPublicationMetadata extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'allTitles': allTitles,
-      'creators': creators?.map((x) => x.toMap()).toList(),
+      'creators': creators.map((x) => x.toMap()).toList(),
       'subjects': subjects,
       'description': description,
       'publisher': publisher,
-      'contributers': contributers?.map((x) => x.toMap()).toList(),
-      'extraMetadataItems': extraMetadataItems?.map((x) => x.toMap()).toList(),
-      'publicationDate': publicationDate,
+      'contributers': contributers.map((x) => x.toMap()).toList(),
+      'extraMetadataItems': extraMetadataItems.map((x) => x.toMap()).toList(),
+      'date': date,
       'type': type,
       'format': format,
       'identifiers': identifiers.map((x) => x.toMap()).toList(),
@@ -168,26 +168,20 @@ class EpubPublicationMetadata extends Equatable {
   factory EpubPublicationMetadata.fromMap(Map<String, dynamic> map) {
     return EpubPublicationMetadata(
       allTitles: List<String>.from(map['allTitles']),
-      creators: map['creators'] != null
-          ? List<EpubMetadataContributer>.from(
-              map['creators']?.map((x) => EpubMetadataContributer.fromMap(x)))
-          : null,
+      creators: List<EpubMetadataContributer>.from(
+          map['creators'].map((x) => EpubMetadataContributer.fromMap(x))),
       subjects: List<String>.from(map['subjects']),
       description: map['description'],
       publisher: map['publisher'],
-      contributers: map['contributers'] != null
-          ? List<EpubMetadataContributer>.from(map['contributers']
-              ?.map((x) => EpubMetadataContributer.fromMap(x)))
-          : null,
-      extraMetadataItems: map['extraMetadataItems'] != null
-          ? List<EpubExtraMetadata>.from(map['extraMetadataItems']
-              ?.map((x) => EpubExtraMetadata.fromMap(x)))
-          : null,
-      publicationDate: map['publicationDate'],
+      contributers: List<EpubMetadataContributer>.from(
+          map['contributers'].map((x) => EpubMetadataContributer.fromMap(x))),
+      extraMetadataItems: List<EpubExtraMetadata>.from(
+          map['extraMetadataItems'].map((x) => EpubExtraMetadata.fromMap(x))),
+      date: map['date'],
       type: map['type'],
       format: map['format'],
       identifiers: List<EpubMetadataIdentifier>.from(
-          map['identifiers']?.map((x) => EpubMetadataIdentifier.fromMap(x))),
+          map['identifiers'].map((x) => EpubMetadataIdentifier.fromMap(x))),
       source: map['source'],
       languages: List<String>.from(map['languages']),
       relation: map['relation'],
@@ -203,20 +197,20 @@ class EpubPublicationMetadata extends Equatable {
 
   @override
   String toString() {
-    return 'EpubPublicationMetadata(allTitles: $allTitles, creators: $creators, subjects: $subjects, description: $description, publisher: $publisher, contributers: $contributers, extraMetadataItems: $extraMetadataItems, publicationDate: $publicationDate, type: $type, format: $format, identifiers: $identifiers, source: $source, languages: $languages, relation: $relation, coverage: $coverage, rights: $rights)';
+    return 'EpubPublicationMetadata(allTitles: $allTitles, creators: $creators, subjects: $subjects, description: $description, publisher: $publisher, contributers: $contributers, extraMetadataItems: $extraMetadataItems, date: $date, type: $type, format: $format, identifiers: $identifiers, source: $source, languages: $languages, relation: $relation, coverage: $coverage, rights: $rights)';
   }
 
   @override
   List<Object> get props {
     return [
       allTitles,
-      creators ?? 'no creators specified',
-      subjects ?? 'no subjects specified',
+      creators,
+      subjects,
       description ?? 'no description given',
       publisher ?? 'no publisher specified',
-      contributers ?? 'no contributers specified',
-      extraMetadataItems ?? 'no extra metadata specified',
-      publicationDate ?? 'no publication date specified',
+      contributers,
+      extraMetadataItems,
+      date ?? 'no date specified',
       type ?? 'no type specified',
       format ?? 'no format specified',
       identifiers,

@@ -170,15 +170,51 @@ class EpubPackageController {
             ))
         .toList();
 
+    final contributers = compatibleMetadataElement
+        .findElements('dc:contributer')
+        .map((creator) => EpubMetadataContributer(
+              name: creator.text,
+              role: creator.getAttribute('opf:role'),
+              fileAs: creator.getAttribute('opf:file-as'),
+            ))
+        .toList();
+
+    final subjects = compatibleMetadataElement
+        .findElements('dc:subject')
+        .map((node) => node.text.trim())
+        .toList();
+
+    final description = compatibleMetadataElement
+        .findElements('dc:description')
+        .firstOrNull
+        ?.text
+        .trim();
+
+    final publisher = compatibleMetadataElement
+        .findElements('dc:publisher')
+        .firstOrNull
+        ?.text
+        .trim();
+
+    final dateElement =
+        compatibleMetadataElement.findElements('dc:date').firstOrNull;
+
+    final date = dateElement == null
+        ? null
+        : EpubMetadataDate(
+            date: dateElement.text,
+            event: dateElement.getAttribute('event'),
+          );
+
     return EpubPublicationMetadata(
       allTitles: titles,
       creators: creators,
-      subjects: null,
-      description: null,
-      publisher: null,
-      contributers: null,
+      subjects: subjects,
+      description: description,
+      publisher: publisher,
+      contributers: contributers,
       extraMetadataItems: extraMetadataItems,
-      publicationDate: null,
+      date: date,
       type: null,
       format: null,
       identifiers: [], // Must not be empty
