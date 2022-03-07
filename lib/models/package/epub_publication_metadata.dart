@@ -34,7 +34,7 @@ class EpubPublicationMetadata extends Equatable {
   /// The date element has one optional OPF event attribute. The set
   /// of values for event are not defined by this specification;
   /// possible values may include: creation, publication, and modification.
-  final EpubMetadataDate? date;
+  final EpubMetadataDate? metadataDate;
 
   /// Includes terms describing general categories, functions, genres,
   /// or aggregation levels for content.
@@ -87,7 +87,7 @@ class EpubPublicationMetadata extends Equatable {
     this.publisher,
     this.contributers = const [],
     this.extraMetadataItems = const [],
-    this.date,
+    this.metadataDate,
     this.type,
     this.format,
     required this.identifiers,
@@ -106,7 +106,7 @@ class EpubPublicationMetadata extends Equatable {
     String? publisher,
     List<EpubMetadataContributer>? contributers,
     List<EpubExtraMetadata>? extraMetadataItems,
-    EpubMetadataDate? date,
+    EpubMetadataDate? metadataDate,
     String? type,
     String? format,
     List<EpubMetadataIdentifier>? identifiers,
@@ -124,7 +124,7 @@ class EpubPublicationMetadata extends Equatable {
       publisher: publisher ?? this.publisher,
       contributers: contributers ?? this.contributers,
       extraMetadataItems: extraMetadataItems ?? this.extraMetadataItems,
-      date: date ?? this.date,
+      metadataDate: metadataDate ?? this.metadataDate,
       type: type ?? this.type,
       format: format ?? this.format,
       identifiers: identifiers ?? this.identifiers,
@@ -145,7 +145,7 @@ class EpubPublicationMetadata extends Equatable {
       'publisher': publisher,
       'contributers': contributers.map((x) => x.toMap()).toList(),
       'extraMetadataItems': extraMetadataItems.map((x) => x.toMap()).toList(),
-      'date': date,
+      'metadataDate': metadataDate,
       'type': type,
       'format': format,
       'identifiers': identifiers.map((x) => x.toMap()).toList(),
@@ -177,7 +177,7 @@ class EpubPublicationMetadata extends Equatable {
           map['contributers'].map((x) => EpubMetadataContributer.fromMap(x))),
       extraMetadataItems: List<EpubExtraMetadata>.from(
           map['extraMetadataItems'].map((x) => EpubExtraMetadata.fromMap(x))),
-      date: map['date'],
+      metadataDate: map['metadataDate'],
       type: map['type'],
       format: map['format'],
       identifiers: List<EpubMetadataIdentifier>.from(
@@ -197,7 +197,7 @@ class EpubPublicationMetadata extends Equatable {
 
   @override
   String toString() {
-    return 'EpubPublicationMetadata(allTitles: $allTitles, creators: $creators, subjects: $subjects, description: $description, publisher: $publisher, contributers: $contributers, extraMetadataItems: $extraMetadataItems, date: $date, type: $type, format: $format, identifiers: $identifiers, source: $source, languages: $languages, relation: $relation, coverage: $coverage, rights: $rights)';
+    return 'EpubPublicationMetadata(allTitles: $allTitles, creators: $creators, subjects: $subjects, description: $description, publisher: $publisher, contributers: $contributers, extraMetadataItems: $extraMetadataItems, metadataDate: $metadataDate, type: $type, format: $format, identifiers: $identifiers, source: $source, languages: $languages, relation: $relation, coverage: $coverage, rights: $rights)';
   }
 
   @override
@@ -210,7 +210,7 @@ class EpubPublicationMetadata extends Equatable {
       publisher ?? 'no publisher specified',
       contributers,
       extraMetadataItems,
-      date ?? 'no date specified',
+      metadataDate ?? 'no date specified',
       type ?? 'no type specified',
       format ?? 'no format specified',
       identifiers,

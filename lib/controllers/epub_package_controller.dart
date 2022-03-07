@@ -199,12 +199,54 @@ class EpubPackageController {
     final dateElement =
         compatibleMetadataElement.findElements('dc:date').firstOrNull;
 
-    final date = dateElement == null
+    final metadataDate = dateElement == null
         ? null
         : EpubMetadataDate(
             date: dateElement.text,
             event: dateElement.getAttribute('event'),
           );
+
+    final type = compatibleMetadataElement
+        .findElements('dc:type')
+        .firstOrNull
+        ?.text
+        .trim();
+
+    final format = compatibleMetadataElement
+        .findElements('dc:format')
+        .firstOrNull
+        ?.text
+        .trim();
+
+    final source = compatibleMetadataElement
+        .findElements('dc:source')
+        .firstOrNull
+        ?.text
+        .trim();
+
+    final langs = compatibleMetadataElement
+        .findElements('dc:language')
+        .map((node) => node.text.trim())
+        .toList();
+
+    final relation = compatibleMetadataElement
+        .findElements('dc:relation')
+        .firstOrNull
+        ?.text
+        .trim();
+
+    final coverage = compatibleMetadataElement
+        .findElements('dc:coverage')
+        .firstOrNull
+        ?.text
+        .trim();
+
+    final rights = compatibleMetadataElement
+        .findElements('dc:rights')
+        .firstOrNull
+        ?.text
+        .trim();
+
 
     return EpubPublicationMetadata(
       allTitles: titles,
@@ -214,15 +256,15 @@ class EpubPackageController {
       publisher: publisher,
       contributers: contributers,
       extraMetadataItems: extraMetadataItems,
-      date: date,
-      type: null,
-      format: null,
+      metadataDate: metadataDate,
+      type: type,
+      format: format,
       identifiers: [], // Must not be empty
-      source: null,
-      languages: [],
-      relation: null,
-      coverage: null,
-      rights: null,
+      source: source,
+      languages: langs,
+      relation: relation,
+      coverage: coverage,
+      rights: rights,
     );
   }
 }
