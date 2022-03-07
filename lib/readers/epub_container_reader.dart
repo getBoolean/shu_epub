@@ -7,20 +7,20 @@ class EpubContainerReader {
     final controller = EpubContainerController(data);
     final containerElement = controller.containerElement;
 
-    final version = controller.getVersion();
+    final containerVersion = controller.getVersion();
 
-    if (version == null) {
+    if (containerVersion == null) {
       throw EpubException(
         'Epub Parsing Exception: Could not find version attribute for container element in "${EpubContainerFile.kFilePath}"',
       );
     }
 
-    // TODO(@getBoolean): Remove if epubs are found with greator version and parsing still works
-    if (version != '1.0') {
-      throw EpubException(
-        'Epub Parsing Exception: Epub OCF Container version $version not supported from file "${EpubContainerFile.kFilePath}"',
-      );
-    }
+    // Uncomment if epubs are found with greator version and parsing does not works
+    // if (containerVersion != '1.0') {
+    //   throw EpubException(
+    //     'Epub Parsing Exception: Epub OCF Container version $containerVersion not supported from file "${EpubContainerFile.kFilePath}"',
+    //   );
+    // }
 
     final List<Rootfile> rootfileList =
         controller.getRootfiles(containerElement);
@@ -33,7 +33,7 @@ class EpubContainerReader {
 
     return EpubContainerFile(
       rootfileList: rootfileList,
-      containerVersion: version,
+      containerVersion: containerVersion,
     );
   }
 
