@@ -171,7 +171,7 @@ class EpubPackageController {
         .toList();
 
     final contributers = compatibleMetadataElement
-        .findElements('dc:contributer')
+        .findElements('dc:contributor')
         .map((creator) => EpubMetadataContributer(
               name: creator.text,
               role: creator.getAttribute('opf:role'),
