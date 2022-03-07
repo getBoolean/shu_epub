@@ -142,10 +142,10 @@ DA:168,1
 DA:169,1
 DA:171,1
 DA:174,1
-DA:175,1
-DA:176,0
-DA:177,0
-DA:178,0
+DA:175,3
+DA:176,1
+DA:177,1
+DA:178,1
 DA:180,1
 DA:183,1
 DA:184,4
@@ -207,7 +207,7 @@ DA:289,1
 DA:292,1
 DA:293,3
 LF:125
-LH:96
+LH:99
 end_of_record
 SF:/Users/danielnewville/Documents/GitHub/shu_epub/lib/models/package/epub_spine.dart
 DA:63,1
