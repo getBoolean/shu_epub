@@ -109,20 +109,20 @@ class EpubPackageController {
   }
 
   EpubPackageIdentity getPackageIdentity() {
-    final version = _getVersion();
+    final version = packageElement.getAttribute('version');
     if (version == null) {
       throw EpubException(
         'Epub Parsing Exception: Could not find version attribute in data',
       );
     }
-    final uniqueIdentifier = _getUniqueIdentifier();
+    final uniqueIdentifier = packageElement.getAttribute('unique-identifier');
     if (uniqueIdentifier == null) {
       throw EpubException(
         'Epub Parsing Exception: Could not find unique-identifier attribute in data',
       );
     }
 
-    final id = _getOptionalId();
+    final id = packageElement.getAttribute('id');
 
     final packageIdentity = EpubPackageIdentity(
       uniqueIdentifier: uniqueIdentifier,
@@ -132,15 +132,61 @@ class EpubPackageController {
     return packageIdentity;
   }
 
-  String? _getVersion() {
-    return packageElement.getAttribute('version');
-  }
+  EpubPublicationMetadata getPublicationMetadata() {
+    final dcMetadata = metadataElement.findElements('dc-metadata').firstOrNull;
+    final bool hasDcMetadataElement = dcMetadata != null;
+    final xMetadata = metadataElement.findElements('x-metadata').firstOrNull;
+    final bool hasXMetadataElement = xMetadata != null;
 
-  String? _getUniqueIdentifier() {
-    return packageElement.getAttribute('unique-identifier');
-  }
+    final List<EpubExtraMetadata> extraMetadataItems = hasXMetadataElement
+        ? xMetadata.childElements
+            .map((node) => EpubExtraMetadata(
+                  name: node.getAttribute('name') ?? '',
+                  content: node.getAttribute('content') ?? '',
+                ))
+            .toList()
+        : metadataElement
+            .findElements('meta')
+            .map((node) => EpubExtraMetadata(
+                  name: node.getAttribute('name') ?? '',
+                  content: node.getAttribute('content') ?? '',
+                ))
+            .toList();
 
-  String? _getOptionalId() {
-    return packageElement.getAttribute('id');
+    final XmlElement compatibleMetadataElement =
+        hasDcMetadataElement ? dcMetadata : metadataElement;
+
+    final titles = compatibleMetadataElement
+        .findElements('dc:title')
+        .map((node) => node.text.trim())
+        .toList();
+
+    final creators = compatibleMetadataElement
+        .findElements('dc:creator')
+        .map((creator) => EpubMetadataContributer(
+              name: creator.text,
+              role: creator.getAttribute('opf:role'),
+              fileAs: creator.getAttribute('opf:file-as'),
+            ))
+        .toList();
+
+    return EpubPublicationMetadata(
+      allTitles: titles,
+      creators: creators,
+      subjects: null,
+      description: null,
+      publisher: null,
+      contributers: null,
+      extraMetadataItems: extraMetadataItems,
+      publicationDate: null,
+      type: null,
+      format: null,
+      identifiers: [], // Must not be empty
+      source: null,
+      languages: [],
+      relation: null,
+      coverage: null,
+      rights: null,
+    );
   }
 }
