@@ -14,22 +14,27 @@ void main() {
         final data = await io.File('test/assets/Guardians/OEBPS/package.opf')
             .readAsBytes();
 
-        final expectedValue = EpubPackageFile(
-          packageIdentity: EpubPackageIdentity(
-            epubVersion: '2.0',
-            uniqueIdentifier: 'isbn_9780545509800',
-            id: null,
-          ),
-          manifest: [],
-          publicationMetadata: EpubPublicationMetadata.zero(),
-          spine: EpubSpine.zero(),
-        );
-
         // act
         final EpubPackageFile packageFile = EpubPackageReader.fromData(data);
 
         // assert
-        expect(packageFile, expectedValue);
+        expect(packageFile.packageIdentity.epubVersion, isNotEmpty);
+        expect(packageFile.packageIdentity.uniqueIdentifier, isNotEmpty);
+
+        // contains at least one title
+        expect(packageFile.publicationMetadata.allTitles, isNotEmpty);
+
+        // contains at least one language
+        expect(packageFile.publicationMetadata.languages, isNotEmpty);
+
+        // contains at least one identifier
+        expect(packageFile.publicationMetadata.identifiers, isNotEmpty);
+
+        // contains one primary identifier
+        expect(packageFile.publicationMetadata.identifiers.firstWhereOrNull((identifier) => identifier.isPrimary), isNotNull);
+
+        // manifest should have at least one item
+        expect(packageFile.manifest, isNotEmpty);
       },
     );
   });
@@ -45,23 +50,28 @@ void main() {
         final ArchiveFile archiveFile = archive.files
             .firstWhereOrNull((file) => file.name.contains('.opf'))!;
 
-        final expectedValue = EpubPackageFile(
-          packageIdentity: EpubPackageIdentity(
-            epubVersion: '2.0',
-            uniqueIdentifier: 'isbn_9780545509800',
-            id: null,
-          ),
-          manifest: [],
-          publicationMetadata: EpubPublicationMetadata.zero(),
-          spine: EpubSpine.zero(),
-        );
-
         // act
         final EpubPackageFile packageFile =
             EpubPackageReader.fromArchiveFile(archiveFile);
 
         // assert
-        expect(packageFile, expectedValue);
+        expect(packageFile.packageIdentity.epubVersion, isNotEmpty);
+        expect(packageFile.packageIdentity.uniqueIdentifier, isNotEmpty);
+
+        // contains at least one title
+        expect(packageFile.publicationMetadata.allTitles, isNotEmpty);
+
+        // contains at least one language
+        expect(packageFile.publicationMetadata.languages, isNotEmpty);
+
+        // contains at least one identifier
+        expect(packageFile.publicationMetadata.identifiers, isNotEmpty);
+
+        // contains one primary identifier
+        expect(packageFile.publicationMetadata.identifiers.firstWhereOrNull((identifier) => identifier.isPrimary), isNotNull);
+
+        // manifest should have at least one item
+        expect(packageFile.manifest, isNotEmpty);
       },
     );
   });
