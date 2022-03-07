@@ -51,7 +51,7 @@ class EpubPackageController {
           'Epub Parsing Exception: Could not find <${EpubXMLConstants.kPackageName}> element in xml document. This may not be an EPUB package file.',
         );
       }
-      
+
       return package;
     } on Exception catch (e, st) {
       if (e is EpubException) rethrow;
