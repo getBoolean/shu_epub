@@ -275,4 +275,24 @@ class EpubPackageController {
       rights: rights,
     );
   }
+
+  List<EpubManifestItem> getManifest() {
+    final items = manifestElement.findElements('item');
+
+    final manifestItems = items
+        .map((item) => EpubManifestItem(
+              id: item.getAttribute('id') ?? '',
+              href: item.getAttribute('href') ?? '',
+              mediaType: item.getAttribute('media-type') ?? '',
+              fallback: item.getAttribute('fallback'),
+            ))
+        .toList();
+
+    // Remove OPF Package Document in case it exists in manifest
+    manifestItems.removeWhere(
+      (item) => item.mediaType == EpubMediaTypes.kOPFMimeType,
+    );
+
+    return manifestItems;
+  }
 }
