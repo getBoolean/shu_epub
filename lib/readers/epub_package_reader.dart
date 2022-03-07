@@ -12,10 +12,11 @@ class EpubPackageReader {
 
     return EpubPackageFile(
       packageIdentity: packageIdentity,
-      guide: null,
-      manifest: [],
       publicationMetadata: EpubPublicationMetadata.zero(),
+      manifest: [],
       spine: EpubSpine.zero(),
+      guide: null,
+      tours: null,
     );
   }
 }
