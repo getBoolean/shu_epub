@@ -11,7 +11,7 @@ A Flutter package build from the ground up for parsing EPUB files.
 * [ ] NCX Table of Contends
 * [ ] EPUB Parser
 * [ ] CFI Generator
-* [ ] Epub 2 Xml Islands (Removed in Epub 3)
+* [ ] Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2), removed in Epub 3
 
 and more...
 
