@@ -8,8 +8,10 @@ A Flutter package build from the ground up for parsing EPUB files.
 
 * [x] Container Parser
 * [ ] Package Parser
+* [ ] NCX Table of Contends
 * [ ] EPUB Parser
 * [ ] CFI Generator
+* [ ] Epub 2 Xml Islands (Removed in Epub 3)
 
 and more...
 
