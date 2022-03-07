@@ -9,10 +9,11 @@ class EpubPackageReader {
   static EpubPackageFile fromData(Uint8List data) {
     final controller = EpubPackageController(data);
     final EpubPackageIdentity packageIdentity = controller.getPackageIdentity();
+    final metadata = controller.getPublicationMetadata();
 
     return EpubPackageFile(
       packageIdentity: packageIdentity,
-      publicationMetadata: EpubPublicationMetadata.zero(),
+      publicationMetadata: metadata,
       manifest: [],
       spine: EpubSpine.zero(),
       guide: null,
