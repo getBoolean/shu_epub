@@ -1,7 +1,11 @@
 part of shu_epub.models;
 
 class EpubMetadataIdentifier extends Equatable {
+  final String value;
+
   final String? id;
+
+  bool get isPrimary => id != null;
 
   /// The scheme attribute names the system or authority that generated or
   /// assigned the text contained within the identifier element, for example
@@ -13,16 +17,20 @@ class EpubMetadataIdentifier extends Equatable {
   /// yet addressed by this specification. Identifier schemes are not currently
   /// defined by Dublin Core.
   final String? scheme;
-  EpubMetadataIdentifier({
+
+  const EpubMetadataIdentifier({
+    required this.value,
     this.id,
     this.scheme,
   });
 
   EpubMetadataIdentifier copyWith({
+    String? value,
     String? id,
     String? scheme,
   }) {
     return EpubMetadataIdentifier(
+      value: value ?? this.value,
       id: id ?? this.id,
       scheme: scheme ?? this.scheme,
     );
@@ -30,6 +38,7 @@ class EpubMetadataIdentifier extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
+      'value': value,
       'id': id,
       'scheme': scheme,
     };
@@ -37,6 +46,7 @@ class EpubMetadataIdentifier extends Equatable {
 
   factory EpubMetadataIdentifier.fromMap(Map<String, dynamic> map) {
     return EpubMetadataIdentifier(
+      value: map['value'] ?? '',
       id: map['id'],
       scheme: map['scheme'],
     );
@@ -48,8 +58,8 @@ class EpubMetadataIdentifier extends Equatable {
       EpubMetadataIdentifier.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubMetadataIdentifier(id: $id, scheme: $scheme)';
+  String toString() => 'EpubMetadataIdentifier(value: $value, id: $id, scheme: $scheme)';
 
   @override
-  List<Object> get props => [id ?? 'no id', scheme ?? 'no scheme specified'];
+  List<Object> get props => [value, id ?? 'no id given', scheme ?? 'no scheme given'];
 }

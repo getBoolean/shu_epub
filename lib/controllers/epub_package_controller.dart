@@ -247,6 +247,14 @@ class EpubPackageController {
         ?.text
         .trim();
 
+    final identifiers = compatibleMetadataElement
+        .findElements('dc:identifier')
+        .map((node) => EpubMetadataIdentifier(
+              value: node.text.trim(),
+              id: node.getAttribute('id'),
+              scheme: node.getAttribute('scheme'),
+            ))
+        .toList();
 
     return EpubPublicationMetadata(
       allTitles: titles,
@@ -259,7 +267,7 @@ class EpubPackageController {
       metadataDate: metadataDate,
       type: type,
       format: format,
-      identifiers: [], // Must not be empty
+      identifiers: identifiers,
       source: source,
       languages: langs,
       relation: relation,
