@@ -170,7 +170,7 @@ class EpubPackageController {
             ))
         .toList();
 
-    final contributers = compatibleMetadataElement
+    final contributors = compatibleMetadataElement
         .findElements('dc:contributor')
         .map((creator) => EpubMetadataContributer(
               name: creator.text,
@@ -262,7 +262,7 @@ class EpubPackageController {
       subjects: subjects,
       description: description,
       publisher: publisher,
-      contributers: contributers,
+      contributors: contributors,
       extraMetadataItems: extraMetadataItems,
       metadataDate: metadataDate,
       type: type,
