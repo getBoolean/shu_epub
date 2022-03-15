@@ -297,7 +297,23 @@ class EpubPackageController {
   }
 
   EpubSpine getSpine() {
-    return EpubSpine.zero();
+    final tocId = spineElement.getAttribute('toc') ?? '';
+    final items = spineElement.findElements('itemRef');
+
+    final itemRefs = items.map((node) {
+      final idref = node.getAttribute('idref') ?? '';
+      final linearString = node.getAttribute('linear');
+      // default is true if no linear attribute
+      // should find at least one item with linear == true (isPrimary)
+      final linear = linearString == 'no' ? false : true;
+
+      return EpubSpineItemRef(idref: idref, linear: linear);
+    }).toList();
+
+    return EpubSpine(
+      itemRefs: itemRefs,
+      tocId: tocId,
+    );
   }
 
   EpubGuide? getGuide() {

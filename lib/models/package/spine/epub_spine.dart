@@ -2,7 +2,7 @@ part of shu_epub.models;
 
 class EpubSpine extends Equatable {
   /// The value is the the id attribute value of the required NCX (`.ncx` document
-  /// listed in [EpubPackageFile.manifest]
+  /// listed in [EpubManifest.items]
   ///
   /// TODO(@getBoolean): NCX model
   final String tocId;
