@@ -37,7 +37,7 @@ void main() {
             isNotNull);
 
         // manifest should have at least one item
-        expect(packageFile.manifest, isNotEmpty);
+        expect(packageFile.manifest.items, isNotEmpty);
       },
     );
   });
@@ -77,7 +77,7 @@ void main() {
             isNotNull);
 
         // manifest should have at least one item
-        expect(packageFile.manifest, isNotEmpty);
+        expect(packageFile.manifest.items, isNotEmpty);
       },
     );
   });
