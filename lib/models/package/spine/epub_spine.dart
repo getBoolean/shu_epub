@@ -7,8 +7,8 @@ class EpubSpine extends Equatable {
   /// TODO(@getBoolean): NCX model
   final String tocId;
 
-  /// The order of this list determines the reading order. 
-  /// 
+  /// The order of this list determines the reading order.
+  ///
   /// It should not be an empty list.
   ///
   /// Each [EpubSpineItemRef] in spine must not reference media types other than OPS
@@ -59,8 +59,32 @@ class EpubSpine extends Equatable {
   /// Note about "next-page" functionality: When at the end of one primary OPS Content Document,
   /// the Reading System should go to the next primary [EpubSpineItemRef] in [EpubSpine.itemRefs]
   ///
+  /// The auxiliary ([EpubSpineItemRef.isAuxiliary]) content documents will be rendered by such Reading Systems, upon activation
+  /// (such as through a hypertext link or entry in NCX), in some manner distinct from the main
+  /// reading order. It is important that the publication author provide the necessary references
+  /// to the auxiliary content documents, otherwise this content might not be reachable in some
+  /// auxiliary-aware Reading Systems.
+  ///
   /// http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.4
   final List<EpubSpineItemRef> itemRefs;
+
+  /// Reading order of the EPUB.
+  ///
+  /// This filters out auxiliary items.
+  /// 
+  /// Arguments:
+  /// - `includeAuxiliary` Auxiliary items may be optionally treated as primary items. If left as false,
+  /// (the default), the auxiliary content documents should be rendered upon activation (such as through
+  /// a hypertext link or entry in NCX), in some manner distinct from the main reading order
+  List<EpubSpineItemRef> getReadingOrder({
+    bool includeAuxiliary = false,
+  }) {
+    if (includeAuxiliary) {
+      return itemRefs;
+    }
+
+    return itemRefs.where((itemRef) => itemRef.isPrimary).toList();
+  }
 
   const EpubSpine({
     required this.tocId,
