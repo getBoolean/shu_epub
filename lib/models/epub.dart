@@ -11,7 +11,7 @@ class Epub extends Equatable {
   /// final epub = Epub.loadFromData(file.readAsBytesSync());
   /// ```
   factory Epub.loadFromData(Uint8List bytes) {
-    return EpubReader.read(bytes);
+    return EpubReader.fromData(bytes);
   }
 
   // /// Load a cached EPUB into memory and return the parsed [Epub] object. This is preferred over `Epub.loadFromData`

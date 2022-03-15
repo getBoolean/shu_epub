@@ -3,7 +3,7 @@ part of shu_epub.readers;
 class EpubReader {
   const EpubReader();
 
-  static Epub read(Uint8List bytes) {
+  static Epub fromData(Uint8List bytes) {
     final archive = ArchiveService.decodeZip(bytes);
     final isEpub = ArchiveService.isEpubFile(archive);
     if (!isEpub) {
