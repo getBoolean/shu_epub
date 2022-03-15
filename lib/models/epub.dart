@@ -10,7 +10,7 @@ class Epub extends Equatable {
   /// final file = File("Guardian.epub");
   /// final epub = Epub.loadFromData(file.readAsBytesSync());
   /// ```
-  factory Epub.loadFromData(Uint8List bytes) {
+  factory Epub.fromData(Uint8List bytes) {
     return EpubReader.fromData(bytes);
   }
 
