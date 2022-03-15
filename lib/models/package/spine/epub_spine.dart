@@ -7,7 +7,9 @@ class EpubSpine extends Equatable {
   /// TODO(@getBoolean): NCX model
   final String tocId;
 
-  /// Must not be an empty list
+  /// The order of this list determines the reading order. 
+  /// 
+  /// It should not be an empty list.
   ///
   /// Each [EpubSpineItemRef] in spine must not reference media types other than OPS
   /// Content Documents (or documents whose fallback chain includes an OPS
