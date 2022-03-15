@@ -2,7 +2,7 @@ part of shu_epub.models;
 
 class EpubNCXFile extends Equatable {
   static const String namespace = 'http://www.daisy.org/z3986/2005/ncx/';
-  2005-1
+  
   final String version;
   final String language;
   final String docTitle;
