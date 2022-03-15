@@ -7,7 +7,7 @@ class EpubNCXReader {
   }
 
   static dynamic fromData(Uint8List data) {
-    final controller = EpubNCXController(data);
+    final controller = EpubNavigationController(data);
 
     final ncxVersion = controller.getVersion();
     if (ncxVersion != '2005-1') {

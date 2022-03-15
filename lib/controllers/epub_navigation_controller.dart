@@ -1,15 +1,15 @@
 part of shu_epub.controllers;
 
-class EpubNCXController {
+class EpubNavigationController {
   final XmlDocument xmlDocument;
   final XmlElement ncxElement;
 
-  const EpubNCXController._({
+  const EpubNavigationController._({
     required this.xmlDocument,
     required this.ncxElement,
   });
 
-  factory EpubNCXController(Uint8List ncxData) {
+  factory EpubNavigationController(Uint8List ncxData) {
     final String content = convert.utf8.decode(
       ncxData,
       allowMalformed: true,
@@ -24,7 +24,7 @@ class EpubNCXController {
       throw EpubException('Malformed ncx file, could not find ncx element');
     }
 
-    return EpubNCXController._(
+    return EpubNavigationController._(
       xmlDocument: xmlDocument,
       ncxElement: ncxElement,
     );
