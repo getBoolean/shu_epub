@@ -38,6 +38,13 @@ void main() {
 
         // manifest should have at least one item
         expect(packageFile.manifest.items, isNotEmpty);
+
+        // spine should have at least one primary item
+        expect(
+          packageFile.spine.getReadingOrder(),
+          isNotEmpty,
+          reason: 'spine should have at least one primary item',
+        );
       },
     );
   });
@@ -78,6 +85,13 @@ void main() {
 
         // manifest should have at least one item
         expect(packageFile.manifest.items, isNotEmpty);
+
+        // spine should have at least one primary item
+        expect(
+          packageFile.spine.getReadingOrder(),
+          isNotEmpty,
+          reason: 'spine should have at least one primary item',
+        );
       },
     );
   });
