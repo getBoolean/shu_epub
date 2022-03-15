@@ -10,3 +10,4 @@ import '../utils/collection_utils.dart';
 
 part 'epub_package_controller.dart';
 part 'epub_container_controller.dart';
+part 'epub_ncx_controller.dart';
