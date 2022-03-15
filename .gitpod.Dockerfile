@@ -1,8 +1,5 @@
-FROM gitpod/workspace-full-vnc
+FROM gitpod/workspace-full
 SHELL ["/bin/bash", "-c"]
-
-# ENV ANDROID_HOME=/home/gitpod/androidsdk \
-#     FLUTTER_VERSION=2.2.3-stable
 
 ENV FLUTTER_VERSION=2.10.3-stable
 ENV PATH=/usr/lib/dart/bin:$PATH
