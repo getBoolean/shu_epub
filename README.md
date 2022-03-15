@@ -1,6 +1,7 @@
 # shu_epub
 
 [![codecov](https://codecov.io/gh/getBoolean/shu_epub/branch/main/graph/badge.svg?token=LN8VSR2UER)](https://codecov.io/gh/getBoolean/shu_epub)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/getBoolean/shu_epub)
 
 A Flutter package build from the ground up for parsing EPUB files.
 
