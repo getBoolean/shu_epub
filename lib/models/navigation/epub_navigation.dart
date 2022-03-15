@@ -2,15 +2,17 @@ part of shu_epub.models;
 
 class EpubNavigation extends Equatable {
   static const String namespace = 'http://www.daisy.org/z3986/2005/ncx/';
-  
+
   final String version;
   final String language;
+  final EpubNavigationHead head;
   final String docTitle;
   final String docAuthor;
 
-  const EpubNavigation({
+  EpubNavigation({
     required this.version,
     required this.language,
+    required this.head,
     required this.docTitle,
     required this.docAuthor,
   });
@@ -18,12 +20,14 @@ class EpubNavigation extends Equatable {
   EpubNavigation copyWith({
     String? version,
     String? language,
+    EpubNavigationHead? head,
     String? docTitle,
     String? docAuthor,
   }) {
     return EpubNavigation(
       version: version ?? this.version,
       language: language ?? this.language,
+      head: head ?? this.head,
       docTitle: docTitle ?? this.docTitle,
       docAuthor: docAuthor ?? this.docAuthor,
     );
@@ -33,6 +37,7 @@ class EpubNavigation extends Equatable {
     return {
       'version': version,
       'language': language,
+      'head': head.toMap(),
       'docTitle': docTitle,
       'docAuthor': docAuthor,
     };
@@ -42,6 +47,7 @@ class EpubNavigation extends Equatable {
     return EpubNavigation(
       version: map['version'] ?? '',
       language: map['language'] ?? '',
+      head: EpubNavigationHead.fromMap(map['head']),
       docTitle: map['docTitle'] ?? '',
       docAuthor: map['docAuthor'] ?? '',
     );
@@ -54,9 +60,9 @@ class EpubNavigation extends Equatable {
 
   @override
   String toString() {
-    return 'EpubNCXFile(version: $version, language: $language, docTitle: $docTitle, docAuthor: $docAuthor)';
+    return 'EpubNCXFile(version: $version, language: $language, head: $head, docTitle: $docTitle, docAuthor: $docAuthor)';
   }
 
   @override
-  List<Object> get props => [version, language, docTitle, docAuthor];
+  List<Object> get props => [version, language, head, docTitle, docAuthor];
 }

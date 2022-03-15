@@ -17,6 +17,7 @@ class EpubNavigationReader {
     return EpubNavigation(
       version: ncxVersion,
       language: '',
+      head: EpubNavigationHead.zero(),
       docTitle: '',
       docAuthor: '',
     );
