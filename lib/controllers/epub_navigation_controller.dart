@@ -17,7 +17,7 @@ class EpubNavigationController {
 
     final xmlDocument = _handleStringToXmlDocument(content);
     final ncxElement = xmlDocument
-        .findElements('ncx', namespace: EpubNCXFile.namespace)
+        .findElements('ncx', namespace: EpubNavigation.namespace)
         .firstOrNull;
 
     if (ncxElement == null) {

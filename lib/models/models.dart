@@ -33,7 +33,7 @@ part 'package/spine/epub_spine_item_ref.dart';
 part 'package/tours/epub_single_tour.dart';
 part 'package/tours/epub_tour_site.dart';
 part 'package/tours/epub_tours.dart';
-part 'navigation/epub_navigation_file.dart';
+part 'navigation/epub_navigation.dart';
 part 'navigation/epub_navigation_head.dart';
 part 'navigation/epub_navigation_head_meta.dart';
 part 'navigation/epub_navigation_head_smil_custom_test.dart';

@@ -14,7 +14,7 @@ class EpubNavigationReader {
       throw EpubException('NCX Version unsupported');
     }
 
-    return EpubNCXFile(
+    return EpubNavigation(
       version: ncxVersion,
       language: '',
       docTitle: '',
