@@ -1,6 +1,6 @@
 part of shu_epub.models;
 
-class EpubPackageMetadata extends Equatable {
+class EpubPackageAccessibilityMetadata extends Equatable {
   /// A human sensory perceptual system or cognitive faculty necessary to process or perceive the content (e.g., textual, visual, auditory, tactile).
   final List<AccessMode>? accessModes;
 
@@ -71,7 +71,7 @@ class EpubPackageMetadata extends Equatable {
 
   // GENERATED DO NOT MODOFY
 
-  EpubPackageMetadata({
+  EpubPackageAccessibilityMetadata({
     this.accessModes,
     this.accessibilityFeatures,
     this.accessibilityHazards,
@@ -82,7 +82,7 @@ class EpubPackageMetadata extends Equatable {
     this.accessibilityControls,
   });
 
-  EpubPackageMetadata copyWith({
+  EpubPackageAccessibilityMetadata copyWith({
     List<AccessMode>? accessModes,
     List<AccessibilityFeature>? accessibilityFeatures,
     List<AccessibilityHazard>? accessibilityHazards,
@@ -92,7 +92,7 @@ class EpubPackageMetadata extends Equatable {
     List<AccessibilityAPI>? accessibilityAPIs,
     List<AccessibilityControl>? accessibilityControls,
   }) {
-    return EpubPackageMetadata(
+    return EpubPackageAccessibilityMetadata(
       accessModes: accessModes ?? this.accessModes,
       accessibilityFeatures:
           accessibilityFeatures ?? this.accessibilityFeatures,
@@ -129,13 +129,13 @@ class EpubPackageMetadata extends Equatable {
     };
   }
 
-  /// Create an [EpubPackageMetadata] object with null for all values
-  factory EpubPackageMetadata.zero() {
-    return EpubPackageMetadata();
+  /// Create an [EpubPackageAccessibilityMetadata] object with null for all values
+  factory EpubPackageAccessibilityMetadata.zero() {
+    return EpubPackageAccessibilityMetadata();
   }
 
-  factory EpubPackageMetadata.fromMap(Map<String, dynamic> map) {
-    return EpubPackageMetadata(
+  factory EpubPackageAccessibilityMetadata.fromMap(Map<String, dynamic> map) {
+    return EpubPackageAccessibilityMetadata(
       accessModes: map['accessModes'] == null
           ? null
           : List<AccessMode>.from(
@@ -182,8 +182,8 @@ class EpubPackageMetadata extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubPackageMetadata.fromJson(String source) =>
-      EpubPackageMetadata.fromMap(json.decode(source));
+  factory EpubPackageAccessibilityMetadata.fromJson(String source) =>
+      EpubPackageAccessibilityMetadata.fromMap(json.decode(source));
 
   @override
   String toString() {
