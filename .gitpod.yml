@@ -4,7 +4,16 @@ image:
 tasks:
   - before: sudo mount -t tmpfs shm -osize=4096m /dev/shm
   - init: |
+      flutter channel stable
+      flutter upgrade
       dart pub get
+  - run_example: |
+      dart pub get
+      dart run example/bin/example.dart
+  - test: |
+      dart pub global activate coverage
+      dart test --coverage="coverage"
+      dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage.lcov --packages=.packages --report-on=lib
 
 ports:
   - port: 5900
