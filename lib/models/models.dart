@@ -30,6 +30,6 @@ part 'package/manifest/epub_manifest_item.dart';
 part 'package/publication_metadata/epub_publication_metadata.dart';
 part 'package/spine/epub_spine.dart';
 part 'package/spine/epub_spine_item_ref.dart';
-part 'package/tours/epub_tour.dart';
+part 'package/tours/epub_single_tour.dart';
 part 'package/tours/epub_tour_site.dart';
 part 'package/tours/epub_tours.dart';
