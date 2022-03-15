@@ -298,7 +298,7 @@ class EpubPackageController {
 
   EpubSpine getSpine() {
     final tocId = spineElement.getAttribute('toc') ?? '';
-    final items = spineElement.findElements('itemRef');
+    final items = spineElement.findElements('itemref');
 
     final itemRefs = items.map((node) {
       final idref = node.getAttribute('idref') ?? '';
