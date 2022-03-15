@@ -9,6 +9,16 @@ class EpubNCXReader {
   static dynamic fromData(Uint8List data) {
     final controller = EpubNCXController(data);
 
+    final ncxVersion = controller.getVersion();
+    if (ncxVersion != '2005-1') {
+      throw EpubException('NCX Version unsupported');
+    }
 
+    return EpubNCXFile(
+      version: ncxVersion,
+      language: '',
+      docTitle: '',
+      docAuthor: '',
+    );
   }
 }

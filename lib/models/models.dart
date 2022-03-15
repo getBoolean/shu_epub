@@ -34,3 +34,4 @@ part 'package/tours/epub_single_tour.dart';
 part 'package/tours/epub_tour_site.dart';
 part 'package/tours/epub_tours.dart';
 part 'ncx/epub_ncx_file.dart';
+part 'ncx/epub_ncx_head.dart';

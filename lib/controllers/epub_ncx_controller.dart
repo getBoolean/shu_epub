@@ -2,8 +2,12 @@ part of shu_epub.controllers;
 
 class EpubNCXController {
   final XmlDocument xmlDocument;
+  final XmlElement ncxElement;
 
-  const EpubNCXController._({required this.xmlDocument});
+  const EpubNCXController._({
+    required this.xmlDocument,
+    required this.ncxElement,
+  });
 
   factory EpubNCXController(Uint8List ncxData) {
     final String content = convert.utf8.decode(
@@ -12,7 +16,18 @@ class EpubNCXController {
     );
 
     final xmlDocument = _handleStringToXmlDocument(content);
-    return EpubNCXController._(xmlDocument: xmlDocument);
+    final ncxElement = xmlDocument
+        .findElements('ncx', namespace: EpubNCXFile.namespace)
+        .firstOrNull;
+
+    if (ncxElement == null) {
+      throw EpubException('Malformed ncx file, could not find ncx element');
+    }
+
+    return EpubNCXController._(
+      xmlDocument: xmlDocument,
+      ncxElement: ncxElement,
+    );
   }
 
   static XmlDocument _handleStringToXmlDocument(String content) {
@@ -25,5 +40,9 @@ class EpubNCXController {
         st,
       );
     }
+  }
+
+  String getVersion() {
+    return ncxElement.getAttribute('version') ?? '';
   }
 }

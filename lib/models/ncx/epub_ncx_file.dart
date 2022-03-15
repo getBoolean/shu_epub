@@ -1,6 +1,8 @@
 part of shu_epub.models;
 
 class EpubNCXFile extends Equatable {
+  static const String namespace = 'http://www.daisy.org/z3986/2005/ncx/';
+  2005-1
   final String version;
   final String language;
   final String docTitle;
@@ -12,7 +14,6 @@ class EpubNCXFile extends Equatable {
     required this.docTitle,
     required this.docAuthor,
   });
-
 
   EpubNCXFile copyWith({
     String? version,
@@ -48,7 +49,8 @@ class EpubNCXFile extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubNCXFile.fromJson(String source) => EpubNCXFile.fromMap(json.decode(source));
+  factory EpubNCXFile.fromJson(String source) =>
+      EpubNCXFile.fromMap(json.decode(source));
 
   @override
   String toString() {
