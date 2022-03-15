@@ -276,7 +276,7 @@ class EpubPackageController {
     );
   }
 
-  List<EpubManifestItem> getManifest() {
+  EpubManifest getManifest() {
     final items = manifestElement.findElements('item');
 
     final manifestItems = items
@@ -293,6 +293,6 @@ class EpubPackageController {
       (item) => item.mediaType == EpubMediaTypes.kOPFMimeType,
     );
 
-    return manifestItems;
+    return EpubManifest(items: manifestItems);
   }
 }

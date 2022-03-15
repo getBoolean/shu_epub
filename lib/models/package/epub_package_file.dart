@@ -65,7 +65,7 @@ class EpubPackageFile extends Equatable {
   /// to the file or files that make up the OPF Package Document.
   ///
   /// TODO(@getBoolean): Implementation
-  final List<EpubManifestItem> manifest;
+  final EpubManifest manifest;
 
   /// An arrangement of documents providing a linear reading order.
   ///
@@ -114,7 +114,7 @@ class EpubPackageFile extends Equatable {
   EpubPackageFile copyWith({
     EpubPackageIdentity? packageIdentity,
     EpubPublicationMetadata? publicationMetadata,
-    List<EpubManifestItem>? manifest,
+    EpubManifest? manifest,
     EpubSpine? spine,
     List<EpubGuideReference>? guide,
     List<EpubTour>? tours,
@@ -133,7 +133,7 @@ class EpubPackageFile extends Equatable {
     return {
       'packageIdentity': packageIdentity.toMap(),
       'publicationMetadata': publicationMetadata.toMap(),
-      'manifest': manifest.map((x) => x.toMap()).toList(),
+      'manifest': manifest.toMap(),
       'spine': spine.toMap(),
       'guide': guide?.map((ref) => ref.toMap()).toList(),
       'tours': tours?.map((tour) => tour.toMap()).toList(),
@@ -145,8 +145,7 @@ class EpubPackageFile extends Equatable {
       packageIdentity: EpubPackageIdentity.fromMap(map['packageIdentity']),
       publicationMetadata:
           EpubPublicationMetadata.fromMap(map['publicationMetadata']),
-      manifest: List<EpubManifestItem>.from(
-          map['manifest'].map((x) => EpubManifestItem.fromMap(x))),
+      manifest: EpubManifest.fromMap(map['manifest']),
       spine: EpubSpine.fromMap(map['spine']),
       guide: map['guide'] != null
           ? List<EpubGuideReference>.from(

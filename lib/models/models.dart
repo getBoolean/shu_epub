@@ -24,6 +24,7 @@ part 'package/epub_metadata_contributer.dart';
 part 'package/epub_metadata_identifier.dart';
 part 'package/epub_metadata_date.dart';
 part 'package/epub_guide_reference.dart';
+part 'package/epub_manifest.dart';
 part 'package/epub_manifest_item.dart';
 part 'package/epub_publication_metadata.dart';
 part 'package/epub_spine.dart';
