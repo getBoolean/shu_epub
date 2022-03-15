@@ -15,13 +15,22 @@ class EpubPackageReader {
     // TODO(@getBoolean): Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2)
     final manifest = controller.getManifest();
 
+    // TODO(@getBoolean): Parse spine
+    final spine = controller.getSpine();
+
+    // TODO(@getBoolean): Parse guide
+    final guide = controller.getGuide();
+
+    // TODO(@getBoolean): Parse tours
+    final tours = controller.getTours();
+
     return EpubPackageFile(
       packageIdentity: packageIdentity,
       publicationMetadata: metadata,
       manifest: manifest,
-      spine: EpubSpine.zero(),
-      guide: null,
-      tours: null,
+      spine: spine,
+      guide: guide,
+      tours: tours,
     );
   }
 }

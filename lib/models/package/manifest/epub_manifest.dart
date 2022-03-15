@@ -38,7 +38,7 @@ class EpubManifest extends Equatable {
       EpubManifest.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubManifest(itemRefs: $items)';
+  String toString() => 'EpubManifest(items: $items)';
 
   @override
   List<Object> get props => [items];

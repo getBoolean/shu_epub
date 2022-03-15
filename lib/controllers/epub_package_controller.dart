@@ -295,4 +295,18 @@ class EpubPackageController {
 
     return EpubManifest(items: manifestItems);
   }
+
+  EpubSpine getSpine() {
+    return EpubSpine.zero();
+  }
+
+  EpubGuide? getGuide() {
+    // return EpubGuide.zero();
+    return null;
+  }
+
+  EpubTours? getTours() {
+    // return EpubTours.zero();
+    return null;
+  }
 }

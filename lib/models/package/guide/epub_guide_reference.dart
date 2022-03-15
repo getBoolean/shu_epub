@@ -1,6 +1,6 @@
 part of shu_epub.models;
 
-class EpubGuideReference extends Equatable {
+class EpubGuideItem extends Equatable {
   /// The required type attribute describes the publication component
   /// referenced by the href attribute. The values for the type
   /// attributes must be selected from the list defined below
@@ -24,18 +24,18 @@ class EpubGuideReference extends Equatable {
   /// scope of a referenced element.
   final String htmlReference;
 
-  const EpubGuideReference({
+  const EpubGuideItem({
     required this.type,
     required this.title,
     required this.htmlReference,
   });
 
-  EpubGuideReference copyWith({
+  EpubGuideItem copyWith({
     String? type,
     String? title,
     String? htmlReference,
   }) {
-    return EpubGuideReference(
+    return EpubGuideItem(
       type: type ?? this.type,
       title: title ?? this.title,
       htmlReference: htmlReference ?? this.htmlReference,
@@ -50,8 +50,8 @@ class EpubGuideReference extends Equatable {
     };
   }
 
-  factory EpubGuideReference.fromMap(Map<String, dynamic> map) {
-    return EpubGuideReference(
+  factory EpubGuideItem.fromMap(Map<String, dynamic> map) {
+    return EpubGuideItem(
       type: map['type'] ?? '',
       title: map['title'] ?? '',
       htmlReference: map['htmlReference'] ?? '',
@@ -60,8 +60,8 @@ class EpubGuideReference extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubGuideReference.fromJson(String source) =>
-      EpubGuideReference.fromMap(json.decode(source));
+  factory EpubGuideItem.fromJson(String source) =>
+      EpubGuideItem.fromMap(json.decode(source));
 
   @override
   String toString() =>

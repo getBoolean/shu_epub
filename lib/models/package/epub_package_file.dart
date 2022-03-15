@@ -78,7 +78,7 @@ class EpubPackageFile extends Equatable {
   /// http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.6
   ///
   /// TODO(@getBoolean): Implementation
-  final List<EpubGuideReference>? guide;
+  final EpubGuide? guide;
 
   /// Deprecated in Epub 2.0.1
   ///
@@ -86,7 +86,7 @@ class EpubPackageFile extends Equatable {
   /// for various reading purposes, reader expertise levels, etc.
   ///
   /// TODO(@getBoolean): Implementation
-  final List<EpubTour>? tours;
+  final EpubTours? tours;
 
   factory EpubPackageFile.fromData(Uint8List data) {
     return EpubPackageReader.fromData(data);
@@ -112,8 +112,8 @@ class EpubPackageFile extends Equatable {
     EpubPublicationMetadata? publicationMetadata,
     EpubManifest? manifest,
     EpubSpine? spine,
-    List<EpubGuideReference>? guide,
-    List<EpubTour>? tours,
+    EpubGuide? guide,
+    EpubTours? tours,
   }) {
     return EpubPackageFile(
       packageIdentity: packageIdentity ?? this.packageIdentity,
@@ -131,8 +131,8 @@ class EpubPackageFile extends Equatable {
       'publicationMetadata': publicationMetadata.toMap(),
       'manifest': manifest.toMap(),
       'spine': spine.toMap(),
-      'guide': guide?.map((ref) => ref.toMap()).toList(),
-      'tours': tours?.map((tour) => tour.toMap()).toList(),
+      'guide': guide?.toMap(),
+      'tours': tours?.toMap(),
     };
   }
 
@@ -144,11 +144,10 @@ class EpubPackageFile extends Equatable {
       manifest: EpubManifest.fromMap(map['manifest']),
       spine: EpubSpine.fromMap(map['spine']),
       guide: map['guide'] != null
-          ? List<EpubGuideReference>.from(
-              map['guide'].map((x) => EpubGuideReference.fromMap(x)))
+          ? EpubGuide.fromMap(map['guide'])
           : null,
       tours: map['tours'] != null
-          ? List<EpubTour>.from(map['tours'].map((x) => EpubTour.fromMap(x)))
+          ? EpubTours.fromMap(map['tours'])
           : null,
     );
   }

@@ -1,16 +1,16 @@
 part of shu_epub.models;
 
-class EpubTour extends Equatable {
+class EpubSingleTour extends Equatable {
   final List<EpubTourSite> sites;
 
-  const EpubTour({
+  const EpubSingleTour({
     required this.sites,
   });
 
-  EpubTour copyWith({
+  EpubSingleTour copyWith({
     List<EpubTourSite>? sites,
   }) {
-    return EpubTour(
+    return EpubSingleTour(
       sites: sites ?? this.sites,
     );
   }
@@ -21,8 +21,8 @@ class EpubTour extends Equatable {
     };
   }
 
-  factory EpubTour.fromMap(Map<String, dynamic> map) {
-    return EpubTour(
+  factory EpubSingleTour.fromMap(Map<String, dynamic> map) {
+    return EpubSingleTour(
       sites: List<EpubTourSite>.from(
           map['sites']?.map((x) => EpubTourSite.fromMap(x))),
     );
@@ -30,8 +30,8 @@ class EpubTour extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubTour.fromJson(String source) =>
-      EpubTour.fromMap(json.decode(source));
+  factory EpubSingleTour.fromJson(String source) =>
+      EpubSingleTour.fromMap(json.decode(source));
 
   @override
   String toString() => 'EpubTour(sites: $sites)';
