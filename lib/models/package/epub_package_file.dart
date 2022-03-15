@@ -36,8 +36,6 @@ class EpubPackageFile extends Equatable {
   final EpubPackageIdentity packageIdentity;
 
   /// Publication metadata (title, author, publisher, etc.).
-  ///
-  /// TODO(@getBoolean): Implementation
   final EpubPublicationMetadata publicationMetadata;
 
   /// A list of files (documents, images, style sheets, etc.) that make up the publication.
@@ -63,8 +61,6 @@ class EpubPackageFile extends Equatable {
   /// a document, an image file, a style sheet, or other component that is considered
   /// part of the publication. The manifest must not include item elements referring
   /// to the file or files that make up the OPF Package Document.
-  ///
-  /// TODO(@getBoolean): Implementation
   final EpubManifest manifest;
 
   /// An arrangement of documents providing a linear reading order.
