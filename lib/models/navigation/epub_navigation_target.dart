@@ -4,7 +4,8 @@ class EpubNavigationTarget extends Equatable {
   /// Should have at least one item
   final List<EpubNavigationLabel> labels;
   final EpubNavigationContent content;
-  EpubNavigationTarget({
+
+  const EpubNavigationTarget({
     required this.labels,
     required this.content,
   });

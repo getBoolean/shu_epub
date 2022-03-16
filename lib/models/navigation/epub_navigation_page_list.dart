@@ -9,7 +9,8 @@ class EpubNavigationPageList extends Equatable {
 
   /// Should have at least one item
   final List<EpubNavigationTarget> navigationTargets;
-  EpubNavigationPageList({
+  
+  const EpubNavigationPageList({
     this.id,
     this.classType,
     required this.navigationInfoList,
