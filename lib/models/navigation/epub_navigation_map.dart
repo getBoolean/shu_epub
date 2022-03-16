@@ -6,6 +6,7 @@ class EpubNavigationMap extends Equatable {
 
   final List<EpubNavigationLabel> navigationLabel;
 
+  /// Should have at least 1 item
   final List<EpubNavigationPoint> navigationPoint;
 
   const EpubNavigationMap({

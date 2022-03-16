@@ -1,29 +1,45 @@
 part of shu_epub.models;
 
 /// Contains description(s) of target, as well as a pointer to entire content
-/// of target. Hierarchy is represented by nesting navPoints.  "class" attribute
-/// describes the kind of structural unit this object represents (e.g.,
-/// "chapter", "section").
+/// of target. Hierarchy is represented by nesting navPoints.  "class"
+/// [EpubNavigationPoint.classType] attribute describes the kind of structural
+/// unit this object represents (e.g., "chapter", "section").
 class EpubNavigationPoint extends Equatable {
   final String id;
   final String? classType;
   final String? playOrder;
+  final List<EpubNavigationPoint> childNavigationPoints;
+
+  /// Pointer into XML to beginning of navPoint ([EpubNavigationPoint]).
+  final EpubNavigationContent content;
+
+  /// Should have at least one item
+  final List<EpubNavigationLabel> labels;
 
   const EpubNavigationPoint({
     required this.id,
     this.classType,
     this.playOrder,
+    required this.childNavigationPoints,
+    required this.content,
+    required this.labels,
   });
 
   EpubNavigationPoint copyWith({
     String? id,
     String? classType,
     String? playOrder,
+    List<EpubNavigationPoint>? childNavigationPoints,
+    EpubNavigationContent? content,
+    List<EpubNavigationLabel>? labels,
   }) {
     return EpubNavigationPoint(
       id: id ?? this.id,
       classType: classType ?? this.classType,
       playOrder: playOrder ?? this.playOrder,
+      childNavigationPoints: childNavigationPoints ?? this.childNavigationPoints,
+      content: content ?? this.content,
+      labels: labels ?? this.labels,
     );
   }
 
@@ -32,6 +48,9 @@ class EpubNavigationPoint extends Equatable {
       'id': id,
       'classType': classType,
       'playOrder': playOrder,
+      'childNavigationPoints': childNavigationPoints.map((x) => x.toMap()).toList(),
+      'content': content.toMap(),
+      'labels': labels.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -40,6 +59,9 @@ class EpubNavigationPoint extends Equatable {
       id: map['id'] ?? '',
       classType: map['classType'],
       playOrder: map['playOrder'],
+      childNavigationPoints: List<EpubNavigationPoint>.from(map['childNavigationPoints']?.map((x) => EpubNavigationPoint.fromMap(x)) ?? const []),
+      content: EpubNavigationContent.fromMap(map['content']),
+      labels: List<EpubNavigationLabel>.from(map['labels']?.map((x) => EpubNavigationLabel.fromMap(x)) ?? const []),
     );
   }
 
@@ -49,15 +71,19 @@ class EpubNavigationPoint extends Equatable {
       EpubNavigationPoint.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'EpubNavigationPoint(id: $id, classType: $classType, playOrder: $playOrder)';
+  String toString() {
+    return 'EpubNavigationPoint(id: $id, classType: $classType, playOrder: $playOrder, childNavigationPoints: $childNavigationPoints, content: $content, labels: $labels)';
+  }
 
   @override
   List<Object> get props {
     return [
       id,
-      classType ?? 'no classification specified',
-      playOrder ?? 'no play order specified',
+      classType ?? 'no classType',
+      playOrder ?? 'no playOrder',
+      childNavigationPoints,
+      content,
+      labels,
     ];
   }
 }
