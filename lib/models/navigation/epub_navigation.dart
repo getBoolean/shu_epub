@@ -14,7 +14,7 @@ class EpubNavigation extends Equatable {
 
   final EpubNavigationPageList? pageList;
 
-  // final List<EpubNavigationList> navigationList;
+  // final List<EpubNavigationList> navigationLists;
 
   const EpubNavigation({
     required this.version,
