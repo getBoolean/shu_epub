@@ -6,8 +6,8 @@ class EpubNavigation extends Equatable {
   final String version;
   final String language;
   final EpubNavigationHead head;
-  final String docTitle;
-  final String docAuthor;
+  final EpubNavigationDocumentTitle docTitle;
+  final EpubNavigationDocumentAuthor docAuthor;
 
   EpubNavigation({
     required this.version,
@@ -21,8 +21,8 @@ class EpubNavigation extends Equatable {
     String? version,
     String? language,
     EpubNavigationHead? head,
-    String? docTitle,
-    String? docAuthor,
+    EpubNavigationDocumentTitle? docTitle,
+    EpubNavigationDocumentAuthor? docAuthor,
   }) {
     return EpubNavigation(
       version: version ?? this.version,
@@ -38,8 +38,8 @@ class EpubNavigation extends Equatable {
       'version': version,
       'language': language,
       'head': head.toMap(),
-      'docTitle': docTitle,
-      'docAuthor': docAuthor,
+      'docTitle': docTitle.toMap(),
+      'docAuthor': docAuthor.toMap(),
     };
   }
 
@@ -48,8 +48,8 @@ class EpubNavigation extends Equatable {
       version: map['version'] ?? '',
       language: map['language'] ?? '',
       head: EpubNavigationHead.fromMap(map['head']),
-      docTitle: map['docTitle'] ?? '',
-      docAuthor: map['docAuthor'] ?? '',
+      docTitle: EpubNavigationDocumentTitle.fromMap(map['docTitle']),
+      docAuthor: EpubNavigationDocumentAuthor.fromMap(map['docAuthor']),
     );
   }
 

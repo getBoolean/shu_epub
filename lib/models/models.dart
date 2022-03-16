@@ -36,3 +36,6 @@ part 'package/tours/epub_tours.dart';
 part 'navigation/epub_navigation.dart';
 part 'navigation/epub_navigation_head.dart';
 part 'navigation/epub_navigation_head_meta.dart';
+part 'navigation/epub_navigation_document_author.dart';
+part 'navigation/epub_navigation_document_title.dart';
+part 'navigation/epub_navigation_document_image.dart';
