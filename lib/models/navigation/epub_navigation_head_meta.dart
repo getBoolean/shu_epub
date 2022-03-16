@@ -4,7 +4,7 @@ class EpubNavigationHeadMeta extends Equatable {
   /// Due to combatibility reasons, should equal `dtb:id`
   final String name;
   final String content;
-  final String scheme;
+  final String? scheme;
 
   const EpubNavigationHeadMeta({
     required this.name,
@@ -48,5 +48,5 @@ class EpubNavigationHeadMeta extends Equatable {
   String toString() => 'EpubNagivationHeadMeta(name: $name, content: $content, scheme: $scheme)';
 
   @override
-  List<Object> get props => [name, content, scheme];
+  List<Object> get props => [name, content, scheme ?? 'no scheme specified'];
 }
