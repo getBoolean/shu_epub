@@ -1,6 +1,7 @@
 part of shu_epub.models;
 
 class EpubNavigationHeadMeta extends Equatable {
+  /// Due to combatibility reasons, should equal `dtb:id`
   final String name;
   final String content;
   final String scheme;
