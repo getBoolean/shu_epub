@@ -9,8 +9,12 @@ class EpubNavigation extends Equatable {
   final EpubNavigationDocumentTitle docTitle;
   final List<EpubNavigationDocumentAuthor> docAuthors;
 
-  /// navInfo*, navLabel*, navPoint+
+  /// Provides navigational access to the major hierarchical structure of the publication
   final EpubNavigationMap navigationMap;
+
+  final EpubNavigationPageList? pageList;
+
+  // final List<EpubNavigationList> navigationList;
 
   const EpubNavigation({
     required this.version,
@@ -19,6 +23,7 @@ class EpubNavigation extends Equatable {
     required this.docTitle,
     required this.docAuthors,
     required this.navigationMap,
+    this.pageList,
   });
 
   EpubNavigation copyWith({
@@ -28,6 +33,7 @@ class EpubNavigation extends Equatable {
     EpubNavigationDocumentTitle? docTitle,
     List<EpubNavigationDocumentAuthor>? docAuthors,
     EpubNavigationMap? navigationMap,
+    EpubNavigationPageList? pageList,
   }) {
     return EpubNavigation(
       version: version ?? this.version,
@@ -36,6 +42,7 @@ class EpubNavigation extends Equatable {
       docTitle: docTitle ?? this.docTitle,
       docAuthors: docAuthors ?? this.docAuthors,
       navigationMap: navigationMap ?? this.navigationMap,
+      pageList: pageList ?? this.pageList,
     );
   }
 
@@ -45,8 +52,9 @@ class EpubNavigation extends Equatable {
       'language': language,
       'head': head.toMap(),
       'docTitle': docTitle.toMap(),
-      'docAuthors': docAuthors.map((docAuthor) => docAuthor.toMap()),
+      'docAuthors': docAuthors.map((x) => x.toMap()).toList(),
       'navigationMap': navigationMap.toMap(),
+      'pageList': pageList?.toMap(),
     };
   }
 
@@ -56,10 +64,9 @@ class EpubNavigation extends Equatable {
       language: map['language'] ?? '',
       head: EpubNavigationHead.fromMap(map['head']),
       docTitle: EpubNavigationDocumentTitle.fromMap(map['docTitle']),
-      docAuthors: List<EpubNavigationDocumentAuthor>.from(
-        map['docAuthors'].map((x) => EpubNavigationDocumentAuthor.fromMap(x)),
-      ),
+      docAuthors: List<EpubNavigationDocumentAuthor>.from(map['docAuthors']?.map((x) => EpubNavigationDocumentAuthor.fromMap(x)) ?? const []),
       navigationMap: EpubNavigationMap.fromMap(map['navigationMap']),
+      pageList: map['pageList'] != null ? EpubNavigationPageList.fromMap(map['pageList']) : null,
     );
   }
 
@@ -70,7 +77,7 @@ class EpubNavigation extends Equatable {
 
   @override
   String toString() {
-    return 'EpubNavigation(version: $version, language: $language, head: $head, docTitle: $docTitle, docAuthor: $docAuthors, navigationMap: $navigationMap)';
+    return 'EpubNavigation(version: $version, language: $language, head: $head, docTitle: $docTitle, docAuthors: $docAuthors, navigationMap: $navigationMap, pageList: $pageList)';
   }
 
   @override
@@ -82,6 +89,7 @@ class EpubNavigation extends Equatable {
       docTitle,
       docAuthors,
       navigationMap,
+      pageList ?? 'no pageList',
     ];
   }
 }

@@ -44,3 +44,5 @@ part 'navigation/epub_navigation_info.dart';
 part 'navigation/epub_navigation_point.dart';
 part 'navigation/epub_navigation_label.dart';
 part 'navigation/epub_navigation_content.dart';
+part 'navigation/epub_navigation_page_list.dart';
+part 'navigation/epub_navigation_target.dart';
