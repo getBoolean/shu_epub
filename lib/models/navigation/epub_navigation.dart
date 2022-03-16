@@ -9,12 +9,16 @@ class EpubNavigation extends Equatable {
   final EpubNavigationDocumentTitle docTitle;
   final List<EpubNavigationDocumentAuthor> docAuthors;
 
-  EpubNavigation({
+  /// navInfo*, navLabel*, navPoint+
+  final EpubNavigationMap navigationMap;
+
+  const EpubNavigation({
     required this.version,
     required this.language,
     required this.head,
     required this.docTitle,
     required this.docAuthors,
+    required this.navigationMap,
   });
 
   EpubNavigation copyWith({
@@ -23,6 +27,7 @@ class EpubNavigation extends Equatable {
     EpubNavigationHead? head,
     EpubNavigationDocumentTitle? docTitle,
     List<EpubNavigationDocumentAuthor>? docAuthors,
+    EpubNavigationMap? navigationMap,
   }) {
     return EpubNavigation(
       version: version ?? this.version,
@@ -30,6 +35,7 @@ class EpubNavigation extends Equatable {
       head: head ?? this.head,
       docTitle: docTitle ?? this.docTitle,
       docAuthors: docAuthors ?? this.docAuthors,
+      navigationMap: navigationMap ?? this.navigationMap,
     );
   }
 
@@ -40,6 +46,7 @@ class EpubNavigation extends Equatable {
       'head': head.toMap(),
       'docTitle': docTitle.toMap(),
       'docAuthors': docAuthors.map((docAuthor) => docAuthor.toMap()),
+      'navigationMap': navigationMap.toMap(),
     };
   }
 
@@ -50,8 +57,9 @@ class EpubNavigation extends Equatable {
       head: EpubNavigationHead.fromMap(map['head']),
       docTitle: EpubNavigationDocumentTitle.fromMap(map['docTitle']),
       docAuthors: List<EpubNavigationDocumentAuthor>.from(
-          map['docAuthors'].map((x) => EpubNavigationDocumentAuthor.fromMap(x)),),
-      
+        map['docAuthors'].map((x) => EpubNavigationDocumentAuthor.fromMap(x)),
+      ),
+      navigationMap: EpubNavigationMap.fromMap(map['navigationMap']),
     );
   }
 
@@ -62,9 +70,18 @@ class EpubNavigation extends Equatable {
 
   @override
   String toString() {
-    return 'EpubNavigation(version: $version, language: $language, head: $head, docTitle: $docTitle, docAuthor: $docAuthors)';
+    return 'EpubNavigation(version: $version, language: $language, head: $head, docTitle: $docTitle, docAuthor: $docAuthors, navigationMap: $navigationMap)';
   }
 
   @override
-  List<Object> get props => [version, language, head, docTitle, docAuthors];
+  List<Object> get props {
+    return [
+      version,
+      language,
+      head,
+      docTitle,
+      docAuthors,
+      navigationMap,
+    ];
+  }
 }
