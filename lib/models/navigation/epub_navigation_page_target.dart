@@ -1,20 +1,20 @@
 part of shu_epub.models;
 
-class EpubNavigationTarget extends Equatable {
+class EpubNavigationPageTarget extends Equatable {
   /// Should have at least one item
   final List<EpubNavigationLabel> labels;
   final EpubNavigationContent content;
 
-  const EpubNavigationTarget({
+  const EpubNavigationPageTarget({
     required this.labels,
     required this.content,
   });
 
-  EpubNavigationTarget copyWith({
+  EpubNavigationPageTarget copyWith({
     List<EpubNavigationLabel>? labels,
     EpubNavigationContent? content,
   }) {
-    return EpubNavigationTarget(
+    return EpubNavigationPageTarget(
       labels: labels ?? this.labels,
       content: content ?? this.content,
     );
@@ -27,8 +27,8 @@ class EpubNavigationTarget extends Equatable {
     };
   }
 
-  factory EpubNavigationTarget.fromMap(Map<String, dynamic> map) {
-    return EpubNavigationTarget(
+  factory EpubNavigationPageTarget.fromMap(Map<String, dynamic> map) {
+    return EpubNavigationPageTarget(
       labels: List<EpubNavigationLabel>.from(map['labels']?.map((x) => EpubNavigationLabel.fromMap(x)) ?? const []),
       content: EpubNavigationContent.fromMap(map['content']),
     );
@@ -36,7 +36,7 @@ class EpubNavigationTarget extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubNavigationTarget.fromJson(String source) => EpubNavigationTarget.fromMap(json.decode(source));
+  factory EpubNavigationPageTarget.fromJson(String source) => EpubNavigationPageTarget.fromMap(json.decode(source));
 
   @override
   String toString() => 'EpubNavigationTarget(labels: $labels, content: $content)';

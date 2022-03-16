@@ -1,10 +1,12 @@
 part of shu_epub.models;
 
 class EpubNavigationDocumentAuthor extends Equatable {
+  final String? id;
   final List<String> authors;
   final List<EpubNavigationDocumentImage> images;
 
   const EpubNavigationDocumentAuthor({
+    this.id,
     required this.authors,
     required this.images,
   });
@@ -14,10 +16,12 @@ class EpubNavigationDocumentAuthor extends Equatable {
   }
 
   EpubNavigationDocumentAuthor copyWith({
+    String? id,
     List<String>? authors,
     List<EpubNavigationDocumentImage>? images,
   }) {
     return EpubNavigationDocumentAuthor(
+      id: id ?? this.id,
       authors: authors ?? this.authors,
       images: images ?? this.images,
     );
@@ -25,6 +29,7 @@ class EpubNavigationDocumentAuthor extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'authors': authors,
       'images': images.map((x) => x.toMap()).toList(),
     };
@@ -32,9 +37,9 @@ class EpubNavigationDocumentAuthor extends Equatable {
 
   factory EpubNavigationDocumentAuthor.fromMap(Map<String, dynamic> map) {
     return EpubNavigationDocumentAuthor(
-      authors: List<String>.from(map['authors']),
-      images: List<EpubNavigationDocumentImage>.from(
-          map['images']?.map((x) => EpubNavigationDocumentImage.fromMap(x))),
+      id: map['id'],
+      authors: List<String>.from(map['authors'] ?? const []),
+      images: List<EpubNavigationDocumentImage>.from(map['images']?.map((x) => EpubNavigationDocumentImage.fromMap(x)) ?? const []),
     );
   }
 
@@ -44,9 +49,8 @@ class EpubNavigationDocumentAuthor extends Equatable {
       EpubNavigationDocumentAuthor.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'EpubNavigationDocumentAuthor(authors: $authors, images: $images)';
+  String toString() => 'EpubNavigationDocumentAuthor(id: $id, authors: $authors, images: $images)';
 
   @override
-  List<Object> get props => [authors, images];
+  List<Object> get props => [id ?? 'no id', authors, images];
 }

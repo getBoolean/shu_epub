@@ -8,14 +8,14 @@ class EpubNavigationPageList extends Equatable {
   final List<EpubNavigationLabel> navigationLabels;
 
   /// Should have at least one item
-  final List<EpubNavigationTarget> navigationTargets;
+  final List<EpubNavigationPageTarget> pageTargets;
   
   const EpubNavigationPageList({
     this.id,
     this.classType,
     required this.navigationInfoList,
     required this.navigationLabels,
-    required this.navigationTargets,
+    required this.pageTargets,
   });
 
   EpubNavigationPageList copyWith({
@@ -23,14 +23,14 @@ class EpubNavigationPageList extends Equatable {
     String? classType,
     List<EpubNavigationInfo>? navigationInfoList,
     List<EpubNavigationLabel>? navigationLabels,
-    List<EpubNavigationTarget>? navigationTargets,
+    List<EpubNavigationPageTarget>? pageTargets,
   }) {
     return EpubNavigationPageList(
       id: id ?? this.id,
       classType: classType ?? this.classType,
       navigationInfoList: navigationInfoList ?? this.navigationInfoList,
       navigationLabels: navigationLabels ?? this.navigationLabels,
-      navigationTargets: navigationTargets ?? this.navigationTargets,
+      pageTargets: pageTargets ?? this.pageTargets,
     );
   }
 
@@ -40,7 +40,7 @@ class EpubNavigationPageList extends Equatable {
       'classType': classType,
       'navigationInfoList': navigationInfoList.map((x) => x.toMap()).toList(),
       'navigationLabels': navigationLabels.map((x) => x.toMap()).toList(),
-      'navigationTargets': navigationTargets.map((x) => x.toMap()).toList(),
+      'pageTargets': pageTargets.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -50,7 +50,7 @@ class EpubNavigationPageList extends Equatable {
       classType: map['classType'],
       navigationInfoList: List<EpubNavigationInfo>.from(map['navigationInfoList']?.map((x) => EpubNavigationInfo.fromMap(x)) ?? const []),
       navigationLabels: List<EpubNavigationLabel>.from(map['navigationLabels']?.map((x) => EpubNavigationLabel.fromMap(x)) ?? const []),
-      navigationTargets: List<EpubNavigationTarget>.from(map['navigationTargets']?.map((x) => EpubNavigationTarget.fromMap(x)) ?? const []),
+      pageTargets: List<EpubNavigationPageTarget>.from(map['pageTargets']?.map((x) => EpubNavigationPageTarget.fromMap(x)) ?? const []),
     );
   }
 
@@ -61,7 +61,7 @@ class EpubNavigationPageList extends Equatable {
 
   @override
   String toString() {
-    return 'EpubNavigationPageList(id: $id, classType: $classType, navigationInfoList: $navigationInfoList, navigationLabels: $navigationLabels, navigationTargets: $navigationTargets)';
+    return 'EpubNavigationPageList(id: $id, classType: $classType, navigationInfoList: $navigationInfoList, navigationLabels: $navigationLabels, pageTargets: $pageTargets)';
   }
 
   @override
@@ -71,7 +71,7 @@ class EpubNavigationPageList extends Equatable {
       classType ?? 'no classType',
       navigationInfoList,
       navigationLabels,
-      navigationTargets,
+      pageTargets,
     ];
   }
 }
