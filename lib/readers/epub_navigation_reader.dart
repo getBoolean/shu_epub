@@ -19,7 +19,7 @@ class EpubNavigationReader {
       language: '',
       head: EpubNavigationHead.zero(),
       docTitle: EpubNavigationDocumentTitle.zero(),
-      docAuthor: EpubNavigationDocumentAuthor.zero(),
+      docAuthors: [EpubNavigationDocumentAuthor.zero()],
     );
   }
 }
