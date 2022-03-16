@@ -18,8 +18,8 @@ class EpubNavigationReader {
       version: ncxVersion,
       language: '',
       head: EpubNavigationHead.zero(),
-      docTitle: '',
-      docAuthor: '',
+      docTitle: EpubNavigationDocumentTitle.zero(),
+      docAuthor: EpubNavigationDocumentAuthor.zero(),
     );
   }
 }
