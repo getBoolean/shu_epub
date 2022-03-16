@@ -1,38 +1,38 @@
 part of shu_epub.models;
 
 class EpubNavigationDocumentTitle extends Equatable {
-  final List<String> titles;
+  final String title;
   final List<EpubNavigationDocumentImage> images;
   
   const EpubNavigationDocumentTitle({
-    required this.titles,
+    required this.title,
     required this.images,
   });
 
   factory EpubNavigationDocumentTitle.zero() {
-    return EpubNavigationDocumentTitle(titles: [], images: []);
+    return EpubNavigationDocumentTitle(title: '', images: []);
   }
 
   EpubNavigationDocumentTitle copyWith({
-    List<String>? titles,
+    String? title,
     List<EpubNavigationDocumentImage>? images,
   }) {
     return EpubNavigationDocumentTitle(
-      titles: titles ?? this.titles,
+      title: title ?? this.title,
       images: images ?? this.images,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'titles': titles,
+      'title': title,
       'images': images.map((x) => x.toMap()).toList(),
     };
   }
 
   factory EpubNavigationDocumentTitle.fromMap(Map<String, dynamic> map) {
     return EpubNavigationDocumentTitle(
-      titles: List<String>.from(map['titles']),
+      title: map['title'] ?? '',
       images: List<EpubNavigationDocumentImage>.from(map['images']?.map((x) => EpubNavigationDocumentImage.fromMap(x))),
     );
   }
@@ -42,8 +42,8 @@ class EpubNavigationDocumentTitle extends Equatable {
   factory EpubNavigationDocumentTitle.fromJson(String source) => EpubNavigationDocumentTitle.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubNavigationDocumentTitle(titles: $titles, images: $images)';
+  String toString() => 'EpubNavigationDocumentTitle(titles: $title, images: $images)';
 
   @override
-  List<Object> get props => [titles, images];
+  List<Object> get props => [title, images];
 }
