@@ -1,12 +1,12 @@
 part of shu_epub.readers;
 
 class EpubNavigationReader {
-  static EpubPackageFile fromArchiveFile(ArchiveFile archiveFile) {
+  static EpubNavigation fromArchiveFile(ArchiveFile archiveFile) {
     final data = archiveFile.content;
     return fromData(data);
   }
 
-  static dynamic fromData(Uint8List data) {
+  static EpubNavigation fromData(Uint8List data) {
     final controller = EpubNavigationController(data);
 
     final ncxVersion = controller.getVersion();
