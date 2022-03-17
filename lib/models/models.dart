@@ -46,3 +46,5 @@ part 'navigation/epub_navigation_label.dart';
 part 'navigation/epub_navigation_content.dart';
 part 'navigation/epub_navigation_page_list.dart';
 part 'navigation/epub_navigation_page_target.dart';
+part 'navigation/epub_navigation_list.dart';
+part 'navigation/epub_navigation_target.dart';

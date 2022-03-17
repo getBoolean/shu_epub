@@ -22,6 +22,7 @@ class EpubNavigationReader {
       docAuthors: [EpubNavigationDocumentAuthor.zero()],
       navigationMap: EpubNavigationMap.zero(),
       pageList: EpubNavigationPageList.zero(),
+      navigationLists: [EpubNavigationList.zero()],
     );
   }
 }
