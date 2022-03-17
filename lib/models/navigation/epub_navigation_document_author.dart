@@ -39,7 +39,9 @@ class EpubNavigationDocumentAuthor extends Equatable {
     return EpubNavigationDocumentAuthor(
       id: map['id'],
       authors: List<String>.from(map['authors'] ?? const []),
-      images: List<EpubNavigationDocumentImage>.from(map['images']?.map((x) => EpubNavigationDocumentImage.fromMap(x)) ?? const []),
+      images: List<EpubNavigationDocumentImage>.from(
+          map['images']?.map((x) => EpubNavigationDocumentImage.fromMap(x)) ??
+              const []),
     );
   }
 
@@ -49,7 +51,8 @@ class EpubNavigationDocumentAuthor extends Equatable {
       EpubNavigationDocumentAuthor.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubNavigationDocumentAuthor(id: $id, authors: $authors, images: $images)';
+  String toString() =>
+      'EpubNavigationDocumentAuthor(id: $id, authors: $authors, images: $images)';
 
   @override
   List<Object> get props => [id ?? 'no id', authors, images];

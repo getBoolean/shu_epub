@@ -42,5 +42,4 @@ class EpubTours extends Equatable {
 
   @override
   List<Object> get props => [items];
-
 }

@@ -71,7 +71,7 @@ class EpubSpine extends Equatable {
   /// Reading order of the EPUB.
   ///
   /// This filters out auxiliary items.
-  /// 
+  ///
   /// Arguments:
   /// - `includeAuxiliary` Auxiliary items may be optionally treated as primary items. If left as false,
   /// (the default), the auxiliary content documents should be rendered upon activation (such as through

@@ -37,7 +37,8 @@ class EpubNavigationPoint extends Equatable {
       id: id ?? this.id,
       classType: classType ?? this.classType,
       playOrder: playOrder ?? this.playOrder,
-      childNavigationPoints: childNavigationPoints ?? this.childNavigationPoints,
+      childNavigationPoints:
+          childNavigationPoints ?? this.childNavigationPoints,
       content: content ?? this.content,
       labels: labels ?? this.labels,
     );
@@ -48,7 +49,8 @@ class EpubNavigationPoint extends Equatable {
       'id': id,
       'classType': classType,
       'playOrder': playOrder,
-      'childNavigationPoints': childNavigationPoints.map((x) => x.toMap()).toList(),
+      'childNavigationPoints':
+          childNavigationPoints.map((x) => x.toMap()).toList(),
       'content': content.toMap(),
       'labels': labels.map((x) => x.toMap()).toList(),
     };
@@ -59,9 +61,14 @@ class EpubNavigationPoint extends Equatable {
       id: map['id'] ?? '',
       classType: map['classType'],
       playOrder: map['playOrder'],
-      childNavigationPoints: List<EpubNavigationPoint>.from(map['childNavigationPoints']?.map((x) => EpubNavigationPoint.fromMap(x)) ?? const []),
+      childNavigationPoints: List<EpubNavigationPoint>.from(
+          map['childNavigationPoints']
+                  ?.map((x) => EpubNavigationPoint.fromMap(x)) ??
+              const []),
       content: EpubNavigationContent.fromMap(map['content']),
-      labels: List<EpubNavigationLabel>.from(map['labels']?.map((x) => EpubNavigationLabel.fromMap(x)) ?? const []),
+      labels: List<EpubNavigationLabel>.from(
+          map['labels']?.map((x) => EpubNavigationLabel.fromMap(x)) ??
+              const []),
     );
   }
 

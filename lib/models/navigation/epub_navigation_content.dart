@@ -3,7 +3,7 @@ part of shu_epub.models;
 class EpubNavigationContent extends Equatable {
   final String source;
   final String? id;
-  
+
   const EpubNavigationContent({
     required this.source,
     this.id,
@@ -35,7 +35,8 @@ class EpubNavigationContent extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubNavigationContent.fromJson(String source) => EpubNavigationContent.fromMap(json.decode(source));
+  factory EpubNavigationContent.fromJson(String source) =>
+      EpubNavigationContent.fromMap(json.decode(source));
 
   @override
   String toString() => 'EpubNavigationContent(source: $source, id: $id)';

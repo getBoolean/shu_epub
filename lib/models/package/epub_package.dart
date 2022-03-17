@@ -143,12 +143,8 @@ class EpubPackage extends Equatable {
           EpubPublicationMetadata.fromMap(map['publicationMetadata']),
       manifest: EpubManifest.fromMap(map['manifest']),
       spine: EpubSpine.fromMap(map['spine']),
-      guide: map['guide'] != null
-          ? EpubGuide.fromMap(map['guide'])
-          : null,
-      tours: map['tours'] != null
-          ? EpubTours.fromMap(map['tours'])
-          : null,
+      guide: map['guide'] != null ? EpubGuide.fromMap(map['guide']) : null,
+      tours: map['tours'] != null ? EpubTours.fromMap(map['tours']) : null,
     );
   }
 

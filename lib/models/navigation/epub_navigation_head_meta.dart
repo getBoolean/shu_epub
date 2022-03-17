@@ -42,10 +42,12 @@ class EpubNavigationHeadMeta extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubNavigationHeadMeta.fromJson(String source) => EpubNavigationHeadMeta.fromMap(json.decode(source));
+  factory EpubNavigationHeadMeta.fromJson(String source) =>
+      EpubNavigationHeadMeta.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubNagivationHeadMeta(name: $name, content: $content, scheme: $scheme)';
+  String toString() =>
+      'EpubNagivationHeadMeta(name: $name, content: $content, scheme: $scheme)';
 
   @override
   List<Object> get props => [name, content, scheme ?? 'no scheme specified'];

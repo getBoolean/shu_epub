@@ -3,7 +3,7 @@ part of shu_epub.models;
 class EpubNavigationLabel extends Equatable {
   final List<String> text;
   final List<EpubNavigationDocumentImage> images;
-  
+
   const EpubNavigationLabel({
     required this.text,
     required this.images,
@@ -29,13 +29,16 @@ class EpubNavigationLabel extends Equatable {
   factory EpubNavigationLabel.fromMap(Map<String, dynamic> map) {
     return EpubNavigationLabel(
       text: List<String>.from(map['text'] ?? const []),
-      images: List<EpubNavigationDocumentImage>.from(map['images']?.map((x) => EpubNavigationDocumentImage.fromMap(x)) ?? const []),
+      images: List<EpubNavigationDocumentImage>.from(
+          map['images']?.map((x) => EpubNavigationDocumentImage.fromMap(x)) ??
+              const []),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory EpubNavigationLabel.fromJson(String source) => EpubNavigationLabel.fromMap(json.decode(source));
+  factory EpubNavigationLabel.fromJson(String source) =>
+      EpubNavigationLabel.fromMap(json.decode(source));
 
   @override
   String toString() => 'EpubNavigationLabel(text: $text, images: $images)';

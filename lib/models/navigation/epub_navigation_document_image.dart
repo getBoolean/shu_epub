@@ -2,7 +2,7 @@ part of shu_epub.models;
 
 class EpubNavigationDocumentImage extends Equatable {
   final String sourcePath;
-  
+
   const EpubNavigationDocumentImage({
     required this.sourcePath,
   });
@@ -29,7 +29,8 @@ class EpubNavigationDocumentImage extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubNavigationDocumentImage.fromJson(String source) => EpubNavigationDocumentImage.fromMap(json.decode(source));
+  factory EpubNavigationDocumentImage.fromJson(String source) =>
+      EpubNavigationDocumentImage.fromMap(json.decode(source));
 
   @override
   String toString() => 'EpubNavigationDocumentImage(sourcePath: $sourcePath)';

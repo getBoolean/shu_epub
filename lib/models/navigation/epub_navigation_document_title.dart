@@ -39,7 +39,9 @@ class EpubNavigationDocumentTitle extends Equatable {
     return EpubNavigationDocumentTitle(
       id: map['id'],
       titles: List<String>.from(map['titles'] ?? const []),
-      images: List<EpubNavigationDocumentImage>.from(map['images']?.map((x) => EpubNavigationDocumentImage.fromMap(x)) ?? const []),
+      images: List<EpubNavigationDocumentImage>.from(
+          map['images']?.map((x) => EpubNavigationDocumentImage.fromMap(x)) ??
+              const []),
     );
   }
 
@@ -49,7 +51,8 @@ class EpubNavigationDocumentTitle extends Equatable {
       EpubNavigationDocumentTitle.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubNavigationDocumentTitle(id: $id, titles: $titles, images: $images)';
+  String toString() =>
+      'EpubNavigationDocumentTitle(id: $id, titles: $titles, images: $images)';
 
   @override
   List<Object> get props => [id ?? 'no id', titles, images];

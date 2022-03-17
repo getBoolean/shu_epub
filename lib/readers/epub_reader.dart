@@ -25,7 +25,7 @@ class EpubReader {
           ArchiveService.findRootfile(archive)?.fullPath;
       archiveRootfile = archive
           .firstWhereOrNull((file) => file.name == rootfilePathFromArchive);
-      
+
       // Throw exception if neither methods worked
       if (archiveRootfile == null) {
         throw EpubException(

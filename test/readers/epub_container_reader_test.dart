@@ -9,9 +9,9 @@ void main() {
       'parses container.xml file, returns EpubContainerFile',
       () async {
         // arrange
-        final data = await io.File(
-                'test/assets/Guardians/${EpubContainer.kFilePath}')
-            .readAsBytes();
+        final data =
+            await io.File('test/assets/Guardians/${EpubContainer.kFilePath}')
+                .readAsBytes();
         final EpubContainer? expectedValue = const EpubContainer(
           rootfileList: [
             Rootfile(
@@ -23,8 +23,7 @@ void main() {
         );
 
         // act
-        final EpubContainer containerFile =
-            EpubContainerReader.fromData(data);
+        final EpubContainer containerFile = EpubContainerReader.fromData(data);
 
         // assert
         expect(containerFile, expectedValue);

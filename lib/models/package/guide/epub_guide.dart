@@ -42,5 +42,4 @@ class EpubGuide extends Equatable {
 
   @override
   List<Object> get props => [items];
-
 }

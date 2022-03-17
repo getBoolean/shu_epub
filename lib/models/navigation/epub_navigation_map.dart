@@ -3,7 +3,7 @@ part of shu_epub.models;
 /// navInfo*, navLabel*, navPoint+
 class EpubNavigationMap extends Equatable {
   final String? id;
-  
+
   final List<EpubNavigationInfo> navigationInfo;
 
   final List<EpubNavigationLabel> navigationLabel;
@@ -52,9 +52,15 @@ class EpubNavigationMap extends Equatable {
   factory EpubNavigationMap.fromMap(Map<String, dynamic> map) {
     return EpubNavigationMap(
       id: map['id'],
-      navigationInfo: List<EpubNavigationInfo>.from(map['navigationInfo']?.map((x) => EpubNavigationInfo.fromMap(x)) ?? const []),
-      navigationLabel: List<EpubNavigationLabel>.from(map['navigationLabel']?.map((x) => EpubNavigationLabel.fromMap(x)) ?? const []),
-      navigationPoint: List<EpubNavigationPoint>.from(map['navigationPoint']?.map((x) => EpubNavigationPoint.fromMap(x)) ?? const []),
+      navigationInfo: List<EpubNavigationInfo>.from(
+          map['navigationInfo']?.map((x) => EpubNavigationInfo.fromMap(x)) ??
+              const []),
+      navigationLabel: List<EpubNavigationLabel>.from(
+          map['navigationLabel']?.map((x) => EpubNavigationLabel.fromMap(x)) ??
+              const []),
+      navigationPoint: List<EpubNavigationPoint>.from(
+          map['navigationPoint']?.map((x) => EpubNavigationPoint.fromMap(x)) ??
+              const []),
     );
   }
 
@@ -69,5 +75,6 @@ class EpubNavigationMap extends Equatable {
   }
 
   @override
-  List<Object> get props => [id ?? 'no id', navigationInfo, navigationLabel, navigationPoint];
+  List<Object> get props =>
+      [id ?? 'no id', navigationInfo, navigationLabel, navigationPoint];
 }
