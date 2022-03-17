@@ -3,13 +3,21 @@ part of shu_epub.models;
 class EpubNavigationPageList extends Equatable {
   final String? id;
   final String? classType;
-  
+
   final List<EpubNavigationInfo> navigationInfoList;
   final List<EpubNavigationLabel> navigationLabels;
 
   /// Should have at least one item
   final List<EpubNavigationPageTarget> pageTargets;
-  
+
+  factory EpubNavigationPageList.zero() {
+    return EpubNavigationPageList(
+      navigationInfoList: [],
+      navigationLabels: [],
+      pageTargets: [],
+    );
+  }
+
   const EpubNavigationPageList({
     this.id,
     this.classType,
@@ -48,9 +56,16 @@ class EpubNavigationPageList extends Equatable {
     return EpubNavigationPageList(
       id: map['id'],
       classType: map['classType'],
-      navigationInfoList: List<EpubNavigationInfo>.from(map['navigationInfoList']?.map((x) => EpubNavigationInfo.fromMap(x)) ?? const []),
-      navigationLabels: List<EpubNavigationLabel>.from(map['navigationLabels']?.map((x) => EpubNavigationLabel.fromMap(x)) ?? const []),
-      pageTargets: List<EpubNavigationPageTarget>.from(map['pageTargets']?.map((x) => EpubNavigationPageTarget.fromMap(x)) ?? const []),
+      navigationInfoList: List<EpubNavigationInfo>.from(
+          map['navigationInfoList']
+                  ?.map((x) => EpubNavigationInfo.fromMap(x)) ??
+              const []),
+      navigationLabels: List<EpubNavigationLabel>.from(
+          map['navigationLabels']?.map((x) => EpubNavigationLabel.fromMap(x)) ??
+              const []),
+      pageTargets: List<EpubNavigationPageTarget>.from(
+          map['pageTargets']?.map((x) => EpubNavigationPageTarget.fromMap(x)) ??
+              const []),
     );
   }
 
