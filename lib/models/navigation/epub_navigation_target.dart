@@ -5,7 +5,7 @@ class EpubNavigationTarget extends Equatable {
 
   /// Should have at least one item
   final List<EpubNavigationLabel> navigationLabels;
-  
+
   const EpubNavigationTarget({
     required this.content,
     required this.navigationLabels,
@@ -31,16 +31,21 @@ class EpubNavigationTarget extends Equatable {
   factory EpubNavigationTarget.fromMap(Map<String, dynamic> map) {
     return EpubNavigationTarget(
       content: EpubNavigationContent.fromMap(map['content']),
-      navigationLabels: List<EpubNavigationLabel>.from(map['navigationLabels']?.map((x) => EpubNavigationLabel.fromMap(x)) ?? const []),
+      navigationLabels: List<EpubNavigationLabel>.from(
+        map['navigationLabels']?.map((x) => EpubNavigationLabel.fromMap(x)) ??
+            const [],
+      ),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory EpubNavigationTarget.fromJson(String source) => EpubNavigationTarget.fromMap(json.decode(source));
+  factory EpubNavigationTarget.fromJson(String source) =>
+      EpubNavigationTarget.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubNavigationTarget(content: $content, navigationLabels: $navigationLabels)';
+  String toString() =>
+      'EpubNavigationTarget(content: $content, navigationLabels: $navigationLabels)';
 
   @override
   List<Object> get props => [content, navigationLabels];

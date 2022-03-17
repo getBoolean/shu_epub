@@ -68,10 +68,16 @@ class EpubNavigation extends Equatable {
       language: map['language'] ?? '',
       head: EpubNavigationHead.fromMap(map['head']),
       docTitle: EpubNavigationDocumentTitle.fromMap(map['docTitle']),
-      docAuthors: List<EpubNavigationDocumentAuthor>.from(map['docAuthors']?.map((x) => EpubNavigationDocumentAuthor.fromMap(x)) ?? const []),
+      docAuthors: List<EpubNavigationDocumentAuthor>.from(map['docAuthors']
+              ?.map((x) => EpubNavigationDocumentAuthor.fromMap(x)) ??
+          const []),
       navigationMap: EpubNavigationMap.fromMap(map['navigationMap']),
-      pageList: map['pageList'] != null ? EpubNavigationPageList.fromMap(map['pageList']) : null,
-      navigationLists: List<EpubNavigationList>.from(map['navigationLists']?.map((x) => EpubNavigationList.fromMap(x)) ?? const []),
+      pageList: map['pageList'] != null
+          ? EpubNavigationPageList.fromMap(map['pageList'])
+          : null,
+      navigationLists: List<EpubNavigationList>.from(
+          map['navigationLists']?.map((x) => EpubNavigationList.fromMap(x)) ??
+              const []),
     );
   }
 
