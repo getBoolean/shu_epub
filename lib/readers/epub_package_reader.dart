@@ -1,12 +1,12 @@
 part of shu_epub.readers;
 
 class EpubPackageReader {
-  static EpubPackageFile fromArchiveFile(ArchiveFile archiveFile) {
+  static EpubPackage fromArchiveFile(ArchiveFile archiveFile) {
     final data = archiveFile.content;
     return fromData(data);
   }
 
-  static EpubPackageFile fromData(Uint8List data) {
+  static EpubPackage fromData(Uint8List data) {
     final controller = EpubPackageController(data);
 
     final packageIdentity = controller.getPackageIdentity();
@@ -23,7 +23,7 @@ class EpubPackageReader {
     // TODO(@getBoolean): Parse tours
     final tours = controller.getTours();
 
-    return EpubPackageFile(
+    return EpubPackage(
       packageIdentity: packageIdentity,
       publicationMetadata: metadata,
       manifest: manifest,

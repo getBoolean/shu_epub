@@ -11,7 +11,7 @@ class EpubReader {
     }
 
     // Parse container.xml
-    final EpubContainerFile epubContainerFile =
+    final EpubContainer epubContainerFile =
         _handleContainerFileReadFails(archive);
 
     // Find the rootfile
@@ -35,8 +35,8 @@ class EpubReader {
     }
 
     // Parse the rootfile
-    final EpubPackageFile packageFile =
-        EpubPackageFile.fromData(archiveRootfile.content);
+    final EpubPackage packageFile =
+        EpubPackage.fromData(archiveRootfile.content);
 
     return Epub(
       packageFile: packageFile,
@@ -44,10 +44,10 @@ class EpubReader {
     );
   }
 
-  static EpubContainerFile _handleContainerFileReadFails(Archive archive) {
-    EpubContainerFile epubContainerFile;
+  static EpubContainer _handleContainerFileReadFails(Archive archive) {
+    EpubContainer epubContainerFile;
     try {
-      epubContainerFile = EpubContainerFile.fromArchive(archive);
+      epubContainerFile = EpubContainer.fromArchive(archive);
     } on EpubException catch (e) {
       print(
           'Epub Reading Error: container.xml file could not be parsed. Please report this to the developer along with the EPUB file it did not work with. Details: \n ${e.message}');
@@ -55,7 +55,7 @@ class EpubReader {
       if (epubRootfile == null) {
         rethrow;
       }
-      epubContainerFile = EpubContainerFile.error(epubRootfile);
+      epubContainerFile = EpubContainer.error(epubRootfile);
     }
     return epubContainerFile;
   }

@@ -15,7 +15,7 @@ void main() {
             .readAsBytes();
 
         // act
-        final EpubPackageFile packageFile = EpubPackageReader.fromData(data);
+        final EpubPackage packageFile = EpubPackageReader.fromData(data);
 
         // assert
         expect(packageFile.packageIdentity.epubVersion, isNotEmpty);
@@ -61,7 +61,7 @@ void main() {
             .firstWhereOrNull((file) => file.name.contains('.opf'))!;
 
         // act
-        final EpubPackageFile packageFile =
+        final EpubPackage packageFile =
             EpubPackageReader.fromArchiveFile(archiveFile);
 
         // assert

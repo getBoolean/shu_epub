@@ -2,8 +2,8 @@ part of shu_epub.readers;
 
 class EpubContainerReader {
   /// Given the data of the META-INF/container.xml file,
-  /// parse the XML and return [EpubContainerFile]
-  static EpubContainerFile fromData(Uint8List data) {
+  /// parse the XML and return [EpubContainer]
+  static EpubContainer fromData(Uint8List data) {
     final controller = EpubContainerController(data);
     final containerElement = controller.containerElement;
 
@@ -11,7 +11,7 @@ class EpubContainerReader {
 
     if (containerVersion == null) {
       throw EpubException(
-        'Epub Parsing Exception: Could not find version attribute for container element in "${EpubContainerFile.kFilePath}"',
+        'Epub Parsing Exception: Could not find version attribute for container element in "${EpubContainer.kFilePath}"',
       );
     }
 
@@ -27,23 +27,23 @@ class EpubContainerReader {
 
     if (!rootfileList.where((rootfile) => _isOpfFile(rootfile)).isNotEmpty) {
       throw EpubException(
-        'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.kFilePath}" does not contain an element with media-type attribute value of "${EpubMediaTypes.kOPFMimeType}"',
+        'Epub Parsing Exception: EPUB container at path "${EpubContainer.kFilePath}" does not contain an element with media-type attribute value of "${EpubMediaTypes.kOPFMimeType}"',
       );
     }
 
-    return EpubContainerFile(
+    return EpubContainer(
       rootfileList: rootfileList,
       containerVersion: containerVersion,
     );
   }
 
-  static EpubContainerFile fromArchive(Archive archive) {
+  static EpubContainer fromArchive(Archive archive) {
     // Find `META-INF/container.xml` file.
     final ArchiveFile? containerXmlFile = archive.files.firstWhereOrNull(
-        (element) => element.name == EpubContainerFile.kFilePath);
+        (element) => element.name == EpubContainer.kFilePath);
     if (containerXmlFile == null) {
       throw EpubException(
-          'Epub Parsing Exception: Could not find required "${EpubContainerFile.kFilePath}"');
+          'Epub Parsing Exception: Could not find required "${EpubContainer.kFilePath}"');
     }
 
     return fromData(containerXmlFile.content);

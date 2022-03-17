@@ -10,9 +10,9 @@ void main() {
       () async {
         // arrange
         final data = await io.File(
-                'test/assets/Guardians/${EpubContainerFile.kFilePath}')
+                'test/assets/Guardians/${EpubContainer.kFilePath}')
             .readAsBytes();
-        final EpubContainerFile? expectedValue = const EpubContainerFile(
+        final EpubContainer? expectedValue = const EpubContainer(
           rootfileList: [
             Rootfile(
               fullPath: 'OEBPS/package.opf',
@@ -23,7 +23,7 @@ void main() {
         );
 
         // act
-        final EpubContainerFile containerFile =
+        final EpubContainer containerFile =
             EpubContainerReader.fromData(data);
 
         // assert
@@ -39,7 +39,7 @@ void main() {
         // arrange
         final data = await io.File('test/assets/Guardians.epub').readAsBytes();
         final archive = ArchiveService.decodeZip(data);
-        final EpubContainerFile? expectedValue = const EpubContainerFile(
+        final EpubContainer? expectedValue = const EpubContainer(
           rootfileList: [
             Rootfile(
               fullPath: 'OEBPS/package.opf',
@@ -50,7 +50,7 @@ void main() {
         );
 
         // act
-        final EpubContainerFile containerFile =
+        final EpubContainer containerFile =
             EpubContainerReader.fromArchive(archive);
 
         // assert

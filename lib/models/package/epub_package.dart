@@ -13,7 +13,7 @@ part of shu_epub.models;
 /// this functionality.
 ///
 /// This specification neither precludes nor requires the inclusion of the OPF Package Schema in a Publication.
-class EpubPackageFile extends Equatable {
+class EpubPackage extends Equatable {
   static const kPackageFileMimeType = 'application/oebps-package+xml';
 
   /// Includes a unique identifier for the OPS Publication as a whole. This should NOT
@@ -88,17 +88,17 @@ class EpubPackageFile extends Equatable {
   /// TODO(@getBoolean): Implementation
   final EpubTours? tours;
 
-  factory EpubPackageFile.fromData(Uint8List data) {
+  factory EpubPackage.fromData(Uint8List data) {
     return EpubPackageReader.fromData(data);
   }
 
-  factory EpubPackageFile.fromArchiveFile(ArchiveFile archiveFile) {
+  factory EpubPackage.fromArchiveFile(ArchiveFile archiveFile) {
     return EpubPackageReader.fromArchiveFile(archiveFile);
   }
 
   // GENERATED DO NOT MODOFY
 
-  const EpubPackageFile({
+  const EpubPackage({
     required this.packageIdentity,
     required this.publicationMetadata,
     required this.manifest,
@@ -107,7 +107,7 @@ class EpubPackageFile extends Equatable {
     this.tours,
   });
 
-  EpubPackageFile copyWith({
+  EpubPackage copyWith({
     EpubPackageIdentity? packageIdentity,
     EpubPublicationMetadata? publicationMetadata,
     EpubManifest? manifest,
@@ -115,7 +115,7 @@ class EpubPackageFile extends Equatable {
     EpubGuide? guide,
     EpubTours? tours,
   }) {
-    return EpubPackageFile(
+    return EpubPackage(
       packageIdentity: packageIdentity ?? this.packageIdentity,
       publicationMetadata: publicationMetadata ?? this.publicationMetadata,
       manifest: manifest ?? this.manifest,
@@ -136,8 +136,8 @@ class EpubPackageFile extends Equatable {
     };
   }
 
-  factory EpubPackageFile.fromMap(Map<String, dynamic> map) {
-    return EpubPackageFile(
+  factory EpubPackage.fromMap(Map<String, dynamic> map) {
+    return EpubPackage(
       packageIdentity: EpubPackageIdentity.fromMap(map['packageIdentity']),
       publicationMetadata:
           EpubPublicationMetadata.fromMap(map['publicationMetadata']),
@@ -154,12 +154,12 @@ class EpubPackageFile extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubPackageFile.fromJson(String source) =>
-      EpubPackageFile.fromMap(json.decode(source));
+  factory EpubPackage.fromJson(String source) =>
+      EpubPackage.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'EpubPackageFile(packageIdentity: $packageIdentity, publicationMetadata: $publicationMetadata, manifest: $manifest, spine: $spine, guide: $guide, tours: $tours)';
+    return 'EpubPackage(packageIdentity: $packageIdentity, publicationMetadata: $publicationMetadata, manifest: $manifest, spine: $spine, guide: $guide, tours: $tours)';
   }
 
   @override

@@ -48,7 +48,7 @@ class EpubContainerController {
 
       if (container == null) {
         throw EpubException(
-          'Epub Parsing Exception: Could not find <${EpubXMLConstants.kContainerName}> element in xml document "${EpubContainerFile.kFilePath}".',
+          'Epub Parsing Exception: Could not find <${EpubXMLConstants.kContainerName}> element in xml document "${EpubContainer.kFilePath}".',
         );
       }
 
@@ -71,13 +71,13 @@ class EpubContainerController {
         containerElement.findElements('rootfiles').firstOrNull;
     if (rootfilesElement == null) {
       throw EpubException(
-        'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.kFilePath}" did not have a <rootfiles> element',
+        'Epub Parsing Exception: EPUB container at path "${EpubContainer.kFilePath}" did not have a <rootfiles> element',
       );
     }
     final rootfilesXml = rootfilesElement.findElements('rootfile').toList();
     if (rootfilesXml.isEmpty) {
       throw EpubException(
-        'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.kFilePath}" did not have any <rootfile> elements',
+        'Epub Parsing Exception: EPUB container at path "${EpubContainer.kFilePath}" did not have any <rootfile> elements',
       );
     }
 
@@ -94,13 +94,13 @@ class EpubContainerController {
       final fullPath = childElement.getAttribute('full-path');
       if (fullPath == null) {
         throw EpubException(
-          'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.kFilePath}" rootfile element did not have a "full-path" attribute',
+          'Epub Parsing Exception: EPUB container at path "${EpubContainer.kFilePath}" rootfile element did not have a "full-path" attribute',
         );
       }
       final mediaType = childElement.getAttribute('media-type');
       if (mediaType == null) {
         throw EpubException(
-          'Epub Parsing Exception: EPUB container at path "${EpubContainerFile.kFilePath}" rootfile element did not have a "media-type" attribute',
+          'Epub Parsing Exception: EPUB container at path "${EpubContainer.kFilePath}" rootfile element did not have a "media-type" attribute',
         );
       }
       return Rootfile(fullPath: fullPath, mediaType: mediaType);

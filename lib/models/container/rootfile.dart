@@ -7,6 +7,10 @@ class Rootfile extends Equatable {
   /// Mimetype of the file
   final String mediaType;
 
+  factory Rootfile.zero() {
+    return Rootfile(fullPath: '', mediaType: '');
+  }
+
   // GENERATED DO NOT MODOFY
 
   const Rootfile({
@@ -44,7 +48,7 @@ class Rootfile extends Equatable {
       Rootfile.fromMap(json.decode(source));
 
   @override
-  String toString() => 'RootFile(fullPath: $fullPath, mediaType: $mediaType)';
+  String toString() => 'Rootfile(fullPath: $fullPath, mediaType: $mediaType)';
 
   @override
   List<Object> get props => [fullPath, mediaType];

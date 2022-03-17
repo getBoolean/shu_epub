@@ -30,7 +30,7 @@ class EpubSpine extends Equatable {
   /// chain includes (in this case terminates with) an OPS Content Document.
   ///
   /// In addition, a specific spine item (from the perspective of its `id` attribute
-  /// value in [EpubPackageFile.manifest]) must not appear more than once in spine.
+  /// value in [EpubPackage.manifest]) must not appear more than once in spine.
   ///
   /// All OPS Content Documents that are part of the publication (i.e. are listed in the manifest)
   /// which are potentially reachable by any reference mechanism allowed in this specification
