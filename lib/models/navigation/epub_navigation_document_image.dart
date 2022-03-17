@@ -1,5 +1,6 @@
 part of shu_epub.models;
 
+/// Image Element - image that may accompany heading.
 class EpubNavigationDocumentImage extends Equatable {
   final String sourcePath;
 

@@ -1,19 +1,34 @@
 part of shu_epub.models;
 
+/// Top Level NCX Container.
 class EpubNavigation extends Equatable {
+  /// XML Namespace of the `ncx` element
   static const String namespace = 'http://www.daisy.org/z3986/2005/ncx/';
 
+  /// NCX Version. Only `2005-1` is supported.
   final String version;
   final String language;
+
+  /// Contains all NCX metadata.
   final EpubNavigationHead head;
+
+  /// The title of the document, required and must immediately follow head.
   final EpubNavigationDocumentTitle docTitle;
+
+  /// List of authors of the document, immediately follows docTitle.
   final List<EpubNavigationDocumentAuthor> docAuthors;
 
-  /// Provides navigational access to the major hierarchical structure of the publication
+  /// Navigation Structure - container for all of the NCX objects that are part
+  /// of the hierarchical structure of the document.
+  ///
+  /// Provides navigational access to the major hierarchical structure of the publication.
   final EpubNavigationMap navigationMap;
 
+  /// Page List -  Container for pagination information.
   final EpubNavigationPageList? pageList;
 
+  /// List of [EpubNavigationList], essentially a flat version of
+  /// [EpubNavigationMap].
   final List<EpubNavigationList> navigationLists;
 
   const EpubNavigation({

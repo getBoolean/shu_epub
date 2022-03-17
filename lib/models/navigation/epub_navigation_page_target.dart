@@ -1,5 +1,10 @@
 part of shu_epub.models;
 
+/// Page Target -  Container for text, image, and content elements
+/// containing navigational information for pages.  The "value" attribute is a
+/// positive integer representing the numeric value associated with a page.
+/// Combination of values of type and value attributes must be unique, when
+/// value attribute is present.
 class EpubNavigationPageTarget extends Equatable {
   final String? id;
   final String? value;

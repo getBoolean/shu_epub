@@ -1,66 +1,66 @@
 part of shu_epub.models;
 
-/// navInfo*, navLabel*, navPoint+
+/// Navigation Structure - container for all of the NCX objects that are part
+/// of the hierarchical structure of the document.
 class EpubNavigationMap extends Equatable {
   final String? id;
 
-  final List<EpubNavigationInfo> navigationInfo;
+  final List<EpubNavigationInfo> navigationInfoList;
 
-  final List<EpubNavigationLabel> navigationLabel;
+  final List<EpubNavigationLabel> navigationLabels;
 
-  /// Should have at least 1 item
-  final List<EpubNavigationPoint> navigationPoint;
+  /// List of Navigation Point - which contains description(s) of target, as
+  /// well as a pointer to entire content of target. Hierarchy is represented by
+  /// nesting navPoints.  "class" attribute describes the kind of structural
+  /// unit this object represents (e.g., "chapter", "section").
+  ///
+  /// **Should have at least 1 item**
+  final List<EpubNavigationPoint> navigationPoints;
 
   const EpubNavigationMap({
     this.id,
-    required this.navigationInfo,
-    required this.navigationLabel,
-    required this.navigationPoint,
+    required this.navigationInfoList,
+    required this.navigationLabels,
+    required this.navigationPoints,
   });
 
   factory EpubNavigationMap.zero() {
     return EpubNavigationMap(
-      navigationInfo: [],
-      navigationLabel: [],
-      navigationPoint: [],
+      navigationInfoList: [],
+      navigationLabels: [],
+      navigationPoints: [],
     );
   }
 
   EpubNavigationMap copyWith({
     String? id,
-    List<EpubNavigationInfo>? navigationInfo,
-    List<EpubNavigationLabel>? navigationLabel,
-    List<EpubNavigationPoint>? navigationPoint,
+    List<EpubNavigationInfo>? navigationInfoList,
+    List<EpubNavigationLabel>? navigationLabels,
+    List<EpubNavigationPoint>? navigationPoints,
   }) {
     return EpubNavigationMap(
       id: id ?? this.id,
-      navigationInfo: navigationInfo ?? this.navigationInfo,
-      navigationLabel: navigationLabel ?? this.navigationLabel,
-      navigationPoint: navigationPoint ?? this.navigationPoint,
+      navigationInfoList: navigationInfoList ?? this.navigationInfoList,
+      navigationLabels: navigationLabels ?? this.navigationLabels,
+      navigationPoints: navigationPoints ?? this.navigationPoints,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'navigationInfo': navigationInfo.map((x) => x.toMap()).toList(),
-      'navigationLabel': navigationLabel.map((x) => x.toMap()).toList(),
-      'navigationPoint': navigationPoint.map((x) => x.toMap()).toList(),
+      'navigationInfoList': navigationInfoList.map((x) => x.toMap()).toList(),
+      'navigationLabels': navigationLabels.map((x) => x.toMap()).toList(),
+      'navigationPoints': navigationPoints.map((x) => x.toMap()).toList(),
     };
   }
 
   factory EpubNavigationMap.fromMap(Map<String, dynamic> map) {
     return EpubNavigationMap(
       id: map['id'],
-      navigationInfo: List<EpubNavigationInfo>.from(
-          map['navigationInfo']?.map((x) => EpubNavigationInfo.fromMap(x)) ??
-              const []),
-      navigationLabel: List<EpubNavigationLabel>.from(
-          map['navigationLabel']?.map((x) => EpubNavigationLabel.fromMap(x)) ??
-              const []),
-      navigationPoint: List<EpubNavigationPoint>.from(
-          map['navigationPoint']?.map((x) => EpubNavigationPoint.fromMap(x)) ??
-              const []),
+      navigationInfoList: List<EpubNavigationInfo>.from(map['navigationInfoList']?.map((x) => EpubNavigationInfo.fromMap(x)) ?? const []),
+      navigationLabels: List<EpubNavigationLabel>.from(map['navigationLabels']?.map((x) => EpubNavigationLabel.fromMap(x)) ?? const []),
+      navigationPoints: List<EpubNavigationPoint>.from(map['navigationPoints']?.map((x) => EpubNavigationPoint.fromMap(x)) ?? const []),
     );
   }
 
@@ -71,10 +71,9 @@ class EpubNavigationMap extends Equatable {
 
   @override
   String toString() {
-    return 'EpubNavigationMap(id: $id, navigationInfo: $navigationInfo, navigationLabel: $navigationLabel, navigationPoint: $navigationPoint)';
+    return 'EpubNavigationMap(id: $id, navigationInfoList: $navigationInfoList, navigationLabels: $navigationLabels, navigationPoints: $navigationPoints)';
   }
 
   @override
-  List<Object> get props =>
-      [id ?? 'no id', navigationInfo, navigationLabel, navigationPoint];
+  List<Object> get props => [id ?? 'no id', navigationInfoList, navigationLabels, navigationPoints];
 }

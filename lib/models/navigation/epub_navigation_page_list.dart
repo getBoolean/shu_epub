@@ -1,5 +1,6 @@
 part of shu_epub.models;
 
+/// Page List -  Container for pagination information.
 class EpubNavigationPageList extends Equatable {
   final String? id;
   final String? classType;

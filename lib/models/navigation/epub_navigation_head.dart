@@ -1,7 +1,8 @@
 part of shu_epub.models;
 
 class EpubNavigationHead extends Equatable {
-  final List<EpubNavigationHeadMeta> metadata;
+  /// metadata about this NCX
+  final List<EpubNavigationMeta> metadata;
 
   const EpubNavigationHead({
     required this.metadata,
@@ -14,7 +15,7 @@ class EpubNavigationHead extends Equatable {
   }
 
   EpubNavigationHead copyWith({
-    List<EpubNavigationHeadMeta>? metadata,
+    List<EpubNavigationMeta>? metadata,
   }) {
     return EpubNavigationHead(
       metadata: metadata ?? this.metadata,
@@ -29,8 +30,8 @@ class EpubNavigationHead extends Equatable {
 
   factory EpubNavigationHead.fromMap(Map<String, dynamic> map) {
     return EpubNavigationHead(
-      metadata: List<EpubNavigationHeadMeta>.from(
-        map['metadata']?.map((x) => EpubNavigationHeadMeta.fromMap(x)),
+      metadata: List<EpubNavigationMeta>.from(
+        map['metadata']?.map((x) => EpubNavigationMeta.fromMap(x)),
       ),
     );
   }

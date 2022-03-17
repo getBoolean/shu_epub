@@ -1,23 +1,24 @@
 part of shu_epub.models;
 
-class EpubNavigationHeadMeta extends Equatable {
+/// Meta Element - metadata about this NCX
+class EpubNavigationMeta extends Equatable {
   /// Due to combatibility reasons, should equal `dtb:id`
   final String name;
   final String content;
   final String? scheme;
 
-  const EpubNavigationHeadMeta({
+  const EpubNavigationMeta({
     required this.name,
     required this.content,
     required this.scheme,
   });
 
-  EpubNavigationHeadMeta copyWith({
+  EpubNavigationMeta copyWith({
     String? name,
     String? content,
     String? scheme,
   }) {
-    return EpubNavigationHeadMeta(
+    return EpubNavigationMeta(
       name: name ?? this.name,
       content: content ?? this.content,
       scheme: scheme ?? this.scheme,
@@ -32,8 +33,8 @@ class EpubNavigationHeadMeta extends Equatable {
     };
   }
 
-  factory EpubNavigationHeadMeta.fromMap(Map<String, dynamic> map) {
-    return EpubNavigationHeadMeta(
+  factory EpubNavigationMeta.fromMap(Map<String, dynamic> map) {
+    return EpubNavigationMeta(
       name: map['name'] ?? '',
       content: map['content'] ?? '',
       scheme: map['scheme'] ?? '',
@@ -42,12 +43,12 @@ class EpubNavigationHeadMeta extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubNavigationHeadMeta.fromJson(String source) =>
-      EpubNavigationHeadMeta.fromMap(json.decode(source));
+  factory EpubNavigationMeta.fromJson(String source) =>
+      EpubNavigationMeta.fromMap(json.decode(source));
 
   @override
   String toString() =>
-      'EpubNagivationHeadMeta(name: $name, content: $content, scheme: $scheme)';
+      'EpubNagivationMeta(name: $name, content: $content, scheme: $scheme)';
 
   @override
   List<Object> get props => [name, content, scheme ?? 'no scheme specified'];

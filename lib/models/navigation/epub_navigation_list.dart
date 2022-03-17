@@ -1,5 +1,9 @@
 part of shu_epub.models;
 
+/// Navigation List - container for distinct, flat sets of navigable elements,
+/// e.g. notes, figures, tables, etc.  Essentially a flat version of navMap.
+/// The "class" attribute describes the type of object contained in this
+/// navList, using dtbook element names, e.g., note.
 class EpubNavigationList extends Equatable {
   final List<EpubNavigationInfo> navigationInfoList;
 

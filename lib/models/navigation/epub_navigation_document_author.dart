@@ -1,5 +1,6 @@
 part of shu_epub.models;
 
+/// The author of the document, immediately follows docTitle.
 class EpubNavigationDocumentAuthor extends Equatable {
   final String? id;
   final List<String> authors;

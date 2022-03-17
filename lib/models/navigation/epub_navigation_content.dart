@@ -1,5 +1,6 @@
 part of shu_epub.models;
 
+/// Content Element - pointer into XML to beginning of navPoint.
 class EpubNavigationContent extends Equatable {
   final String source;
   final String? id;
