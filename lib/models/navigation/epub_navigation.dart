@@ -7,7 +7,7 @@ class EpubNavigation extends Equatable {
 
   /// NCX Version. Only `2005-1` is supported.
   final String version;
-  final String language;
+  final String? language;
 
   /// Contains all NCX metadata.
   final EpubNavigationHead head;
@@ -110,7 +110,7 @@ class EpubNavigation extends Equatable {
   List<Object> get props {
     return [
       version,
-      language,
+      language ?? 'no language specified',
       head,
       docTitle,
       docAuthors,

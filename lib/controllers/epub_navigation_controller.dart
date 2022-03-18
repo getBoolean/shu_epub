@@ -37,10 +37,9 @@ class EpubNavigationController {
     return ncxElement.getAttribute('version') ?? '';
   }
 
-  String getLanguage() {
+  String? getLanguage() {
     return ncxElement.getAttribute('xml:lang') ??
-        ncxElement.getAttribute('lang') ??
-        '';
+        ncxElement.getAttribute('lang');
   }
 
   EpubNavigationHead getHead() {
