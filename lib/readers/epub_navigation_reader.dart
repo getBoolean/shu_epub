@@ -18,12 +18,16 @@ class EpubNavigationReader {
 
     final head = controller.getHead();
 
+    final docTitle = controller.getDocTitle();
+
+    final docAuthors = controller.getDocAuthors();
+
     return EpubNavigation(
       version: ncxVersion,
       language: language,
       head: head,
-      docTitle: EpubNavigationDocumentTitle.zero(),
-      docAuthors: [EpubNavigationDocumentAuthor.zero()],
+      docTitle: docTitle,
+      docAuthors: docAuthors,
       navigationMap: EpubNavigationMap.zero(),
       pageList: EpubNavigationPageList.zero(),
       navigationLists: [EpubNavigationList.zero()],

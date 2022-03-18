@@ -43,4 +43,12 @@ class EpubNavigationController {
   EpubNavigationHead getHead() {
     return EpubNavigationHead.zero();
   }
+
+  EpubNavigationDocumentTitle getDocTitle() {
+    return EpubNavigationDocumentTitle.zero();
+  }
+
+  List<EpubNavigationDocumentAuthor> getDocAuthors() {
+    return [EpubNavigationDocumentAuthor.zero()];
+  }
 }
