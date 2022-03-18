@@ -58,7 +58,7 @@ class EpubNavigationController {
     return EpubNavigationMap.zero();
   }
 
-  EpubNavigationPageList getPageList() {
+  EpubNavigationPageList? getPageList() {
     return EpubNavigationPageList.zero();
   }
 
