@@ -15,6 +15,7 @@ class EpubNavigationTarget extends Equatable {
   /// [EpubNavigationTarget].
   final String? value;
 
+  /// Pointer to XML element
   final EpubNavigationContent content;
 
   /// Description(s) of this target.
