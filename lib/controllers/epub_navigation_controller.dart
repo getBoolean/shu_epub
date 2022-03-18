@@ -15,7 +15,7 @@ class EpubNavigationController {
       allowMalformed: true,
     );
 
-    final xmlDocument = _handleStringToXmlDocument(content);
+    final xmlDocument = XmlUtils.parseToXmlDocument(content);
     final ncxElement = xmlDocument
         .findElements('ncx', namespace: EpubNavigation.namespace)
         .firstOrNull;
@@ -30,19 +30,17 @@ class EpubNavigationController {
     );
   }
 
-  static XmlDocument _handleStringToXmlDocument(String content) {
-    try {
-      return XmlDocument.parse(content);
-    } on XmlParserException catch (e, st) {
-      throw EpubException(
-        'Epub Parsing Exception: Uint8List given was not a valid xml file',
-        e,
-        st,
-      );
-    }
-  }
-
   String getVersion() {
     return ncxElement.getAttribute('version') ?? '';
+  }
+
+  String getLanguage() {
+    return ncxElement.getAttribute('xml:lang') ??
+        ncxElement.getAttribute('lang') ??
+        '';
+  }
+
+  EpubNavigationHead getHead() {
+    return EpubNavigationHead.zero();
   }
 }

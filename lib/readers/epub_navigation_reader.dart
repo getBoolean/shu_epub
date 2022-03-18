@@ -14,10 +14,14 @@ class EpubNavigationReader {
       throw EpubException('NCX Version unsupported');
     }
 
+    final language = controller.getLanguage();
+
+    final head = controller.getHead();
+
     return EpubNavigation(
       version: ncxVersion,
-      language: '',
-      head: EpubNavigationHead.zero(),
+      language: language,
+      head: head,
       docTitle: EpubNavigationDocumentTitle.zero(),
       docAuthors: [EpubNavigationDocumentAuthor.zero()],
       navigationMap: EpubNavigationMap.zero(),
