@@ -51,4 +51,16 @@ class EpubNavigationController {
   List<EpubNavigationDocumentAuthor> getDocAuthors() {
     return [EpubNavigationDocumentAuthor.zero()];
   }
+
+  EpubNavigationMap getNavigationMap() {
+    return EpubNavigationMap.zero();
+  }
+
+  EpubNavigationPageList getPageList() {
+    return EpubNavigationPageList.zero();
+  }
+
+  List<EpubNavigationList> getNavigationLists() {
+    return [EpubNavigationList.zero()];
+  }
 }

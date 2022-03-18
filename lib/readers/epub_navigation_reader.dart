@@ -15,12 +15,12 @@ class EpubNavigationReader {
     }
 
     final language = controller.getLanguage();
-
     final head = controller.getHead();
-
     final docTitle = controller.getDocTitle();
-
     final docAuthors = controller.getDocAuthors();
+    final navigationMap = controller.getNavigationMap();
+    final pageList = controller.getPageList();
+    final navigationLists = controller.getNavigationLists();
 
     return EpubNavigation(
       version: ncxVersion,
@@ -28,9 +28,9 @@ class EpubNavigationReader {
       head: head,
       docTitle: docTitle,
       docAuthors: docAuthors,
-      navigationMap: EpubNavigationMap.zero(),
-      pageList: EpubNavigationPageList.zero(),
-      navigationLists: [EpubNavigationList.zero()],
+      navigationMap: navigationMap,
+      pageList: pageList,
+      navigationLists: navigationLists,
     );
   }
 }
