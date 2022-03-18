@@ -1,6 +1,6 @@
 part of shu_epub.models;
 
-/// Navigation Information - Contains an informative comment about a 
+/// Navigation Information - Contains an informative comment about a
 /// [EpubNavigationMap], [EpubNavigationPageList], or [EpubNavigationList]
 /// in various media for presentation to the user.
 class EpubNavigationInfo extends Equatable {

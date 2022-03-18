@@ -3,8 +3,8 @@ part of shu_epub.models;
 /// Navigation Label - Contains a description of a given
 /// [EpubNavigationMap], [EpubNavigationPoint], [EpubNavigationList], or
 /// [EpubNavigationTarget] in various media for presentation to the user.
-/// 
-/// Can be repeated so descriptions can be provided in multiple languages. 
+///
+/// Can be repeated so descriptions can be provided in multiple languages.
 class EpubNavigationLabel extends Equatable {
   final List<String> text;
   final List<EpubNavigationDocumentImage> images;
