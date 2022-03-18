@@ -9,6 +9,8 @@ class EpubNavigationController {
     required this.ncxElement,
   });
 
+  /// Create an instance of [EpubNavigationController] from the [Uint8List] data
+  /// of the navigation XML document.
   factory EpubNavigationController(Uint8List ncxData) {
     final String content = convert.utf8.decode(
       ncxData,
