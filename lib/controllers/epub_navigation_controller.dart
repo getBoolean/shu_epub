@@ -1,5 +1,6 @@
 part of shu_epub.controllers;
 
+/// Controller to parse the EPUB navigation XML document.
 class EpubNavigationController {
   final XmlDocument xmlDocument;
   final XmlElement ncxElement;
