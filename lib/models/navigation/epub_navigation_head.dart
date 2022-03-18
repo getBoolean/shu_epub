@@ -2,6 +2,10 @@ part of shu_epub.models;
 
 class EpubNavigationHead extends Equatable {
   /// metadata about this NCX
+  ///
+  /// The only required meta is that which contains a content reference to the
+  /// OPF unique ID. For backwards compatibility reasons, the value of the name
+  /// of that meta remains `dtb:id`.
   final List<EpubNavigationMeta> metadata;
 
   const EpubNavigationHead({
@@ -9,9 +13,7 @@ class EpubNavigationHead extends Equatable {
   });
 
   factory EpubNavigationHead.zero() {
-    return EpubNavigationHead(
-      metadata: [],
-    );
+    return EpubNavigationHead(metadata: []);
   }
 
   EpubNavigationHead copyWith({
