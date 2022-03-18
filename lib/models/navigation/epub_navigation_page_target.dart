@@ -14,7 +14,7 @@ class EpubNavigationPageTarget extends Equatable {
 
   /// Should contain valid values that reflect the linear document reading
   /// order. This could, for example, be used when one is navigating a
-  /// [EpubNavigation.pageList] to find a corresponding location in the 
+  /// [EpubNavigation.pageList] to find a corresponding location in the
   /// [EpubNavigation.navigationMap].
   final String? playOrder;
 
