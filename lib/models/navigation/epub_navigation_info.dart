@@ -4,37 +4,37 @@ part of shu_epub.models;
 /// [EpubNavigationMap], [EpubNavigationPageList], or [EpubNavigationList]
 /// in various media for presentation to the user.
 class EpubNavigationInfo extends Equatable {
-  final List<String> text;
-  final List<EpubNavigationDocumentImage> images;
+  final String? text;
+  final EpubNavigationDocumentImage? image;
 
   const EpubNavigationInfo({
-    required this.text,
-    required this.images,
+    this.text,
+    this.image,
   });
 
   EpubNavigationInfo copyWith({
-    List<String>? text,
-    List<EpubNavigationDocumentImage>? images,
+    String? text,
+    EpubNavigationDocumentImage? image,
   }) {
     return EpubNavigationInfo(
       text: text ?? this.text,
-      images: images ?? this.images,
+      image: image ?? this.image,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'text': text,
-      'images': images.map((x) => x.toMap()).toList(),
+      'image': image?.toMap(),
     };
   }
 
   factory EpubNavigationInfo.fromMap(Map<String, dynamic> map) {
     return EpubNavigationInfo(
-      text: List<String>.from(map['text'] ?? const []),
-      images: List<EpubNavigationDocumentImage>.from(
-          map['images']?.map((x) => EpubNavigationDocumentImage.fromMap(x)) ??
-              const []),
+      text: map['text'],
+      image: map['image'] != null
+          ? EpubNavigationDocumentImage.fromMap(map['image'])
+          : null,
     );
   }
 
@@ -44,8 +44,8 @@ class EpubNavigationInfo extends Equatable {
       EpubNavigationInfo.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubNavigationInfo(text: $text, images: $images)';
+  String toString() => 'EpubNavigationInfo(text: $text, image: $image)';
 
   @override
-  List<Object> get props => [text, images];
+  List<Object> get props => [text ?? 'no text', image ?? 'no image'];
 }

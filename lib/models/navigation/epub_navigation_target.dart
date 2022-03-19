@@ -5,7 +5,7 @@ part of shu_epub.models;
 /// equivalent of [EpubNavigationMap.navigationPoints] for use in
 /// [EpubNavigation.navigationLists].
 class EpubNavigationTarget extends Equatable {
-  final String id;
+  final String? id;
 
   /// Describes the kind of structure this target represents, using its dtbook
   /// element name, e.g., note.
@@ -16,7 +16,7 @@ class EpubNavigationTarget extends Equatable {
   final String? value;
 
   /// Pointer to XML element
-  final EpubNavigationContent content;
+  final EpubNavigationContent? content;
 
   /// Description(s) of this target.
   ///
@@ -24,11 +24,11 @@ class EpubNavigationTarget extends Equatable {
   final List<EpubNavigationLabel> navigationLabels;
 
   const EpubNavigationTarget({
-    required this.id,
+    this.id,
     this.classType,
     this.value,
-    required this.content,
-    required this.navigationLabels,
+    this.content,
+    this.navigationLabels = const [],
   });
 
   EpubNavigationTarget copyWith({
@@ -52,20 +52,21 @@ class EpubNavigationTarget extends Equatable {
       'id': id,
       'classType': classType,
       'value': value,
-      'content': content.toMap(),
+      'content': content?.toMap(),
       'navigationLabels': navigationLabels.map((x) => x.toMap()).toList(),
     };
   }
 
   factory EpubNavigationTarget.fromMap(Map<String, dynamic> map) {
     return EpubNavigationTarget(
-      id: map['id'] ?? '',
+      id: map['id'],
       classType: map['classType'],
       value: map['value'],
-      content: EpubNavigationContent.fromMap(map['content']),
+      content: map['content'] != null
+          ? EpubNavigationContent.fromMap(map['content'])
+          : null,
       navigationLabels: List<EpubNavigationLabel>.from(
-          map['navigationLabels']?.map((x) => EpubNavigationLabel.fromMap(x)) ??
-              const []),
+          map['navigationLabels']?.map((x) => EpubNavigationLabel.fromMap(x))),
     );
   }
 
@@ -82,10 +83,10 @@ class EpubNavigationTarget extends Equatable {
   @override
   List<Object> get props {
     return [
-      id,
+      id ?? 'no id',
       classType ?? 'no classType',
       value ?? 'no value',
-      content,
+      content ?? 'no content',
       navigationLabels,
     ];
   }

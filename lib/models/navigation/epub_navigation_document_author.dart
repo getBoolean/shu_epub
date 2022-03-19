@@ -3,46 +3,52 @@ part of shu_epub.models;
 /// The author of the document, immediately follows docTitle.
 class EpubNavigationDocumentAuthor extends Equatable {
   final String? id;
-  final List<String> authors;
-  final List<EpubNavigationDocumentImage> images;
+  final String? language;
+  final String? text;
+  final EpubNavigationDocumentImage? image;
 
   const EpubNavigationDocumentAuthor({
     this.id,
-    required this.authors,
-    required this.images,
+    this.language,
+    this.text,
+    this.image,
   });
 
   factory EpubNavigationDocumentAuthor.zero() {
-    return EpubNavigationDocumentAuthor(authors: [], images: []);
+    return EpubNavigationDocumentAuthor();
   }
 
   EpubNavigationDocumentAuthor copyWith({
     String? id,
-    List<String>? authors,
-    List<EpubNavigationDocumentImage>? images,
+    String? language,
+    String? text,
+    EpubNavigationDocumentImage? image,
   }) {
     return EpubNavigationDocumentAuthor(
       id: id ?? this.id,
-      authors: authors ?? this.authors,
-      images: images ?? this.images,
+      language: language ?? this.language,
+      text: text ?? this.text,
+      image: image ?? this.image,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'authors': authors,
-      'images': images.map((x) => x.toMap()).toList(),
+      'language': language,
+      'text': text,
+      'image': image?.toMap(),
     };
   }
 
   factory EpubNavigationDocumentAuthor.fromMap(Map<String, dynamic> map) {
     return EpubNavigationDocumentAuthor(
       id: map['id'],
-      authors: List<String>.from(map['authors'] ?? const []),
-      images: List<EpubNavigationDocumentImage>.from(
-          map['images']?.map((x) => EpubNavigationDocumentImage.fromMap(x)) ??
-              const []),
+      language: map['language'],
+      text: map['text'],
+      image: map['image'] != null
+          ? EpubNavigationDocumentImage.fromMap(map['image'])
+          : null,
     );
   }
 
@@ -52,9 +58,17 @@ class EpubNavigationDocumentAuthor extends Equatable {
       EpubNavigationDocumentAuthor.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'EpubNavigationDocumentAuthor(id: $id, authors: $authors, images: $images)';
+  String toString() {
+    return 'EpubNavigationDocumentAuthor(id: $id, language: $language, text: $text, image: $image)';
+  }
 
   @override
-  List<Object> get props => [id ?? 'no id', authors, images];
+  List<Object> get props {
+    return [
+      id ?? 'no id attribute',
+      language ?? 'no lang attribute',
+      text ?? 'no text attribute',
+      image ?? 'no image attribute',
+    ];
+  }
 }

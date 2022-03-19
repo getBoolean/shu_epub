@@ -6,7 +6,8 @@ class EpubNavigation extends Equatable {
   static const String namespace = 'http://www.daisy.org/z3986/2005/ncx/';
 
   /// NCX Version. Only `2005-1` is supported.
-  final String version;
+  final String? version;
+
   final String? language;
 
   /// Contains all NCX metadata.
@@ -32,12 +33,12 @@ class EpubNavigation extends Equatable {
   final List<EpubNavigationList> navigationLists;
 
   const EpubNavigation({
-    required this.version,
-    required this.language,
-    required this.head,
-    required this.docTitle,
-    required this.docAuthors,
-    required this.navigationMap,
+    this.version,
+    this.language,
+    this.head,
+    this.docTitle,
+    this.docAuthors = const [],
+    this.navigationMap,
     this.pageList,
     this.navigationLists = const [],
   });
@@ -109,7 +110,7 @@ class EpubNavigation extends Equatable {
   @override
   List<Object> get props {
     return [
-      version,
+      version ?? 'no version',
       language ?? 'no language specified',
       head ?? 'no head element',
       docTitle ?? 'no title element',

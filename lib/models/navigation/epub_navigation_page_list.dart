@@ -4,7 +4,6 @@ part of shu_epub.models;
 class EpubNavigationPageList extends Equatable {
   final String? id;
   final String? classType;
-
   final List<EpubNavigationInfo> navigationInfoList;
   final List<EpubNavigationLabel> navigationLabels;
 

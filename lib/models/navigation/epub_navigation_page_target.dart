@@ -9,7 +9,7 @@ class EpubNavigationPageTarget extends Equatable {
   final String? id;
   final String? value;
   // enum
-  final EpubNavigationPageTargetType type;
+  final EpubNavigationPageTargetType? type;
   final String? classType;
 
   /// Should contain valid values that reflect the linear document reading
@@ -20,16 +20,16 @@ class EpubNavigationPageTarget extends Equatable {
 
   /// Should have at least one item
   final List<EpubNavigationLabel> labels;
-  final EpubNavigationContent content;
+  final EpubNavigationContent? content;
 
   const EpubNavigationPageTarget({
     this.id,
     this.value,
-    required this.type,
+    this.type,
     this.classType,
     this.playOrder,
-    required this.labels,
-    required this.content,
+    this.labels = const [],
+    this.content,
   });
 
   EpubNavigationPageTarget copyWith({
@@ -56,11 +56,11 @@ class EpubNavigationPageTarget extends Equatable {
     return {
       'id': id,
       'value': value,
-      'type': type.index,
+      'type': type?.index,
       'classType': classType,
       'playOrder': playOrder,
       'labels': labels.map((x) => x.toMap()).toList(),
-      'content': content.toMap(),
+      'content': content?.toMap(),
     };
   }
 
@@ -68,13 +68,16 @@ class EpubNavigationPageTarget extends Equatable {
     return EpubNavigationPageTarget(
       id: map['id'],
       value: map['value'],
-      type: EpubNavigationPageTargetType.values[map['type'] ?? 0],
+      type: map['type'] != null
+          ? EpubNavigationPageTargetType?.values[map['type'] ?? 0]
+          : null,
       classType: map['classType'],
       playOrder: map['playOrder'],
       labels: List<EpubNavigationLabel>.from(
-          map['labels']?.map((x) => EpubNavigationLabel.fromMap(x)) ??
-              const []),
-      content: EpubNavigationContent.fromMap(map['content']),
+          map['labels']?.map((x) => EpubNavigationLabel.fromMap(x))),
+      content: map['content'] != null
+          ? EpubNavigationContent.fromMap(map['content'])
+          : null,
     );
   }
 
@@ -93,11 +96,11 @@ class EpubNavigationPageTarget extends Equatable {
     return [
       id ?? 'no id',
       value ?? 'no value',
-      type,
+      type ?? 'no type',
       classType ?? 'no classType',
       playOrder ?? 'no playOrder',
       labels,
-      content,
+      content ?? 'no content',
     ];
   }
 }

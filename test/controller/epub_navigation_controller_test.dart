@@ -1,8 +1,6 @@
 import 'dart:io' as io;
 
 import 'package:shu_epub/controllers/controllers.dart';
-import 'package:shu_epub/models/models.dart';
-import 'package:shu_epub/utils/collection_utils.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -187,7 +185,7 @@ void main() {
     );
 
     test(
-      'on input and docTitle exists with no text children, expect titles to be an empty list',
+      'on input and docTitle exists with no text children, expect text to be null',
       () async {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
@@ -199,16 +197,15 @@ void main() {
         final docTitle = controller.getDocTitle();
 
         expect(
-          docTitle?.titles,
-          isEmpty,
-          reason:
-              'EpubNavigationDocumentTitle.titles field should be an empty list if the no text elements exists',
+          docTitle?.text,
+          isNull,
+          reason: 'text should be null if the no text element does not exists',
         );
       },
     );
 
     test(
-      'on input and docTitle exists with one text element child, titles to be a list with length one',
+      'on input and docTitle exists with one text element child, text should be a non null value',
       () async {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
@@ -221,10 +218,9 @@ void main() {
         final docTitle = controller.getDocTitle();
 
         expect(
-          docTitle?.titles.length ?? -1,
-          1,
-          reason:
-              'EpubNavigationDocumentTitle\'s titles field should be length of one if one text element exists',
+          docTitle?.text,
+          isNotNull,
+          reason: 'text should not be null if the text element does exists',
         );
       },
     );

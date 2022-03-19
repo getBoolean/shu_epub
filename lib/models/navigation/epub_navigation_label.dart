@@ -6,37 +6,37 @@ part of shu_epub.models;
 ///
 /// Can be repeated so descriptions can be provided in multiple languages.
 class EpubNavigationLabel extends Equatable {
-  final List<String> text;
-  final List<EpubNavigationDocumentImage> images;
+  final String? text;
+  final EpubNavigationDocumentImage? image;
 
   const EpubNavigationLabel({
-    required this.text,
-    required this.images,
+    this.text,
+    this.image,
   });
 
   EpubNavigationLabel copyWith({
-    List<String>? text,
-    List<EpubNavigationDocumentImage>? images,
+    String? text,
+    EpubNavigationDocumentImage? image,
   }) {
     return EpubNavigationLabel(
       text: text ?? this.text,
-      images: images ?? this.images,
+      image: image ?? this.image,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'text': text,
-      'images': images.map((x) => x.toMap()).toList(),
+      'image': image?.toMap(),
     };
   }
 
   factory EpubNavigationLabel.fromMap(Map<String, dynamic> map) {
     return EpubNavigationLabel(
-      text: List<String>.from(map['text'] ?? const []),
-      images: List<EpubNavigationDocumentImage>.from(
-          map['images']?.map((x) => EpubNavigationDocumentImage.fromMap(x)) ??
-              const []),
+      text: map['text'],
+      image: map['image'] != null
+          ? EpubNavigationDocumentImage.fromMap(map['image'])
+          : null,
     );
   }
 
@@ -46,8 +46,8 @@ class EpubNavigationLabel extends Equatable {
       EpubNavigationLabel.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubNavigationLabel(text: $text, images: $images)';
+  String toString() => 'EpubNavigationLabel(text: $text, image: $image)';
 
   @override
-  List<Object> get props => [text, images];
+  List<Object> get props => [text ?? 'no text', image ?? 'no image'];
 }

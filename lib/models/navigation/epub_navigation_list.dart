@@ -22,9 +22,9 @@ class EpubNavigationList extends Equatable {
   }
 
   const EpubNavigationList({
-    required this.navigationInfoList,
-    required this.navigationLabels,
-    required this.navigationTargets,
+    this.navigationInfoList = const [],
+    this.navigationLabels = const [],
+    this.navigationTargets = const [],
   });
 
   EpubNavigationList copyWith({

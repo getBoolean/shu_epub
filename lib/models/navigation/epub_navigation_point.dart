@@ -4,7 +4,7 @@ part of shu_epub.models;
 /// of target. Hierarchy is represented by nesting navPoints.
 /// [EpubNavigationPoint.classType] attribute
 class EpubNavigationPoint extends Equatable {
-  final String id;
+  final String? id;
 
   /// Describes the kind of structural unit this object represents (e.g.,
   /// "chapter", "section").
@@ -20,18 +20,18 @@ class EpubNavigationPoint extends Equatable {
   final List<EpubNavigationPoint> childNavigationPoints;
 
   /// Pointer to XML element.
-  final EpubNavigationContent content;
+  final EpubNavigationContent? content;
 
   /// Should have at least one item
   final List<EpubNavigationLabel> labels;
 
   const EpubNavigationPoint({
-    required this.id,
+    this.id,
     this.classType,
     this.playOrder,
-    required this.childNavigationPoints,
-    required this.content,
-    required this.labels,
+    this.childNavigationPoints = const [],
+    this.content,
+    this.labels = const [],
   });
 
   EpubNavigationPoint copyWith({
@@ -60,24 +60,24 @@ class EpubNavigationPoint extends Equatable {
       'playOrder': playOrder,
       'childNavigationPoints':
           childNavigationPoints.map((x) => x.toMap()).toList(),
-      'content': content.toMap(),
+      'content': content?.toMap(),
       'labels': labels.map((x) => x.toMap()).toList(),
     };
   }
 
   factory EpubNavigationPoint.fromMap(Map<String, dynamic> map) {
     return EpubNavigationPoint(
-      id: map['id'] ?? '',
+      id: map['id'],
       classType: map['classType'],
       playOrder: map['playOrder'],
       childNavigationPoints: List<EpubNavigationPoint>.from(
           map['childNavigationPoints']
-                  ?.map((x) => EpubNavigationPoint.fromMap(x)) ??
-              const []),
-      content: EpubNavigationContent.fromMap(map['content']),
+              ?.map((x) => EpubNavigationPoint.fromMap(x))),
+      content: map['content'] != null
+          ? EpubNavigationContent.fromMap(map['content'])
+          : null,
       labels: List<EpubNavigationLabel>.from(
-          map['labels']?.map((x) => EpubNavigationLabel.fromMap(x)) ??
-              const []),
+          map['labels']?.map((x) => EpubNavigationLabel.fromMap(x))),
     );
   }
 
@@ -94,11 +94,11 @@ class EpubNavigationPoint extends Equatable {
   @override
   List<Object> get props {
     return [
-      id,
+      id ?? 'no id',
       classType ?? 'no classType',
       playOrder ?? 'no playOrder',
       childNavigationPoints,
-      content,
+      content ?? 'no content',
       labels,
     ];
   }

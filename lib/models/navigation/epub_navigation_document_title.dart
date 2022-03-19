@@ -2,46 +2,52 @@ part of shu_epub.models;
 
 class EpubNavigationDocumentTitle extends Equatable {
   final String? id;
-  final List<String> titles;
-  final List<EpubNavigationDocumentImage> images;
+  final String? language;
+  final String? text;
+  final EpubNavigationDocumentImage? image;
 
   const EpubNavigationDocumentTitle({
     this.id,
-    required this.titles,
-    required this.images,
+    this.language,
+    this.text,
+    this.image,
   });
 
   factory EpubNavigationDocumentTitle.zero() {
-    return EpubNavigationDocumentTitle(titles: [], images: []);
+    return EpubNavigationDocumentTitle();
   }
 
   EpubNavigationDocumentTitle copyWith({
     String? id,
-    List<String>? titles,
-    List<EpubNavigationDocumentImage>? images,
+    String? language,
+    String? text,
+    EpubNavigationDocumentImage? image,
   }) {
     return EpubNavigationDocumentTitle(
       id: id ?? this.id,
-      titles: titles ?? this.titles,
-      images: images ?? this.images,
+      language: language ?? this.language,
+      text: text ?? this.text,
+      image: image ?? this.image,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'titles': titles,
-      'images': images.map((x) => x.toMap()).toList(),
+      'language': language,
+      'text': text,
+      'image': image?.toMap(),
     };
   }
 
   factory EpubNavigationDocumentTitle.fromMap(Map<String, dynamic> map) {
     return EpubNavigationDocumentTitle(
       id: map['id'],
-      titles: List<String>.from(map['titles'] ?? const []),
-      images: List<EpubNavigationDocumentImage>.from(
-          map['images']?.map((x) => EpubNavigationDocumentImage.fromMap(x)) ??
-              const []),
+      language: map['language'],
+      text: map['text'],
+      image: map['image'] != null
+          ? EpubNavigationDocumentImage.fromMap(map['image'])
+          : null,
     );
   }
 
@@ -51,9 +57,17 @@ class EpubNavigationDocumentTitle extends Equatable {
       EpubNavigationDocumentTitle.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'EpubNavigationDocumentTitle(id: $id, titles: $titles, images: $images)';
+  String toString() {
+    return 'EpubNavigationDocumentTitle(id: $id, language: $language, text: $text, image: $image)';
+  }
 
   @override
-  List<Object> get props => [id ?? 'no id', titles, images];
+  List<Object> get props {
+    return [
+      id ?? 'no id attribute',
+      language ?? 'no lang attribute',
+      text ?? 'no text attribute',
+      image ?? 'no image attribute',
+    ];
+  }
 }
