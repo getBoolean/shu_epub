@@ -13,7 +13,13 @@ class EpubPackageController {
 
   bool get hasTour => !hasGuide && tourElement != null;
 
-  const EpubPackageController._({
+  factory EpubPackageController.fromString(String json) {
+    final stringList = json.codeUnits;
+    final data = Uint8List.fromList(stringList);
+    return EpubPackageController(data);
+  }
+
+  const EpubPackageController._internal({
     required this.xmlDocument,
     required this.packageElement,
     required this.metadataElement,
@@ -43,7 +49,7 @@ class EpubPackageController {
     final XmlElement? tourElement =
         _getElementFromPackageElement('tour', packageElement, require: false);
 
-    return EpubPackageController._(
+    return EpubPackageController._internal(
       xmlDocument: xmlDocument,
       packageElement: packageElement,
       metadataElement: metadataElement,

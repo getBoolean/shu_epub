@@ -5,10 +5,16 @@ class EpubNavigationController {
   final XmlDocument xmlDocument;
   final XmlElement ncxElement;
 
-  const EpubNavigationController._({
+  const EpubNavigationController._internal({
     required this.xmlDocument,
     required this.ncxElement,
   });
+
+  factory EpubNavigationController.fromString(String json) {
+    final stringList = json.codeUnits;
+    final data = Uint8List.fromList(stringList);
+    return EpubNavigationController(data);
+  }
 
   /// Create an instance of [EpubNavigationController] from the [Uint8List] data
   /// of the navigation XML document.
@@ -27,7 +33,7 @@ class EpubNavigationController {
       throw EpubException('Malformed ncx file, could not find ncx element');
     }
 
-    return EpubNavigationController._(
+    return EpubNavigationController._internal(
       xmlDocument: xmlDocument,
       ncxElement: ncxElement,
     );
