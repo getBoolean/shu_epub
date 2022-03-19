@@ -165,14 +165,65 @@ void main() {
 
   group('getDocTitle', () {
     test(
-      'on request, expect titles list not empty',
+      'on input and docTitle exists, expect a non null value',
       () async {
-        final docTitle = sut.getDocTitle();
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <docTitle>
+  </docTitle>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final docTitle = controller.getDocTitle();
+
+        expect(
+          docTitle,
+          isNotNull,
+          reason:
+              'EpubNavigationDocumentTitle should not be null if the docTitle element exists',
+        );
+      },
+    );
+
+    test(
+      'on input and docTitle exists with no text children, expect titles to be an empty list',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <docTitle>
+  </docTitle>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final docTitle = controller.getDocTitle();
 
         expect(
           docTitle?.titles,
-          isNotEmpty,
-          reason: 'Document title should be provided',
+          isEmpty,
+          reason:
+              'EpubNavigationDocumentTitle.titles field should be an empty list if the no text elements exists',
+        );
+      },
+    );
+
+    test(
+      'on input and docTitle exists with one text element child, titles to be a list with length one',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <docTitle>
+    <text>Selections from "Great Pictures, As Seen and Described by Famous Writers"</text>
+  </docTitle>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final docTitle = controller.getDocTitle();
+
+        expect(
+          docTitle?.titles.length ?? -1,
+          1,
+          reason:
+              'EpubNavigationDocumentTitle\'s titles field should be length of one if one text element exists',
         );
       },
     );
