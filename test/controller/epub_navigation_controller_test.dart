@@ -414,10 +414,186 @@ void main() {
     );
 
     test(
-      'Returns with navigation no info list',
+      'on input with navInfo with child text and image elements, expect an object with the corresponding values',
       () async {
-        final navigationMap = sut.getNavigationMap();
-        expect(navigationMap?.navigationInfoList, isNull);
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navInfo>
+        <text>test</text>
+        <img src="path/to/image.png"></img>
+    </navInfo>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationInfo(
+            text: 'test',
+            image: EpubNavigationDocumentImage(sourcePath: 'path/to/image.png'),
+          ),
+        ];
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap?.navigationInfoList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with navInfo with child text element, expect an object with the corresponding values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navInfo>
+        <text>test</text>
+    </navInfo>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationInfo(
+            text: 'test',
+          ),
+        ];
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap?.navigationInfoList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with navInfo with child text and image elements, expect an object with the corresponding values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navInfo>
+        <img src="path/to/image.png"></img>
+    </navInfo>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationInfo(
+            image: EpubNavigationDocumentImage(sourcePath: 'path/to/image.png'),
+          ),
+        ];
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap?.navigationInfoList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with navInfo with no child elements, expect an EpubNavigationInfo object with null values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navInfo></navInfo>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationInfo(),
+        ];
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap?.navigationInfoList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with 3 navInfo with no child elements, expect a list of size three with EpubNavigationInfo objects with null values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navInfo></navInfo>
+    <navInfo></navInfo>
+    <navInfo></navInfo>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationInfo(),
+          EpubNavigationInfo(),
+          EpubNavigationInfo(),
+        ];
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap?.navigationInfoList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with navInfo with no child elements and has the xml:lang attribute, expect an EpubNavigationInfo object with corresponding language value',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navInfo xml:lang="en-US">
+    </navInfo>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationInfo(language: 'en-US'),
+        ];
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap?.navigationInfoList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with navInfo with no child elements and has the lang attribute, expect an EpubNavigationInfo object with corresponding language value',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navInfo lang="en-US">
+    </navInfo>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationInfo(language: 'en-US'),
+        ];
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap?.navigationInfoList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input without navInfo, expect null',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap?.navigationInfoList,
+          isNull,
+        );
       },
     );
 
