@@ -10,7 +10,7 @@ class EpubNavigationController {
     required this.ncxElement,
   });
 
-  factory EpubNavigationController.fromJson(String json) {
+  factory EpubNavigationController.fromString(String json) {
     final stringList = json.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubNavigationController(data);

@@ -9,7 +9,7 @@ class EpubContainerController {
     required this.containerElement,
   });
 
-  factory EpubContainerController.fromJson(String json) {
+  factory EpubContainerController.fromString(String json) {
     final stringList = json.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubContainerController(data);

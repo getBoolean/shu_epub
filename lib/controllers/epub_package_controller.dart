@@ -13,7 +13,7 @@ class EpubPackageController {
 
   bool get hasTour => !hasGuide && tourElement != null;
 
-  factory EpubPackageController.fromJson(String json) {
+  factory EpubPackageController.fromString(String json) {
     final stringList = json.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubPackageController(data);
