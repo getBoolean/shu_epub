@@ -1,6 +1,7 @@
 import 'dart:io' as io;
 
 import 'package:shu_epub/controllers/controllers.dart';
+import 'package:shu_epub/models/models.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -102,6 +103,24 @@ void main() {
 
   group('getHead', () {
     test(
+      'on input without head, expect a null value',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final head = controller.getHead();
+
+        expect(
+          head,
+          isNull,
+          reason: 'Head should be null if the head element does not exist',
+        );
+      },
+    );
+
+    test(
       'on input with head, expect a non null value',
       () async {
         final input = '''
@@ -121,7 +140,7 @@ void main() {
     );
 
     test(
-      'on input with head and one meta element, expect meta list with length of one',
+      'on input with head and one meta element, expect meta list with one item of the same values',
       () async {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
@@ -131,11 +150,19 @@ void main() {
 </ncx>
 ''';
         final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationMeta(
+            content: 'org-example-5059463624137734586',
+            name: 'dtb:uid',
+          ),
+        ];
         final head = controller.getHead();
+
         expect(
-          head?.metadata.length ?? -1,
-          1,
-          reason: 'Head\'s metadata field should be length of one',
+          head?.metadata,
+          expectedValue,
+          reason:
+              'Head\'s metadata list should have the expected EpubNavigationMeta object',
         );
       },
     );
