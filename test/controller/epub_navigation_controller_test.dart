@@ -354,10 +354,62 @@ void main() {
 
   group('getNavigationMap', () {
     test(
-      'Returns with navigation points',
+      'on input without a navMap element, expect a non null value',
       () async {
-        final navigationMap = sut.getNavigationMap();
-        expect(navigationMap?.navigationPoints, isNotEmpty);
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap,
+          isNull,
+        );
+      },
+    );
+
+    test(
+      'on input with a navMap element, expect a non null value',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navMap>
+    </navMap>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap,
+          isNotNull,
+        );
+      },
+    );
+
+    test(
+      'on input with a navMap element with one child navPoint, expect a list with the corresponding values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navMap>
+        <navPoint class="h1" id="ch1" playOrder="1">
+        </navPoint>
+    </navMap>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationPoint(classType: 'h1', id: 'ch1', playOrder: '1'),
+        ];
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap?.navigationPoints,
+          expectedValue,
+        );
       },
     );
 
