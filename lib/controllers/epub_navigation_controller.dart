@@ -48,11 +48,11 @@ class EpubNavigationController {
         ncxElement.getAttribute('lang');
   }
 
-  EpubNavigationHead getHead() {
+  EpubNavigationHead? getHead() {
     return EpubNavigationHead.zero();
   }
 
-  EpubNavigationDocumentTitle getDocTitle() {
+  EpubNavigationDocumentTitle? getDocTitle() {
     return EpubNavigationDocumentTitle.zero();
   }
 
@@ -60,7 +60,7 @@ class EpubNavigationController {
     return [EpubNavigationDocumentAuthor.zero()];
   }
 
-  EpubNavigationMap getNavigationMap() {
+  EpubNavigationMap? getNavigationMap() {
     return EpubNavigationMap.zero();
   }
 
