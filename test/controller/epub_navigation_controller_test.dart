@@ -1,6 +1,7 @@
 import 'dart:io' as io;
 
 import 'package:shu_epub/controllers/controllers.dart';
+import 'package:shu_epub/models/models.dart';
 import 'package:shu_epub/utils/collection_utils.dart';
 import 'package:test/test.dart';
 
@@ -231,33 +232,40 @@ void main() {
 
   group('getDocAuthors', () {
     test(
-      'returns the author',
+      'on input without docAuthor elements, expect empty list',
       () async {
-        final docAuthors = sut.getDocAuthors();
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final docAuthors = controller.getDocAuthors();
 
         expect(
           docAuthors,
-          isNotEmpty,
-          reason: 'This book provides the author',
-        );
-
-        expect(
-          docAuthors.firstOrNull?.authors ?? [],
-          isNotEmpty,
-          reason: 'This book provides the author and should include it as text',
+          isEmpty,
+          reason: 'List should be empty if there are no docAuthor elements',
         );
       },
     );
 
     test(
-      'returns the author with text',
+      'on input with one docAuthor element, expect a list of length 1 with it',
       () async {
-        final docAuthors = sut.getDocAuthors();
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+<docAuthor>
+    <text>Esther Singleton</text>
+</docAuthor>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final docAuthors = controller.getDocAuthors();
 
         expect(
-          docAuthors.firstOrNull?.authors ?? [],
-          isNotEmpty,
-          reason: 'This book provides the author and should include it as text',
+          docAuthors.length,
+          1,
+          reason: 'List should be size one if there is one docAuthor element',
         );
       },
     );
