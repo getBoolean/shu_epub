@@ -10,10 +10,10 @@ class EpubNavigation extends Equatable {
   final String? language;
 
   /// Contains all NCX metadata.
-  final EpubNavigationHead head;
+  final EpubNavigationHead? head;
 
   /// The title of the document, required and must immediately follow head.
-  final EpubNavigationDocumentTitle docTitle;
+  final EpubNavigationDocumentTitle? docTitle;
 
   /// List of authors of the document, immediately follows docTitle.
   final List<EpubNavigationDocumentAuthor> docAuthors;
@@ -22,7 +22,7 @@ class EpubNavigation extends Equatable {
   /// of the hierarchical structure of the document.
   ///
   /// Provides navigational access to the major hierarchical structure of the publication.
-  final EpubNavigationMap navigationMap;
+  final EpubNavigationMap? navigationMap;
 
   /// Page List -  Container for pagination information.
   final EpubNavigationPageList? pageList;
@@ -68,10 +68,10 @@ class EpubNavigation extends Equatable {
     return {
       'version': version,
       'language': language,
-      'head': head.toMap(),
-      'docTitle': docTitle.toMap(),
+      'head': head?.toMap(),
+      'docTitle': docTitle?.toMap(),
       'docAuthors': docAuthors.map((x) => x.toMap()).toList(),
-      'navigationMap': navigationMap.toMap(),
+      'navigationMap': navigationMap?.toMap(),
       'pageList': pageList?.toMap(),
       'navigationLists': navigationLists.map((x) => x.toMap()).toList(),
     };
@@ -111,10 +111,10 @@ class EpubNavigation extends Equatable {
     return [
       version,
       language ?? 'no language specified',
-      head,
-      docTitle,
+      head ?? 'no head element',
+      docTitle ?? 'no title element',
       docAuthors,
-      navigationMap,
+      navigationMap ?? 'no navMap element',
       pageList ?? 'no pageList element',
       navigationLists,
     ];

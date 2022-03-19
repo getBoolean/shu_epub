@@ -95,7 +95,7 @@ void main() {
           language,
           isNull,
           reason:
-              'Language should be null if lang or xml:lang attribute does not exist',
+              'Language should be null if both lang and xml:lang attribute do not exist',
         );
       },
     );
@@ -103,14 +103,61 @@ void main() {
 
   group('getHead', () {
     test(
-      'on request, expect non empty meta list',
+      'on input with head, expect a non null value',
       () async {
-        final head = sut.getHead();
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head></head>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final head = controller.getHead();
 
         expect(
-          head.metadata,
-          isNotEmpty,
-          reason: 'Head should have at least one element',
+          head,
+          isNotNull,
+          reason: 'Head should be a non null value if the head element exists',
+        );
+      },
+    );
+
+    test(
+      'on input with head and one meta element, expect meta list with length of one',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head>
+    <meta content="org-example-5059463624137734586" name="dtb:uid"/>
+  </head>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final head = controller.getHead();
+        expect(
+          head?.metadata.length ?? -1,
+          1,
+          reason: 'Head\'s metadata field should be length of one',
+        );
+      },
+    );
+
+    test(
+      'on input with head and no meta elements, expect an empty list',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head>
+  </head>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final head = controller.getHead();
+
+        expect(
+          head?.metadata,
+          isEmpty,
+          reason:
+              'Head\'s metadata field should be an empty list if there are no meta elements',
         );
       },
     );
@@ -123,7 +170,7 @@ void main() {
         final docTitle = sut.getDocTitle();
 
         expect(
-          docTitle.titles,
+          docTitle?.titles,
           isNotEmpty,
           reason: 'Document title should be provided',
         );
@@ -170,7 +217,7 @@ void main() {
       'Returns with navigation points',
       () async {
         final navigationMap = sut.getNavigationMap();
-        expect(navigationMap.navigationPoints, isNotEmpty);
+        expect(navigationMap?.navigationPoints, isNotEmpty);
       },
     );
 
@@ -178,7 +225,7 @@ void main() {
       'Returns with navigation no info list',
       () async {
         final navigationMap = sut.getNavigationMap();
-        expect(navigationMap.navigationInfoList, isNull);
+        expect(navigationMap?.navigationInfoList, isNull);
       },
     );
 
@@ -186,7 +233,7 @@ void main() {
       'Returns with navigation no labels',
       () async {
         final navigationMap = sut.getNavigationMap();
-        expect(navigationMap.navigationLabels, isNull);
+        expect(navigationMap?.navigationLabels, isNull);
       },
     );
 
@@ -195,7 +242,7 @@ void main() {
       () async {
         final navigationMap = sut.getNavigationMap();
 
-        expect(navigationMap.navigationPoints.first.labels, isNotEmpty);
+        expect(navigationMap?.navigationPoints.first.labels, isNotEmpty);
       },
     );
 
@@ -204,7 +251,7 @@ void main() {
       () async {
         final navigationMap = sut.getNavigationMap();
 
-        expect(navigationMap.navigationPoints.first.id, isNotEmpty);
+        expect(navigationMap?.navigationPoints.first.id, isNotEmpty);
       },
     );
 
@@ -213,8 +260,8 @@ void main() {
       () async {
         final navigationMap = sut.getNavigationMap();
 
-        expect(navigationMap.navigationPoints.first.playOrder, isNotNull);
-        expect(navigationMap.navigationPoints.first.playOrder, isNotNaN);
+        expect(navigationMap?.navigationPoints.first.playOrder, isNotNull);
+        expect(navigationMap?.navigationPoints.first.playOrder, isNotNaN);
       },
     );
   });

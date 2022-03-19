@@ -49,26 +49,26 @@ class EpubNavigationController {
   }
 
   EpubNavigationHead? getHead() {
-    return EpubNavigationHead.zero();
+    return null;
   }
 
   EpubNavigationDocumentTitle? getDocTitle() {
-    return EpubNavigationDocumentTitle.zero();
+    return null;
   }
 
   List<EpubNavigationDocumentAuthor> getDocAuthors() {
-    return [EpubNavigationDocumentAuthor.zero()];
+    return [];
   }
 
   EpubNavigationMap? getNavigationMap() {
-    return EpubNavigationMap.zero();
+    return null;
   }
 
   EpubNavigationPageList? getPageList() {
-    return EpubNavigationPageList.zero();
+    return null;
   }
 
   List<EpubNavigationList> getNavigationLists() {
-    return [EpubNavigationList.zero()];
+    return [];
   }
 }
