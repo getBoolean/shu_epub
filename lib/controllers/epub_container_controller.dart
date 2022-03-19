@@ -4,10 +4,16 @@ class EpubContainerController {
   final XmlDocument xmlDocument;
   final XmlElement containerElement;
 
-  const EpubContainerController._({
+  const EpubContainerController._internal({
     required this.xmlDocument,
     required this.containerElement,
   });
+
+  factory EpubContainerController.fromJson(String json) {
+    final stringList = json.codeUnits;
+    final data = Uint8List.fromList(stringList);
+    return EpubContainerController(data);
+  }
 
   /// Create a [EpubPackageController] from the bytes of the EPUB package file
   factory EpubContainerController(Uint8List containerData) {
@@ -18,7 +24,7 @@ class EpubContainerController {
     final XmlDocument xmlDocument = _handleStringToXmlDocument(content);
     final XmlElement containerElement =
         _getContainerElementFromXmlDocument(xmlDocument);
-    return EpubContainerController._(
+    return EpubContainerController._internal(
       xmlDocument: xmlDocument,
       containerElement: containerElement,
     );
