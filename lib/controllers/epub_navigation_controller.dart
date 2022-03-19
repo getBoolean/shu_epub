@@ -49,26 +49,26 @@ class EpubNavigationController {
   }
 
   EpubNavigationHead? getHead() {
-    return null;
+    throw UnimplementedError();
   }
 
   EpubNavigationDocumentTitle? getDocTitle() {
-    return null;
+    throw UnimplementedError();
   }
 
   List<EpubNavigationDocumentAuthor> getDocAuthors() {
-    return [EpubNavigationDocumentAuthor.zero()];
+    throw UnimplementedError();
   }
 
   EpubNavigationMap? getNavigationMap() {
-    return null;
+    throw UnimplementedError();
   }
 
   EpubNavigationPageList? getPageList() {
-    return null;
+    throw UnimplementedError();
   }
 
   List<EpubNavigationList> getNavigationLists() {
-    return [];
+    throw UnimplementedError();
   }
 }
