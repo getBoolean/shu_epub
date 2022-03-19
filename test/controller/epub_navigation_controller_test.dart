@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 void main() {
   late EpubNavigationController sut;
 
-  setUp(() async {
+  setUpAll(() async {
     final data =
         await io.File('test/assets/Guardians/OEBPS/toc.ncx').readAsBytes();
     sut = EpubNavigationController(data);
@@ -15,28 +15,35 @@ void main() {
 
   group('getVersion', () {
     test(
-      'on request, expect "2005-1"',
+      'on input and version attribute exists, expect a non null String',
       () async {
-        final expectedValue = '2005-1';
-        final version = sut.getVersion();
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="en-US"></ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final version = controller.getVersion();
 
         expect(
           version,
-          expectedValue,
-          reason: 'Version should be a supported value',
+          isNotNull,
+          reason:
+              'Version should be a non null value if version attribute exists',
         );
       },
     );
-
     test(
-      'on request, expect a non empty String',
+      'on input and version attribute does not exist, expect null',
       () async {
-        final version = sut.getVersion();
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" xml:lang="en-US"></ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final version = controller.getVersion();
 
         expect(
           version,
-          isNotEmpty,
-          reason: 'Version should not be an empty String',
+          isNull,
+          reason: 'Version should be null if version attribute does not exist',
         );
       },
     );
@@ -44,14 +51,51 @@ void main() {
 
   group('getLanguage', () {
     test(
-      'on request, expect a non empty String',
+      'on input with xml:lang attribute, expect a non null String',
       () async {
-        final language = sut.getLanguage();
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" xml:lang="en-US"></ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final language = controller.getLanguage();
 
         expect(
-          language ?? '\$none',
-          isNotEmpty,
-          reason: 'Language should not be an empty string',
+          language,
+          isNotNull,
+          reason: 'Language should not be null if xml:lang attribute exists',
+        );
+      },
+    );
+    test(
+      'on input with lang attribute, expect a non null String',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" lang="en-US"></ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final language = controller.getLanguage();
+
+        expect(
+          language,
+          isNotNull,
+          reason: 'Language should not be null if lang attribute exists',
+        );
+      },
+    );
+    test(
+      'on input without xml:lang attribute, expect null',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/"></ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final language = controller.getLanguage();
+
+        expect(
+          language,
+          isNull,
+          reason:
+              'Language should be null if lang or xml:lang attribute does not exist',
         );
       },
     );
