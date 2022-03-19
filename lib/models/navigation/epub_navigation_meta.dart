@@ -10,7 +10,7 @@ class EpubNavigationMeta extends Equatable {
   const EpubNavigationMeta({
     required this.name,
     required this.content,
-    required this.scheme,
+    this.scheme,
   });
 
   EpubNavigationMeta copyWith({
