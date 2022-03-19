@@ -23,7 +23,7 @@ class EpubNavigationReader {
     final navigationLists = controller.getNavigationLists();
 
     return EpubNavigation(
-      version: ncxVersion,
+      version: ncxVersion ?? '',
       language: language,
       head: head,
       docTitle: docTitle,
