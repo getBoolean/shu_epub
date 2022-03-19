@@ -277,18 +277,76 @@ void main() {
       () async {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
-<docAuthor>
-    <text>Esther Singleton</text>
-</docAuthor>
+  <docAuthor>
+      <text>Esther Singleton</text>
+  </docAuthor>
 </ncx>
 ''';
         final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationDocumentAuthor(text: 'Esther Singleton'),
+        ];
         final docAuthors = controller.getDocAuthors();
 
         expect(
-          docAuthors.length,
-          1,
-          reason: 'List should be size one if there is one docAuthor element',
+          docAuthors,
+          expectedValue,
+          reason: 'List should have the corresponding author object',
+        );
+      },
+    );
+
+    test(
+      'on input with three docAuthor elements, expect a list of length 3 with them in order',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <docAuthor>
+      <text>Esther Singleton</text>
+  </docAuthor>
+  <docAuthor>
+      <text>Author 2</text>
+  </docAuthor>
+  <docAuthor>
+      <text>Author 3</text>
+  </docAuthor>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationDocumentAuthor(text: 'Esther Singleton'),
+          EpubNavigationDocumentAuthor(text: 'Author 2'),
+          EpubNavigationDocumentAuthor(text: 'Author 3'),
+        ];
+        final docAuthors = controller.getDocAuthors();
+
+        expect(
+          docAuthors,
+          expectedValue,
+          reason: 'List should have the corresponding author objects',
+        );
+      },
+    );
+
+    test(
+      'on input with a docAuthor element without a text element, expect a list of length 1 with the item having null text',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <docAuthor>
+  </docAuthor>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationDocumentAuthor(),
+        ];
+        final docAuthors = controller.getDocAuthors();
+
+        expect(
+          docAuthors.first.text,
+          expectedValue,
+          reason: 'List should have the author object with a null text value',
         );
       },
     );
