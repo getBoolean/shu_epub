@@ -1172,8 +1172,10 @@ void main() {
       () async {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
-    <navLabel>
-    </navLabel>
+    <pageList>
+        <navLabel>
+        </navLabel>
+    </pageList>
 </ncx>
 ''';
         final controller = EpubNavigationController.fromString(input);
@@ -1196,8 +1198,10 @@ void main() {
       () async {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
-    <navInfo>
-    </navInfo>
+    <pageList>
+        <navInfo>
+        </navInfo>
+    </pageList>
 </ncx>
 ''';
         final controller = EpubNavigationController.fromString(input);
@@ -1220,9 +1224,11 @@ void main() {
       () async {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
-    <navInfo>
-        <text>test</text>
-    </navInfo>
+    <pageList>
+        <navInfo>
+            <text>test</text>
+        </navInfo>
+    </pageList>
 </ncx>
 ''';
         final controller = EpubNavigationController.fromString(input);
@@ -1245,9 +1251,11 @@ void main() {
       () async {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
-    <navInfo>
-        <img src="path/to/image.png"></img>
-    </navInfo>
+    <pageList>
+        <navInfo>
+            <img src="path/to/image.png"></img>
+        </navInfo>
+    </pageList>
 </ncx>
 ''';
         final controller = EpubNavigationController.fromString(input);
@@ -1272,8 +1280,10 @@ void main() {
       () async {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
-    <navInfo lang="en-US">
-    </navInfo>
+    <pageList>
+        <navInfo lang="en-US">
+        </navInfo>
+    </pageList>
 </ncx>
 ''';
         final controller = EpubNavigationController.fromString(input);
@@ -1296,8 +1306,10 @@ void main() {
       () async {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
-    <navInfo xml:lang="en-US">
-    </navInfo>
+    <pageList>
+        <navInfo xml:lang="en-US">
+        </navInfo>
+    </pageList>
 </ncx>
 ''';
         final controller = EpubNavigationController.fromString(input);
@@ -1305,6 +1317,50 @@ void main() {
           navigationInfoList: [
             EpubNavigationInfo(language: 'en-US'),
           ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with an id attribute, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <pageList id="1">
+    </pageList>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          id: '1',
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with a class attribute, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <pageList class="1">
+    </pageList>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          classType: '1',
         );
         final pageList = controller.getPageList();
 
