@@ -5,6 +5,7 @@ import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
 import 'package:equatable/equatable.dart';
+import 'package:xml/xml.dart';
 
 import '../enums/enums.dart';
 import '../readers/readers.dart';

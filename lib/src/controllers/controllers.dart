@@ -12,3 +12,4 @@ import '../utils/xml_utils.dart';
 part 'epub_package_controller.dart';
 part 'epub_container_controller.dart';
 part 'epub_navigation_controller.dart';
+part 'epub_navigation_map_controller.dart';
