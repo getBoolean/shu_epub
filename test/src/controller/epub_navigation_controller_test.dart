@@ -970,13 +970,41 @@ void main() {
     );
 
     test(
-      'on input with a pageList element and a pageTarget child elements, expect object with corresponding fields',
+      'on input with a pageList element and a pageTarget child element with a navLabel child element, expect object with corresponding fields',
       () async {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
     <pageList>
-        <pageTarget id="p1" type="normal" value="1" class="p1">
+        <pageTarget>
             <navLabel><text>1</text></navLabel>
+        </pageTarget>
+    </pageList>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          pageTargets: [
+            EpubNavigationPageTarget(
+              labels: [EpubNavigationLabel(text: '1')],
+            ),
+          ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with a pageTarget child element with a content child element, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <pageList>
+        <pageTarget>
             <content src="content.html#p1"/>
         </pageTarget>
     </pageList>
@@ -986,12 +1014,296 @@ void main() {
         final expectedValue = EpubNavigationPageList(
           pageTargets: [
             EpubNavigationPageTarget(
-              id: 'p1',
-              type: EpubNavigationPageTargetType.normal,
-              classType: 'p1',
               content: EpubNavigationContent(source: 'content.html#p1'),
-              labels: [EpubNavigationLabel(text: '1')],
             ),
+          ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with a pageTarget child element with a playOrder attribute, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <pageList>
+        <pageTarget playOrder="1">
+        </pageTarget>
+    </pageList>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          pageTargets: [
+            EpubNavigationPageTarget(
+              playOrder: '1',
+            ),
+          ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with a pageTarget child element with a class attribute, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <pageList>
+        <pageTarget class="p1">
+        </pageTarget>
+    </pageList>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          pageTargets: [
+            EpubNavigationPageTarget(
+              playOrder: 'p1',
+            ),
+          ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with a pageTarget child element with a type attribute, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <pageList>
+        <pageTarget type="normal">
+        </pageTarget>
+    </pageList>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          pageTargets: [
+            EpubNavigationPageTarget(
+              type: EpubNavigationPageTargetType.normal,
+            ),
+          ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with a pageTarget child element with a value attribute, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <pageList>
+        <pageTarget value="1">
+        </pageTarget>
+    </pageList>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          pageTargets: [
+            EpubNavigationPageTarget(
+              value: '1',
+            ),
+          ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with a pageTarget child element with an id attribute, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <pageList>
+        <pageTarget id="p1"
+        </pageTarget>
+    </pageList>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          pageTargets: [
+            EpubNavigationPageTarget(
+              value: 'p1',
+            ),
+          ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with a navLabel child element, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navLabel>
+    </navLabel>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          navigationLabels: [
+            EpubNavigationLabel(),
+          ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with a navInfo child element, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navInfo>
+    </navInfo>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          navigationInfoList: [
+            EpubNavigationInfo(),
+          ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with a navInfo child element with a text child, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navInfo>
+        <text>test</text>
+    </navInfo>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          navigationInfoList: [
+            EpubNavigationInfo(text: 'test'),
+          ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with a navInfo child element with an img child, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navInfo>
+        <img src="path/to/image.png"></img>
+    </navInfo>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          navigationInfoList: [
+            EpubNavigationInfo(
+                image: EpubNavigationDocumentImage(
+                    sourcePath: 'path/to/image.png')),
+          ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with a navInfo child element with a lang attribute, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navInfo lang="en-US">
+    </navInfo>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          navigationInfoList: [
+            EpubNavigationInfo(language: 'en-US'),
+          ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element with a navInfo child element with a xml:lang attribute, expect object with corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navInfo xml:lang="en-US">
+    </navInfo>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          navigationInfoList: [
+            EpubNavigationInfo(language: 'en-US'),
           ],
         );
         final pageList = controller.getPageList();
