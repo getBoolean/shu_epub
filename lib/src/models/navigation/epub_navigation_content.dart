@@ -22,14 +22,14 @@ class EpubNavigationContent extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'sourcePath': source,
+      'source': source,
       'id': id,
     };
   }
 
   factory EpubNavigationContent.fromMap(Map<String, dynamic> map) {
     return EpubNavigationContent(
-      source: map['sourcePath'] ?? '',
+      source: map['source'] ?? '',
       id: map['id'],
     );
   }
