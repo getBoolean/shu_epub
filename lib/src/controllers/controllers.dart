@@ -13,3 +13,4 @@ part 'epub_package_controller.dart';
 part 'epub_container_controller.dart';
 part 'navigation/epub_navigation_controller.dart';
 part 'navigation/epub_navigation_map_controller.dart';
+part 'navigation/epub_navigation_list_controller.dart';

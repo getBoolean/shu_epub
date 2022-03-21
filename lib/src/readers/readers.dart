@@ -15,3 +15,4 @@ part 'epub_reader.dart';
 part 'epub_package_reader.dart';
 part 'navigation/epub_navigation_reader.dart';
 part 'navigation/epub_navigation_map_reader.dart';
+part 'navigation/epub_navigation_list_reader.dart';
