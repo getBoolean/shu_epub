@@ -804,12 +804,128 @@ void main() {
     );
 
     test(
-      'Returns navigation point\'s first item with playOrder as a number',
+      'on input with navMap with a three navPoint '
+      'expect navigationPoints to have three corresponding items',
       () async {
-        final navigationMap = sut.getNavigationMap();
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navMap>
+        <navPoint>
+        </navPoint>
+        <navPoint>
+        </navPoint>
+        <navPoint>
+        </navPoint>
+    </navMap>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationPoint(),
+          EpubNavigationPoint(),
+          EpubNavigationPoint(),
+        ];
+        final navigationMap = controller.getNavigationMap();
 
-        expect(navigationMap?.navigationPoints.first.playOrder, isNotNull);
-        expect(navigationMap?.navigationPoints.first.playOrder, isNotNaN);
+        expect(
+          navigationMap?.navigationPoints,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with navMap with a single navPoint '
+      'and navPoint has no attributes or children'
+      'expect the first item in navigationPoints to be null for all values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navMap>
+        <navPoint>
+        </navPoint>
+    </navMap>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationPoint(),
+        ];
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap?.navigationPoints,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with navMap with a single navPoint '
+      'and navPoint has the attribute playOrder'
+      'expect the first item in navigationPoints to have the corresponding values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navMap>
+        <navPoint playOrder="1">
+        </navPoint>
+    </navMap>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap?.navigationPoints.first.playOrder,
+          '1',
+        );
+      },
+    );
+
+    test(
+      'on input with navMap with a single navPoint '
+      'and navPoint has the attribute class'
+      'expect the first item in navigationPoints to have the corresponding values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navMap>
+        <navPoint class="h1">
+        </navPoint>
+    </navMap>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap?.navigationPoints.first.classType,
+          'h1',
+        );
+      },
+    );
+
+    test(
+      'on input with navMap with a single navPoint '
+      'and navPoint has the attribute id'
+      'expect the first item in navigationPoints to have the corresponding values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navMap>
+        <navPoint id="ch1">
+        </navPoint>
+    </navMap>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final navigationMap = controller.getNavigationMap();
+
+        expect(
+          navigationMap?.navigationPoints.first.playOrder,
+          'ch1',
+        );
       },
     );
   });
