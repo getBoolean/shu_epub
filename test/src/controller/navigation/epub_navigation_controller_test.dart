@@ -1,16 +1,7 @@
-import 'dart:io' as io;
-
 import 'package:shu_epub/shu_epub.dart';
 import 'package:test/test.dart';
 
 void main() {
-  late EpubNavigationController sut;
-
-  setUpAll(() async {
-    final data =
-        await io.File('test/assets/Guardians/OEBPS/toc.ncx').readAsBytes();
-    sut = EpubNavigationController(data);
-  });
 
   group('getVersion', () {
     test(
