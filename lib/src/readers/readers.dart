@@ -13,5 +13,5 @@ import '../utils/collection_utils.dart';
 part 'epub_container_reader.dart';
 part 'epub_reader.dart';
 part 'epub_package_reader.dart';
-part 'epub_navigation_reader.dart';
-part 'epub_navigation_map_reader.dart';
+part 'navigation/epub_navigation_reader.dart';
+part 'navigation/epub_navigation_map_reader.dart';
