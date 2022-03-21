@@ -2,34 +2,34 @@ part of shu_epub.models;
 
 /// Content Element - pointer into XML to beginning of navPoint.
 class EpubNavigationContent extends Equatable {
-  final String sourcePath;
+  final String source;
   final String? id;
 
   const EpubNavigationContent({
-    required this.sourcePath,
+    required this.source,
     this.id,
   });
 
   EpubNavigationContent copyWith({
-    String? sourcePath,
+    String? source,
     String? id,
   }) {
     return EpubNavigationContent(
-      sourcePath: sourcePath ?? this.sourcePath,
+      source: source ?? this.source,
       id: id ?? this.id,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'sourcePath': sourcePath,
+      'sourcePath': source,
       'id': id,
     };
   }
 
   factory EpubNavigationContent.fromMap(Map<String, dynamic> map) {
     return EpubNavigationContent(
-      sourcePath: map['sourcePath'] ?? '',
+      source: map['sourcePath'] ?? '',
       id: map['id'],
     );
   }
@@ -41,8 +41,8 @@ class EpubNavigationContent extends Equatable {
 
   @override
   String toString() =>
-      'EpubNavigationContent(sourcePath: $sourcePath, id: $id)';
+      'EpubNavigationContent(source: $source, id: $id)';
 
   @override
-  List<Object> get props => [sourcePath, id ?? 'no id'];
+  List<Object> get props => [source, id ?? 'no id'];
 }

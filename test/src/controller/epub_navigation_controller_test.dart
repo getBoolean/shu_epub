@@ -970,7 +970,7 @@ void main() {
     );
 
     test(
-      'on input with a pageList element and a pageTarget child elements, expect object corresponding fields',
+      'on input with a pageList element and a pageTarget child elements, expect object with corresponding fields',
       () async {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
@@ -989,7 +989,7 @@ void main() {
               id: 'p1',
               type: EpubNavigationPageTargetType.normal,
               classType: 'p1',
-              content: EpubNavigationContent(sourcePath: 'content.html#p1'),
+              content: EpubNavigationContent(source: 'content.html#p1'),
               labels: [EpubNavigationLabel(text: '1')],
             ),
           ],
