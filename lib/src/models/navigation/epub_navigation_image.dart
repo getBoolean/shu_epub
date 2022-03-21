@@ -4,27 +4,27 @@ part of shu_epub.models;
 class EpubNavigationImage extends Equatable {
   final String? id;
   final String? classType;
-  final String sourcePath;
+  final String source;
 
   const EpubNavigationImage({
     this.id,
     this.classType,
-    required this.sourcePath,
+    required this.source,
   });
 
   factory EpubNavigationImage.zero() {
-    return EpubNavigationImage(sourcePath: '');
+    return EpubNavigationImage(source: '');
   }
 
   EpubNavigationImage copyWith({
     String? id,
     String? classType,
-    String? sourcePath,
+    String? source,
   }) {
     return EpubNavigationImage(
       id: id ?? this.id,
       classType: classType ?? this.classType,
-      sourcePath: sourcePath ?? this.sourcePath,
+      source: source ?? this.source,
     );
   }
 
@@ -32,7 +32,7 @@ class EpubNavigationImage extends Equatable {
     return {
       'id': id,
       'classType': classType,
-      'sourcePath': sourcePath,
+      'source': source,
     };
   }
 
@@ -40,7 +40,7 @@ class EpubNavigationImage extends Equatable {
     return EpubNavigationImage(
       id: map['id'],
       classType: map['classType'],
-      sourcePath: map['sourcePath'] ?? '',
+      source: map['source'] ?? '',
     );
   }
 
@@ -50,10 +50,8 @@ class EpubNavigationImage extends Equatable {
       EpubNavigationImage.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'EpubNavigationImage(id: $id, classType: $classType, sourcePath: $sourcePath)';
+  String toString() => 'EpubNavigationImage(id: $id, classType: $classType, source: $source)';
 
   @override
-  List<Object> get props =>
-      [id ?? 'no id', classType ?? 'no classType', sourcePath];
+  List<Object> get props => [id ?? 'no id', classType ?? 'no classType', source];
 }
