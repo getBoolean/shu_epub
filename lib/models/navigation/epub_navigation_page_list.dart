@@ -21,9 +21,9 @@ class EpubNavigationPageList extends Equatable {
   const EpubNavigationPageList({
     this.id,
     this.classType,
-    required this.navigationInfoList,
-    required this.navigationLabels,
-    required this.pageTargets,
+    this.navigationInfoList = const [],
+    this.navigationLabels = const [],
+    this.pageTargets = const [],
   });
 
   EpubNavigationPageList copyWith({
