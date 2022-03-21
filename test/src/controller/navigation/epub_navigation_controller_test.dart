@@ -1374,10 +1374,33 @@ void main() {
 
   group('getNavigationLists', () {
     test(
-      'is empty',
+      'on input without navList, expect an empty list',
       () async {
-        final navLists = sut.getNavigationLists();
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final navLists = controller.getNavigationLists();
         expect(navLists, isEmpty);
+      },
+    );
+
+    test(
+      'on input with navList, expect list of size 1 with corresponding values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <navList>
+    </navList>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = <EpubNavigationList>[
+          EpubNavigationList(),
+        ];
+        final navLists = controller.getNavigationLists();
+        expect(navLists, expectedValue);
       },
     );
   });
