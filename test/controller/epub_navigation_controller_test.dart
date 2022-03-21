@@ -115,7 +115,6 @@ void main() {
         expect(
           head,
           isNull,
-          reason: 'Head should be null if the head element does not exist',
         );
       },
     );
@@ -134,7 +133,6 @@ void main() {
         expect(
           head,
           isNotNull,
-          reason: 'Head should be a non null value if the head element exists',
         );
       },
     );
@@ -161,8 +159,6 @@ void main() {
         expect(
           head?.metadata,
           expectedValue,
-          reason:
-              'Head\'s metadata list should have the expected EpubNavigationMeta object',
         );
       },
     );
@@ -182,8 +178,6 @@ void main() {
         expect(
           head?.metadata,
           isEmpty,
-          reason:
-              'Head\'s metadata field should be an empty list if there are no meta elements',
         );
       },
     );
@@ -205,8 +199,6 @@ void main() {
         expect(
           docTitle,
           isNotNull,
-          reason:
-              'EpubNavigationDocumentTitle should not be null if the docTitle element exists',
         );
       },
     );
@@ -226,7 +218,6 @@ void main() {
         expect(
           docTitle?.text,
           isNull,
-          reason: 'text should be null if the no text element does not exists',
         );
       },
     );
@@ -247,7 +238,6 @@ void main() {
         expect(
           docTitle?.text,
           isNotNull,
-          reason: 'text should not be null if the text element does exists',
         );
       },
     );
@@ -267,7 +257,6 @@ void main() {
         expect(
           docAuthors,
           isEmpty,
-          reason: 'List should be empty if there are no docAuthor elements',
         );
       },
     );
@@ -291,7 +280,6 @@ void main() {
         expect(
           docAuthors,
           expectedValue,
-          reason: 'List should have the corresponding author object',
         );
       },
     );
@@ -323,7 +311,6 @@ void main() {
         expect(
           docAuthors,
           expectedValue,
-          reason: 'List should have the corresponding author objects',
         );
       },
     );
@@ -344,9 +331,105 @@ void main() {
         final docAuthors = controller.getDocAuthors();
 
         expect(
-          docAuthors.first.text,
+          docAuthors,
           expectedValue,
-          reason: 'List should have the author object with a null text value',
+        );
+      },
+    );
+
+    test(
+      'on input with a docAuthor element with an img element, expect a list of length 1 with the corresponding values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <docAuthor>
+      <img src="path/to/image.png"></img>
+  </docAuthor>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationDocumentAuthor(
+            image: EpubNavigationDocumentImage(sourcePath: 'path/to/image.png'),
+          ),
+        ];
+        final docAuthors = controller.getDocAuthors();
+
+        expect(
+          docAuthors,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a docAuthor element with a lang attribute, expect a list of length 1 with the corresponding values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <docAuthor lang="en-US">
+  </docAuthor>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationDocumentAuthor(
+            language: 'en-US',
+          ),
+        ];
+        final docAuthors = controller.getDocAuthors();
+
+        expect(
+          docAuthors,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a docAuthor element with a xml:lang attribute, expect a list of length 1 with the corresponding values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <docAuthor xml:lang="en-US">
+  </docAuthor>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationDocumentAuthor(
+            language: 'en-US',
+          ),
+        ];
+        final docAuthors = controller.getDocAuthors();
+
+        expect(
+          docAuthors,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a docAuthor element with a xml:lang attribute, expect a list of length 1 with the corresponding values',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <docAuthor id="testId">
+  </docAuthor>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = [
+          EpubNavigationDocumentAuthor(
+            id: 'testId',
+          ),
+        ];
+        final docAuthors = controller.getDocAuthors();
+
+        expect(
+          docAuthors,
+          expectedValue,
         );
       },
     );
