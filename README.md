@@ -4,16 +4,16 @@
 
 [![codecov](https://codecov.io/gh/getBoolean/shu_epub/branch/main/graph/badge.svg?token=LN8VSR2UER)](https://codecov.io/gh/getBoolean/shu_epub)
 
-A Flutter package build from the ground up for parsing EPUB files.
+A Dart EPUB parser built from the ground up, and designed to support a variety of use cases and custom implementations such as on-device caching and serving content from a server. This package is current WIP and is NOT yet usuable.
 
 ## Features
 
 * [x] Container Parser
+  * [ ] Tests
 * [ ] Package Parser
-* [ ] NCX Table of Contends
-* [ ] EPUB Parser
+  * [ ] Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2), removed in Epub 3
+* [ ] NCX Table of Contents
 * [ ] CFI Generator
-* [ ] Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2), removed in Epub 3
 
 and more...
 
