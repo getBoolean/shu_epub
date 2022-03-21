@@ -1,0 +1,76 @@
+{
+	// Place your shu_epub workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"Epub Controller Template": {
+		"prefix": "epub_controller",
+		"body": [
+			"part of shu_epub.controllers;",
+			"",
+			"class ${1:EpubController} {",
+			"  final XmlElement ${2:elementName}Element;",
+			"",
+			"  const ${1:EpubController}._internal({",
+			"    required this.${2:elementName}Element,",
+			"  });",
+			"",
+			"  /// Throws [EpubException] if the ${2:elementName} element is not the root node",
+			"  factory ${1:EpubController}.fromXmlElement(XmlElement element) {",
+			"    if (element.name.toString() != '${2:elementName}') {",
+			"      throw EpubException(",
+			"        'Invalid data, expected ${2:elementName} to be the root node but it was not found',",
+			"      );",
+			"    }",
+			"",
+			"    return ${1:EpubController}._internal(",
+			"      ${2:elementName}Element: element,",
+			"    );",
+			"  }",
+			"",
+			"  factory ${1:EpubController}.fromString(String xmlString) {",
+			"    final stringList = xmlString.codeUnits;",
+			"    final data = Uint8List.fromList(stringList);",
+			"    return ${1:EpubController}(data);",
+			"  }",
+			"",
+			"  /// Create an instance of [EpubNavigationController] from the [Uint8List] data",
+			"  /// of the ${2:elementName} element in the navigation file.",
+			"  ///",
+			"  /// Throws [EpubException] if the data does not have the ${2:elementName} element",
+			"  factory ${1:EpubController}(Uint8List ${2:elementName}Data) {",
+			"    final String content = convert.utf8.decode(",
+			"      ${2:elementName}Data,",
+			"      allowMalformed: true,",
+			"    );",
+			"",
+			"    final xmlDocument = XmlUtils.parseToXmlDocument(content);",
+			"    final ${2:elementName}Element = xmlDocument.findElements('${2:elementName}').firstOrNull;",
+			"",
+			"    if (${2:elementName}Element == null) {",
+			"      throw EpubException(",
+			"        'Malformed navigation file, could not find required ${2:elementName} element',",
+			"      );",
+			"    }",
+			"",
+			"    return ${1:EpubController}.fromXmlElement(",
+			"      ${2:elementName}Element,",
+			"    );",
+			"  }",
+			"}",
+		],
+		"description": "Epub Controller Template"
+	},
+}
