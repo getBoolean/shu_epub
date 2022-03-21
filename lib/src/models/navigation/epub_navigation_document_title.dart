@@ -4,7 +4,7 @@ class EpubNavigationDocumentTitle extends Equatable {
   final String? id;
   final String? language;
   final String? text;
-  final EpubNavigationDocumentImage? image;
+  final EpubNavigationImage? image;
 
   const EpubNavigationDocumentTitle({
     this.id,
@@ -21,7 +21,7 @@ class EpubNavigationDocumentTitle extends Equatable {
     String? id,
     String? language,
     String? text,
-    EpubNavigationDocumentImage? image,
+    EpubNavigationImage? image,
   }) {
     return EpubNavigationDocumentTitle(
       id: id ?? this.id,
@@ -46,7 +46,7 @@ class EpubNavigationDocumentTitle extends Equatable {
       language: map['language'],
       text: map['text'],
       image: map['image'] != null
-          ? EpubNavigationDocumentImage.fromMap(map['image'])
+          ? EpubNavigationImage.fromMap(map['image'])
           : null,
     );
   }

@@ -38,7 +38,7 @@ part 'navigation/epub_navigation_head.dart';
 part 'navigation/epub_navigation_meta.dart';
 part 'navigation/epub_navigation_document_author.dart';
 part 'navigation/epub_navigation_document_title.dart';
-part 'navigation/epub_navigation_document_image.dart';
+part 'navigation/epub_navigation_image.dart';
 part 'navigation/epub_navigation_map.dart';
 part 'navigation/epub_navigation_info.dart';
 part 'navigation/epub_navigation_point.dart';

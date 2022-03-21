@@ -349,7 +349,7 @@ void main() {
         final controller = EpubNavigationController.fromString(input);
         final expectedValue = [
           EpubNavigationDocumentAuthor(
-            image: EpubNavigationDocumentImage(sourcePath: 'path/to/image.png'),
+            image: EpubNavigationImage(sourcePath: 'path/to/image.png'),
           ),
         ];
         final docAuthors = controller.getDocAuthors();
@@ -510,7 +510,7 @@ void main() {
         final expectedValue = [
           EpubNavigationInfo(
             text: 'test',
-            image: EpubNavigationDocumentImage(sourcePath: 'path/to/image.png'),
+            image: EpubNavigationImage(sourcePath: 'path/to/image.png'),
           ),
         ];
         final navigationMap = controller.getNavigationMap();
@@ -560,7 +560,7 @@ void main() {
         final controller = EpubNavigationController.fromString(input);
         final expectedValue = [
           EpubNavigationInfo(
-            image: EpubNavigationDocumentImage(sourcePath: 'path/to/image.png'),
+            image: EpubNavigationImage(sourcePath: 'path/to/image.png'),
           ),
         ];
         final navigationMap = controller.getNavigationMap();
@@ -750,7 +750,7 @@ void main() {
         final controller = EpubNavigationController.fromString(input);
         final expectedValue = [
           EpubNavigationLabel(
-            image: EpubNavigationDocumentImage(sourcePath: 'path/to/image.png'),
+            image: EpubNavigationImage(sourcePath: 'path/to/image.png'),
           )
         ];
         final EpubNavigationMap? navigationMap = controller.getNavigationMap();
@@ -1254,8 +1254,8 @@ void main() {
         final expectedValue = EpubNavigationPageList(
           navigationInfoList: [
             EpubNavigationInfo(
-                image: EpubNavigationDocumentImage(
-                    sourcePath: 'path/to/image.png')),
+              image: EpubNavigationImage(sourcePath: 'path/to/image.png'),
+            ),
           ],
         );
         final pageList = controller.getPageList();

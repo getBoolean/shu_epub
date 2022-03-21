@@ -6,7 +6,7 @@ part of shu_epub.models;
 class EpubNavigationInfo extends Equatable {
   final String? text;
   final String? language;
-  final EpubNavigationDocumentImage? image;
+  final EpubNavigationImage? image;
 
   const EpubNavigationInfo({
     this.text,
@@ -17,7 +17,7 @@ class EpubNavigationInfo extends Equatable {
   EpubNavigationInfo copyWith({
     String? text,
     String? language,
-    EpubNavigationDocumentImage? image,
+    EpubNavigationImage? image,
   }) {
     return EpubNavigationInfo(
       text: text ?? this.text,
@@ -39,7 +39,7 @@ class EpubNavigationInfo extends Equatable {
       text: map['text'],
       language: map['language'],
       image: map['image'] != null
-          ? EpubNavigationDocumentImage.fromMap(map['image'])
+          ? EpubNavigationImage.fromMap(map['image'])
           : null,
     );
   }
