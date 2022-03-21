@@ -2,7 +2,7 @@ import 'dart:io' as io;
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
-import 'package:shu_epub/service/service.dart';
+import 'package:shu_epub/src/service/service.dart';
 import 'package:test/test.dart';
 
 void main() {

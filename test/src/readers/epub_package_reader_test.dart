@@ -1,8 +1,8 @@
 import 'dart:io' as io;
 import 'package:archive/archive.dart';
-import 'package:shu_epub/service/service.dart';
 import 'package:shu_epub/shu_epub.dart';
-import 'package:shu_epub/utils/collection_utils.dart';
+import 'package:shu_epub/src/service/service.dart';
+import 'package:shu_epub/src/utils/collection_utils.dart';
 import 'package:test/test.dart';
 
 void main() {
