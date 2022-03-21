@@ -38,7 +38,9 @@ class EpubNavigationInfo extends Equatable {
     return EpubNavigationInfo(
       text: map['text'],
       language: map['language'],
-      image: map['image'] != null ? EpubNavigationDocumentImage.fromMap(map['image']) : null,
+      image: map['image'] != null
+          ? EpubNavigationDocumentImage.fromMap(map['image'])
+          : null,
     );
   }
 
@@ -48,8 +50,10 @@ class EpubNavigationInfo extends Equatable {
       EpubNavigationInfo.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubNavigationInfo(text: $text, language: $language, image: $image)';
+  String toString() =>
+      'EpubNavigationInfo(text: $text, language: $language, image: $image)';
 
   @override
-  List<Object> get props => [text ?? 'no text', language ?? 'no language', image ?? 'no image'];
+  List<Object> get props =>
+      [text ?? 'no text', language ?? 'no language', image ?? 'no image'];
 }
