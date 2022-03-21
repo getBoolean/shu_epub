@@ -7,12 +7,6 @@ class EpubNavigationMapController {
     required this.navMapElement,
   });
 
-  factory EpubNavigationMapController.fromString(String json) {
-    final stringList = json.codeUnits;
-    final data = Uint8List.fromList(stringList);
-    return EpubNavigationMapController(data);
-  }
-
   /// Throws [EpubException] if the navMap element is not the root node
   factory EpubNavigationMapController.fromXmlElement(XmlElement element) {
     if (element.name.toString() != 'navMap') {
@@ -24,6 +18,12 @@ class EpubNavigationMapController {
     return EpubNavigationMapController._internal(
       navMapElement: element,
     );
+  }
+
+  factory EpubNavigationMapController.fromString(String xmlString) {
+    final stringList = xmlString.codeUnits;
+    final data = Uint8List.fromList(stringList);
+    return EpubNavigationMapController(data);
   }
 
   /// Create an instance of [EpubNavigationController] from the [Uint8List] data
