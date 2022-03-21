@@ -6,19 +6,16 @@
 
 A Dart EPUB parser built from the ground up, and designed to support a variety of use cases and custom implementations such as on-device caching and serving content from a server. This package is current WIP and is NOT yet usuable.
 
-## Features
+## Planned Features
 
-* [x] Container Reader
-  * [ ] Tests
-* [ ] Package Reader
-  * [ ] Table of Contents
-  * [ ] Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2), removed in Epub 3
-* [ ] Publication/Content Reader
-* [ ] CFI Generator
+* EpubController - An abstract class intended to be extended to enable flexibility inspired by Flutter's Widget class
+* EpubArchiveController - Implements EpubController, reads in bytes of an .epub file for reading
+* (flutter_shu_epub) EpubCacheController - Extracts ePub contents onto an Android or iOS device and caches the location, allowing for
+the reader to only load the needed files into memory
 
 and more...
 
-## Plans
+## Progress and Plans
 
 ### shu_epub (this package)
 
@@ -31,25 +28,13 @@ EPUB loaded into memory. This allows the device to save memory.
   * **Epub**
   * Container
     * **ContainerFile**
-    * **RootFile**
+    * **Rootfile**
   * Package
     * **PackageFile**
     * **PackageIdentity**
     * **PackageMetadata**
   * **Exception**
-  * ... (tbd)
-* File Readers/Parsers
-  * **EpubContainerReader**
-    * Given String XML content of `container.xml`
-    * Parses using package:xml
-    * Returns **ContainerFile**
-  * **EpubPackageReader**
-    * Given String XML content
-    * Parses using package:xml
-    * Returns **PackageFile**
-  * **EpubXHtmlFileReader**
-    * Given String XHtml content
-    * Implementation TBD
+  * ... many more
 * Controllers
   * **EpubController**
     * Abstract
@@ -62,16 +47,43 @@ EPUB loaded into memory. This allows the device to save memory.
     * Overrides getFilePaths and getFileBytes to use `Archive`/`ArchiveFile`
   * **EpubContainerController**
     * Given container (`META-INF/container.xml`) file bytes, and supported media types
-    * Uses **EpubContainerReader**
-    * Returns list of rootfiles and container version
-  * **EpubMetadataController**
+  * **EpubPackageController**
     * Given rootfile (`.opf`) file bytes
-    * Uses **EpubPackageReader**
-    * Returns Epub version and metadata
+  * **EpubNavigationController**
+    * Given navigation (`.ncx`) file bytes
   * **EpubContentsController**
-    * Given XHtml file bytes
-    * Uses **EpubXHtmlFileReader**
-    * Returns parsed content with inline images
+    * Given file content bytes and the type and content it is (such as `.xhtml`)
+
+* [ ] EpubContainerController
+  * [x] Default constructor
+  * [x] fromString factory
+  * [x] getVersion
+  * [x] getRootfiles
+  * [ ] Tests
+* [ ] EpubPackageController
+  * [x] Default constructor
+  * [x] fromString factory
+  * [x] getPackageIdentity
+  * [x] getPublicationMetadata
+  * [x] getManifest
+  * [x] getSpine
+  * [ ] getGuide
+  * [ ] getTours
+  * [ ] Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2), removed in Epub 3
+* [ ] Navigation Controller
+  * [x] Default constructor
+  * [x] fromString factory
+  * [ ] getVersion
+  * [ ] getLanguage
+  * [ ] getHead
+  * [ ] getDocTitle
+  * [ ] getDocAuthors
+  * [ ] getNavigationMap
+  * [ ] getPageList
+  * [ ] getNavigationLists
+* [ ] Publication/Content Controller
+* [ ] EpubBook class to simplify access to Epub content and metadata
+* [ ] CFI Generator
 
 ### flutter_shu_epub (tenative)
 
