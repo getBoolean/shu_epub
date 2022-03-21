@@ -55,13 +55,13 @@ EPUB loaded into memory. This allows the device to save memory.
     * Given file content bytes and the type and content it is (such as `.xhtml`)
 
 * [ ] EpubContainerController
-  * [x] Default constructor
+  * [x] Default constructor from Uint8List
   * [x] fromString factory
   * [x] getVersion
   * [x] getRootfiles
   * [ ] Tests
 * [ ] EpubPackageController
-  * [x] Default constructor
+  * [x] Default constructor from Uint8List
   * [x] fromString factory
   * [x] getPackageIdentity
   * [x] getPublicationMetadata
@@ -70,8 +70,8 @@ EPUB loaded into memory. This allows the device to save memory.
   * [ ] getGuide
   * [ ] getTours
   * [ ] Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2), removed in Epub 3
-* [ ] Navigation Controller
-  * [x] Default constructor
+* [ ] EpubNavigationController
+  * [x] Default constructor from Uint8List
   * [x] fromString factory
   * [ ] getVersion
   * [ ] getLanguage
