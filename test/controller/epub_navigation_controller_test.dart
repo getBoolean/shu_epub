@@ -1,7 +1,6 @@
 import 'dart:io' as io;
 
-import 'package:shu_epub/controllers/controllers.dart';
-import 'package:shu_epub/models/models.dart';
+import 'package:shu_epub/shu_epub.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -860,6 +859,8 @@ void main() {
       },
     );
 
+    // TODO(@getBoolean): Test navPoint content, labels, and childNavigationPoints
+
     test(
       'on input with navMap with a single navPoint '
       'and navPoint has the attribute playOrder'
@@ -932,10 +933,73 @@ void main() {
 
   group('getPageList', () {
     test(
-      'is null',
+      'on input without a pageList element, expect value is null',
       () async {
-        final pageList = sut.getPageList();
-        expect(pageList, isNull);
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          isNull,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element and has no child elements, expect object with null fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <pageList>
+    </pageList>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList();
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
+      },
+    );
+
+    test(
+      'on input with a pageList element and a pageTarget child elements, expect object corresponding fields',
+      () async {
+        final input = '''
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+    <pageList>
+        <pageTarget id="p1" type="normal" value="1" class="p1">
+            <navLabel><text>1</text></navLabel>
+            <content src="content.html#p1"/>
+        </pageTarget>
+    </pageList>
+</ncx>
+''';
+        final controller = EpubNavigationController.fromString(input);
+        final expectedValue = EpubNavigationPageList(
+          pageTargets: [
+            EpubNavigationPageTarget(
+              id: 'p1',
+              type: EpubNavigationPageTargetType.normal,
+              classType: 'p1',
+              content: EpubNavigationContent(sourcePath: 'content.html#p1'),
+              labels: [EpubNavigationLabel(text: '1')],
+            ),
+          ],
+        );
+        final pageList = controller.getPageList();
+
+        expect(
+          pageList,
+          expectedValue,
+        );
       },
     );
   });
