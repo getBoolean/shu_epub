@@ -2,7 +2,7 @@ part of shu_epub.models;
 
 /// Content Element - pointer into XML to beginning of navPoint.
 class EpubNavigationContent extends Equatable {
-  final String source;
+  final String? source;
   final String? id;
 
   const EpubNavigationContent({
@@ -44,5 +44,5 @@ class EpubNavigationContent extends Equatable {
       'EpubNavigationContent(source: $source, id: $id)';
 
   @override
-  List<Object> get props => [source, id ?? 'no id'];
+  List<Object> get props => [source ?? 'no source', id ?? 'no id'];
 }
