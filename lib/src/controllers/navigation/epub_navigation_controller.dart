@@ -76,10 +76,7 @@ class EpubNavigationController with LanguageMixin, VersionMixin {
         element.findElements(EpubNavigationDocumentAuthor.elementName);
 
     return docAuthorElements
-        .map(
-          (docAuthorElement) =>
-              EpubNavigationDocumentAuthor.fromXmlElement(docAuthorElement),
-        )
+        .map(EpubNavigationDocumentAuthor.fromXmlElement)
         .toList();
   }
 
