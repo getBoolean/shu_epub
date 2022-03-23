@@ -101,6 +101,11 @@ class EpubNavigationController with LanguageMixin, VersionMixin {
   }
 
   List<EpubNavigationList> getNavigationLists() {
-    throw UnimplementedError();
+    final navListElements =
+        element.findElements(EpubNavigationList.elementName);
+
+    return navListElements
+        .map(EpubNavigationList.fromXmlElement)
+        .toList();
   }
 }

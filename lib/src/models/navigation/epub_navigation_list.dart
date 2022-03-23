@@ -5,6 +5,8 @@ part of shu_epub.models;
 /// The "class" attribute describes the type of object contained in this
 /// navList, using dtbook element names, e.g., note.
 class EpubNavigationList extends Equatable {
+  static const elementName = 'navList';
+
   final List<EpubNavigationInfo> navigationInfoList;
 
   /// Should have at least one item
@@ -13,12 +15,27 @@ class EpubNavigationList extends Equatable {
   /// Should have at least one item
   final List<EpubNavigationTarget> navigationTargets;
 
-  factory EpubNavigationList.zero() {
-    return EpubNavigationList(
-      navigationInfoList: [],
-      navigationLabels: [],
-      navigationTargets: [],
-    );
+  /// Create an [EpubNavigationList] object from the navList XmlElement.
+  ///
+  /// Throws [EpubException] if the navList element is not the root node
+  factory EpubNavigationList.fromXmlElement(XmlElement navListElement) {
+    return EpubNavigationListReader.fromXmlElement(navListElement);
+  }
+  
+  /// Create an instance of [EpubNavigationList] from the [String] representation
+  /// of the navList element
+  ///
+  /// Throws [EpubException] if the string does not have the navList element
+  factory EpubNavigationList.fromString(String navListString) {
+    return EpubNavigationListReader.fromString(navListString);
+  }
+  
+  /// Create an instance of [EpubNavigationList] from the [Uint8List] data
+  /// of the navList element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the navList element
+  factory EpubNavigationList.fromData(Uint8List navListData) {
+    return EpubNavigationListReader.fromData(navListData);
   }
 
   const EpubNavigationList({
