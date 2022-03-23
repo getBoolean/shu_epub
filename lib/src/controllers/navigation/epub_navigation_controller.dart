@@ -51,7 +51,12 @@ class EpubNavigationController with LanguageMixin, VersionMixin {
   }
 
   EpubNavigationHead? getHead() {
-    throw UnimplementedError();
+    final headElement = element.findElements(EpubNavigationHead.elementName).firstOrNull;
+    if (headElement == null) {
+      return null;
+    }
+
+    return EpubNavigationHead.fromXmlElement(headElement);
   }
 
   EpubNavigationDocumentTitle? getDocTitle() {

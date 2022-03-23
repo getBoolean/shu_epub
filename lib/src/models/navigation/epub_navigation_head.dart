@@ -1,6 +1,8 @@
 part of shu_epub.models;
 
 class EpubNavigationHead extends Equatable {
+  static const elementName = 'head';
+
   /// metadata about this NCX
   ///
   /// The only required meta is that which contains a content reference to the
@@ -14,11 +16,11 @@ class EpubNavigationHead extends Equatable {
   factory EpubNavigationHead.fromXmlElement(XmlElement headElement) {
     return EpubNavigationHeadReader.fromXmlElement(headElement);
   }
-  
+
   factory EpubNavigationHead.fromString(String headString) {
     return EpubNavigationHeadReader.fromString(headString);
   }
-  
+
   /// Create an instance of [EpubNavigationHead] from the [Uint8List] data
   /// of the head element in the navigation file.
   ///
