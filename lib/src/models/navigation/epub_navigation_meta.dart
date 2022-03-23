@@ -7,6 +7,25 @@ class EpubNavigationMeta extends Equatable {
   final String? content;
   final String? scheme;
 
+  /// Create an [EpubNavigationMeta] object from the meta XmlElement.
+  ///
+  /// Throws [EpubException] if the meta element is not the root node
+  factory EpubNavigationMeta.fromXmlElement(XmlElement metaElement) {
+    return EpubNavigationMetaReader.fromXmlElement(metaElement);
+  }
+  
+  factory EpubNavigationMeta.fromString(String metaString) {
+    return EpubNavigationMetaReader.fromString(metaString);
+  }
+  
+  /// Create an instance of [EpubNavigationMeta] from the [Uint8List] data
+  /// of the meta element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the meta element
+  factory EpubNavigationMeta.fromData(Uint8List metaData) {
+    return EpubNavigationMetaReader.fromData(metaData);
+  }
+
   const EpubNavigationMeta({
     this.name,
     this.content,

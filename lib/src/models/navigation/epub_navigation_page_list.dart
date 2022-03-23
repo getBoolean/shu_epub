@@ -2,6 +2,8 @@ part of shu_epub.models;
 
 /// Page List -  Container for pagination information.
 class EpubNavigationPageList extends Equatable {
+  static const elementName = 'pageList';
+
   final String? id;
   final String? classType;
   final List<EpubNavigationInfo> navigationInfoList;
@@ -10,12 +12,23 @@ class EpubNavigationPageList extends Equatable {
   /// Should have at least one item
   final List<EpubNavigationPageTarget> pageTargets;
 
-  factory EpubNavigationPageList.zero() {
-    return EpubNavigationPageList(
-      navigationInfoList: [],
-      navigationLabels: [],
-      pageTargets: [],
-    );
+  /// Create an [EpubNavigationPageList] object from the pageList XmlElement.
+  ///
+  /// Throws [EpubException] if the pageList element is not the root node
+  factory EpubNavigationPageList.fromXmlElement(XmlElement pageListElement) {
+    return EpubNavigationPageListReader.fromXmlElement(pageListElement);
+  }
+  
+  factory EpubNavigationPageList.fromString(String pageListString) {
+    return EpubNavigationPageListReader.fromString(pageListString);
+  }
+  
+  /// Create an instance of [EpubNavigationPageList] from the [Uint8List] data
+  /// of the pageList element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the pageList element
+  factory EpubNavigationPageList.fromData(Uint8List pageListData) {
+    return EpubNavigationPageListReader.fromData(pageListData);
   }
 
   const EpubNavigationPageList({

@@ -22,6 +22,25 @@ class EpubNavigationPageTarget extends Equatable {
   final List<EpubNavigationLabel> labels;
   final EpubNavigationContent? content;
 
+  /// Create an [EpubNavigationPageTarget] object from the pageTarget XmlElement.
+  ///
+  /// Throws [EpubException] if the pageTarget element is not the root node
+  factory EpubNavigationPageTarget.fromXmlElement(XmlElement pageTargetElement) {
+    return EpubNavigationPageTargetReader.fromXmlElement(pageTargetElement);
+  }
+  
+  factory EpubNavigationPageTarget.fromString(String pageTargetString) {
+    return EpubNavigationPageTargetReader.fromString(pageTargetString);
+  }
+  
+  /// Create an instance of [EpubNavigationPageTarget] from the [Uint8List] data
+  /// of the pageTarget element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the pageTarget element
+  factory EpubNavigationPageTarget.fromData(Uint8List pageTargetData) {
+    return EpubNavigationPageTargetReader.fromData(pageTargetData);
+  }
+
   const EpubNavigationPageTarget({
     this.id,
     this.value,

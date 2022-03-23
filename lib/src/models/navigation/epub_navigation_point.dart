@@ -25,6 +25,25 @@ class EpubNavigationPoint extends Equatable {
   /// Hierarchy is represented by nesting navPoints.
   final List<EpubNavigationPoint> childNavigationPoints;
 
+  /// Create an [EpubNavigationPoint] object from the navPoint XmlElement.
+  ///
+  /// Throws [EpubException] if the navPoint element is not the root node
+  factory EpubNavigationPoint.fromXmlElement(XmlElement navPointElement) {
+    return EpubNavigationPointReader.fromXmlElement(navPointElement);
+  }
+  
+  factory EpubNavigationPoint.fromString(String navPointString) {
+    return EpubNavigationPointReader.fromString(navPointString);
+  }
+  
+  /// Create an instance of [EpubNavigationPoint] from the [Uint8List] data
+  /// of the navPoint element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the navPoint element
+  factory EpubNavigationPoint.fromData(Uint8List navPointData) {
+    return EpubNavigationPointReader.fromData(navPointData);
+  }
+
   const EpubNavigationPoint({
     this.id,
     this.classType,
