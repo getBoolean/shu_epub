@@ -4,10 +4,22 @@ mixin TextImageMixin {
   XmlElement get element;
 
   String? getText() {
-    throw UnimplementedError();
+    final textElement =
+        element.findElements('text').firstOrNull;
+    if (textElement == null) {
+      return null;
+    }
+
+    return textElement.innerText;
   }
 
   EpubNavigationImage? getImage() {
-    throw UnimplementedError();
+    final imageElement =
+        element.findElements(EpubNavigationImage.elementName).firstOrNull;
+    if (imageElement == null) {
+      return null;
+    }
+
+    return EpubNavigationImage.fromXmlElement(imageElement);
   }
 }
