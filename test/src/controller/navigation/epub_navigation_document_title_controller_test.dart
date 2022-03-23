@@ -11,7 +11,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentAuthorController.fromString(input);
+            EpubNavigationDocumentTitleController.fromString(input);
         final id = controller.getId();
 
         expect(id, isNull);
@@ -26,7 +26,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentAuthorController.fromString(input);
+            EpubNavigationDocumentTitleController.fromString(input);
         final id = controller.getId();
 
         expect(id, '1');
@@ -43,7 +43,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentAuthorController.fromString(input);
+            EpubNavigationDocumentTitleController.fromString(input);
         final lang = controller.getLanguage();
 
         expect(lang, isNull);
@@ -58,7 +58,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentAuthorController.fromString(input);
+            EpubNavigationDocumentTitleController.fromString(input);
         final lang = controller.getLanguage();
 
         expect(lang, 'en-US');
@@ -73,7 +73,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentAuthorController.fromString(input);
+            EpubNavigationDocumentTitleController.fromString(input);
         final lang = controller.getLanguage();
 
         expect(lang, 'en-US');
@@ -90,7 +90,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentAuthorController.fromString(input);
+            EpubNavigationDocumentTitleController.fromString(input);
         final text = controller.getText();
 
         expect(text, isNull);
@@ -106,7 +106,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentAuthorController.fromString(input);
+            EpubNavigationDocumentTitleController.fromString(input);
         final text = controller.getText();
 
         expect(text, 'test');
@@ -123,7 +123,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentAuthorController.fromString(input);
+            EpubNavigationDocumentTitleController.fromString(input);
         final image = controller.getImage();
 
         expect(image, isNull);
@@ -139,7 +139,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentAuthorController.fromString(input);
+            EpubNavigationDocumentTitleController.fromString(input);
         final expectedValue = EpubNavigationImage(source: 'path/to/image.png');
         final image = controller.getImage();
 
