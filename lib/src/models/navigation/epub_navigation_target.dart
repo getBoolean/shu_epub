@@ -18,7 +18,7 @@ class EpubNavigationTarget extends Equatable {
   /// Description(s) of this target.
   ///
   /// Should have at least one item
-  final List<EpubNavigationLabel> navigationLabels;
+  final List<EpubNavigationLabel> labels;
 
   /// Pointer to XML element
   final EpubNavigationContent? content;
@@ -28,7 +28,7 @@ class EpubNavigationTarget extends Equatable {
     this.classType,
     this.value,
     this.content,
-    this.navigationLabels = const [],
+    this.labels = const [],
   });
 
   EpubNavigationTarget copyWith({
@@ -36,14 +36,14 @@ class EpubNavigationTarget extends Equatable {
     String? classType,
     String? value,
     EpubNavigationContent? content,
-    List<EpubNavigationLabel>? navigationLabels,
+    List<EpubNavigationLabel>? labels,
   }) {
     return EpubNavigationTarget(
       id: id ?? this.id,
       classType: classType ?? this.classType,
       value: value ?? this.value,
       content: content ?? this.content,
-      navigationLabels: navigationLabels ?? this.navigationLabels,
+      labels: labels ?? this.labels,
     );
   }
 
@@ -53,7 +53,7 @@ class EpubNavigationTarget extends Equatable {
       'classType': classType,
       'value': value,
       'content': content?.toMap(),
-      'navigationLabels': navigationLabels.map((x) => x.toMap()).toList(),
+      'labels': labels.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -65,8 +65,8 @@ class EpubNavigationTarget extends Equatable {
       content: map['content'] != null
           ? EpubNavigationContent.fromMap(map['content'])
           : null,
-      navigationLabels: List<EpubNavigationLabel>.from(
-          map['navigationLabels']?.map((x) => EpubNavigationLabel.fromMap(x))),
+      labels: List<EpubNavigationLabel>.from(
+          map['labels']?.map((x) => EpubNavigationLabel.fromMap(x))),
     );
   }
 
@@ -77,7 +77,7 @@ class EpubNavigationTarget extends Equatable {
 
   @override
   String toString() {
-    return 'EpubNavigationTarget(id: $id, classType: $classType, value: $value, content: $content, navigationLabels: $navigationLabels)';
+    return 'EpubNavigationTarget(id: $id, classType: $classType, value: $value, content: $content, labels: $labels)';
   }
 
   @override
@@ -87,7 +87,7 @@ class EpubNavigationTarget extends Equatable {
       classType ?? 'no classType',
       value ?? 'no value',
       content ?? 'no content',
-      navigationLabels,
+      labels,
     ];
   }
 }
