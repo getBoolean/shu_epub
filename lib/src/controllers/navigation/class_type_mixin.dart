@@ -4,6 +4,6 @@ mixin ClassTypeMixin {
   XmlElement get element;
 
   String? getClassType() {
-    throw UnimplementedError();
+    return element.getAttribute('class');
   }
 }
