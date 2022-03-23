@@ -4,6 +4,6 @@ mixin ValueMixin {
   XmlElement get element;
 
   String? getValue() {
-    throw UnimplementedError();
+    return element.getAttribute('value');
   }
 }
