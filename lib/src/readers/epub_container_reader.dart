@@ -9,7 +9,7 @@ class EpubContainerReader {
 
     if (containerVersion == null) {
       throw EpubException(
-        'Epub Parsing Exception: Could not find version attribute for container element in "${EpubContainer.kFilePath}"',
+        'Epub Parsing Exception: Could not find version attribute for container element in "${EpubContainer.filepath}"',
       );
     }
 
@@ -25,7 +25,7 @@ class EpubContainerReader {
 
     if (!rootfileList.where((rootfile) => _isOpfFile(rootfile)).isNotEmpty) {
       throw EpubException(
-        'Epub Parsing Exception: EPUB container at path "${EpubContainer.kFilePath}" does not contain an element with media-type attribute value of "${EpubMediaTypes.kOPFMimeType}"',
+        'Epub Parsing Exception: EPUB container at path "${EpubContainer.filepath}" does not contain an element with media-type attribute value of "${EpubMediaTypes.kOPFMimeType}"',
       );
     }
 
@@ -38,10 +38,10 @@ class EpubContainerReader {
   static EpubContainer fromArchive(Archive archive) {
     // Find `META-INF/container.xml` file.
     final ArchiveFile? containerXmlFile = archive.files
-        .firstWhereOrNull((element) => element.name == EpubContainer.kFilePath);
+        .firstWhereOrNull((element) => element.name == EpubContainer.filepath);
     if (containerXmlFile == null) {
       throw EpubException(
-          'Epub Parsing Exception: Could not find required "${EpubContainer.kFilePath}"');
+          'Epub Parsing Exception: Could not find required "${EpubContainer.filepath}"');
     }
 
     return fromData(containerXmlFile.content);

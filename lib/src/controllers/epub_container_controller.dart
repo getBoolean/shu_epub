@@ -47,15 +47,15 @@ class EpubContainerController {
       // Find container element which MUST have namespace `http://www.idpf.org/2007/opf`
       final container = document
               .findAllElements(
-                EpubXMLConstants.kContainerName,
-                namespace: EpubXMLConstants.kContainerNamespace,
+                EpubContainer.elementName,
+                namespace: EpubContainer.namespace,
               )
               .firstOrNull ??
-          document.findAllElements(EpubXMLConstants.kContainerName).firstOrNull;
+          document.findAllElements(EpubContainer.elementName).firstOrNull;
 
       if (container == null) {
         throw EpubException(
-          'Epub Parsing Exception: Could not find <${EpubXMLConstants.kContainerName}> element in xml document "${EpubContainer.kFilePath}".',
+          'Epub Parsing Exception: Could not find <${EpubContainer.elementName}> element in xml document "${EpubContainer.filepath}".',
         );
       }
 
@@ -78,13 +78,13 @@ class EpubContainerController {
         containerElement.findElements('rootfiles').firstOrNull;
     if (rootfilesElement == null) {
       throw EpubException(
-        'Epub Parsing Exception: EPUB container at path "${EpubContainer.kFilePath}" did not have a <rootfiles> element',
+        'Epub Parsing Exception: EPUB container at path "${EpubContainer.filepath}" did not have a <rootfiles> element',
       );
     }
     final rootfileElements = rootfilesElement.findElements('rootfile').toList();
     if (rootfileElements.isEmpty) {
       throw EpubException(
-        'Epub Parsing Exception: EPUB container at path "${EpubContainer.kFilePath}" did not have any <rootfile> elements',
+        'Epub Parsing Exception: EPUB container at path "${EpubContainer.filepath}" did not have any <rootfile> elements',
       );
     }
 
@@ -101,13 +101,13 @@ class EpubContainerController {
       final fullPath = rootfileElement.getAttribute('full-path');
       if (fullPath == null) {
         throw EpubException(
-          'Epub Parsing Exception: EPUB container at path "${EpubContainer.kFilePath}" rootfile element did not have a "full-path" attribute',
+          'Epub Parsing Exception: EPUB container at path "${EpubContainer.filepath}" rootfile element did not have a "full-path" attribute',
         );
       }
       final mediaType = rootfileElement.getAttribute('media-type');
       if (mediaType == null) {
         throw EpubException(
-          'Epub Parsing Exception: EPUB container at path "${EpubContainer.kFilePath}" rootfile element did not have a "media-type" attribute',
+          'Epub Parsing Exception: EPUB container at path "${EpubContainer.filepath}" rootfile element did not have a "media-type" attribute',
         );
       }
       return Rootfile(fullPath: fullPath, mediaType: mediaType);

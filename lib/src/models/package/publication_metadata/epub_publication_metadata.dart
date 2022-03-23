@@ -2,6 +2,8 @@ part of shu_epub.models;
 
 /// http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.2
 class EpubPublicationMetadata extends Equatable {
+  static const elementName = 'metadata';
+
   /// Must not be an empty list
   final List<String> allTitles;
 

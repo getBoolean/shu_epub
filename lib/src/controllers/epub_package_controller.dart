@@ -88,14 +88,14 @@ class EpubPackageController {
     try {
       // Find container element which MUST have namespace `http://www.idpf.org/2007/opf`
       final package = document
-              .findAllElements(EpubXMLConstants.kPackageName,
-                  namespace: EpubXMLConstants.kPackageNamespace)
+              .findAllElements(EpubPackage.elementName,
+                  namespace: EpubPackage.namespace)
               .firstOrNull ??
-          document.findAllElements(EpubXMLConstants.kPackageName).firstOrNull;
+          document.findAllElements(EpubPackage.elementName).firstOrNull;
 
       if (package == null) {
         throw EpubException(
-          'Epub Parsing Exception: Could not find <${EpubXMLConstants.kPackageName}> element in xml document. This may not be an EPUB package file.',
+          'Epub Parsing Exception: Could not find <${EpubPackage.elementName}> element in xml document. This may not be an EPUB package file.',
         );
       }
 
@@ -120,7 +120,7 @@ class EpubPackageController {
         packageElement.findElements(targetElement).firstOrNull;
     if (metadataElement == null && require) {
       throw EpubException(
-        'Epub Parsing Exception: Could not find <${EpubXMLConstants.kMetadataName}> element in package (OPF) data',
+        'Epub Parsing Exception: Could not find <${EpubPublicationMetadata.elementName}> element in package (OPF) data',
       );
     }
 

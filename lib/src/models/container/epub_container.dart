@@ -6,7 +6,11 @@ part of shu_epub.models;
 ///
 /// The rootfiles element MUST contain at least one <rootfile> element that has a media-type of `application/oebps-package+xml`.
 class EpubContainer extends Equatable {
-  static const kFilePath = 'META-INF/container.xml';
+  static const elementName = 'container';
+  static const namespace =
+      'urn:oasis:names:tc:opendocument:xmlns:container';
+  static const filepath = 'META-INF/container.xml';
+  
   final List<Rootfile> rootfileList;
   final String containerVersion;
 

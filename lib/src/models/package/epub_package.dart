@@ -16,6 +16,7 @@ part of shu_epub.models;
 class EpubPackage extends Equatable {
   static const kPackageFileMimeType = 'application/oebps-package+xml';
   static const elementName = 'package';
+  static const namespace = 'http://www.idpf.org/2007/opf';
 
   /// Includes a unique identifier for the OPS Publication as a whole. This should NOT
   /// be relied upon to be unique across all EPUB publications.

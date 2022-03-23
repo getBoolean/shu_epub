@@ -10,7 +10,7 @@ void main() {
       () async {
         // arrange
         final data =
-            await io.File('test/assets/Guardians/${EpubContainer.kFilePath}')
+            await io.File('test/assets/Guardians/${EpubContainer.filepath}')
                 .readAsBytes();
         final EpubContainer? expectedValue = const EpubContainer(
           rootfileList: [
