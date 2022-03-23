@@ -27,7 +27,7 @@ class EpubNavigationMapReader {
     EpubNavigationMapController controller,
   ) {
     final id = controller.getId();
-    final navInfoList = controller.getIdNavigationInfoList();
+    final navInfoList = controller.getNavigationInfoList();
     final navLabels = controller.getNavigationLabels();
     final navPoints = controller.getNavigationPoints();
 

@@ -1,6 +1,7 @@
 part of shu_epub.controllers;
 
-class EpubNavigationMapController with IdMixin, NavigationLabelListMixin {
+class EpubNavigationMapController
+    with IdMixin, NavigationLabelListMixin, NavigationInfoListMixin {
   @override
   final XmlElement element;
 
@@ -55,10 +56,6 @@ class EpubNavigationMapController with IdMixin, NavigationLabelListMixin {
     return EpubNavigationMapController.fromXmlElement(
       navMapElement,
     );
-  }
-
-  List<EpubNavigationInfo> getIdNavigationInfoList() {
-    throw UnimplementedError();
   }
 
   List<EpubNavigationPoint> getNavigationPoints() {

@@ -32,7 +32,7 @@ void main() {
     );
   });
 
-  group('getIdNavigationInfoList', () {
+  group('getNavigationInfoList', () {
     test(
       'on input with navMap element with one navInfo element, expect list of size one with the corresponding object',
       () async {
@@ -45,7 +45,7 @@ void main() {
 
         final controller = EpubNavigationMapController.fromString(xmlString);
         final expectedValue = [EpubNavigationInfo()];
-        final navigationInfoList = controller.getIdNavigationInfoList();
+        final navigationInfoList = controller.getNavigationInfoList();
 
         expect(navigationInfoList, expectedValue);
       },
@@ -60,7 +60,7 @@ void main() {
 ''';
 
         final controller = EpubNavigationMapController.fromString(xmlString);
-        final navigationInfoList = controller.getIdNavigationInfoList();
+        final navigationInfoList = controller.getNavigationInfoList();
 
         expect(navigationInfoList, isEmpty);
       },
@@ -86,7 +86,7 @@ void main() {
           EpubNavigationInfo(),
           EpubNavigationInfo(),
         ];
-        final navigationInfoList = controller.getIdNavigationInfoList();
+        final navigationInfoList = controller.getNavigationInfoList();
 
         expect(navigationInfoList, expectedValue);
       },
