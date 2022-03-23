@@ -69,15 +69,12 @@ class EpubContainerController with VersionMixin {
   List<Rootfile> getRootfiles() {
     final rootfilesElement = element.findElements('rootfiles').firstOrNull;
     if (rootfilesElement == null) {
-      throw EpubException(
-        'Epub Parsing Exception: EPUB container at path "${EpubContainer.filepath}" did not have a <rootfiles> element',
-      );
+      return [];
     }
+
     final rootfileElements = rootfilesElement.findElements('rootfile').toList();
     if (rootfileElements.isEmpty) {
-      throw EpubException(
-        'Epub Parsing Exception: EPUB container at path "${EpubContainer.filepath}" did not have any <rootfile> elements',
-      );
+      return [];
     }
 
     final rootfiles = _rootfilesXmlToRootFileList(rootfileElements);
