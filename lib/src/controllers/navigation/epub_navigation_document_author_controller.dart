@@ -10,7 +10,8 @@ class EpubNavigationDocumentAuthorController {
   });
 
   /// Throws [EpubException] if the docAuthor element is not the root node
-  factory EpubNavigationDocumentAuthorController.fromXmlElement(XmlElement docAuthorElement) {
+  factory EpubNavigationDocumentAuthorController.fromXmlElement(
+      XmlElement docAuthorElement) {
     if (docAuthorElement.name.qualified != elementName) {
       throw EpubException(
         'Invalid data, expected $elementName to be the root node but it was not found',
@@ -26,7 +27,8 @@ class EpubNavigationDocumentAuthorController {
   /// of the navMap element
   ///
   /// Throws [EpubException] if the string does not have the navMap element
-  factory EpubNavigationDocumentAuthorController.fromString(String docAuthorString) {
+  factory EpubNavigationDocumentAuthorController.fromString(
+      String docAuthorString) {
     final stringList = docAuthorString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubNavigationDocumentAuthorController(data);

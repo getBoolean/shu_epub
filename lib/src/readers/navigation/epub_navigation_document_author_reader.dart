@@ -1,17 +1,19 @@
 part of shu_epub.readers;
 
 class EpubNavigationDocumentAuthorReader {
-
   /// Create an [EpubNavigationDocumentAuthor] object from the docAuthor XmlElement.
   ///
   /// Throws [EpubException] if the docAuthor element is not the root node
-  static EpubNavigationDocumentAuthor fromXmlElement(XmlElement docAuthorElement) {
-    final controller = EpubNavigationDocumentAuthorController.fromXmlElement(docAuthorElement);
+  static EpubNavigationDocumentAuthor fromXmlElement(
+      XmlElement docAuthorElement) {
+    final controller =
+        EpubNavigationDocumentAuthorController.fromXmlElement(docAuthorElement);
     return _fromController(controller);
   }
 
   static EpubNavigationDocumentAuthor fromString(String docAuthorString) {
-    final controller = EpubNavigationDocumentAuthorController.fromString(docAuthorString);
+    final controller =
+        EpubNavigationDocumentAuthorController.fromString(docAuthorString);
     return _fromController(controller);
   }
 
