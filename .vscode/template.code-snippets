@@ -23,7 +23,7 @@
 			"class ${1}Controller {",
 			"  final XmlElement element;",
 			"",
-			"  static const elementName = '${2:elementName}';",
+			"  static const elementName = ${1}.elementName;",
 			"",
 			"  const ${1}Controller._internal({",
 			"    required this.element,",
