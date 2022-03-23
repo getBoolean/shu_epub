@@ -68,6 +68,19 @@ class EpubNavigationPageTargetController
   }
 
   EpubNavigationPageTargetType? getType() {
-    throw UnimplementedError();
+    final type = element.getAttribute('type');
+    if (type == null) {
+      return null;
+    }
+
+    if (type == 'normal') {
+      return EpubNavigationPageTargetType.normal;
+    } else if (type == 'front') {
+      return EpubNavigationPageTargetType.front;
+    } else if (type == 'special') {
+      return EpubNavigationPageTargetType.special;
+    } else {
+      return EpubNavigationPageTargetType.normal;
+    }
   }
 }
