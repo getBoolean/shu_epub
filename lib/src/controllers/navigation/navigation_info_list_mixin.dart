@@ -4,9 +4,9 @@ mixin NavigationInfoListMixin {
   XmlElement get element;
 
   List<EpubNavigationInfo> getNavigationInfoList() {
-    final navLabelElements =
+    final navInfoElements =
         element.findElements(EpubNavigationInfo.elementName);
 
-    return navLabelElements.map(EpubNavigationInfo.fromXmlElement).toList();
+    return navInfoElements.map(EpubNavigationInfo.fromXmlElement).toList();
   }
 }

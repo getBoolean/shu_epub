@@ -59,9 +59,9 @@ class EpubNavigationListController with NavigationLabelListMixin, NavigationInfo
   }
 
   List<EpubNavigationTarget> getNavigationTargets() {
-    final navListElements =
+    final navTargetElements =
         element.findElements(EpubNavigationTarget.elementName);
 
-    return navListElements.map(EpubNavigationTarget.fromXmlElement).toList();
+    return navTargetElements.map(EpubNavigationTarget.fromXmlElement).toList();
   }
 }

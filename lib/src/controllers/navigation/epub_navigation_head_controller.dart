@@ -57,9 +57,9 @@ class EpubNavigationHeadController {
   }
 
   List<EpubNavigationMeta>? getMetadata() {
-    final navListElements =
+    final metadataElements =
         element.findElements(EpubNavigationMeta.elementName);
 
-    return navListElements.map(EpubNavigationMeta.fromXmlElement).toList();
+    return metadataElements.map(EpubNavigationMeta.fromXmlElement).toList();
   }
 }
