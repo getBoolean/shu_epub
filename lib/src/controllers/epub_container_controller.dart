@@ -1,12 +1,14 @@
 part of shu_epub.controllers;
 
-class EpubContainerController {
+class EpubContainerController with VersionMixin {
   final XmlDocument xmlDocument;
-  final XmlElement containerElement;
+  
+  @override
+  final XmlElement element;
 
   const EpubContainerController._internal({
     required this.xmlDocument,
-    required this.containerElement,
+    required this.element,
   });
 
   factory EpubContainerController.fromString(String json) {
@@ -26,7 +28,7 @@ class EpubContainerController {
         _getContainerElementFromXmlDocument(xmlDocument);
     return EpubContainerController._internal(
       xmlDocument: xmlDocument,
-      containerElement: containerElement,
+      element: containerElement,
     );
   }
 
@@ -68,14 +70,8 @@ class EpubContainerController {
     }
   }
 
-  /// Get the version attribute from an [XmlElement]
-  String? getVersion() {
-    return containerElement.getAttribute('version');
-  }
-
   List<Rootfile> getRootfiles() {
-    final rootfilesElement =
-        containerElement.findElements('rootfiles').firstOrNull;
+    final rootfilesElement = element.findElements('rootfiles').firstOrNull;
     if (rootfilesElement == null) {
       throw EpubException(
         'Epub Parsing Exception: EPUB container at path "${EpubContainer.filepath}" did not have a <rootfiles> element',

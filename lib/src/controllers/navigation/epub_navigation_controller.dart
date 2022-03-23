@@ -1,7 +1,7 @@
 part of shu_epub.controllers;
 
 /// Controller to parse the EPUB navigation XML document.
-class EpubNavigationController with LanguageMixin {
+class EpubNavigationController with LanguageMixin, VersionMixin {
   @override
   final XmlElement element;
 
@@ -48,10 +48,6 @@ class EpubNavigationController with LanguageMixin {
     }
 
     return EpubNavigationController.fromXmlElement(ncxElement);
-  }
-
-  String? getVersion() {
-    return element.getAttribute('version');
   }
 
   EpubNavigationHead? getHead() {
