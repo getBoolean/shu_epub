@@ -33,7 +33,7 @@ void main() {
 
   group('getClassType', () {
     test(
-      'on input without a classType attribute, expect a null value',
+      'on input without a class attribute, expect a null value',
       () async {
         final input = '''
   <navTarget></navTarget>
@@ -46,10 +46,10 @@ void main() {
     );
 
     test(
-      'on input with a classType attribute, expect the String value',
+      'on input with a class attribute, expect the String value',
       () async {
         final input = '''
-  <navTarget classType="test"></navTarget>
+  <navTarget class="test"></navTarget>
   ''';
         final controller = EpubNavigationTargetController.fromString(input);
         final expectedValue = 'test';
