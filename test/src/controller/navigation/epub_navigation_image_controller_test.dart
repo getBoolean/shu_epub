@@ -18,7 +18,7 @@ void main() {
     );
 
     test(
-      'on input with a src element, expect a src object',
+      'on input with a src element, expect the String value',
       () async {
         final input = '''
   <img src="test">
@@ -48,7 +48,7 @@ void main() {
     );
 
     test(
-      'on input with a src attribute, expect a src object',
+      'on input with a src attribute, expect the String value',
       () async {
         final input = '''
   <img src="test"></img>
@@ -77,7 +77,7 @@ void main() {
     );
 
     test(
-      'on input with a id attribute, expect a id object',
+      'on input with a id attribute, expect the String value',
       () async {
         final input = '''
   <img id="test"></img>

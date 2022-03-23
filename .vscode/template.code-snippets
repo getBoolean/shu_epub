@@ -212,7 +212,7 @@
 			"  );",
 			"",
 			"  test(",
-			"    'on input with a ${4:elementName} attribute, expect a ${4:elementName} object',",
+			"    'on input with a ${4:elementName} attribute, expect the String value',",
 			"    () async {",
 			"      final input = '''",
 			"<${3:rootElementName} ${4:elementName}=\"test\"></${3:rootElementName}>",
