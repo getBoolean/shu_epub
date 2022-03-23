@@ -1,6 +1,8 @@
 part of shu_epub.models;
 
 class EpubNavigationDocumentTitle extends Equatable {
+  static const elementName = 'docTitle';
+  
   final String? id;
   final String? language;
   final String? text;
