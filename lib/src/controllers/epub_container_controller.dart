@@ -1,13 +1,10 @@
 part of shu_epub.controllers;
 
 class EpubContainerController with VersionMixin {
-  final XmlDocument xmlDocument;
-  
   @override
   final XmlElement element;
 
   const EpubContainerController._internal({
-    required this.xmlDocument,
     required this.element,
   });
 
@@ -27,7 +24,6 @@ class EpubContainerController with VersionMixin {
     final XmlElement containerElement =
         _getContainerElementFromXmlDocument(xmlDocument);
     return EpubContainerController._internal(
-      xmlDocument: xmlDocument,
       element: containerElement,
     );
   }
