@@ -2,6 +2,8 @@ part of shu_epub.models;
 
 /// Meta Element - metadata about this NCX
 class EpubNavigationMeta extends Equatable {
+  static const elementName = 'meta';
+  
   /// Due to combatibility reasons, the required meta element's name should be `dtb:id`
   final String? name;
   final String? content;
