@@ -40,8 +40,7 @@ class EpubNavigationContent extends Equatable {
       EpubNavigationContent.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'EpubNavigationContent(source: $source, id: $id)';
+  String toString() => 'EpubNavigationContent(source: $source, id: $id)';
 
   @override
   List<Object> get props => [source ?? 'no source', id ?? 'no id'];

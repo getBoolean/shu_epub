@@ -18,16 +18,16 @@ class EpubNavigationMap extends Equatable {
   final List<EpubNavigationPoint> navigationPoints;
 
   /// Create an [EpubNavigationMap] object from the navMap XmlElement.
-  /// 
+  ///
   /// Throws [EpubException] if the navMap element is not the root node
   factory EpubNavigationMap.fromXmlElement(XmlElement element) {
     return EpubNavigationMapReader.fromXmlElement(element);
   }
-  
+
   factory EpubNavigationMap.fromString(String navMap) {
     return EpubNavigationMapReader.fromString(navMap);
   }
-  
+
   /// Create an instance of [EpubNavigationMap] from the [Uint8List] data
   /// of the navMap element in the navigation file.
   ///

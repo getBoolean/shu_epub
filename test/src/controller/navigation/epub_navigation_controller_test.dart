@@ -2,7 +2,6 @@ import 'package:shu_epub/shu_epub.dart';
 import 'package:test/test.dart';
 
 void main() {
-
   group('getVersion', () {
     test(
       'on input and version attribute exists, expect a non null String',

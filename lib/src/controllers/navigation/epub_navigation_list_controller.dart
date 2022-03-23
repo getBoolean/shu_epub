@@ -10,7 +10,8 @@ class EpubNavigationListController {
   });
 
   /// Throws [EpubException] if the navList element is not the root node
-  factory EpubNavigationListController.fromXmlElement(XmlElement navListElement) {
+  factory EpubNavigationListController.fromXmlElement(
+      XmlElement navListElement) {
     if (navListElement.name.qualified != elementName) {
       throw EpubException(
         'Invalid data, expected $elementName to be the root node but it was not found',
@@ -21,6 +22,7 @@ class EpubNavigationListController {
       navListElement: navListElement,
     );
   }
+
   /// Create an instance of [EpubNavigationListController] from the [String] representation
   /// of the navMap element
   ///
@@ -66,5 +68,4 @@ class EpubNavigationListController {
   List<EpubNavigationTarget> getNavigationTargets() {
     throw UnimplementedError();
   }
-  
 }

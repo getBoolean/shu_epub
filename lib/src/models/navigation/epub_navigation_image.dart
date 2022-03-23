@@ -50,8 +50,10 @@ class EpubNavigationImage extends Equatable {
       EpubNavigationImage.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubNavigationImage(id: $id, classType: $classType, source: $source)';
+  String toString() =>
+      'EpubNavigationImage(id: $id, classType: $classType, source: $source)';
 
   @override
-  List<Object> get props => [id ?? 'no id', classType ?? 'no classType', source];
+  List<Object> get props =>
+      [id ?? 'no id', classType ?? 'no classType', source];
 }

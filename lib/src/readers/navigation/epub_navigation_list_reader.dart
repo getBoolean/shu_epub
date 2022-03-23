@@ -1,9 +1,8 @@
 part of shu_epub.readers;
 
 class EpubNavigationListReader {
-
   /// Create an [EpubNavigationList] object from the navList XmlElement.
-  /// 
+  ///
   /// Throws [EpubException] if the navList element is not the root node
   static EpubNavigationList fromXmlElement(XmlElement element) {
     final controller = EpubNavigationListController.fromXmlElement(element);

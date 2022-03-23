@@ -88,7 +88,7 @@
 			"class ${1}Reader {",
 			"",
 			"  /// Create an [${1}] object from the ${2} XmlElement.",
-			"  /// ",
+			"  ///",
 			"  /// Throws [EpubException] if the ${2} element is not the root node",
 			"  static ${1} fromXmlElement(XmlElement ${2}Element) {",
 			"    final controller = ${1}Controller.fromXmlElement(${2}Element);",

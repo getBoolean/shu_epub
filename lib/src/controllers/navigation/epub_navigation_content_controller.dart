@@ -10,7 +10,8 @@ class EpubNavigationContentController {
   });
 
   /// Throws [EpubException] if the content element is not the root node
-  factory EpubNavigationContentController.fromXmlElement(XmlElement contentElement) {
+  factory EpubNavigationContentController.fromXmlElement(
+      XmlElement contentElement) {
     if (contentElement.name.qualified != elementName) {
       throw EpubException(
         'Invalid data, expected $elementName to be the root node but it was not found',
