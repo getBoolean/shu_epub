@@ -4,7 +4,7 @@ class EpubGuide extends Equatable {
   final List<EpubGuideItem> items;
 
   const EpubGuide({
-    required this.items,
+    this.items = const [],
   });
 
   EpubGuide copyWith({
