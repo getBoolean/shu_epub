@@ -51,5 +51,6 @@ class EpubNavigationMeta extends Equatable {
       'EpubNagivationMeta(name: $name, content: $content, scheme: $scheme)';
 
   @override
-  List<Object> get props => [name, content ?? 'no content', scheme ?? 'no scheme specified'];
+  List<Object> get props =>
+      [name, content ?? 'no content', scheme ?? 'no scheme specified'];
 }

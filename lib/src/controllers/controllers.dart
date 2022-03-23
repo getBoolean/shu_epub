@@ -19,3 +19,4 @@ part 'navigation/epub_navigation_document_author_controller.dart';
 part 'navigation/epub_navigation_document_title_controller.dart';
 part 'navigation/epub_navigation_head_controller.dart';
 part 'navigation/epub_navigation_image_controller.dart';
+part 'navigation/epub_navigation_info_controller.dart';
