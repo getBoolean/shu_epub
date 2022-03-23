@@ -84,12 +84,31 @@ class EpubPackage extends Equatable {
   /// for various reading purposes, reader expertise levels, etc.
   final EpubTours? tours;
 
-  factory EpubPackage.fromData(Uint8List data) {
-    return EpubPackageReader.fromData(data);
-  }
-
   factory EpubPackage.fromArchiveFile(ArchiveFile archiveFile) {
     return EpubPackageReader.fromArchiveFile(archiveFile);
+  }
+
+  /// Create an [EpubPackage] object from the package XmlElement.
+  ///
+  /// Throws [EpubException] if the package element is not the root node
+  factory EpubPackage.fromXmlElement(XmlElement packageElement) {
+    return EpubPackageReader.fromXmlElement(packageElement);
+  }
+  
+  /// Create an instance of [EpubPackage] from the [String] representation
+  /// of the package element
+  ///
+  /// Throws [EpubException] if the string does not have the package element
+  factory EpubPackage.fromString(String packageString) {
+    return EpubPackageReader.fromString(packageString);
+  }
+  
+  /// Create an instance of [EpubPackage] from the [Uint8List] data
+  /// of the package element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the package element
+  factory EpubPackage.fromData(Uint8List packageData) {
+    return EpubPackageReader.fromData(packageData);
   }
 
   // GENERATED DO NOT MODOFY
