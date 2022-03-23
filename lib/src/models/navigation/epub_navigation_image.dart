@@ -6,6 +6,25 @@ class EpubNavigationImage extends Equatable {
   final String? classType;
   final String? source;
 
+  /// Create an [EpubNavigationImage] object from the img XmlElement.
+  ///
+  /// Throws [EpubException] if the img element is not the root node
+  factory EpubNavigationImage.fromXmlElement(XmlElement imgElement) {
+    return EpubNavigationImageReader.fromXmlElement(imgElement);
+  }
+
+  factory EpubNavigationImage.fromString(String imgString) {
+    return EpubNavigationImageReader.fromString(imgString);
+  }
+
+  /// Create an instance of [EpubNavigationImage] from the [Uint8List] data
+  /// of the img element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the img element
+  factory EpubNavigationImage.fromData(Uint8List imgData) {
+    return EpubNavigationImageReader.fromData(imgData);
+  }
+
   const EpubNavigationImage({
     this.id,
     this.classType,

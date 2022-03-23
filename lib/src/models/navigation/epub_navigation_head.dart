@@ -8,6 +8,25 @@ class EpubNavigationHead extends Equatable {
   /// of that meta remains `dtb:id`.
   final List<EpubNavigationMeta> metadata;
 
+  /// Create an [EpubNavigationHead] object from the head XmlElement.
+  ///
+  /// Throws [EpubException] if the head element is not the root node
+  factory EpubNavigationHead.fromXmlElement(XmlElement headElement) {
+    return EpubNavigationHeadReader.fromXmlElement(headElement);
+  }
+  
+  factory EpubNavigationHead.fromString(String headString) {
+    return EpubNavigationHeadReader.fromString(headString);
+  }
+  
+  /// Create an instance of [EpubNavigationHead] from the [Uint8List] data
+  /// of the head element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the head element
+  factory EpubNavigationHead.fromData(Uint8List headData) {
+    return EpubNavigationHeadReader.fromData(headData);
+  }
+
   const EpubNavigationHead({
     this.metadata = const [],
   });

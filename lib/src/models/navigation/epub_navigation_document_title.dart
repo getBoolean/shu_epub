@@ -6,6 +6,25 @@ class EpubNavigationDocumentTitle extends Equatable {
   final String? text;
   final EpubNavigationImage? image;
 
+  /// Create an [EpubNavigationDocumentTitle] object from the docTitle XmlElement.
+  ///
+  /// Throws [EpubException] if the docTitle element is not the root node
+  factory EpubNavigationDocumentTitle.fromXmlElement(XmlElement docTitleElement) {
+    return EpubNavigationDocumentTitleReader.fromXmlElement(docTitleElement);
+  }
+  
+  factory EpubNavigationDocumentTitle.fromString(String docTitleString) {
+    return EpubNavigationDocumentTitleReader.fromString(docTitleString);
+  }
+  
+  /// Create an instance of [EpubNavigationDocumentTitle] from the [Uint8List] data
+  /// of the docTitle element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the docTitle element
+  factory EpubNavigationDocumentTitle.fromData(Uint8List docTitleData) {
+    return EpubNavigationDocumentTitleReader.fromData(docTitleData);
+  }
+
   const EpubNavigationDocumentTitle({
     this.id,
     this.language,

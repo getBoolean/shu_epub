@@ -5,6 +5,25 @@ class EpubNavigationContent extends Equatable {
   final String? source;
   final String? id;
 
+  /// Create an [EpubNavigationContent] object from the content XmlElement.
+  ///
+  /// Throws [EpubException] if the content element is not the root node
+  factory EpubNavigationContent.fromXmlElement(XmlElement contentElement) {
+    return EpubNavigationContentReader.fromXmlElement(contentElement);
+  }
+
+  factory EpubNavigationContent.fromString(String contentString) {
+    return EpubNavigationContentReader.fromString(contentString);
+  }
+
+  /// Create an instance of [EpubNavigationContent] from the [Uint8List] data
+  /// of the content element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the content element
+  factory EpubNavigationContent.fromData(Uint8List contentData) {
+    return EpubNavigationContentReader.fromData(contentData);
+  }
+
   const EpubNavigationContent({
     this.source,
     this.id,

@@ -7,6 +7,25 @@ class EpubNavigationDocumentAuthor extends Equatable {
   final String? text;
   final EpubNavigationImage? image;
 
+  /// Create an [EpubNavigationDocumentAuthor] object from the docAuthor XmlElement.
+  ///
+  /// Throws [EpubException] if the docAuthor element is not the root node
+  factory EpubNavigationDocumentAuthor.fromXmlElement(XmlElement docAuthorElement) {
+    return EpubNavigationDocumentAuthorReader.fromXmlElement(docAuthorElement);
+  }
+  
+  factory EpubNavigationDocumentAuthor.fromString(String docAuthorString) {
+    return EpubNavigationDocumentAuthorReader.fromString(docAuthorString);
+  }
+  
+  /// Create an instance of [EpubNavigationDocumentAuthor] from the [Uint8List] data
+  /// of the docAuthor element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the docAuthor element
+  factory EpubNavigationDocumentAuthor.fromData(Uint8List docAuthorData) {
+    return EpubNavigationDocumentAuthorReader.fromData(docAuthorData);
+  }
+
   const EpubNavigationDocumentAuthor({
     this.id,
     this.language,
