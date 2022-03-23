@@ -336,12 +336,10 @@ class EpubPackageController {
   }
 
   EpubGuide? getGuide() {
-    // return EpubGuide.zero();
-    return null;
+    throw UnimplementedError();
   }
 
   EpubTours? getTours() {
-    // return EpubTours.zero();
-    return null;
+    throw UnimplementedError();
   }
 }
