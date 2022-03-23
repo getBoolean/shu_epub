@@ -46,11 +46,12 @@ class EpubContainerController {
     try {
       // Find container element which MUST have namespace `http://www.idpf.org/2007/opf`
       final container = document
-          .findAllElements(
-            EpubXMLConstants.kContainerName,
-            namespace: EpubXMLConstants.kContainerNamespace,
-          )
-          .firstOrNull;
+              .findAllElements(
+                EpubXMLConstants.kContainerName,
+                namespace: EpubXMLConstants.kContainerNamespace,
+              )
+              .firstOrNull ??
+          document.findAllElements(EpubXMLConstants.kContainerName).firstOrNull;
 
       if (container == null) {
         throw EpubException(

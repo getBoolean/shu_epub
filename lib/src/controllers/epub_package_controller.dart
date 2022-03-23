@@ -73,9 +73,10 @@ class EpubPackageController {
     try {
       // Find container element which MUST have namespace `http://www.idpf.org/2007/opf`
       final package = document
-          .findAllElements(EpubXMLConstants.kPackageName,
-              namespace: EpubXMLConstants.kPackageNamespace)
-          .firstOrNull;
+              .findAllElements(EpubXMLConstants.kPackageName,
+                  namespace: EpubXMLConstants.kPackageNamespace)
+              .firstOrNull ??
+          document.findAllElements(EpubXMLConstants.kPackageName).firstOrNull;
 
       if (package == null) {
         throw EpubException(
