@@ -57,8 +57,7 @@ class EpubGuideController {
   }
 
   List<EpubGuideItem> getItems() {
-    final guideItemElements =
-        element.findElements(EpubGuideItem.elementName);
+    final guideItemElements = element.findElements(EpubGuideItem.elementName);
 
     return guideItemElements.map(EpubGuideItem.fromXmlElement).toList();
   }

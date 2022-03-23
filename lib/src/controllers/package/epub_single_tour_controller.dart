@@ -57,8 +57,7 @@ class EpubSingleTourController {
   }
 
   List<EpubTourSite> getSites() {
-    final siteElements =
-        element.findElements(EpubTourSite.elementName);
+    final siteElements = element.findElements(EpubTourSite.elementName);
 
     return siteElements.map(EpubTourSite.fromXmlElement).toList();
   }

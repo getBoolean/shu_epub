@@ -12,11 +12,11 @@ void main() {
   ''';
         final controller = EpubGuideController.fromString(input);
         final actualValue = controller.getItems();
-  
+
         expect(actualValue, isEmpty);
       },
     );
-  
+
     test(
       'on input with one reference element, expect a list of length 1 with it',
       () async {
@@ -29,7 +29,7 @@ void main() {
         final controller = EpubGuideController.fromString(input);
         final expectedValue = [EpubGuideItem()];
         final actualValue = controller.getItems();
-  
+
         expect(actualValue, expectedValue);
       },
     );

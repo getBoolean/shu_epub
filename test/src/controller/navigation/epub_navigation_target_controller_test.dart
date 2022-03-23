@@ -99,11 +99,11 @@ void main() {
   ''';
         final controller = EpubNavigationTargetController.fromString(input);
         final actualValue = controller.getContent();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a content element, expect a content object',
       () async {
@@ -116,7 +116,7 @@ void main() {
         final controller = EpubNavigationTargetController.fromString(input);
         final expectedValue = EpubNavigationContent();
         final actualValue = controller.getContent();
-  
+
         expect(actualValue, expectedValue);
       },
     );

@@ -12,11 +12,11 @@ void main() {
   ''';
         final controller = EpubSingleTourController.fromString(input);
         final actualValue = controller.getSites();
-  
+
         expect(actualValue, isEmpty);
       },
     );
-  
+
     test(
       'on input with one site element, expect a list of length 1 with it',
       () async {
@@ -29,7 +29,7 @@ void main() {
         final controller = EpubSingleTourController.fromString(input);
         final expectedValue = [EpubTourSite()];
         final actualValue = controller.getSites();
-  
+
         expect(actualValue, expectedValue);
       },
     );

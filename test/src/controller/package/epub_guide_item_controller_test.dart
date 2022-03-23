@@ -11,11 +11,11 @@ void main() {
   ''';
         final controller = EpubGuideItemController.fromString(input);
         final actualValue = controller.getTitle();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a title attribute, expect the String value',
       () async {
@@ -25,7 +25,7 @@ void main() {
         final controller = EpubGuideItemController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getTitle();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -40,11 +40,11 @@ void main() {
   ''';
         final controller = EpubGuideItemController.fromString(input);
         final actualValue = controller.getType();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a type attribute, expect the String value',
       () async {
@@ -54,7 +54,7 @@ void main() {
         final controller = EpubGuideItemController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getType();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -69,11 +69,11 @@ void main() {
   ''';
         final controller = EpubGuideItemController.fromString(input);
         final actualValue = controller.getHref();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a href attribute, expect the String value',
       () async {
@@ -83,7 +83,7 @@ void main() {
         final controller = EpubGuideItemController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getHref();
-  
+
         expect(actualValue, expectedValue);
       },
     );

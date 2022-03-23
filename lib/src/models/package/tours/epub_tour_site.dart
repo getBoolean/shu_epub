@@ -25,7 +25,7 @@ class EpubTourSite extends Equatable {
   factory EpubTourSite.fromXmlElement(XmlElement siteElement) {
     return EpubTourSiteReader.fromXmlElement(siteElement);
   }
-  
+
   /// Create an instance of [EpubTourSite] from the [String] representation
   /// of the site element
   ///
@@ -33,7 +33,7 @@ class EpubTourSite extends Equatable {
   factory EpubTourSite.fromString(String siteString) {
     return EpubTourSiteReader.fromString(siteString);
   }
-  
+
   /// Create an instance of [EpubTourSite] from the [Uint8List] data
   /// of the site element in the navigation file.
   ///

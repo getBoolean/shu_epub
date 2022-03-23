@@ -32,7 +32,7 @@ class EpubGuideItem extends Equatable {
   factory EpubGuideItem.fromXmlElement(XmlElement referenceElement) {
     return EpubGuideItemReader.fromXmlElement(referenceElement);
   }
-  
+
   /// Create an instance of [EpubGuideItem] from the [String] representation
   /// of the reference element
   ///
@@ -40,7 +40,7 @@ class EpubGuideItem extends Equatable {
   factory EpubGuideItem.fromString(String referenceString) {
     return EpubGuideItemReader.fromString(referenceString);
   }
-  
+
   /// Create an instance of [EpubGuideItem] from the [Uint8List] data
   /// of the reference element in the navigation file.
   ///
@@ -92,5 +92,6 @@ class EpubGuideItem extends Equatable {
   String toString() => 'EpubGuideItem(type: $type, title: $title, href: $href)';
 
   @override
-  List<Object> get props => [type ?? 'no type', title ?? 'no title', href ?? 'no href'];
+  List<Object> get props =>
+      [type ?? 'no type', title ?? 'no title', href ?? 'no href'];
 }

@@ -1,7 +1,6 @@
 part of shu_epub.readers;
 
 class EpubSingleTourReader {
-
   /// Create an [EpubSingleTour] object from the tour XmlElement.
   ///
   /// Throws [EpubException] if the tour element is not the root node

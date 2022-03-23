@@ -4,8 +4,7 @@ mixin TextImageMixin {
   XmlElement get element;
 
   String? getText() {
-    final textElement =
-        element.findElements('text').firstOrNull;
+    final textElement = element.findElements('text').firstOrNull;
     if (textElement == null) {
       return null;
     }

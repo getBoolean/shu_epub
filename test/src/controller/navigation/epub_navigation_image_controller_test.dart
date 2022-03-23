@@ -42,11 +42,11 @@ void main() {
   ''';
         final controller = EpubNavigationImageController.fromString(input);
         final actualValue = controller.getClassType();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a class attribute, expect the String value',
       () async {
@@ -56,7 +56,7 @@ void main() {
         final controller = EpubNavigationImageController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getClassType();
-  
+
         expect(actualValue, expectedValue);
       },
     );

@@ -57,8 +57,7 @@ class EpubToursController {
   }
 
   List<EpubSingleTour> getItems() {
-    final navLabelElements =
-        element.findElements(EpubSingleTour.elementName);
+    final navLabelElements = element.findElements(EpubSingleTour.elementName);
 
     return navLabelElements.map(EpubSingleTour.fromXmlElement).toList();
   }

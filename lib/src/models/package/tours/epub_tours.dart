@@ -2,7 +2,7 @@ part of shu_epub.models;
 
 class EpubTours extends Equatable {
   static const elementName = 'tours';
-  
+
   final List<EpubSingleTour> items;
 
   /// Create an [EpubTours] object from the tours XmlElement.
@@ -11,7 +11,7 @@ class EpubTours extends Equatable {
   factory EpubTours.fromXmlElement(XmlElement toursElement) {
     return EpubToursReader.fromXmlElement(toursElement);
   }
-  
+
   /// Create an instance of [EpubTours] from the [String] representation
   /// of the tours element
   ///
@@ -19,7 +19,7 @@ class EpubTours extends Equatable {
   factory EpubTours.fromString(String toursString) {
     return EpubToursReader.fromString(toursString);
   }
-  
+
   /// Create an instance of [EpubTours] from the [Uint8List] data
   /// of the tours element in the navigation file.
   ///

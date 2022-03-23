@@ -11,7 +11,7 @@ class EpubSingleTour extends Equatable {
   factory EpubSingleTour.fromXmlElement(XmlElement tourElement) {
     return EpubSingleTourReader.fromXmlElement(tourElement);
   }
-  
+
   /// Create an instance of [EpubSingleTour] from the [String] representation
   /// of the tour element
   ///
@@ -19,7 +19,7 @@ class EpubSingleTour extends Equatable {
   factory EpubSingleTour.fromString(String tourString) {
     return EpubSingleTourReader.fromString(tourString);
   }
-  
+
   /// Create an instance of [EpubSingleTour] from the [Uint8List] data
   /// of the tour element in the navigation file.
   ///

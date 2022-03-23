@@ -1,7 +1,6 @@
 part of shu_epub.readers;
 
 class EpubGuideReader {
-
   /// Create an [EpubGuide] object from the guide XmlElement.
   ///
   /// Throws [EpubException] if the guide element is not the root node

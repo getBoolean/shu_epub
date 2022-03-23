@@ -2,7 +2,7 @@ part of shu_epub.models;
 
 class EpubGuide extends Equatable {
   static const elementName = 'guide';
-  
+
   final List<EpubGuideItem> items;
 
   /// Create an [EpubGuide] object from the guide XmlElement.
@@ -11,7 +11,7 @@ class EpubGuide extends Equatable {
   factory EpubGuide.fromXmlElement(XmlElement guideElement) {
     return EpubGuideReader.fromXmlElement(guideElement);
   }
-  
+
   /// Create an instance of [EpubGuide] from the [String] representation
   /// of the guide element
   ///
@@ -19,7 +19,7 @@ class EpubGuide extends Equatable {
   factory EpubGuide.fromString(String guideString) {
     return EpubGuideReader.fromString(guideString);
   }
-  
+
   /// Create an instance of [EpubGuide] from the [Uint8List] data
   /// of the guide element in the navigation file.
   ///
