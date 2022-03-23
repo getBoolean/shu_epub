@@ -3,7 +3,7 @@ part of shu_epub.models;
 /// Image Element - image that may accompany heading.
 class EpubNavigationImage extends Equatable {
   static const elementName = 'img';
-  
+
   final String? id;
   final String? classType;
   final String? source;

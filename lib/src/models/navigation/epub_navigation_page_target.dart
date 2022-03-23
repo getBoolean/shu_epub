@@ -7,7 +7,7 @@ part of shu_epub.models;
 /// value attribute is present.
 class EpubNavigationPageTarget extends Equatable {
   static const elementName = 'pageTarget';
-  
+
   final String? id;
   final String? value;
   // enum
