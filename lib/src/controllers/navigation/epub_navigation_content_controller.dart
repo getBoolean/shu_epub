@@ -59,6 +59,6 @@ class EpubNavigationContentController with IdMixin {
   }
 
   String? getSource() {
-    throw UnimplementedError();
+    return element.getAttribute('src');
   }
 }
