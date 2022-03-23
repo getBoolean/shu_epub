@@ -6,7 +6,7 @@ class EpubNavigationContent extends Equatable {
   final String? id;
 
   const EpubNavigationContent({
-    required this.source,
+    this.source,
     this.id,
   });
 
