@@ -17,10 +17,8 @@ class EpubPackageReader {
 
     final spine = controller.getSpine();
 
-    // TODO(@getBoolean): Parse guide
     final guide = controller.getGuide();
 
-    // TODO(@getBoolean): Parse tours
     final tours = controller.getTours();
 
     return EpubPackage(

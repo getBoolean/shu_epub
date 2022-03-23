@@ -1,7 +1,9 @@
 part of shu_epub.models;
 
 class EpubTourSite extends Equatable {
-  final String title;
+  static const elementName = 'site';
+
+  final String? title;
 
   /// Must refer to an OPS Content Document included in the manifest,
   /// and may include a fragment identifier as defined in section
@@ -15,11 +17,34 @@ class EpubTourSite extends Equatable {
   /// of a referenced element. The order of site elements is presumed
   /// to be significant, and should be used by Reading Systems to aid
   /// navigation.
-  final String href;
+  final String? href;
+
+  /// Create an [EpubTourSite] object from the site XmlElement.
+  ///
+  /// Throws [EpubException] if the site element is not the root node
+  factory EpubTourSite.fromXmlElement(XmlElement siteElement) {
+    return EpubTourSiteReader.fromXmlElement(siteElement);
+  }
+  
+  /// Create an instance of [EpubTourSite] from the [String] representation
+  /// of the site element
+  ///
+  /// Throws [EpubException] if the string does not have the site element
+  factory EpubTourSite.fromString(String siteString) {
+    return EpubTourSiteReader.fromString(siteString);
+  }
+  
+  /// Create an instance of [EpubTourSite] from the [Uint8List] data
+  /// of the site element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the site element
+  factory EpubTourSite.fromData(Uint8List siteData) {
+    return EpubTourSiteReader.fromData(siteData);
+  }
 
   const EpubTourSite({
-    required this.title,
-    required this.href,
+    this.title,
+    this.href,
   });
 
   EpubTourSite copyWith({
@@ -35,7 +60,7 @@ class EpubTourSite extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'title': title,
-      'htmlReference': href,
+      'href': href,
     };
   }
 
@@ -55,5 +80,5 @@ class EpubTourSite extends Equatable {
   String toString() => 'EpubTourSite(title: $title, href: $href)';
 
   @override
-  List<Object> get props => [title, href];
+  List<Object> get props => [title ?? 'no title', href ?? 'no href'];
 }

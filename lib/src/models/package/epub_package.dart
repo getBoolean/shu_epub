@@ -66,8 +66,6 @@ class EpubPackage extends Equatable {
   final EpubManifest manifest;
 
   /// An arrangement of documents providing a linear reading order.
-  ///
-  /// TODO(@getBoolean): Model, Implementation
   final EpubSpine spine;
 
   /// A set of references to fundamental structural features of the publication, such
@@ -78,16 +76,12 @@ class EpubPackage extends Equatable {
   /// publication, to enable Reading Systems to provide convenient access to them.
   ///
   /// http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.6
-  ///
-  /// TODO(@getBoolean): Implementation
   final EpubGuide? guide;
 
   /// Deprecated in Epub 2.0.1
   ///
   /// A set of alternate reading sequences through the publication, such as selective views
   /// for various reading purposes, reader expertise levels, etc.
-  ///
-  /// TODO(@getBoolean): Implementation
   final EpubTours? tours;
 
   factory EpubPackage.fromData(Uint8List data) {

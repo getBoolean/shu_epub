@@ -352,8 +352,6 @@ class EpubPackageController {
       return null;
     }
 
-    throw UnimplementedError();
-
-    // return EpubTours.fromXmlElement(toursElement);
+    return EpubTours.fromXmlElement(toursElement);
   }
 }

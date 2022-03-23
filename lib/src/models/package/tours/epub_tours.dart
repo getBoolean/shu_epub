@@ -5,6 +5,29 @@ class EpubTours extends Equatable {
   
   final List<EpubSingleTour> items;
 
+  /// Create an [EpubTours] object from the tours XmlElement.
+  ///
+  /// Throws [EpubException] if the tours element is not the root node
+  factory EpubTours.fromXmlElement(XmlElement toursElement) {
+    return EpubToursReader.fromXmlElement(toursElement);
+  }
+  
+  /// Create an instance of [EpubTours] from the [String] representation
+  /// of the tours element
+  ///
+  /// Throws [EpubException] if the string does not have the tours element
+  factory EpubTours.fromString(String toursString) {
+    return EpubToursReader.fromString(toursString);
+  }
+  
+  /// Create an instance of [EpubTours] from the [Uint8List] data
+  /// of the tours element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the tours element
+  factory EpubTours.fromData(Uint8List toursData) {
+    return EpubToursReader.fromData(toursData);
+  }
+
   const EpubTours({
     this.items = const [],
   });
