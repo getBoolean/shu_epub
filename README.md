@@ -54,33 +54,33 @@ EPUB loaded into memory. This allows the device to save memory.
   * **EpubContentsController**
     * Given file content bytes and the type and content it is (such as `.xhtml`)
 
-* [ ] EpubContainerController
+* [x] EpubContainerController
   * [x] Default constructor from Uint8List
   * [x] fromString factory
   * [x] getVersion
   * [x] getRootfiles
-  * [ ] Tests
-* [ ] EpubPackageController
+  * [x] Tests
+* [x] EpubPackageController
   * [x] Default constructor from Uint8List
   * [x] fromString factory
   * [x] getPackageIdentity
   * [x] getPublicationMetadata
   * [x] getManifest
   * [x] getSpine
-  * [ ] getGuide
-  * [ ] getTours
+  * [x] getGuide
+  * [x] getTours
   * [ ] Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2), removed in Epub 3
-* [ ] EpubNavigationController
+* [x] EpubNavigationController
   * [x] Default constructor from Uint8List
   * [x] fromString factory
-  * [ ] getVersion
-  * [ ] getLanguage
-  * [ ] getHead
-  * [ ] getDocTitle
-  * [ ] getDocAuthors
-  * [ ] getNavigationMap
-  * [ ] getPageList
-  * [ ] getNavigationLists
+  * [x] getVersion
+  * [x] getLanguage
+  * [x] getHead
+  * [x] getDocTitle
+  * [x] getDocAuthors
+  * [x] getNavigationMap
+  * [x] getPageList
+  * [x] getNavigationLists
 * [ ] Publication/Content Controller
 * [ ] EpubBook class to simplify access to Epub content and metadata
 * [ ] CFI Generator
