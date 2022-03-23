@@ -1,6 +1,6 @@
 part of shu_epub.controllers;
 
-class EpubNavigationInfoController {
+class EpubNavigationInfoController with TextImageLangugaeMixin {
   final XmlElement navInfoElement;
 
   static const elementName = 'navInfo';
@@ -55,17 +55,5 @@ class EpubNavigationInfoController {
     return EpubNavigationInfoController.fromXmlElement(
       navInfoElement,
     );
-  }
-
-  String? getText() {
-    throw UnimplementedError();
-  }
-
-  String? getLanguage() {
-    throw UnimplementedError();
-  }
-
-  EpubNavigationImage? getImage() {
-    throw UnimplementedError();
   }
 }

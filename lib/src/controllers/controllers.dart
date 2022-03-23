@@ -20,3 +20,5 @@ part 'navigation/epub_navigation_document_title_controller.dart';
 part 'navigation/epub_navigation_head_controller.dart';
 part 'navigation/epub_navigation_image_controller.dart';
 part 'navigation/epub_navigation_info_controller.dart';
+part 'navigation/epub_navigation_label_controller.dart';
+part 'navigation/text_image__language_mixin.dart';
