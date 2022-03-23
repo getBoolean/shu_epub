@@ -59,6 +59,9 @@ class EpubNavigationMapController
   }
 
   List<EpubNavigationPoint> getNavigationPoints() {
-    throw UnimplementedError();
+    final navListElements =
+        element.findElements(EpubNavigationPoint.elementName);
+
+    return navListElements.map(EpubNavigationPoint.fromXmlElement).toList();
   }
 }
