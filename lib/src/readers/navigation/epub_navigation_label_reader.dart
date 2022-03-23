@@ -30,7 +30,7 @@ class EpubNavigationLabelReader {
     final text = controller.getText();
     final image = controller.getImage();
     final language = controller.getLanguage();
-    
+
     return EpubNavigationLabel(
       text: text,
       image: image,

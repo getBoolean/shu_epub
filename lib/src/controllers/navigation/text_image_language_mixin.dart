@@ -1,7 +1,6 @@
 part of shu_epub.controllers;
 
 mixin TextImageLangugaeMixin {
-
   String? getText() {
     throw UnimplementedError();
   }
@@ -13,5 +12,4 @@ mixin TextImageLangugaeMixin {
   EpubNavigationImage? getImage() {
     throw UnimplementedError();
   }
-
 }
