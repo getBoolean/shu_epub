@@ -1,6 +1,6 @@
 part of shu_epub.controllers;
 
-class EpubNavigationListController with NavigationLabelListMixin {
+class EpubNavigationListController with NavigationLabelListMixin, NavigationInfoListMixin {
   @override
   final XmlElement element;
 
@@ -56,10 +56,6 @@ class EpubNavigationListController with NavigationLabelListMixin {
     return EpubNavigationListController.fromXmlElement(
       navListElement,
     );
-  }
-
-  List<EpubNavigationInfo> getNavigationInfoList() {
-    throw UnimplementedError();
   }
 
   List<EpubNavigationTarget> getNavigationTargets() {
