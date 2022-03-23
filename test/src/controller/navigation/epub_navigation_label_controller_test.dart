@@ -7,7 +7,7 @@ void main() {
       'on input without a lang attribute, expect a null value',
       () async {
         final input = '''
-  <navInfo></navInfo>
+  <navLabel></navLabel>
   ''';
         final controller = EpubNavigationLabelController.fromString(input);
         final actualValue = controller.getLanguage();
@@ -20,7 +20,7 @@ void main() {
       'on input with a lang attribute, expect the String value',
       () async {
         final input = '''
-  <navInfo lang="test"></navInfo>
+  <navLabel lang="test"></navLabel>
   ''';
         final controller = EpubNavigationLabelController.fromString(input);
         final expectedValue = 'test';
@@ -34,7 +34,7 @@ void main() {
       'on input with a xml:lang attribute, expect the String value',
       () async {
         final input = '''
-  <navInfo xml:lang="test"></navInfo>
+  <navLabel xml:lang="test"></navLabel>
   ''';
         final controller = EpubNavigationLabelController.fromString(input);
         final expectedValue = 'test';

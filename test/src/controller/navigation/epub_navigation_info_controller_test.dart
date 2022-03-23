@@ -50,8 +50,8 @@ void main() {
       'on input without a img element, expect a null value',
       () async {
         final input = '''
-  <navLabel>
-  </navLabel>
+  <navInfo>
+  </navInfo>
   ''';
         final controller = EpubNavigationInfoController.fromString(input);
         final actualValue = controller.getImage();
@@ -64,10 +64,10 @@ void main() {
       'on input with a img element, expect a img object',
       () async {
         final input = '''
-  <navLabel>
+  <navInfo>
       <img>
       </img>
-  </navLabel>
+  </navInfo>
   ''';
         final controller = EpubNavigationInfoController.fromString(input);
         final expectedValue = EpubNavigationImage();
@@ -83,8 +83,8 @@ void main() {
       'on input without a text element, expect a null value',
       () async {
         final input = '''
-  <navLabel>
-  </navLabel>
+  <navInfo>
+  </navInfo>
   ''';
         final controller = EpubNavigationInfoController.fromString(input);
         final actualValue = controller.getText();
@@ -97,9 +97,9 @@ void main() {
       'on input with a text element with no text, expect an empty string',
       () async {
         final input = '''
-  <navLabel>
+  <navInfo>
       <text></text>
-  </navLabel>
+  </navInfo>
   ''';
         final controller = EpubNavigationInfoController.fromString(input);
         final actualValue = controller.getText();
@@ -112,9 +112,9 @@ void main() {
       'on input with a text element, expect the innerText value of the text element',
       () async {
         final input = '''
-  <navLabel>
+  <navInfo>
       <text>test</text>
-  </navLabel>
+  </navInfo>
   ''';
         final controller = EpubNavigationInfoController.fromString(input);
         final expectedValue = 'test';
