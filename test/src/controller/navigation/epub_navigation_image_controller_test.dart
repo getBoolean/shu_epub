@@ -33,30 +33,30 @@ void main() {
     );
   });
 
-  group('getClass', () {
+  group('getClassType', () {
     test(
-      'on input without a src attribute, expect a null value',
+      'on input without a class attribute, expect a null value',
       () async {
         final input = '''
   <img></img>
   ''';
         final controller = EpubNavigationImageController.fromString(input);
         final actualValue = controller.getClassType();
-
+  
         expect(actualValue, isNull);
       },
     );
-
+  
     test(
-      'on input with a src attribute, expect the String value',
+      'on input with a class attribute, expect the String value',
       () async {
         final input = '''
-  <img src="test"></img>
+  <img class="test"></img>
   ''';
         final controller = EpubNavigationImageController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getClassType();
-
+  
         expect(actualValue, expectedValue);
       },
     );
