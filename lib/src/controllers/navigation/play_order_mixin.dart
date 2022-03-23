@@ -4,6 +4,6 @@ mixin PlayOrderMixin {
   XmlElement get element;
 
   String? getPlayOrder() {
-    throw UnimplementedError();
+    return element.getAttribute('playOrder');
   }
 }
