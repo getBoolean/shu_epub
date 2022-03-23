@@ -4,6 +4,11 @@ mixin ContentMixin {
   XmlElement get element;
 
   EpubNavigationContent? getContent() {
-    throw UnimplementedError();
+    final contentElement = element.findElements(EpubNavigationContent.elementName).firstOrNull;
+    if (contentElement == null) {
+      return null;
+    }
+    
+    return EpubNavigationContent.fromXmlElement(contentElement);
   }
 }
