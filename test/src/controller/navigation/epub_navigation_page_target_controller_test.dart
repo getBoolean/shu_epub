@@ -75,10 +75,52 @@ void main() {
     );
 
     test(
-      'on input with a type attribute, expect the String value',
+      'on input with a type normal attribute, expect EpubNavigationPageTargetType.normal',
       () async {
         final input = '''
   <pageTarget type="normal"></pageTarget>
+  ''';
+        final controller = EpubNavigationPageTargetController.fromString(input);
+        final expectedValue = EpubNavigationPageTargetType.normal;
+        final actualValue = controller.getType();
+
+        expect(actualValue, expectedValue);
+      },
+    );
+
+    test(
+      'on input with a type front attribute, expect EpubNavigationPageTargetType.front',
+      () async {
+        final input = '''
+  <pageTarget type="front"></pageTarget>
+  ''';
+        final controller = EpubNavigationPageTargetController.fromString(input);
+        final expectedValue = EpubNavigationPageTargetType.front;
+        final actualValue = controller.getType();
+
+        expect(actualValue, expectedValue);
+      },
+    );
+
+    test(
+      'on input with a type special attribute, expect EpubNavigationPageTargetType.special',
+      () async {
+        final input = '''
+  <pageTarget type="special"></pageTarget>
+  ''';
+        final controller = EpubNavigationPageTargetController.fromString(input);
+        final expectedValue = EpubNavigationPageTargetType.special;
+        final actualValue = controller.getType();
+
+        expect(actualValue, expectedValue);
+      },
+    );
+
+    test(
+      'on input with a type attribute that is not one of the three specified, expect EpubNavigationPageTargetType.normal',
+      () async {
+        final input = '''
+  <pageTarget type=""></pageTarget>
   ''';
         final controller = EpubNavigationPageTargetController.fromString(input);
         final expectedValue = EpubNavigationPageTargetType.normal;
