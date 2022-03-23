@@ -26,3 +26,4 @@ part 'navigation/epub_navigation_label_reader.dart';
 part 'navigation/epub_navigation_meta_reader.dart';
 part 'navigation/epub_navigation_page_list_reader.dart';
 part 'navigation/epub_navigation_page_target_reader.dart';
+part 'navigation/epub_navigation_point_reader.dart';
