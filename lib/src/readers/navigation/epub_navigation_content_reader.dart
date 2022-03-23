@@ -10,6 +10,10 @@ class EpubNavigationContentReader {
     return _fromController(controller);
   }
 
+  /// Create an instance of [EpubNavigationContent] from the [String] representation
+  /// of the content element
+  ///
+  /// Throws [EpubException] if the string does not have the content element
   static EpubNavigationContent fromString(String contentString) {
     final controller =
         EpubNavigationContentController.fromString(contentString);

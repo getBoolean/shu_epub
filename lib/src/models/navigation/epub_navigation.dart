@@ -32,6 +32,29 @@ class EpubNavigation extends Equatable {
   /// [EpubNavigationMap].
   final List<EpubNavigationList> navigationLists;
 
+  /// Create an [EpubNavigation] object from the ncx XmlElement.
+  ///
+  /// Throws [EpubException] if the navigation element is not the root node
+  factory EpubNavigation.fromXmlElement(XmlElement navigationElement) {
+    return EpubNavigationReader.fromXmlElement(navigationElement);
+  }
+  
+  /// Create an instance of [EpubNavigation] from the [String] representation
+  /// of the navigation element
+  ///
+  /// Throws [EpubException] if the string does not have the navigation element
+  factory EpubNavigation.fromString(String navigationString) {
+    return EpubNavigationReader.fromString(navigationString);
+  }
+  
+  /// Create an instance of [EpubNavigation] from the [Uint8List] data
+  /// of the navigation element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the navigation element
+  factory EpubNavigation.fromData(Uint8List navigationData) {
+    return EpubNavigationReader.fromData(navigationData);
+  }
+
   const EpubNavigation({
     this.version,
     this.language,

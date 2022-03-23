@@ -1,19 +1,44 @@
 part of shu_epub.readers;
 
 class EpubNavigationReader {
+  /// Create an [EpubNavigation] object from the navigation XmlElement.
+  ///
+  /// Throws [EpubException] if the navigation element is not the root node
+  static EpubNavigation fromXmlElement(XmlElement navigationElement) {
+    final controller = EpubNavigationController.fromXmlElement(navigationElement);
+    return _fromController(controller);
+  }
+
+  /// Create an instance of [EpubNavigation] from the [String] representation
+  /// of the navigation element
+  ///
+  /// Throws [EpubException] if the string does not have the navigation element
+  static EpubNavigation fromString(String navigationString) {
+    final controller = EpubNavigationController.fromString(navigationString);
+    return _fromController(controller);
+  }
+
+  /// Create an [EpubNavigation] object from the navigation [ArchiveFile].
+  ///
+  /// Throws [EpubException] if the navigation element is not the root node
   static EpubNavigation fromArchiveFile(ArchiveFile archiveFile) {
     final data = archiveFile.content;
     return fromData(data);
   }
 
-  static EpubNavigation fromData(Uint8List data) {
-    final controller = EpubNavigationController(data);
+  /// Create an instance of [EpubNavigation] from the [Uint8List] data
+  /// of the navigation element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the navigation element
+  static EpubNavigation fromData(Uint8List navigationData) {
+    final controller = EpubNavigationController(navigationData);
+    return _fromController(controller);
+  }
 
+  static EpubNavigation _fromController(
+    EpubNavigationController controller,
+  ) {
     final ncxVersion = controller.getVersion();
-    if (ncxVersion != '2005-1') {
-      throw EpubException('NCX Version unsupported');
-    }
-
     final language = controller.getLanguage();
     final head = controller.getHead();
     final docTitle = controller.getDocTitle();
