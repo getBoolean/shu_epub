@@ -42,6 +42,8 @@ class EpubNavigationController with LanguageMixin, VersionMixin {
     final xmlDocument = XmlUtils.parseToXmlDocument(content);
     final ncxElement = xmlDocument
         .findElements('ncx', namespace: EpubNavigation.namespace)
+        .firstOrNull ?? xmlDocument
+        .findElements('ncx')
         .firstOrNull;
 
     if (ncxElement == null) {
