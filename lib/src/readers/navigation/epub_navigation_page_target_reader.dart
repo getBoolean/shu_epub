@@ -34,7 +34,7 @@ class EpubNavigationPageTargetReader {
       type: controller.getType(),
       classType: controller.getClassType(),
       playOrder: controller.getPlayOrder(),
-      labels: controller.getLabels(),
+      labels: controller.getNavigationLabels(),
       content: controller.getContent(),
     );
   }

@@ -1,6 +1,6 @@
 part of shu_epub.controllers;
 
-class EpubNavigationPageListController with IdMixin, ClassTypeMixin, LabelListMixin {
+class EpubNavigationPageListController with IdMixin, ClassTypeMixin, NavigationLabelListMixin {
   @override
   final XmlElement element;
 

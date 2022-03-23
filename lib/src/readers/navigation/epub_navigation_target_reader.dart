@@ -33,7 +33,7 @@ class EpubNavigationTargetReader {
       classType: controller.getClassType(),
       value: controller.getValue(),
       content: controller.getContent(),
-      labels: controller.getLabels(),
+      labels: controller.getNavigationLabels(),
     );
   }
 }

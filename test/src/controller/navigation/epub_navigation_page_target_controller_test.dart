@@ -156,7 +156,7 @@ void main() {
   </pageTarget>
   ''';
         final controller = EpubNavigationPageTargetController.fromString(input);
-        final actualValue = controller.getLabels();
+        final actualValue = controller.getNavigationLabels();
 
         expect(actualValue, isEmpty);
       },
@@ -173,7 +173,7 @@ void main() {
   ''';
         final controller = EpubNavigationPageTargetController.fromString(input);
         final expectedValue = [EpubNavigationLabel()];
-        final actualValue = controller.getLabels();
+        final actualValue = controller.getNavigationLabels();
 
         expect(actualValue, expectedValue);
       },

@@ -5,7 +5,7 @@ class EpubNavigationPageTargetController
         IdMixin,
         ClassTypeMixin,
         ValueMixin,
-        LabelListMixin,
+        NavigationLabelListMixin,
         ContentMixin,
         PlayOrderMixin {
   @override

@@ -1,9 +1,9 @@
 part of shu_epub.controllers;
 
-mixin LabelListMixin {
+mixin NavigationLabelListMixin {
   XmlElement get element;
 
-  List<EpubNavigationLabel> getLabels() {
+  List<EpubNavigationLabel> getNavigationLabels() {
     final navLabelElements =
         element.findElements(EpubNavigationLabel.elementName);
 

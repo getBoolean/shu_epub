@@ -34,5 +34,5 @@ part 'navigation/language_mixin.dart';
 part 'navigation/class_type_mixin.dart';
 part 'navigation/value_mixin.dart';
 part 'navigation/play_order_mixin.dart';
-part 'navigation/label_list_mixin.dart';
+part 'navigation/navigation_label_list_mixin.dart';
 part 'navigation/content_mixin.dart';

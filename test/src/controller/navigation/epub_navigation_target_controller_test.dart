@@ -127,7 +127,7 @@ void main() {
   </navTarget>
   ''';
         final controller = EpubNavigationTargetController.fromString(input);
-        final actualValue = controller.getLabels();
+        final actualValue = controller.getNavigationLabels();
 
         expect(actualValue, isEmpty);
       },
@@ -144,7 +144,7 @@ void main() {
   ''';
         final controller = EpubNavigationTargetController.fromString(input);
         final expectedValue = [EpubNavigationLabel()];
-        final actualValue = controller.getLabels();
+        final actualValue = controller.getNavigationLabels();
 
         expect(actualValue, expectedValue);
       },

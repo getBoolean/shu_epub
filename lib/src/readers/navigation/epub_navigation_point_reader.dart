@@ -32,7 +32,7 @@ class EpubNavigationPointReader {
       classType: controller.getClassType(),
       playOrder: controller.getPlayOrder(),
       content: controller.getContent(),
-      labels: controller.getLabels(),
+      labels: controller.getNavigationLabels(),
       childNavigationPoints: controller.getChildNavigationPoints(),
     );
   }
