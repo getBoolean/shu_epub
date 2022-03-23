@@ -1,9 +1,9 @@
 part of shu_epub.controllers;
 
-class EpubNavigationDocumentTitleController with IdMixin, TextImageMixin, LanguageMixin {
+class EpubNavigationDocumentTitleController
+    with IdMixin, TextImageMixin, LanguageMixin {
   @override
   final XmlElement element;
-
 
   static const elementName = 'docTitle';
 

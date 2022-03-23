@@ -4,7 +4,6 @@ class EpubNavigationImageController with IdMixin {
   @override
   final XmlElement element;
 
-
   static const elementName = 'img';
 
   const EpubNavigationImageController._internal({

@@ -2,7 +2,7 @@ part of shu_epub.controllers;
 
 mixin TextImageMixin {
   XmlElement get element;
-  
+
   String? getText() {
     throw UnimplementedError();
   }

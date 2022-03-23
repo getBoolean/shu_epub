@@ -1,17 +1,18 @@
 part of shu_epub.readers;
 
 class EpubNavigationPageListReader {
-
   /// Create an [EpubNavigationPageList] object from the pageList XmlElement.
   ///
   /// Throws [EpubException] if the pageList element is not the root node
   static EpubNavigationPageList fromXmlElement(XmlElement pageListElement) {
-    final controller = EpubNavigationPageListController.fromXmlElement(pageListElement);
+    final controller =
+        EpubNavigationPageListController.fromXmlElement(pageListElement);
     return _fromController(controller);
   }
 
   static EpubNavigationPageList fromString(String pageListString) {
-    final controller = EpubNavigationPageListController.fromString(pageListString);
+    final controller =
+        EpubNavigationPageListController.fromString(pageListString);
     return _fromController(controller);
   }
 
