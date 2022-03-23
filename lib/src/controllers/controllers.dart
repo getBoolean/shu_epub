@@ -15,3 +15,5 @@ part 'navigation/epub_navigation_controller.dart';
 part 'navigation/epub_navigation_map_controller.dart';
 part 'navigation/epub_navigation_list_controller.dart';
 part 'navigation/epub_navigation_content_controller.dart';
+part 'navigation/epub_navigation_document_author_controller.dart';
+part 'navigation/epub_navigation_document_title_controller.dart';
