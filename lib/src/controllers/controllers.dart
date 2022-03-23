@@ -5,6 +5,7 @@ import 'dart:typed_data';
 
 import 'package:xml/xml.dart';
 
+import '../enums/enums.dart';
 import '../models/models.dart';
 import '../utils/collection_utils.dart';
 import '../utils/xml_utils.dart';
@@ -23,7 +24,12 @@ part 'navigation/epub_navigation_info_controller.dart';
 part 'navigation/epub_navigation_label_controller.dart';
 part 'navigation/epub_navigation_meta_controller.dart';
 part 'navigation/epub_navigation_page_list_controller.dart';
+part 'navigation/epub_navigation_page_target_controller.dart';
 part 'navigation/text_image_mixin.dart';
 part 'navigation/id_mixin.dart';
 part 'navigation/language_mixin.dart';
 part 'navigation/class_type_mixin.dart';
+part 'navigation/value_mixin.dart';
+part 'navigation/play_order_mixin.dart';
+part 'navigation/label_list_mixin.dart';
+part 'navigation/content_mixin.dart';
