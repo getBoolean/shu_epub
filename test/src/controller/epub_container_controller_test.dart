@@ -20,7 +20,7 @@ void main() {
       'on input with a version attribute, expect the String value',
       () async {
         final input = '''
-  <container version="test"></container>
+  <container xmlns:svg="http://www.w3.org/2000/svg" xmlns="urn:oasis:names:tc:opendocument:xmlns:container" version="test"></container>
   ''';
         final controller = EpubContainerController.fromString(input);
         final expectedValue = 'test';
@@ -36,7 +36,7 @@ void main() {
       'on input without rootfiles elements, expect empty list',
       () async {
         final input = '''
-  <container>
+  <container xmlns:svg="http://www.w3.org/2000/svg" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
   </container>
   ''';
         final controller = EpubContainerController.fromString(input);
