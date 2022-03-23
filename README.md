@@ -21,9 +21,9 @@ and more...
 
 * Provided EpubArchiveController for reading EPUB files, independent from dart:io
 * Abstract EpubController for custom implementations, such as serving epubs from
-the web or caching epubs on the file system.
+the web or caching epubs on the file system
 * Readers which read individual file data, they do not need the entire
-EPUB loaded into memory. This allows the device to save memory.
+EPUB loaded into memory. This allows the device to save memory
 * Models
   * **Epub**
   * Container
