@@ -31,7 +31,7 @@
 			"",
 			"  /// Throws [EpubException] if the ${2:elementName} element is not the root node",
 			"  factory ${1}Controller.fromXmlElement(XmlElement ${2:elementName}Element) {",
-			"    if (${2:elementName}Element.name.qualified != elementName') {",
+			"    if (${2:elementName}Element.name.qualified != elementName) {",
 			"      throw EpubException(",
 			"        'Invalid data, expected \\$elementName to be the root node but it was not found',",
 			"      );",
