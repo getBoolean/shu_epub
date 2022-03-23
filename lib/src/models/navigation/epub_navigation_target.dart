@@ -7,21 +7,21 @@ part of shu_epub.models;
 class EpubNavigationTarget extends Equatable {
   final String? id;
 
-  /// Describes the kind of structure this target represents, using its dtbook
-  /// element name, e.g., note.
-  final String? classType;
-
   /// A positive integer representing the numeric value associated with the
   /// [EpubNavigationTarget].
   final String? value;
 
-  /// Pointer to XML element
-  final EpubNavigationContent? content;
+  /// Describes the kind of structure this target represents, using its dtbook
+  /// element name, e.g., note.
+  final String? classType;
 
   /// Description(s) of this target.
   ///
   /// Should have at least one item
   final List<EpubNavigationLabel> navigationLabels;
+
+  /// Pointer to XML element
+  final EpubNavigationContent? content;
 
   const EpubNavigationTarget({
     this.id,

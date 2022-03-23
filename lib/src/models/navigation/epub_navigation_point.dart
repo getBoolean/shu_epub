@@ -16,14 +16,14 @@ class EpubNavigationPoint extends Equatable {
   /// [EpubNavigation.navigationMap].
   final String? playOrder;
 
-  /// Hierarchy is represented by nesting navPoints.
-  final List<EpubNavigationPoint> childNavigationPoints;
+  /// Should have at least one item
+  final List<EpubNavigationLabel> labels;
 
   /// Pointer to XML element.
   final EpubNavigationContent? content;
 
-  /// Should have at least one item
-  final List<EpubNavigationLabel> labels;
+  /// Hierarchy is represented by nesting navPoints.
+  final List<EpubNavigationPoint> childNavigationPoints;
 
   const EpubNavigationPoint({
     this.id,
