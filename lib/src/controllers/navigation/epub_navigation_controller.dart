@@ -2,16 +2,29 @@ part of shu_epub.controllers;
 
 /// Controller to parse the EPUB navigation XML document.
 class EpubNavigationController {
-  final XmlDocument xmlDocument;
   final XmlElement ncxElement;
 
+  static const elementName = 'ncx';
+
   const EpubNavigationController._internal({
-    required this.xmlDocument,
     required this.ncxElement,
   });
 
-  factory EpubNavigationController.fromString(String json) {
-    final stringList = json.codeUnits;
+  /// Throws [EpubException] if the content element is not the root node
+  factory EpubNavigationController.fromXmlElement(XmlElement ncxElement) {
+    if (ncxElement.name.qualified != elementName) {
+      throw EpubException(
+        'Invalid data, expected $elementName to be the root node but it was not found',
+      );
+    }
+
+    return EpubNavigationController._internal(
+      ncxElement: ncxElement,
+    );
+  }
+
+  factory EpubNavigationController.fromString(String navigationString) {
+    final stringList = navigationString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubNavigationController(data);
   }
@@ -33,10 +46,7 @@ class EpubNavigationController {
       throw EpubException('Malformed ncx file, could not find ncx element');
     }
 
-    return EpubNavigationController._internal(
-      xmlDocument: xmlDocument,
-      ncxElement: ncxElement,
-    );
+    return EpubNavigationController.fromXmlElement(ncxElement);
   }
 
   String? getVersion() {
