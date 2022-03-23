@@ -67,7 +67,7 @@ class EpubNavigationController with LanguageMixin {
   }
 
   EpubNavigationMap? getNavigationMap() {
-    // final navMapElement = ncxElement.findElements('navMap').firstOrNull;
+    // final navMapElement = element.findElements('navMap').firstOrNull;
     // if (navMapElement == null) {
     //   return null;
     // }
