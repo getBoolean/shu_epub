@@ -4,7 +4,7 @@ class EpubTours extends Equatable {
   final List<EpubSingleTour> items;
 
   const EpubTours({
-    required this.items,
+    this.items = const [],
   });
 
   EpubTours copyWith({
