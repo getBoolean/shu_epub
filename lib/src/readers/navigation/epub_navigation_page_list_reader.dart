@@ -28,6 +28,12 @@ class EpubNavigationPageListReader {
   static EpubNavigationPageList _fromController(
     EpubNavigationPageListController controller,
   ) {
-    return EpubNavigationPageList();
+    return EpubNavigationPageList(
+      id: controller.getId(),
+      classType: controller.getClassType(),
+      navigationInfoList: controller.getNavigationInfoList(),
+      navigationLabels: controller.getNavigationLabels(),
+      pageTargets: controller.getPageTargets(),
+    );
   }
 }
