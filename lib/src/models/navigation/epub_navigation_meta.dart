@@ -4,12 +4,12 @@ part of shu_epub.models;
 class EpubNavigationMeta extends Equatable {
   /// Due to combatibility reasons, should equal `dtb:id`
   final String name;
-  final String content;
+  final String? content;
   final String? scheme;
 
   const EpubNavigationMeta({
-    required this.name,
-    required this.content,
+    this.name = 'dtb:id',
+    this.content,
     this.scheme,
   });
 
@@ -51,5 +51,5 @@ class EpubNavigationMeta extends Equatable {
       'EpubNagivationMeta(name: $name, content: $content, scheme: $scheme)';
 
   @override
-  List<Object> get props => [name, content, scheme ?? 'no scheme specified'];
+  List<Object> get props => [name, content ?? 'no content', scheme ?? 'no scheme specified'];
 }
