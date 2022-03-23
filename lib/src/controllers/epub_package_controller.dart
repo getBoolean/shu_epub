@@ -1,7 +1,6 @@
 part of shu_epub.controllers;
 
 class EpubPackageController {
-  final XmlDocument xmlDocument;
   final XmlElement packageElement;
   final XmlElement metadataElement;
   final XmlElement manifestElement;
@@ -20,7 +19,6 @@ class EpubPackageController {
   }
 
   const EpubPackageController._internal({
-    required this.xmlDocument,
     required this.packageElement,
     required this.metadataElement,
     required this.manifestElement,
@@ -50,7 +48,6 @@ class EpubPackageController {
         _getElementFromPackageElement('tour', packageElement, require: false);
 
     return EpubPackageController._internal(
-      xmlDocument: xmlDocument,
       packageElement: packageElement,
       metadataElement: metadataElement,
       manifestElement: manifestElement,
