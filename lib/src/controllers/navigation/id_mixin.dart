@@ -4,6 +4,6 @@ mixin IdMixin {
   XmlElement get element;
 
   String? getId() {
-    throw UnimplementedError();
+    return element.getAttribute('id');
   }
 }
