@@ -1,6 +1,6 @@
 part of shu_epub.controllers;
 
-class EpubNavigationImageController with IdMixin {
+class EpubNavigationImageController with IdMixin, ClassTypeMixin {
   @override
   final XmlElement element;
 
@@ -58,10 +58,6 @@ class EpubNavigationImageController with IdMixin {
   }
 
   String? getSource() {
-    throw UnimplementedError();
-  }
-
-  String? getClass() {
     throw UnimplementedError();
   }
 }

@@ -25,3 +25,4 @@ part 'navigation/epub_navigation_meta_controller.dart';
 part 'navigation/text_image_mixin.dart';
 part 'navigation/id_mixin.dart';
 part 'navigation/language_mixin.dart';
+part 'navigation/class_type_mixin.dart';
