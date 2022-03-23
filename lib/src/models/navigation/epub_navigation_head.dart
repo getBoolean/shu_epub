@@ -9,7 +9,7 @@ class EpubNavigationHead extends Equatable {
   final List<EpubNavigationMeta> metadata;
 
   const EpubNavigationHead({
-    required this.metadata,
+    this.metadata = const [],
   });
 
   factory EpubNavigationHead.zero() {
