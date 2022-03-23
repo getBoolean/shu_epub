@@ -91,28 +91,32 @@ void main() {
 
   group('getContent', () {
     test(
-      'on input without a content attribute, expect a null value',
+      'on input without a content element, expect a null value',
       () async {
         final input = '''
-  <navPoint></navPoint>
+  <navPoint>
+  </navPoint>
   ''';
         final controller = EpubNavigationPointController.fromString(input);
         final actualValue = controller.getContent();
-
+  
         expect(actualValue, isNull);
       },
     );
-
+  
     test(
-      'on input with a content attribute, expect the String value',
+      'on input with a content element, expect a content object',
       () async {
         final input = '''
-  <navPoint content="test"></navPoint>
+  <navPoint>
+      <content>
+      </content>
+  </navPoint>
   ''';
         final controller = EpubNavigationPointController.fromString(input);
-        final expectedValue = 'test';
+        final expectedValue = EpubNavigationContent();
         final actualValue = controller.getContent();
-
+  
         expect(actualValue, expectedValue);
       },
     );

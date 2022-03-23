@@ -21,7 +21,7 @@ void main() {
       'on input with navMap element without id attribute, expect null is returns',
       () async {
         final xmlString = '''
-<navMap id="1">
+<navMap>
 </navMap>
 ''';
 
