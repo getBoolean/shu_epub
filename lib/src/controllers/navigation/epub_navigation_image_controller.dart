@@ -1,6 +1,6 @@
 part of shu_epub.controllers;
 
-class EpubNavigationImageController with IdMixin, ClassTypeMixin {
+class EpubNavigationImageController with IdMixin, ClassTypeMixin, SourceMixin {
   @override
   final XmlElement element;
 
@@ -55,9 +55,5 @@ class EpubNavigationImageController with IdMixin, ClassTypeMixin {
     return EpubNavigationImageController.fromXmlElement(
       imgElement,
     );
-  }
-
-  String? getSource() {
-    return element.getAttribute('src');
   }
 }

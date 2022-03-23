@@ -37,3 +37,4 @@ part 'navigation/play_order_mixin.dart';
 part 'navigation/navigation_label_list_mixin.dart';
 part 'navigation/navigation_info_list_mixin.dart';
 part 'navigation/content_mixin.dart';
+part 'navigation/source_mixin.dart';
