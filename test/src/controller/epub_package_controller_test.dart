@@ -8,6 +8,9 @@ void main() {
       () async {
         final input = '''
   <package xmlns="http://www.idpf.org/2007/opf">
+      <metadata></metadata>
+      <manifest></manifest>
+      <spine></spine>
   </package>
   ''';
         final controller = EpubPackageController.fromString(input);
@@ -22,6 +25,9 @@ void main() {
       () async {
         final input = '''
   <package xmlns="http://www.idpf.org/2007/opf">
+      <metadata></metadata>
+      <manifest></manifest>
+      <spine></spine>
       <guide>
       </guide>
   </package>
@@ -41,6 +47,9 @@ void main() {
       () async {
         final input = '''
   <package xmlns="http://www.idpf.org/2007/opf">
+      <metadata></metadata>
+      <manifest></manifest>
+      <spine></spine>
   </package>
   ''';
         final controller = EpubPackageController.fromString(input);
@@ -55,6 +64,9 @@ void main() {
       () async {
         final input = '''
   <package xmlns="http://www.idpf.org/2007/opf">
+      <metadata></metadata>
+      <manifest></manifest>
+      <spine></spine>
       <tours>
       </tours>
   </package>
