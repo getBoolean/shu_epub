@@ -57,14 +57,14 @@ class EpubNavigationMetaController {
   }
 
   String? getName() {
-    throw UnimplementedError();
+    return element.getAttribute('name');
   }
 
   String? getContent() {
-    throw UnimplementedError();
+    return element.getAttribute('content');
   }
 
   String? getScheme() {
-    throw UnimplementedError();
+    return element.getAttribute('scheme');
   }
 }
