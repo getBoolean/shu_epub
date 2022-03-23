@@ -72,7 +72,7 @@ class EpubContainerController {
     return containerElement.getAttribute('version');
   }
 
-  List<Rootfile> getRootfiles(XmlElement containerElement) {
+  List<Rootfile> getRootfiles() {
     final rootfilesElement =
         containerElement.findElements('rootfiles').firstOrNull;
     if (rootfilesElement == null) {
