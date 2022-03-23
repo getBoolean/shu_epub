@@ -8,3 +8,4 @@ build/
 
 # Coverage results
 coverage/
+coverage.lcov
