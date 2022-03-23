@@ -1,17 +1,18 @@
 part of shu_epub.readers;
 
 class EpubNavigationContentReader {
-
   /// Create an [EpubNavigationContent] object from the content XmlElement.
-  /// 
+  ///
   /// Throws [EpubException] if the content element is not the root node
   static EpubNavigationContent fromXmlElement(XmlElement contentElement) {
-    final controller = EpubNavigationContentController.fromXmlElement(contentElement);
+    final controller =
+        EpubNavigationContentController.fromXmlElement(contentElement);
     return _fromController(controller);
   }
 
   static EpubNavigationContent fromString(String contentString) {
-    final controller = EpubNavigationContentController.fromString(contentString);
+    final controller =
+        EpubNavigationContentController.fromString(contentString);
     return _fromController(controller);
   }
 
@@ -27,12 +28,12 @@ class EpubNavigationContentReader {
   static EpubNavigationContent _fromController(
     EpubNavigationContentController controller,
   ) {
-    final source = controller.getSource();
     final id = controller.getId();
+    final source = controller.getSource();
 
     return EpubNavigationContent(
-      source: source ?? '',
       id: id,
+      source: source,
     );
   }
 }
