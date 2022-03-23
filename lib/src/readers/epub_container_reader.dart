@@ -5,8 +5,6 @@ class EpubContainerReader {
   /// parse the XML and return [EpubContainer]
   static EpubContainer fromData(Uint8List data) {
     final controller = EpubContainerController(data);
-    final containerElement = controller.containerElement;
-
     final containerVersion = controller.getVersion();
 
     if (containerVersion == null) {
@@ -23,7 +21,7 @@ class EpubContainerReader {
     // }
 
     final List<Rootfile> rootfileList =
-        controller.getRootfiles(containerElement);
+        controller.getRootfiles();
 
     if (!rootfileList.where((rootfile) => _isOpfFile(rootfile)).isNotEmpty) {
       throw EpubException(
