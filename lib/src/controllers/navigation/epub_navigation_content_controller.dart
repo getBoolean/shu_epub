@@ -3,16 +3,17 @@ part of shu_epub.controllers;
 class EpubNavigationContentController {
   final XmlElement contentElement;
 
+  static const elementName = 'content';
+
   const EpubNavigationContentController._internal({
     required this.contentElement,
   });
 
   /// Throws [EpubException] if the content element is not the root node
-  factory EpubNavigationContentController.fromXmlElement(
-      XmlElement contentElement) {
-    if (contentElement.name.toString() != 'content') {
+  factory EpubNavigationContentController.fromXmlElement(XmlElement contentElement) {
+    if (contentElement.name.qualified != elementName) {
       throw EpubException(
-        'Invalid data, expected content to be the root node but it was not found',
+        'Invalid data, expected $elementName to be the root node but it was not found',
       );
     }
 
@@ -21,8 +22,12 @@ class EpubNavigationContentController {
     );
   }
 
-  factory EpubNavigationContentController.fromString(String xmlString) {
-    final stringList = xmlString.codeUnits;
+  /// Create an instance of [EpubNavigationContentController] from the [String] representation
+  /// of the navMap element
+  ///
+  /// Throws [EpubException] if the string does not have the navMap element
+  factory EpubNavigationContentController.fromString(String contentString) {
+    final stringList = contentString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubNavigationContentController(data);
   }
@@ -42,7 +47,7 @@ class EpubNavigationContentController {
 
     if (contentElement == null) {
       throw EpubException(
-        'Malformed navigation file, could not find required content element',
+        'Malformed navigation file, could not find required $elementName element',
       );
     }
 

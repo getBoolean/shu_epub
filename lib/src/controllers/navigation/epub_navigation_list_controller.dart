@@ -3,25 +3,30 @@ part of shu_epub.controllers;
 class EpubNavigationListController {
   final XmlElement navListElement;
 
+  static const elementName = 'navList';
+
   const EpubNavigationListController._internal({
     required this.navListElement,
   });
 
   /// Throws [EpubException] if the navList element is not the root node
-  factory EpubNavigationListController.fromXmlElement(XmlElement element) {
-    if (element.name.toString() != 'navList') {
+  factory EpubNavigationListController.fromXmlElement(XmlElement navListElement) {
+    if (navListElement.name.qualified != elementName) {
       throw EpubException(
-        'Invalid data, expected navList to be the root node but it was not found',
+        'Invalid data, expected $elementName to be the root node but it was not found',
       );
     }
 
     return EpubNavigationListController._internal(
-      navListElement: element,
+      navListElement: navListElement,
     );
   }
-
-  factory EpubNavigationListController.fromString(String xmlString) {
-    final stringList = xmlString.codeUnits;
+  /// Create an instance of [EpubNavigationListController] from the [String] representation
+  /// of the navMap element
+  ///
+  /// Throws [EpubException] if the string does not have the navMap element
+  factory EpubNavigationListController.fromString(String navListString) {
+    final stringList = navListString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubNavigationListController(data);
   }
@@ -37,11 +42,11 @@ class EpubNavigationListController {
     );
 
     final xmlDocument = XmlUtils.parseToXmlDocument(content);
-    final navListElement = xmlDocument.findElements('navList').firstOrNull;
+    final navListElement = xmlDocument.findElements(elementName).firstOrNull;
 
     if (navListElement == null) {
       throw EpubException(
-        'Malformed navigation file, could not find required navList element',
+        'Malformed navigation file, could not find required $elementName element',
       );
     }
 
