@@ -1,12 +1,13 @@
 part of shu_epub.controllers;
 
-class EpubNavigationLabelController with TextImageLangugaeMixin {
-  final XmlElement navLabelElement;
+class EpubNavigationLabelController with TextImageMixin, LanguageMixin {
+  @override
+  final XmlElement element;
 
   static const elementName = 'navLabel';
 
   const EpubNavigationLabelController._internal({
-    required this.navLabelElement,
+    required this.element,
   });
 
   /// Throws [EpubException] if the navLabel element is not the root node
@@ -20,7 +21,7 @@ class EpubNavigationLabelController with TextImageLangugaeMixin {
     }
 
     return EpubNavigationLabelController._internal(
-      navLabelElement: navLabelElement,
+      element: navLabelElement,
     );
   }
 

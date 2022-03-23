@@ -1,12 +1,13 @@
 part of shu_epub.controllers;
 
 class EpubNavigationMapController with IdMixin {
-  final XmlElement navMapElement;
+  @override
+  final XmlElement element;
 
   static const elementName = 'navMap';
 
   const EpubNavigationMapController._internal({
-    required this.navMapElement,
+    required this.element,
   });
 
   /// Throws [EpubException] if the navMap element is not the root node
@@ -18,7 +19,7 @@ class EpubNavigationMapController with IdMixin {
     }
 
     return EpubNavigationMapController._internal(
-      navMapElement: navMapElement,
+      element: navMapElement,
     );
   }
 

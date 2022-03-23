@@ -1,13 +1,14 @@
 part of shu_epub.controllers;
 
 /// Controller to parse the EPUB navigation XML document.
-class EpubNavigationController {
-  final XmlElement ncxElement;
+class EpubNavigationController with LanguageMixin {
+  @override
+  final XmlElement element;
 
   static const elementName = 'ncx';
 
   const EpubNavigationController._internal({
-    required this.ncxElement,
+    required this.element,
   });
 
   /// Throws [EpubException] if the content element is not the root node
@@ -19,7 +20,7 @@ class EpubNavigationController {
     }
 
     return EpubNavigationController._internal(
-      ncxElement: ncxElement,
+      element: ncxElement,
     );
   }
 
@@ -50,12 +51,7 @@ class EpubNavigationController {
   }
 
   String? getVersion() {
-    return ncxElement.getAttribute('version');
-  }
-
-  String? getLanguage() {
-    return ncxElement.getAttribute('xml:lang') ??
-        ncxElement.getAttribute('lang');
+    return element.getAttribute('version');
   }
 
   EpubNavigationHead? getHead() {

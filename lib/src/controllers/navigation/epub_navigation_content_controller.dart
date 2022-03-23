@@ -1,12 +1,13 @@
 part of shu_epub.controllers;
 
 class EpubNavigationContentController with IdMixin {
-  final XmlElement contentElement;
+  @override
+  final XmlElement element;
 
   static const elementName = 'content';
 
   const EpubNavigationContentController._internal({
-    required this.contentElement,
+    required this.element,
   });
 
   /// Throws [EpubException] if the content element is not the root node
@@ -19,7 +20,7 @@ class EpubNavigationContentController with IdMixin {
     }
 
     return EpubNavigationContentController._internal(
-      contentElement: contentElement,
+      element: contentElement,
     );
   }
 

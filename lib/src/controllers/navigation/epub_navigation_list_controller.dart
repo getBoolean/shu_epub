@@ -1,12 +1,12 @@
 part of shu_epub.controllers;
 
 class EpubNavigationListController {
-  final XmlElement navListElement;
+  final XmlElement element;
 
   static const elementName = 'navList';
 
   const EpubNavigationListController._internal({
-    required this.navListElement,
+    required this.element,
   });
 
   /// Throws [EpubException] if the navList element is not the root node
@@ -19,7 +19,7 @@ class EpubNavigationListController {
     }
 
     return EpubNavigationListController._internal(
-      navListElement: navListElement,
+      element: navListElement,
     );
   }
 

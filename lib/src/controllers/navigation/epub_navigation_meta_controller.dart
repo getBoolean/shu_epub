@@ -1,12 +1,12 @@
 part of shu_epub.controllers;
 
 class EpubNavigationMetaController {
-  final XmlElement metaElement;
+  final XmlElement element;
 
   static const elementName = 'meta';
 
   const EpubNavigationMetaController._internal({
-    required this.metaElement,
+    required this.element,
   });
 
   /// Throws [EpubException] if the meta element is not the root node
@@ -18,7 +18,7 @@ class EpubNavigationMetaController {
     }
 
     return EpubNavigationMetaController._internal(
-      metaElement: metaElement,
+      element: metaElement,
     );
   }
 

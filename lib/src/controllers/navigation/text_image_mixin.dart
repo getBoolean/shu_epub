@@ -1,11 +1,9 @@
 part of shu_epub.controllers;
 
-mixin TextImageLangugaeMixin {
+mixin TextImageMixin {
+  XmlElement get element;
+  
   String? getText() {
-    throw UnimplementedError();
-  }
-
-  String? getLanguage() {
     throw UnimplementedError();
   }
 

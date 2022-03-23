@@ -1,12 +1,14 @@
 part of shu_epub.controllers;
 
-class EpubNavigationDocumentTitleController with IdMixin, TextImageLangugaeMixin {
-  final XmlElement docTitleElement;
+class EpubNavigationDocumentTitleController with IdMixin, TextImageMixin, LanguageMixin {
+  @override
+  final XmlElement element;
+
 
   static const elementName = 'docTitle';
 
   const EpubNavigationDocumentTitleController._internal({
-    required this.docTitleElement,
+    required this.element,
   });
 
   /// Throws [EpubException] if the docTitle element is not the root node
@@ -19,7 +21,7 @@ class EpubNavigationDocumentTitleController with IdMixin, TextImageLangugaeMixin
     }
 
     return EpubNavigationDocumentTitleController._internal(
-      docTitleElement: docTitleElement,
+      element: docTitleElement,
     );
   }
 

@@ -22,5 +22,6 @@ part 'navigation/epub_navigation_image_controller.dart';
 part 'navigation/epub_navigation_info_controller.dart';
 part 'navigation/epub_navigation_label_controller.dart';
 part 'navigation/epub_navigation_meta_controller.dart';
-part 'navigation/text_image_language_mixin.dart';
+part 'navigation/text_image_mixin.dart';
 part 'navigation/id_mixin.dart';
+part 'navigation/language_mixin.dart';

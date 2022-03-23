@@ -1,12 +1,14 @@
 part of shu_epub.controllers;
 
 class EpubNavigationImageController with IdMixin {
-  final XmlElement imgElement;
+  @override
+  final XmlElement element;
+
 
   static const elementName = 'img';
 
   const EpubNavigationImageController._internal({
-    required this.imgElement,
+    required this.element,
   });
 
   /// Throws [EpubException] if the img element is not the root node
@@ -18,7 +20,7 @@ class EpubNavigationImageController with IdMixin {
     }
 
     return EpubNavigationImageController._internal(
-      imgElement: imgElement,
+      element: imgElement,
     );
   }
 

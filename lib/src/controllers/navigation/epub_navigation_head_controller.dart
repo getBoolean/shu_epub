@@ -1,12 +1,12 @@
 part of shu_epub.controllers;
 
 class EpubNavigationHeadController {
-  final XmlElement headElement;
+  final XmlElement element;
 
   static const elementName = 'head';
 
   const EpubNavigationHeadController._internal({
-    required this.headElement,
+    required this.element,
   });
 
   /// Throws [EpubException] if the head element is not the root node
@@ -18,7 +18,7 @@ class EpubNavigationHeadController {
     }
 
     return EpubNavigationHeadController._internal(
-      headElement: headElement,
+      element: headElement,
     );
   }
 
