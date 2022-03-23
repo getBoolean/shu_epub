@@ -231,9 +231,9 @@
 			"});",
 		],
 	},
-	"Controller Factory": {
+	"Model Controller Factory": {
 		"prefix": "fct",
-		"description": "Controller factory",
+		"description": "Model Controller factory",
 		"body": [
 		"/// Create an [${1}] object from the ${2:elementName} XmlElement.",
 		"///",
@@ -257,6 +257,44 @@
 		"factory ${1}.fromData(Uint8List ${2:elementName}Data) {",
 		"  return ${1}Reader.fromData(${2:elementName}Data);",
 		"}",
+		]
+	},
+	"Model Factory Tests": {
+		"prefix": "e_fct",
+		"description": "Model Factory Tests",
+		"body": [
+"group('fromXmlElement', () {",
+"  test(",
+"    'on input without ${1:elementName} element, expect EpubException thrown',",
+"    () async {",
+"      final input = '''",
+"<invalid></invalid>",
+"    ''';",
+"      final xmlDocument = XmlUtils.parseToXmlDocument(input);",
+"      final element = xmlDocument.firstElementChild!;",
+"",
+"      expect(",
+"        () => ${2}.fromXmlElement(element),",
+"        throwsA(isA<EpubException>()),",
+"      );",
+"    },",
+"  );",
+"});",
+"",
+"group('fromString', () {",
+"  test(",
+"    'on input without ${1:elementName} element, expect EpubException thrown',",
+"    () async {",
+"      final input = '''",
+"<invalid></invalid>",
+"''';",
+"      expect(",
+"        () => ${2}.fromString(input),",
+"        throwsA(isA<EpubException>()),",
+"      );",
+"    },",
+"  );",
+"});",
 		]
 	}
 }
