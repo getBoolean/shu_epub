@@ -336,10 +336,26 @@ class EpubPackageController {
   }
 
   EpubGuide? getGuide() {
+    final guideElement =
+        packageElement.findElements(EpubGuide.elementName).firstOrNull;
+    if (guideElement == null) {
+      return null;
+    }
+
     throw UnimplementedError();
+
+    // return EpubGuide.fromXmlElement(guideElement);
   }
 
   EpubTours? getTours() {
+    final toursElement =
+        packageElement.findElements(EpubTours.elementName).firstOrNull;
+    if (toursElement == null) {
+      return null;
+    }
+
     throw UnimplementedError();
+
+    // return EpubTours.fromXmlElement(toursElement);
   }
 }

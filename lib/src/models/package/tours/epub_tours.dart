@@ -1,6 +1,8 @@
 part of shu_epub.models;
 
 class EpubTours extends Equatable {
+  static const elementName = 'tours';
+  
   final List<EpubSingleTour> items;
 
   const EpubTours({

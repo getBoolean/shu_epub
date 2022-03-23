@@ -1,6 +1,8 @@
 part of shu_epub.models;
 
 class EpubGuide extends Equatable {
+  static const elementName = 'guide';
+  
   final List<EpubGuideItem> items;
 
   const EpubGuide({
