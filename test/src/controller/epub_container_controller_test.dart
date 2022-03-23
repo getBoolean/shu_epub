@@ -7,15 +7,15 @@ void main() {
       'on input without a version attribute, expect a null value',
       () async {
         final input = '''
-  <container></container>
+  <container xmlns:svg="http://www.w3.org/2000/svg" xmlns="urn:oasis:names:tc:opendocument:xmlns:container"></container>
   ''';
         final controller = EpubContainerController.fromString(input);
         final actualValue = controller.getVersion();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a version attribute, expect the String value',
       () async {
@@ -25,7 +25,7 @@ void main() {
         final controller = EpubContainerController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getVersion();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -41,25 +41,29 @@ void main() {
   ''';
         final controller = EpubContainerController.fromString(input);
         final actualValue = controller.getRootfiles();
-  
+
         expect(actualValue, isEmpty);
       },
     );
-  
+
     test(
       'on input with one rootfiles element with full-path and media-type attributes, expect a list of length 1 with it',
       () async {
         final input = '''
-  <container>
+  <container xmlns:svg="http://www.w3.org/2000/svg" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
       <rootfiles>
           <rootfile full-path="OEBPS/package.opf" media-type="application/oebps-package+xml"/>
       </rootfiles>
   </container>
   ''';
         final controller = EpubContainerController.fromString(input);
-        final expectedValue = [Rootfile(fullPath: 'OEBPS/package.opf', mediaType: 'application/oebps-package+xml')];
+        final expectedValue = [
+          Rootfile(
+              fullPath: 'OEBPS/package.opf',
+              mediaType: 'application/oebps-package+xml')
+        ];
         final actualValue = controller.getRootfiles();
-  
+
         expect(actualValue, expectedValue);
       },
     );
