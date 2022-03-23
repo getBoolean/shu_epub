@@ -51,7 +51,8 @@ class EpubNavigationController with LanguageMixin, VersionMixin {
   }
 
   EpubNavigationHead? getHead() {
-    final headElement = element.findElements(EpubNavigationHead.elementName).firstOrNull;
+    final headElement =
+        element.findElements(EpubNavigationHead.elementName).firstOrNull;
     if (headElement == null) {
       return null;
     }
@@ -60,7 +61,9 @@ class EpubNavigationController with LanguageMixin, VersionMixin {
   }
 
   EpubNavigationDocumentTitle? getDocTitle() {
-    final docTitleElements = element.findElements(EpubNavigationDocumentTitle.elementName).firstOrNull;
+    final docTitleElements = element
+        .findElements(EpubNavigationDocumentTitle.elementName)
+        .firstOrNull;
     if (docTitleElements == null) {
       return null;
     }
