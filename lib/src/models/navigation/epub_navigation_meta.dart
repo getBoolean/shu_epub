@@ -2,13 +2,13 @@ part of shu_epub.models;
 
 /// Meta Element - metadata about this NCX
 class EpubNavigationMeta extends Equatable {
-  /// Due to combatibility reasons, should equal `dtb:id`
-  final String name;
+  /// Due to combatibility reasons, the required meta element's name should be `dtb:id`
+  final String? name;
   final String? content;
   final String? scheme;
 
   const EpubNavigationMeta({
-    this.name = 'dtb:id',
+    this.name,
     this.content,
     this.scheme,
   });
@@ -52,5 +52,5 @@ class EpubNavigationMeta extends Equatable {
 
   @override
   List<Object> get props =>
-      [name, content ?? 'no content', scheme ?? 'no scheme specified'];
+      [name ?? 'no name', content ?? 'no content', scheme ?? 'no scheme specified'];
 }
