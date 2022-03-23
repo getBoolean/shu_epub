@@ -4,7 +4,7 @@ part of shu_epub.models;
 /// of the hierarchical structure of the document.
 class EpubNavigationMap extends Equatable {
   static const elementName = 'navMap';
-  
+
   final String? id;
 
   final List<EpubNavigationInfo> navigationInfoList;

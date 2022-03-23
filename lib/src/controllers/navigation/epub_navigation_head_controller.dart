@@ -60,8 +60,6 @@ class EpubNavigationHeadController {
     final navListElements =
         element.findElements(EpubNavigationMeta.elementName);
 
-    return navListElements
-        .map(EpubNavigationMeta.fromXmlElement)
-        .toList();
+    return navListElements.map(EpubNavigationMeta.fromXmlElement).toList();
   }
 }

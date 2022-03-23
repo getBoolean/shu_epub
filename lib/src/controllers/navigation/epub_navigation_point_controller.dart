@@ -1,7 +1,12 @@
 part of shu_epub.controllers;
 
 class EpubNavigationPointController
-    with IdMixin, ClassTypeMixin, PlayOrderMixin, NavigationLabelListMixin, ContentMixin {
+    with
+        IdMixin,
+        ClassTypeMixin,
+        PlayOrderMixin,
+        NavigationLabelListMixin,
+        ContentMixin {
   @override
   final XmlElement element;
 

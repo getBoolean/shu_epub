@@ -104,8 +104,6 @@ class EpubNavigationController with LanguageMixin, VersionMixin {
     final navListElements =
         element.findElements(EpubNavigationList.elementName);
 
-    return navListElements
-        .map(EpubNavigationList.fromXmlElement)
-        .toList();
+    return navListElements.map(EpubNavigationList.fromXmlElement).toList();
   }
 }

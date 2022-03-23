@@ -5,7 +5,8 @@ class EpubNavigationReader {
   ///
   /// Throws [EpubException] if the navigation element is not the root node
   static EpubNavigation fromXmlElement(XmlElement navigationElement) {
-    final controller = EpubNavigationController.fromXmlElement(navigationElement);
+    final controller =
+        EpubNavigationController.fromXmlElement(navigationElement);
     return _fromController(controller);
   }
 

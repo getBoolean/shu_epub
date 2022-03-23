@@ -18,11 +18,11 @@ class EpubNavigationPageList extends Equatable {
   factory EpubNavigationPageList.fromXmlElement(XmlElement pageListElement) {
     return EpubNavigationPageListReader.fromXmlElement(pageListElement);
   }
-  
+
   factory EpubNavigationPageList.fromString(String pageListString) {
     return EpubNavigationPageListReader.fromString(pageListString);
   }
-  
+
   /// Create an instance of [EpubNavigationPageList] from the [Uint8List] data
   /// of the pageList element in the navigation file.
   ///

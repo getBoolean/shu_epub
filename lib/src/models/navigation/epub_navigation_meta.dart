@@ -3,7 +3,7 @@ part of shu_epub.models;
 /// Meta Element - metadata about this NCX
 class EpubNavigationMeta extends Equatable {
   static const elementName = 'meta';
-  
+
   /// Due to combatibility reasons, the required meta element's name should be `dtb:id`
   final String? name;
   final String? content;
@@ -15,11 +15,11 @@ class EpubNavigationMeta extends Equatable {
   factory EpubNavigationMeta.fromXmlElement(XmlElement metaElement) {
     return EpubNavigationMetaReader.fromXmlElement(metaElement);
   }
-  
+
   factory EpubNavigationMeta.fromString(String metaString) {
     return EpubNavigationMetaReader.fromString(metaString);
   }
-  
+
   /// Create an instance of [EpubNavigationMeta] from the [Uint8List] data
   /// of the meta element in the navigation file.
   ///

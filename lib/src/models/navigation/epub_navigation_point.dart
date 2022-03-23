@@ -31,11 +31,11 @@ class EpubNavigationPoint extends Equatable {
   factory EpubNavigationPoint.fromXmlElement(XmlElement navPointElement) {
     return EpubNavigationPointReader.fromXmlElement(navPointElement);
   }
-  
+
   factory EpubNavigationPoint.fromString(String navPointString) {
     return EpubNavigationPointReader.fromString(navPointString);
   }
-  
+
   /// Create an instance of [EpubNavigationPoint] from the [Uint8List] data
   /// of the navPoint element in the navigation file.
   ///

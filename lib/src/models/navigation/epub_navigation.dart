@@ -38,7 +38,7 @@ class EpubNavigation extends Equatable {
   factory EpubNavigation.fromXmlElement(XmlElement navigationElement) {
     return EpubNavigationReader.fromXmlElement(navigationElement);
   }
-  
+
   /// Create an instance of [EpubNavigation] from the [String] representation
   /// of the navigation element
   ///
@@ -46,7 +46,7 @@ class EpubNavigation extends Equatable {
   factory EpubNavigation.fromString(String navigationString) {
     return EpubNavigationReader.fromString(navigationString);
   }
-  
+
   /// Create an instance of [EpubNavigation] from the [Uint8List] data
   /// of the navigation element in the navigation file.
   ///
