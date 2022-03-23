@@ -1,6 +1,6 @@
 part of shu_epub.controllers;
 
-class EpubNavigationMapController {
+class EpubNavigationMapController with IdMixin {
   final XmlElement navMapElement;
 
   static const elementName = 'navMap';
@@ -54,10 +54,6 @@ class EpubNavigationMapController {
     return EpubNavigationMapController.fromXmlElement(
       navMapElement,
     );
-  }
-
-  String getId() {
-    throw UnimplementedError();
   }
 
   List<EpubNavigationInfo> getIdNavigationInfoList() {

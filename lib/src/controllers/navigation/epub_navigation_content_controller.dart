@@ -1,6 +1,6 @@
 part of shu_epub.controllers;
 
-class EpubNavigationContentController {
+class EpubNavigationContentController with IdMixin {
   final XmlElement contentElement;
 
   static const elementName = 'content';
@@ -55,10 +55,6 @@ class EpubNavigationContentController {
     return EpubNavigationContentController.fromXmlElement(
       contentElement,
     );
-  }
-
-  String? getId() {
-    throw UnimplementedError();
   }
 
   String? getSource() {

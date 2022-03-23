@@ -1,6 +1,6 @@
 part of shu_epub.controllers;
 
-class EpubNavigationImageController {
+class EpubNavigationImageController with IdMixin {
   final XmlElement imgElement;
 
   static const elementName = 'img';
@@ -54,10 +54,6 @@ class EpubNavigationImageController {
     return EpubNavigationImageController.fromXmlElement(
       imgElement,
     );
-  }
-
-  String getId() {
-    throw UnimplementedError();
   }
 
   String? getSource() {

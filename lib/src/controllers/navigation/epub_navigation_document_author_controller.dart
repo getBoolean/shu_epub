@@ -1,6 +1,6 @@
 part of shu_epub.controllers;
 
-class EpubNavigationDocumentAuthorController {
+class EpubNavigationDocumentAuthorController with IdMixin, TextImageLangugaeMixin {
   final XmlElement docAuthorElement;
 
   static const elementName = 'docAuthor';
@@ -56,21 +56,5 @@ class EpubNavigationDocumentAuthorController {
     return EpubNavigationDocumentAuthorController.fromXmlElement(
       docAuthorElement,
     );
-  }
-
-  String? getId() {
-    throw UnimplementedError();
-  }
-
-  String? getLanguage() {
-    throw UnimplementedError();
-  }
-
-  EpubNavigationImage? getImage() {
-    throw UnimplementedError();
-  }
-
-  String? getText() {
-    throw UnimplementedError();
   }
 }
