@@ -20,3 +20,4 @@ part 'navigation/epub_navigation_content_reader.dart';
 part 'navigation/epub_navigation_document_author_reader.dart';
 part 'navigation/epub_navigation_document_title_reader.dart';
 part 'navigation/epub_navigation_head_reader.dart';
+part 'navigation/epub_navigation_image_reader.dart';
