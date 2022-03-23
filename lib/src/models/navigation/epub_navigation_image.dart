@@ -4,12 +4,12 @@ part of shu_epub.models;
 class EpubNavigationImage extends Equatable {
   final String? id;
   final String? classType;
-  final String source;
+  final String? source;
 
   const EpubNavigationImage({
     this.id,
     this.classType,
-    required this.source,
+    this.source,
   });
 
   factory EpubNavigationImage.zero() {
@@ -55,5 +55,5 @@ class EpubNavigationImage extends Equatable {
 
   @override
   List<Object> get props =>
-      [id ?? 'no id', classType ?? 'no classType', source];
+      [id ?? 'no id', classType ?? 'no classType', source ?? 'no source'];
 }
