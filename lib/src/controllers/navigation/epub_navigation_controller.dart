@@ -81,12 +81,13 @@ class EpubNavigationController with LanguageMixin, VersionMixin {
   }
 
   EpubNavigationMap? getNavigationMap() {
-    // final navMapElement = element.findElements('navMap').firstOrNull;
-    // if (navMapElement == null) {
-    //   return null;
-    // }
-    // return EpubNavigationMap.fromXmlElement(navMapElement);
-    throw UnimplementedError();
+    final navMapElement =
+        element.findElements(EpubNavigationMap.elementName).firstOrNull;
+    if (navMapElement == null) {
+      return null;
+    }
+
+    return EpubNavigationMap.fromXmlElement(navMapElement);
   }
 
   EpubNavigationPageList? getPageList() {
