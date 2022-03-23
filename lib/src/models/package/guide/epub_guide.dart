@@ -5,6 +5,29 @@ class EpubGuide extends Equatable {
   
   final List<EpubGuideItem> items;
 
+  /// Create an [EpubGuide] object from the guide XmlElement.
+  ///
+  /// Throws [EpubException] if the guide element is not the root node
+  factory EpubGuide.fromXmlElement(XmlElement guideElement) {
+    return EpubGuideReader.fromXmlElement(guideElement);
+  }
+  
+  /// Create an instance of [EpubGuide] from the [String] representation
+  /// of the guide element
+  ///
+  /// Throws [EpubException] if the string does not have the guide element
+  factory EpubGuide.fromString(String guideString) {
+    return EpubGuideReader.fromString(guideString);
+  }
+  
+  /// Create an instance of [EpubGuide] from the [Uint8List] data
+  /// of the guide element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the guide element
+  factory EpubGuide.fromData(Uint8List guideData) {
+    return EpubGuideReader.fromData(guideData);
+  }
+
   const EpubGuide({
     this.items = const [],
   });

@@ -342,9 +342,7 @@ class EpubPackageController {
       return null;
     }
 
-    throw UnimplementedError();
-
-    // return EpubGuide.fromXmlElement(guideElement);
+    return EpubGuide.fromXmlElement(guideElement);
   }
 
   EpubTours? getTours() {

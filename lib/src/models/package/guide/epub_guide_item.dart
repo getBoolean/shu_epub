@@ -1,6 +1,8 @@
 part of shu_epub.models;
 
 class EpubGuideItem extends Equatable {
+  static const elementName = 'reference';
+
   /// The required type attribute describes the publication component
   /// referenced by the href attribute. The values for the type
   /// attributes must be selected from the list defined below
@@ -10,8 +12,8 @@ class EpubGuideItem extends Equatable {
   /// type attribute is case-sensitive.
   ///
   /// List of accepted types: [http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.6](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.6)
-  final String type;
-  final String title;
+  final String? type;
+  final String? title;
 
   /// Each reference must have an href attribute referring to an OPS Content
   /// Document included in the manifest, and which may include a fragment
@@ -22,23 +24,46 @@ class EpubGuideItem extends Equatable {
   /// considered to be the entire document. This specification does not
   /// require Reading Systems to mark or otherwise identify the entire
   /// scope of a referenced element.
-  final String htmlReference;
+  final String? href;
+
+  /// Create an [EpubGuideItem] object from the reference XmlElement.
+  ///
+  /// Throws [EpubException] if the reference element is not the root node
+  factory EpubGuideItem.fromXmlElement(XmlElement referenceElement) {
+    return EpubGuideItemReader.fromXmlElement(referenceElement);
+  }
+  
+  /// Create an instance of [EpubGuideItem] from the [String] representation
+  /// of the reference element
+  ///
+  /// Throws [EpubException] if the string does not have the reference element
+  factory EpubGuideItem.fromString(String referenceString) {
+    return EpubGuideItemReader.fromString(referenceString);
+  }
+  
+  /// Create an instance of [EpubGuideItem] from the [Uint8List] data
+  /// of the reference element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the reference element
+  factory EpubGuideItem.fromData(Uint8List referenceData) {
+    return EpubGuideItemReader.fromData(referenceData);
+  }
 
   const EpubGuideItem({
-    required this.type,
-    required this.title,
-    required this.htmlReference,
+    this.type,
+    this.title,
+    this.href,
   });
 
   EpubGuideItem copyWith({
     String? type,
     String? title,
-    String? htmlReference,
+    String? href,
   }) {
     return EpubGuideItem(
       type: type ?? this.type,
       title: title ?? this.title,
-      htmlReference: htmlReference ?? this.htmlReference,
+      href: href ?? this.href,
     );
   }
 
@@ -46,7 +71,7 @@ class EpubGuideItem extends Equatable {
     return {
       'type': type,
       'title': title,
-      'htmlReference': htmlReference,
+      'href': href,
     };
   }
 
@@ -54,7 +79,7 @@ class EpubGuideItem extends Equatable {
     return EpubGuideItem(
       type: map['type'] ?? '',
       title: map['title'] ?? '',
-      htmlReference: map['htmlReference'] ?? '',
+      href: map['href'] ?? '',
     );
   }
 
@@ -64,9 +89,8 @@ class EpubGuideItem extends Equatable {
       EpubGuideItem.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'EpubGuideReference(type: $type, title: $title, htmlReference: $htmlReference)';
+  String toString() => 'EpubGuideItem(type: $type, title: $title, href: $href)';
 
   @override
-  List<Object> get props => [type, title, htmlReference];
+  List<Object> get props => [type ?? 'no type', title ?? 'no title', href ?? 'no href'];
 }

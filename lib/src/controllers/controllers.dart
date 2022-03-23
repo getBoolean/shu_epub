@@ -10,7 +10,9 @@ import '../models/models.dart';
 import '../utils/collection_utils.dart';
 import '../utils/xml_utils.dart';
 
-part 'epub_package_controller.dart';
+part 'package/epub_package_controller.dart';
+part 'package/epub_guide_controller.dart';
+part 'package/epub_guide_item_controller.dart';
 part 'epub_container_controller.dart';
 part 'version_mixin.dart';
 part 'navigation/epub_navigation_controller.dart';
