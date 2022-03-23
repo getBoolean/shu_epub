@@ -2,6 +2,8 @@ part of shu_epub.models;
 
 /// The author of the document, immediately follows docTitle.
 class EpubNavigationDocumentAuthor extends Equatable {
+  static const elementName = 'docAuthor';
+  
   final String? id;
   final String? language;
   final String? text;
@@ -10,14 +12,15 @@ class EpubNavigationDocumentAuthor extends Equatable {
   /// Create an [EpubNavigationDocumentAuthor] object from the docAuthor XmlElement.
   ///
   /// Throws [EpubException] if the docAuthor element is not the root node
-  factory EpubNavigationDocumentAuthor.fromXmlElement(XmlElement docAuthorElement) {
+  factory EpubNavigationDocumentAuthor.fromXmlElement(
+      XmlElement docAuthorElement) {
     return EpubNavigationDocumentAuthorReader.fromXmlElement(docAuthorElement);
   }
-  
+
   factory EpubNavigationDocumentAuthor.fromString(String docAuthorString) {
     return EpubNavigationDocumentAuthorReader.fromString(docAuthorString);
   }
-  
+
   /// Create an instance of [EpubNavigationDocumentAuthor] from the [Uint8List] data
   /// of the docAuthor element in the navigation file.
   ///
