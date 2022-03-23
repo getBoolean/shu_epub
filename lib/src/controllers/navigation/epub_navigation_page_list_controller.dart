@@ -1,6 +1,6 @@
 part of shu_epub.controllers;
 
-class EpubNavigationPageListController with IdMixin, ClassTypeMixin {
+class EpubNavigationPageListController with IdMixin, ClassTypeMixin, LabelListMixin {
   @override
   final XmlElement element;
 
@@ -59,10 +59,6 @@ class EpubNavigationPageListController with IdMixin, ClassTypeMixin {
   }
 
   List<EpubNavigationInfo> getNavigationInfoList() {
-    throw UnimplementedError();
-  }
-
-  List<EpubNavigationLabel> getNavigationLabels() {
     throw UnimplementedError();
   }
 

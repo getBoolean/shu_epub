@@ -1,6 +1,7 @@
 part of shu_epub.controllers;
 
-class EpubNavigationListController {
+class EpubNavigationListController with LabelListMixin {
+  @override
   final XmlElement element;
 
   static const elementName = 'navList';
@@ -58,10 +59,6 @@ class EpubNavigationListController {
   }
 
   List<EpubNavigationInfo> getNavigationInfoList() {
-    throw UnimplementedError();
-  }
-
-  List<EpubNavigationLabel> getNavigationLabels() {
     throw UnimplementedError();
   }
 

@@ -4,6 +4,9 @@ mixin LabelListMixin {
   XmlElement get element;
 
   List<EpubNavigationLabel> getLabels() {
-    throw UnimplementedError();
+    final navLabelElements =
+        element.findElements(EpubNavigationLabel.elementName);
+
+    return navLabelElements.map(EpubNavigationLabel.fromXmlElement).toList();
   }
 }

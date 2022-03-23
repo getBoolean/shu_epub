@@ -6,9 +6,34 @@ part of shu_epub.models;
 ///
 /// Can be repeated so descriptions can be provided in multiple languages.
 class EpubNavigationLabel extends Equatable {
+  static const elementName = 'navLabel';
+
   final String? text;
   final String? language;
   final EpubNavigationImage? image;
+
+  /// Create an [EpubNavigationLabel] object from the navLabel XmlElement.
+  ///
+  /// Throws [EpubException] if the navLabel element is not the root node
+  factory EpubNavigationLabel.fromXmlElement(XmlElement navLabelElement) {
+    return EpubNavigationLabelReader.fromXmlElement(navLabelElement);
+  }
+  
+  /// Create an instance of [EpubNavigationLabel] from the [String] representation
+  /// of the navLabel element
+  ///
+  /// Throws [EpubException] if the string does not have the navLabel element
+  factory EpubNavigationLabel.fromString(String navLabelString) {
+    return EpubNavigationLabelReader.fromString(navLabelString);
+  }
+  
+  /// Create an instance of [EpubNavigationLabel] from the [Uint8List] data
+  /// of the navLabel element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the navLabel element
+  factory EpubNavigationLabel.fromData(Uint8List navLabelData) {
+    return EpubNavigationLabelReader.fromData(navLabelData);
+  }
 
   const EpubNavigationLabel({
     this.text,
