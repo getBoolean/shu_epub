@@ -1,7 +1,42 @@
 import 'package:shu_epub/shu_epub.dart';
+import 'package:shu_epub/src/utils/xml_utils.dart';
 import 'package:test/test.dart';
 
 void main() {
+
+  group('fromXmlElement', () {
+    test(
+      'on input without navList element, expect EpubException thrown',
+      () async {
+        final input = '''
+  <invalid></invalid>
+      ''';
+        final xmlDocument = XmlUtils.parseToXmlDocument(input);
+        final element = xmlDocument.firstElementChild!;
+  
+        expect(
+          () => EpubNavigationListController.fromXmlElement(element),
+          throwsA(isA<EpubException>()),
+        );
+      },
+    );
+  });
+  
+  group('fromString', () {
+    test(
+      'on input without navList element, expect EpubException thrown',
+      () async {
+        final input = '''
+  <invalid></invalid>
+  ''';
+        expect(
+          () => EpubNavigationListController.fromString(input),
+          throwsA(isA<EpubException>()),
+        );
+      },
+    );
+  });
+
   group('getNavigationInfoList', () {
     test(
       'on input with navList element with no child elements or attributes, expect an empty list',

@@ -1,7 +1,42 @@
 import 'package:shu_epub/shu_epub.dart';
+import 'package:shu_epub/src/utils/xml_utils.dart';
 import 'package:test/test.dart';
 
 void main() {
+
+  group('fromXmlElement', () {
+    test(
+      'on input without navMap element, expect EpubException thrown',
+      () async {
+        final input = '''
+  <invalid></invalid>
+      ''';
+        final xmlDocument = XmlUtils.parseToXmlDocument(input);
+        final element = xmlDocument.firstElementChild!;
+  
+        expect(
+          () => EpubNavigationMapController.fromXmlElement(element),
+          throwsA(isA<EpubException>()),
+        );
+      },
+    );
+  });
+  
+  group('fromString', () {
+    test(
+      'on input without navMap element, expect EpubException thrown',
+      () async {
+        final input = '''
+  <invalid></invalid>
+  ''';
+        expect(
+          () => EpubNavigationMapController.fromString(input),
+          throwsA(isA<EpubException>()),
+        );
+      },
+    );
+  });
+
   group('getId', () {
     test(
       'on input with navMap element with id attribute equal to "1", expect String "1" returned',
