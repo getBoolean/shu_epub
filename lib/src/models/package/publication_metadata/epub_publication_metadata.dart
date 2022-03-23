@@ -171,19 +171,19 @@ class EpubPublicationMetadata extends Equatable {
     return EpubPublicationMetadata(
       allTitles: List<String>.from(map['allTitles']),
       creators: List<EpubMetadataContributer>.from(
-          map['creators'].map((x) => EpubMetadataContributer.fromMap(x))),
+          map['creators'].map(EpubMetadataContributer.fromMap)),
       subjects: List<String>.from(map['subjects']),
       description: map['description'],
       publisher: map['publisher'],
       contributors: List<EpubMetadataContributer>.from(
-          map['contributors'].map((x) => EpubMetadataContributer.fromMap(x))),
+          map['contributors'].map(EpubMetadataContributer.fromMap)),
       extraMetadataItems: List<EpubExtraMetadata>.from(
-          map['extraMetadataItems'].map((x) => EpubExtraMetadata.fromMap(x))),
+          map['extraMetadataItems'].map(EpubExtraMetadata.fromMap)),
       metadataDate: map['metadataDate'],
       type: map['type'],
       format: map['format'],
       identifiers: List<EpubMetadataIdentifier>.from(
-          map['identifiers'].map((x) => EpubMetadataIdentifier.fromMap(x))),
+          map['identifiers'].map(EpubMetadataIdentifier.fromMap)),
       source: map['source'],
       languages: List<String>.from(map['languages']),
       relation: map['relation'],

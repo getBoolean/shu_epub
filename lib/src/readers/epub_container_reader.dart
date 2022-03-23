@@ -20,10 +20,9 @@ class EpubContainerReader {
     //   );
     // }
 
-    final List<Rootfile> rootfileList =
-        controller.getRootfiles();
+    final List<Rootfile> rootfileList = controller.getRootfiles();
 
-    if (!rootfileList.where((rootfile) => _isOpfFile(rootfile)).isNotEmpty) {
+    if (!rootfileList.where(_isOpfFile).isNotEmpty) {
       throw EpubException(
         'Epub Parsing Exception: EPUB container at path "${EpubContainer.filepath}" does not contain an element with media-type attribute value of "${EpubMediaTypes.kOPFMimeType}"',
       );

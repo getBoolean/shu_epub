@@ -1,17 +1,18 @@
 part of shu_epub.readers;
 
 class EpubNavigationPageTargetReader {
-
   /// Create an [EpubNavigationPageTarget] object from the pageTarget XmlElement.
   ///
   /// Throws [EpubException] if the pageTarget element is not the root node
   static EpubNavigationPageTarget fromXmlElement(XmlElement pageTargetElement) {
-    final controller = EpubNavigationPageTargetController.fromXmlElement(pageTargetElement);
+    final controller =
+        EpubNavigationPageTargetController.fromXmlElement(pageTargetElement);
     return _fromController(controller);
   }
 
   static EpubNavigationPageTarget fromString(String pageTargetString) {
-    final controller = EpubNavigationPageTargetController.fromString(pageTargetString);
+    final controller =
+        EpubNavigationPageTargetController.fromString(pageTargetString);
     return _fromController(controller);
   }
 

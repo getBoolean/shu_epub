@@ -54,7 +54,7 @@ class EpubNavigationHead extends Equatable {
   factory EpubNavigationHead.fromMap(Map<String, dynamic> map) {
     return EpubNavigationHead(
       metadata: List<EpubNavigationMeta>.from(
-        map['metadata']?.map((x) => EpubNavigationMeta.fromMap(x)),
+        map['metadata']?.map(EpubNavigationMeta.fromMap),
       ),
     );
   }

@@ -66,7 +66,7 @@ class EpubNavigationTarget extends Equatable {
           ? EpubNavigationContent.fromMap(map['content'])
           : null,
       labels: List<EpubNavigationLabel>.from(
-          map['labels']?.map((x) => EpubNavigationLabel.fromMap(x))),
+          map['labels']?.map(EpubNavigationLabel.fromMap)),
     );
   }
 

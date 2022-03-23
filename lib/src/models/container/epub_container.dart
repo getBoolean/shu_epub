@@ -7,10 +7,9 @@ part of shu_epub.models;
 /// The rootfiles element MUST contain at least one <rootfile> element that has a media-type of `application/oebps-package+xml`.
 class EpubContainer extends Equatable {
   static const elementName = 'container';
-  static const namespace =
-      'urn:oasis:names:tc:opendocument:xmlns:container';
+  static const namespace = 'urn:oasis:names:tc:opendocument:xmlns:container';
   static const filepath = 'META-INF/container.xml';
-  
+
   final List<Rootfile> rootfileList;
   final String containerVersion;
 
@@ -66,8 +65,8 @@ class EpubContainer extends Equatable {
 
   factory EpubContainer.fromMap(Map<String, dynamic> map) {
     return EpubContainer(
-      rootfileList: List<Rootfile>.from(
-          map['rootfileList']?.map((x) => Rootfile.fromMap(x))),
+      rootfileList:
+          List<Rootfile>.from(map['rootfileList']?.map(Rootfile.fromMap)),
       containerVersion: map['containerVersion'] ?? '',
     );
   }

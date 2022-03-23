@@ -3,7 +3,7 @@ part of shu_epub.models;
 /// The author of the document, immediately follows docTitle.
 class EpubNavigationDocumentAuthor extends Equatable {
   static const elementName = 'docAuthor';
-  
+
   final String? id;
   final String? language;
   final String? text;

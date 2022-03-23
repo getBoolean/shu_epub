@@ -11,11 +11,11 @@ void main() {
   ''';
         final controller = EpubNavigationPageListController.fromString(input);
         final actualValue = controller.getId();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a id attribute, expect the String value',
       () async {
@@ -25,7 +25,7 @@ void main() {
         final controller = EpubNavigationPageListController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getId();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -40,11 +40,11 @@ void main() {
   ''';
         final controller = EpubNavigationPageListController.fromString(input);
         final actualValue = controller.getClassType();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a class attribute, expect the String value',
       () async {
@@ -54,7 +54,7 @@ void main() {
         final controller = EpubNavigationPageListController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getClassType();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -70,11 +70,11 @@ void main() {
   ''';
         final controller = EpubNavigationPageListController.fromString(input);
         final actualValue = controller.getPageTargets();
-  
+
         expect(actualValue, isEmpty);
       },
     );
-  
+
     test(
       'on input with one pageTarget element, expect a list of length 1 with it',
       () async {
@@ -87,7 +87,7 @@ void main() {
         final controller = EpubNavigationPageListController.fromString(input);
         final expectedValue = [EpubNavigationPageTarget()];
         final actualValue = controller.getPageTargets();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -103,11 +103,11 @@ void main() {
   ''';
         final controller = EpubNavigationPageListController.fromString(input);
         final actualValue = controller.getNavigationInfoList();
-  
+
         expect(actualValue, isEmpty);
       },
     );
-  
+
     test(
       'on input with one navInfo element, expect a list of length 1 with it',
       () async {
@@ -120,7 +120,7 @@ void main() {
         final controller = EpubNavigationPageListController.fromString(input);
         final expectedValue = [EpubNavigationInfo()];
         final actualValue = controller.getNavigationInfoList();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -136,11 +136,11 @@ void main() {
   ''';
         final controller = EpubNavigationPageListController.fromString(input);
         final actualValue = controller.getNavigationLabels();
-  
+
         expect(actualValue, isEmpty);
       },
     );
-  
+
     test(
       'on input with one navLabel element, expect a list of length 1 with it',
       () async {
@@ -153,7 +153,7 @@ void main() {
         final controller = EpubNavigationPageListController.fromString(input);
         final expectedValue = [EpubNavigationLabel()];
         final actualValue = controller.getNavigationLabels();
-  
+
         expect(actualValue, expectedValue);
       },
     );

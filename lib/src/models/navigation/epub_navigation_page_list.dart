@@ -57,14 +57,13 @@ class EpubNavigationPageList extends Equatable {
       id: map['id'],
       classType: map['classType'],
       navigationInfoList: List<EpubNavigationInfo>.from(
-          map['navigationInfoList']
-                  ?.map((x) => EpubNavigationInfo.fromMap(x)) ??
+          map['navigationInfoList']?.map(EpubNavigationInfo.fromMap) ??
               const []),
       navigationLabels: List<EpubNavigationLabel>.from(
-          map['navigationLabels']?.map((x) => EpubNavigationLabel.fromMap(x)) ??
+          map['navigationLabels']?.map(EpubNavigationLabel.fromMap) ??
               const []),
       pageTargets: List<EpubNavigationPageTarget>.from(
-          map['pageTargets']?.map((x) => EpubNavigationPageTarget.fromMap(x)) ??
+          map['pageTargets']?.map(EpubNavigationPageTarget.fromMap) ??
               const []),
     );
   }

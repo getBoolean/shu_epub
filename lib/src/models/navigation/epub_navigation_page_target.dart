@@ -74,7 +74,7 @@ class EpubNavigationPageTarget extends Equatable {
       classType: map['classType'],
       playOrder: map['playOrder'],
       labels: List<EpubNavigationLabel>.from(
-          map['labels']?.map((x) => EpubNavigationLabel.fromMap(x))),
+          map['labels']?.map(EpubNavigationLabel.fromMap)),
       content: map['content'] != null
           ? EpubNavigationContent.fromMap(map['content'])
           : null,

@@ -2,7 +2,7 @@ part of shu_epub.models;
 
 class EpubNavigationDocumentTitle extends Equatable {
   static const elementName = 'docTitle';
-  
+
   final String? id;
   final String? language;
   final String? text;
@@ -11,14 +11,15 @@ class EpubNavigationDocumentTitle extends Equatable {
   /// Create an [EpubNavigationDocumentTitle] object from the docTitle XmlElement.
   ///
   /// Throws [EpubException] if the docTitle element is not the root node
-  factory EpubNavigationDocumentTitle.fromXmlElement(XmlElement docTitleElement) {
+  factory EpubNavigationDocumentTitle.fromXmlElement(
+      XmlElement docTitleElement) {
     return EpubNavigationDocumentTitleReader.fromXmlElement(docTitleElement);
   }
-  
+
   factory EpubNavigationDocumentTitle.fromString(String docTitleString) {
     return EpubNavigationDocumentTitleReader.fromString(docTitleString);
   }
-  
+
   /// Create an instance of [EpubNavigationDocumentTitle] from the [Uint8List] data
   /// of the docTitle element in the navigation file.
   ///

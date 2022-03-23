@@ -12,11 +12,11 @@ void main() {
   ''';
         final controller = EpubPackageController.fromString(input);
         final actualValue = controller.getGuide();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a guide element, expect a guide object',
       () async {
@@ -29,7 +29,7 @@ void main() {
         final controller = EpubPackageController.fromString(input);
         final expectedValue = EpubGuide();
         final actualValue = controller.getGuide();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -45,11 +45,11 @@ void main() {
   ''';
         final controller = EpubPackageController.fromString(input);
         final actualValue = controller.getTours();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a tours element, expect a tours object',
       () async {
@@ -62,7 +62,7 @@ void main() {
         final controller = EpubPackageController.fromString(input);
         final expectedValue = EpubTours();
         final actualValue = controller.getTours();
-  
+
         expect(actualValue, expectedValue);
       },
     );

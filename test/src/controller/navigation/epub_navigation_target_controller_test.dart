@@ -11,11 +11,11 @@ void main() {
   ''';
         final controller = EpubNavigationTargetController.fromString(input);
         final actualValue = controller.getId();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a id attribute, expect the String value',
       () async {
@@ -25,7 +25,7 @@ void main() {
         final controller = EpubNavigationTargetController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getId();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -40,11 +40,11 @@ void main() {
   ''';
         final controller = EpubNavigationTargetController.fromString(input);
         final actualValue = controller.getClassType();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a classType attribute, expect the String value',
       () async {
@@ -54,7 +54,7 @@ void main() {
         final controller = EpubNavigationTargetController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getClassType();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -69,11 +69,11 @@ void main() {
   ''';
         final controller = EpubNavigationTargetController.fromString(input);
         final actualValue = controller.getValue();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a value attribute, expect the String value',
       () async {
@@ -83,7 +83,7 @@ void main() {
         final controller = EpubNavigationTargetController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getValue();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -98,11 +98,11 @@ void main() {
   ''';
         final controller = EpubNavigationTargetController.fromString(input);
         final actualValue = controller.getContent();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a content attribute, expect the String value',
       () async {
@@ -112,7 +112,7 @@ void main() {
         final controller = EpubNavigationTargetController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getContent();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -128,11 +128,11 @@ void main() {
   ''';
         final controller = EpubNavigationTargetController.fromString(input);
         final actualValue = controller.getLabels();
-  
+
         expect(actualValue, isEmpty);
       },
     );
-  
+
     test(
       'on input with one navLabel element, expect a list of length 1 with it',
       () async {
@@ -145,7 +145,7 @@ void main() {
         final controller = EpubNavigationTargetController.fromString(input);
         final expectedValue = [EpubNavigationLabel()];
         final actualValue = controller.getLabels();
-  
+
         expect(actualValue, expectedValue);
       },
     );

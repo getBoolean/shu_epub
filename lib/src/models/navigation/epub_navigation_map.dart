@@ -78,11 +78,11 @@ class EpubNavigationMap extends Equatable {
     return EpubNavigationMap(
       id: map['id'],
       navigationInfoList: List<EpubNavigationInfo>.from(
-          map['navigationInfoList']?.map((x) => EpubNavigationInfo.fromMap(x))),
+          map['navigationInfoList']?.map(EpubNavigationInfo.fromMap)),
       navigationLabels: List<EpubNavigationLabel>.from(
-          map['navigationLabels']?.map((x) => EpubNavigationLabel.fromMap(x))),
+          map['navigationLabels']?.map(EpubNavigationLabel.fromMap)),
       navigationPoints: List<EpubNavigationPoint>.from(
-          map['navigationPoints']?.map((x) => EpubNavigationPoint.fromMap(x))),
+          map['navigationPoints']?.map(EpubNavigationPoint.fromMap)),
     );
   }
 

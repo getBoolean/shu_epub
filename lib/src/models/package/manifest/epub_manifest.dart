@@ -28,7 +28,7 @@ class EpubManifest extends Equatable {
   factory EpubManifest.fromMap(Map<String, dynamic> map) {
     return EpubManifest(
       items: List<EpubManifestItem>.from(
-          map['items']?.map((x) => EpubManifestItem.fromMap(x))),
+          map['items']?.map(EpubManifestItem.fromMap)),
     );
   }
 
