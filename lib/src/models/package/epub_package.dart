@@ -15,6 +15,7 @@ part of shu_epub.models;
 /// This specification neither precludes nor requires the inclusion of the OPF Package Schema in a Publication.
 class EpubPackage extends Equatable {
   static const kPackageFileMimeType = 'application/oebps-package+xml';
+  static const elementName = 'package';
 
   /// Includes a unique identifier for the OPS Publication as a whole. This should NOT
   /// be relied upon to be unique across all EPUB publications.

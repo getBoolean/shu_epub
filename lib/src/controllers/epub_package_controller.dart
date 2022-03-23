@@ -12,10 +12,42 @@ class EpubPackageController {
 
   bool get hasTour => !hasGuide && tourElement != null;
 
+  static const elementName = EpubPackage.elementName;
+
   factory EpubPackageController.fromString(String json) {
     final stringList = json.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubPackageController(data);
+  }
+
+  /// Throws [EpubException] if the content element is not the root node
+  factory EpubPackageController.fromXmlElement(XmlElement packageElement) {
+    if (packageElement.name.qualified != elementName) {
+      throw EpubException(
+        'Invalid data, expected $elementName to be the root node but it was not found',
+      );
+    }
+
+    // TODO(@getBoolean): Create backup plan if required elements don't exist
+    final XmlElement metadataElement =
+        _getElementFromPackageElement('metadata', packageElement)!;
+    final XmlElement manifestElement =
+        _getElementFromPackageElement('manifest', packageElement)!;
+    final XmlElement spineElement =
+        _getElementFromPackageElement('spine', packageElement)!;
+    final XmlElement? guideElement =
+        _getElementFromPackageElement('guide', packageElement, require: false);
+    final XmlElement? tourElement =
+        _getElementFromPackageElement('tours', packageElement, require: false);
+
+    return EpubPackageController._internal(
+      packageElement: packageElement,
+      metadataElement: metadataElement,
+      manifestElement: manifestElement,
+      spineElement: spineElement,
+      guideElement: guideElement,
+      tourElement: tourElement,
+    );
   }
 
   const EpubPackageController._internal({
@@ -36,25 +68,8 @@ class EpubPackageController {
     final XmlDocument xmlDocument = _handleStringToXmlDocument(content);
     final XmlElement packageElement =
         _getPackageElementFromXmlDocument(xmlDocument);
-    final XmlElement metadataElement =
-        _getElementFromPackageElement('metadata', packageElement)!;
-    final XmlElement manifestElement =
-        _getElementFromPackageElement('manifest', packageElement)!;
-    final XmlElement spineElement =
-        _getElementFromPackageElement('spine', packageElement)!;
-    final XmlElement? guideElement =
-        _getElementFromPackageElement('guide', packageElement, require: false);
-    final XmlElement? tourElement =
-        _getElementFromPackageElement('tour', packageElement, require: false);
 
-    return EpubPackageController._internal(
-      packageElement: packageElement,
-      metadataElement: metadataElement,
-      manifestElement: manifestElement,
-      spineElement: spineElement,
-      guideElement: guideElement,
-      tourElement: tourElement,
-    );
+    return EpubPackageController.fromXmlElement(packageElement);
   }
 
   static XmlDocument _handleStringToXmlDocument(String content) {
