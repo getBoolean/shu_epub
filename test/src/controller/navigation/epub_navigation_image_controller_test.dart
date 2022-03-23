@@ -41,7 +41,7 @@ void main() {
   <img></img>
   ''';
         final controller = EpubNavigationImageController.fromString(input);
-        final actualValue = controller.getClass();
+        final actualValue = controller.getClassType();
 
         expect(actualValue, isNull);
       },
@@ -55,7 +55,7 @@ void main() {
   ''';
         final controller = EpubNavigationImageController.fromString(input);
         final expectedValue = 'test';
-        final actualValue = controller.getClass();
+        final actualValue = controller.getClassType();
 
         expect(actualValue, expectedValue);
       },
