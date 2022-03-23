@@ -5,7 +5,7 @@ class EpubNavigationMapController
   @override
   final XmlElement element;
 
-  static const elementName = 'navMap';
+  static const elementName = EpubNavigationMap.elementName;
 
   const EpubNavigationMapController._internal({
     required this.element,

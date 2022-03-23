@@ -4,6 +4,7 @@ part of shu_epub.models;
 class EpubNavigation extends Equatable {
   /// XML Namespace of the `ncx` element
   static const String namespace = 'http://www.daisy.org/z3986/2005/ncx/';
+  static const elementName = 'ncx';
 
   /// NCX Version. Only `2005-1` is supported.
   final String? version;

@@ -4,6 +4,7 @@ part of shu_epub.models;
 /// of target. Hierarchy is represented by nesting navPoints.
 /// [EpubNavigationPoint.classType] attribute
 class EpubNavigationPoint extends Equatable {
+  static const elementName = 'navPoint';
   final String? id;
 
   /// Describes the kind of structural unit this object represents (e.g.,

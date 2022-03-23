@@ -4,7 +4,7 @@ class EpubNavigationInfoController with TextImageMixin, LanguageMixin {
   @override
   final XmlElement element;
 
-  static const elementName = 'navInfo';
+  static const elementName = EpubNavigationInfo.elementName;
 
   const EpubNavigationInfoController._internal({
     required this.element,

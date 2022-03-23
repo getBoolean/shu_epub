@@ -6,6 +6,8 @@ part of shu_epub.models;
 /// Combination of values of type and value attributes must be unique, when
 /// value attribute is present.
 class EpubNavigationPageTarget extends Equatable {
+  static const elementName = 'pageTarget';
+  
   final String? id;
   final String? value;
   // enum

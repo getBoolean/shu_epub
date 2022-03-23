@@ -10,7 +10,7 @@ class EpubNavigationTargetController
   @override
   final XmlElement element;
 
-  static const elementName = 'navTarget';
+  static const elementName = EpubNavigationTarget.elementName;
 
   const EpubNavigationTargetController._internal({
     required this.element,

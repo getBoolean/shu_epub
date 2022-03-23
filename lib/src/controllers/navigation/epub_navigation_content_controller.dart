@@ -4,7 +4,7 @@ class EpubNavigationContentController with IdMixin {
   @override
   final XmlElement element;
 
-  static const elementName = 'content';
+  static const elementName = EpubNavigationContent.elementName;
 
   const EpubNavigationContentController._internal({
     required this.element,

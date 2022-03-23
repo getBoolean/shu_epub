@@ -3,7 +3,7 @@ part of shu_epub.controllers;
 class EpubNavigationMetaController {
   final XmlElement element;
 
-  static const elementName = 'meta';
+  static const elementName = EpubNavigationMeta.elementName;
 
   const EpubNavigationMetaController._internal({
     required this.element,

@@ -5,22 +5,22 @@ class EpubNavigationController with LanguageMixin, VersionMixin {
   @override
   final XmlElement element;
 
-  static const elementName = 'ncx';
+  static const elementName = EpubNavigation.elementName;
 
   const EpubNavigationController._internal({
     required this.element,
   });
 
   /// Throws [EpubException] if the content element is not the root node
-  factory EpubNavigationController.fromXmlElement(XmlElement ncxElement) {
-    if (ncxElement.name.qualified != elementName) {
+  factory EpubNavigationController.fromXmlElement(XmlElement navigationElement) {
+    if (navigationElement.name.qualified != elementName) {
       throw EpubException(
         'Invalid data, expected $elementName to be the root node but it was not found',
       );
     }
 
     return EpubNavigationController._internal(
-      element: ncxElement,
+      element: navigationElement,
     );
   }
 
@@ -32,9 +32,9 @@ class EpubNavigationController with LanguageMixin, VersionMixin {
 
   /// Create an instance of [EpubNavigationController] from the [Uint8List] data
   /// of the navigation XML document.
-  factory EpubNavigationController(Uint8List ncxData) {
+  factory EpubNavigationController(Uint8List navigationData) {
     final String content = convert.utf8.decode(
-      ncxData,
+      navigationData,
       allowMalformed: true,
     );
 

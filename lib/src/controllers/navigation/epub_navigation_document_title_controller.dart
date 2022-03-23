@@ -5,7 +5,7 @@ class EpubNavigationDocumentTitleController
   @override
   final XmlElement element;
 
-  static const elementName = 'docTitle';
+  static const elementName = EpubNavigationDocumentTitle.elementName;
 
   const EpubNavigationDocumentTitleController._internal({
     required this.element,

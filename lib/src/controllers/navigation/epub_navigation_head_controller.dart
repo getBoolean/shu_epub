@@ -3,7 +3,7 @@ part of shu_epub.controllers;
 class EpubNavigationHeadController {
   final XmlElement element;
 
-  static const elementName = 'head';
+  static const elementName = EpubNavigationHead.elementName;
 
   const EpubNavigationHeadController._internal({
     required this.element,

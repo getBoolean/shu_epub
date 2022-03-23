@@ -9,7 +9,7 @@ class EpubNavigationPageListController
   @override
   final XmlElement element;
 
-  static const elementName = 'pageList';
+  static const elementName = EpubNavigationPageList.elementName;
 
   const EpubNavigationPageListController._internal({
     required this.element,

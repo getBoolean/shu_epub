@@ -4,7 +4,7 @@ class EpubNavigationLabelController with TextImageMixin, LanguageMixin {
   @override
   final XmlElement element;
 
-  static const elementName = 'navLabel';
+  static const elementName = EpubNavigationLabel.elementName;
 
   const EpubNavigationLabelController._internal({
     required this.element,

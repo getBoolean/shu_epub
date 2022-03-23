@@ -5,6 +5,8 @@ part of shu_epub.models;
 /// equivalent of [EpubNavigationMap.navigationPoints] for use in
 /// [EpubNavigation.navigationLists].
 class EpubNavigationTarget extends Equatable {
+  static const elementName = 'navTarget';
+  
   final String? id;
 
   /// A positive integer representing the numeric value associated with the

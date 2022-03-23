@@ -10,7 +10,7 @@ class EpubNavigationPointController
   @override
   final XmlElement element;
 
-  static const elementName = 'navPoint';
+  static const elementName = EpubNavigationPoint.elementName;
 
   const EpubNavigationPointController._internal({
     required this.element,

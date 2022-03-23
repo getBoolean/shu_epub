@@ -4,7 +4,7 @@ class EpubNavigationListController with NavigationLabelListMixin {
   @override
   final XmlElement element;
 
-  static const elementName = 'navList';
+  static const elementName = EpubNavigationList.elementName;
 
   const EpubNavigationListController._internal({
     required this.element,
