@@ -57,7 +57,7 @@
 			"  ///",
 			"  /// Throws [EpubException] if the data does not have the ${2:elementName} element",
 			"  factory ${1}Controller(Uint8List ${2:elementName}Data) {",
-			"    final String content = convert.utf8.decode(",
+			"    final String content = utf8.decode(",
 			"      ${2:elementName}Data,",
 			"      allowMalformed: true,",
 			"    );",

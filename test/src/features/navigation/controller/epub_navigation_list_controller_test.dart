@@ -1,5 +1,5 @@
 import 'package:shu_epub/shu_epub.dart';
-import 'package:shu_epub/src/utils/xml_utils.dart';
+import 'package:shu_epub/src/utils.dart';
 import 'package:test/test.dart';
 
 void main() {

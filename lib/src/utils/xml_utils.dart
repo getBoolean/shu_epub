@@ -1,6 +1,4 @@
-import 'package:xml/xml.dart';
-
-import '../models/models.dart';
+part of shu_epub.utils;
 
 class XmlUtils {
   /// Convert String to `XmlDocument`.

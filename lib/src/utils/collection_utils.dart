@@ -1,3 +1,5 @@
+part of shu_epub.utils;
+
 /// Taken from package `collection`
 extension IterableExtension<T> on Iterable<T> {
   /// The first element satisfying [test], or `null` if there are none.

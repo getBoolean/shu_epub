@@ -1,0 +1,29 @@
+library shu_epub.features.package.data;
+
+import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:archive/archive.dart';
+import 'package:equatable/equatable.dart';
+import 'package:xml/xml.dart';
+
+import '../../enums.dart';
+import 'reader.dart';
+
+part 'data/package_identity/epub_package_identity.dart';
+part 'data/publication_metadata/epub_package_accessibility_metadata.dart';
+part 'data/publication_metadata/epub_extra_metadata.dart';
+part 'data/publication_metadata/epub_metadata_contributer.dart';
+part 'data/publication_metadata/epub_metadata_identifier.dart';
+part 'data/publication_metadata/epub_metadata_date.dart';
+part 'data/guide/epub_guide_item.dart';
+part 'data/guide/epub_guide.dart';
+part 'data/manifest/epub_manifest.dart';
+part 'data/manifest/epub_manifest_item.dart';
+part 'data/publication_metadata/epub_publication_metadata.dart';
+part 'data/spine/epub_spine.dart';
+part 'data/spine/epub_spine_item_ref.dart';
+part 'data/tours/epub_single_tour.dart';
+part 'data/tours/epub_tour_site.dart';
+part 'data/tours/epub_tours.dart';
+part 'data/epub_package.dart';
