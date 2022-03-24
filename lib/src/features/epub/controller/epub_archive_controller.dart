@@ -3,7 +3,7 @@ part of shu_epub.features.epub;
 class EpubArchiveController extends EpubController {
   final Archive archive;
 
-  const EpubArchiveController.fromArchive(
+  EpubArchiveController.fromArchive(
     this.archive,
     String bookId,
   ) : super(bookId);
