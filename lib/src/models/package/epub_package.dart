@@ -94,7 +94,7 @@ class EpubPackage extends Equatable {
   factory EpubPackage.fromXmlElement(XmlElement packageElement) {
     return EpubPackageReader.fromXmlElement(packageElement);
   }
-  
+
   /// Create an instance of [EpubPackage] from the [String] representation
   /// of the package element
   ///
@@ -102,7 +102,7 @@ class EpubPackage extends Equatable {
   factory EpubPackage.fromString(String packageString) {
     return EpubPackageReader.fromString(packageString);
   }
-  
+
   /// Create an instance of [EpubPackage] from the [Uint8List] data
   /// of the package element in the navigation file.
   ///

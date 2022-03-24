@@ -6,45 +6,45 @@ import 'package:test/test.dart';
 void main() {
   group('fromData', () {
     test(
-      'parses container.xml file, returns EpubContainerFile',
+      'parses container.xml file, returns EpubContainer',
       () async {
         // arrange
         final data =
             await io.File('test/assets/Guardians/${EpubContainer.filepath}')
                 .readAsBytes();
         final EpubContainer? expectedValue = const EpubContainer(
-          rootfileList: [
+          rootfileList: RootfileList(items: [
             Rootfile(
               fullPath: 'OEBPS/package.opf',
               mediaType: EpubMediaTypes.kOPFMimeType,
             ),
-          ],
+          ]),
           containerVersion: '1.0',
         );
 
         // act
-        final EpubContainer containerFile = EpubContainerReader.fromData(data);
+        final EpubContainer container = EpubContainerReader.fromData(data);
 
         // assert
-        expect(containerFile, expectedValue);
+        expect(container, expectedValue);
       },
     );
   });
 
   group('fromArchive', () {
     test(
-      'parses epub file, returns EpubContainerFile',
+      'parses epub file, returns EpubContainer',
       () async {
         // arrange
         final data = await io.File('test/assets/Guardians.epub').readAsBytes();
         final archive = ArchiveService.decodeZip(data);
         final EpubContainer? expectedValue = const EpubContainer(
-          rootfileList: [
+          rootfileList: RootfileList(items: [
             Rootfile(
               fullPath: 'OEBPS/package.opf',
               mediaType: EpubMediaTypes.kOPFMimeType,
             ),
-          ],
+          ]),
           containerVersion: '1.0',
         );
 

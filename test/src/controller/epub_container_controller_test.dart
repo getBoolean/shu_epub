@@ -1,7 +1,42 @@
 import 'package:shu_epub/shu_epub.dart';
+import 'package:shu_epub/src/utils/xml_utils.dart';
+// import 'package:shu_epub/src/utils/xml_utils.dart';
 import 'package:test/test.dart';
 
 void main() {
+  group('fromXmlElement', () {
+    test(
+      'on input without container element, expect EpubException thrown',
+      () async {
+        final input = '''
+  <invalid></invalid>
+      ''';
+        final xmlDocument = XmlUtils.parseToXmlDocument(input);
+        final element = xmlDocument.firstElementChild!;
+
+        expect(
+          () => EpubContainerController.fromXmlElement(element),
+          throwsA(isA<EpubException>()),
+        );
+      },
+    );
+  });
+
+  group('fromString', () {
+    test(
+      'on input without container element, expect EpubException thrown',
+      () async {
+        final input = '''
+  <invalid></invalid>
+  ''';
+        expect(
+          () => EpubContainerController.fromString(input),
+          throwsA(isA<EpubException>()),
+        );
+      },
+    );
+  });
+
   group('getVersion', () {
     test(
       'on input without a version attribute, expect a null value',
@@ -33,35 +68,30 @@ void main() {
 
   group('getRootfiles', () {
     test(
-      'on input without rootfiles elements, expect empty list',
+      'on input without a rootfiles element, expect a null value',
       () async {
         final input = '''
-  <container xmlns:svg="http://www.w3.org/2000/svg" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+  <container>
   </container>
   ''';
         final controller = EpubContainerController.fromString(input);
         final actualValue = controller.getRootfiles();
 
-        expect(actualValue, isEmpty);
+        expect(actualValue, isNull);
       },
     );
 
     test(
-      'on input with one rootfiles element with full-path and media-type attributes, expect a list of length 1 with it',
+      'on input with a rootfiles element, expect a rootfiles object',
       () async {
         final input = '''
-  <container xmlns:svg="http://www.w3.org/2000/svg" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+  <container>
       <rootfiles>
-          <rootfile full-path="OEBPS/package.opf" media-type="application/oebps-package+xml"/>
       </rootfiles>
   </container>
   ''';
         final controller = EpubContainerController.fromString(input);
-        final expectedValue = [
-          Rootfile(
-              fullPath: 'OEBPS/package.opf',
-              mediaType: 'application/oebps-package+xml')
-        ];
+        final expectedValue = RootfileList();
         final actualValue = controller.getRootfiles();
 
         expect(actualValue, expectedValue);

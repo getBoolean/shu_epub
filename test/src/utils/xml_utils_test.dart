@@ -4,7 +4,6 @@ import 'package:test/test.dart';
 import 'package:xml/xml.dart';
 
 void main() {
-
   group('parseToXmlDocument', () {
     test(
       'on input without content element, expect exception thrown',

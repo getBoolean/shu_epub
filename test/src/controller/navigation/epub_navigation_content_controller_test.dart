@@ -3,7 +3,6 @@ import 'package:shu_epub/src/utils/xml_utils.dart';
 import 'package:test/test.dart';
 
 void main() {
-  
   group('fromXmlElement', () {
     test(
       'on input without content element, expect exception thrown',

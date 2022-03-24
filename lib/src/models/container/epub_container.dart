@@ -10,25 +10,16 @@ class EpubContainer extends Equatable {
   static const namespace = 'urn:oasis:names:tc:opendocument:xmlns:container';
   static const filepath = 'META-INF/container.xml';
 
-  final List<Rootfile> rootfileList;
-  final String containerVersion;
+  final RootfileList? rootfileList;
+  final String? containerVersion;
 
   /// If there are multiple [Rootfile]s with mime type [EpubXMLConstants.kOPFMimeType], the first one will be considered the rootfile
   ///
   /// Returns null if [EpubContainer.rootfileList] is empty
   Rootfile? get rootfile {
-    return rootfileList.firstWhereOrNull(
+    return rootfileList?.items.firstWhereOrNull(
       (element) => element.mediaType == EpubMediaTypes.kOPFMimeType,
     );
-  }
-
-  factory EpubContainer.zero() {
-    return EpubContainer(containerVersion: '', rootfileList: []);
-  }
-
-  factory EpubContainer.error(Rootfile epubRootfile) {
-    return EpubContainer(
-        rootfileList: [epubRootfile], containerVersion: 'unknown');
   }
 
   factory EpubContainer.fromData(Uint8List data) {
@@ -42,12 +33,12 @@ class EpubContainer extends Equatable {
   // GENERATED DO NOT MODOFY
 
   const EpubContainer({
-    required this.rootfileList,
-    required this.containerVersion,
+    this.rootfileList,
+    this.containerVersion,
   });
 
   EpubContainer copyWith({
-    List<Rootfile>? rootfileList,
+    RootfileList? rootfileList,
     String? containerVersion,
   }) {
     return EpubContainer(
@@ -58,15 +49,16 @@ class EpubContainer extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'rootfileList': rootfileList.map((x) => x.toMap()).toList(),
+      'rootfileList': rootfileList?.toMap(),
       'containerVersion': containerVersion,
     };
   }
 
   factory EpubContainer.fromMap(Map<String, dynamic> map) {
     return EpubContainer(
-      rootfileList:
-          List<Rootfile>.from(map['rootfileList']?.map(Rootfile.fromMap)),
+      rootfileList: map['rootfileList'] == null
+          ? null
+          : RootfileList.fromMap(map['rootfileList']),
       containerVersion: map['containerVersion'] ?? '',
     );
   }
@@ -81,5 +73,6 @@ class EpubContainer extends Equatable {
       'EpubContainer(rootfileList: $rootfileList, containerVersion: $containerVersion)';
 
   @override
-  List<Object> get props => [rootfileList, containerVersion];
+  List<Object> get props =>
+      [rootfileList ?? 'rootfileList', containerVersion ?? 'containerVersion'];
 }

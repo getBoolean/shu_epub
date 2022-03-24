@@ -13,6 +13,7 @@ import '../utils/collection_utils.dart';
 
 part 'container/epub_container.dart';
 part 'container/rootfile.dart';
+part 'container/rootfile_list.dart';
 part 'epub.dart';
 part 'exception.dart';
 part 'epub_media_types.dart';

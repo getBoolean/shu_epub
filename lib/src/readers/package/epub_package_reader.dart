@@ -5,8 +5,7 @@ class EpubPackageReader {
   ///
   /// Throws [EpubException] if the package element is not the root node
   static EpubPackage fromXmlElement(XmlElement navigationElement) {
-    final controller =
-        EpubPackageController.fromXmlElement(navigationElement);
+    final controller = EpubPackageController.fromXmlElement(navigationElement);
     return _fromController(controller);
   }
 
@@ -35,7 +34,7 @@ class EpubPackageReader {
     final controller = EpubPackageController(navigationData);
     return _fromController(controller);
   }
-  
+
   static EpubPackage _fromController(
     EpubPackageController controller,
   ) {

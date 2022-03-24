@@ -10,7 +10,9 @@ import '../models/models.dart';
 import '../service/service.dart';
 import '../utils/collection_utils.dart';
 
-part 'epub_container_reader.dart';
+part 'container/epub_container_reader.dart';
+part 'container/rootfile_list_reader.dart';
+part 'container/rootfile_reader.dart';
 part 'epub_reader.dart';
 part 'package/epub_package_reader.dart';
 part 'package/epub_guide_reader.dart';

@@ -3,17 +3,16 @@ import 'package:shu_epub/src/utils/xml_utils.dart';
 import 'package:test/test.dart';
 
 void main() {
-
   group('fromXmlElement', () {
     test(
-    'on input without navigation element, expect EpubException thrown',
+      'on input without navigation element, expect EpubException thrown',
       () async {
         final input = '''
   <invalid></invalid>
       ''';
         final xmlDocument = XmlUtils.parseToXmlDocument(input);
         final element = xmlDocument.firstElementChild!;
-  
+
         expect(
           () => EpubNavigationController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
@@ -21,22 +20,22 @@ void main() {
       },
     );
   });
-  
-    group('fromString', () {
-      test(
-        'on input without navigation element, expect EpubException thrown',
-        () async {
-          final input = '''
+
+  group('fromString', () {
+    test(
+      'on input without navigation element, expect EpubException thrown',
+      () async {
+        final input = '''
   <invalid></invalid>
   ''';
-          expect(
-            () => EpubNavigationController.fromString(input),
-            throwsA(isA<EpubException>()),
-          );
-        },
-      );
+        expect(
+          () => EpubNavigationController.fromString(input),
+          throwsA(isA<EpubException>()),
+        );
+      },
+    );
   });
-  
+
   group('getVersion', () {
     test(
       'on input and version attribute does not exist, expect null',

@@ -3,7 +3,6 @@ import 'package:shu_epub/src/utils/xml_utils.dart';
 import 'package:test/test.dart';
 
 void main() {
-
   group('fromXmlElement', () {
     test(
       'on input without navTarget element, expect EpubException thrown',
@@ -13,7 +12,7 @@ void main() {
       ''';
         final xmlDocument = XmlUtils.parseToXmlDocument(input);
         final element = xmlDocument.firstElementChild!;
-  
+
         expect(
           () => EpubNavigationTarget.fromXmlElement(element),
           throwsA(isA<EpubException>()),
@@ -21,7 +20,7 @@ void main() {
       },
     );
   });
-  
+
   group('fromString', () {
     test(
       'on input without navTarget element, expect EpubException thrown',
