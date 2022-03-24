@@ -14,3 +14,5 @@ import 'package/data.dart';
 
 part 'epub/data/epub.dart';
 part 'epub/reader/epub_reader.dart';
+part 'epub/controller/epub_controller.dart';
+part 'epub/controller/epub_archive_controller.dart';
