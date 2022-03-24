@@ -91,7 +91,7 @@ class EpubNavigationPageTarget extends Equatable {
       id: map['id'],
       value: map['value'],
       type: map['type'] != null
-          ? EpubNavigationPageTargetType?.values[map['type'] ?? 0]
+          ? EpubNavigationPageTargetType.values[map['type'] ?? 0]
           : null,
       classType: map['classType'],
       playOrder: map['playOrder'],

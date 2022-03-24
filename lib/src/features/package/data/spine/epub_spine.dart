@@ -3,8 +3,6 @@ part of shu_epub.features.package.data;
 class EpubSpine extends Equatable {
   /// The value is the the id attribute value of the required NCX (`.ncx` document
   /// listed in [EpubManifest.items]
-  ///
-  /// TODO(@getBoolean): NCX model
   final String tocId;
 
   /// The order of this list determines the reading order.

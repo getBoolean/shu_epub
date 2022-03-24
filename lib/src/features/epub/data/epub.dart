@@ -1,14 +1,15 @@
 part of shu_epub.features.epub;
 
 class Epub extends Equatable {
-  final EpubPackage packageFile;
-  final EpubContainer containerFile;
+  final EpubPackage package;
+  final EpubContainer container;
+  final EpubNavigation navigation;
 
   /// Load an EPUB file into memory and return the parsed [Epub] object
   ///
   /// ```
   /// final file = File("Guardian.epub");
-  /// final epub = Epub.loadFromData(file.readAsBytesSync());
+  /// final epub = Epub.fromData(file.readAsBytesSync());
   /// ```
   factory Epub.fromData(Uint8List bytes) {
     return EpubReader.fromData(bytes);
@@ -37,31 +38,36 @@ class Epub extends Equatable {
   // GENERATED DO NOT MODOFY
 
   Epub({
-    required this.packageFile,
-    required this.containerFile,
+    required this.package,
+    required this.container,
+    required this.navigation,
   });
 
   Epub copyWith({
-    EpubPackage? packageFile,
-    EpubContainer? containerFile,
+    EpubPackage? package,
+    EpubContainer? container,
+    EpubNavigation? navigation,
   }) {
     return Epub(
-      packageFile: packageFile ?? this.packageFile,
-      containerFile: containerFile ?? this.containerFile,
+      package: package ?? this.package,
+      container: container ?? this.container,
+      navigation: navigation ?? this.navigation,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'packageFile': packageFile.toMap(),
-      'containerFile': containerFile.toMap(),
+      'package': package.toMap(),
+      'container': container.toMap(),
+      'navigation': navigation.toMap(),
     };
   }
 
   factory Epub.fromMap(Map<String, dynamic> map) {
     return Epub(
-      packageFile: EpubPackage.fromMap(map['packageFile']),
-      containerFile: EpubContainer.fromMap(map['containerFile']),
+      package: EpubPackage.fromMap(map['package']),
+      container: EpubContainer.fromMap(map['container']),
+      navigation: EpubNavigation.fromMap(map['navigation']),
     );
   }
 
@@ -70,9 +76,8 @@ class Epub extends Equatable {
   factory Epub.fromJson(String source) => Epub.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'Epub(packageFile: $packageFile, containerFile: $containerFile)';
+  String toString() => 'Epub(package: $package, container: $container, navigation: $navigation)';
 
   @override
-  List<Object> get props => [packageFile, containerFile];
+  List<Object> get props => [package, container, navigation];
 }

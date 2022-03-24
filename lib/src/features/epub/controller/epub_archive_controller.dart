@@ -11,14 +11,14 @@ class EpubArchiveController extends EpubController {
   }
 
   @override
-  Future<Uint8List> getFileBytes(String path) {
-    // TODO: implement getFileBytes
-    throw UnimplementedError();
+  FutureOr<Uint8List?> getFileBytes(String path) {
+    final file = archive.findFile(path);
+
+    return file?.content;
   }
 
   @override
-  Future<List<String>> getFilePaths() {
-    // TODO: implement getFilePaths
-    throw UnimplementedError();
+  FutureOr<List<String>> getFilePaths() {
+    return archive.files.map((file) => file.name).toList();
   }
 }

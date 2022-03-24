@@ -4,7 +4,8 @@ class EpubReader {
   const EpubReader();
 
   static Epub fromData(Uint8List bytes) {
-    final archive = ArchiveService.decodeZip(bytes);
+    final controller = EpubArchiveController(bytes);
+    final archive = controller.archive;
     final isEpub = ArchiveService.isEpubFile(archive);
     if (!isEpub) {
       throw EpubException('File was not an EPUB');
@@ -38,9 +39,40 @@ class EpubReader {
     final EpubPackage packageFile =
         EpubPackage.fromData(archiveRootfile.content);
 
+    final navigationId = packageFile.spine.tocId;
+    // TODO(@getBoolean): Create backup plan if navigation is not found
+    if (navigationId.isEmpty) {
+      throw EpubException(
+        'Epub Parsing Error: Could not find navigation id in the spine of container.xml',
+      );
+    }
+    final navigationManifestItem = packageFile.manifest.items.firstWhereOrNull(
+      (element) => element.id == navigationId,
+    );
+    // TODO(@getBoolean): Create backup plan if navigation is not found
+    if (navigationManifestItem == null) {
+      throw EpubException(
+        'Epub Parsing Error: Could not find the navigation manifest item in container.xml',
+      );
+    }
+    final navigationRelativePath = navigationManifestItem.href;
+    final currentPathSplit = archiveRootfile.name.split(RegExp(r'/+'));
+    currentPathSplit.removeLast();
+    final currentPath = currentPathSplit.join('/');
+    final navigationFullPath = currentPath + '/' + navigationRelativePath;
+    final navigationFile = archive.findFile(navigationFullPath);
+    // TODO(@getBoolean): Create backup plan if navigation is not found
+    if (navigationFile == null) {
+      throw EpubException(
+        'Epub Parsing Error: Could not find the navigation file in archive at $navigationFullPath',
+      );
+    }
+    final navigation = EpubNavigation.fromData(navigationFile.content);
+
     return Epub(
-      packageFile: packageFile,
-      containerFile: epubContainerFile,
+      package: packageFile,
+      container: epubContainerFile,
+      navigation: navigation,
     );
   }
 

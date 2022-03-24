@@ -9,8 +9,10 @@ abstract class EpubController {
   // * Getter for EPUB object
 
   /// Gets filepaths to all files
-  Future<List<String>> getFilePaths();
+  /// 
+  /// Must use forward slashes `/`, not backwards `\`
+  FutureOr<List<String>> getFilePaths();
 
   /// Get the bytes of file from the path
-  Future<Uint8List> getFileBytes(String path);
+  FutureOr<Uint8List?> getFileBytes(String path);
 }
