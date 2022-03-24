@@ -76,7 +76,8 @@ class Epub extends Equatable {
   factory Epub.fromJson(String source) => Epub.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Epub(package: $package, container: $container, navigation: $navigation)';
+  String toString() =>
+      'Epub(package: $package, container: $container, navigation: $navigation)';
 
   @override
   List<Object> get props => [package, container, navigation];
