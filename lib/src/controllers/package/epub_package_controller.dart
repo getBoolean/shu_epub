@@ -10,7 +10,7 @@ class EpubPackageController {
 
   bool get hasGuide => guideElement != null;
 
-  bool get hasTour => !hasGuide && tourElement != null;
+  bool get hasTours => !hasGuide && tourElement != null;
 
   static const elementName = EpubPackage.elementName;
 
@@ -65,23 +65,11 @@ class EpubPackageController {
       packageData,
       allowMalformed: true,
     );
-    final XmlDocument xmlDocument = _handleStringToXmlDocument(content);
+    final XmlDocument xmlDocument =  XmlUtils.parseToXmlDocument(content);
     final XmlElement packageElement =
         _getPackageElementFromXmlDocument(xmlDocument);
 
     return EpubPackageController.fromXmlElement(packageElement);
-  }
-
-  static XmlDocument _handleStringToXmlDocument(String content) {
-    try {
-      return XmlDocument.parse(content);
-    } on XmlParserException catch (e, st) {
-      throw EpubException(
-        'Epub Parsing Exception: Uint8List given was not a valid xml file',
-        e,
-        st,
-      );
-    }
   }
 
   static XmlElement _getPackageElementFromXmlDocument(XmlDocument document) {

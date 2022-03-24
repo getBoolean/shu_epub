@@ -51,6 +51,7 @@ void main() {
         final actualValue = controller.getGuide();
 
         expect(actualValue, isNull);
+        expect(controller.hasGuide, false);
       },
     );
 
@@ -71,6 +72,7 @@ void main() {
         final actualValue = controller.getGuide();
 
         expect(actualValue, expectedValue);
+        expect(controller.hasGuide, true);
       },
     );
   });
@@ -90,6 +92,7 @@ void main() {
         final actualValue = controller.getTours();
 
         expect(actualValue, isNull);
+        expect(controller.hasTours, false);
       },
     );
 
@@ -110,6 +113,7 @@ void main() {
         final actualValue = controller.getTours();
 
         expect(actualValue, expectedValue);
+        expect(controller.hasTours, true);
       },
     );
   });
