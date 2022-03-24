@@ -1,7 +1,9 @@
 part of shu_epub.features.epub;
 
 abstract class EpubController {
-  const EpubController();
+  final String bookId;
+
+  const EpubController(this.bookId);
 
   // * Future getFilePaths - Method to get filepaths to all files
   // * Future getFileBytes - Method to get bytes of file from filepath

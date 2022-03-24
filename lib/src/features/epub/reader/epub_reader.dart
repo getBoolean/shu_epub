@@ -3,8 +3,14 @@ part of shu_epub.features.epub;
 class EpubReader {
   const EpubReader();
 
-  static Epub fromData(Uint8List bytes) {
-    final controller = EpubArchiveController(bytes);
+  static Epub fromData({
+    required Uint8List data,
+    required String bookId,
+  }) {
+    final controller = EpubArchiveController(
+      data: data,
+      bookId: bookId,
+    );
     final archive = controller.archive;
     final isEpub = ArchiveService.isEpubFile(archive);
     if (!isEpub) {
