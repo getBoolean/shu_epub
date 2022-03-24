@@ -12,7 +12,7 @@ void main() {
       ''';
         final xmlDocument = XmlUtils.parseToXmlDocument(input);
         final element = xmlDocument.firstElementChild!;
-  
+
         expect(
           () => Rootfile.fromXmlElement(element),
           throwsA(isA<EpubException>()),
@@ -20,7 +20,7 @@ void main() {
       },
     );
   });
-  
+
   group('fromString', () {
     test(
       'on input without rootfile element, expect EpubException thrown',
@@ -45,11 +45,11 @@ void main() {
   ''';
         final controller = RootfileController.fromString(input);
         final actualValue = controller.getMediaType();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a media-type attribute, expect the String value',
       () async {
@@ -59,7 +59,7 @@ void main() {
         final controller = RootfileController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getMediaType();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -74,11 +74,11 @@ void main() {
   ''';
         final controller = RootfileController.fromString(input);
         final actualValue = controller.getFullPath();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a full-path attribute, expect the String value',
       () async {
@@ -88,7 +88,7 @@ void main() {
         final controller = RootfileController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getFullPath();
-  
+
         expect(actualValue, expectedValue);
       },
     );

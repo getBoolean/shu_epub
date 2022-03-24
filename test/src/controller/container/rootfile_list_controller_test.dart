@@ -3,7 +3,6 @@ import 'package:shu_epub/src/utils/xml_utils.dart';
 import 'package:test/test.dart';
 
 void main() {
-
   group('fromXmlElement', () {
     test(
       'on input without rootfiles element, expect EpubException thrown',
@@ -13,7 +12,7 @@ void main() {
       ''';
         final xmlDocument = XmlUtils.parseToXmlDocument(input);
         final element = xmlDocument.firstElementChild!;
-  
+
         expect(
           () => RootfileList.fromXmlElement(element),
           throwsA(isA<EpubException>()),
@@ -21,7 +20,7 @@ void main() {
       },
     );
   });
-  
+
   group('fromString', () {
     test(
       'on input without rootfiles element, expect EpubException thrown',
@@ -47,11 +46,11 @@ void main() {
   ''';
         final controller = RootfileListController.fromString(input);
         final actualValue = controller.getItems();
-  
+
         expect(actualValue, isEmpty);
       },
     );
-  
+
     test(
       'on input with one rootfile element, expect a list of length 1 with it',
       () async {
@@ -64,7 +63,7 @@ void main() {
         final controller = RootfileListController.fromString(input);
         final expectedValue = [Rootfile()];
         final actualValue = controller.getItems();
-  
+
         expect(actualValue, expectedValue);
       },
     );

@@ -65,7 +65,7 @@ class EpubPackageController {
       packageData,
       allowMalformed: true,
     );
-    final XmlDocument xmlDocument =  XmlUtils.parseToXmlDocument(content);
+    final XmlDocument xmlDocument = XmlUtils.parseToXmlDocument(content);
     final XmlElement packageElement =
         _getPackageElementFromXmlDocument(xmlDocument);
 
