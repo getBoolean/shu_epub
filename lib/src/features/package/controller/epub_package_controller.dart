@@ -3,7 +3,6 @@ part of shu_epub.features.package.controller;
 class EpubPackageController {
   final XmlElement packageElement;
   final XmlElement metadataElement;
-  final XmlElement manifestElement;
   final XmlElement spineElement;
   final XmlElement? guideElement;
   final XmlElement? tourElement;
@@ -31,8 +30,6 @@ class EpubPackageController {
     // TODO(@getBoolean): Create backup plan if required elements don't exist
     final XmlElement metadataElement =
         _getElementFromPackageElement('metadata', packageElement)!;
-    final XmlElement manifestElement =
-        _getElementFromPackageElement('manifest', packageElement)!;
     final XmlElement spineElement =
         _getElementFromPackageElement('spine', packageElement)!;
     final XmlElement? guideElement =
@@ -43,7 +40,6 @@ class EpubPackageController {
     return EpubPackageController._internal(
       packageElement: packageElement,
       metadataElement: metadataElement,
-      manifestElement: manifestElement,
       spineElement: spineElement,
       guideElement: guideElement,
       tourElement: tourElement,
@@ -53,7 +49,6 @@ class EpubPackageController {
   const EpubPackageController._internal({
     required this.packageElement,
     required this.metadataElement,
-    required this.manifestElement,
     required this.spineElement,
     this.guideElement,
     this.tourElement,
@@ -104,15 +99,14 @@ class EpubPackageController {
     XmlElement packageElement, {
     bool require = true,
   }) {
-    final metadataElement =
-        packageElement.findElements(targetElement).firstOrNull;
-    if (metadataElement == null && require) {
+    final element = packageElement.findElements(targetElement).firstOrNull;
+    if (element == null && require) {
       throw EpubException(
         'Epub Parsing Exception: Could not find <${EpubPublicationMetadata.elementName}> element in package (OPF) data',
       );
     }
 
-    return metadataElement;
+    return element;
   }
 
   EpubPackageIdentity getPackageIdentity() {
@@ -283,17 +277,14 @@ class EpubPackageController {
     );
   }
 
-  EpubManifest getManifest() {
-    final items = manifestElement.findElements('item');
+  EpubManifest? getManifest() {
+    final manifestElement =
+        packageElement.findElements(EpubManifest.elementName).firstOrNull;
+    if (manifestElement == null) {
+      return null;
+    }
 
-    final manifestItems = items.map(EpubManifestItem.fromXmlElement).toList();
-
-    // Remove OPF Package Document in case it exists in manifest
-    manifestItems.removeWhere(
-      (item) => item.mediaType == EpubMediaTypes.kOPFMimeType,
-    );
-
-    return EpubManifest(items: manifestItems);
+    return EpubManifest.fromXmlElement(manifestElement);
   }
 
   EpubSpine getSpine() {

@@ -45,14 +45,14 @@ class EpubReader {
     final EpubPackage packageFile =
         EpubPackage.fromData(archiveRootfile.content);
 
-    final navigationId = packageFile.spine.tocId;
+    final navigationId = packageFile.spine?.tocId;
     // TODO(@getBoolean): Create backup plan if navigation is not found
-    if (navigationId.isEmpty) {
+    if (navigationId == null || navigationId.isEmpty) {
       throw EpubException(
         'Epub Parsing Error: Could not find navigation id in the spine of container.xml',
       );
     }
-    final navigationManifestItem = packageFile.manifest.items.firstWhereOrNull(
+    final navigationManifestItem = packageFile.manifest?.items.firstWhereOrNull(
       (element) => element.id == navigationId,
     );
     // TODO(@getBoolean): Create backup plan if navigation is not found

@@ -35,10 +35,10 @@ class EpubPackage extends Equatable {
   /// Notwithstanding the requirement for uniqueness, Reading Systems must not
   /// fail catastrophically if they encounter two distinct packages with the same
   /// purportedly unique primary identifier.
-  final EpubPackageIdentity packageIdentity;
+  final EpubPackageIdentity? packageIdentity;
 
   /// Publication metadata (title, author, publisher, etc.).
-  final EpubPublicationMetadata publicationMetadata;
+  final EpubPublicationMetadata? publicationMetadata;
 
   /// A list of files (documents, images, style sheets, etc.) that make up the publication.
   /// The manifest also includes fallback declarations for files of types not supported by
@@ -63,10 +63,10 @@ class EpubPackage extends Equatable {
   /// a document, an image file, a style sheet, or other component that is considered
   /// part of the publication. The manifest must not include item elements referring
   /// to the file or files that make up the OPF Package Document.
-  final EpubManifest manifest;
+  final EpubManifest? manifest;
 
   /// An arrangement of documents providing a linear reading order.
-  final EpubSpine spine;
+  final EpubSpine? spine;
 
   /// A set of references to fundamental structural features of the publication, such
   ///
@@ -114,10 +114,10 @@ class EpubPackage extends Equatable {
   // GENERATED DO NOT MODOFY
 
   const EpubPackage({
-    required this.packageIdentity,
-    required this.publicationMetadata,
-    required this.manifest,
-    required this.spine,
+    this.packageIdentity,
+    this.publicationMetadata,
+    this.manifest,
+    this.spine,
     this.guide,
     this.tours,
   });
@@ -142,10 +142,10 @@ class EpubPackage extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'packageIdentity': packageIdentity.toMap(),
-      'publicationMetadata': publicationMetadata.toMap(),
-      'manifest': manifest.toMap(),
-      'spine': spine.toMap(),
+      'packageIdentity': packageIdentity?.toMap(),
+      'publicationMetadata': publicationMetadata?.toMap(),
+      'manifest': manifest?.toMap(),
+      'spine': spine?.toMap(),
       'guide': guide?.toMap(),
       'tours': tours?.toMap(),
     };
@@ -153,11 +153,11 @@ class EpubPackage extends Equatable {
 
   factory EpubPackage.fromMap(Map<String, dynamic> map) {
     return EpubPackage(
-      packageIdentity: EpubPackageIdentity.fromMap(map['packageIdentity']),
+      packageIdentity: map['packageIdentity'] == null ? null : EpubPackageIdentity.fromMap(map['packageIdentity']),
       publicationMetadata:
-          EpubPublicationMetadata.fromMap(map['publicationMetadata']),
-      manifest: EpubManifest.fromMap(map['manifest']),
-      spine: EpubSpine.fromMap(map['spine']),
+          map['publicationMetadata'] == null ? null : EpubPublicationMetadata.fromMap(map['publicationMetadata']),
+      manifest: map['manifest'] == null ? null : EpubManifest.fromMap(map['manifest']),
+      spine: map['spine'] == null ? null : EpubSpine.fromMap(map['spine']),
       guide: map['guide'] != null ? EpubGuide.fromMap(map['guide']) : null,
       tours: map['tours'] != null ? EpubTours.fromMap(map['tours']) : null,
     );
@@ -176,10 +176,10 @@ class EpubPackage extends Equatable {
   @override
   List<Object> get props {
     return [
-      packageIdentity,
-      publicationMetadata,
-      manifest,
-      spine,
+      packageIdentity ?? 'no packageIdentity',
+      publicationMetadata ?? 'no publicationMetadata',
+      manifest ?? 'no manifest',
+      spine ?? 'no spine',
       guide ?? 'no guide',
       tours ?? 'no tours',
     ];
