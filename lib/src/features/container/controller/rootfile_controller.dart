@@ -1,6 +1,7 @@
 part of shu_epub.features.container.controller;
 
-class RootfileController {
+class RootfileController with MediaTypeMixin {
+  @override
   final XmlElement element;
 
   static const elementName = Rootfile.elementName;
@@ -54,10 +55,6 @@ class RootfileController {
     return RootfileController.fromXmlElement(
       rootfileElement,
     );
-  }
-
-  String? getMediaType() {
-    return element.getAttribute('media-type');
   }
 
   String? getFullPath() {

@@ -62,10 +62,18 @@ class EpubReader {
       );
     }
     final navigationRelativePath = navigationManifestItem.href;
+    // TODO(@getBoolean): Create backup plan if navigation is not found
+    if (navigationRelativePath == null) {
+      throw EpubException(
+        'Malformed Epub Manifest: Manifest Table of Contents item did not specify the href location of the navigation file.',
+      );
+    }
+
     final currentPathSplit = archiveRootfile.name.split(RegExp(r'/+'));
     currentPathSplit.removeLast();
     final currentPath = currentPathSplit.join('/');
     final navigationFullPath = currentPath + '/' + navigationRelativePath;
+
     final navigationFile = archive.findFile(navigationFullPath);
     // TODO(@getBoolean): Create backup plan if navigation is not found
     if (navigationFile == null) {

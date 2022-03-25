@@ -1,9 +1,11 @@
 part of shu_epub.features.package.data;
 
 class EpubManifestItem extends Equatable {
-  final String id;
-  final String href;
-  final String mediaType;
+  static const elementName = 'item';
+  
+  final String? id;
+  final String? href;
+  final String? mediaType;
 
   /// If a `fallback` attribute points to an [EpubManifestItem]'s `id`
   /// that also has a `fallback` attribute, a Reading System **must** continue
@@ -21,6 +23,29 @@ class EpubManifestItem extends Equatable {
   /// Nevertheless, Reading Systems **should not** fail catastrophically if
   /// they encounter such a loop.
   final String? fallback;
+
+  /// Create an [EpubManifestItem] object from the item XmlElement.
+  ///
+  /// Throws [EpubException] if the item element is not the root node
+  factory EpubManifestItem.fromXmlElement(XmlElement itemElement) {
+    return EpubManifestItemReader.fromXmlElement(itemElement);
+  }
+  
+  /// Create an instance of [EpubManifestItem] from the [String] representation
+  /// of the item element
+  ///
+  /// Throws [EpubException] if the string does not have the item element
+  factory EpubManifestItem.fromString(String itemString) {
+    return EpubManifestItemReader.fromString(itemString);
+  }
+  
+  /// Create an instance of [EpubManifestItem] from the [Uint8List] data
+  /// of the item element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the item element
+  factory EpubManifestItem.fromData(Uint8List itemData) {
+    return EpubManifestItemReader.fromData(itemData);
+  }
 
   const EpubManifestItem({
     required this.id,
@@ -74,9 +99,9 @@ class EpubManifestItem extends Equatable {
   @override
   List<Object> get props {
     return [
-      id,
-      href,
-      mediaType,
+      id ?? 'no id',
+      href ?? 'no href',
+      mediaType ?? 'no mediaType',
       fallback ?? 'no fallback',
     ];
   }
@@ -118,9 +143,9 @@ class EpubManifestItemOutOfLineXMLIsland extends EpubManifestItem {
   final List<String>? requiredModules;
 
   const EpubManifestItemOutOfLineXMLIsland({
-    required String id,
-    required String href,
-    required String mediaType,
+    required String? id,
+    required String? href,
+    required String? mediaType,
     required String? fallback,
     required this.requiredNamespace,
     this.fallbackStyle,
@@ -199,9 +224,9 @@ class EpubManifestItemOutOfLineXMLIsland extends EpubManifestItem {
   @override
   List<Object> get props {
     return [
-      id,
-      href,
-      mediaType,
+      id ?? 'no id',
+      href ?? 'no href',
+      mediaType ?? 'mediaType',
       fallback ?? 'no fallback',
       requiredNamespace,
       requiredModules ?? 'no required modules specified',

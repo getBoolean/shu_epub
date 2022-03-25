@@ -1,6 +1,7 @@
 part of shu_epub.features.package.controller;
 
-class EpubTourSiteController {
+class EpubTourSiteController with HrefMixin {
+  @override
   final XmlElement element;
 
   static const elementName = EpubTourSite.elementName;
@@ -58,9 +59,5 @@ class EpubTourSiteController {
 
   String? getTitle() {
     return element.getAttribute('title');
-  }
-
-  String? getHref() {
-    return element.getAttribute('href');
   }
 }

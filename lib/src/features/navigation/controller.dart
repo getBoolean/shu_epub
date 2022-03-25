@@ -28,7 +28,6 @@ part 'controller/epub_navigation_page_list_controller.dart';
 part 'controller/epub_navigation_page_target_controller.dart';
 part 'controller/epub_navigation_point_controller.dart';
 part 'controller/epub_navigation_target_controller.dart';
-part 'controller/id_mixin.dart';
 part 'controller/language_mixin.dart';
 part 'controller/navigation_info_list_mixin.dart';
 part 'controller/navigation_label_list_mixin.dart';

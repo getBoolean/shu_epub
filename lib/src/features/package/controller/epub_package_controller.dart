@@ -286,14 +286,7 @@ class EpubPackageController {
   EpubManifest getManifest() {
     final items = manifestElement.findElements('item');
 
-    final manifestItems = items
-        .map((item) => EpubManifestItem(
-              id: item.getAttribute('id') ?? '',
-              href: item.getAttribute('href') ?? '',
-              mediaType: item.getAttribute('media-type') ?? '',
-              fallback: item.getAttribute('fallback'),
-            ))
-        .toList();
+    final manifestItems = items.map(EpubManifestItem.fromXmlElement).toList();
 
     // Remove OPF Package Document in case it exists in manifest
     manifestItems.removeWhere(
