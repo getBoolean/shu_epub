@@ -36,6 +36,41 @@ void main() {
     );
   });
 
+  group('getAllTitles with dc-metadata element', () {
+    test(
+      'on input without dc:title elements, expect empty list',
+      () async {
+        final input = '''
+  <metadata>
+  </metadata>
+  ''';
+        final controller = EpubPublicationMetadataController.fromString(input);
+        final actualValue = controller.getAllTitles();
+
+        expect(actualValue, isEmpty);
+      },
+    );
+
+    test(
+      'on input with with dc-metadata element with one dc:title element, expect a list of length 1 with it',
+      () async {
+        final input = '''
+  <metadata>
+      <dc-metadata>
+          <dc:title>
+          </dc:title>
+      </dc-metadata>
+  </metadata>
+  ''';
+        final controller = EpubPublicationMetadataController.fromString(input);
+        final expectedValue = [EpubMetadataTitle()];
+        final actualValue = controller.getAllTitles();
+
+        expect(actualValue, expectedValue);
+      },
+    );
+  });
+
   group('getAllTitles', () {
     test(
       'on input without dc:title elements, expect empty list',
