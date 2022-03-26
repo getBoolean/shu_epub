@@ -1,4 +1,4 @@
-part of shu_epub.features.epub;
+part of shu_epub.features.epub.controller;
 
 abstract class EpubController {
   final String bookId;

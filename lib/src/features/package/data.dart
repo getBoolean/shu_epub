@@ -20,6 +20,7 @@ part 'data/guide/epub_guide.dart';
 part 'data/manifest/epub_manifest.dart';
 part 'data/manifest/epub_manifest_item.dart';
 part 'data/publication_metadata/epub_publication_metadata.dart';
+part 'data/publication_metadata/epub_metadata_title.dart';
 part 'data/spine/epub_spine.dart';
 part 'data/spine/epub_spine_item_ref.dart';
 part 'data/tours/epub_single_tour.dart';

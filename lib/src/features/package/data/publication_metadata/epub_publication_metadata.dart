@@ -5,7 +5,7 @@ class EpubPublicationMetadata extends Equatable {
   static const elementName = 'metadata';
 
   /// Must not be an empty list
-  final List<String> allTitles;
+  final List<EpubMetadataTitle> allTitles;
 
   /// A primary creator or author of the publication.
   ///
@@ -79,7 +79,7 @@ class EpubPublicationMetadata extends Equatable {
   /// A statement about rights, or a reference to one.
   final String? rights;
 
-  String get title => allTitles.first;
+  EpubMetadataTitle get title => allTitles.first;
 
   /// Create an [EpubPublicationMetadata] object from the metadata XmlElement.
   ///
@@ -124,7 +124,7 @@ class EpubPublicationMetadata extends Equatable {
   });
 
   EpubPublicationMetadata copyWith({
-    List<String>? allTitles,
+    List<EpubMetadataTitle>? allTitles,
     List<EpubMetadataContributer>? creators,
     List<String>? subjects,
     String? description,
@@ -163,14 +163,14 @@ class EpubPublicationMetadata extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'allTitles': allTitles,
+      'allTitles': allTitles.map((x) => x.toMap()).toList(),
       'creators': creators.map((x) => x.toMap()).toList(),
       'subjects': subjects,
       'description': description,
       'publisher': publisher,
       'contributors': contributors.map((x) => x.toMap()).toList(),
       'extraMetadataItems': extraMetadataItems.map((x) => x.toMap()).toList(),
-      'metadataDate': metadataDate,
+      'metadataDate': metadataDate?.toMap(),
       'type': type,
       'format': format,
       'identifiers': identifiers.map((x) => x.toMap()).toList(),
@@ -184,21 +184,17 @@ class EpubPublicationMetadata extends Equatable {
 
   factory EpubPublicationMetadata.fromMap(Map<String, dynamic> map) {
     return EpubPublicationMetadata(
-      allTitles: List<String>.from(map['allTitles']),
-      creators: List<EpubMetadataContributer>.from(
-          map['creators'].map(EpubMetadataContributer.fromMap)),
+      allTitles: List<EpubMetadataTitle>.from(map['allTitles']?.map(EpubMetadataTitle.fromMap)),
+      creators: List<EpubMetadataContributer>.from(map['creators']?.map(EpubMetadataContributer.fromMap)),
       subjects: List<String>.from(map['subjects']),
       description: map['description'],
       publisher: map['publisher'],
-      contributors: List<EpubMetadataContributer>.from(
-          map['contributors'].map(EpubMetadataContributer.fromMap)),
-      extraMetadataItems: List<EpubExtraMetadata>.from(
-          map['extraMetadataItems'].map(EpubExtraMetadata.fromMap)),
-      metadataDate: map['metadataDate'],
+      contributors: List<EpubMetadataContributer>.from(map['contributors']?.map(EpubMetadataContributer.fromMap)),
+      extraMetadataItems: List<EpubExtraMetadata>.from(map['extraMetadataItems']?.map(EpubExtraMetadata.fromMap)),
+      metadataDate: map['metadataDate'] != null ? EpubMetadataDate.fromMap(map['metadataDate']) : null,
       type: map['type'],
       format: map['format'],
-      identifiers: List<EpubMetadataIdentifier>.from(
-          map['identifiers'].map(EpubMetadataIdentifier.fromMap)),
+      identifiers: List<EpubMetadataIdentifier>.from(map['identifiers']?.map(EpubMetadataIdentifier.fromMap)),
       source: map['source'],
       languages: List<String>.from(map['languages']),
       relation: map['relation'],

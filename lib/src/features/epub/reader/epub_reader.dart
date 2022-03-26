@@ -1,4 +1,4 @@
-part of shu_epub.features.epub;
+part of shu_epub.features.epub.reader;
 
 class EpubReader {
   const EpubReader();

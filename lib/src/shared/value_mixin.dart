@@ -1,4 +1,4 @@
-part of shu_epub.features.navigation.controller;
+part of shu_epub.shared;
 
 mixin ValueMixin {
   XmlElement get element;

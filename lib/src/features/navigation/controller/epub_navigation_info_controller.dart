@@ -1,6 +1,6 @@
 part of shu_epub.features.navigation.controller;
 
-class EpubNavigationInfoController with TextImageMixin, LanguageMixin {
+class EpubNavigationInfoController with TextMixin, ImageMixin, LanguageMixin {
   @override
   final XmlElement element;
 

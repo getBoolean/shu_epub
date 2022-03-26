@@ -78,10 +78,10 @@ class EpubPublicationMetadataController {
     );
   }
 
-  List<String> getAllTitles() {
+  List<EpubMetadataTitle> getAllTitles() {
     return compatibleMetadataElement
-        .findElements('dc:title')
-        .map((node) => node.innerText.trim())
+        .findElements(EpubMetadataTitle.elementName)
+        .map(EpubMetadataTitle.fromXmlElement)
         .toList();
   }
 

@@ -1,7 +1,7 @@
 part of shu_epub.features.navigation.controller;
 
 class EpubNavigationDocumentAuthorController
-    with IdMixin, TextImageMixin, LanguageMixin {
+    with IdMixin, TextMixin, ImageMixin, LanguageMixin {
   @override
   final XmlElement element;
 

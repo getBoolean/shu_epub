@@ -71,7 +71,7 @@ class EpubPackageAccessibilityMetadata extends Equatable {
 
   // GENERATED DO NOT MODOFY
 
-  EpubPackageAccessibilityMetadata({
+  const EpubPackageAccessibilityMetadata({
     this.accessModes,
     this.accessibilityFeatures,
     this.accessibilityHazards,
