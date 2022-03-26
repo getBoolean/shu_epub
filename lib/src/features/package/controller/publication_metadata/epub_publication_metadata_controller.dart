@@ -12,9 +12,9 @@ class EpubPublicationMetadataController {
 
   EpubPublicationMetadataController._internal({
     required this.element,
+    required this.compatibleMetadataElement,
     this.dcMetadata,
     this.xMetadata,
-    required this.compatibleMetadataElement,
     this.hasDcMetadataElement = false,
     this.hasXMetadataElement = false,
   });
