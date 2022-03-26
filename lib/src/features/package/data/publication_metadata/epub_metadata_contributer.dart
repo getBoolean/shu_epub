@@ -1,6 +1,9 @@
 part of shu_epub.features.package.data;
 
 class EpubMetadataContributer extends Equatable {
+  static const contributorElementName = 'dc:contributor';
+  static const creatorElementName = 'dc:author';
+
   final String name;
 
   /// Used to specify a normalized form of the name, suitable for machine processing.
@@ -10,6 +13,29 @@ class EpubMetadataContributer extends Equatable {
   ///
   /// If a value is not defined on that list, it must begin with `"oth"`
   final String? role;
+
+  /// Create an [EpubMetadataContributer] object from the contributor or author XmlElement.
+  ///
+  /// Throws [EpubException] if the contributor or author element is not the root node
+  factory EpubMetadataContributer.fromXmlElement(XmlElement element) {
+    return EpubMetadataContributerReader.fromXmlElement(element);
+  }
+
+  /// Create an instance of [EpubMetadataContributer] from the [String] representation
+  /// of the contributor or author element
+  ///
+  /// Throws [EpubException] if the string does not have the contributor or author element
+  factory EpubMetadataContributer.fromString(String content) {
+    return EpubMetadataContributerReader.fromString(content);
+  }
+
+  /// Create an instance of [EpubMetadataContributer] from the [Uint8List] data
+  /// of the contributor or author element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the contributor or author element
+  factory EpubMetadataContributer.fromData(Uint8List data) {
+    return EpubMetadataContributerReader.fromData(data);
+  }
 
   const EpubMetadataContributer({
     this.name = '',

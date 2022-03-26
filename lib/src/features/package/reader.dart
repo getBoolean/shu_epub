@@ -1,10 +1,12 @@
 library shu_epub.features.package.reader;
 
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
 import 'package:xml/xml.dart';
 
+import '../../utils.dart';
 import 'controller.dart';
 import 'data.dart';
 
@@ -20,3 +22,4 @@ part 'reader/spine/epub_spine_item_ref_reader.dart';
 part 'reader/spine/epub_spine_reader.dart';
 part 'reader/publication_metadata/epub_publication_metadata_reader.dart';
 part 'reader/publication_metadata/epub_metadata_title_reader.dart';
+part 'reader/publication_metadata/epub_metadata_contributer_reader.dart';

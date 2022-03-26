@@ -87,12 +87,8 @@ class EpubPublicationMetadataController {
 
   List<EpubMetadataContributer> getCreators() {
     return compatibleMetadataElement
-        .findElements('dc:creator')
-        .map((creator) => EpubMetadataContributer(
-              name: creator.innerText.trim(),
-              role: creator.getAttribute('opf:role'),
-              fileAs: creator.getAttribute('opf:file-as'),
-            ))
+        .findElements(EpubMetadataContributer.creatorElementName)
+        .map(EpubMetadataContributer.fromXmlElement)
         .toList();
   }
 
@@ -121,12 +117,8 @@ class EpubPublicationMetadataController {
 
   List<EpubMetadataContributer> getContributors() {
     return compatibleMetadataElement
-        .findElements('dc:contributor')
-        .map((creator) => EpubMetadataContributer(
-              name: creator.innerText.trim(),
-              role: creator.getAttribute('opf:role'),
-              fileAs: creator.getAttribute('opf:file-as'),
-            ))
+        .findElements(EpubMetadataContributer.contributorElementName)
+        .map(EpubMetadataContributer.fromXmlElement)
         .toList();
   }
 
