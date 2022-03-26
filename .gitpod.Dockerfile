@@ -1,7 +1,7 @@
 FROM gitpod/workspace-full
 SHELL ["/bin/bash", "-c"]
 
-ENV FLUTTER_VERSION=2.10.3-stable
+ENV FLUTTER_VERSION=2.10.4-stable
 ENV PATH=/usr/lib/dart/bin:$PATH
 
 # Install Dart
