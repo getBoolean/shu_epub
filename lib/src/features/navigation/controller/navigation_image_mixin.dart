@@ -2,7 +2,7 @@ part of shu_epub.features.navigation.controller;
 
 mixin ImageMixin {
   XmlElement get element;
-  
+
   EpubNavigationImage? getImage() {
     final imageElement =
         element.findElements(EpubNavigationImage.elementName).firstOrNull;

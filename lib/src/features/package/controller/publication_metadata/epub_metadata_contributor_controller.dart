@@ -45,8 +45,9 @@ class EpubMetadataContributorController {
     );
 
     final xmlDocument = XmlUtils.parseToXmlDocument(content);
-    final dccontributorElement =
-        xmlDocument.findElements(EpubMetadataContributer.contributorElementName).firstOrNull;
+    final dccontributorElement = xmlDocument
+        .findElements(EpubMetadataContributer.contributorElementName)
+        .firstOrNull;
 
     if (dccontributorElement == null) {
       throw EpubException(
@@ -64,7 +65,8 @@ class EpubMetadataContributorController {
   }
 
   String? getFileAs() {
-    return element.getAttribute('opf:file-as') ?? element.getAttribute('file-as') ;
+    return element.getAttribute('opf:file-as') ??
+        element.getAttribute('file-as');
   }
 
   String? getRole() {

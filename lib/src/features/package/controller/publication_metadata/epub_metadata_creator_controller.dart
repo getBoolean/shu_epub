@@ -10,7 +10,8 @@ class EpubMetadataCreatorController {
   });
 
   /// Throws [EpubException] if the dc:creator element is not the root node
-  factory EpubMetadataCreatorController.fromXmlElement(XmlElement dccreatorElement) {
+  factory EpubMetadataCreatorController.fromXmlElement(
+      XmlElement dccreatorElement) {
     if (dccreatorElement.name.qualified != elementName) {
       throw EpubException(
         'Invalid data, expected $elementName to be the root node but it was not found',
@@ -43,7 +44,9 @@ class EpubMetadataCreatorController {
     );
 
     final xmlDocument = XmlUtils.parseToXmlDocument(content);
-    final dccreatorElement = xmlDocument.findElements(EpubMetadataContributer.creatorElementName).firstOrNull;
+    final dccreatorElement = xmlDocument
+        .findElements(EpubMetadataContributer.creatorElementName)
+        .firstOrNull;
 
     if (dccreatorElement == null) {
       throw EpubException(
@@ -61,7 +64,8 @@ class EpubMetadataCreatorController {
   }
 
   String? getFileAs() {
-    return element.getAttribute('opf:file-as') ?? element.getAttribute('file-as');
+    return element.getAttribute('opf:file-as') ??
+        element.getAttribute('file-as');
   }
 
   String? getRole() {

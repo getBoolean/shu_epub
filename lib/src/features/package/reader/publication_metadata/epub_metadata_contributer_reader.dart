@@ -46,8 +46,9 @@ class EpubMetadataContributerReader {
     );
 
     final xmlDocument = XmlUtils.parseToXmlDocument(content);
-    final dccontributorElement =
-        xmlDocument.findElements(EpubMetadataContributer.contributorElementName).firstOrNull;
+    final dccontributorElement = xmlDocument
+        .findElements(EpubMetadataContributer.contributorElementName)
+        .firstOrNull;
 
     if (dccontributorElement == null) {
       final controller = EpubMetadataContributorController(data);

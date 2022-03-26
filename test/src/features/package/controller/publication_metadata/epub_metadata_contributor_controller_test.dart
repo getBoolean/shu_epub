@@ -12,7 +12,7 @@ void main() {
       ''';
         final xmlDocument = XmlUtils.parseToXmlDocument(input);
         final element = xmlDocument.firstElementChild!;
-  
+
         expect(
           () => EpubMetadataContributorController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
@@ -20,7 +20,7 @@ void main() {
       },
     );
   });
-  
+
   group('fromString', () {
     test(
       'on input without dc:contributor element, expect EpubException thrown',
@@ -47,11 +47,11 @@ void main() {
         final controller = EpubMetadataContributorController.fromString(input);
         final expectedValue = '';
         final actualValue = controller.getName();
-  
+
         expect(actualValue, expectedValue);
       },
     );
-  
+
     test(
       'on input with text "test", expect EpubMetadataContributer with name "test"',
       () async {
@@ -61,7 +61,7 @@ void main() {
         final controller = EpubMetadataContributorController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getName();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -76,11 +76,11 @@ void main() {
   ''';
         final controller = EpubMetadataContributorController.fromString(input);
         final actualValue = controller.getFileAs();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a file-as attribute, expect the String value',
       () async {
@@ -90,11 +90,11 @@ void main() {
         final controller = EpubMetadataContributorController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getFileAs();
-  
+
         expect(actualValue, expectedValue);
       },
     );
-  
+
     test(
       'on input with a opf:file-as attribute, expect the String value',
       () async {
@@ -104,7 +104,7 @@ void main() {
         final controller = EpubMetadataContributorController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getFileAs();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -119,11 +119,11 @@ void main() {
   ''';
         final controller = EpubMetadataContributorController.fromString(input);
         final actualValue = controller.getRole();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a role attribute, expect the String value',
       () async {
@@ -133,11 +133,11 @@ void main() {
         final controller = EpubMetadataContributorController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getRole();
-  
+
         expect(actualValue, expectedValue);
       },
     );
-  
+
     test(
       'on input with a opf:role attribute, expect the String value',
       () async {
@@ -147,7 +147,7 @@ void main() {
         final controller = EpubMetadataContributorController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getRole();
-  
+
         expect(actualValue, expectedValue);
       },
     );

@@ -184,17 +184,24 @@ class EpubPublicationMetadata extends Equatable {
 
   factory EpubPublicationMetadata.fromMap(Map<String, dynamic> map) {
     return EpubPublicationMetadata(
-      allTitles: List<EpubMetadataTitle>.from(map['allTitles']?.map(EpubMetadataTitle.fromMap)),
-      creators: List<EpubMetadataContributer>.from(map['creators']?.map(EpubMetadataContributer.fromMap)),
+      allTitles: List<EpubMetadataTitle>.from(
+          map['allTitles']?.map(EpubMetadataTitle.fromMap)),
+      creators: List<EpubMetadataContributer>.from(
+          map['creators']?.map(EpubMetadataContributer.fromMap)),
       subjects: List<String>.from(map['subjects']),
       description: map['description'],
       publisher: map['publisher'],
-      contributors: List<EpubMetadataContributer>.from(map['contributors']?.map(EpubMetadataContributer.fromMap)),
-      extraMetadataItems: List<EpubExtraMetadata>.from(map['extraMetadataItems']?.map(EpubExtraMetadata.fromMap)),
-      metadataDate: map['metadataDate'] != null ? EpubMetadataDate.fromMap(map['metadataDate']) : null,
+      contributors: List<EpubMetadataContributer>.from(
+          map['contributors']?.map(EpubMetadataContributer.fromMap)),
+      extraMetadataItems: List<EpubExtraMetadata>.from(
+          map['extraMetadataItems']?.map(EpubExtraMetadata.fromMap)),
+      metadataDate: map['metadataDate'] != null
+          ? EpubMetadataDate.fromMap(map['metadataDate'])
+          : null,
       type: map['type'],
       format: map['format'],
-      identifiers: List<EpubMetadataIdentifier>.from(map['identifiers']?.map(EpubMetadataIdentifier.fromMap)),
+      identifiers: List<EpubMetadataIdentifier>.from(
+          map['identifiers']?.map(EpubMetadataIdentifier.fromMap)),
       source: map['source'],
       languages: List<String>.from(map['languages']),
       relation: map['relation'],
