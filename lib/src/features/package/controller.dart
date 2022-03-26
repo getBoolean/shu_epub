@@ -19,3 +19,5 @@ part 'controller/tours/epub_tour_site_controller.dart';
 part 'controller/tours/epub_tours_controller.dart';
 part 'controller/manifest/epub_manifest_controller.dart';
 part 'controller/manifest/epub_manifest_item_controller.dart';
+part 'controller/spine/epub_spine_controller.dart';
+part 'controller/spine/epub_spine_item_ref_controller.dart';

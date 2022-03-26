@@ -1,9 +1,11 @@
 part of shu_epub.features.package.data;
 
 class EpubSpine extends Equatable {
+  static const elementName = 'spine';
+  
   /// The value is the the id attribute value of the required NCX (`.ncx` document
   /// listed in [EpubManifest.items]
-  final String tocId;
+  final String? tocId;
 
   /// The order of this list determines the reading order.
   ///
@@ -84,9 +86,32 @@ class EpubSpine extends Equatable {
     return itemRefs.where((itemRef) => itemRef.isPrimary).toList();
   }
 
+  /// Create an [EpubSpine] object from the spine XmlElement.
+  ///
+  /// Throws [EpubException] if the spine element is not the root node
+  factory EpubSpine.fromXmlElement(XmlElement spineElement) {
+    return EpubSpineReader.fromXmlElement(spineElement);
+  }
+  
+  /// Create an instance of [EpubSpine] from the [String] representation
+  /// of the spine element
+  ///
+  /// Throws [EpubException] if the string does not have the spine element
+  factory EpubSpine.fromString(String spineString) {
+    return EpubSpineReader.fromString(spineString);
+  }
+  
+  /// Create an instance of [EpubSpine] from the [Uint8List] data
+  /// of the spine element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the spine element
+  factory EpubSpine.fromData(Uint8List spineData) {
+    return EpubSpineReader.fromData(spineData);
+  }
+
   const EpubSpine({
-    required this.tocId,
-    required this.itemRefs,
+    this.tocId,
+    this.itemRefs = const [],
   });
 
   EpubSpine copyWith({
@@ -127,5 +152,5 @@ class EpubSpine extends Equatable {
   String toString() => 'EpubSpine(tocId: $tocId, itemRefs: $itemRefs)';
 
   @override
-  List<Object> get props => [tocId, itemRefs];
+  List<Object> get props => [tocId ?? 'no tocId', itemRefs];
 }

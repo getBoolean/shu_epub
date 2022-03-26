@@ -3,7 +3,6 @@ part of shu_epub.features.package.controller;
 class EpubPackageController {
   final XmlElement packageElement;
   final XmlElement metadataElement;
-  final XmlElement spineElement;
   final XmlElement? guideElement;
   final XmlElement? tourElement;
 
@@ -30,8 +29,6 @@ class EpubPackageController {
     // TODO(@getBoolean): Create backup plan if required elements don't exist
     final XmlElement metadataElement =
         _getElementFromPackageElement('metadata', packageElement)!;
-    final XmlElement spineElement =
-        _getElementFromPackageElement('spine', packageElement)!;
     final XmlElement? guideElement =
         _getElementFromPackageElement('guide', packageElement, require: false);
     final XmlElement? tourElement =
@@ -40,7 +37,6 @@ class EpubPackageController {
     return EpubPackageController._internal(
       packageElement: packageElement,
       metadataElement: metadataElement,
-      spineElement: spineElement,
       guideElement: guideElement,
       tourElement: tourElement,
     );
@@ -49,7 +45,6 @@ class EpubPackageController {
   const EpubPackageController._internal({
     required this.packageElement,
     required this.metadataElement,
-    required this.spineElement,
     this.guideElement,
     this.tourElement,
   });
@@ -287,24 +282,14 @@ class EpubPackageController {
     return EpubManifest.fromXmlElement(manifestElement);
   }
 
-  EpubSpine getSpine() {
-    final tocId = spineElement.getAttribute('toc') ?? '';
-    final items = spineElement.findElements('itemref');
+  EpubSpine? getSpine() {
+    final spineElement =
+        packageElement.findElements(EpubSpine.elementName).firstOrNull;
+    if (spineElement == null) {
+      return null;
+    }
 
-    final itemRefs = items.map((node) {
-      final idref = node.getAttribute('idref') ?? '';
-      final linearString = node.getAttribute('linear');
-      // default is true if no linear attribute
-      // should find at least one item with linear == true (isPrimary)
-      final linear = linearString == 'no' ? false : true;
-
-      return EpubSpineItemRef(idref: idref, linear: linear);
-    }).toList();
-
-    return EpubSpine(
-      itemRefs: itemRefs,
-      tocId: tocId,
-    );
+    return EpubSpine.fromXmlElement(spineElement);
   }
 
   EpubGuide? getGuide() {
