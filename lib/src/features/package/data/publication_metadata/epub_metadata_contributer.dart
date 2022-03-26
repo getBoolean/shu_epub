@@ -2,7 +2,7 @@ part of shu_epub.features.package.data;
 
 class EpubMetadataContributer extends Equatable {
   static const contributorElementName = 'dc:contributor';
-  static const creatorElementName = 'dc:author';
+  static const creatorElementName = 'dc:creator';
 
   final String name;
 

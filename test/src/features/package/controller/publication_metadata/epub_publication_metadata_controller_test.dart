@@ -61,7 +61,7 @@ void main() {
   </metadata>
   ''';
         final controller = EpubPublicationMetadataController.fromString(input);
-        final expectedValue = [''];
+        final expectedValue = [EpubMetadataTitle()];
         final actualValue = controller.getAllTitles();
 
         expect(actualValue, expectedValue);

@@ -64,10 +64,10 @@ class EpubMetadataContributorController {
   }
 
   String? getFileAs() {
-    return element.getAttribute('opf:file-as');
+    return element.getAttribute('opf:file-as') ?? element.getAttribute('file-as') ;
   }
 
   String? getRole() {
-    return element.getAttribute('opf:role');
+    return element.getAttribute('opf:role') ?? element.getAttribute('role');
   }
 }

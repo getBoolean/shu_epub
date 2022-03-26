@@ -38,28 +38,27 @@ void main() {
 
   group('getText', () {
     test(
-      'on input without text, expect EpubMetadataTitle with no name',
+      'on input without text, expect empty string',
       () async {
         final input = '''
   <dc:creator>
   </dc:creator>
   ''';
         final controller = EpubMetadataCreatorController.fromString(input);
-        final expectedValue = EpubMetadataTitle();
         final actualValue = controller.getName();
 
-        expect(actualValue, expectedValue);
+        expect(actualValue, isEmpty);
       },
     );
 
     test(
-      'on input with text "test", expect EpubMetadataTitle with name "test"',
+      'on input with text "test", expect text "test"',
       () async {
         final input = '''
   <dc:creator>test</dc:creator>
   ''';
         final controller = EpubMetadataCreatorController.fromString(input);
-        final expectedValue = EpubMetadataTitle(text: 'test');
+        final expectedValue = 'test';
         final actualValue = controller.getName();
 
         expect(actualValue, expectedValue);

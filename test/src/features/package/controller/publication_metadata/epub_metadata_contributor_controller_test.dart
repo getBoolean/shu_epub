@@ -38,14 +38,14 @@ void main() {
 
   group('getText', () {
     test(
-      'on input without text, expect EpubMetadataTitle with no name',
+      'on input without text, expect EpubMetadataContributer with no name',
       () async {
         final input = '''
   <dc:contributor>
   </dc:contributor>
   ''';
         final controller = EpubMetadataContributorController.fromString(input);
-        final expectedValue = EpubMetadataTitle();
+        final expectedValue = '';
         final actualValue = controller.getName();
   
         expect(actualValue, expectedValue);
@@ -53,13 +53,13 @@ void main() {
     );
   
     test(
-      'on input with text "test", expect EpubMetadataTitle with name "test"',
+      'on input with text "test", expect EpubMetadataContributer with name "test"',
       () async {
         final input = '''
   <dc:contributor>test</dc:contributor>
   ''';
         final controller = EpubMetadataContributorController.fromString(input);
-        final expectedValue = EpubMetadataTitle(text: 'test');
+        final expectedValue = 'test';
         final actualValue = controller.getName();
   
         expect(actualValue, expectedValue);
