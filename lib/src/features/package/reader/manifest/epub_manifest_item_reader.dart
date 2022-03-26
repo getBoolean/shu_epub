@@ -1,7 +1,6 @@
 part of shu_epub.features.package.reader;
 
 class EpubManifestItemReader {
-
   /// Create an [EpubManifestItem] object from the item XmlElement.
   ///
   /// Throws [EpubException] if the item element is not the root node

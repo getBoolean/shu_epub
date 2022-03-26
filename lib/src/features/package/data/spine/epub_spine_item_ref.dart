@@ -2,7 +2,7 @@ part of shu_epub.features.package.data;
 
 class EpubSpineItemRef extends Equatable {
   static const elementName = 'itemref';
-  
+
   final String? idref;
 
   /// If false, it may be viewed separately from the main flow
@@ -22,7 +22,7 @@ class EpubSpineItemRef extends Equatable {
   factory EpubSpineItemRef.fromXmlElement(XmlElement itemrefElement) {
     return EpubSpineItemRefReader.fromXmlElement(itemrefElement);
   }
-  
+
   /// Create an instance of [EpubSpineItemRef] from the [String] representation
   /// of the itemref element
   ///
@@ -30,7 +30,7 @@ class EpubSpineItemRef extends Equatable {
   factory EpubSpineItemRef.fromString(String itemrefString) {
     return EpubSpineItemRefReader.fromString(itemrefString);
   }
-  
+
   /// Create an instance of [EpubSpineItemRef] from the [Uint8List] data
   /// of the itemref element in the navigation file.
   ///

@@ -127,11 +127,11 @@ void main() {
   ''';
         final controller = EpubPackageController.fromString(input);
         final actualValue = controller.getVersion();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a version attribute, expect the String value',
       () async {
@@ -141,7 +141,7 @@ void main() {
         final controller = EpubPackageController.fromString(input);
         final expectedValue = '2.0';
         final actualValue = controller.getVersion();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -156,11 +156,11 @@ void main() {
   ''';
         final controller = EpubPackageController.fromString(input);
         final actualValue = controller.getUniqueIdentifier();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a unique-identifier attribute, expect the String value',
       () async {
@@ -170,7 +170,7 @@ void main() {
         final controller = EpubPackageController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getUniqueIdentifier();
-  
+
         expect(actualValue, expectedValue);
       },
     );

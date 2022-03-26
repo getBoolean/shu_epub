@@ -87,7 +87,7 @@ class EpubPublicationMetadata extends Equatable {
   factory EpubPublicationMetadata.fromXmlElement(XmlElement metadataElement) {
     return EpubPublicationMetadataReader.fromXmlElement(metadataElement);
   }
-  
+
   /// Create an instance of [EpubPublicationMetadata] from the [String] representation
   /// of the metadata element
   ///
@@ -95,7 +95,7 @@ class EpubPublicationMetadata extends Equatable {
   factory EpubPublicationMetadata.fromString(String metadataString) {
     return EpubPublicationMetadataReader.fromString(metadataString);
   }
-  
+
   /// Create an instance of [EpubPublicationMetadata] from the [Uint8List] data
   /// of the metadata element in the navigation file.
   ///

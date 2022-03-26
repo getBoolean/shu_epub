@@ -62,6 +62,9 @@ class EpubMetadataIdentifier extends Equatable {
       'EpubMetadataIdentifier(value: $value, id: $id, scheme: $scheme)';
 
   @override
-  List<Object> get props =>
-      [value, id ?? 'no id given', scheme ?? 'no scheme given',];
+  List<Object> get props => [
+        value,
+        id ?? 'no id given',
+        scheme ?? 'no scheme given',
+      ];
 }

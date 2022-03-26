@@ -12,7 +12,7 @@ void main() {
       ''';
         final xmlDocument = XmlUtils.parseToXmlDocument(input);
         final element = xmlDocument.firstElementChild!;
-  
+
         expect(
           () => EpubSpineItemRefController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
@@ -20,7 +20,7 @@ void main() {
       },
     );
   });
-  
+
   group('fromString', () {
     test(
       'on input without itemref element, expect EpubException thrown',
@@ -35,7 +35,7 @@ void main() {
       },
     );
   });
-  
+
   group('getIdref', () {
     test(
       'on input without a idref attribute, expect a null value',
@@ -45,11 +45,11 @@ void main() {
   ''';
         final controller = EpubSpineItemRefController.fromString(input);
         final actualValue = controller.getIdref();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a idref attribute, expect the String value',
       () async {
@@ -59,7 +59,7 @@ void main() {
         final controller = EpubSpineItemRefController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getIdref();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -74,11 +74,11 @@ void main() {
   ''';
         final controller = EpubSpineItemRefController.fromString(input);
         final actualValue = controller.getLinear();
-  
+
         expect(actualValue, isTrue);
       },
     );
-  
+
     test(
       'on input with a linear attribute that is no, expect false',
       () async {
@@ -87,11 +87,11 @@ void main() {
   ''';
         final controller = EpubSpineItemRefController.fromString(input);
         final actualValue = controller.getLinear();
-  
+
         expect(actualValue, isFalse);
       },
     );
-  
+
     test(
       'on input with a linear attribute that not no, expect true',
       () async {
@@ -100,7 +100,7 @@ void main() {
   ''';
         final controller = EpubSpineItemRefController.fromString(input);
         final actualValue = controller.getLinear();
-  
+
         expect(actualValue, isTrue);
       },
     );

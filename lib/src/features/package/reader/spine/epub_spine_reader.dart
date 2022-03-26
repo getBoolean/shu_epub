@@ -1,7 +1,6 @@
 part of shu_epub.features.package.reader;
 
 class EpubSpineReader {
-
   /// Create an [EpubSpine] object from the spine XmlElement.
   ///
   /// Throws [EpubException] if the spine element is not the root node

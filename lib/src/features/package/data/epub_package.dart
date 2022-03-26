@@ -22,7 +22,7 @@ class EpubPackage extends Equatable {
 
   /// A unique identifier for the OPS Publication as a whole. This should NOT
   /// be relied upon to be unique across all EPUB publications.
-  /// 
+  ///
   /// The uniqueIdentifier field's value specifies which [EpubPublicationMetadata.identifiers]
   /// described in Section 2.2.10, provides the package's preferred, or primary, identifier.
   ///
@@ -153,8 +153,12 @@ class EpubPackage extends Equatable {
     return EpubPackage(
       epubVersion: map['epubVersion'],
       uniqueIdentifier: map['uniqueIdentifier'],
-      publicationMetadata: map['publicationMetadata'] != null ? EpubPublicationMetadata.fromMap(map['publicationMetadata']) : null,
-      manifest: map['manifest'] != null ? EpubManifest.fromMap(map['manifest']) : null,
+      publicationMetadata: map['publicationMetadata'] != null
+          ? EpubPublicationMetadata.fromMap(map['publicationMetadata'])
+          : null,
+      manifest: map['manifest'] != null
+          ? EpubManifest.fromMap(map['manifest'])
+          : null,
       spine: map['spine'] != null ? EpubSpine.fromMap(map['spine']) : null,
       guide: map['guide'] != null ? EpubGuide.fromMap(map['guide']) : null,
       tours: map['tours'] != null ? EpubTours.fromMap(map['tours']) : null,

@@ -2,7 +2,7 @@ part of shu_epub.features.package.data;
 
 class EpubManifestItem extends Equatable {
   static const elementName = 'item';
-  
+
   final String? id;
   final String? href;
   final String? mediaType;
@@ -30,7 +30,7 @@ class EpubManifestItem extends Equatable {
   factory EpubManifestItem.fromXmlElement(XmlElement itemElement) {
     return EpubManifestItemReader.fromXmlElement(itemElement);
   }
-  
+
   /// Create an instance of [EpubManifestItem] from the [String] representation
   /// of the item element
   ///
@@ -38,7 +38,7 @@ class EpubManifestItem extends Equatable {
   factory EpubManifestItem.fromString(String itemString) {
     return EpubManifestItemReader.fromString(itemString);
   }
-  
+
   /// Create an instance of [EpubManifestItem] from the [Uint8List] data
   /// of the item element in the navigation file.
   ///

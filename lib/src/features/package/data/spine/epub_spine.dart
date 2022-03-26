@@ -2,7 +2,7 @@ part of shu_epub.features.package.data;
 
 class EpubSpine extends Equatable {
   static const elementName = 'spine';
-  
+
   /// The value is the the id attribute value of the required NCX (`.ncx` document
   /// listed in [EpubManifest.items]
   final String? tocId;
@@ -92,7 +92,7 @@ class EpubSpine extends Equatable {
   factory EpubSpine.fromXmlElement(XmlElement spineElement) {
     return EpubSpineReader.fromXmlElement(spineElement);
   }
-  
+
   /// Create an instance of [EpubSpine] from the [String] representation
   /// of the spine element
   ///
@@ -100,7 +100,7 @@ class EpubSpine extends Equatable {
   factory EpubSpine.fromString(String spineString) {
     return EpubSpineReader.fromString(spineString);
   }
-  
+
   /// Create an instance of [EpubSpine] from the [Uint8List] data
   /// of the spine element in the navigation file.
   ///

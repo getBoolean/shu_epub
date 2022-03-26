@@ -1,12 +1,12 @@
 part of shu_epub.features.package.reader;
 
 class EpubSpineItemRefReader {
-
   /// Create an [EpubSpineItemRef] object from the itemref XmlElement.
   ///
   /// Throws [EpubException] if the itemref element is not the root node
   static EpubSpineItemRef fromXmlElement(XmlElement itemrefElement) {
-    final controller = EpubSpineItemRefController.fromXmlElement(itemrefElement);
+    final controller =
+        EpubSpineItemRefController.fromXmlElement(itemrefElement);
     return _fromController(controller);
   }
 

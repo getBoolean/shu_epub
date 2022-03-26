@@ -177,11 +177,11 @@ void main() {
   ''';
         final controller = EpubPublicationMetadataController.fromString(input);
         final actualValue = controller.getContributors();
-  
+
         expect(actualValue, isEmpty);
       },
     );
-  
+
     test(
       'on input with one dc:contributor element, expect a list of length 1 with it',
       () async {
@@ -194,7 +194,7 @@ void main() {
         final controller = EpubPublicationMetadataController.fromString(input);
         final expectedValue = [EpubMetadataContributer()];
         final actualValue = controller.getContributors();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -210,11 +210,11 @@ void main() {
   ''';
         final controller = EpubPublicationMetadataController.fromString(input);
         final actualValue = controller.getExtraMetadataItems();
-  
+
         expect(actualValue, isEmpty);
       },
     );
-  
+
     test(
       'on input with one meta element, expect a list of length 1 with it',
       () async {
@@ -227,7 +227,7 @@ void main() {
         final controller = EpubPublicationMetadataController.fromString(input);
         final expectedValue = [EpubExtraMetadata()];
         final actualValue = controller.getExtraMetadataItems();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -243,11 +243,11 @@ void main() {
   ''';
         final controller = EpubPublicationMetadataController.fromString(input);
         final actualValue = controller.getExtraMetadataItems();
-  
+
         expect(actualValue, isEmpty);
       },
     );
-  
+
     test(
       'on input with one meta element, expect a list of length 1 with it',
       () async {
@@ -262,7 +262,7 @@ void main() {
         final controller = EpubPublicationMetadataController.fromString(input);
         final expectedValue = [EpubExtraMetadata()];
         final actualValue = controller.getExtraMetadataItems();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -278,11 +278,11 @@ void main() {
   ''';
         final controller = EpubPublicationMetadataController.fromString(input);
         final actualValue = controller.getType();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a dc:type element, expect a dc:type object',
       () async {
@@ -295,7 +295,7 @@ void main() {
         final controller = EpubPublicationMetadataController.fromString(input);
         final expectedValue = '';
         final actualValue = controller.getType();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -311,11 +311,11 @@ void main() {
   ''';
         final controller = EpubPublicationMetadataController.fromString(input);
         final actualValue = controller.getFormat();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a dc:format element, expect a dc:format object',
       () async {
@@ -328,7 +328,7 @@ void main() {
         final controller = EpubPublicationMetadataController.fromString(input);
         final expectedValue = '';
         final actualValue = controller.getFormat();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -344,11 +344,11 @@ void main() {
   ''';
         final controller = EpubPublicationMetadataController.fromString(input);
         final actualValue = controller.getIdentifiers();
-  
+
         expect(actualValue, isEmpty);
       },
     );
-  
+
     test(
       'on input with one dc:identifier element, expect a list of length 1 with it',
       () async {
@@ -361,7 +361,7 @@ void main() {
         final controller = EpubPublicationMetadataController.fromString(input);
         final expectedValue = [EpubMetadataIdentifier()];
         final actualValue = controller.getIdentifiers();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -377,11 +377,11 @@ void main() {
   ''';
         final controller = EpubPublicationMetadataController.fromString(input);
         final actualValue = controller.getSource();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a dc:source element, expect a dc:source object',
       () async {
@@ -394,7 +394,7 @@ void main() {
         final controller = EpubPublicationMetadataController.fromString(input);
         final expectedValue = '';
         final actualValue = controller.getSource();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -410,11 +410,11 @@ void main() {
   ''';
         final controller = EpubPublicationMetadataController.fromString(input);
         final actualValue = controller.getLanguages();
-  
+
         expect(actualValue, isEmpty);
       },
     );
-  
+
     test(
       'on input with one dc:lang element, expect a list of length 1 with it',
       () async {
@@ -427,7 +427,7 @@ void main() {
         final controller = EpubPublicationMetadataController.fromString(input);
         final expectedValue = [''];
         final actualValue = controller.getLanguages();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -443,11 +443,11 @@ void main() {
   ''';
         final controller = EpubPublicationMetadataController.fromString(input);
         final actualValue = controller.getRelation();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a dc:relation element, expect a dc:relation object',
       () async {
@@ -460,7 +460,7 @@ void main() {
         final controller = EpubPublicationMetadataController.fromString(input);
         final expectedValue = '';
         final actualValue = controller.getRelation();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -476,11 +476,11 @@ void main() {
   ''';
         final controller = EpubPublicationMetadataController.fromString(input);
         final actualValue = controller.getCoverage();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a dc:coverage element, expect a dc:coverage object',
       () async {
@@ -493,12 +493,12 @@ void main() {
         final controller = EpubPublicationMetadataController.fromString(input);
         final expectedValue = '';
         final actualValue = controller.getCoverage();
-  
+
         expect(actualValue, expectedValue);
       },
     );
   });
-  
+
   group('getRights', () {
     test(
       'on input without a dc:rights element, expect a null value',
@@ -509,11 +509,11 @@ void main() {
   ''';
         final controller = EpubPublicationMetadataController.fromString(input);
         final actualValue = controller.getRights();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a dc:rights element, expect a dc:rights object',
       () async {
@@ -526,7 +526,7 @@ void main() {
         final controller = EpubPublicationMetadataController.fromString(input);
         final expectedValue = '';
         final actualValue = controller.getRights();
-  
+
         expect(actualValue, expectedValue);
       },
     );

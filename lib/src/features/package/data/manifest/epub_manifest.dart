@@ -2,7 +2,7 @@ part of shu_epub.features.package.data;
 
 class EpubManifest extends Equatable {
   static const elementName = 'manifest';
-  
+
   final List<EpubManifestItem> items;
 
   /// Create an [EpubManifest] object from the manifest XmlElement.
@@ -11,7 +11,7 @@ class EpubManifest extends Equatable {
   factory EpubManifest.fromXmlElement(XmlElement manifestElement) {
     return EpubManifestReader.fromXmlElement(manifestElement);
   }
-  
+
   /// Create an instance of [EpubManifest] from the [String] representation
   /// of the manifest element
   ///
@@ -19,7 +19,7 @@ class EpubManifest extends Equatable {
   factory EpubManifest.fromString(String manifestString) {
     return EpubManifestReader.fromString(manifestString);
   }
-  
+
   /// Create an instance of [EpubManifest] from the [Uint8List] data
   /// of the manifest element in the navigation file.
   ///
