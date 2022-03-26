@@ -46,10 +46,6 @@ class EpubManifest extends Equatable {
     };
   }
 
-  factory EpubManifest.zero() {
-    return EpubManifest(items: []);
-  }
-
   factory EpubManifest.fromMap(Map<String, dynamic> map) {
     return EpubManifest(
       items: List<EpubManifestItem>.from(

@@ -131,13 +131,9 @@ class EpubSpine extends Equatable {
     };
   }
 
-  factory EpubSpine.zero() {
-    return EpubSpine(tocId: '', itemRefs: []);
-  }
-
   factory EpubSpine.fromMap(Map<String, dynamic> map) {
     return EpubSpine(
-      tocId: map['tocId'] ?? '',
+      tocId: map['tocId'],
       itemRefs: List<EpubSpineItemRef>.from(
           map['itemRefs']?.map(EpubSpineItemRef.fromMap)),
     );

@@ -77,9 +77,9 @@ class EpubGuideItem extends Equatable {
 
   factory EpubGuideItem.fromMap(Map<String, dynamic> map) {
     return EpubGuideItem(
-      type: map['type'] ?? '',
-      title: map['title'] ?? '',
-      href: map['href'] ?? '',
+      type: map['type'],
+      title: map['title'],
+      href: map['href'],
     );
   }
 

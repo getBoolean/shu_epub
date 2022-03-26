@@ -81,8 +81,31 @@ class EpubPublicationMetadata extends Equatable {
 
   String get title => allTitles.first;
 
+  /// Create an [EpubPublicationMetadata] object from the metadata XmlElement.
+  ///
+  /// Throws [EpubException] if the metadata element is not the root node
+  factory EpubPublicationMetadata.fromXmlElement(XmlElement metadataElement) {
+    return EpubPublicationMetadataReader.fromXmlElement(metadataElement);
+  }
+  
+  /// Create an instance of [EpubPublicationMetadata] from the [String] representation
+  /// of the metadata element
+  ///
+  /// Throws [EpubException] if the string does not have the metadata element
+  factory EpubPublicationMetadata.fromString(String metadataString) {
+    return EpubPublicationMetadataReader.fromString(metadataString);
+  }
+  
+  /// Create an instance of [EpubPublicationMetadata] from the [Uint8List] data
+  /// of the metadata element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the metadata element
+  factory EpubPublicationMetadata.fromData(Uint8List metadataData) {
+    return EpubPublicationMetadataReader.fromData(metadataData);
+  }
+
   const EpubPublicationMetadata({
-    required this.allTitles,
+    this.allTitles = const [],
     this.creators = const [],
     this.subjects = const [],
     this.description,
@@ -92,9 +115,9 @@ class EpubPublicationMetadata extends Equatable {
     this.metadataDate,
     this.type,
     this.format,
-    required this.identifiers,
+    this.identifiers = const [],
     this.source,
-    required this.languages,
+    this.languages = const [],
     this.relation,
     this.coverage,
     this.rights,
@@ -159,14 +182,6 @@ class EpubPublicationMetadata extends Equatable {
     };
   }
 
-  factory EpubPublicationMetadata.zero() {
-    return EpubPublicationMetadata(
-      allTitles: [],
-      identifiers: [],
-      languages: [],
-    );
-  }
-
   factory EpubPublicationMetadata.fromMap(Map<String, dynamic> map) {
     return EpubPublicationMetadata(
       allTitles: List<String>.from(map['allTitles']),
@@ -208,19 +223,19 @@ class EpubPublicationMetadata extends Equatable {
       allTitles,
       creators,
       subjects,
-      description ?? 'no description given',
-      publisher ?? 'no publisher specified',
+      description ?? 'no description',
+      publisher ?? 'no publisher',
       contributors,
       extraMetadataItems,
-      metadataDate ?? 'no date specified',
-      type ?? 'no type specified',
-      format ?? 'no format specified',
+      metadataDate ?? 'no metadataDate',
+      type ?? 'no type',
+      format ?? 'no format',
       identifiers,
-      source ?? 'no source specified',
+      source ?? 'no source',
       languages,
-      relation ?? 'no relation specified',
-      coverage ?? 'no coverage specified',
-      rights ?? 'no rights specified',
+      relation ?? 'no relation',
+      coverage ?? 'no coverage',
+      rights ?? 'no rights',
     ];
   }
 }

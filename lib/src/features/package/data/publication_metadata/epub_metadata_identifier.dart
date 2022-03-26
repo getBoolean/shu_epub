@@ -1,7 +1,7 @@
 part of shu_epub.features.package.data;
 
 class EpubMetadataIdentifier extends Equatable {
-  final String value;
+  final String? value;
 
   final String? id;
 
@@ -19,7 +19,7 @@ class EpubMetadataIdentifier extends Equatable {
   final String? scheme;
 
   const EpubMetadataIdentifier({
-    required this.value,
+    this.value,
     this.id,
     this.scheme,
   });
@@ -46,7 +46,7 @@ class EpubMetadataIdentifier extends Equatable {
 
   factory EpubMetadataIdentifier.fromMap(Map<String, dynamic> map) {
     return EpubMetadataIdentifier(
-      value: map['value'] ?? '',
+      value: map['value'],
       id: map['id'],
       scheme: map['scheme'],
     );
@@ -63,5 +63,5 @@ class EpubMetadataIdentifier extends Equatable {
 
   @override
   List<Object> get props =>
-      [value, id ?? 'no id given', scheme ?? 'no scheme given'];
+      [value ?? 'value', id ?? 'no id given', scheme ?? 'no scheme given',];
 }

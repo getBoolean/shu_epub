@@ -4,13 +4,13 @@ class EpubMetadataDate extends Equatable {
   /// Usually the date of publication, unless specified otherwise in [EpubMetadataDate.event]
   ///
   /// Represented in the form `YYYY[-MM[-DD]]`: a required 4-digit year, an optional 2-digit month, and if the month is given, an optional 2-digit day of month.
-  final String date;
+  final String? date;
 
   /// The set of values for event are not defined by the EPUB specification; possible values may include: `creation`, `publication`, and `modification`.
   final String? event;
 
   const EpubMetadataDate({
-    required this.date,
+    this.date,
     this.event,
   });
 
@@ -33,7 +33,7 @@ class EpubMetadataDate extends Equatable {
 
   factory EpubMetadataDate.fromMap(Map<String, dynamic> map) {
     return EpubMetadataDate(
-      date: map['date'] ?? '',
+      date: map['date'],
       event: map['event'],
     );
   }
@@ -47,5 +47,5 @@ class EpubMetadataDate extends Equatable {
   String toString() => 'EpubMetadataDate(date: $date, event: $event)';
 
   @override
-  List<Object> get props => [date, event ?? 'no event specified'];
+  List<Object> get props => [date ?? 'no date', event ?? 'no event specified'];
 }

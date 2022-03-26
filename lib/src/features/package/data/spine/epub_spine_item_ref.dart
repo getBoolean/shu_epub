@@ -63,7 +63,7 @@ class EpubSpineItemRef extends Equatable {
 
   factory EpubSpineItemRef.fromMap(Map<String, dynamic> map) {
     return EpubSpineItemRef(
-      idref: map['idref'] ?? '',
+      idref: map['idref'],
       linear: map['linear'] ?? true,
     );
   }

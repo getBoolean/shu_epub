@@ -46,10 +46,6 @@ class EpubGuide extends Equatable {
     };
   }
 
-  factory EpubGuide.zero() {
-    return EpubGuide(items: []);
-  }
-
   factory EpubGuide.fromMap(Map<String, dynamic> map) {
     return EpubGuide(
       items: List<EpubGuideItem>.from(map['items']?.map(EpubGuideItem.fromMap)),

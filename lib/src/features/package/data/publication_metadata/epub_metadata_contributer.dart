@@ -1,7 +1,7 @@
 part of shu_epub.features.package.data;
 
 class EpubMetadataContributer extends Equatable {
-  final String name;
+  final String? name;
 
   /// Used to specify a normalized form of the name, suitable for machine processing.
   final String? fileAs;
@@ -12,7 +12,7 @@ class EpubMetadataContributer extends Equatable {
   final String? role;
 
   const EpubMetadataContributer({
-    required this.name,
+    this.name,
     this.fileAs,
     this.role,
   });
@@ -32,15 +32,15 @@ class EpubMetadataContributer extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'fileAs': fileAs,
+      'file-as': fileAs,
       'role': role,
     };
   }
 
   factory EpubMetadataContributer.fromMap(Map<String, dynamic> map) {
     return EpubMetadataContributer(
-      name: map['name'] ?? '',
-      fileAs: map['fileAs'],
+      name: map['name'],
+      fileAs: map['file-as'],
       role: map['role'],
     );
   }
@@ -56,7 +56,7 @@ class EpubMetadataContributer extends Equatable {
 
   @override
   List<Object> get props => [
-        name,
+        name ?? 'no name',
         fileAs ?? 'no normalized version given',
         role ?? 'no role specified'
       ];

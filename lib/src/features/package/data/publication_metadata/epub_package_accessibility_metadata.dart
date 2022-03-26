@@ -129,11 +129,6 @@ class EpubPackageAccessibilityMetadata extends Equatable {
     };
   }
 
-  /// Create an [EpubPackageAccessibilityMetadata] object with null for all values
-  factory EpubPackageAccessibilityMetadata.zero() {
-    return EpubPackageAccessibilityMetadata();
-  }
-
   factory EpubPackageAccessibilityMetadata.fromMap(Map<String, dynamic> map) {
     return EpubPackageAccessibilityMetadata(
       accessModes: map['accessModes'] == null
@@ -193,14 +188,14 @@ class EpubPackageAccessibilityMetadata extends Equatable {
   @override
   List<Object> get props {
     return [
-      accessModes ?? [],
-      accessibilityFeatures ?? [],
-      accessibilityHazards ?? [],
-      accessibilitySummary ?? '',
-      accessibilitySummaryByLanguage ?? {},
-      accessModeSufficientList ?? [],
-      accessibilityAPIs ?? [],
-      accessibilityControls ?? [],
+      accessModes ?? 'no accessModes',
+      accessibilityFeatures ?? 'no accessibilityFeatures',
+      accessibilityHazards ?? 'no accessibilityHazards',
+      accessibilitySummary ?? 'no accessibilitySummary',
+      accessibilitySummaryByLanguage ?? 'no accessibilitySummaryByLanguage',
+      accessModeSufficientList ?? 'no accessModeSufficientList',
+      accessibilityAPIs ?? 'no accessibilityAPIs',
+      accessibilityControls ?? 'no accessibilityControls',
     ];
   }
 }

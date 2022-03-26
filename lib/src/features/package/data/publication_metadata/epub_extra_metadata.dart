@@ -1,12 +1,12 @@
 part of shu_epub.features.package.data;
 
 class EpubExtraMetadata extends Equatable {
-  final String name;
-  final String content;
+  final String? name;
+  final String? content;
 
   const EpubExtraMetadata({
-    required this.name,
-    required this.content,
+    this.name,
+    this.content,
   });
 
   EpubExtraMetadata copyWith({
@@ -28,8 +28,8 @@ class EpubExtraMetadata extends Equatable {
 
   factory EpubExtraMetadata.fromMap(Map<String, dynamic> map) {
     return EpubExtraMetadata(
-      name: map['name'] ?? '',
-      content: map['content'] ?? '',
+      name: map['name'],
+      content: map['content'],
     );
   }
 
@@ -42,5 +42,5 @@ class EpubExtraMetadata extends Equatable {
   String toString() => 'EpubExtraMetadata(name: $name, content: $content)';
 
   @override
-  List<Object> get props => [name, content];
+  List<Object> get props => [name ?? 'no name', content ?? 'no content'];
 }

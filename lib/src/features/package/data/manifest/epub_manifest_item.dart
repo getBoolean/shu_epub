@@ -72,16 +72,16 @@ class EpubManifestItem extends Equatable {
     return {
       'id': id,
       'href': href,
-      'mediaType': mediaType,
+      'media-type': mediaType,
       'fallback': fallback,
     };
   }
 
   factory EpubManifestItem.fromMap(Map<String, dynamic> map) {
     return EpubManifestItem(
-      id: map['id'] ?? '',
-      href: map['href'] ?? '',
-      mediaType: map['mediaType'] ?? '',
+      id: map['id'],
+      href: map['href'],
+      mediaType: map['media-type'],
       fallback: map['fallback'],
     );
   }
