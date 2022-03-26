@@ -2,7 +2,7 @@ part of shu_epub.features.package.data;
 
 class EpubMetadataIdentifier extends Equatable {
   static const elementName = 'dc:identifier';
-  
+
   final String value;
 
   final String? id;

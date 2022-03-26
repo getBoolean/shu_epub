@@ -2,7 +2,6 @@ import 'package:shu_epub/shu_epub.dart';
 import 'package:test/test.dart';
 
 void main() {
-
   group('getValue', () {
     test(
       'on input without text, expect empty string',
@@ -42,11 +41,11 @@ void main() {
   ''';
         final controller = EpubMetadataIdentifierController.fromString(input);
         final actualValue = controller.getId();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a id attribute, expect the String value',
       () async {
@@ -56,7 +55,7 @@ void main() {
         final controller = EpubMetadataIdentifierController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getId();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -71,11 +70,11 @@ void main() {
   ''';
         final controller = EpubMetadataIdentifierController.fromString(input);
         final actualValue = controller.getScheme();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a scheme attribute, expect the String value',
       () async {
@@ -85,7 +84,7 @@ void main() {
         final controller = EpubMetadataIdentifierController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getScheme();
-  
+
         expect(actualValue, expectedValue);
       },
     );

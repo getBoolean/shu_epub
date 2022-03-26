@@ -46,8 +46,9 @@ class EpubMetadataIdentifierController with IdMixin {
     );
 
     final xmlDocument = XmlUtils.parseToXmlDocument(content);
-    final dcidentifierElement =
-        xmlDocument.findElements(EpubMetadataIdentifier.elementName).firstOrNull;
+    final dcidentifierElement = xmlDocument
+        .findElements(EpubMetadataIdentifier.elementName)
+        .firstOrNull;
 
     if (dcidentifierElement == null) {
       throw EpubException(

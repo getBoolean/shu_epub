@@ -1,12 +1,12 @@
 part of shu_epub.features.package.reader;
 
 class EpubMetadataIdentifierReader {
-
   /// Create an [EpubMetadataIdentifier] object from the dc:identifier XmlElement.
   ///
   /// Throws [EpubException] if the dc:identifier element is not the root node
   static EpubMetadataIdentifier fromXmlElement(XmlElement dcidentifierElement) {
-    final controller = EpubMetadataIdentifierController.fromXmlElement(dcidentifierElement);
+    final controller =
+        EpubMetadataIdentifierController.fromXmlElement(dcidentifierElement);
     return _fromController(controller);
   }
 
@@ -15,7 +15,8 @@ class EpubMetadataIdentifierReader {
   ///
   /// Throws [EpubException] if the string does not have the dc:identifier element
   static EpubMetadataIdentifier fromString(String dcidentifierString) {
-    final controller = EpubMetadataIdentifierController.fromString(dcidentifierString);
+    final controller =
+        EpubMetadataIdentifierController.fromString(dcidentifierString);
     return _fromController(controller);
   }
 
