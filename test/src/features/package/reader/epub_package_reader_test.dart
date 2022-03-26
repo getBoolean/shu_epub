@@ -19,8 +19,8 @@ void main() {
         final EpubPackage packageFile = EpubPackageReader.fromData(data);
 
         // assert
-        expect(packageFile.packageIdentity?.epubVersion, isNotEmpty);
-        expect(packageFile.packageIdentity?.uniqueIdentifier, isNotEmpty);
+        expect(packageFile.epubVersion, isNotNull);
+        expect(packageFile.uniqueIdentifier, isNotNull);
 
         // contains at least one title
         expect(packageFile.publicationMetadata?.allTitles, isNotEmpty);
@@ -66,8 +66,8 @@ void main() {
             EpubPackageReader.fromArchiveFile(archiveFile);
 
         // assert
-        expect(packageFile.packageIdentity?.epubVersion, isNotEmpty);
-        expect(packageFile.packageIdentity?.uniqueIdentifier, isNotEmpty);
+        expect(packageFile.epubVersion, isNotNull);
+        expect(packageFile.uniqueIdentifier, isNotNull);
 
         // contains at least one title
         expect(packageFile.publicationMetadata?.allTitles, isNotEmpty);
