@@ -3,7 +3,6 @@ part of shu_epub.features.package.controller;
 class EpubPackageController with VersionMixin {
   @override
   final XmlElement element;
-  final XmlElement metadataElement;
   final XmlElement? guideElement;
 
   bool get hasGuide =>
@@ -30,21 +29,17 @@ class EpubPackageController with VersionMixin {
     }
 
     // TODO(@getBoolean): Create backup plan if required elements don't exist
-    final XmlElement metadataElement =
-        _getElementFromPackageElement('metadata', packageElement)!;
     final XmlElement? guideElement =
         _getElementFromPackageElement('guide', packageElement, require: false);
 
     return EpubPackageController._internal(
       element: packageElement,
-      metadataElement: metadataElement,
       guideElement: guideElement,
     );
   }
 
   const EpubPackageController._internal({
     required this.element,
-    required this.metadataElement,
     this.guideElement,
   });
 
@@ -103,7 +98,13 @@ class EpubPackageController with VersionMixin {
     return element;
   }
 
-  EpubPublicationMetadata getPublicationMetadata() {
+  EpubPublicationMetadata? getPublicationMetadata() {
+    final metadataElement =
+        element.findElements(EpubPublicationMetadata.elementName).firstOrNull;
+    if (metadataElement == null) {
+      return null;
+    }
+
     final dcMetadata = metadataElement.findElements('dc-metadata').firstOrNull;
     final bool hasDcMetadataElement = dcMetadata != null;
     final xMetadata = metadataElement.findElements('x-metadata').firstOrNull;
