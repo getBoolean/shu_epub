@@ -48,9 +48,9 @@ class EpubManifestItem extends Equatable {
   }
 
   const EpubManifestItem({
-    required this.id,
-    required this.href,
-    required this.mediaType,
+    this.id,
+    this.href,
+    this.mediaType,
     this.fallback,
   });
 
