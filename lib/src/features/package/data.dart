@@ -10,7 +10,6 @@ import 'package:xml/xml.dart';
 import '../../enums.dart';
 import 'reader.dart';
 
-part 'data/package_identity/epub_package_identity.dart';
 part 'data/publication_metadata/epub_package_accessibility_metadata.dart';
 part 'data/publication_metadata/epub_extra_metadata.dart';
 part 'data/publication_metadata/epub_metadata_contributer.dart';

@@ -1,16 +1,17 @@
 part of shu_epub.features.package.controller;
 
-class EpubPackageController {
-  final XmlElement packageElement;
+class EpubPackageController with VersionMixin {
+  @override
+  final XmlElement element;
   final XmlElement metadataElement;
   final XmlElement? guideElement;
 
   bool get hasGuide =>
-      packageElement.findElements(EpubGuide.elementName).firstOrNull != null;
+      element.findElements(EpubGuide.elementName).firstOrNull != null;
 
   bool get hasTours =>
       !hasGuide &&
-      packageElement.findElements(EpubTours.elementName).firstOrNull != null;
+      element.findElements(EpubTours.elementName).firstOrNull != null;
 
   static const elementName = EpubPackage.elementName;
 
@@ -35,14 +36,14 @@ class EpubPackageController {
         _getElementFromPackageElement('guide', packageElement, require: false);
 
     return EpubPackageController._internal(
-      packageElement: packageElement,
+      element: packageElement,
       metadataElement: metadataElement,
       guideElement: guideElement,
     );
   }
 
   const EpubPackageController._internal({
-    required this.packageElement,
+    required this.element,
     required this.metadataElement,
     this.guideElement,
   });
@@ -100,30 +101,6 @@ class EpubPackageController {
     }
 
     return element;
-  }
-
-  EpubPackageIdentity getPackageIdentity() {
-    final version = packageElement.getAttribute('version');
-    if (version == null) {
-      throw EpubException(
-        'Epub Parsing Exception: Could not find version attribute in data',
-      );
-    }
-    final uniqueIdentifier = packageElement.getAttribute('unique-identifier');
-    if (uniqueIdentifier == null) {
-      throw EpubException(
-        'Epub Parsing Exception: Could not find unique-identifier attribute in data',
-      );
-    }
-
-    final id = packageElement.getAttribute('id');
-
-    final packageIdentity = EpubPackageIdentity(
-      uniqueIdentifier: uniqueIdentifier,
-      epubVersion: version,
-      id: id,
-    );
-    return packageIdentity;
   }
 
   EpubPublicationMetadata getPublicationMetadata() {
@@ -272,7 +249,7 @@ class EpubPackageController {
 
   EpubManifest? getManifest() {
     final manifestElement =
-        packageElement.findElements(EpubManifest.elementName).firstOrNull;
+        element.findElements(EpubManifest.elementName).firstOrNull;
     if (manifestElement == null) {
       return null;
     }
@@ -282,7 +259,7 @@ class EpubPackageController {
 
   EpubSpine? getSpine() {
     final spineElement =
-        packageElement.findElements(EpubSpine.elementName).firstOrNull;
+        element.findElements(EpubSpine.elementName).firstOrNull;
     if (spineElement == null) {
       return null;
     }
@@ -292,7 +269,7 @@ class EpubPackageController {
 
   EpubGuide? getGuide() {
     final guideElement =
-        packageElement.findElements(EpubGuide.elementName).firstOrNull;
+        element.findElements(EpubGuide.elementName).firstOrNull;
     if (guideElement == null) {
       return null;
     }
@@ -302,11 +279,15 @@ class EpubPackageController {
 
   EpubTours? getTours() {
     final toursElement =
-        packageElement.findElements(EpubTours.elementName).firstOrNull;
+        element.findElements(EpubTours.elementName).firstOrNull;
     if (toursElement == null) {
       return null;
     }
 
     return EpubTours.fromXmlElement(toursElement);
+  }
+
+  String? getUniqueIdentifier() {
+    return element.getAttribute('unique-identifier');
   }
 }

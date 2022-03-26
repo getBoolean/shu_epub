@@ -18,24 +18,18 @@ class EpubPackage extends Equatable {
   static const elementName = 'package';
   static const namespace = 'http://www.idpf.org/2007/opf';
 
-  /// Includes a unique identifier for the OPS Publication as a whole. This should NOT
+  final String? epubVersion;
+
+  /// A unique identifier for the OPS Publication as a whole. This should NOT
   /// be relied upon to be unique across all EPUB publications.
-  ///
-  /// Excerpt From: http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.1
-  ///
-  /// The package element is the root element in an OPF Package Document; all other elements are nested within it.
-  ///
-  /// The package element must specify a value for its unique-identifier attribute.
-  /// The unique-identifier attribute's value specifies which Dublin Core identifier
-  /// element, described in Section 2.2.10, provides the package's preferred, or
-  /// primary, identifier. The OPF Package Document's author is responsible for
-  /// choosing a primary identifier that is unique to one and only one particular
-  /// package (i.e., the set of files referenced from the package document's manifest).
+  /// 
+  /// The uniqueIdentifier field's value specifies which [EpubPublicationMetadata.identifiers]
+  /// described in Section 2.2.10, provides the package's preferred, or primary, identifier.
   ///
   /// Notwithstanding the requirement for uniqueness, Reading Systems must not
   /// fail catastrophically if they encounter two distinct packages with the same
   /// purportedly unique primary identifier.
-  final EpubPackageIdentity? packageIdentity;
+  final String? uniqueIdentifier;
 
   /// Publication metadata (title, author, publisher, etc.).
   final EpubPublicationMetadata? publicationMetadata;
@@ -114,7 +108,8 @@ class EpubPackage extends Equatable {
   // GENERATED DO NOT MODOFY
 
   const EpubPackage({
-    this.packageIdentity,
+    this.epubVersion,
+    this.uniqueIdentifier,
     this.publicationMetadata,
     this.manifest,
     this.spine,
@@ -123,7 +118,8 @@ class EpubPackage extends Equatable {
   });
 
   EpubPackage copyWith({
-    EpubPackageIdentity? packageIdentity,
+    String? epubVersion,
+    String? uniqueIdentifier,
     EpubPublicationMetadata? publicationMetadata,
     EpubManifest? manifest,
     EpubSpine? spine,
@@ -131,7 +127,8 @@ class EpubPackage extends Equatable {
     EpubTours? tours,
   }) {
     return EpubPackage(
-      packageIdentity: packageIdentity ?? this.packageIdentity,
+      epubVersion: epubVersion ?? this.epubVersion,
+      uniqueIdentifier: uniqueIdentifier ?? this.uniqueIdentifier,
       publicationMetadata: publicationMetadata ?? this.publicationMetadata,
       manifest: manifest ?? this.manifest,
       spine: spine ?? this.spine,
@@ -142,7 +139,8 @@ class EpubPackage extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'packageIdentity': packageIdentity?.toMap(),
+      'epubVersion': epubVersion,
+      'uniqueIdentifier': uniqueIdentifier,
       'publicationMetadata': publicationMetadata?.toMap(),
       'manifest': manifest?.toMap(),
       'spine': spine?.toMap(),
@@ -153,11 +151,11 @@ class EpubPackage extends Equatable {
 
   factory EpubPackage.fromMap(Map<String, dynamic> map) {
     return EpubPackage(
-      packageIdentity: map['packageIdentity'] == null ? null : EpubPackageIdentity.fromMap(map['packageIdentity']),
-      publicationMetadata:
-          map['publicationMetadata'] == null ? null : EpubPublicationMetadata.fromMap(map['publicationMetadata']),
-      manifest: map['manifest'] == null ? null : EpubManifest.fromMap(map['manifest']),
-      spine: map['spine'] == null ? null : EpubSpine.fromMap(map['spine']),
+      epubVersion: map['epubVersion'],
+      uniqueIdentifier: map['uniqueIdentifier'],
+      publicationMetadata: map['publicationMetadata'] != null ? EpubPublicationMetadata.fromMap(map['publicationMetadata']) : null,
+      manifest: map['manifest'] != null ? EpubManifest.fromMap(map['manifest']) : null,
+      spine: map['spine'] != null ? EpubSpine.fromMap(map['spine']) : null,
       guide: map['guide'] != null ? EpubGuide.fromMap(map['guide']) : null,
       tours: map['tours'] != null ? EpubTours.fromMap(map['tours']) : null,
     );
@@ -170,13 +168,14 @@ class EpubPackage extends Equatable {
 
   @override
   String toString() {
-    return 'EpubPackage(packageIdentity: $packageIdentity, publicationMetadata: $publicationMetadata, manifest: $manifest, spine: $spine, guide: $guide, tours: $tours)';
+    return 'EpubPackage(epubVersion: $epubVersion, uniqueIdentifier: $uniqueIdentifier, publicationMetadata: $publicationMetadata, manifest: $manifest, spine: $spine, guide: $guide, tours: $tours)';
   }
 
   @override
   List<Object> get props {
     return [
-      packageIdentity ?? 'no packageIdentity',
+      epubVersion ?? 'no epubVersion',
+      uniqueIdentifier ?? 'no uniqueIdentifier',
       publicationMetadata ?? 'no publicationMetadata',
       manifest ?? 'no manifest',
       spine ?? 'no spine',

@@ -51,7 +51,7 @@ class EpubPublicationMetadata extends Equatable {
   /// [EpubMetadataIdentifier], however multiple instances are permitted.
   ///
   /// At least one [EpubMetadataIdentifier] must have [EpubMetadataIdentifier.id]
-  /// specified, so it can be referenced from the [EpubPackageIdentity.uniqueIdentifier]
+  /// specified, so it can be referenced from the [EpubPackage.uniqueIdentifier]
   /// attribute described in [Section 2.1](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.1).
   ///
   /// Must not be an empty list
