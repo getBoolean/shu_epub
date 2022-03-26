@@ -1,16 +1,15 @@
 part of shu_epub.features.package.controller;
 
-class EpubPackageController {
-  final XmlElement packageElement;
-  final XmlElement metadataElement;
-  final XmlElement manifestElement;
-  final XmlElement spineElement;
-  final XmlElement? guideElement;
-  final XmlElement? tourElement;
+class EpubPackageController with VersionMixin {
+  @override
+  final XmlElement element;
 
-  bool get hasGuide => guideElement != null;
+  bool get hasGuide =>
+      element.findElements(EpubGuide.elementName).firstOrNull != null;
 
-  bool get hasTours => !hasGuide && tourElement != null;
+  bool get hasTours =>
+      !hasGuide &&
+      element.findElements(EpubTours.elementName).firstOrNull != null;
 
   static const elementName = EpubPackage.elementName;
 
@@ -22,41 +21,20 @@ class EpubPackageController {
 
   /// Throws [EpubException] if the content element is not the root node
   factory EpubPackageController.fromXmlElement(XmlElement packageElement) {
+    // TODO(@getBoolean): Create backup plan if required elements don't exist
     if (packageElement.name.qualified != elementName) {
       throw EpubException(
         'Invalid data, expected $elementName to be the root node but it was not found',
       );
     }
 
-    // TODO(@getBoolean): Create backup plan if required elements don't exist
-    final XmlElement metadataElement =
-        _getElementFromPackageElement('metadata', packageElement)!;
-    final XmlElement manifestElement =
-        _getElementFromPackageElement('manifest', packageElement)!;
-    final XmlElement spineElement =
-        _getElementFromPackageElement('spine', packageElement)!;
-    final XmlElement? guideElement =
-        _getElementFromPackageElement('guide', packageElement, require: false);
-    final XmlElement? tourElement =
-        _getElementFromPackageElement('tours', packageElement, require: false);
-
     return EpubPackageController._internal(
-      packageElement: packageElement,
-      metadataElement: metadataElement,
-      manifestElement: manifestElement,
-      spineElement: spineElement,
-      guideElement: guideElement,
-      tourElement: tourElement,
+      element: packageElement,
     );
   }
 
   const EpubPackageController._internal({
-    required this.packageElement,
-    required this.metadataElement,
-    required this.manifestElement,
-    required this.spineElement,
-    this.guideElement,
-    this.tourElement,
+    required this.element,
   });
 
   /// Create a [EpubPackageController] from the bytes of the EPUB package file
@@ -99,233 +77,39 @@ class EpubPackageController {
     }
   }
 
-  static XmlElement? _getElementFromPackageElement(
-    String targetElement,
-    XmlElement packageElement, {
-    bool require = true,
-  }) {
+  EpubPublicationMetadata? getPublicationMetadata() {
     final metadataElement =
-        packageElement.findElements(targetElement).firstOrNull;
-    if (metadataElement == null && require) {
-      throw EpubException(
-        'Epub Parsing Exception: Could not find <${EpubPublicationMetadata.elementName}> element in package (OPF) data',
-      );
+        element.findElements(EpubPublicationMetadata.elementName).firstOrNull;
+    if (metadataElement == null) {
+      return null;
     }
 
-    return metadataElement;
+    return EpubPublicationMetadata.fromXmlElement(metadataElement);
   }
 
-  EpubPackageIdentity getPackageIdentity() {
-    final version = packageElement.getAttribute('version');
-    if (version == null) {
-      throw EpubException(
-        'Epub Parsing Exception: Could not find version attribute in data',
-      );
-    }
-    final uniqueIdentifier = packageElement.getAttribute('unique-identifier');
-    if (uniqueIdentifier == null) {
-      throw EpubException(
-        'Epub Parsing Exception: Could not find unique-identifier attribute in data',
-      );
+  EpubManifest? getManifest() {
+    final manifestElement =
+        element.findElements(EpubManifest.elementName).firstOrNull;
+    if (manifestElement == null) {
+      return null;
     }
 
-    final id = packageElement.getAttribute('id');
-
-    final packageIdentity = EpubPackageIdentity(
-      uniqueIdentifier: uniqueIdentifier,
-      epubVersion: version,
-      id: id,
-    );
-    return packageIdentity;
+    return EpubManifest.fromXmlElement(manifestElement);
   }
 
-  EpubPublicationMetadata getPublicationMetadata() {
-    final dcMetadata = metadataElement.findElements('dc-metadata').firstOrNull;
-    final bool hasDcMetadataElement = dcMetadata != null;
-    final xMetadata = metadataElement.findElements('x-metadata').firstOrNull;
-    final bool hasXMetadataElement = xMetadata != null;
+  EpubSpine? getSpine() {
+    final spineElement =
+        element.findElements(EpubSpine.elementName).firstOrNull;
+    if (spineElement == null) {
+      return null;
+    }
 
-    final List<EpubExtraMetadata> extraMetadataItems = hasXMetadataElement
-        ? xMetadata.childElements
-            .map((node) => EpubExtraMetadata(
-                  name: node.getAttribute('name') ?? '',
-                  content: node.getAttribute('content') ?? '',
-                ))
-            .toList()
-        : metadataElement
-            .findElements('meta')
-            .map((node) => EpubExtraMetadata(
-                  name: node.getAttribute('name') ?? '',
-                  content: node.getAttribute('content') ?? '',
-                ))
-            .toList();
-
-    final XmlElement compatibleMetadataElement =
-        hasDcMetadataElement ? dcMetadata : metadataElement;
-
-    final titles = compatibleMetadataElement
-        .findElements('dc:title')
-        .map((node) => node.text.trim())
-        .toList();
-
-    final creators = compatibleMetadataElement
-        .findElements('dc:creator')
-        .map((creator) => EpubMetadataContributer(
-              name: creator.text,
-              role: creator.getAttribute('opf:role'),
-              fileAs: creator.getAttribute('opf:file-as'),
-            ))
-        .toList();
-
-    final contributors = compatibleMetadataElement
-        .findElements('dc:contributor')
-        .map((creator) => EpubMetadataContributer(
-              name: creator.text,
-              role: creator.getAttribute('opf:role'),
-              fileAs: creator.getAttribute('opf:file-as'),
-            ))
-        .toList();
-
-    final subjects = compatibleMetadataElement
-        .findElements('dc:subject')
-        .map((node) => node.text.trim())
-        .toList();
-
-    final description = compatibleMetadataElement
-        .findElements('dc:description')
-        .firstOrNull
-        ?.text
-        .trim();
-
-    final publisher = compatibleMetadataElement
-        .findElements('dc:publisher')
-        .firstOrNull
-        ?.text
-        .trim();
-
-    final dateElement =
-        compatibleMetadataElement.findElements('dc:date').firstOrNull;
-
-    final metadataDate = dateElement == null
-        ? null
-        : EpubMetadataDate(
-            date: dateElement.text,
-            event: dateElement.getAttribute('event'),
-          );
-
-    final type = compatibleMetadataElement
-        .findElements('dc:type')
-        .firstOrNull
-        ?.text
-        .trim();
-
-    final format = compatibleMetadataElement
-        .findElements('dc:format')
-        .firstOrNull
-        ?.text
-        .trim();
-
-    final source = compatibleMetadataElement
-        .findElements('dc:source')
-        .firstOrNull
-        ?.text
-        .trim();
-
-    final langs = compatibleMetadataElement
-        .findElements('dc:language')
-        .map((node) => node.text.trim())
-        .toList();
-
-    final relation = compatibleMetadataElement
-        .findElements('dc:relation')
-        .firstOrNull
-        ?.text
-        .trim();
-
-    final coverage = compatibleMetadataElement
-        .findElements('dc:coverage')
-        .firstOrNull
-        ?.text
-        .trim();
-
-    final rights = compatibleMetadataElement
-        .findElements('dc:rights')
-        .firstOrNull
-        ?.text
-        .trim();
-
-    final identifiers = compatibleMetadataElement
-        .findElements('dc:identifier')
-        .map((node) => EpubMetadataIdentifier(
-              value: node.text.trim(),
-              id: node.getAttribute('id'),
-              scheme: node.getAttribute('scheme'),
-            ))
-        .toList();
-
-    return EpubPublicationMetadata(
-      allTitles: titles,
-      creators: creators,
-      subjects: subjects,
-      description: description,
-      publisher: publisher,
-      contributors: contributors,
-      extraMetadataItems: extraMetadataItems,
-      metadataDate: metadataDate,
-      type: type,
-      format: format,
-      identifiers: identifiers,
-      source: source,
-      languages: langs,
-      relation: relation,
-      coverage: coverage,
-      rights: rights,
-    );
-  }
-
-  EpubManifest getManifest() {
-    final items = manifestElement.findElements('item');
-
-    final manifestItems = items
-        .map((item) => EpubManifestItem(
-              id: item.getAttribute('id') ?? '',
-              href: item.getAttribute('href') ?? '',
-              mediaType: item.getAttribute('media-type') ?? '',
-              fallback: item.getAttribute('fallback'),
-            ))
-        .toList();
-
-    // Remove OPF Package Document in case it exists in manifest
-    manifestItems.removeWhere(
-      (item) => item.mediaType == EpubMediaTypes.kOPFMimeType,
-    );
-
-    return EpubManifest(items: manifestItems);
-  }
-
-  EpubSpine getSpine() {
-    final tocId = spineElement.getAttribute('toc') ?? '';
-    final items = spineElement.findElements('itemref');
-
-    final itemRefs = items.map((node) {
-      final idref = node.getAttribute('idref') ?? '';
-      final linearString = node.getAttribute('linear');
-      // default is true if no linear attribute
-      // should find at least one item with linear == true (isPrimary)
-      final linear = linearString == 'no' ? false : true;
-
-      return EpubSpineItemRef(idref: idref, linear: linear);
-    }).toList();
-
-    return EpubSpine(
-      itemRefs: itemRefs,
-      tocId: tocId,
-    );
+    return EpubSpine.fromXmlElement(spineElement);
   }
 
   EpubGuide? getGuide() {
     final guideElement =
-        packageElement.findElements(EpubGuide.elementName).firstOrNull;
+        element.findElements(EpubGuide.elementName).firstOrNull;
     if (guideElement == null) {
       return null;
     }
@@ -335,11 +119,15 @@ class EpubPackageController {
 
   EpubTours? getTours() {
     final toursElement =
-        packageElement.findElements(EpubTours.elementName).firstOrNull;
+        element.findElements(EpubTours.elementName).firstOrNull;
     if (toursElement == null) {
       return null;
     }
 
     return EpubTours.fromXmlElement(toursElement);
+  }
+
+  String? getUniqueIdentifier() {
+    return element.getAttribute('unique-identifier');
   }
 }

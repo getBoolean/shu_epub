@@ -1,6 +1,8 @@
 part of shu_epub.features.package.data;
 
 class EpubMetadataIdentifier extends Equatable {
+  static const elementName = 'dc:identifier';
+
   final String value;
 
   final String? id;
@@ -18,8 +20,32 @@ class EpubMetadataIdentifier extends Equatable {
   /// defined by Dublin Core.
   final String? scheme;
 
+  /// Create an [EpubMetadataIdentifier] object from the dc:identifier XmlElement.
+  ///
+  /// Throws [EpubException] if the dc:identifier element is not the root node
+  factory EpubMetadataIdentifier.fromXmlElement(
+      XmlElement dcidentifierElement) {
+    return EpubMetadataIdentifierReader.fromXmlElement(dcidentifierElement);
+  }
+
+  /// Create an instance of [EpubMetadataIdentifier] from the [String] representation
+  /// of the dc:identifier element
+  ///
+  /// Throws [EpubException] if the string does not have the dc:identifier element
+  factory EpubMetadataIdentifier.fromString(String dcidentifierString) {
+    return EpubMetadataIdentifierReader.fromString(dcidentifierString);
+  }
+
+  /// Create an instance of [EpubMetadataIdentifier] from the [Uint8List] data
+  /// of the dc:identifier element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the dc:identifier element
+  factory EpubMetadataIdentifier.fromData(Uint8List dcidentifierData) {
+    return EpubMetadataIdentifierReader.fromData(dcidentifierData);
+  }
+
   const EpubMetadataIdentifier({
-    required this.value,
+    this.value = '',
     this.id,
     this.scheme,
   });
@@ -46,7 +72,7 @@ class EpubMetadataIdentifier extends Equatable {
 
   factory EpubMetadataIdentifier.fromMap(Map<String, dynamic> map) {
     return EpubMetadataIdentifier(
-      value: map['value'] ?? '',
+      value: map['value'],
       id: map['id'],
       scheme: map['scheme'],
     );
@@ -62,6 +88,9 @@ class EpubMetadataIdentifier extends Equatable {
       'EpubMetadataIdentifier(value: $value, id: $id, scheme: $scheme)';
 
   @override
-  List<Object> get props =>
-      [value, id ?? 'no id given', scheme ?? 'no scheme given'];
+  List<Object> get props => [
+        value,
+        id ?? 'no id given',
+        scheme ?? 'no scheme given',
+      ];
 }

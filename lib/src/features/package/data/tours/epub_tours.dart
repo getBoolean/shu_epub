@@ -46,10 +46,6 @@ class EpubTours extends Equatable {
     };
   }
 
-  factory EpubTours.zero() {
-    return EpubTours(items: []);
-  }
-
   factory EpubTours.fromMap(Map<String, dynamic> map) {
     return EpubTours(
       items:

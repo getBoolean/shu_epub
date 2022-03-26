@@ -38,17 +38,16 @@ class EpubPackageReader {
   static EpubPackage _fromController(
     EpubPackageController controller,
   ) {
-    final packageIdentity = controller.getPackageIdentity();
     final publicationMetadata = controller.getPublicationMetadata();
 
-    // TODO(@getBoolean): Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2)
     final manifest = controller.getManifest();
     final spine = controller.getSpine();
     final guide = controller.getGuide();
     final tours = controller.getTours();
 
     return EpubPackage(
-      packageIdentity: packageIdentity,
+      epubVersion: controller.getVersion(),
+      uniqueIdentifier: controller.getUniqueIdentifier(),
       publicationMetadata: publicationMetadata,
       manifest: manifest,
       spine: spine,

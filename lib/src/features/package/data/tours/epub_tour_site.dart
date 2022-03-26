@@ -66,8 +66,8 @@ class EpubTourSite extends Equatable {
 
   factory EpubTourSite.fromMap(Map<String, dynamic> map) {
     return EpubTourSite(
-      title: map['title'] ?? '',
-      href: map['href'] ?? '',
+      title: map['title'],
+      href: map['href'],
     );
   }
 

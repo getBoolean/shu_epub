@@ -12,6 +12,7 @@ tasks:
       flutter channel stable
       flutter upgrade
       dart pub get
+
   - command: dart pub get
 
 ports:

@@ -1,6 +1,7 @@
 part of shu_epub.features.package.controller;
 
-class EpubGuideItemController {
+class EpubGuideItemController with HrefMixin {
+  @override
   final XmlElement element;
 
   static const elementName = EpubGuideItem.elementName;
@@ -62,9 +63,5 @@ class EpubGuideItemController {
 
   String? getType() {
     return element.getAttribute('type');
-  }
-
-  String? getHref() {
-    return element.getAttribute('href');
   }
 }

@@ -18,27 +18,21 @@ class EpubPackage extends Equatable {
   static const elementName = 'package';
   static const namespace = 'http://www.idpf.org/2007/opf';
 
-  /// Includes a unique identifier for the OPS Publication as a whole. This should NOT
+  final String? epubVersion;
+
+  /// A unique identifier for the OPS Publication as a whole. This should NOT
   /// be relied upon to be unique across all EPUB publications.
   ///
-  /// Excerpt From: http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.1
-  ///
-  /// The package element is the root element in an OPF Package Document; all other elements are nested within it.
-  ///
-  /// The package element must specify a value for its unique-identifier attribute.
-  /// The unique-identifier attribute's value specifies which Dublin Core identifier
-  /// element, described in Section 2.2.10, provides the package's preferred, or
-  /// primary, identifier. The OPF Package Document's author is responsible for
-  /// choosing a primary identifier that is unique to one and only one particular
-  /// package (i.e., the set of files referenced from the package document's manifest).
+  /// The uniqueIdentifier field's value specifies which [EpubPublicationMetadata.identifiers]
+  /// described in Section 2.2.10, provides the package's preferred, or primary, identifier.
   ///
   /// Notwithstanding the requirement for uniqueness, Reading Systems must not
   /// fail catastrophically if they encounter two distinct packages with the same
   /// purportedly unique primary identifier.
-  final EpubPackageIdentity packageIdentity;
+  final String? uniqueIdentifier;
 
   /// Publication metadata (title, author, publisher, etc.).
-  final EpubPublicationMetadata publicationMetadata;
+  final EpubPublicationMetadata? publicationMetadata;
 
   /// A list of files (documents, images, style sheets, etc.) that make up the publication.
   /// The manifest also includes fallback declarations for files of types not supported by
@@ -63,10 +57,12 @@ class EpubPackage extends Equatable {
   /// a document, an image file, a style sheet, or other component that is considered
   /// part of the publication. The manifest must not include item elements referring
   /// to the file or files that make up the OPF Package Document.
-  final EpubManifest manifest;
+  ///
+  /// TODO(@getBoolean): Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2)
+  final EpubManifest? manifest;
 
   /// An arrangement of documents providing a linear reading order.
-  final EpubSpine spine;
+  final EpubSpine? spine;
 
   /// A set of references to fundamental structural features of the publication, such
   ///
@@ -114,16 +110,18 @@ class EpubPackage extends Equatable {
   // GENERATED DO NOT MODOFY
 
   const EpubPackage({
-    required this.packageIdentity,
-    required this.publicationMetadata,
-    required this.manifest,
-    required this.spine,
+    this.epubVersion,
+    this.uniqueIdentifier,
+    this.publicationMetadata,
+    this.manifest,
+    this.spine,
     this.guide,
     this.tours,
   });
 
   EpubPackage copyWith({
-    EpubPackageIdentity? packageIdentity,
+    String? epubVersion,
+    String? uniqueIdentifier,
     EpubPublicationMetadata? publicationMetadata,
     EpubManifest? manifest,
     EpubSpine? spine,
@@ -131,7 +129,8 @@ class EpubPackage extends Equatable {
     EpubTours? tours,
   }) {
     return EpubPackage(
-      packageIdentity: packageIdentity ?? this.packageIdentity,
+      epubVersion: epubVersion ?? this.epubVersion,
+      uniqueIdentifier: uniqueIdentifier ?? this.uniqueIdentifier,
       publicationMetadata: publicationMetadata ?? this.publicationMetadata,
       manifest: manifest ?? this.manifest,
       spine: spine ?? this.spine,
@@ -142,10 +141,11 @@ class EpubPackage extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'packageIdentity': packageIdentity.toMap(),
-      'publicationMetadata': publicationMetadata.toMap(),
-      'manifest': manifest.toMap(),
-      'spine': spine.toMap(),
+      'epubVersion': epubVersion,
+      'uniqueIdentifier': uniqueIdentifier,
+      'publicationMetadata': publicationMetadata?.toMap(),
+      'manifest': manifest?.toMap(),
+      'spine': spine?.toMap(),
       'guide': guide?.toMap(),
       'tours': tours?.toMap(),
     };
@@ -153,11 +153,15 @@ class EpubPackage extends Equatable {
 
   factory EpubPackage.fromMap(Map<String, dynamic> map) {
     return EpubPackage(
-      packageIdentity: EpubPackageIdentity.fromMap(map['packageIdentity']),
-      publicationMetadata:
-          EpubPublicationMetadata.fromMap(map['publicationMetadata']),
-      manifest: EpubManifest.fromMap(map['manifest']),
-      spine: EpubSpine.fromMap(map['spine']),
+      epubVersion: map['epubVersion'],
+      uniqueIdentifier: map['uniqueIdentifier'],
+      publicationMetadata: map['publicationMetadata'] != null
+          ? EpubPublicationMetadata.fromMap(map['publicationMetadata'])
+          : null,
+      manifest: map['manifest'] != null
+          ? EpubManifest.fromMap(map['manifest'])
+          : null,
+      spine: map['spine'] != null ? EpubSpine.fromMap(map['spine']) : null,
       guide: map['guide'] != null ? EpubGuide.fromMap(map['guide']) : null,
       tours: map['tours'] != null ? EpubTours.fromMap(map['tours']) : null,
     );
@@ -170,16 +174,17 @@ class EpubPackage extends Equatable {
 
   @override
   String toString() {
-    return 'EpubPackage(packageIdentity: $packageIdentity, publicationMetadata: $publicationMetadata, manifest: $manifest, spine: $spine, guide: $guide, tours: $tours)';
+    return 'EpubPackage(epubVersion: $epubVersion, uniqueIdentifier: $uniqueIdentifier, publicationMetadata: $publicationMetadata, manifest: $manifest, spine: $spine, guide: $guide, tours: $tours)';
   }
 
   @override
   List<Object> get props {
     return [
-      packageIdentity,
-      publicationMetadata,
-      manifest,
-      spine,
+      epubVersion ?? 'no epubVersion',
+      uniqueIdentifier ?? 'no uniqueIdentifier',
+      publicationMetadata ?? 'no publicationMetadata',
+      manifest ?? 'no manifest',
+      spine ?? 'no spine',
       guide ?? 'no guide',
       tours ?? 'no tours',
     ];

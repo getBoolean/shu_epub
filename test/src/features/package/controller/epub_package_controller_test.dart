@@ -117,4 +117,62 @@ void main() {
       },
     );
   });
+
+  group('getVersion', () {
+    test(
+      'on input without a version attribute, expect a null value',
+      () async {
+        final input = '''
+  <package></package>
+  ''';
+        final controller = EpubPackageController.fromString(input);
+        final actualValue = controller.getVersion();
+
+        expect(actualValue, isNull);
+      },
+    );
+
+    test(
+      'on input with a version attribute, expect the String value',
+      () async {
+        final input = '''
+  <package version="2.0"></package>
+  ''';
+        final controller = EpubPackageController.fromString(input);
+        final expectedValue = '2.0';
+        final actualValue = controller.getVersion();
+
+        expect(actualValue, expectedValue);
+      },
+    );
+  });
+
+  group('getUniqueIdentifier', () {
+    test(
+      'on input without a unique-identifier attribute, expect a null value',
+      () async {
+        final input = '''
+  <package></package>
+  ''';
+        final controller = EpubPackageController.fromString(input);
+        final actualValue = controller.getUniqueIdentifier();
+
+        expect(actualValue, isNull);
+      },
+    );
+
+    test(
+      'on input with a unique-identifier attribute, expect the String value',
+      () async {
+        final input = '''
+  <package unique-identifier="test"></package>
+  ''';
+        final controller = EpubPackageController.fromString(input);
+        final expectedValue = 'test';
+        final actualValue = controller.getUniqueIdentifier();
+
+        expect(actualValue, expectedValue);
+      },
+    );
+  });
 }

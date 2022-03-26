@@ -19,30 +19,30 @@ void main() {
         final EpubPackage packageFile = EpubPackageReader.fromData(data);
 
         // assert
-        expect(packageFile.packageIdentity.epubVersion, isNotEmpty);
-        expect(packageFile.packageIdentity.uniqueIdentifier, isNotEmpty);
+        expect(packageFile.epubVersion, isNotNull);
+        expect(packageFile.uniqueIdentifier, isNotNull);
 
         // contains at least one title
-        expect(packageFile.publicationMetadata.allTitles, isNotEmpty);
+        expect(packageFile.publicationMetadata?.allTitles, isNotEmpty);
 
         // contains at least one language
-        expect(packageFile.publicationMetadata.languages, isNotEmpty);
+        expect(packageFile.publicationMetadata?.languages, isNotEmpty);
 
         // contains at least one identifier
-        expect(packageFile.publicationMetadata.identifiers, isNotEmpty);
+        expect(packageFile.publicationMetadata?.identifiers, isNotEmpty);
 
         // contains one primary identifier
         expect(
-            packageFile.publicationMetadata.identifiers
+            packageFile.publicationMetadata?.identifiers
                 .firstWhereOrNull((identifier) => identifier.isPrimary),
             isNotNull);
 
         // manifest should have at least one item
-        expect(packageFile.manifest.items, isNotEmpty);
+        expect(packageFile.manifest?.items, isNotEmpty);
 
         // spine should have at least one primary item
         expect(
-          packageFile.spine.getReadingOrder(),
+          packageFile.spine?.getReadingOrder(),
           isNotEmpty,
           reason: 'spine should have at least one primary item',
         );
@@ -66,30 +66,30 @@ void main() {
             EpubPackageReader.fromArchiveFile(archiveFile);
 
         // assert
-        expect(packageFile.packageIdentity.epubVersion, isNotEmpty);
-        expect(packageFile.packageIdentity.uniqueIdentifier, isNotEmpty);
+        expect(packageFile.epubVersion, isNotNull);
+        expect(packageFile.uniqueIdentifier, isNotNull);
 
         // contains at least one title
-        expect(packageFile.publicationMetadata.allTitles, isNotEmpty);
+        expect(packageFile.publicationMetadata?.allTitles, isNotEmpty);
 
         // contains at least one language
-        expect(packageFile.publicationMetadata.languages, isNotEmpty);
+        expect(packageFile.publicationMetadata?.languages, isNotEmpty);
 
         // contains at least one identifier
-        expect(packageFile.publicationMetadata.identifiers, isNotEmpty);
+        expect(packageFile.publicationMetadata?.identifiers, isNotEmpty);
 
         // contains one primary identifier
         expect(
-            packageFile.publicationMetadata.identifiers
+            packageFile.publicationMetadata?.identifiers
                 .firstWhereOrNull((identifier) => identifier.isPrimary),
             isNotNull);
 
         // manifest should have at least one item
-        expect(packageFile.manifest.items, isNotEmpty);
+        expect(packageFile.manifest?.items, isNotEmpty);
 
         // spine should have at least one primary item
         expect(
-          packageFile.spine.getReadingOrder(),
+          packageFile.spine?.getReadingOrder(),
           isNotEmpty,
           reason: 'spine should have at least one primary item',
         );

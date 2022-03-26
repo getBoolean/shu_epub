@@ -1,4 +1,4 @@
-part of shu_epub.features.epub;
+part of shu_epub.features.epub.reader;
 
 class EpubReader {
   const EpubReader();
@@ -45,14 +45,14 @@ class EpubReader {
     final EpubPackage packageFile =
         EpubPackage.fromData(archiveRootfile.content);
 
-    final navigationId = packageFile.spine.tocId;
+    final navigationId = packageFile.spine?.tocId;
     // TODO(@getBoolean): Create backup plan if navigation is not found
-    if (navigationId.isEmpty) {
+    if (navigationId == null || navigationId.isEmpty) {
       throw EpubException(
         'Epub Parsing Error: Could not find navigation id in the spine of container.xml',
       );
     }
-    final navigationManifestItem = packageFile.manifest.items.firstWhereOrNull(
+    final navigationManifestItem = packageFile.manifest?.items.firstWhereOrNull(
       (element) => element.id == navigationId,
     );
     // TODO(@getBoolean): Create backup plan if navigation is not found
@@ -62,10 +62,18 @@ class EpubReader {
       );
     }
     final navigationRelativePath = navigationManifestItem.href;
+    // TODO(@getBoolean): Create backup plan if navigation is not found
+    if (navigationRelativePath == null) {
+      throw EpubException(
+        'Malformed Epub Manifest: Manifest Table of Contents item did not specify the href location of the navigation file.',
+      );
+    }
+
     final currentPathSplit = archiveRootfile.name.split(RegExp(r'/+'));
     currentPathSplit.removeLast();
     final currentPath = currentPathSplit.join('/');
     final navigationFullPath = currentPath + '/' + navigationRelativePath;
+
     final navigationFile = archive.findFile(navigationFullPath);
     // TODO(@getBoolean): Create backup plan if navigation is not found
     if (navigationFile == null) {

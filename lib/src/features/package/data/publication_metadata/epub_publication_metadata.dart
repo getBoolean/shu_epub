@@ -5,7 +5,7 @@ class EpubPublicationMetadata extends Equatable {
   static const elementName = 'metadata';
 
   /// Must not be an empty list
-  final List<String> allTitles;
+  final List<EpubMetadataTitle> allTitles;
 
   /// A primary creator or author of the publication.
   ///
@@ -51,7 +51,7 @@ class EpubPublicationMetadata extends Equatable {
   /// [EpubMetadataIdentifier], however multiple instances are permitted.
   ///
   /// At least one [EpubMetadataIdentifier] must have [EpubMetadataIdentifier.id]
-  /// specified, so it can be referenced from the [EpubPackageIdentity.uniqueIdentifier]
+  /// specified, so it can be referenced from the [EpubPackage.uniqueIdentifier]
   /// attribute described in [Section 2.1](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.1).
   ///
   /// Must not be an empty list
@@ -79,10 +79,33 @@ class EpubPublicationMetadata extends Equatable {
   /// A statement about rights, or a reference to one.
   final String? rights;
 
-  String get title => allTitles.first;
+  EpubMetadataTitle get title => allTitles.first;
+
+  /// Create an [EpubPublicationMetadata] object from the metadata XmlElement.
+  ///
+  /// Throws [EpubException] if the metadata element is not the root node
+  factory EpubPublicationMetadata.fromXmlElement(XmlElement metadataElement) {
+    return EpubPublicationMetadataReader.fromXmlElement(metadataElement);
+  }
+
+  /// Create an instance of [EpubPublicationMetadata] from the [String] representation
+  /// of the metadata element
+  ///
+  /// Throws [EpubException] if the string does not have the metadata element
+  factory EpubPublicationMetadata.fromString(String metadataString) {
+    return EpubPublicationMetadataReader.fromString(metadataString);
+  }
+
+  /// Create an instance of [EpubPublicationMetadata] from the [Uint8List] data
+  /// of the metadata element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the metadata element
+  factory EpubPublicationMetadata.fromData(Uint8List metadataData) {
+    return EpubPublicationMetadataReader.fromData(metadataData);
+  }
 
   const EpubPublicationMetadata({
-    required this.allTitles,
+    this.allTitles = const [],
     this.creators = const [],
     this.subjects = const [],
     this.description,
@@ -92,16 +115,16 @@ class EpubPublicationMetadata extends Equatable {
     this.metadataDate,
     this.type,
     this.format,
-    required this.identifiers,
+    this.identifiers = const [],
     this.source,
-    required this.languages,
+    this.languages = const [],
     this.relation,
     this.coverage,
     this.rights,
   });
 
   EpubPublicationMetadata copyWith({
-    List<String>? allTitles,
+    List<EpubMetadataTitle>? allTitles,
     List<EpubMetadataContributer>? creators,
     List<String>? subjects,
     String? description,
@@ -140,14 +163,14 @@ class EpubPublicationMetadata extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'allTitles': allTitles,
+      'allTitles': allTitles.map((x) => x.toMap()).toList(),
       'creators': creators.map((x) => x.toMap()).toList(),
       'subjects': subjects,
       'description': description,
       'publisher': publisher,
       'contributors': contributors.map((x) => x.toMap()).toList(),
       'extraMetadataItems': extraMetadataItems.map((x) => x.toMap()).toList(),
-      'metadataDate': metadataDate,
+      'metadataDate': metadataDate?.toMap(),
       'type': type,
       'format': format,
       'identifiers': identifiers.map((x) => x.toMap()).toList(),
@@ -159,31 +182,26 @@ class EpubPublicationMetadata extends Equatable {
     };
   }
 
-  factory EpubPublicationMetadata.zero() {
-    return EpubPublicationMetadata(
-      allTitles: [],
-      identifiers: [],
-      languages: [],
-    );
-  }
-
   factory EpubPublicationMetadata.fromMap(Map<String, dynamic> map) {
     return EpubPublicationMetadata(
-      allTitles: List<String>.from(map['allTitles']),
+      allTitles: List<EpubMetadataTitle>.from(
+          map['allTitles']?.map(EpubMetadataTitle.fromMap)),
       creators: List<EpubMetadataContributer>.from(
-          map['creators'].map(EpubMetadataContributer.fromMap)),
+          map['creators']?.map(EpubMetadataContributer.fromMap)),
       subjects: List<String>.from(map['subjects']),
       description: map['description'],
       publisher: map['publisher'],
       contributors: List<EpubMetadataContributer>.from(
-          map['contributors'].map(EpubMetadataContributer.fromMap)),
+          map['contributors']?.map(EpubMetadataContributer.fromMap)),
       extraMetadataItems: List<EpubExtraMetadata>.from(
-          map['extraMetadataItems'].map(EpubExtraMetadata.fromMap)),
-      metadataDate: map['metadataDate'],
+          map['extraMetadataItems']?.map(EpubExtraMetadata.fromMap)),
+      metadataDate: map['metadataDate'] != null
+          ? EpubMetadataDate.fromMap(map['metadataDate'])
+          : null,
       type: map['type'],
       format: map['format'],
       identifiers: List<EpubMetadataIdentifier>.from(
-          map['identifiers'].map(EpubMetadataIdentifier.fromMap)),
+          map['identifiers']?.map(EpubMetadataIdentifier.fromMap)),
       source: map['source'],
       languages: List<String>.from(map['languages']),
       relation: map['relation'],
@@ -208,19 +226,19 @@ class EpubPublicationMetadata extends Equatable {
       allTitles,
       creators,
       subjects,
-      description ?? 'no description given',
-      publisher ?? 'no publisher specified',
+      description ?? 'no description',
+      publisher ?? 'no publisher',
       contributors,
       extraMetadataItems,
-      metadataDate ?? 'no date specified',
-      type ?? 'no type specified',
-      format ?? 'no format specified',
+      metadataDate ?? 'no metadataDate',
+      type ?? 'no type',
+      format ?? 'no format',
       identifiers,
-      source ?? 'no source specified',
+      source ?? 'no source',
       languages,
-      relation ?? 'no relation specified',
-      coverage ?? 'no coverage specified',
-      rights ?? 'no rights specified',
+      relation ?? 'no relation',
+      coverage ?? 'no coverage',
+      rights ?? 'no rights',
     ];
   }
 }
