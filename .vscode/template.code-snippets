@@ -63,7 +63,7 @@
 			"    );",
 			"",
 			"    final xmlDocument = XmlUtils.parseToXmlDocument(content);",
-			"    final ${2:elementName}Element = xmlDocument.findElements('${2:elementName}').firstOrNull;",
+			"    final ${2:elementName}Element = xmlDocument.findElements(elementName).firstOrNull;",
 			"",
 			"    if (${2:elementName}Element == null) {",
 			"      throw EpubException(",
