@@ -4,11 +4,13 @@ class EpubPackageController {
   final XmlElement packageElement;
   final XmlElement metadataElement;
   final XmlElement? guideElement;
-  final XmlElement? tourElement;
 
-  bool get hasGuide => guideElement != null;
+  bool get hasGuide =>
+      packageElement.findElements(EpubGuide.elementName).firstOrNull != null;
 
-  bool get hasTours => !hasGuide && tourElement != null;
+  bool get hasTours =>
+      !hasGuide &&
+      packageElement.findElements(EpubTours.elementName).firstOrNull != null;
 
   static const elementName = EpubPackage.elementName;
 
@@ -31,14 +33,11 @@ class EpubPackageController {
         _getElementFromPackageElement('metadata', packageElement)!;
     final XmlElement? guideElement =
         _getElementFromPackageElement('guide', packageElement, require: false);
-    final XmlElement? tourElement =
-        _getElementFromPackageElement('tours', packageElement, require: false);
 
     return EpubPackageController._internal(
       packageElement: packageElement,
       metadataElement: metadataElement,
       guideElement: guideElement,
-      tourElement: tourElement,
     );
   }
 
@@ -46,7 +45,6 @@ class EpubPackageController {
     required this.packageElement,
     required this.metadataElement,
     this.guideElement,
-    this.tourElement,
   });
 
   /// Create a [EpubPackageController] from the bytes of the EPUB package file
