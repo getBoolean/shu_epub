@@ -3,7 +3,6 @@ part of shu_epub.features.package.controller;
 class EpubPackageController with VersionMixin {
   @override
   final XmlElement element;
-  final XmlElement? guideElement;
 
   bool get hasGuide =>
       element.findElements(EpubGuide.elementName).firstOrNull != null;
@@ -29,18 +28,13 @@ class EpubPackageController with VersionMixin {
     }
 
     // TODO(@getBoolean): Create backup plan if required elements don't exist
-    final XmlElement? guideElement =
-        _getElementFromPackageElement('guide', packageElement, require: false);
-
     return EpubPackageController._internal(
       element: packageElement,
-      guideElement: guideElement,
     );
   }
 
   const EpubPackageController._internal({
     required this.element,
-    this.guideElement,
   });
 
   /// Create a [EpubPackageController] from the bytes of the EPUB package file
@@ -81,21 +75,6 @@ class EpubPackageController with VersionMixin {
         st,
       );
     }
-  }
-
-  static XmlElement? _getElementFromPackageElement(
-    String targetElement,
-    XmlElement packageElement, {
-    bool require = true,
-  }) {
-    final element = packageElement.findElements(targetElement).firstOrNull;
-    if (element == null && require) {
-      throw EpubException(
-        'Epub Parsing Exception: Could not find <${EpubPublicationMetadata.elementName}> element in package (OPF) data',
-      );
-    }
-
-    return element;
   }
 
   EpubPublicationMetadata? getPublicationMetadata() {
