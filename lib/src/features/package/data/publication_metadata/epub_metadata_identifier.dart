@@ -1,6 +1,8 @@
 part of shu_epub.features.package.data;
 
 class EpubMetadataIdentifier extends Equatable {
+  static const elementName = 'dc:identifier';
+  
   final String value;
 
   final String? id;
@@ -17,6 +19,30 @@ class EpubMetadataIdentifier extends Equatable {
   /// yet addressed by this specification. Identifier schemes are not currently
   /// defined by Dublin Core.
   final String? scheme;
+
+  /// Create an [EpubMetadataIdentifier] object from the dc:identifier XmlElement.
+  ///
+  /// Throws [EpubException] if the dc:identifier element is not the root node
+  factory EpubMetadataIdentifier.fromXmlElement(
+      XmlElement dcidentifierElement) {
+    return EpubMetadataIdentifierReader.fromXmlElement(dcidentifierElement);
+  }
+
+  /// Create an instance of [EpubMetadataIdentifier] from the [String] representation
+  /// of the dc:identifier element
+  ///
+  /// Throws [EpubException] if the string does not have the dc:identifier element
+  factory EpubMetadataIdentifier.fromString(String dcidentifierString) {
+    return EpubMetadataIdentifierReader.fromString(dcidentifierString);
+  }
+
+  /// Create an instance of [EpubMetadataIdentifier] from the [Uint8List] data
+  /// of the dc:identifier element in the navigation file.
+  ///
+  /// Throws [EpubException] if the data does not have the dc:identifier element
+  factory EpubMetadataIdentifier.fromData(Uint8List dcidentifierData) {
+    return EpubMetadataIdentifierReader.fromData(dcidentifierData);
+  }
 
   const EpubMetadataIdentifier({
     this.value = '',

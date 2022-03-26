@@ -170,12 +170,8 @@ class EpubPublicationMetadataController {
 
   List<EpubMetadataIdentifier> getIdentifiers() {
     return compatibleMetadataElement
-        .findElements('dc:identifier')
-        .map((node) => EpubMetadataIdentifier(
-              value: node.innerText.trim(),
-              id: node.getAttribute('id'),
-              scheme: node.getAttribute('scheme'),
-            ))
+        .findElements(EpubMetadataIdentifier.elementName)
+        .map(EpubMetadataIdentifier.fromXmlElement)
         .toList();
   }
 
