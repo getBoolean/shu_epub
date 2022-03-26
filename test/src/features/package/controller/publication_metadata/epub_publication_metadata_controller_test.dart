@@ -347,11 +347,11 @@ void main() {
   ''';
         final controller = EpubPublicationMetadataController.fromString(input);
         final actualValue = controller.getDate();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a dc:date element, expect a dc:date object',
       () async {
@@ -364,7 +364,7 @@ void main() {
         final controller = EpubPublicationMetadataController.fromString(input);
         final expectedValue = EpubMetadataDate();
         final actualValue = controller.getDate();
-  
+
         expect(actualValue, expectedValue);
       },
     );

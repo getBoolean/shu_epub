@@ -140,8 +140,9 @@ class EpubPublicationMetadataController {
   }
 
   EpubMetadataDate? getDate() {
-    final dateElement =
-        compatibleMetadataElement.findElements(EpubMetadataDate.elementName).firstOrNull;
+    final dateElement = compatibleMetadataElement
+        .findElements(EpubMetadataDate.elementName)
+        .firstOrNull;
     if (dateElement == null) {
       return null;
     }
