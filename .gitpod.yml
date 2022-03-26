@@ -6,6 +6,7 @@ tasks:
       sudo mount -t tmpfs shm -osize=4096m /dev/shm
       brew install git-flow
       dart pub get
+      dart --disable-analytics
   - init: |
       flutter channel stable
       flutter upgrade
