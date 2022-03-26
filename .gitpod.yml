@@ -5,6 +5,7 @@ tasks:
   - before: |
       sudo mount -t tmpfs shm -osize=4096m /dev/shm
       brew install git-flow
+      flutter upgrade
       dart pub get
       dart --disable-analytics
   - init: |
