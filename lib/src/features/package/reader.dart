@@ -18,3 +18,4 @@ part 'reader/manifest/epub_manifest_reader.dart';
 part 'reader/manifest/epub_manifest_item_reader.dart';
 part 'reader/spine/epub_spine_item_ref_reader.dart';
 part 'reader/spine/epub_spine_reader.dart';
+part 'reader/publication_metadata/epub_publication_metadata_reader.dart';

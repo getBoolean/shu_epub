@@ -21,3 +21,4 @@ part 'controller/manifest/epub_manifest_controller.dart';
 part 'controller/manifest/epub_manifest_item_controller.dart';
 part 'controller/spine/epub_spine_controller.dart';
 part 'controller/spine/epub_spine_item_ref_controller.dart';
+part 'controller/publication_metadata/epub_publication_metadata_controller.dart';
