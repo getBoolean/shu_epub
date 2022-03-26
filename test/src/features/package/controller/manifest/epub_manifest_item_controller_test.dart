@@ -1,7 +1,41 @@
 import 'package:shu_epub/shu_epub.dart';
+import 'package:shu_epub/src/utils.dart';
 import 'package:test/test.dart';
 
 void main() {
+  group('fromXmlElement', () {
+    test(
+      'on input without item element, expect EpubException thrown',
+      () async {
+        final input = '''
+  <invalid></invalid>
+      ''';
+        final xmlDocument = XmlUtils.parseToXmlDocument(input);
+        final element = xmlDocument.firstElementChild!;
+  
+        expect(
+          () => EpubManifestItemController.fromXmlElement(element),
+          throwsA(isA<EpubException>()),
+        );
+      },
+    );
+  });
+  
+  group('fromString', () {
+    test(
+      'on input without item element, expect EpubException thrown',
+      () async {
+        final input = '''
+  <invalid></invalid>
+  ''';
+        expect(
+          () => EpubManifestItemController.fromString(input),
+          throwsA(isA<EpubException>()),
+        );
+      },
+    );
+  });
+  
   group('getId', () {
     test(
       'on input without a id attribute, expect a null value',
