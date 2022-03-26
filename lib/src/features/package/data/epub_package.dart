@@ -57,7 +57,7 @@ class EpubPackage extends Equatable {
   /// a document, an image file, a style sheet, or other component that is considered
   /// part of the publication. The manifest must not include item elements referring
   /// to the file or files that make up the OPF Package Document.
-  /// 
+  ///
   /// TODO(@getBoolean): Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2)
   final EpubManifest? manifest;
 
