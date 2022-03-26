@@ -21,13 +21,13 @@ class EpubPackageController with VersionMixin {
 
   /// Throws [EpubException] if the content element is not the root node
   factory EpubPackageController.fromXmlElement(XmlElement packageElement) {
+    // TODO(@getBoolean): Create backup plan if required elements don't exist
     if (packageElement.name.qualified != elementName) {
       throw EpubException(
         'Invalid data, expected $elementName to be the root node but it was not found',
       );
     }
 
-    // TODO(@getBoolean): Create backup plan if required elements don't exist
     return EpubPackageController._internal(
       element: packageElement,
     );
