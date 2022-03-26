@@ -26,3 +26,4 @@ part 'controller/publication_metadata/epub_metadata_title_controller.dart';
 part 'controller/publication_metadata/epub_metadata_contributor_controller.dart';
 part 'controller/publication_metadata/epub_metadata_creator_controller.dart';
 part 'controller/publication_metadata/epub_metadata_identifier_controller.dart';
+part 'controller/publication_metadata/epub_metadata_date_controller.dart';

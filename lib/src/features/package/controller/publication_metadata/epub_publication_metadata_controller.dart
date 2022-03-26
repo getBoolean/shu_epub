@@ -139,17 +139,14 @@ class EpubPublicationMetadataController {
             .toList();
   }
 
-  EpubMetadataDate? getMetadataDate() {
+  EpubMetadataDate? getDate() {
     final dateElement =
-        compatibleMetadataElement.findElements('dc:date').firstOrNull;
+        compatibleMetadataElement.findElements(EpubMetadataDate.elementName).firstOrNull;
+    if (dateElement == null) {
+      return null;
+    }
 
-    final metadataDate = dateElement == null
-        ? null
-        : EpubMetadataDate(
-            date: dateElement.innerText.trim(),
-            event: dateElement.getAttribute('event'),
-          );
-    return metadataDate;
+    return EpubMetadataDate.fromXmlElement(dateElement);
   }
 
   String? getType() {

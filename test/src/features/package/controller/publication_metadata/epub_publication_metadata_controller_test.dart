@@ -302,6 +302,39 @@ void main() {
     );
   });
 
+  group('getDate', () {
+    test(
+      'on input without a dc:date element, expect a null value',
+      () async {
+        final input = '''
+  <metadata>
+  </metadata>
+  ''';
+        final controller = EpubPublicationMetadataController.fromString(input);
+        final actualValue = controller.getDate();
+  
+        expect(actualValue, isNull);
+      },
+    );
+  
+    test(
+      'on input with a dc:date element, expect a dc:date object',
+      () async {
+        final input = '''
+  <metadata>
+      <dc:date>
+      </dc:date>
+  </metadata>
+  ''';
+        final controller = EpubPublicationMetadataController.fromString(input);
+        final expectedValue = EpubMetadataDate();
+        final actualValue = controller.getDate();
+  
+        expect(actualValue, expectedValue);
+      },
+    );
+  });
+
   group('getType', () {
     test(
       'on input without a dc:type element, expect a null value',

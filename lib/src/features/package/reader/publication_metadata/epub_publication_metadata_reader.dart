@@ -40,7 +40,7 @@ class EpubPublicationMetadataReader {
       publisher: controller.getPublisher(),
       contributors: controller.getContributors(),
       extraMetadataItems: controller.getExtraMetadataItems(),
-      metadataDate: controller.getMetadataDate(),
+      metadataDate: controller.getDate(),
       type: controller.getType(),
       format: controller.getFormat(),
       identifiers: controller.getIdentifiers(),
