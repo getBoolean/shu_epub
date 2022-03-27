@@ -51,30 +51,20 @@ class EpubPackageController with VersionMixin {
   }
 
   static XmlElement _getPackageElementFromXmlDocument(XmlDocument document) {
-    try {
-      // Find container element which MUST have namespace `http://www.idpf.org/2007/opf`
-      final package = document
-              .findAllElements(EpubPackage.elementName,
-                  namespace: EpubPackage.namespace)
-              .firstOrNull ??
-          document.findAllElements(EpubPackage.elementName).firstOrNull;
+    // Find container element which MUST have namespace `http://www.idpf.org/2007/opf`
+    final package = document
+            .findAllElements(EpubPackage.elementName,
+                namespace: EpubPackage.namespace)
+            .firstOrNull ??
+        document.findAllElements(EpubPackage.elementName).firstOrNull;
 
-      if (package == null) {
-        throw EpubException(
-          'Epub Parsing Exception: Could not find <${EpubPackage.elementName}> element in xml document. This may not be an EPUB package file.',
-        );
-      }
-
-      return package;
-    } on Exception catch (e, st) {
-      if (e is EpubException) rethrow;
-
+    if (package == null) {
       throw EpubException(
-        'Epub Parsing Exception: Could not read package file',
-        e,
-        st,
+        'Epub Parsing Exception: Could not find <${EpubPackage.elementName}> element in xml document. This may not be an EPUB package file.',
       );
     }
+
+    return package;
   }
 
   EpubPublicationMetadata? getPublicationMetadata() {
