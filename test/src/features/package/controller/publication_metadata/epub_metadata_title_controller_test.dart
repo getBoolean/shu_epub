@@ -1,7 +1,42 @@
 import 'package:shu_epub/shu_epub.dart';
+import 'package:shu_epub/src/utils.dart';
 import 'package:test/test.dart';
 
 void main() {
+
+  group('fromXmlElement', () {
+    test(
+      'on input without dc:title element, expect EpubException thrown',
+      () async {
+        final input = '''
+  <invalid></invalid>
+      ''';
+        final xmlDocument = XmlUtils.parseToXmlDocument(input);
+        final element = xmlDocument.firstElementChild!;
+  
+        expect(
+          () => EpubMetadataTitleController.fromXmlElement(element),
+          throwsA(isA<EpubException>()),
+        );
+      },
+    );
+  });
+  
+  group('fromString', () {
+    test(
+      'on input without dc:title element, expect EpubException thrown',
+      () async {
+        final input = '''
+  <invalid></invalid>
+  ''';
+        expect(
+          () => EpubMetadataTitleController.fromString(input),
+          throwsA(isA<EpubException>()),
+        );
+      },
+    );
+  });
+  
   group('getLanguage', () {
     test(
       'on input without a xml:lang or lang attribute, expect a null value',
