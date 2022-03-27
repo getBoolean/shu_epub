@@ -6,7 +6,7 @@ class EpubNavigationContentReader {
   /// Throws [EpubException] if the content element is not the root node
   static EpubNavigationContent fromXmlElement(XmlElement contentElement) {
     final controller =
-        EpubNavigationContentController.fromXmlElement(contentElement);
+        EpubNavigationContentReaderController.fromXmlElement(contentElement);
     return _fromController(controller);
   }
 
@@ -16,7 +16,7 @@ class EpubNavigationContentReader {
   /// Throws [EpubException] if the string does not have the content element
   static EpubNavigationContent fromString(String contentString) {
     final controller =
-        EpubNavigationContentController.fromString(contentString);
+        EpubNavigationContentReaderController.fromString(contentString);
     return _fromController(controller);
   }
 
@@ -25,12 +25,12 @@ class EpubNavigationContentReader {
   ///
   /// Throws [EpubException] if the data does not have the content element
   static EpubNavigationContent fromData(Uint8List contentData) {
-    final controller = EpubNavigationContentController(contentData);
+    final controller = EpubNavigationContentReaderController(contentData);
     return _fromController(controller);
   }
 
   static EpubNavigationContent _fromController(
-    EpubNavigationContentController controller,
+    EpubNavigationContentReaderController controller,
   ) {
     final id = controller.getId();
     final source = controller.getSource();

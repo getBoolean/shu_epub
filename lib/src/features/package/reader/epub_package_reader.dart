@@ -5,7 +5,8 @@ class EpubPackageReader {
   ///
   /// Throws [EpubException] if the package element is not the root node
   static EpubPackage fromXmlElement(XmlElement navigationElement) {
-    final controller = EpubPackageController.fromXmlElement(navigationElement);
+    final controller =
+        EpubPackageReaderController.fromXmlElement(navigationElement);
     return _fromController(controller);
   }
 
@@ -14,7 +15,7 @@ class EpubPackageReader {
   ///
   /// Throws [EpubException] if the string does not have the package element
   static EpubPackage fromString(String navigationString) {
-    final controller = EpubPackageController.fromString(navigationString);
+    final controller = EpubPackageReaderController.fromString(navigationString);
     return _fromController(controller);
   }
 
@@ -31,12 +32,12 @@ class EpubPackageReader {
   ///
   /// Throws [EpubException] if the data does not have the navigation element
   static EpubPackage fromData(Uint8List navigationData) {
-    final controller = EpubPackageController(navigationData);
+    final controller = EpubPackageReaderController(navigationData);
     return _fromController(controller);
   }
 
   static EpubPackage _fromController(
-    EpubPackageController controller,
+    EpubPackageReaderController controller,
   ) {
     final publicationMetadata = controller.getPublicationMetadata();
 

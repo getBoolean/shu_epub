@@ -14,7 +14,7 @@ void main() {
         final element = xmlDocument.firstElementChild!;
 
         expect(
-          () => EpubTourSiteController.fromXmlElement(element),
+          () => EpubTourSiteReaderController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
         );
       },
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubTourSiteController.fromString(input),
+          () => EpubTourSiteReaderController.fromString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -43,7 +43,7 @@ void main() {
         final input = '''
   <site></site>
   ''';
-        final controller = EpubTourSiteController.fromString(input);
+        final controller = EpubTourSiteReaderController.fromString(input);
         final actualValue = controller.getTitle();
 
         expect(actualValue, isNull);
@@ -56,7 +56,7 @@ void main() {
         final input = '''
   <site title="test"></site>
   ''';
-        final controller = EpubTourSiteController.fromString(input);
+        final controller = EpubTourSiteReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getTitle();
 
@@ -72,7 +72,7 @@ void main() {
         final input = '''
   <site></site>
   ''';
-        final controller = EpubTourSiteController.fromString(input);
+        final controller = EpubTourSiteReaderController.fromString(input);
         final actualValue = controller.getHref();
 
         expect(actualValue, isNull);
@@ -85,7 +85,7 @@ void main() {
         final input = '''
   <site href="test"></site>
   ''';
-        final controller = EpubTourSiteController.fromString(input);
+        final controller = EpubTourSiteReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getHref();
 

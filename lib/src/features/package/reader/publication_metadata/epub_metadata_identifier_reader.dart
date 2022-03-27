@@ -5,8 +5,8 @@ class EpubMetadataIdentifierReader {
   ///
   /// Throws [EpubException] if the dc:identifier element is not the root node
   static EpubMetadataIdentifier fromXmlElement(XmlElement dcidentifierElement) {
-    final controller =
-        EpubMetadataIdentifierController.fromXmlElement(dcidentifierElement);
+    final controller = EpubMetadataIdentifierReaderController.fromXmlElement(
+        dcidentifierElement);
     return _fromController(controller);
   }
 
@@ -16,7 +16,7 @@ class EpubMetadataIdentifierReader {
   /// Throws [EpubException] if the string does not have the dc:identifier element
   static EpubMetadataIdentifier fromString(String dcidentifierString) {
     final controller =
-        EpubMetadataIdentifierController.fromString(dcidentifierString);
+        EpubMetadataIdentifierReaderController.fromString(dcidentifierString);
     return _fromController(controller);
   }
 
@@ -25,12 +25,12 @@ class EpubMetadataIdentifierReader {
   ///
   /// Throws [EpubException] if the data does not have the dc:identifier element
   static EpubMetadataIdentifier fromData(Uint8List dcidentifierData) {
-    final controller = EpubMetadataIdentifierController(dcidentifierData);
+    final controller = EpubMetadataIdentifierReaderController(dcidentifierData);
     return _fromController(controller);
   }
 
   static EpubMetadataIdentifier _fromController(
-    EpubMetadataIdentifierController controller,
+    EpubMetadataIdentifierReaderController controller,
   ) {
     return EpubMetadataIdentifier(
       value: controller.getValue(),

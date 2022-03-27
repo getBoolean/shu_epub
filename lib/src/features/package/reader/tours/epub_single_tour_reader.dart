@@ -5,7 +5,8 @@ class EpubSingleTourReader {
   ///
   /// Throws [EpubException] if the tour element is not the root node
   static EpubSingleTour fromXmlElement(XmlElement tourElement) {
-    final controller = EpubSingleTourController.fromXmlElement(tourElement);
+    final controller =
+        EpubSingleTourReaderController.fromXmlElement(tourElement);
     return _fromController(controller);
   }
 
@@ -14,7 +15,7 @@ class EpubSingleTourReader {
   ///
   /// Throws [EpubException] if the string does not have the tour element
   static EpubSingleTour fromString(String tourString) {
-    final controller = EpubSingleTourController.fromString(tourString);
+    final controller = EpubSingleTourReaderController.fromString(tourString);
     return _fromController(controller);
   }
 
@@ -23,12 +24,12 @@ class EpubSingleTourReader {
   ///
   /// Throws [EpubException] if the data does not have the tour element
   static EpubSingleTour fromData(Uint8List tourData) {
-    final controller = EpubSingleTourController(tourData);
+    final controller = EpubSingleTourReaderController(tourData);
     return _fromController(controller);
   }
 
   static EpubSingleTour _fromController(
-    EpubSingleTourController controller,
+    EpubSingleTourReaderController controller,
   ) {
     return EpubSingleTour(sites: controller.getSites());
   }

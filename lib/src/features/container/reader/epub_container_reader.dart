@@ -17,7 +17,8 @@ class EpubContainerReader {
   ///
   /// Throws [EpubException] if the container element is not the root node
   static EpubContainer fromXmlElement(XmlElement containerElement) {
-    final controller = EpubContainerController.fromXmlElement(containerElement);
+    final controller =
+        EpubContainerReaderController.fromXmlElement(containerElement);
     return _fromController(controller);
   }
 
@@ -26,7 +27,8 @@ class EpubContainerReader {
   ///
   /// Throws [EpubException] if the string does not have the container element
   static EpubContainer fromString(String containerString) {
-    final controller = EpubContainerController.fromString(containerString);
+    final controller =
+        EpubContainerReaderController.fromString(containerString);
     return _fromController(controller);
   }
 
@@ -35,12 +37,12 @@ class EpubContainerReader {
   ///
   /// Throws [EpubException] if the data does not have the container element
   static EpubContainer fromData(Uint8List containerData) {
-    final controller = EpubContainerController(containerData);
+    final controller = EpubContainerReaderController(containerData);
     return _fromController(controller);
   }
 
   static EpubContainer _fromController(
-    EpubContainerController controller,
+    EpubContainerReaderController controller,
   ) {
     final containerVersion = controller.getVersion();
     final rootfileList = controller.getRootfiles();

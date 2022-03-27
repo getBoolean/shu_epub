@@ -5,14 +5,14 @@ class EpubNavigationPageTargetReader {
   ///
   /// Throws [EpubException] if the pageTarget element is not the root node
   static EpubNavigationPageTarget fromXmlElement(XmlElement pageTargetElement) {
-    final controller =
-        EpubNavigationPageTargetController.fromXmlElement(pageTargetElement);
+    final controller = EpubNavigationPageTargetReaderController.fromXmlElement(
+        pageTargetElement);
     return _fromController(controller);
   }
 
   static EpubNavigationPageTarget fromString(String pageTargetString) {
     final controller =
-        EpubNavigationPageTargetController.fromString(pageTargetString);
+        EpubNavigationPageTargetReaderController.fromString(pageTargetString);
     return _fromController(controller);
   }
 
@@ -21,12 +21,12 @@ class EpubNavigationPageTargetReader {
   ///
   /// Throws [EpubException] if the data does not have the pageTarget element
   static EpubNavigationPageTarget fromData(Uint8List pageTargetData) {
-    final controller = EpubNavigationPageTargetController(pageTargetData);
+    final controller = EpubNavigationPageTargetReaderController(pageTargetData);
     return _fromController(controller);
   }
 
   static EpubNavigationPageTarget _fromController(
-    EpubNavigationPageTargetController controller,
+    EpubNavigationPageTargetReaderController controller,
   ) {
     return EpubNavigationPageTarget(
       id: controller.getId(),

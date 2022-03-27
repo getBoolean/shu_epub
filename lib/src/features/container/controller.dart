@@ -10,6 +10,6 @@ import '../../shared.dart';
 import '../../utils.dart';
 import 'data.dart';
 
-part 'controller/epub_container_controller.dart';
-part 'controller/rootfile_controller.dart';
-part 'controller/rootfile_list_controller.dart';
+part 'controller/epub_container_reader_controller.dart';
+part 'controller/epub_container_rootfile_reader_controller.dart';
+part 'controller/epub_container_rootfile_list_reader_controller.dart';

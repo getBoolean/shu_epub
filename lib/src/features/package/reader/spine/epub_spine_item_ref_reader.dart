@@ -6,7 +6,7 @@ class EpubSpineItemRefReader {
   /// Throws [EpubException] if the itemref element is not the root node
   static EpubSpineItemRef fromXmlElement(XmlElement itemrefElement) {
     final controller =
-        EpubSpineItemRefController.fromXmlElement(itemrefElement);
+        EpubSpineItemRefReaderController.fromXmlElement(itemrefElement);
     return _fromController(controller);
   }
 
@@ -15,7 +15,8 @@ class EpubSpineItemRefReader {
   ///
   /// Throws [EpubException] if the string does not have the itemref element
   static EpubSpineItemRef fromString(String itemrefString) {
-    final controller = EpubSpineItemRefController.fromString(itemrefString);
+    final controller =
+        EpubSpineItemRefReaderController.fromString(itemrefString);
     return _fromController(controller);
   }
 
@@ -24,12 +25,12 @@ class EpubSpineItemRefReader {
   ///
   /// Throws [EpubException] if the data does not have the itemref element
   static EpubSpineItemRef fromData(Uint8List itemrefData) {
-    final controller = EpubSpineItemRefController(itemrefData);
+    final controller = EpubSpineItemRefReaderController(itemrefData);
     return _fromController(controller);
   }
 
   static EpubSpineItemRef _fromController(
-    EpubSpineItemRefController controller,
+    EpubSpineItemRefReaderController controller,
   ) {
     return EpubSpineItemRef(
       idref: controller.getIdref(),

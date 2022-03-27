@@ -14,7 +14,7 @@ void main() {
         final element = xmlDocument.firstElementChild!;
 
         expect(
-          () => EpubPackageController.fromXmlElement(element),
+          () => EpubPackageReaderController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
         );
       },
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubPackageController.fromString(input),
+          () => EpubPackageReaderController.fromString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -47,7 +47,7 @@ void main() {
       <spine></spine>
   </package>
   ''';
-        final controller = EpubPackageController.fromString(input);
+        final controller = EpubPackageReaderController.fromString(input);
         final actualValue = controller.getGuide();
 
         expect(actualValue, isNull);
@@ -67,7 +67,7 @@ void main() {
       </guide>
   </package>
   ''';
-        final controller = EpubPackageController.fromString(input);
+        final controller = EpubPackageReaderController.fromString(input);
         final expectedValue = EpubGuide();
         final actualValue = controller.getGuide();
 
@@ -88,7 +88,7 @@ void main() {
       <spine></spine>
   </package>
   ''';
-        final controller = EpubPackageController.fromString(input);
+        final controller = EpubPackageReaderController.fromString(input);
         final actualValue = controller.getTours();
 
         expect(actualValue, isNull);
@@ -108,7 +108,7 @@ void main() {
       </tours>
   </package>
   ''';
-        final controller = EpubPackageController.fromString(input);
+        final controller = EpubPackageReaderController.fromString(input);
         final expectedValue = EpubTours();
         final actualValue = controller.getTours();
 
@@ -125,7 +125,7 @@ void main() {
         final input = '''
   <package></package>
   ''';
-        final controller = EpubPackageController.fromString(input);
+        final controller = EpubPackageReaderController.fromString(input);
         final actualValue = controller.getVersion();
 
         expect(actualValue, isNull);
@@ -138,7 +138,7 @@ void main() {
         final input = '''
   <package version="2.0"></package>
   ''';
-        final controller = EpubPackageController.fromString(input);
+        final controller = EpubPackageReaderController.fromString(input);
         final expectedValue = '2.0';
         final actualValue = controller.getVersion();
 
@@ -154,7 +154,7 @@ void main() {
         final input = '''
   <package></package>
   ''';
-        final controller = EpubPackageController.fromString(input);
+        final controller = EpubPackageReaderController.fromString(input);
         final actualValue = controller.getUniqueIdentifier();
 
         expect(actualValue, isNull);
@@ -167,7 +167,7 @@ void main() {
         final input = '''
   <package unique-identifier="test"></package>
   ''';
-        final controller = EpubPackageController.fromString(input);
+        final controller = EpubPackageReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getUniqueIdentifier();
 

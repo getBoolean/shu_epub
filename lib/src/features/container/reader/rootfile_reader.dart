@@ -5,7 +5,8 @@ class RootfileReader {
   ///
   /// Throws [EpubException] if the rootfile element is not the root node
   static Rootfile fromXmlElement(XmlElement rootfileElement) {
-    final controller = RootfileController.fromXmlElement(rootfileElement);
+    final controller =
+        EpubContainerRootfileReaderController.fromXmlElement(rootfileElement);
     return _fromController(controller);
   }
 
@@ -14,7 +15,8 @@ class RootfileReader {
   ///
   /// Throws [EpubException] if the string does not have the rootfile element
   static Rootfile fromString(String rootfileString) {
-    final controller = RootfileController.fromString(rootfileString);
+    final controller =
+        EpubContainerRootfileReaderController.fromString(rootfileString);
     return _fromController(controller);
   }
 
@@ -23,12 +25,12 @@ class RootfileReader {
   ///
   /// Throws [EpubException] if the data does not have the rootfile element
   static Rootfile fromData(Uint8List rootfileData) {
-    final controller = RootfileController(rootfileData);
+    final controller = EpubContainerRootfileReaderController(rootfileData);
     return _fromController(controller);
   }
 
   static Rootfile _fromController(
-    RootfileController controller,
+    EpubContainerRootfileReaderController controller,
   ) {
     return Rootfile(
       mediaType: controller.getMediaType(),

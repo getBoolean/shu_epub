@@ -14,7 +14,7 @@ void main() {
         final element = xmlDocument.firstElementChild!;
 
         expect(
-          () => EpubManifestController.fromXmlElement(element),
+          () => EpubManifestReaderController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
         );
       },
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubManifestController.fromString(input),
+          () => EpubManifestReaderController.fromString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -44,7 +44,7 @@ void main() {
   <manifest>
   </manifest>
   ''';
-        final controller = EpubManifestController.fromString(input);
+        final controller = EpubManifestReaderController.fromString(input);
         final actualValue = controller.getItems();
 
         expect(actualValue, isEmpty);
@@ -60,7 +60,7 @@ void main() {
       </item>
   </manifest>
   ''';
-        final controller = EpubManifestController.fromString(input);
+        final controller = EpubManifestReaderController.fromString(input);
         final expectedValue = [EpubManifestItem()];
         final actualValue = controller.getItems();
 

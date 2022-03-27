@@ -14,7 +14,7 @@ void main() {
         final element = xmlDocument.firstElementChild!;
 
         expect(
-          () => EpubMetadataDateController.fromXmlElement(element),
+          () => EpubMetadataDateReaderController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
         );
       },
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubMetadataDateController.fromString(input),
+          () => EpubMetadataDateReaderController.fromString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -44,7 +44,7 @@ void main() {
   <dc:date>
   </dc:date>
   ''';
-        final controller = EpubMetadataDateController.fromString(input);
+        final controller = EpubMetadataDateReaderController.fromString(input);
         final actualValue = controller.getValue();
 
         expect(actualValue, isEmpty);
@@ -57,7 +57,7 @@ void main() {
         final input = '''
   <dc:date>test</dc:date>
   ''';
-        final controller = EpubMetadataDateController.fromString(input);
+        final controller = EpubMetadataDateReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getValue();
 
@@ -73,7 +73,7 @@ void main() {
         final input = '''
   <dc:date></dc:date>
   ''';
-        final controller = EpubMetadataDateController.fromString(input);
+        final controller = EpubMetadataDateReaderController.fromString(input);
         final actualValue = controller.getEvent();
 
         expect(actualValue, isNull);
@@ -86,7 +86,7 @@ void main() {
         final input = '''
   <dc:date event="test"></dc:date>
   ''';
-        final controller = EpubMetadataDateController.fromString(input);
+        final controller = EpubMetadataDateReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getEvent();
 

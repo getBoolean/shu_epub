@@ -14,7 +14,7 @@ void main() {
         final element = xmlDocument.firstElementChild!;
 
         expect(
-          () => EpubManifestItemController.fromXmlElement(element),
+          () => EpubManifestItemReaderController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
         );
       },
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubManifestItemController.fromString(input),
+          () => EpubManifestItemReaderController.fromString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -43,7 +43,7 @@ void main() {
         final input = '''
   <item></item>
   ''';
-        final controller = EpubManifestItemController.fromString(input);
+        final controller = EpubManifestItemReaderController.fromString(input);
         final actualValue = controller.getId();
 
         expect(actualValue, isNull);
@@ -56,7 +56,7 @@ void main() {
         final input = '''
   <item id="test"></item>
   ''';
-        final controller = EpubManifestItemController.fromString(input);
+        final controller = EpubManifestItemReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getId();
 
@@ -72,7 +72,7 @@ void main() {
         final input = '''
   <item></item>
   ''';
-        final controller = EpubManifestItemController.fromString(input);
+        final controller = EpubManifestItemReaderController.fromString(input);
         final actualValue = controller.getHref();
 
         expect(actualValue, isNull);
@@ -85,7 +85,7 @@ void main() {
         final input = '''
   <item href="test"></item>
   ''';
-        final controller = EpubManifestItemController.fromString(input);
+        final controller = EpubManifestItemReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getHref();
 
@@ -101,7 +101,7 @@ void main() {
         final input = '''
   <item></item>
   ''';
-        final controller = EpubManifestItemController.fromString(input);
+        final controller = EpubManifestItemReaderController.fromString(input);
         final actualValue = controller.getMediaType();
 
         expect(actualValue, isNull);
@@ -114,7 +114,7 @@ void main() {
         final input = '''
   <item media-type="test"></item>
   ''';
-        final controller = EpubManifestItemController.fromString(input);
+        final controller = EpubManifestItemReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getMediaType();
 
@@ -130,7 +130,7 @@ void main() {
         final input = '''
   <item></item>
   ''';
-        final controller = EpubManifestItemController.fromString(input);
+        final controller = EpubManifestItemReaderController.fromString(input);
         final actualValue = controller.getFallback();
 
         expect(actualValue, isNull);
@@ -143,7 +143,7 @@ void main() {
         final input = '''
   <item fallback="test"></item>
   ''';
-        final controller = EpubManifestItemController.fromString(input);
+        final controller = EpubManifestItemReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getFallback();
 

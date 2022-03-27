@@ -6,7 +6,7 @@ class EpubMetadataTitleReader {
   /// Throws [EpubException] if the dc:title element is not the root node
   static EpubMetadataTitle fromXmlElement(XmlElement dctitleElement) {
     final controller =
-        EpubMetadataTitleController.fromXmlElement(dctitleElement);
+        EpubMetadataTitleReaderController.fromXmlElement(dctitleElement);
     return _fromController(controller);
   }
 
@@ -15,7 +15,8 @@ class EpubMetadataTitleReader {
   ///
   /// Throws [EpubException] if the string does not have the dc:title element
   static EpubMetadataTitle fromString(String dctitleString) {
-    final controller = EpubMetadataTitleController.fromString(dctitleString);
+    final controller =
+        EpubMetadataTitleReaderController.fromString(dctitleString);
     return _fromController(controller);
   }
 
@@ -24,12 +25,12 @@ class EpubMetadataTitleReader {
   ///
   /// Throws [EpubException] if the data does not have the dc:title element
   static EpubMetadataTitle fromData(Uint8List dctitleData) {
-    final controller = EpubMetadataTitleController(dctitleData);
+    final controller = EpubMetadataTitleReaderController(dctitleData);
     return _fromController(controller);
   }
 
   static EpubMetadataTitle _fromController(
-    EpubMetadataTitleController controller,
+    EpubMetadataTitleReaderController controller,
   ) {
     return EpubMetadataTitle(
       text: controller.getText(),

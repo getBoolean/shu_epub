@@ -5,7 +5,7 @@ class EpubToursReader {
   ///
   /// Throws [EpubException] if the tours element is not the root node
   static EpubTours fromXmlElement(XmlElement toursElement) {
-    final controller = EpubToursController.fromXmlElement(toursElement);
+    final controller = EpubToursReaderController.fromXmlElement(toursElement);
     return _fromController(controller);
   }
 
@@ -14,7 +14,7 @@ class EpubToursReader {
   ///
   /// Throws [EpubException] if the string does not have the tours element
   static EpubTours fromString(String toursString) {
-    final controller = EpubToursController.fromString(toursString);
+    final controller = EpubToursReaderController.fromString(toursString);
     return _fromController(controller);
   }
 
@@ -23,12 +23,12 @@ class EpubToursReader {
   ///
   /// Throws [EpubException] if the data does not have the tours element
   static EpubTours fromData(Uint8List toursData) {
-    final controller = EpubToursController(toursData);
+    final controller = EpubToursReaderController(toursData);
     return _fromController(controller);
   }
 
   static EpubTours _fromController(
-    EpubToursController controller,
+    EpubToursReaderController controller,
   ) {
     return EpubTours(items: controller.getItems());
   }

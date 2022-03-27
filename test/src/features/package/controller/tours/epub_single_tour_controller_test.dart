@@ -14,7 +14,7 @@ void main() {
         final element = xmlDocument.firstElementChild!;
 
         expect(
-          () => EpubSingleTourController.fromXmlElement(element),
+          () => EpubSingleTourReaderController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
         );
       },
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubSingleTourController.fromString(input),
+          () => EpubSingleTourReaderController.fromString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -44,7 +44,7 @@ void main() {
   <tour>
   </tour>
   ''';
-        final controller = EpubSingleTourController.fromString(input);
+        final controller = EpubSingleTourReaderController.fromString(input);
         final actualValue = controller.getSites();
 
         expect(actualValue, isEmpty);
@@ -60,7 +60,7 @@ void main() {
       </site>
   </tour>
   ''';
-        final controller = EpubSingleTourController.fromString(input);
+        final controller = EpubSingleTourReaderController.fromString(input);
         final expectedValue = [EpubTourSite()];
         final actualValue = controller.getSites();
 

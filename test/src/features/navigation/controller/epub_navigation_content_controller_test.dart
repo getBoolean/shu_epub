@@ -14,7 +14,7 @@ void main() {
         final element = xmlDocument.firstElementChild!;
 
         expect(
-          () => EpubNavigationContentController.fromXmlElement(element),
+          () => EpubNavigationContentReaderController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
         );
       },
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubNavigationContentController.fromString(input),
+          () => EpubNavigationContentReaderController.fromString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -43,7 +43,8 @@ void main() {
         final input = '''
   <content></content>
   ''';
-        final controller = EpubNavigationContentController.fromString(input);
+        final controller =
+            EpubNavigationContentReaderController.fromString(input);
         final actualValue = controller.getId();
 
         expect(actualValue, isNull);
@@ -56,7 +57,8 @@ void main() {
         final input = '''
   <content id="test"></content>
   ''';
-        final controller = EpubNavigationContentController.fromString(input);
+        final controller =
+            EpubNavigationContentReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getId();
 
@@ -72,7 +74,8 @@ void main() {
         final input = '''
   <content></content>
   ''';
-        final controller = EpubNavigationContentController.fromString(input);
+        final controller =
+            EpubNavigationContentReaderController.fromString(input);
         final actualValue = controller.getSource();
 
         expect(actualValue, isNull);
@@ -85,7 +88,8 @@ void main() {
         final input = '''
   <content src="test"></content>
   ''';
-        final controller = EpubNavigationContentController.fromString(input);
+        final controller =
+            EpubNavigationContentReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getSource();
 

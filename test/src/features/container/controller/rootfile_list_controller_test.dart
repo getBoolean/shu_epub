@@ -44,7 +44,8 @@ void main() {
   <rootfiles>
   </rootfiles>
   ''';
-        final controller = RootfileListController.fromString(input);
+        final controller =
+            EpubContainerRootfileListReaderController.fromString(input);
         final actualValue = controller.getItems();
 
         expect(actualValue, isEmpty);
@@ -60,7 +61,8 @@ void main() {
       </rootfile>
   </rootfiles>
   ''';
-        final controller = RootfileListController.fromString(input);
+        final controller =
+            EpubContainerRootfileListReaderController.fromString(input);
         final expectedValue = [Rootfile()];
         final actualValue = controller.getItems();
 

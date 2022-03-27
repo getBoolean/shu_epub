@@ -5,7 +5,7 @@ class EpubGuideReader {
   ///
   /// Throws [EpubException] if the guide element is not the root node
   static EpubGuide fromXmlElement(XmlElement guideElement) {
-    final controller = EpubGuideController.fromXmlElement(guideElement);
+    final controller = EpubGuideReaderController.fromXmlElement(guideElement);
     return _fromController(controller);
   }
 
@@ -14,7 +14,7 @@ class EpubGuideReader {
   ///
   /// Throws [EpubException] if the string does not have the guide element
   static EpubGuide fromString(String guideString) {
-    final controller = EpubGuideController.fromString(guideString);
+    final controller = EpubGuideReaderController.fromString(guideString);
     return _fromController(controller);
   }
 
@@ -23,12 +23,12 @@ class EpubGuideReader {
   ///
   /// Throws [EpubException] if the data does not have the guide element
   static EpubGuide fromData(Uint8List guideData) {
-    final controller = EpubGuideController(guideData);
+    final controller = EpubGuideReaderController(guideData);
     return _fromController(controller);
   }
 
   static EpubGuide _fromController(
-    EpubGuideController controller,
+    EpubGuideReaderController controller,
   ) {
     return EpubGuide(items: controller.getItems());
   }

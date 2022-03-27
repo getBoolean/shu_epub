@@ -5,7 +5,7 @@ class EpubSpineReader {
   ///
   /// Throws [EpubException] if the spine element is not the root node
   static EpubSpine fromXmlElement(XmlElement spineElement) {
-    final controller = EpubSpineController.fromXmlElement(spineElement);
+    final controller = EpubSpineReaderController.fromXmlElement(spineElement);
     return _fromController(controller);
   }
 
@@ -14,7 +14,7 @@ class EpubSpineReader {
   ///
   /// Throws [EpubException] if the string does not have the spine element
   static EpubSpine fromString(String spineString) {
-    final controller = EpubSpineController.fromString(spineString);
+    final controller = EpubSpineReaderController.fromString(spineString);
     return _fromController(controller);
   }
 
@@ -23,12 +23,12 @@ class EpubSpineReader {
   ///
   /// Throws [EpubException] if the data does not have the spine element
   static EpubSpine fromData(Uint8List spineData) {
-    final controller = EpubSpineController(spineData);
+    final controller = EpubSpineReaderController(spineData);
     return _fromController(controller);
   }
 
   static EpubSpine _fromController(
-    EpubSpineController controller,
+    EpubSpineReaderController controller,
   ) {
     return EpubSpine(
       tocId: controller.getTocId(),

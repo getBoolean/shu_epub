@@ -14,7 +14,7 @@ void main() {
         final element = xmlDocument.firstElementChild!;
 
         expect(
-          () => EpubNavigationMapController.fromXmlElement(element),
+          () => EpubNavigationMapReaderController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
         );
       },
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubNavigationMapController.fromString(input),
+          () => EpubNavigationMapReaderController.fromString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -45,7 +45,8 @@ void main() {
 </navMap>
 ''';
 
-        final controller = EpubNavigationMapController.fromString(xmlString);
+        final controller =
+            EpubNavigationMapReaderController.fromString(xmlString);
         final id = controller.getId();
         expect(id, '1');
       },
@@ -59,7 +60,8 @@ void main() {
 </navMap>
 ''';
 
-        final controller = EpubNavigationMapController.fromString(xmlString);
+        final controller =
+            EpubNavigationMapReaderController.fromString(xmlString);
         final id = controller.getId();
         expect(id, isNull);
       },
@@ -77,7 +79,8 @@ void main() {
 </navMap>
 ''';
 
-        final controller = EpubNavigationMapController.fromString(xmlString);
+        final controller =
+            EpubNavigationMapReaderController.fromString(xmlString);
         final expectedValue = [EpubNavigationInfo()];
         final navigationInfoList = controller.getNavigationInfoList();
 
@@ -93,7 +96,8 @@ void main() {
 </navMap>
 ''';
 
-        final controller = EpubNavigationMapController.fromString(xmlString);
+        final controller =
+            EpubNavigationMapReaderController.fromString(xmlString);
         final navigationInfoList = controller.getNavigationInfoList();
 
         expect(navigationInfoList, isEmpty);
@@ -114,7 +118,8 @@ void main() {
 </navMap>
 ''';
 
-        final controller = EpubNavigationMapController.fromString(xmlString);
+        final controller =
+            EpubNavigationMapReaderController.fromString(xmlString);
         final expectedValue = <EpubNavigationInfo>[
           EpubNavigationInfo(),
           EpubNavigationInfo(),
@@ -138,7 +143,8 @@ void main() {
 </navMap>
 ''';
 
-        final controller = EpubNavigationMapController.fromString(xmlString);
+        final controller =
+            EpubNavigationMapReaderController.fromString(xmlString);
         final expectedValue = <EpubNavigationLabel>[
           EpubNavigationLabel(),
         ];
@@ -160,7 +166,8 @@ void main() {
 </navMap>
 ''';
 
-        final controller = EpubNavigationMapController.fromString(xmlString);
+        final controller =
+            EpubNavigationMapReaderController.fromString(xmlString);
         final expectedValue = <EpubNavigationLabel>[
           EpubNavigationLabel(),
           EpubNavigationLabel(),
@@ -181,7 +188,8 @@ void main() {
 </navMap>
 ''';
 
-        final controller = EpubNavigationMapController.fromString(xmlString);
+        final controller =
+            EpubNavigationMapReaderController.fromString(xmlString);
         final navigationPoints = controller.getNavigationPoints();
 
         expect(navigationPoints, isEmpty);
@@ -198,7 +206,8 @@ void main() {
 </navMap>
 ''';
 
-        final controller = EpubNavigationMapController.fromString(xmlString);
+        final controller =
+            EpubNavigationMapReaderController.fromString(xmlString);
         final expectedValue = <EpubNavigationPoint>[
           EpubNavigationPoint(),
         ];
@@ -220,7 +229,8 @@ void main() {
 </navMap>
 ''';
 
-        final controller = EpubNavigationMapController.fromString(xmlString);
+        final controller =
+            EpubNavigationMapReaderController.fromString(xmlString);
         final expectedValue = <EpubNavigationPoint>[
           EpubNavigationPoint(),
           EpubNavigationPoint(),

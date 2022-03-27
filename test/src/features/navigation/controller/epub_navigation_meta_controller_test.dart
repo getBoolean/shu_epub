@@ -43,7 +43,7 @@ void main() {
         final input = '''
   <meta></meta>
   ''';
-        final controller = EpubNavigationMetaController.fromString(input);
+        final controller = EpubNavigationMetaReaderController.fromString(input);
         final actualValue = controller.getName();
 
         expect(actualValue, isNull);
@@ -56,7 +56,7 @@ void main() {
         final input = '''
   <meta name="test"></meta>
   ''';
-        final controller = EpubNavigationMetaController.fromString(input);
+        final controller = EpubNavigationMetaReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getName();
 
@@ -72,7 +72,7 @@ void main() {
         final input = '''
   <meta></meta>
   ''';
-        final controller = EpubNavigationMetaController.fromString(input);
+        final controller = EpubNavigationMetaReaderController.fromString(input);
         final actualValue = controller.getContent();
 
         expect(actualValue, isNull);
@@ -85,7 +85,7 @@ void main() {
         final input = '''
   <meta content="test"></meta>
   ''';
-        final controller = EpubNavigationMetaController.fromString(input);
+        final controller = EpubNavigationMetaReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getContent();
 
@@ -101,7 +101,7 @@ void main() {
         final input = '''
   <meta></meta>
   ''';
-        final controller = EpubNavigationMetaController.fromString(input);
+        final controller = EpubNavigationMetaReaderController.fromString(input);
         final actualValue = controller.getScheme();
 
         expect(actualValue, isNull);
@@ -114,7 +114,7 @@ void main() {
         final input = '''
   <meta scheme="test"></meta>
   ''';
-        final controller = EpubNavigationMetaController.fromString(input);
+        final controller = EpubNavigationMetaReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getScheme();
 

@@ -6,13 +6,13 @@ class EpubNavigationPageListReader {
   /// Throws [EpubException] if the pageList element is not the root node
   static EpubNavigationPageList fromXmlElement(XmlElement pageListElement) {
     final controller =
-        EpubNavigationPageListController.fromXmlElement(pageListElement);
+        EpubNavigationPageListReaderController.fromXmlElement(pageListElement);
     return _fromController(controller);
   }
 
   static EpubNavigationPageList fromString(String pageListString) {
     final controller =
-        EpubNavigationPageListController.fromString(pageListString);
+        EpubNavigationPageListReaderController.fromString(pageListString);
     return _fromController(controller);
   }
 
@@ -21,12 +21,12 @@ class EpubNavigationPageListReader {
   ///
   /// Throws [EpubException] if the data does not have the pageList element
   static EpubNavigationPageList fromData(Uint8List pageListData) {
-    final controller = EpubNavigationPageListController(pageListData);
+    final controller = EpubNavigationPageListReaderController(pageListData);
     return _fromController(controller);
   }
 
   static EpubNavigationPageList _fromController(
-    EpubNavigationPageListController controller,
+    EpubNavigationPageListReaderController controller,
   ) {
     return EpubNavigationPageList(
       id: controller.getId(),

@@ -8,10 +8,11 @@ class EpubMetadataContributerReader {
     if (element.name.qualified ==
         EpubMetadataContributer.contributorElementName) {
       final controller =
-          EpubMetadataContributorController.fromXmlElement(element);
+          EpubMetadataContributorReaderController.fromXmlElement(element);
       return _fromContributorController(controller);
     } else {
-      final controller = EpubMetadataCreatorController.fromXmlElement(element);
+      final controller =
+          EpubMetadataCreatorReaderController.fromXmlElement(element);
       return _fromCreatorController(controller);
     }
   }
@@ -27,10 +28,12 @@ class EpubMetadataContributerReader {
         .firstOrNull;
 
     if (dccontributorElement == null) {
-      final controller = EpubMetadataContributorController.fromString(content);
+      final controller =
+          EpubMetadataContributorReaderController.fromString(content);
       return _fromContributorController(controller);
     } else {
-      final controller = EpubMetadataCreatorController.fromString(content);
+      final controller =
+          EpubMetadataCreatorReaderController.fromString(content);
       return _fromCreatorController(controller);
     }
   }
@@ -51,16 +54,16 @@ class EpubMetadataContributerReader {
         .firstOrNull;
 
     if (dccontributorElement == null) {
-      final controller = EpubMetadataContributorController(data);
+      final controller = EpubMetadataContributorReaderController(data);
       return _fromContributorController(controller);
     } else {
-      final controller = EpubMetadataCreatorController(data);
+      final controller = EpubMetadataCreatorReaderController(data);
       return _fromCreatorController(controller);
     }
   }
 
   static EpubMetadataContributer _fromContributorController(
-    EpubMetadataContributorController controller,
+    EpubMetadataContributorReaderController controller,
   ) {
     return EpubMetadataContributer(
       name: controller.getName(),
@@ -70,7 +73,7 @@ class EpubMetadataContributerReader {
   }
 
   static EpubMetadataContributer _fromCreatorController(
-    EpubMetadataCreatorController controller,
+    EpubMetadataCreatorReaderController controller,
   ) {
     return EpubMetadataContributer(
       name: controller.getName(),

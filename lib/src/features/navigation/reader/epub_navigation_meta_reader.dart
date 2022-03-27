@@ -5,12 +5,14 @@ class EpubNavigationMetaReader {
   ///
   /// Throws [EpubException] if the meta element is not the root node
   static EpubNavigationMeta fromXmlElement(XmlElement metaElement) {
-    final controller = EpubNavigationMetaController.fromXmlElement(metaElement);
+    final controller =
+        EpubNavigationMetaReaderController.fromXmlElement(metaElement);
     return _fromController(controller);
   }
 
   static EpubNavigationMeta fromString(String metaString) {
-    final controller = EpubNavigationMetaController.fromString(metaString);
+    final controller =
+        EpubNavigationMetaReaderController.fromString(metaString);
     return _fromController(controller);
   }
 
@@ -19,12 +21,12 @@ class EpubNavigationMetaReader {
   ///
   /// Throws [EpubException] if the data does not have the meta element
   static EpubNavigationMeta fromData(Uint8List metaData) {
-    final controller = EpubNavigationMetaController(metaData);
+    final controller = EpubNavigationMetaReaderController(metaData);
     return _fromController(controller);
   }
 
   static EpubNavigationMeta _fromController(
-    EpubNavigationMetaController controller,
+    EpubNavigationMetaReaderController controller,
   ) {
     return EpubNavigationMeta(
       name: controller.getName(),

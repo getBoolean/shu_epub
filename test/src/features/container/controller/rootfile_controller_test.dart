@@ -43,7 +43,8 @@ void main() {
         final input = '''
   <rootfile></rootfile>
   ''';
-        final controller = RootfileController.fromString(input);
+        final controller =
+            EpubContainerRootfileReaderController.fromString(input);
         final actualValue = controller.getMediaType();
 
         expect(actualValue, isNull);
@@ -56,7 +57,8 @@ void main() {
         final input = '''
   <rootfile media-type="test"></rootfile>
   ''';
-        final controller = RootfileController.fromString(input);
+        final controller =
+            EpubContainerRootfileReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getMediaType();
 
@@ -72,7 +74,8 @@ void main() {
         final input = '''
   <rootfile></rootfile>
   ''';
-        final controller = RootfileController.fromString(input);
+        final controller =
+            EpubContainerRootfileReaderController.fromString(input);
         final actualValue = controller.getFullPath();
 
         expect(actualValue, isNull);
@@ -85,7 +88,8 @@ void main() {
         final input = '''
   <rootfile full-path="test"></rootfile>
   ''';
-        final controller = RootfileController.fromString(input);
+        final controller =
+            EpubContainerRootfileReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getFullPath();
 

@@ -5,7 +5,8 @@ class EpubManifestReader {
   ///
   /// Throws [EpubException] if the manifest element is not the root node
   static EpubManifest fromXmlElement(XmlElement manifestElement) {
-    final controller = EpubManifestController.fromXmlElement(manifestElement);
+    final controller =
+        EpubManifestReaderController.fromXmlElement(manifestElement);
     return _fromController(controller);
   }
 
@@ -14,7 +15,7 @@ class EpubManifestReader {
   ///
   /// Throws [EpubException] if the string does not have the manifest element
   static EpubManifest fromString(String manifestString) {
-    final controller = EpubManifestController.fromString(manifestString);
+    final controller = EpubManifestReaderController.fromString(manifestString);
     return _fromController(controller);
   }
 
@@ -23,12 +24,12 @@ class EpubManifestReader {
   ///
   /// Throws [EpubException] if the data does not have the manifest element
   static EpubManifest fromData(Uint8List manifestData) {
-    final controller = EpubManifestController(manifestData);
+    final controller = EpubManifestReaderController(manifestData);
     return _fromController(controller);
   }
 
   static EpubManifest _fromController(
-    EpubManifestController controller,
+    EpubManifestReaderController controller,
   ) {
     return EpubManifest(
       items: controller.getItems(),

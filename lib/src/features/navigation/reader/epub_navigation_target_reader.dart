@@ -6,13 +6,13 @@ class EpubNavigationTargetReader {
   /// Throws [EpubException] if the navTarget element is not the root node
   static EpubNavigationTarget fromXmlElement(XmlElement navTargetElement) {
     final controller =
-        EpubNavigationTargetController.fromXmlElement(navTargetElement);
+        EpubNavigationTargetReaderController.fromXmlElement(navTargetElement);
     return _fromController(controller);
   }
 
   static EpubNavigationTarget fromString(String navTargetString) {
     final controller =
-        EpubNavigationTargetController.fromString(navTargetString);
+        EpubNavigationTargetReaderController.fromString(navTargetString);
     return _fromController(controller);
   }
 
@@ -21,12 +21,12 @@ class EpubNavigationTargetReader {
   ///
   /// Throws [EpubException] if the data does not have the navTarget element
   static EpubNavigationTarget fromData(Uint8List navTargetData) {
-    final controller = EpubNavigationTargetController(navTargetData);
+    final controller = EpubNavigationTargetReaderController(navTargetData);
     return _fromController(controller);
   }
 
   static EpubNavigationTarget _fromController(
-    EpubNavigationTargetController controller,
+    EpubNavigationTargetReaderController controller,
   ) {
     return EpubNavigationTarget(
       id: controller.getId(),

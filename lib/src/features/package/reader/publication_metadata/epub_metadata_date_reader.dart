@@ -5,7 +5,8 @@ class EpubMetadataDateReader {
   ///
   /// Throws [EpubException] if the date element is not the root node
   static EpubMetadataDate fromXmlElement(XmlElement dateElement) {
-    final controller = EpubMetadataDateController.fromXmlElement(dateElement);
+    final controller =
+        EpubMetadataDateReaderController.fromXmlElement(dateElement);
     return _fromController(controller);
   }
 
@@ -14,7 +15,7 @@ class EpubMetadataDateReader {
   ///
   /// Throws [EpubException] if the string does not have the date element
   static EpubMetadataDate fromString(String dateString) {
-    final controller = EpubMetadataDateController.fromString(dateString);
+    final controller = EpubMetadataDateReaderController.fromString(dateString);
     return _fromController(controller);
   }
 
@@ -23,12 +24,12 @@ class EpubMetadataDateReader {
   ///
   /// Throws [EpubException] if the data does not have the date element
   static EpubMetadataDate fromData(Uint8List dateData) {
-    final controller = EpubMetadataDateController(dateData);
+    final controller = EpubMetadataDateReaderController(dateData);
     return _fromController(controller);
   }
 
   static EpubMetadataDate _fromController(
-    EpubMetadataDateController controller,
+    EpubMetadataDateReaderController controller,
   ) {
     return EpubMetadataDate(
       value: controller.getValue(),

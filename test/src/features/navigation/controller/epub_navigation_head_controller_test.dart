@@ -14,7 +14,7 @@ void main() {
         final element = xmlDocument.firstElementChild!;
 
         expect(
-          () => EpubNavigationHeadController.fromXmlElement(element),
+          () => EpubNavigationHeadReaderController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
         );
       },
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubNavigationHeadController.fromString(input),
+          () => EpubNavigationHeadReaderController.fromString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -44,7 +44,7 @@ void main() {
 <head>
 </head>
 ''';
-        final controller = EpubNavigationHeadController.fromString(input);
+        final controller = EpubNavigationHeadReaderController.fromString(input);
         final actualValue = controller.getMetadata();
 
         expect(actualValue, isEmpty);
@@ -60,7 +60,7 @@ void main() {
     </meta>
 </head>
 ''';
-        final controller = EpubNavigationHeadController.fromString(input);
+        final controller = EpubNavigationHeadReaderController.fromString(input);
         final expectedValue = [EpubNavigationMeta()];
         final actualValue = controller.getMetadata();
 

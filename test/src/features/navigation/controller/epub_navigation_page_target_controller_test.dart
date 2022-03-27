@@ -14,7 +14,8 @@ void main() {
         final element = xmlDocument.firstElementChild!;
 
         expect(
-          () => EpubNavigationPageTargetController.fromXmlElement(element),
+          () =>
+              EpubNavigationPageTargetReaderController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
         );
       },
@@ -29,7 +30,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubNavigationPageTargetController.fromString(input),
+          () => EpubNavigationPageTargetReaderController.fromString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -43,7 +44,8 @@ void main() {
         final input = '''
   <pageTarget></pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final actualValue = controller.getId();
 
         expect(actualValue, isNull);
@@ -56,7 +58,8 @@ void main() {
         final input = '''
   <pageTarget id="test"></pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getId();
 
@@ -72,7 +75,8 @@ void main() {
         final input = '''
   <pageTarget></pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final actualValue = controller.getValue();
 
         expect(actualValue, isNull);
@@ -85,7 +89,8 @@ void main() {
         final input = '''
   <pageTarget value="test"></pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getValue();
 
@@ -101,7 +106,8 @@ void main() {
         final input = '''
   <pageTarget></pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final actualValue = controller.getType();
 
         expect(actualValue, isNull);
@@ -114,7 +120,8 @@ void main() {
         final input = '''
   <pageTarget type="normal"></pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final expectedValue = EpubNavigationPageTargetType.normal;
         final actualValue = controller.getType();
 
@@ -128,7 +135,8 @@ void main() {
         final input = '''
   <pageTarget type="front"></pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final expectedValue = EpubNavigationPageTargetType.front;
         final actualValue = controller.getType();
 
@@ -142,7 +150,8 @@ void main() {
         final input = '''
   <pageTarget type="special"></pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final expectedValue = EpubNavigationPageTargetType.special;
         final actualValue = controller.getType();
 
@@ -156,7 +165,8 @@ void main() {
         final input = '''
   <pageTarget type=""></pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final expectedValue = EpubNavigationPageTargetType.normal;
         final actualValue = controller.getType();
 
@@ -172,7 +182,8 @@ void main() {
         final input = '''
   <pageTarget></pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final actualValue = controller.getClassType();
 
         expect(actualValue, isNull);
@@ -185,7 +196,8 @@ void main() {
         final input = '''
   <pageTarget class="test"></pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getClassType();
 
@@ -201,7 +213,8 @@ void main() {
         final input = '''
   <pageTarget></pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final actualValue = controller.getPlayOrder();
 
         expect(actualValue, isNull);
@@ -214,7 +227,8 @@ void main() {
         final input = '''
   <pageTarget playOrder="test"></pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getPlayOrder();
 
@@ -231,7 +245,8 @@ void main() {
   <pageTarget>
   </pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final actualValue = controller.getNavigationLabels();
 
         expect(actualValue, isEmpty);
@@ -247,7 +262,8 @@ void main() {
       </navLabel>
   </pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final expectedValue = [EpubNavigationLabel()];
         final actualValue = controller.getNavigationLabels();
 
@@ -264,7 +280,8 @@ void main() {
   <pageTarget>
   </pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final actualValue = controller.getContent();
 
         expect(actualValue, isNull);
@@ -280,7 +297,8 @@ void main() {
       </content>
   </pageTarget>
   ''';
-        final controller = EpubNavigationPageTargetController.fromString(input);
+        final controller =
+            EpubNavigationPageTargetReaderController.fromString(input);
         final expectedValue = EpubNavigationContent();
         final actualValue = controller.getContent();
 

@@ -5,12 +5,14 @@ class EpubNavigationHeadReader {
   ///
   /// Throws [EpubException] if the head element is not the root node
   static EpubNavigationHead fromXmlElement(XmlElement headElement) {
-    final controller = EpubNavigationHeadController.fromXmlElement(headElement);
+    final controller =
+        EpubNavigationHeadReaderController.fromXmlElement(headElement);
     return _fromController(controller);
   }
 
   static EpubNavigationHead fromString(String headString) {
-    final controller = EpubNavigationHeadController.fromString(headString);
+    final controller =
+        EpubNavigationHeadReaderController.fromString(headString);
     return _fromController(controller);
   }
 
@@ -19,12 +21,12 @@ class EpubNavigationHeadReader {
   ///
   /// Throws [EpubException] if the data does not have the head element
   static EpubNavigationHead fromData(Uint8List headData) {
-    final controller = EpubNavigationHeadController(headData);
+    final controller = EpubNavigationHeadReaderController(headData);
     return _fromController(controller);
   }
 
   static EpubNavigationHead _fromController(
-    EpubNavigationHeadController controller,
+    EpubNavigationHeadReaderController controller,
   ) {
     final metadata = controller.getMetadata();
 

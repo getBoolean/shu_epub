@@ -5,12 +5,14 @@ class EpubNavigationImageReader {
   ///
   /// Throws [EpubException] if the img element is not the root node
   static EpubNavigationImage fromXmlElement(XmlElement imgElement) {
-    final controller = EpubNavigationImageController.fromXmlElement(imgElement);
+    final controller =
+        EpubNavigationImageReaderController.fromXmlElement(imgElement);
     return _fromController(controller);
   }
 
   static EpubNavigationImage fromString(String imgString) {
-    final controller = EpubNavigationImageController.fromString(imgString);
+    final controller =
+        EpubNavigationImageReaderController.fromString(imgString);
     return _fromController(controller);
   }
 
@@ -19,12 +21,12 @@ class EpubNavigationImageReader {
   ///
   /// Throws [EpubException] if the data does not have the img element
   static EpubNavigationImage fromData(Uint8List imgData) {
-    final controller = EpubNavigationImageController(imgData);
+    final controller = EpubNavigationImageReaderController(imgData);
     return _fromController(controller);
   }
 
   static EpubNavigationImage _fromController(
-    EpubNavigationImageController controller,
+    EpubNavigationImageReaderController controller,
   ) {
     final source = controller.getSource();
     return EpubNavigationImage(source: source);

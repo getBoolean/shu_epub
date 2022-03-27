@@ -7,13 +7,14 @@ class EpubNavigationDocumentAuthorReader {
   static EpubNavigationDocumentAuthor fromXmlElement(
       XmlElement docAuthorElement) {
     final controller =
-        EpubNavigationDocumentAuthorController.fromXmlElement(docAuthorElement);
+        EpubNavigationDocumentAuthorReaderController.fromXmlElement(
+            docAuthorElement);
     return _fromController(controller);
   }
 
   static EpubNavigationDocumentAuthor fromString(String docAuthorString) {
-    final controller =
-        EpubNavigationDocumentAuthorController.fromString(docAuthorString);
+    final controller = EpubNavigationDocumentAuthorReaderController.fromString(
+        docAuthorString);
     return _fromController(controller);
   }
 
@@ -22,12 +23,13 @@ class EpubNavigationDocumentAuthorReader {
   ///
   /// Throws [EpubException] if the data does not have the docAuthor element
   static EpubNavigationDocumentAuthor fromData(Uint8List docAuthorData) {
-    final controller = EpubNavigationDocumentAuthorController(docAuthorData);
+    final controller =
+        EpubNavigationDocumentAuthorReaderController(docAuthorData);
     return _fromController(controller);
   }
 
   static EpubNavigationDocumentAuthor _fromController(
-    EpubNavigationDocumentAuthorController controller,
+    EpubNavigationDocumentAuthorReaderController controller,
   ) {
     final id = controller.getId();
     final lang = controller.getLanguage();

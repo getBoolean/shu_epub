@@ -14,7 +14,7 @@ void main() {
         final element = xmlDocument.firstElementChild!;
 
         expect(
-          () => EpubGuideController.fromXmlElement(element),
+          () => EpubGuideReaderController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
         );
       },
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubGuideController.fromString(input),
+          () => EpubGuideReaderController.fromString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -44,7 +44,7 @@ void main() {
   <guide>
   </guide>
   ''';
-        final controller = EpubGuideController.fromString(input);
+        final controller = EpubGuideReaderController.fromString(input);
         final actualValue = controller.getItems();
 
         expect(actualValue, isEmpty);
@@ -60,7 +60,7 @@ void main() {
       </reference>
   </guide>
   ''';
-        final controller = EpubGuideController.fromString(input);
+        final controller = EpubGuideReaderController.fromString(input);
         final expectedValue = [EpubGuideItem()];
         final actualValue = controller.getItems();
 
