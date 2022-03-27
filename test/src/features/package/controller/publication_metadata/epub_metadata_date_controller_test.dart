@@ -12,7 +12,7 @@ void main() {
       ''';
         final xmlDocument = XmlUtils.parseToXmlDocument(input);
         final element = xmlDocument.firstElementChild!;
-  
+
         expect(
           () => EpubMetadataDateController.fromXmlElement(element),
           throwsA(isA<EpubException>()),
@@ -20,7 +20,7 @@ void main() {
       },
     );
   });
-  
+
   group('fromString', () {
     test(
       'on input without dc:date element, expect EpubException thrown',
@@ -35,7 +35,7 @@ void main() {
       },
     );
   });
-  
+
   group('getValue', () {
     test(
       'on input without text, expect empty string',
@@ -75,11 +75,11 @@ void main() {
   ''';
         final controller = EpubMetadataDateController.fromString(input);
         final actualValue = controller.getEvent();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a event attribute, expect the String value',
       () async {
@@ -89,7 +89,7 @@ void main() {
         final controller = EpubMetadataDateController.fromString(input);
         final expectedValue = 'test';
         final actualValue = controller.getEvent();
-  
+
         expect(actualValue, expectedValue);
       },
     );
