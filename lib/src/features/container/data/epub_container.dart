@@ -59,7 +59,7 @@ class EpubContainer extends Equatable {
       rootfileList: map['rootfileList'] == null
           ? null
           : RootfileList.fromMap(map['rootfileList']),
-      containerVersion: map['containerVersion'] ?? '',
+      containerVersion: map['containerVersion'],
     );
   }
 
