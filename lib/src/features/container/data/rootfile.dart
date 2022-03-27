@@ -58,8 +58,8 @@ class Rootfile extends Equatable {
 
   factory Rootfile.fromMap(Map<String, dynamic> map) {
     return Rootfile(
-      fullPath: map['fullPath'] ?? '',
-      mediaType: map['mediaType'] ?? '',
+      fullPath: map['fullPath'],
+      mediaType: map['mediaType'],
     );
   }
 
