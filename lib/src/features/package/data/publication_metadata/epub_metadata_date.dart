@@ -58,7 +58,7 @@ class EpubMetadataDate extends Equatable {
 
   factory EpubMetadataDate.fromMap(Map<String, dynamic> map) {
     return EpubMetadataDate(
-      value: map['value'] ?? '',
+      value: map['value'],
       event: map['event'],
     );
   }

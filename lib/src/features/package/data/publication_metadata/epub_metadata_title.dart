@@ -53,7 +53,7 @@ class EpubMetadataTitle extends Equatable {
 
   factory EpubMetadataTitle.fromMap(Map<String, dynamic> map) {
     return EpubMetadataTitle(
-      text: map['text'] ?? '',
+      text: map['text'],
       language: map['language'],
     );
   }

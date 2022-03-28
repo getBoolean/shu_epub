@@ -148,7 +148,7 @@ class EpubPackageAccessibilityMetadata extends Equatable {
               map['accessibilityHazards']
                   ?.map((x) => AccessibilityHazard.values.byName(x)),
             ),
-      accessibilitySummary: map['accessibilitySummary'] ?? '',
+      accessibilitySummary: map['accessibilitySummary'],
       accessibilitySummaryByLanguage:
           map['accessibilitySummaryByLanguage'] == null
               ? null

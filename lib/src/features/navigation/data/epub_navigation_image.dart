@@ -61,7 +61,7 @@ class EpubNavigationImage extends Equatable {
     return EpubNavigationImage(
       id: map['id'],
       classType: map['classType'],
-      source: map['source'] ?? '',
+      source: map['source'],
     );
   }
 

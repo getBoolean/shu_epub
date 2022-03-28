@@ -104,14 +104,19 @@ class EpubNavigation extends Equatable {
 
   factory EpubNavigation.fromMap(Map<String, dynamic> map) {
     return EpubNavigation(
-      version: map['version'] ?? '',
-      language: map['language'] ?? '',
-      head: EpubNavigationHead.fromMap(map['head']),
-      docTitle: EpubNavigationDocumentTitle.fromMap(map['docTitle']),
+      version: map['version'],
+      language: map['language'],
+      head:
+          map['head'] == null ? null : EpubNavigationHead.fromMap(map['head']),
+      docTitle: map['docTitle'] == null
+          ? null
+          : EpubNavigationDocumentTitle.fromMap(map['docTitle']),
       docAuthors: List<EpubNavigationDocumentAuthor>.from(
           map['docAuthors']?.map(EpubNavigationDocumentAuthor.fromMap) ??
               const []),
-      navigationMap: EpubNavigationMap.fromMap(map['navigationMap']),
+      navigationMap: map['navigationMap'] == null
+          ? null
+          : EpubNavigationMap.fromMap(map['navigationMap']),
       pageList: map['pageList'] != null
           ? EpubNavigationPageList.fromMap(map['pageList'])
           : null,

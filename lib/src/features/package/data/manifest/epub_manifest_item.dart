@@ -120,7 +120,7 @@ class EpubManifestItem extends Equatable {
 ///
 /// http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2
 class EpubManifestItemOutOfLineXMLIsland extends EpubManifestItem {
-  final String requiredNamespace;
+  final String? requiredNamespace;
 
   /// If the fallback-style attribute is specified, a Reading System
   /// may choose to process the Out-Of-Line XML Island (even though
@@ -143,11 +143,11 @@ class EpubManifestItemOutOfLineXMLIsland extends EpubManifestItem {
   final List<String>? requiredModules;
 
   const EpubManifestItemOutOfLineXMLIsland({
-    required String? id,
-    required String? href,
-    required String? mediaType,
-    required String? fallback,
-    required this.requiredNamespace,
+    String? id,
+    String? href,
+    String? mediaType,
+    String? fallback,
+    this.requiredNamespace,
     this.fallbackStyle,
     this.requiredModules,
   }) : super(
@@ -193,12 +193,12 @@ class EpubManifestItemOutOfLineXMLIsland extends EpubManifestItem {
 
   factory EpubManifestItemOutOfLineXMLIsland.fromMap(Map<String, dynamic> map) {
     return EpubManifestItemOutOfLineXMLIsland(
-      id: map['id'] ?? '',
-      href: map['href'] ?? '',
-      mediaType: map['mediaType'] ?? '',
+      id: map['id'],
+      href: map['href'],
+      mediaType: map['mediaType'],
       fallback: map['fallback'],
-      requiredNamespace: map['requiredNamespace'] ?? '',
-      fallbackStyle: map['fallbackStyle'] ?? '',
+      requiredNamespace: map['requiredNamespace'],
+      fallbackStyle: map['fallbackStyle'],
       requiredModules: map['requiredModules'] != null
           ? List<String>.from(map['requiredModules'])
           : null,
@@ -228,7 +228,7 @@ class EpubManifestItemOutOfLineXMLIsland extends EpubManifestItem {
       href ?? 'no href',
       mediaType ?? 'mediaType',
       fallback ?? 'no fallback',
-      requiredNamespace,
+      requiredNamespace ?? 'requiredNamespace',
       requiredModules ?? 'no required modules specified',
     ];
   }

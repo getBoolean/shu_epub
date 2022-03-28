@@ -50,7 +50,7 @@ class EpubNavigationContent extends Equatable {
 
   factory EpubNavigationContent.fromMap(Map<String, dynamic> map) {
     return EpubNavigationContent(
-      source: map['source'] ?? '',
+      source: map['source'],
       id: map['id'],
     );
   }
