@@ -185,23 +185,28 @@ class EpubPublicationMetadata extends Equatable {
   factory EpubPublicationMetadata.fromMap(Map<String, dynamic> map) {
     return EpubPublicationMetadata(
       allTitles: List<EpubMetadataTitle>.from(
-          map['allTitles']?.map(EpubMetadataTitle.fromMap)),
+          // ignore: unnecessary_lambdas
+          map['allTitles']?.map((e) => EpubMetadataTitle.fromMap(e))),
       creators: List<EpubMetadataContributer>.from(
-          map['creators']?.map(EpubMetadataContributer.fromMap)),
+          // ignore: unnecessary_lambdas
+          map['creators']?.map((e) => EpubMetadataContributer.fromMap(e))),
       subjects: List<String>.from(map['subjects']),
       description: map['description'],
       publisher: map['publisher'],
       contributors: List<EpubMetadataContributer>.from(
-          map['contributors']?.map(EpubMetadataContributer.fromMap)),
+          // ignore: unnecessary_lambdas
+          map['contributors']?.map((e) => EpubMetadataContributer.fromMap(e))),
       extraMetadataItems: List<EpubExtraMetadata>.from(
-          map['extraMetadataItems']?.map(EpubExtraMetadata.fromMap)),
+          // ignore: unnecessary_lambdas
+          map['extraMetadataItems']?.map((e) => EpubExtraMetadata.fromMap(e))),
       metadataDate: map['metadataDate'] != null
           ? EpubMetadataDate.fromMap(map['metadataDate'])
           : null,
       type: map['type'],
       format: map['format'],
       identifiers: List<EpubMetadataIdentifier>.from(
-          map['identifiers']?.map(EpubMetadataIdentifier.fromMap)),
+          // ignore: unnecessary_lambdas
+          map['identifiers']?.map((e) => EpubMetadataIdentifier.fromMap(e))),
       source: map['source'],
       languages: List<String>.from(map['languages']),
       relation: map['relation'],

@@ -49,7 +49,9 @@ class EpubTours extends Equatable {
   factory EpubTours.fromMap(Map<String, dynamic> map) {
     return EpubTours(
       items:
-          List<EpubSingleTour>.from(map['items']?.map(EpubSingleTour.fromMap)),
+          List<EpubSingleTour>.from(
+              // ignore: unnecessary_lambdas
+              map['items']?.map((e) => EpubSingleTour.fromMap(e))),
     );
   }
 

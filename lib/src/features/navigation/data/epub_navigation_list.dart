@@ -67,13 +67,16 @@ class EpubNavigationList extends Equatable {
   factory EpubNavigationList.fromMap(Map<String, dynamic> map) {
     return EpubNavigationList(
       navigationInfoList: List<EpubNavigationInfo>.from(
-          map['navigationInfoList']?.map(EpubNavigationInfo.fromMap) ??
+          // ignore: unnecessary_lambdas
+          map['navigationInfoList']?.map((e) => EpubNavigationInfo.fromMap(e)) ??
               const []),
       navigationLabels: List<EpubNavigationLabel>.from(
-          map['navigationLabels']?.map(EpubNavigationLabel.fromMap) ??
+          // ignore: unnecessary_lambdas
+          map['navigationLabels']?.map((e) => EpubNavigationLabel.fromMap(e)) ??
               const []),
       navigationTargets: List<EpubNavigationTarget>.from(
-          map['navigationTargets']?.map(EpubNavigationTarget.fromMap) ??
+          // ignore: unnecessary_lambdas
+          map['navigationTargets']?.map((e) => EpubNavigationTarget.fromMap(e)) ??
               const []),
     );
   }

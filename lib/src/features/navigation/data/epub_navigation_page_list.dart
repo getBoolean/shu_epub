@@ -70,13 +70,17 @@ class EpubNavigationPageList extends Equatable {
       id: map['id'],
       classType: map['classType'],
       navigationInfoList: List<EpubNavigationInfo>.from(
-          map['navigationInfoList']?.map(EpubNavigationInfo.fromMap) ??
+          map['navigationInfoList']
+                  // ignore: unnecessary_lambdas
+                  ?.map((e) => EpubNavigationInfo.fromMap(e)) ??
               const []),
       navigationLabels: List<EpubNavigationLabel>.from(
-          map['navigationLabels']?.map(EpubNavigationLabel.fromMap) ??
+          // ignore: unnecessary_lambdas
+          map['navigationLabels']?.map((e) => EpubNavigationLabel.fromMap(e)) ??
               const []),
       pageTargets: List<EpubNavigationPageTarget>.from(
-          map['pageTargets']?.map(EpubNavigationPageTarget.fromMap) ??
+          // ignore: unnecessary_lambdas
+          map['pageTargets']?.map((e) => EpubNavigationPageTarget.fromMap(e)) ??
               const []),
     );
   }

@@ -48,7 +48,8 @@ class RootfileList extends Equatable {
 
   factory RootfileList.fromMap(Map<String, dynamic> map) {
     return RootfileList(
-      items: List<Rootfile>.from(map['items']?.map(Rootfile.fromMap)),
+      // ignore: unnecessary_lambdas
+      items: List<Rootfile>.from(map['items']?.map((e) => Rootfile.fromMap(e))),
     );
   }
 
