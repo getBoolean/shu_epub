@@ -10,9 +10,11 @@ tasks:
       dart --disable-analytics
   - init: |
       dart pub get
+  - command: |
       eval $(command gp env -e)
       WAKATIME_PATH=~/.wakatime.cfg
       rm $WAKATIME_PATH
+      touch $WAKATIME_PATH
       echo -n "${WAKATIME}" | base64 --decode  > $WAKATIME_PATH
 
 ports:
