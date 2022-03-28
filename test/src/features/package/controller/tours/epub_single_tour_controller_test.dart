@@ -68,4 +68,62 @@ void main() {
       },
     );
   });
+
+  group('getId', () {
+    test(
+      'on input without a id attribute, expect a null value',
+      () async {
+        final input = '''
+  <tour></tour>
+  ''';
+        final controller = EpubSingleTourReaderController.fromXmlString(input);
+        final actualValue = controller.getId();
+  
+        expect(actualValue, isNull);
+      },
+    );
+  
+    test(
+      'on input with a id attribute, expect the String value',
+      () async {
+        final input = '''
+  <tour id="test"></tour>
+  ''';
+        final controller = EpubSingleTourReaderController.fromXmlString(input);
+        final expectedValue = 'test';
+        final actualValue = controller.getId();
+  
+        expect(actualValue, expectedValue);
+      },
+    );
+  });
+
+  group('getTitle', () {
+    test(
+      'on input without a title attribute, expect a null value',
+      () async {
+        final input = '''
+  <tour></tour>
+  ''';
+        final controller = EpubSingleTourReaderController.fromXmlString(input);
+        final actualValue = controller.getTitle();
+  
+        expect(actualValue, isNull);
+      },
+    );
+  
+    test(
+      'on input with a title attribute, expect the String value',
+      () async {
+        final input = '''
+  <tour title="test"></tour>
+  ''';
+        final controller = EpubSingleTourReaderController.fromXmlString(input);
+        final expectedValue = 'test';
+        final actualValue = controller.getTitle();
+  
+        expect(actualValue, expectedValue);
+      },
+    );
+  });
 }
