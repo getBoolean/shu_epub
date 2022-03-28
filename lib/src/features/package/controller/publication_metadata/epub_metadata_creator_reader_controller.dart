@@ -27,7 +27,7 @@ class EpubMetadataCreatorReaderController {
   /// of the dc:creator element
   ///
   /// Throws [EpubException] if the string does not have the dc:creator element
-  factory EpubMetadataCreatorReaderController.fromString(
+  factory EpubMetadataCreatorReaderController.fromXmlString(
       String dccreatorString) {
     final stringList = dccreatorString.codeUnits;
     final data = Uint8List.fromList(stringList);

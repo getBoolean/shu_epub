@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without manifest element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubManifestReaderController.fromString(input),
+          () => EpubManifestReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -44,7 +44,7 @@ void main() {
   <manifest>
   </manifest>
   ''';
-        final controller = EpubManifestReaderController.fromString(input);
+        final controller = EpubManifestReaderController.fromXmlString(input);
         final actualValue = controller.getItems();
 
         expect(actualValue, isEmpty);
@@ -60,7 +60,7 @@ void main() {
       </item>
   </manifest>
   ''';
-        final controller = EpubManifestReaderController.fromString(input);
+        final controller = EpubManifestReaderController.fromXmlString(input);
         final expectedValue = [EpubManifestItem()];
         final actualValue = controller.getItems();
 

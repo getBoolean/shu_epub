@@ -14,9 +14,9 @@ class EpubNavigationContentReader {
   /// of the content element
   ///
   /// Throws [EpubException] if the string does not have the content element
-  static EpubNavigationContent fromString(String contentString) {
+  static EpubNavigationContent fromXmlString(String contentString) {
     final controller =
-        EpubNavigationContentReaderController.fromString(contentString);
+        EpubNavigationContentReaderController.fromXmlString(contentString);
     return _fromController(controller);
   }
 

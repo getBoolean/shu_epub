@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without dc:contributor element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubMetadataContributorReaderController.fromString(input),
+          () => EpubMetadataContributorReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -45,7 +45,7 @@ void main() {
   </dc:contributor>
   ''';
         final controller =
-            EpubMetadataContributorReaderController.fromString(input);
+            EpubMetadataContributorReaderController.fromXmlString(input);
         final expectedValue = '';
         final actualValue = controller.getName();
 
@@ -60,7 +60,7 @@ void main() {
   <dc:contributor>test</dc:contributor>
   ''';
         final controller =
-            EpubMetadataContributorReaderController.fromString(input);
+            EpubMetadataContributorReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getName();
 
@@ -77,7 +77,7 @@ void main() {
   <dc:contributor></dc:contributor>
   ''';
         final controller =
-            EpubMetadataContributorReaderController.fromString(input);
+            EpubMetadataContributorReaderController.fromXmlString(input);
         final actualValue = controller.getFileAs();
 
         expect(actualValue, isNull);
@@ -91,7 +91,7 @@ void main() {
   <dc:contributor file-as="test"></dc:contributor>
   ''';
         final controller =
-            EpubMetadataContributorReaderController.fromString(input);
+            EpubMetadataContributorReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getFileAs();
 
@@ -106,7 +106,7 @@ void main() {
   <dc:contributor opf:file-as="test"></dc:contributor>
   ''';
         final controller =
-            EpubMetadataContributorReaderController.fromString(input);
+            EpubMetadataContributorReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getFileAs();
 
@@ -123,7 +123,7 @@ void main() {
   <dc:contributor></dc:contributor>
   ''';
         final controller =
-            EpubMetadataContributorReaderController.fromString(input);
+            EpubMetadataContributorReaderController.fromXmlString(input);
         final actualValue = controller.getRole();
 
         expect(actualValue, isNull);
@@ -137,7 +137,7 @@ void main() {
   <dc:contributor role="test"></dc:contributor>
   ''';
         final controller =
-            EpubMetadataContributorReaderController.fromString(input);
+            EpubMetadataContributorReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getRole();
 
@@ -152,7 +152,7 @@ void main() {
   <dc:contributor opf:role="test"></dc:contributor>
   ''';
         final controller =
-            EpubMetadataContributorReaderController.fromString(input);
+            EpubMetadataContributorReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getRole();
 

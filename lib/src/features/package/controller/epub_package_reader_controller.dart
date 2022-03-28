@@ -13,7 +13,7 @@ class EpubPackageReaderController with VersionMixin {
 
   static const elementName = EpubPackage.elementName;
 
-  factory EpubPackageReaderController.fromString(String json) {
+  factory EpubPackageReaderController.fromXmlString(String json) {
     final stringList = json.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubPackageReaderController(data);

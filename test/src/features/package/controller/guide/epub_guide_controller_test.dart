@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without guide element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubGuideReaderController.fromString(input),
+          () => EpubGuideReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -44,7 +44,7 @@ void main() {
   <guide>
   </guide>
   ''';
-        final controller = EpubGuideReaderController.fromString(input);
+        final controller = EpubGuideReaderController.fromXmlString(input);
         final actualValue = controller.getItems();
 
         expect(actualValue, isEmpty);
@@ -60,7 +60,7 @@ void main() {
       </reference>
   </guide>
   ''';
-        final controller = EpubGuideReaderController.fromString(input);
+        final controller = EpubGuideReaderController.fromXmlString(input);
         final expectedValue = [EpubGuideItem()];
         final actualValue = controller.getItems();
 

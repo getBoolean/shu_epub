@@ -17,8 +17,8 @@ class EpubMetadataTitle extends Equatable {
   /// of the dc:title element
   ///
   /// Throws [EpubException] if the string does not have the dctitle element
-  factory EpubMetadataTitle.fromString(String dctitleString) {
-    return EpubMetadataTitleReader.fromString(dctitleString);
+  factory EpubMetadataTitle.fromXmlString(String dctitleString) {
+    return EpubMetadataTitleReader.fromXmlString(dctitleString);
   }
 
   /// Create an instance of [EpubMetadataTitle] from the [Uint8List] data

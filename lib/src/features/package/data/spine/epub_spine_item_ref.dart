@@ -27,8 +27,8 @@ class EpubSpineItemRef extends Equatable {
   /// of the itemref element
   ///
   /// Throws [EpubException] if the string does not have the itemref element
-  factory EpubSpineItemRef.fromString(String itemrefString) {
-    return EpubSpineItemRefReader.fromString(itemrefString);
+  factory EpubSpineItemRef.fromXmlString(String itemrefString) {
+    return EpubSpineItemRefReader.fromXmlString(itemrefString);
   }
 
   /// Create an instance of [EpubSpineItemRef] from the [Uint8List] data

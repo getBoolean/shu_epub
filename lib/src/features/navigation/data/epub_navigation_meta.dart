@@ -16,8 +16,8 @@ class EpubNavigationMeta extends Equatable {
     return EpubNavigationMetaReader.fromXmlElement(metaElement);
   }
 
-  factory EpubNavigationMeta.fromString(String metaString) {
-    return EpubNavigationMetaReader.fromString(metaString);
+  factory EpubNavigationMeta.fromXmlString(String metaString) {
+    return EpubNavigationMetaReader.fromXmlString(metaString);
   }
 
   /// Create an instance of [EpubNavigationMeta] from the [Uint8List] data

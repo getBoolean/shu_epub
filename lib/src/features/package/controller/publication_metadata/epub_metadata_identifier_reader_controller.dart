@@ -28,7 +28,7 @@ class EpubMetadataIdentifierReaderController with IdMixin {
   /// of the dc:identifier element
   ///
   /// Throws [EpubException] if the string does not have the dc:identifier element
-  factory EpubMetadataIdentifierReaderController.fromString(
+  factory EpubMetadataIdentifierReaderController.fromXmlString(
       String dcidentifierString) {
     final stringList = dcidentifierString.codeUnits;
     final data = Uint8List.fromList(stringList);

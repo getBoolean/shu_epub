@@ -97,8 +97,8 @@ class EpubSpine extends Equatable {
   /// of the spine element
   ///
   /// Throws [EpubException] if the string does not have the spine element
-  factory EpubSpine.fromString(String spineString) {
-    return EpubSpineReader.fromString(spineString);
+  factory EpubSpine.fromXmlString(String spineString) {
+    return EpubSpineReader.fromXmlString(spineString);
   }
 
   /// Create an instance of [EpubSpine] from the [Uint8List] data

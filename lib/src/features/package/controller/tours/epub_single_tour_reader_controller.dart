@@ -27,7 +27,7 @@ class EpubSingleTourReaderController {
   /// of the tour element
   ///
   /// Throws [EpubException] if the string does not have the tour element
-  factory EpubSingleTourReaderController.fromString(String tourString) {
+  factory EpubSingleTourReaderController.fromXmlString(String tourString) {
     final stringList = tourString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubSingleTourReaderController(data);

@@ -30,8 +30,8 @@ class EpubTourSite extends Equatable {
   /// of the site element
   ///
   /// Throws [EpubException] if the string does not have the site element
-  factory EpubTourSite.fromString(String siteString) {
-    return EpubTourSiteReader.fromString(siteString);
+  factory EpubTourSite.fromXmlString(String siteString) {
+    return EpubTourSiteReader.fromXmlString(siteString);
   }
 
   /// Create an instance of [EpubTourSite] from the [Uint8List] data

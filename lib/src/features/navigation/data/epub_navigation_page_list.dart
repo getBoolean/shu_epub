@@ -19,8 +19,8 @@ class EpubNavigationPageList extends Equatable {
     return EpubNavigationPageListReader.fromXmlElement(pageListElement);
   }
 
-  factory EpubNavigationPageList.fromString(String pageListString) {
-    return EpubNavigationPageListReader.fromString(pageListString);
+  factory EpubNavigationPageList.fromXmlString(String pageListString) {
+    return EpubNavigationPageListReader.fromXmlString(pageListString);
   }
 
   /// Create an instance of [EpubNavigationPageList] from the [Uint8List] data
@@ -69,8 +69,8 @@ class EpubNavigationPageList extends Equatable {
     return EpubNavigationPageList(
       id: map['id'],
       classType: map['classType'],
-      navigationInfoList: List<EpubNavigationInfo>.from(
-          map['navigationInfoList']
+      navigationInfoList:
+          List<EpubNavigationInfo>.from(map['navigationInfoList']
                   // ignore: unnecessary_lambdas
                   ?.map((e) => EpubNavigationInfo.fromMap(e)) ??
               const []),

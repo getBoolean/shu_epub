@@ -48,7 +48,7 @@ class EpubPublicationMetadataReaderController {
   /// of the metadata element
   ///
   /// Throws [EpubException] if the string does not have the metadata element
-  factory EpubPublicationMetadataReaderController.fromString(
+  factory EpubPublicationMetadataReaderController.fromXmlString(
       String metadataString) {
     final stringList = metadataString.codeUnits;
     final data = Uint8List.fromList(stringList);

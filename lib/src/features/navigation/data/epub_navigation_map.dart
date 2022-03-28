@@ -26,8 +26,8 @@ class EpubNavigationMap extends Equatable {
     return EpubNavigationMapReader.fromXmlElement(element);
   }
 
-  factory EpubNavigationMap.fromString(String navMap) {
-    return EpubNavigationMapReader.fromString(navMap);
+  factory EpubNavigationMap.fromXmlString(String navMap) {
+    return EpubNavigationMapReader.fromXmlString(navMap);
   }
 
   /// Create an instance of [EpubNavigationMap] from the [Uint8List] data

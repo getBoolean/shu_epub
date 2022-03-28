@@ -10,9 +10,9 @@ class EpubNavigationLabelReader {
     return _fromController(controller);
   }
 
-  static EpubNavigationLabel fromString(String navLabelString) {
+  static EpubNavigationLabel fromXmlString(String navLabelString) {
     final controller =
-        EpubNavigationLabelReaderController.fromString(navLabelString);
+        EpubNavigationLabelReaderController.fromXmlString(navLabelString);
     return _fromController(controller);
   }
 

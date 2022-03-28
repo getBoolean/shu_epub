@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without head element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubNavigationHeadReaderController.fromString(input),
+          () => EpubNavigationHeadReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -44,7 +44,8 @@ void main() {
 <head>
 </head>
 ''';
-        final controller = EpubNavigationHeadReaderController.fromString(input);
+        final controller =
+            EpubNavigationHeadReaderController.fromXmlString(input);
         final actualValue = controller.getMetadata();
 
         expect(actualValue, isEmpty);
@@ -60,7 +61,8 @@ void main() {
     </meta>
 </head>
 ''';
-        final controller = EpubNavigationHeadReaderController.fromString(input);
+        final controller =
+            EpubNavigationHeadReaderController.fromXmlString(input);
         final expectedValue = [EpubNavigationMeta()];
         final actualValue = controller.getMetadata();
 

@@ -16,8 +16,8 @@ class EpubManifest extends Equatable {
   /// of the manifest element
   ///
   /// Throws [EpubException] if the string does not have the manifest element
-  factory EpubManifest.fromString(String manifestString) {
-    return EpubManifestReader.fromString(manifestString);
+  factory EpubManifest.fromXmlString(String manifestString) {
+    return EpubManifestReader.fromXmlString(manifestString);
   }
 
   /// Create an instance of [EpubManifest] from the [Uint8List] data

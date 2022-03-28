@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without navInfo element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubNavigationInfoReaderController.fromString(input),
+          () => EpubNavigationInfoReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -43,7 +43,8 @@ void main() {
         final input = '''
   <navInfo></navInfo>
   ''';
-        final controller = EpubNavigationInfoReaderController.fromString(input);
+        final controller =
+            EpubNavigationInfoReaderController.fromXmlString(input);
         final actualValue = controller.getLanguage();
 
         expect(actualValue, isNull);
@@ -56,7 +57,8 @@ void main() {
         final input = '''
   <navInfo lang="test"></navInfo>
   ''';
-        final controller = EpubNavigationInfoReaderController.fromString(input);
+        final controller =
+            EpubNavigationInfoReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getLanguage();
 
@@ -70,7 +72,8 @@ void main() {
         final input = '''
   <navInfo xml:lang="test"></navInfo>
   ''';
-        final controller = EpubNavigationInfoReaderController.fromString(input);
+        final controller =
+            EpubNavigationInfoReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getLanguage();
 
@@ -87,7 +90,8 @@ void main() {
   <navInfo>
   </navInfo>
   ''';
-        final controller = EpubNavigationInfoReaderController.fromString(input);
+        final controller =
+            EpubNavigationInfoReaderController.fromXmlString(input);
         final actualValue = controller.getImage();
 
         expect(actualValue, isNull);
@@ -103,7 +107,8 @@ void main() {
       </img>
   </navInfo>
   ''';
-        final controller = EpubNavigationInfoReaderController.fromString(input);
+        final controller =
+            EpubNavigationInfoReaderController.fromXmlString(input);
         final expectedValue = EpubNavigationImage();
         final actualValue = controller.getImage();
 
@@ -120,7 +125,8 @@ void main() {
   <navInfo>
   </navInfo>
   ''';
-        final controller = EpubNavigationInfoReaderController.fromString(input);
+        final controller =
+            EpubNavigationInfoReaderController.fromXmlString(input);
         final actualValue = controller.getText();
 
         expect(actualValue, isNull);
@@ -135,7 +141,8 @@ void main() {
       <text></text>
   </navInfo>
   ''';
-        final controller = EpubNavigationInfoReaderController.fromString(input);
+        final controller =
+            EpubNavigationInfoReaderController.fromXmlString(input);
         final actualValue = controller.getText();
 
         expect(actualValue, isEmpty);
@@ -150,7 +157,8 @@ void main() {
       <text>test</text>
   </navInfo>
   ''';
-        final controller = EpubNavigationInfoReaderController.fromString(input);
+        final controller =
+            EpubNavigationInfoReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getText();
 

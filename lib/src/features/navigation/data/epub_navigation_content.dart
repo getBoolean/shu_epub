@@ -14,8 +14,8 @@ class EpubNavigationContent extends Equatable {
     return EpubNavigationContentReader.fromXmlElement(contentElement);
   }
 
-  factory EpubNavigationContent.fromString(String contentString) {
-    return EpubNavigationContentReader.fromString(contentString);
+  factory EpubNavigationContent.fromXmlString(String contentString) {
+    return EpubNavigationContentReader.fromXmlString(contentString);
   }
 
   /// Create an instance of [EpubNavigationContent] from the [Uint8List] data

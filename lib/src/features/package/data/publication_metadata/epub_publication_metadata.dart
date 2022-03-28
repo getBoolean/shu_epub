@@ -92,8 +92,8 @@ class EpubPublicationMetadata extends Equatable {
   /// of the metadata element
   ///
   /// Throws [EpubException] if the string does not have the metadata element
-  factory EpubPublicationMetadata.fromString(String metadataString) {
-    return EpubPublicationMetadataReader.fromString(metadataString);
+  factory EpubPublicationMetadata.fromXmlString(String metadataString) {
+    return EpubPublicationMetadataReader.fromXmlString(metadataString);
   }
 
   /// Create an instance of [EpubPublicationMetadata] from the [Uint8List] data

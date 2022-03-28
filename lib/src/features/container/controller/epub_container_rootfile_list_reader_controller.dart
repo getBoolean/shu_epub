@@ -27,7 +27,7 @@ class EpubContainerRootfileListReaderController {
   /// of the rootfiles element
   ///
   /// Throws [EpubException] if the string does not have the rootfiles element
-  factory EpubContainerRootfileListReaderController.fromString(
+  factory EpubContainerRootfileListReaderController.fromXmlString(
       String rootfilesString) {
     final stringList = rootfilesString.codeUnits;
     final data = Uint8List.fromList(stringList);

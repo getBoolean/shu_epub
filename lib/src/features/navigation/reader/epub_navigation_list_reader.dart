@@ -10,8 +10,9 @@ class EpubNavigationListReader {
     return _fromController(controller);
   }
 
-  static EpubNavigationList fromString(String navList) {
-    final controller = EpubNavigationListReaderController.fromString(navList);
+  static EpubNavigationList fromXmlString(String navList) {
+    final controller =
+        EpubNavigationListReaderController.fromXmlString(navList);
     return _fromController(controller);
   }
 

@@ -32,8 +32,8 @@ class EpubNavigationPageTarget extends Equatable {
     return EpubNavigationPageTargetReader.fromXmlElement(pageTargetElement);
   }
 
-  factory EpubNavigationPageTarget.fromString(String pageTargetString) {
-    return EpubNavigationPageTargetReader.fromString(pageTargetString);
+  factory EpubNavigationPageTarget.fromXmlString(String pageTargetString) {
+    return EpubNavigationPageTargetReader.fromXmlString(pageTargetString);
   }
 
   /// Create an instance of [EpubNavigationPageTarget] from the [Uint8List] data

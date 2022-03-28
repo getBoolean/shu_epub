@@ -10,9 +10,9 @@ class EpubNavigationMetaReader {
     return _fromController(controller);
   }
 
-  static EpubNavigationMeta fromString(String metaString) {
+  static EpubNavigationMeta fromXmlString(String metaString) {
     final controller =
-        EpubNavigationMetaReaderController.fromString(metaString);
+        EpubNavigationMetaReaderController.fromXmlString(metaString);
     return _fromController(controller);
   }
 

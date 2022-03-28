@@ -14,9 +14,9 @@ class EpubPublicationMetadataReader {
   /// of the metadata element
   ///
   /// Throws [EpubException] if the string does not have the metadata element
-  static EpubPublicationMetadata fromString(String metadataString) {
+  static EpubPublicationMetadata fromXmlString(String metadataString) {
     final controller =
-        EpubPublicationMetadataReaderController.fromString(metadataString);
+        EpubPublicationMetadataReaderController.fromXmlString(metadataString);
     return _fromController(controller);
   }
 

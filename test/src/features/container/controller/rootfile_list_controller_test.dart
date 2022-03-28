@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without rootfiles element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => RootfileList.fromString(input),
+          () => RootfileList.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -45,7 +45,7 @@ void main() {
   </rootfiles>
   ''';
         final controller =
-            EpubContainerRootfileListReaderController.fromString(input);
+            EpubContainerRootfileListReaderController.fromXmlString(input);
         final actualValue = controller.getItems();
 
         expect(actualValue, isEmpty);
@@ -62,7 +62,7 @@ void main() {
   </rootfiles>
   ''';
         final controller =
-            EpubContainerRootfileListReaderController.fromString(input);
+            EpubContainerRootfileListReaderController.fromXmlString(input);
         final expectedValue = [Rootfile()];
         final actualValue = controller.getItems();
 

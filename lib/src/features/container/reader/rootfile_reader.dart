@@ -14,9 +14,9 @@ class RootfileReader {
   /// of the rootfile element
   ///
   /// Throws [EpubException] if the string does not have the rootfile element
-  static Rootfile fromString(String rootfileString) {
+  static Rootfile fromXmlString(String rootfileString) {
     final controller =
-        EpubContainerRootfileReaderController.fromString(rootfileString);
+        EpubContainerRootfileReaderController.fromXmlString(rootfileString);
     return _fromController(controller);
   }
 

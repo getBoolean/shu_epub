@@ -16,8 +16,8 @@ class RootfileList extends Equatable {
   /// of the rootfiles element
   ///
   /// Throws [EpubException] if the string does not have the rootfiles element
-  factory RootfileList.fromString(String rootfilesString) {
-    return RootfileListReader.fromString(rootfilesString);
+  factory RootfileList.fromXmlString(String rootfilesString) {
+    return RootfileListReader.fromXmlString(rootfilesString);
   }
 
   /// Create an instance of [RootfileList] from the [Uint8List] data

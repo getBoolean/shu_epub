@@ -17,8 +17,8 @@ class EpubNavigationDocumentAuthor extends Equatable {
     return EpubNavigationDocumentAuthorReader.fromXmlElement(docAuthorElement);
   }
 
-  factory EpubNavigationDocumentAuthor.fromString(String docAuthorString) {
-    return EpubNavigationDocumentAuthorReader.fromString(docAuthorString);
+  factory EpubNavigationDocumentAuthor.fromXmlString(String docAuthorString) {
+    return EpubNavigationDocumentAuthorReader.fromXmlString(docAuthorString);
   }
 
   /// Create an instance of [EpubNavigationDocumentAuthor] from the [Uint8List] data

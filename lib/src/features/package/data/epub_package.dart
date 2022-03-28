@@ -95,8 +95,8 @@ class EpubPackage extends Equatable {
   /// of the package element
   ///
   /// Throws [EpubException] if the string does not have the package element
-  factory EpubPackage.fromString(String packageString) {
-    return EpubPackageReader.fromString(packageString);
+  factory EpubPackage.fromXmlString(String packageString) {
+    return EpubPackageReader.fromXmlString(packageString);
   }
 
   /// Create an instance of [EpubPackage] from the [Uint8List] data

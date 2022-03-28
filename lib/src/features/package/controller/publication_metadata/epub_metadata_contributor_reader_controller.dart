@@ -27,7 +27,7 @@ class EpubMetadataContributorReaderController {
   /// of the dc:contributor element
   ///
   /// Throws [EpubException] if the string does not have the dc:contributor element
-  factory EpubMetadataContributorReaderController.fromString(
+  factory EpubMetadataContributorReaderController.fromXmlString(
       String dccontributorString) {
     final stringList = dccontributorString.codeUnits;
     final data = Uint8List.fromList(stringList);

@@ -44,8 +44,8 @@ class EpubNavigation extends Equatable {
   /// of the navigation element
   ///
   /// Throws [EpubException] if the string does not have the navigation element
-  factory EpubNavigation.fromString(String navigationString) {
-    return EpubNavigationReader.fromString(navigationString);
+  factory EpubNavigation.fromXmlString(String navigationString) {
+    return EpubNavigationReader.fromXmlString(navigationString);
   }
 
   /// Create an instance of [EpubNavigation] from the [Uint8List] data
@@ -111,10 +111,10 @@ class EpubNavigation extends Equatable {
       docTitle: map['docTitle'] == null
           ? null
           : EpubNavigationDocumentTitle.fromMap(map['docTitle']),
-      docAuthors: List<EpubNavigationDocumentAuthor>.from(
-          // ignore: unnecessary_lambdas
-          map['docAuthors']?.map((e) => EpubNavigationDocumentAuthor.fromMap(e)) ??
-              const []),
+      docAuthors: List<EpubNavigationDocumentAuthor>.from(map['docAuthors']
+              // ignore: unnecessary_lambdas
+              ?.map((e) => EpubNavigationDocumentAuthor.fromMap(e)) ??
+          const []),
       navigationMap: map['navigationMap'] == null
           ? null
           : EpubNavigationMap.fromMap(map['navigationMap']),
@@ -123,7 +123,8 @@ class EpubNavigation extends Equatable {
           : null,
       navigationLists: List<EpubNavigationList>.from(
           // ignore: unnecessary_lambdas
-          map['navigationLists']?.map((e) => EpubNavigationList.fromMap(e)) ?? const []),
+          map['navigationLists']?.map((e) => EpubNavigationList.fromMap(e)) ??
+              const []),
     );
   }
 

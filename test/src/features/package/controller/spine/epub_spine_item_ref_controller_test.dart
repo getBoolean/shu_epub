@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without itemref element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubSpineItemRefReaderController.fromString(input),
+          () => EpubSpineItemRefReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -43,7 +43,8 @@ void main() {
         final input = '''
   <itemref></itemref>
   ''';
-        final controller = EpubSpineItemRefReaderController.fromString(input);
+        final controller =
+            EpubSpineItemRefReaderController.fromXmlString(input);
         final actualValue = controller.getIdref();
 
         expect(actualValue, isNull);
@@ -56,7 +57,8 @@ void main() {
         final input = '''
   <itemref idref="test"></itemref>
   ''';
-        final controller = EpubSpineItemRefReaderController.fromString(input);
+        final controller =
+            EpubSpineItemRefReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getIdref();
 
@@ -72,7 +74,8 @@ void main() {
         final input = '''
   <itemref></itemref>
   ''';
-        final controller = EpubSpineItemRefReaderController.fromString(input);
+        final controller =
+            EpubSpineItemRefReaderController.fromXmlString(input);
         final actualValue = controller.getLinear();
 
         expect(actualValue, isTrue);
@@ -85,7 +88,8 @@ void main() {
         final input = '''
   <itemref linear="no"></itemref>
   ''';
-        final controller = EpubSpineItemRefReaderController.fromString(input);
+        final controller =
+            EpubSpineItemRefReaderController.fromXmlString(input);
         final actualValue = controller.getLinear();
 
         expect(actualValue, isFalse);
@@ -98,7 +102,8 @@ void main() {
         final input = '''
   <itemref linear="yes"></itemref>
   ''';
-        final controller = EpubSpineItemRefReaderController.fromString(input);
+        final controller =
+            EpubSpineItemRefReaderController.fromXmlString(input);
         final actualValue = controller.getLinear();
 
         expect(actualValue, isTrue);

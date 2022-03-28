@@ -13,8 +13,8 @@ class EpubSpineReader {
   /// of the spine element
   ///
   /// Throws [EpubException] if the string does not have the spine element
-  static EpubSpine fromString(String spineString) {
-    final controller = EpubSpineReaderController.fromString(spineString);
+  static EpubSpine fromXmlString(String spineString) {
+    final controller = EpubSpineReaderController.fromXmlString(spineString);
     return _fromController(controller);
   }
 

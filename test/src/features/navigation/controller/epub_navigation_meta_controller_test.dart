@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without meta element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubNavigationMeta.fromString(input),
+          () => EpubNavigationMeta.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -43,7 +43,8 @@ void main() {
         final input = '''
   <meta></meta>
   ''';
-        final controller = EpubNavigationMetaReaderController.fromString(input);
+        final controller =
+            EpubNavigationMetaReaderController.fromXmlString(input);
         final actualValue = controller.getName();
 
         expect(actualValue, isNull);
@@ -56,7 +57,8 @@ void main() {
         final input = '''
   <meta name="test"></meta>
   ''';
-        final controller = EpubNavigationMetaReaderController.fromString(input);
+        final controller =
+            EpubNavigationMetaReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getName();
 
@@ -72,7 +74,8 @@ void main() {
         final input = '''
   <meta></meta>
   ''';
-        final controller = EpubNavigationMetaReaderController.fromString(input);
+        final controller =
+            EpubNavigationMetaReaderController.fromXmlString(input);
         final actualValue = controller.getContent();
 
         expect(actualValue, isNull);
@@ -85,7 +88,8 @@ void main() {
         final input = '''
   <meta content="test"></meta>
   ''';
-        final controller = EpubNavigationMetaReaderController.fromString(input);
+        final controller =
+            EpubNavigationMetaReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getContent();
 
@@ -101,7 +105,8 @@ void main() {
         final input = '''
   <meta></meta>
   ''';
-        final controller = EpubNavigationMetaReaderController.fromString(input);
+        final controller =
+            EpubNavigationMetaReaderController.fromXmlString(input);
         final actualValue = controller.getScheme();
 
         expect(actualValue, isNull);
@@ -114,7 +119,8 @@ void main() {
         final input = '''
   <meta scheme="test"></meta>
   ''';
-        final controller = EpubNavigationMetaReaderController.fromString(input);
+        final controller =
+            EpubNavigationMetaReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getScheme();
 

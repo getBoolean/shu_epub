@@ -14,8 +14,9 @@ class EpubManifestItemReader {
   /// of the item element
   ///
   /// Throws [EpubException] if the string does not have the item element
-  static EpubManifestItem fromString(String itemString) {
-    final controller = EpubManifestItemReaderController.fromString(itemString);
+  static EpubManifestItem fromXmlString(String itemString) {
+    final controller =
+        EpubManifestItemReaderController.fromXmlString(itemString);
     return _fromController(controller);
   }
 

@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without tour element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubSingleTourReaderController.fromString(input),
+          () => EpubSingleTourReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -44,7 +44,7 @@ void main() {
   <tour>
   </tour>
   ''';
-        final controller = EpubSingleTourReaderController.fromString(input);
+        final controller = EpubSingleTourReaderController.fromXmlString(input);
         final actualValue = controller.getSites();
 
         expect(actualValue, isEmpty);
@@ -60,7 +60,7 @@ void main() {
       </site>
   </tour>
   ''';
-        final controller = EpubSingleTourReaderController.fromString(input);
+        final controller = EpubSingleTourReaderController.fromXmlString(input);
         final expectedValue = [EpubTourSite()];
         final actualValue = controller.getSites();
 

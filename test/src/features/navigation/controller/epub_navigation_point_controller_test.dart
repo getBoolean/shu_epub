@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without navPoint element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubNavigationPointReaderController.fromString(input),
+          () => EpubNavigationPointReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -44,7 +44,7 @@ void main() {
   <navPoint></navPoint>
   ''';
         final controller =
-            EpubNavigationPointReaderController.fromString(input);
+            EpubNavigationPointReaderController.fromXmlString(input);
         final actualValue = controller.getId();
 
         expect(actualValue, isNull);
@@ -58,7 +58,7 @@ void main() {
   <navPoint id="test"></navPoint>
   ''';
         final controller =
-            EpubNavigationPointReaderController.fromString(input);
+            EpubNavigationPointReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getId();
 
@@ -75,7 +75,7 @@ void main() {
   <navPoint></navPoint>
   ''';
         final controller =
-            EpubNavigationPointReaderController.fromString(input);
+            EpubNavigationPointReaderController.fromXmlString(input);
         final actualValue = controller.getClassType();
 
         expect(actualValue, isNull);
@@ -89,7 +89,7 @@ void main() {
   <navPoint class="test"></navPoint>
   ''';
         final controller =
-            EpubNavigationPointReaderController.fromString(input);
+            EpubNavigationPointReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getClassType();
 
@@ -106,7 +106,7 @@ void main() {
   <navPoint></navPoint>
   ''';
         final controller =
-            EpubNavigationPointReaderController.fromString(input);
+            EpubNavigationPointReaderController.fromXmlString(input);
         final actualValue = controller.getPlayOrder();
 
         expect(actualValue, isNull);
@@ -120,7 +120,7 @@ void main() {
   <navPoint playOrder="test"></navPoint>
   ''';
         final controller =
-            EpubNavigationPointReaderController.fromString(input);
+            EpubNavigationPointReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getPlayOrder();
 
@@ -138,7 +138,7 @@ void main() {
   </navPoint>
   ''';
         final controller =
-            EpubNavigationPointReaderController.fromString(input);
+            EpubNavigationPointReaderController.fromXmlString(input);
         final actualValue = controller.getContent();
 
         expect(actualValue, isNull);
@@ -155,7 +155,7 @@ void main() {
   </navPoint>
   ''';
         final controller =
-            EpubNavigationPointReaderController.fromString(input);
+            EpubNavigationPointReaderController.fromXmlString(input);
         final expectedValue = EpubNavigationContent();
         final actualValue = controller.getContent();
 
@@ -173,7 +173,7 @@ void main() {
   </navPoint>
   ''';
         final controller =
-            EpubNavigationPointReaderController.fromString(input);
+            EpubNavigationPointReaderController.fromXmlString(input);
         final actualValue = controller.getNavigationLabels();
 
         expect(actualValue, isEmpty);
@@ -190,7 +190,7 @@ void main() {
   </navPoint>
   ''';
         final controller =
-            EpubNavigationPointReaderController.fromString(input);
+            EpubNavigationPointReaderController.fromXmlString(input);
         final expectedValue = [EpubNavigationLabel()];
         final actualValue = controller.getNavigationLabels();
 
@@ -208,7 +208,7 @@ void main() {
   </navPoint>
   ''';
         final controller =
-            EpubNavigationPointReaderController.fromString(input);
+            EpubNavigationPointReaderController.fromXmlString(input);
         final actualValue = controller.getChildNavigationPoints();
 
         expect(actualValue, isEmpty);
@@ -225,7 +225,7 @@ void main() {
   </navPoint>
   ''';
         final controller =
-            EpubNavigationPointReaderController.fromString(input);
+            EpubNavigationPointReaderController.fromXmlString(input);
         final expectedValue = [EpubNavigationPoint()];
         final actualValue = controller.getChildNavigationPoints();
 
@@ -245,7 +245,7 @@ void main() {
   </navPoint>
   ''';
         final controller =
-            EpubNavigationPointReaderController.fromString(input);
+            EpubNavigationPointReaderController.fromXmlString(input);
         final expectedValue = [
           EpubNavigationPoint(childNavigationPoints: [EpubNavigationPoint()])
         ];

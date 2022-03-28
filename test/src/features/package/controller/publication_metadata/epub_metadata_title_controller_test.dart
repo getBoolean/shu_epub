@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without dc:title element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubMetadataTitleReaderController.fromString(input),
+          () => EpubMetadataTitleReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -43,7 +43,8 @@ void main() {
         final input = '''
   <dc:title></dc:title>
   ''';
-        final controller = EpubMetadataTitleReaderController.fromString(input);
+        final controller =
+            EpubMetadataTitleReaderController.fromXmlString(input);
         final actualValue = controller.getLanguage();
 
         expect(actualValue, isNull);
@@ -56,7 +57,8 @@ void main() {
         final input = '''
   <dc:title xml:lang="en-US"></dc:title>
   ''';
-        final controller = EpubMetadataTitleReaderController.fromString(input);
+        final controller =
+            EpubMetadataTitleReaderController.fromXmlString(input);
         final expectedValue = 'en-US';
         final actualValue = controller.getLanguage();
 
@@ -70,7 +72,8 @@ void main() {
         final input = '''
   <dc:title lang="en-US"></dc:title>
   ''';
-        final controller = EpubMetadataTitleReaderController.fromString(input);
+        final controller =
+            EpubMetadataTitleReaderController.fromXmlString(input);
         final expectedValue = 'en-US';
         final actualValue = controller.getLanguage();
 
@@ -87,7 +90,8 @@ void main() {
   <dc:title>
   </dc:title>
   ''';
-        final controller = EpubMetadataTitleReaderController.fromString(input);
+        final controller =
+            EpubMetadataTitleReaderController.fromXmlString(input);
         final actualValue = controller.getText();
 
         expect(actualValue, isEmpty);
@@ -100,7 +104,8 @@ void main() {
         final input = '''
   <dc:title>test</dc:title>
   ''';
-        final controller = EpubMetadataTitleReaderController.fromString(input);
+        final controller =
+            EpubMetadataTitleReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getText();
 

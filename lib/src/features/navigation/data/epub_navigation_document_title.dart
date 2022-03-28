@@ -16,8 +16,8 @@ class EpubNavigationDocumentTitle extends Equatable {
     return EpubNavigationDocumentTitleReader.fromXmlElement(docTitleElement);
   }
 
-  factory EpubNavigationDocumentTitle.fromString(String docTitleString) {
-    return EpubNavigationDocumentTitleReader.fromString(docTitleString);
+  factory EpubNavigationDocumentTitle.fromXmlString(String docTitleString) {
+    return EpubNavigationDocumentTitleReader.fromXmlString(docTitleString);
   }
 
   /// Create an instance of [EpubNavigationDocumentTitle] from the [Uint8List] data

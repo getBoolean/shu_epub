@@ -34,7 +34,7 @@ class EpubNavigationPointReaderController
   /// of the navMap element
   ///
   /// Throws [EpubException] if the string does not have the navMap element
-  factory EpubNavigationPointReaderController.fromString(
+  factory EpubNavigationPointReaderController.fromXmlString(
       String navPointString) {
     final stringList = navPointString.codeUnits;
     final data = Uint8List.fromList(stringList);

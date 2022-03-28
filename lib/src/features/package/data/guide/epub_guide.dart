@@ -16,8 +16,8 @@ class EpubGuide extends Equatable {
   /// of the guide element
   ///
   /// Throws [EpubException] if the string does not have the guide element
-  factory EpubGuide.fromString(String guideString) {
-    return EpubGuideReader.fromString(guideString);
+  factory EpubGuide.fromXmlString(String guideString) {
+    return EpubGuideReader.fromXmlString(guideString);
   }
 
   /// Create an instance of [EpubGuide] from the [Uint8List] data
@@ -48,8 +48,10 @@ class EpubGuide extends Equatable {
 
   factory EpubGuide.fromMap(Map<String, dynamic> map) {
     return EpubGuide(
-      // ignore: unnecessary_lambdas
-      items: List<EpubGuideItem>.from(map['items']?.map((e) => EpubGuideItem.fromMap(e))),
+      items: List<EpubGuideItem>.from(
+        // ignore: unnecessary_lambdas
+        map['items']?.map((e) => EpubGuideItem.fromMap(e)),
+      ),
     );
   }
 

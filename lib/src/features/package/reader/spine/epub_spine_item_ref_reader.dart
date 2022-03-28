@@ -14,9 +14,9 @@ class EpubSpineItemRefReader {
   /// of the itemref element
   ///
   /// Throws [EpubException] if the string does not have the itemref element
-  static EpubSpineItemRef fromString(String itemrefString) {
+  static EpubSpineItemRef fromXmlString(String itemrefString) {
     final controller =
-        EpubSpineItemRefReaderController.fromString(itemrefString);
+        EpubSpineItemRefReaderController.fromXmlString(itemrefString);
     return _fromController(controller);
   }
 

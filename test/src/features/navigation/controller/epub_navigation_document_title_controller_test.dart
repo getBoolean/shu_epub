@@ -22,7 +22,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without docTitle element, expect EpubException thrown',
       () async {
@@ -30,7 +30,8 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubNavigationDocumentTitleReaderController.fromString(input),
+          () =>
+              EpubNavigationDocumentTitleReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -46,7 +47,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentTitleReaderController.fromString(input);
+            EpubNavigationDocumentTitleReaderController.fromXmlString(input);
         final id = controller.getId();
 
         expect(id, isNull);
@@ -61,7 +62,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentTitleReaderController.fromString(input);
+            EpubNavigationDocumentTitleReaderController.fromXmlString(input);
         final id = controller.getId();
 
         expect(id, '1');
@@ -78,7 +79,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentTitleReaderController.fromString(input);
+            EpubNavigationDocumentTitleReaderController.fromXmlString(input);
         final lang = controller.getLanguage();
 
         expect(lang, isNull);
@@ -93,7 +94,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentTitleReaderController.fromString(input);
+            EpubNavigationDocumentTitleReaderController.fromXmlString(input);
         final lang = controller.getLanguage();
 
         expect(lang, 'en-US');
@@ -108,7 +109,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentTitleReaderController.fromString(input);
+            EpubNavigationDocumentTitleReaderController.fromXmlString(input);
         final lang = controller.getLanguage();
 
         expect(lang, 'en-US');
@@ -125,7 +126,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentTitleReaderController.fromString(input);
+            EpubNavigationDocumentTitleReaderController.fromXmlString(input);
         final text = controller.getText();
 
         expect(text, isNull);
@@ -141,7 +142,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentTitleReaderController.fromString(input);
+            EpubNavigationDocumentTitleReaderController.fromXmlString(input);
         final text = controller.getText();
 
         expect(text, 'test');
@@ -158,7 +159,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentTitleReaderController.fromString(input);
+            EpubNavigationDocumentTitleReaderController.fromXmlString(input);
         final image = controller.getImage();
 
         expect(image, isNull);
@@ -174,7 +175,7 @@ void main() {
 </docTitle>
 ''';
         final controller =
-            EpubNavigationDocumentTitleReaderController.fromString(input);
+            EpubNavigationDocumentTitleReaderController.fromXmlString(input);
         final expectedValue = EpubNavigationImage(source: 'path/to/image.png');
         final image = controller.getImage();
 

@@ -37,8 +37,8 @@ class EpubGuideItem extends Equatable {
   /// of the reference element
   ///
   /// Throws [EpubException] if the string does not have the reference element
-  factory EpubGuideItem.fromString(String referenceString) {
-    return EpubGuideItemReader.fromString(referenceString);
+  factory EpubGuideItem.fromXmlString(String referenceString) {
+    return EpubGuideItemReader.fromXmlString(referenceString);
   }
 
   /// Create an instance of [EpubGuideItem] from the [Uint8List] data

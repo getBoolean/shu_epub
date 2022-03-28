@@ -27,7 +27,7 @@ class EpubSpineItemRefReaderController {
   /// of the itemref element
   ///
   /// Throws [EpubException] if the string does not have the itemref element
-  factory EpubSpineItemRefReaderController.fromString(String itemrefString) {
+  factory EpubSpineItemRefReaderController.fromXmlString(String itemrefString) {
     final stringList = itemrefString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubSpineItemRefReaderController(data);

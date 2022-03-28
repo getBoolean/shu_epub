@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without navigation element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubNavigationReaderController.fromString(input),
+          () => EpubNavigationReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -43,7 +43,7 @@ void main() {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/"></ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final version = controller.getVersion();
 
         expect(version, isNull);
@@ -56,7 +56,7 @@ void main() {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1"></ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final version = controller.getVersion();
 
         expect(version, '2005-1');
@@ -71,7 +71,7 @@ void main() {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/"></ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final language = controller.getLanguage();
 
         expect(language, isNull);
@@ -84,7 +84,7 @@ void main() {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" xml:lang="en-US"></ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final language = controller.getLanguage();
 
         expect(language, 'en-US');
@@ -96,7 +96,7 @@ void main() {
         final input = '''
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" lang="en-US"></ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final language = controller.getLanguage();
 
         expect(language, 'en-US');
@@ -112,7 +112,7 @@ void main() {
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
 </ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final head = controller.getHead();
 
         expect(
@@ -130,7 +130,7 @@ void main() {
   <head></head>
 </ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final expectedValue = EpubNavigationHead();
         final head = controller.getHead();
 
@@ -147,7 +147,7 @@ void main() {
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
 </ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final docTitle = controller.getDocTitle();
 
         expect(
@@ -165,7 +165,7 @@ void main() {
   <docTitle></docTitle>
 </ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final expectedValue = EpubNavigationDocumentTitle();
         final docTitle = controller.getDocTitle();
 
@@ -182,7 +182,7 @@ void main() {
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
 </ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final docAuthors = controller.getDocAuthors();
 
         expect(docAuthors, isEmpty);
@@ -198,7 +198,7 @@ void main() {
   </docAuthor>
 </ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final expectedValue = [EpubNavigationDocumentAuthor()];
         final docAuthors = controller.getDocAuthors();
 
@@ -215,7 +215,7 @@ void main() {
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
 </ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final navMap = controller.getNavigationMap();
 
         expect(
@@ -233,7 +233,7 @@ void main() {
   <navMap></navMap>
 </ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final expectedValue = EpubNavigationMap();
         final navMap = controller.getNavigationMap();
 
@@ -250,7 +250,7 @@ void main() {
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
 </ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final pageList = controller.getPageList();
 
         expect(pageList, isNull);
@@ -266,7 +266,7 @@ void main() {
   </pageList>
 </ncx>
 ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final expectedValue = EpubNavigationPageList();
         final pageList = controller.getPageList();
 
@@ -283,7 +283,7 @@ void main() {
   <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
   </ncx>
   ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final actualValue = controller.getPageList();
 
         expect(actualValue, isNull);
@@ -299,7 +299,7 @@ void main() {
     </pageList>
   </ncx>
   ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final expectedValue = EpubNavigationPageList();
         final actualValue = controller.getPageList();
 
@@ -316,7 +316,7 @@ void main() {
   <ncx>
   </ncx>
   ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final actualValue = controller.getNavigationLists();
 
         expect(actualValue, isEmpty);
@@ -332,7 +332,7 @@ void main() {
     </navList>
   </ncx>
   ''';
-        final controller = EpubNavigationReaderController.fromString(input);
+        final controller = EpubNavigationReaderController.fromXmlString(input);
         final expectedValue = [EpubNavigationList()];
         final actualValue = controller.getNavigationLists();
 

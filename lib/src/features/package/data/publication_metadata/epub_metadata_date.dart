@@ -22,8 +22,8 @@ class EpubMetadataDate extends Equatable {
   /// of the date element
   ///
   /// Throws [EpubException] if the string does not have the date element
-  factory EpubMetadataDate.fromString(String dateString) {
-    return EpubMetadataDateReader.fromString(dateString);
+  factory EpubMetadataDate.fromXmlString(String dateString) {
+    return EpubMetadataDateReader.fromXmlString(dateString);
   }
 
   /// Create an instance of [EpubMetadataDate] from the [Uint8List] data

@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without dc:identifier element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubMetadataIdentifierReaderController.fromString(input),
+          () => EpubMetadataIdentifierReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -45,7 +45,7 @@ void main() {
   </dc:identifier>
   ''';
         final controller =
-            EpubMetadataIdentifierReaderController.fromString(input);
+            EpubMetadataIdentifierReaderController.fromXmlString(input);
         final actualValue = controller.getValue();
 
         expect(actualValue, isEmpty);
@@ -59,7 +59,7 @@ void main() {
   <dc:identifier>test</dc:identifier>
   ''';
         final controller =
-            EpubMetadataIdentifierReaderController.fromString(input);
+            EpubMetadataIdentifierReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getValue();
 
@@ -76,7 +76,7 @@ void main() {
   <dc:identifier></dc:identifier>
   ''';
         final controller =
-            EpubMetadataIdentifierReaderController.fromString(input);
+            EpubMetadataIdentifierReaderController.fromXmlString(input);
         final actualValue = controller.getId();
 
         expect(actualValue, isNull);
@@ -90,7 +90,7 @@ void main() {
   <dc:identifier id="test"></dc:identifier>
   ''';
         final controller =
-            EpubMetadataIdentifierReaderController.fromString(input);
+            EpubMetadataIdentifierReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getId();
 
@@ -107,7 +107,7 @@ void main() {
   <dc:identifier></dc:identifier>
   ''';
         final controller =
-            EpubMetadataIdentifierReaderController.fromString(input);
+            EpubMetadataIdentifierReaderController.fromXmlString(input);
         final actualValue = controller.getScheme();
 
         expect(actualValue, isNull);
@@ -121,7 +121,7 @@ void main() {
   <dc:identifier scheme="test"></dc:identifier>
   ''';
         final controller =
-            EpubMetadataIdentifierReaderController.fromString(input);
+            EpubMetadataIdentifierReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getScheme();
 

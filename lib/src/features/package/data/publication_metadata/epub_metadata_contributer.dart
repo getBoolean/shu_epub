@@ -25,8 +25,8 @@ class EpubMetadataContributer extends Equatable {
   /// of the contributor or author element
   ///
   /// Throws [EpubException] if the string does not have the contributor or author element
-  factory EpubMetadataContributer.fromString(String content) {
-    return EpubMetadataContributerReader.fromString(content);
+  factory EpubMetadataContributer.fromXmlString(String content) {
+    return EpubMetadataContributerReader.fromXmlString(content);
   }
 
   /// Create an instance of [EpubMetadataContributer] from the [Uint8List] data

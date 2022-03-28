@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without container element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubContainerReaderController.fromString(input),
+          () => EpubContainerReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -43,7 +43,7 @@ void main() {
         final input = '''
   <container xmlns:svg="http://www.w3.org/2000/svg" xmlns="urn:oasis:names:tc:opendocument:xmlns:container"></container>
   ''';
-        final controller = EpubContainerReaderController.fromString(input);
+        final controller = EpubContainerReaderController.fromXmlString(input);
         final actualValue = controller.getVersion();
 
         expect(actualValue, isNull);
@@ -56,7 +56,7 @@ void main() {
         final input = '''
   <container xmlns:svg="http://www.w3.org/2000/svg" xmlns="urn:oasis:names:tc:opendocument:xmlns:container" version="test"></container>
   ''';
-        final controller = EpubContainerReaderController.fromString(input);
+        final controller = EpubContainerReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getVersion();
 
@@ -73,7 +73,7 @@ void main() {
   <container>
   </container>
   ''';
-        final controller = EpubContainerReaderController.fromString(input);
+        final controller = EpubContainerReaderController.fromXmlString(input);
         final actualValue = controller.getRootfiles();
 
         expect(actualValue, isNull);
@@ -89,7 +89,7 @@ void main() {
       </rootfiles>
   </container>
   ''';
-        final controller = EpubContainerReaderController.fromString(input);
+        final controller = EpubContainerReaderController.fromXmlString(input);
         final expectedValue = RootfileList();
         final actualValue = controller.getRootfiles();
 

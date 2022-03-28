@@ -12,9 +12,10 @@ class EpubNavigationDocumentAuthorReader {
     return _fromController(controller);
   }
 
-  static EpubNavigationDocumentAuthor fromString(String docAuthorString) {
-    final controller = EpubNavigationDocumentAuthorReaderController.fromString(
-        docAuthorString);
+  static EpubNavigationDocumentAuthor fromXmlString(String docAuthorString) {
+    final controller =
+        EpubNavigationDocumentAuthorReaderController.fromXmlString(
+            docAuthorString);
     return _fromController(controller);
   }
 

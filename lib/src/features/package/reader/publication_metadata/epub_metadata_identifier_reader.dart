@@ -14,9 +14,9 @@ class EpubMetadataIdentifierReader {
   /// of the dc:identifier element
   ///
   /// Throws [EpubException] if the string does not have the dc:identifier element
-  static EpubMetadataIdentifier fromString(String dcidentifierString) {
-    final controller =
-        EpubMetadataIdentifierReaderController.fromString(dcidentifierString);
+  static EpubMetadataIdentifier fromXmlString(String dcidentifierString) {
+    final controller = EpubMetadataIdentifierReaderController.fromXmlString(
+        dcidentifierString);
     return _fromController(controller);
   }
 

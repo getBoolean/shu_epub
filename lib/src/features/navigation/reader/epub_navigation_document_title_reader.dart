@@ -12,9 +12,10 @@ class EpubNavigationDocumentTitleReader {
     return _fromController(controller);
   }
 
-  static EpubNavigationDocumentTitle fromString(String docTitleString) {
+  static EpubNavigationDocumentTitle fromXmlString(String docTitleString) {
     final controller =
-        EpubNavigationDocumentTitleReaderController.fromString(docTitleString);
+        EpubNavigationDocumentTitleReaderController.fromXmlString(
+            docTitleString);
     return _fromController(controller);
   }
 

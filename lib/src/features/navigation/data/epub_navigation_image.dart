@@ -15,8 +15,8 @@ class EpubNavigationImage extends Equatable {
     return EpubNavigationImageReader.fromXmlElement(imgElement);
   }
 
-  factory EpubNavigationImage.fromString(String imgString) {
-    return EpubNavigationImageReader.fromString(imgString);
+  factory EpubNavigationImage.fromXmlString(String imgString) {
+    return EpubNavigationImageReader.fromXmlString(imgString);
   }
 
   /// Create an instance of [EpubNavigationImage] from the [Uint8List] data

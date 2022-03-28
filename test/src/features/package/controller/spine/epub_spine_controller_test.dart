@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without spine element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubSpineReaderController.fromString(input),
+          () => EpubSpineReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -43,7 +43,7 @@ void main() {
         final input = '''
   <spine></spine>
   ''';
-        final controller = EpubSpineReaderController.fromString(input);
+        final controller = EpubSpineReaderController.fromXmlString(input);
         final actualValue = controller.getTocId();
 
         expect(actualValue, isNull);
@@ -56,7 +56,7 @@ void main() {
         final input = '''
   <spine toc="test"></spine>
   ''';
-        final controller = EpubSpineReaderController.fromString(input);
+        final controller = EpubSpineReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getTocId();
 
@@ -73,7 +73,7 @@ void main() {
   <spine>
   </spine>
   ''';
-        final controller = EpubSpineReaderController.fromString(input);
+        final controller = EpubSpineReaderController.fromXmlString(input);
         final actualValue = controller.getItemRefs();
 
         expect(actualValue, isEmpty);
@@ -89,7 +89,7 @@ void main() {
       </itemref>
   </spine>
   ''';
-        final controller = EpubSpineReaderController.fromString(input);
+        final controller = EpubSpineReaderController.fromXmlString(input);
         final expectedValue = [EpubSpineItemRef()];
         final actualValue = controller.getItemRefs();
 

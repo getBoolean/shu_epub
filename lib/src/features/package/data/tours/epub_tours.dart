@@ -16,8 +16,8 @@ class EpubTours extends Equatable {
   /// of the tours element
   ///
   /// Throws [EpubException] if the string does not have the tours element
-  factory EpubTours.fromString(String toursString) {
-    return EpubToursReader.fromString(toursString);
+  factory EpubTours.fromXmlString(String toursString) {
+    return EpubToursReader.fromXmlString(toursString);
   }
 
   /// Create an instance of [EpubTours] from the [Uint8List] data
@@ -48,10 +48,9 @@ class EpubTours extends Equatable {
 
   factory EpubTours.fromMap(Map<String, dynamic> map) {
     return EpubTours(
-      items:
-          List<EpubSingleTour>.from(
-              // ignore: unnecessary_lambdas
-              map['items']?.map((e) => EpubSingleTour.fromMap(e))),
+      items: List<EpubSingleTour>.from(
+          // ignore: unnecessary_lambdas
+          map['items']?.map((e) => EpubSingleTour.fromMap(e))),
     );
   }
 

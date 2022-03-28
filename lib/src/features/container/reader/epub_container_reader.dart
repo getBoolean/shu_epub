@@ -26,9 +26,9 @@ class EpubContainerReader {
   /// of the container element
   ///
   /// Throws [EpubException] if the string does not have the container element
-  static EpubContainer fromString(String containerString) {
+  static EpubContainer fromXmlString(String containerString) {
     final controller =
-        EpubContainerReaderController.fromString(containerString);
+        EpubContainerReaderController.fromXmlString(containerString);
     return _fromController(controller);
   }
 

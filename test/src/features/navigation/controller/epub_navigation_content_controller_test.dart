@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without content element, expect exception thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubNavigationContentReaderController.fromString(input),
+          () => EpubNavigationContentReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -44,7 +44,7 @@ void main() {
   <content></content>
   ''';
         final controller =
-            EpubNavigationContentReaderController.fromString(input);
+            EpubNavigationContentReaderController.fromXmlString(input);
         final actualValue = controller.getId();
 
         expect(actualValue, isNull);
@@ -58,7 +58,7 @@ void main() {
   <content id="test"></content>
   ''';
         final controller =
-            EpubNavigationContentReaderController.fromString(input);
+            EpubNavigationContentReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getId();
 
@@ -75,7 +75,7 @@ void main() {
   <content></content>
   ''';
         final controller =
-            EpubNavigationContentReaderController.fromString(input);
+            EpubNavigationContentReaderController.fromXmlString(input);
         final actualValue = controller.getSource();
 
         expect(actualValue, isNull);
@@ -89,7 +89,7 @@ void main() {
   <content src="test"></content>
   ''';
         final controller =
-            EpubNavigationContentReaderController.fromString(input);
+            EpubNavigationContentReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getSource();
 

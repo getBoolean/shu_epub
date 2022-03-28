@@ -25,7 +25,8 @@ class EpubNavigationReaderController with LanguageMixin, VersionMixin {
     );
   }
 
-  factory EpubNavigationReaderController.fromString(String navigationString) {
+  factory EpubNavigationReaderController.fromXmlString(
+      String navigationString) {
     final stringList = navigationString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubNavigationReaderController(data);

@@ -32,8 +32,8 @@ class EpubMetadataIdentifier extends Equatable {
   /// of the dc:identifier element
   ///
   /// Throws [EpubException] if the string does not have the dc:identifier element
-  factory EpubMetadataIdentifier.fromString(String dcidentifierString) {
-    return EpubMetadataIdentifierReader.fromString(dcidentifierString);
+  factory EpubMetadataIdentifier.fromXmlString(String dcidentifierString) {
+    return EpubMetadataIdentifierReader.fromXmlString(dcidentifierString);
   }
 
   /// Create an instance of [EpubMetadataIdentifier] from the [Uint8List] data

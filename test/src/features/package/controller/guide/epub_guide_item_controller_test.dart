@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without reference element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubGuideItemReaderController.fromString(input),
+          () => EpubGuideItemReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -43,7 +43,7 @@ void main() {
         final input = '''
   <reference></reference>
   ''';
-        final controller = EpubGuideItemReaderController.fromString(input);
+        final controller = EpubGuideItemReaderController.fromXmlString(input);
         final actualValue = controller.getTitle();
 
         expect(actualValue, isNull);
@@ -56,7 +56,7 @@ void main() {
         final input = '''
   <reference title="test"></reference>
   ''';
-        final controller = EpubGuideItemReaderController.fromString(input);
+        final controller = EpubGuideItemReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getTitle();
 
@@ -72,7 +72,7 @@ void main() {
         final input = '''
   <reference></reference>
   ''';
-        final controller = EpubGuideItemReaderController.fromString(input);
+        final controller = EpubGuideItemReaderController.fromXmlString(input);
         final actualValue = controller.getType();
 
         expect(actualValue, isNull);
@@ -85,7 +85,7 @@ void main() {
         final input = '''
   <reference type="test"></reference>
   ''';
-        final controller = EpubGuideItemReaderController.fromString(input);
+        final controller = EpubGuideItemReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getType();
 
@@ -101,7 +101,7 @@ void main() {
         final input = '''
   <reference></reference>
   ''';
-        final controller = EpubGuideItemReaderController.fromString(input);
+        final controller = EpubGuideItemReaderController.fromXmlString(input);
         final actualValue = controller.getHref();
 
         expect(actualValue, isNull);
@@ -114,7 +114,7 @@ void main() {
         final input = '''
   <reference href="test"></reference>
   ''';
-        final controller = EpubGuideItemReaderController.fromString(input);
+        final controller = EpubGuideItemReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getHref();
 

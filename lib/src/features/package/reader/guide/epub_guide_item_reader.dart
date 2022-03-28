@@ -14,9 +14,9 @@ class EpubGuideItemReader {
   /// of the reference element
   ///
   /// Throws [EpubException] if the string does not have the reference element
-  static EpubGuideItem fromString(String referenceString) {
+  static EpubGuideItem fromXmlString(String referenceString) {
     final controller =
-        EpubGuideItemReaderController.fromString(referenceString);
+        EpubGuideItemReaderController.fromXmlString(referenceString);
     return _fromController(controller);
   }
 

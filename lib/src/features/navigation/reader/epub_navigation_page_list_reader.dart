@@ -10,9 +10,9 @@ class EpubNavigationPageListReader {
     return _fromController(controller);
   }
 
-  static EpubNavigationPageList fromString(String pageListString) {
+  static EpubNavigationPageList fromXmlString(String pageListString) {
     final controller =
-        EpubNavigationPageListReaderController.fromString(pageListString);
+        EpubNavigationPageListReaderController.fromXmlString(pageListString);
     return _fromController(controller);
   }
 

@@ -21,8 +21,8 @@ class EpubNavigationInfo extends Equatable {
   /// of the navInfo element
   ///
   /// Throws [EpubException] if the string does not have the navInfo element
-  factory EpubNavigationInfo.fromString(String navInfoString) {
-    return EpubNavigationInfoReader.fromString(navInfoString);
+  factory EpubNavigationInfo.fromXmlString(String navInfoString) {
+    return EpubNavigationInfoReader.fromXmlString(navInfoString);
   }
 
   /// Create an instance of [EpubNavigationInfo] from the [Uint8List] data

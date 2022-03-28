@@ -27,7 +27,7 @@ class EpubTourSiteReaderController with HrefMixin {
   /// of the site element
   ///
   /// Throws [EpubException] if the string does not have the site element
-  factory EpubTourSiteReaderController.fromString(String siteString) {
+  factory EpubTourSiteReaderController.fromXmlString(String siteString) {
     final stringList = siteString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubTourSiteReaderController(data);

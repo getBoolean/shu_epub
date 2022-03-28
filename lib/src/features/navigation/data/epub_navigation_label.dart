@@ -23,8 +23,8 @@ class EpubNavigationLabel extends Equatable {
   /// of the navLabel element
   ///
   /// Throws [EpubException] if the string does not have the navLabel element
-  factory EpubNavigationLabel.fromString(String navLabelString) {
-    return EpubNavigationLabelReader.fromString(navLabelString);
+  factory EpubNavigationLabel.fromXmlString(String navLabelString) {
+    return EpubNavigationLabelReader.fromXmlString(navLabelString);
   }
 
   /// Create an instance of [EpubNavigationLabel] from the [Uint8List] data

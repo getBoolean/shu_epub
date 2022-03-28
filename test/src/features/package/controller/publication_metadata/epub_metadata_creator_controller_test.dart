@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without dc:creator element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubMetadataCreatorReaderController.fromString(input),
+          () => EpubMetadataCreatorReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -45,7 +45,7 @@ void main() {
   </dc:creator>
   ''';
         final controller =
-            EpubMetadataCreatorReaderController.fromString(input);
+            EpubMetadataCreatorReaderController.fromXmlString(input);
         final actualValue = controller.getName();
 
         expect(actualValue, isEmpty);
@@ -59,7 +59,7 @@ void main() {
   <dc:creator>test</dc:creator>
   ''';
         final controller =
-            EpubMetadataCreatorReaderController.fromString(input);
+            EpubMetadataCreatorReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getName();
 
@@ -76,7 +76,7 @@ void main() {
   <dc:creator></dc:creator>
   ''';
         final controller =
-            EpubMetadataCreatorReaderController.fromString(input);
+            EpubMetadataCreatorReaderController.fromXmlString(input);
         final actualValue = controller.getFileAs();
 
         expect(actualValue, isNull);
@@ -90,7 +90,7 @@ void main() {
   <dc:creator file-as="test"></dc:creator>
   ''';
         final controller =
-            EpubMetadataCreatorReaderController.fromString(input);
+            EpubMetadataCreatorReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getFileAs();
 
@@ -105,7 +105,7 @@ void main() {
   <dc:creator opf:file-as="test"></dc:creator>
   ''';
         final controller =
-            EpubMetadataCreatorReaderController.fromString(input);
+            EpubMetadataCreatorReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getFileAs();
 
@@ -122,7 +122,7 @@ void main() {
   <dc:creator></dc:creator>
   ''';
         final controller =
-            EpubMetadataCreatorReaderController.fromString(input);
+            EpubMetadataCreatorReaderController.fromXmlString(input);
         final actualValue = controller.getRole();
 
         expect(actualValue, isNull);
@@ -136,7 +136,7 @@ void main() {
   <dc:creator role="test"></dc:creator>
   ''';
         final controller =
-            EpubMetadataCreatorReaderController.fromString(input);
+            EpubMetadataCreatorReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getRole();
 
@@ -151,7 +151,7 @@ void main() {
   <dc:creator opf:role="test"></dc:creator>
   ''';
         final controller =
-            EpubMetadataCreatorReaderController.fromString(input);
+            EpubMetadataCreatorReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getRole();
 

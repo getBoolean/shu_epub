@@ -17,8 +17,8 @@ class EpubNavigationHead extends Equatable {
     return EpubNavigationHeadReader.fromXmlElement(headElement);
   }
 
-  factory EpubNavigationHead.fromString(String headString) {
-    return EpubNavigationHeadReader.fromString(headString);
+  factory EpubNavigationHead.fromXmlString(String headString) {
+    return EpubNavigationHeadReader.fromXmlString(headString);
   }
 
   /// Create an instance of [EpubNavigationHead] from the [Uint8List] data

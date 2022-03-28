@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without img element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubNavigationImageReaderController.fromString(input),
+          () => EpubNavigationImageReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -45,7 +45,7 @@ void main() {
   </img>
   ''';
         final controller =
-            EpubNavigationImageReaderController.fromString(input);
+            EpubNavigationImageReaderController.fromXmlString(input);
         final actualValue = controller.getSource();
 
         expect(actualValue, isNull);
@@ -60,7 +60,7 @@ void main() {
   </img>
   ''';
         final controller =
-            EpubNavigationImageReaderController.fromString(input);
+            EpubNavigationImageReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getSource();
 
@@ -77,7 +77,7 @@ void main() {
   <img></img>
   ''';
         final controller =
-            EpubNavigationImageReaderController.fromString(input);
+            EpubNavigationImageReaderController.fromXmlString(input);
         final actualValue = controller.getClassType();
 
         expect(actualValue, isNull);
@@ -91,7 +91,7 @@ void main() {
   <img class="test"></img>
   ''';
         final controller =
-            EpubNavigationImageReaderController.fromString(input);
+            EpubNavigationImageReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getClassType();
 
@@ -108,7 +108,7 @@ void main() {
   <img></img>
   ''';
         final controller =
-            EpubNavigationImageReaderController.fromString(input);
+            EpubNavigationImageReaderController.fromXmlString(input);
         final actualValue = controller.getId();
 
         expect(actualValue, isNull);
@@ -122,7 +122,7 @@ void main() {
   <img id="test"></img>
   ''';
         final controller =
-            EpubNavigationImageReaderController.fromString(input);
+            EpubNavigationImageReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getId();
 

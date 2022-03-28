@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without rootfile element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => Rootfile.fromString(input),
+          () => Rootfile.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -44,7 +44,7 @@ void main() {
   <rootfile></rootfile>
   ''';
         final controller =
-            EpubContainerRootfileReaderController.fromString(input);
+            EpubContainerRootfileReaderController.fromXmlString(input);
         final actualValue = controller.getMediaType();
 
         expect(actualValue, isNull);
@@ -58,7 +58,7 @@ void main() {
   <rootfile media-type="test"></rootfile>
   ''';
         final controller =
-            EpubContainerRootfileReaderController.fromString(input);
+            EpubContainerRootfileReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getMediaType();
 
@@ -75,7 +75,7 @@ void main() {
   <rootfile></rootfile>
   ''';
         final controller =
-            EpubContainerRootfileReaderController.fromString(input);
+            EpubContainerRootfileReaderController.fromXmlString(input);
         final actualValue = controller.getFullPath();
 
         expect(actualValue, isNull);
@@ -89,7 +89,7 @@ void main() {
   <rootfile full-path="test"></rootfile>
   ''';
         final controller =
-            EpubContainerRootfileReaderController.fromString(input);
+            EpubContainerRootfileReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getFullPath();
 

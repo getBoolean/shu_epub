@@ -21,7 +21,7 @@ void main() {
     );
   });
 
-  group('fromString', () {
+  group('fromXmlString', () {
     test(
       'on input without navList element, expect EpubException thrown',
       () async {
@@ -29,7 +29,7 @@ void main() {
   <invalid></invalid>
   ''';
         expect(
-          () => EpubNavigationListReaderController.fromString(input),
+          () => EpubNavigationListReaderController.fromXmlString(input),
           throwsA(isA<EpubException>()),
         );
       },
@@ -44,7 +44,8 @@ void main() {
 <navList>
 </navList>
 ''';
-        final controller = EpubNavigationListReaderController.fromString(input);
+        final controller =
+            EpubNavigationListReaderController.fromXmlString(input);
         final navInfoList = controller.getNavigationInfoList();
         expect(navInfoList, isEmpty);
       },
@@ -59,7 +60,8 @@ void main() {
     </navInfo>
 </navList>
 ''';
-        final controller = EpubNavigationListReaderController.fromString(input);
+        final controller =
+            EpubNavigationListReaderController.fromXmlString(input);
         final expectedValue = [EpubNavigationInfo()];
         final navInfoList = controller.getNavigationInfoList();
         expect(navInfoList, expectedValue);
@@ -77,7 +79,8 @@ void main() {
     </navInfo>
 </navList>
 ''';
-        final controller = EpubNavigationListReaderController.fromString(input);
+        final controller =
+            EpubNavigationListReaderController.fromXmlString(input);
         final expectedValue = [
           EpubNavigationInfo(),
           EpubNavigationInfo(),
@@ -96,7 +99,8 @@ void main() {
 <navList>
 </navList>
 ''';
-        final controller = EpubNavigationListReaderController.fromString(input);
+        final controller =
+            EpubNavigationListReaderController.fromXmlString(input);
         final navLabels = controller.getNavigationLabels();
         expect(navLabels, isEmpty);
       },
@@ -111,7 +115,8 @@ void main() {
     </navLabel>
 </navList>
 ''';
-        final controller = EpubNavigationListReaderController.fromString(input);
+        final controller =
+            EpubNavigationListReaderController.fromXmlString(input);
         final expectedValue = [
           EpubNavigationLabel(),
         ];
@@ -131,7 +136,8 @@ void main() {
     </navLabel>
 </navList>
 ''';
-        final controller = EpubNavigationListReaderController.fromString(input);
+        final controller =
+            EpubNavigationListReaderController.fromXmlString(input);
         final expectedValue = [
           EpubNavigationLabel(),
           EpubNavigationLabel(),
@@ -150,7 +156,8 @@ void main() {
 <navList>
 </navList>
 ''';
-        final controller = EpubNavigationListReaderController.fromString(input);
+        final controller =
+            EpubNavigationListReaderController.fromXmlString(input);
         final navLabels = controller.getNavigationTargets();
         expect(navLabels, isEmpty);
       },
@@ -165,7 +172,8 @@ void main() {
     </navTarget>
 </navList>
 ''';
-        final controller = EpubNavigationListReaderController.fromString(input);
+        final controller =
+            EpubNavigationListReaderController.fromXmlString(input);
         final expectedValue = [
           EpubNavigationTarget(),
         ];
@@ -185,7 +193,8 @@ void main() {
     </navTarget>
 </navList>
 ''';
-        final controller = EpubNavigationListReaderController.fromString(input);
+        final controller =
+            EpubNavigationListReaderController.fromXmlString(input);
         final expectedValue = [
           EpubNavigationTarget(),
           EpubNavigationTarget(),

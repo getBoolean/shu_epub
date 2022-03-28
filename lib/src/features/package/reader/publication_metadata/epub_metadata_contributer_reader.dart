@@ -21,7 +21,7 @@ class EpubMetadataContributerReader {
   /// of the contributer or author element
   ///
   /// Throws [EpubException] if the string does not have the contributer or author element
-  static EpubMetadataContributer fromString(String content) {
+  static EpubMetadataContributer fromXmlString(String content) {
     final xmlDocument = XmlUtils.parseToXmlDocument(content);
     final dccontributorElement = xmlDocument
         .findElements(EpubMetadataContributer.contributorElementName)
@@ -29,11 +29,11 @@ class EpubMetadataContributerReader {
 
     if (dccontributorElement == null) {
       final controller =
-          EpubMetadataContributorReaderController.fromString(content);
+          EpubMetadataContributorReaderController.fromXmlString(content);
       return _fromContributorController(controller);
     } else {
       final controller =
-          EpubMetadataCreatorReaderController.fromString(content);
+          EpubMetadataCreatorReaderController.fromXmlString(content);
       return _fromCreatorController(controller);
     }
   }
