@@ -12,11 +12,15 @@ tasks:
   #    dart pub get
   - command: |
       dart pub get
-      eval $(command gp env -e)
+      eval $(command gp env -e) # Load environment variables
+
       WAKATIME_PATH=~/.wakatime.cfg
       rm $WAKATIME_PATH
-      touch $WAKATIME_PATH
       echo -n "${WAKATIME}" | base64 --decode  > $WAKATIME_PATH
+
+      VSCODE_SETTINGS_PATH=$HOME/.config/Code/User/settings.json
+      rm $VSCODE_SETTINGS_PATH
+      echo -n "${VSCODE_SETTINGS}" | base64 --decode  > $VSCODE_SETTINGS_PATH
 
 ports:
   - port: 5900
