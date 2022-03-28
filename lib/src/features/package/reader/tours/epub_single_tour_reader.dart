@@ -31,6 +31,10 @@ class EpubSingleTourReader {
   static EpubSingleTour _fromController(
     EpubSingleTourReaderController controller,
   ) {
-    return EpubSingleTour(sites: controller.getSites());
+    return EpubSingleTour(
+      sites: controller.getSites(),
+      id: controller.getId(),
+      title: controller.getTitle(),
+    );
   }
 }
