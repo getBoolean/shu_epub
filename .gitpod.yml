@@ -21,6 +21,8 @@ tasks:
 
       VSCODE_SETTINGS_PATH=$HOME/.config/Code/User/settings.json
       rm $VSCODE_SETTINGS_PATH
+      mkdir $HOME/.config/Code
+      mkdir $HOME/.config/Code/User
       touch $VSCODE_SETTINGS_PATH
       echo -n "${VSCODE_SETTINGS}" | base64 --decode  > $VSCODE_SETTINGS_PATH
 
