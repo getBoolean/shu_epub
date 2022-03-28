@@ -8,11 +8,7 @@ tasks:
       flutter upgrade
       dart pub get
       dart --disable-analytics
-  - env:
-      WAKATIME: ${{ secrets.WAKATIME }}
-    init: |
-      flutter channel stable
-      flutter upgrade
+  - init: |
       dart pub get
       WAKATIME_PATH=~/.wakatime.cfg
       echo -n "$WAKATIME" | base64 --decode  > $WAKATIME_PATH
