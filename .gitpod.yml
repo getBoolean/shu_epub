@@ -12,7 +12,8 @@ tasks:
       dart pub get
       eval $(command gp env -e)
       WAKATIME_PATH=~/.wakatime.cfg
-      echo -n "$WAKATIME" | base64 --decode  > $WAKATIME_PATH
+      rm $WAKATIME_PATH
+      echo -n "${WAKATIME}" | base64 --decode  > $WAKATIME_PATH
 
 ports:
   - port: 5900
