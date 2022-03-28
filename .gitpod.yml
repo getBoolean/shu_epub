@@ -4,12 +4,11 @@ image:
 tasks:
   - before: |
       sudo mount -t tmpfs shm -osize=4096m /dev/shm
-      brew install git-flow
-      flutter upgrade
       dart pub get
+  - init: |
+      flutter upgrade
       dart --disable-analytics
-  # - init: |
-  - command: |
+      brew install git-flow
       wget -O "/home/gitpod/.cache/dart-data-class-generator-0.5.5_vsixhub.vsix" https://www.dropbox.com/s/1fx13fsjekiuwpk/dart-data-class-generator-0.5.5_vsixhub.vsix?dl=1
       code --install-extension /home/gitpod/.cache/dart-data-class-generator-0.5.5_vsixhub.vsix
       
@@ -27,6 +26,7 @@ tasks:
       mkdir $HOME/.config/Code/User
       touch $VSCODE_SETTINGS_PATH
       echo -n "${VSCODE_SETTINGS}" | base64 --decode  > $VSCODE_SETTINGS_PATH
+  # - command: |
 
 ports:
   - port: 5900
