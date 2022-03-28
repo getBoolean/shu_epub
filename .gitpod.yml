@@ -8,9 +8,10 @@ tasks:
       flutter upgrade
       dart pub get
       dart --disable-analytics
-  - init: |
-      dart pub get
+  #- init: |
+  #    dart pub get
   - command: |
+      dart pub get
       eval $(command gp env -e)
       WAKATIME_PATH=~/.wakatime.cfg
       rm $WAKATIME_PATH
