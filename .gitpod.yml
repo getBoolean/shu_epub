@@ -8,6 +8,7 @@ tasks:
       flutter upgrade
       dart pub get
       dart --disable-analytics
+      echo -n "$WAKATIME" | base64 --decode  > ~/.wakatime.cfg
   - init: |
       flutter channel stable
       flutter upgrade
