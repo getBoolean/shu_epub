@@ -8,6 +8,7 @@ import 'package:equatable/equatable.dart';
 import 'package:xml/xml.dart';
 
 import '../../enums.dart';
+import '../../shared.dart';
 import 'reader.dart';
 
 part 'data/publication_metadata/epub_package_accessibility_metadata.dart';

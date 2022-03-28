@@ -75,4 +75,14 @@ class EpubSingleTour extends EquatableXml {
 
   @override
   List<Object> get props => [sites, id ?? 'no id', title ?? 'no title'];
+
+  @override
+  String toXmlString() {
+    return '<tour'
+        '${id != null ? ' id="$id"' : ''}'
+        '${title != null ? ' title="$title"' : ''}'
+        '>'
+        '${sites.map((e) => e.toXmlString()).join('')}'
+        '</tour>';
+  }
 }

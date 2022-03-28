@@ -1,6 +1,6 @@
 part of shu_epub.features.container.data;
 
-class Rootfile extends Equatable {
+class Rootfile extends EquatableXml {
   static const elementName = 'rootfile';
 
   /// Relative to the root directory for the Abstract Container and not relative to the META-INF/ directory
@@ -74,4 +74,12 @@ class Rootfile extends Equatable {
   @override
   List<Object> get props =>
       [fullPath ?? 'no fullPath', mediaType ?? 'no mediaType'];
+
+  @override
+  String toXmlString() {
+    return '<rootfile'
+          '${fullPath != null ? ' full-path="$fullPath"' : ''}'
+          '${mediaType != null ? ' media-type="$mediaType"' : ''}'
+          '/>';
+  }
 }

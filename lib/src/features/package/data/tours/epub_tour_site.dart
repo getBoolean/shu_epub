@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-class EpubTourSite extends Equatable {
+class EpubTourSite extends EquatableXml {
   static const elementName = 'site';
 
   final String? title;
@@ -81,4 +81,12 @@ class EpubTourSite extends Equatable {
 
   @override
   List<Object> get props => [title ?? 'no title', href ?? 'no href'];
+
+  @override
+  String toXmlString() {
+    return '<site'
+          '${title != null ? ' title="$title"' : ''}'
+          '${href != null ? ' href="$href"': ''}'
+          '/>';
+  }
 }

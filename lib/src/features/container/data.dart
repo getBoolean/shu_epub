@@ -8,6 +8,7 @@ import 'package:equatable/equatable.dart';
 import 'package:xml/xml.dart';
 
 import '../../constants.dart';
+import '../../shared.dart';
 import '../../utils.dart';
 import 'reader.dart';
 

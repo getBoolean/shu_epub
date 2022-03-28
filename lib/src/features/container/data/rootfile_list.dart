@@ -1,6 +1,6 @@
 part of shu_epub.features.container.data;
 
-class RootfileList extends Equatable {
+class RootfileList extends EquatableXml {
   static const elementName = 'rootfiles';
 
   final List<Rootfile> items;
@@ -63,4 +63,11 @@ class RootfileList extends Equatable {
 
   @override
   List<Object> get props => [items];
+
+  @override
+  String toXmlString() {
+    return '<rootfiles>'
+          '${items.map((e) => e.toXmlString()).join('')}'
+          '</rootfiles>';
+  }
 }

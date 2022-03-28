@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-class EpubTours extends Equatable {
+class EpubTours extends EquatableXml {
   static const elementName = 'tours';
 
   final List<EpubSingleTour> items;
@@ -64,4 +64,11 @@ class EpubTours extends Equatable {
 
   @override
   List<Object> get props => [items];
+
+  @override
+  String toXmlString() {
+    return '<tours>'
+          '${items.map((e) => e.toXmlString()).join('')}'
+          '</tours>';
+  }
 }
