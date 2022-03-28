@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-class EpubManifest extends Equatable {
+class EpubManifest extends EquatableXml {
   static const elementName = 'manifest';
 
   final List<EpubManifestItem> items;
@@ -64,4 +64,9 @@ class EpubManifest extends Equatable {
 
   @override
   List<Object> get props => [items];
+
+  @override
+  String toXmlString() => '<manifest>'
+      '${items.map((e) => e.toXmlString()).join('')}'
+      '</manifest>';
 }

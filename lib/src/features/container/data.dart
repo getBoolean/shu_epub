@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
-import 'package:equatable/equatable.dart';
 import 'package:xml/xml.dart';
 
 import '../../constants.dart';

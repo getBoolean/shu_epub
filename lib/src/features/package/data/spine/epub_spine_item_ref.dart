@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-class EpubSpineItemRef extends Equatable {
+class EpubSpineItemRef extends EquatableXml {
   static const elementName = 'itemref';
 
   final String? idref;
@@ -78,4 +78,10 @@ class EpubSpineItemRef extends Equatable {
 
   @override
   List<Object> get props => [idref ?? 'no idref', linear];
+
+  @override
+  String toXmlString() => '<itemref'
+        '${idref != null ? ' idref="$idref"' : ''}'
+        ' linear="${linear ? 'yes' : 'no'}"'
+        '/>';
 }

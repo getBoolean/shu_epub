@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-class EpubGuide extends Equatable {
+class EpubGuide extends EquatableXml {
   static const elementName = 'guide';
 
   final List<EpubGuideItem> items;
@@ -65,4 +65,9 @@ class EpubGuide extends Equatable {
 
   @override
   List<Object> get props => [items];
+
+  @override
+  String toXmlString() => '<guide>'
+      '${items.map((e) => e.toXmlString()).join('')}'
+      '</guide>';
 }

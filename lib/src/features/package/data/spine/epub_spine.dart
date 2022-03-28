@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-class EpubSpine extends Equatable {
+class EpubSpine extends EquatableXml {
   static const elementName = 'spine';
 
   /// The value is the the id attribute value of the required NCX (`.ncx` document
@@ -150,4 +150,11 @@ class EpubSpine extends Equatable {
 
   @override
   List<Object> get props => [tocId ?? 'no tocId', itemRefs];
+
+  @override
+  String toXmlString() => '<spine'
+      '${tocId != null ? ' toc="$tocId"' : ''}'
+      '>'
+      '${itemRefs.map((e) => e.toXmlString()).join('')}'
+      '</spine>';
 }

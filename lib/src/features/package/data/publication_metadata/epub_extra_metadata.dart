@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-class EpubExtraMetadata extends Equatable {
+class EpubExtraMetadata extends EquatableXml {
   final String? name;
   final String? content;
 
@@ -43,4 +43,10 @@ class EpubExtraMetadata extends Equatable {
 
   @override
   List<Object> get props => [name ?? 'no name', content ?? 'no content'];
+
+  @override
+  String toXmlString() => '<meta'
+      '${name != null ? ' name="$name"' : ''}'
+      '${content != null ? ' content="$content"' : ''}'
+      '/>';
 }

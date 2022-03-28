@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-class EpubManifestItem extends Equatable {
+class EpubManifestItem extends EquatableXml {
   static const elementName = 'item';
 
   final String? id;
@@ -105,6 +105,14 @@ class EpubManifestItem extends Equatable {
       fallback ?? 'no fallback',
     ];
   }
+
+  @override
+  String toXmlString() => '<item'
+      '${id != null ? ' id="$id"' : ''}'
+      '${href != null ? ' href="$href"' : ''}'
+      '${mediaType != null ? ' media-type="$mediaType"' : ''}'
+      '${fallback != null ? ' fallback="$fallback"' : ''}'
+      '/>';
 }
 
 /// An item that specifies a resource that is an Out-Of-Line XML Island
@@ -232,4 +240,14 @@ class EpubManifestItemOutOfLineXMLIsland extends EpubManifestItem {
       requiredModules ?? 'no required modules specified',
     ];
   }
+
+  @override
+  String toXmlString() => '<item'
+      '${id != null ? ' id="$id"' : ''}'
+      '${href != null ? ' href="$href"' : ''}'
+      '${mediaType != null ? ' media-type="$mediaType"' : ''}'
+      '${fallback != null ? ' fallback="$fallback"' : ''}'
+      '${requiredNamespace != null ? ' required-namespace="$requiredNamespace"' : ''}'
+      '${requiredModules != null ? ' required-modules="${requiredModules?.join(',').toLowerCase()}"' : ''}'
+      '/>';
 }

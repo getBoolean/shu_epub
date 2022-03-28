@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-class EpubGuideItem extends Equatable {
+class EpubGuideItem extends EquatableXml {
   static const elementName = 'reference';
 
   /// The required type attribute describes the publication component
@@ -94,4 +94,11 @@ class EpubGuideItem extends Equatable {
   @override
   List<Object> get props =>
       [type ?? 'no type', title ?? 'no title', href ?? 'no href'];
+
+  @override
+  String toXmlString() => '<reference'
+        '${type != null ? ' type="$type"' : ''}'
+        '${title != null ? ' title="$title"' : ''}'
+        '${href != null ? ' href="$href"' : ''}'
+        '/>';
 }
