@@ -8,14 +8,14 @@ tasks:
       flutter upgrade
       dart pub get
       dart --disable-analytics
-      WAKATIME_PATH=~/.wakatime.cfg
-      echo -n "$WAKATIME" | base64 --decode  > $WAKATIME_PATH
-  - init: |
+  - env:
+      WAKATIME: ${{ secrets.WAKATIME }}
+    init: |
       flutter channel stable
       flutter upgrade
       dart pub get
-
-  - command: dart pub get
+      WAKATIME_PATH=~/.wakatime.cfg
+      echo -n "$WAKATIME" | base64 --decode  > $WAKATIME_PATH
 
 ports:
   - port: 5900
