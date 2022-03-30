@@ -75,9 +75,9 @@ class EpubMetadataDate extends EquatableXml {
   List<Object> get props => [value, event ?? 'no event'];
 
   @override
-  String toXmlString() => '<date'
+  String toXmlString() => '<$elementName'
       '${event != null ? ' event="$event"' : ''}'
       '>'
-      '${'<text>"$value"</value>'}'
-      '</date>';
+      '$value'
+      '</$elementName>';
 }

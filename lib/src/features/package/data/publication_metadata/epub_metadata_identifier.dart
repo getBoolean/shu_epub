@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-class EpubMetadataIdentifier extends Equatable {
+class EpubMetadataIdentifier extends EquatableXml {
   static const elementName = 'dc:identifier';
 
   final String value;
@@ -93,4 +93,12 @@ class EpubMetadataIdentifier extends Equatable {
         id ?? 'no id given',
         scheme ?? 'no scheme given',
       ];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${scheme != null ? ' scheme="$scheme"' : ''}'
+      '>'
+      '$value'
+      '</$elementName>';
 }
