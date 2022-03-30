@@ -11,7 +11,6 @@ import '../../enums.dart';
 import '../../shared.dart';
 import 'reader.dart';
 
-part 'data/publication_metadata/epub_package_accessibility_metadata.dart';
 part 'data/publication_metadata/epub_extra_metadata.dart';
 part 'data/publication_metadata/epub_metadata_creator.dart';
 part 'data/publication_metadata/epub_metadata_contributor.dart';
