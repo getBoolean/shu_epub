@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-class EpubMetadataCreator extends Equatable {
+class EpubMetadataCreator extends EquatableXml {
   static const elementName = 'dc:creator';
 
   final String name;
@@ -85,4 +85,12 @@ class EpubMetadataCreator extends Equatable {
         fileAs ?? 'no normalized version given',
         role ?? 'no role specified'
       ];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${fileAs != null ? ' file-as="$fileAs"' : ''}'
+      '${role != null ? ' role="$role"' : ''}'
+      '>'
+      '${'<text>"$name"<value/>'}'
+      '<$elementName/>';
 }
