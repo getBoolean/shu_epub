@@ -67,7 +67,7 @@ class EpubGuide extends EquatableXml {
   List<Object> get props => [items];
 
   @override
-  String toXmlString() => '<guide>'
+  String toXmlString() => '<$elementName>'
       '${items.map((e) => e.toXmlString()).join('')}'
-      '</guide>';
+      '</$elementName>';
 }

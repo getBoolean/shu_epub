@@ -96,7 +96,7 @@ class EpubGuideItem extends EquatableXml {
       [type ?? 'no type', title ?? 'no title', href ?? 'no href'];
 
   @override
-  String toXmlString() => '<reference'
+  String toXmlString() => '<$elementName'
         '${type != null ? ' type="$type"' : ''}'
         '${title != null ? ' title="$title"' : ''}'
         '${href != null ? ' href="$href"' : ''}'

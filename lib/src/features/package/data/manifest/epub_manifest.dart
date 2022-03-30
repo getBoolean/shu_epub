@@ -66,7 +66,7 @@ class EpubManifest extends EquatableXml {
   List<Object> get props => [items];
 
   @override
-  String toXmlString() => '<manifest>'
+  String toXmlString() => '<$elementName>'
       '${items.map((e) => e.toXmlString()).join('')}'
-      '</manifest>';
+      '</$elementName>';
 }

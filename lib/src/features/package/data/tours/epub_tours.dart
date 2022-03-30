@@ -67,8 +67,8 @@ class EpubTours extends EquatableXml {
 
   @override
   String toXmlString() {
-    return '<tours>'
+    return '<$elementName>'
           '${items.map((e) => e.toXmlString()).join('')}'
-          '</tours>';
+          '</$elementName>';
   }
 }

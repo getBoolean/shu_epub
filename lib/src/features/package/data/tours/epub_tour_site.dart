@@ -84,7 +84,7 @@ class EpubTourSite extends EquatableXml {
 
   @override
   String toXmlString() {
-    return '<site'
+    return '<$elementName'
           '${title != null ? ' title="$title"' : ''}'
           '${href != null ? ' href="$href"': ''}'
           '/>';

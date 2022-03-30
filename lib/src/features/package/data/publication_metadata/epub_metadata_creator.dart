@@ -91,6 +91,6 @@ class EpubMetadataCreator extends EquatableXml {
       '${fileAs != null ? ' file-as="$fileAs"' : ''}'
       '${role != null ? ' role="$role"' : ''}'
       '>'
-      '${'<text>"$name"<value/>'}'
-      '<$elementName/>';
+      '${'<text>"$name"</value>'}'
+      '</$elementName>';
 }

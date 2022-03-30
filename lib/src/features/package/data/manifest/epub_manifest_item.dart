@@ -107,7 +107,7 @@ class EpubManifestItem extends EquatableXml {
   }
 
   @override
-  String toXmlString() => '<item'
+  String toXmlString() => '<$elementName'
       '${id != null ? ' id="$id"' : ''}'
       '${href != null ? ' href="$href"' : ''}'
       '${mediaType != null ? ' media-type="$mediaType"' : ''}'
@@ -242,7 +242,7 @@ class EpubManifestItemOutOfLineXMLIsland extends EpubManifestItem {
   }
 
   @override
-  String toXmlString() => '<item'
+  String toXmlString() => '<${EpubManifestItem.elementName}'
       '${id != null ? ' id="$id"' : ''}'
       '${href != null ? ' href="$href"' : ''}'
       '${mediaType != null ? ' media-type="$mediaType"' : ''}'

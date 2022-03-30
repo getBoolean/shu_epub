@@ -152,9 +152,9 @@ class EpubSpine extends EquatableXml {
   List<Object> get props => [tocId ?? 'no tocId', itemRefs];
 
   @override
-  String toXmlString() => '<spine'
+  String toXmlString() => '<$elementName'
       '${tocId != null ? ' toc="$tocId"' : ''}'
       '>'
       '${itemRefs.map((e) => e.toXmlString()).join('')}'
-      '</spine>';
+      '</$elementName>';
 }
