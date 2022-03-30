@@ -1,7 +1,7 @@
 part of shu_epub.features.navigation.data;
 
 /// Image Element - image that may accompany heading.
-class EpubNavigationImage extends Equatable {
+class EpubNavigationImage extends EquatableXml {
   static const elementName = 'img';
 
   final String? id;
@@ -77,4 +77,11 @@ class EpubNavigationImage extends Equatable {
   @override
   List<Object> get props =>
       [id ?? 'no id', classType ?? 'no classType', source ?? 'no source'];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${classType != null ? ' class="$classType"' : ''}'
+      '${source != null ? ' src="$source"' : ''}'
+      '/>';
 }

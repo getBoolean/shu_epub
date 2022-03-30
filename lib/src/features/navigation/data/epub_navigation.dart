@@ -1,7 +1,7 @@
 part of shu_epub.features.navigation.data;
 
 /// Top Level NCX Container.
-class EpubNavigation extends Equatable {
+class EpubNavigation extends EquatableXml {
   /// XML Namespace of the `ncx` element
   static const String namespace = 'http://www.daisy.org/z3986/2005/ncx/';
   static const elementName = 'ncx';
@@ -151,4 +151,18 @@ class EpubNavigation extends Equatable {
       navigationLists,
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${version != null ? ' version="$version"' : ''}'
+      '${language != null ? ' xml:lang"$language"' : ''}'
+      ' xmlns="$namespace"'
+      '>'
+      '${head != null ? head!.toXmlString() : ''}'
+      '${docTitle != null ? docTitle!.toXmlString() : ''}'
+      '${docAuthors.map((docAuthor) => docAuthor.toXmlString()).join('')}'
+      '${navigationMap != null ? navigationMap!.toXmlString() : ''}'
+      '${pageList != null ? pageList!.toXmlString() : ''}'
+      '${navigationLists.map((navigationList) => navigationList.toXmlString()).join('')}'
+      '</$elementName>';
 }

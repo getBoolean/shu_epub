@@ -196,10 +196,10 @@ class EpubPackage extends EquatableXml {
       '${uniqueIdentifier != null ? ' unique-identifier="$uniqueIdentifier"' : ''}'
       ' xmlns="$namespace"'
       '>'
-      '${publicationMetadata != null ? '${publicationMetadata?.toXmlString()}' : ''}'
-      '${manifest != null ? '${manifest?.toXmlString()}' : ''}'
-      '${spine == null ? '' : '${spine?.toXmlString()}'}'
-      '${guide != null ? '${guide?.toXmlString()}' : ''}'
-      '${tours != null ? '${tours?.toXmlString()}' : ''}'
+      '${publicationMetadata != null ? publicationMetadata!.toXmlString() : ''}'
+      '${manifest != null ? manifest!.toXmlString() : ''}'
+      '${spine == null ? '' : spine!.toXmlString()}'
+      '${guide != null ? guide!.toXmlString() : ''}'
+      '${tours != null ? tours!.toXmlString() : ''}'
       '</$elementName>';
 }

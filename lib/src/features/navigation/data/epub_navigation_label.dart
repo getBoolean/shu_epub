@@ -5,7 +5,7 @@ part of shu_epub.features.navigation.data;
 /// [EpubNavigationTarget] in various media for presentation to the user.
 ///
 /// Can be repeated so descriptions can be provided in multiple languages.
-class EpubNavigationLabel extends Equatable {
+class EpubNavigationLabel extends EquatableXml {
   static const elementName = 'navLabel';
 
   final String? text;
@@ -83,4 +83,12 @@ class EpubNavigationLabel extends Equatable {
   @override
   List<Object> get props =>
       [text ?? 'no text', language ?? 'no language', image ?? 'no image'];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${language != null ? ' xml:lang="$language"' : ''}'
+      '>'
+      '${text != null ? '<text>$text</text>' : ''}'
+      '${image != null ? image!.toXmlString() : ''}'
+      '</$elementName>';
 }

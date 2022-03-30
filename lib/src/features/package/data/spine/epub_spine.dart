@@ -155,6 +155,6 @@ class EpubSpine extends EquatableXml {
   String toXmlString() => '<$elementName'
       '${tocId != null ? ' toc="$tocId"' : ''}'
       '>'
-      '${itemRefs.map((e) => e.toXmlString()).join('')}'
+      '${itemRefs.map((itemRef) => itemRef.toXmlString()).join('')}'
       '</$elementName>';
 }

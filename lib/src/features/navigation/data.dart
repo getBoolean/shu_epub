@@ -3,10 +3,10 @@ library shu_epub.features.navigation.data;
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:equatable/equatable.dart';
 import 'package:xml/xml.dart';
 
 import '../../enums.dart';
+import '../../shared.dart';
 import 'reader.dart';
 
 part 'data/epub_navigation.dart';

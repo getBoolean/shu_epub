@@ -4,7 +4,7 @@ part of shu_epub.features.navigation.data;
 /// e.g. notes, figures, tables, etc.  Essentially a flat version of navMap.
 /// The "class" attribute describes the type of object contained in this
 /// navList, using dtbook element names, e.g., note.
-class EpubNavigationList extends Equatable {
+class EpubNavigationList extends EquatableXml {
   static const elementName = 'navList';
 
   final List<EpubNavigationInfo> navigationInfoList;
@@ -97,4 +97,11 @@ class EpubNavigationList extends Equatable {
   @override
   List<Object> get props =>
       [navigationInfoList, navigationLabels, navigationTargets];
+
+  @override
+  String toXmlString() => '<$elementName>'
+      '${navigationInfoList.map((infoList) => infoList.toXmlString()).join('')}'
+      '${navigationLabels.map((label) => label.toXmlString()).join('')}'
+      '${navigationTargets.map((target) => target.toXmlString()).join('')}'
+      '</$elementName>';
 }

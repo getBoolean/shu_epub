@@ -1,6 +1,6 @@
 part of shu_epub.features.navigation.data;
 
-class EpubNavigationHead extends Equatable {
+class EpubNavigationHead extends EquatableXml {
   static const elementName = 'head';
 
   /// metadata about this NCX
@@ -70,4 +70,9 @@ class EpubNavigationHead extends Equatable {
 
   @override
   List<Object> get props => [metadata];
+
+  @override
+  String toXmlString() => '<$elementName>'
+      '${metadata.map((meta) => meta.toXmlString())}'
+      '</$elementName>';
 }

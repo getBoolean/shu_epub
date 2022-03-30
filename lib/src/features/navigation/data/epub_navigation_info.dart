@@ -3,7 +3,7 @@ part of shu_epub.features.navigation.data;
 /// Navigation Information - Contains an informative comment about a
 /// [EpubNavigationMap], [EpubNavigationPageList], or [EpubNavigationList]
 /// in various media for presentation to the user.
-class EpubNavigationInfo extends Equatable {
+class EpubNavigationInfo extends EquatableXml {
   static const elementName = 'navInfo';
 
   final String? text;
@@ -81,4 +81,12 @@ class EpubNavigationInfo extends Equatable {
   @override
   List<Object> get props =>
       [text ?? 'no text', language ?? 'no language', image ?? 'no image'];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${language != null ? ' xml:lang="$language"' : ''}'
+      '>'
+      '${text != null ? '<text>$text</text>' : ''}'
+      '${image != null ? image!.toXmlString() : ''}'
+      '</$elementName>';
 }

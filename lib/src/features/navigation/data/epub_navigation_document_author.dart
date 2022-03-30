@@ -1,7 +1,7 @@
 part of shu_epub.features.navigation.data;
 
 /// The author of the document, immediately follows docTitle.
-class EpubNavigationDocumentAuthor extends Equatable {
+class EpubNavigationDocumentAuthor extends EquatableXml {
   static const elementName = 'docAuthor';
 
   final String? id;
@@ -93,4 +93,13 @@ class EpubNavigationDocumentAuthor extends Equatable {
       image ?? 'no image attribute',
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${language != null ? ' xml:lang="$language"' : ''}'
+      '>'
+      '${text != null ? '<text>$text</text>' : ''}'
+      '${image != null ? image!.toXmlString() : ''}'
+      '</$elementName>';
 }

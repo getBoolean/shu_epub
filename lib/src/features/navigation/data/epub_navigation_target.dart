@@ -4,7 +4,7 @@ part of shu_epub.features.navigation.data;
 /// to [EpubNavigationTarget.content]. [EpubNavigationTarget]s are the
 /// equivalent of [EpubNavigationMap.navigationPoints] for use in
 /// [EpubNavigation.navigationLists].
-class EpubNavigationTarget extends Equatable {
+class EpubNavigationTarget extends EquatableXml {
   static const elementName = 'navTarget';
 
   final String? id;
@@ -113,4 +113,14 @@ class EpubNavigationTarget extends Equatable {
       labels,
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${classType != null ? ' class="$classType"' : ''}'
+      '${value != null ? ' value="$value"' : ''}'
+      '>'
+      '${content != null ? content!.toXmlString() : ''}'
+      '${labels.map((label) => label.toXmlString()).join('')}'
+      '</$elementName>';
 }

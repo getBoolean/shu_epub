@@ -2,7 +2,7 @@ part of shu_epub.features.navigation.data;
 
 /// Navigation Structure - container for all of the NCX objects that are part
 /// of the hierarchical structure of the document.
-class EpubNavigationMap extends Equatable {
+class EpubNavigationMap extends EquatableXml {
   static const elementName = 'navMap';
 
   final String? id;
@@ -104,4 +104,13 @@ class EpubNavigationMap extends Equatable {
   @override
   List<Object> get props =>
       [id ?? 'no id', navigationInfoList, navigationLabels, navigationPoints];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '>'
+      '${navigationInfoList.map((infoList) => infoList.toXmlString()).join('')}'
+      '${navigationLabels.map((label) => label.toXmlString()).join('')}'
+      '${navigationPoints.map((navPoint) => navPoint.toXmlString()).join('')}'
+      '</$elementName>';
 }

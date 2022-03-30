@@ -248,6 +248,6 @@ class EpubManifestItemOutOfLineXMLIsland extends EpubManifestItem {
       '${mediaType != null ? ' media-type="$mediaType"' : ''}'
       '${fallback != null ? ' fallback="$fallback"' : ''}'
       '${requiredNamespace != null ? ' required-namespace="$requiredNamespace"' : ''}'
-      '${requiredModules != null ? ' required-modules="${requiredModules?.join(',').toLowerCase()}"' : ''}'
+      '${requiredModules != null ? ' required-modules="${requiredModules!.join(',').toLowerCase()}"' : ''}'
       '/>';
 }

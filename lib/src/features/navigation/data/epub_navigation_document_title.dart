@@ -1,6 +1,6 @@
 part of shu_epub.features.navigation.data;
 
-class EpubNavigationDocumentTitle extends Equatable {
+class EpubNavigationDocumentTitle extends EquatableXml {
   static const elementName = 'docTitle';
 
   final String? id;
@@ -92,4 +92,13 @@ class EpubNavigationDocumentTitle extends Equatable {
       image ?? 'no image attribute',
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${language != null ? ' xml:lang="$language"' : ''}'
+      '>'
+      '${text != null ? '<text>$text</text>' : ''}'
+      '${image != null ? image!.toXmlString() : ''}'
+      '</$elementName>';
 }

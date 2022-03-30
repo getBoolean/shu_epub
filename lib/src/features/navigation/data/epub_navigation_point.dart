@@ -3,7 +3,7 @@ part of shu_epub.features.navigation.data;
 /// Contains description(s) of target, as well as a pointer to entire content
 /// of target. Hierarchy is represented by nesting navPoints.
 /// [EpubNavigationPoint.classType] attribute
-class EpubNavigationPoint extends Equatable {
+class EpubNavigationPoint extends EquatableXml {
   static const elementName = 'navPoint';
   final String? id;
 
@@ -127,4 +127,15 @@ class EpubNavigationPoint extends Equatable {
       labels,
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${classType != null ? ' class="$classType"' : ''}'
+      '${playOrder != null ? ' playOrder="$playOrder"' : ''}'
+      '>'
+      '${content != null ? content!.toXmlString() : ''}'
+      '${labels.map((label) => label.toXmlString()).join('')}'
+      '${childNavigationPoints.map((navPoint) => navPoint.toXmlString()).join('')}'
+      '</$elementName>';
 }

@@ -1,7 +1,7 @@
 part of shu_epub.features.navigation.data;
 
 /// Meta Element - metadata about this NCX
-class EpubNavigationMeta extends Equatable {
+class EpubNavigationMeta extends EquatableXml {
   static const elementName = 'meta';
 
   /// Due to combatibility reasons, the required meta element's name should be `dtb:id`
@@ -77,4 +77,11 @@ class EpubNavigationMeta extends Equatable {
         content ?? 'no content',
         scheme ?? 'no scheme specified'
       ];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${name != null ? ' name="$name"' : ''}'
+      '${content != null ? ' content="$content"' : ''}'
+      '${scheme != null ? ' scheme="$scheme"' : ''}'
+      '/>';
 }

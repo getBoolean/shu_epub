@@ -1,7 +1,7 @@
 part of shu_epub.features.navigation.data;
 
 /// Content Element - pointer into XML to beginning of navPoint.
-class EpubNavigationContent extends Equatable {
+class EpubNavigationContent extends EquatableXml {
   static const elementName = 'content';
 
   final String? source;
@@ -65,4 +65,10 @@ class EpubNavigationContent extends Equatable {
 
   @override
   List<Object> get props => [source ?? 'no source', id ?? 'no id'];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${source != null ? ' source="$source"' : ''}'
+      '${id != null ? ' id="$id"' : ''}'
+      '/>';
 }

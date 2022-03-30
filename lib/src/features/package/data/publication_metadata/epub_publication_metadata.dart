@@ -256,7 +256,7 @@ class EpubPublicationMetadata extends EquatableXml {
       '${publisher != null ? '<publisher>$publisher</publisher>' : ''}'
       '${contributors.map((contributor) => contributor.toXmlString()).join('')}'
       '${extraMetadataItems.map((extraMetadataItem) => extraMetadataItem.toXmlString()).join('')}'
-      '${metadataDate == null ? '' : '${metadataDate?.toXmlString()}'}'
+      '${metadataDate == null ? '' : metadataDate!.toXmlString()}'
       '${type != null ? '<type>$type</type>' : ''}'
       '${format != null ? '<format>$format</format>' : ''}'
       '${identifiers.map((identifier) => identifier.toXmlString()).join('')}'

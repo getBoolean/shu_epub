@@ -1,7 +1,7 @@
 part of shu_epub.features.navigation.data;
 
 /// Page List -  Container for pagination information.
-class EpubNavigationPageList extends Equatable {
+class EpubNavigationPageList extends EquatableXml {
   static const elementName = 'pageList';
 
   final String? id;
@@ -105,4 +105,14 @@ class EpubNavigationPageList extends Equatable {
       pageTargets,
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${classType != null ? ' class="$classType"' : ''}'
+      '>'
+      '${navigationInfoList.map((infoList) => infoList.toXmlString()).join('')}'
+      '${navigationLabels.map((label) => label.toXmlString()).join('')}'
+      '${pageTargets.map((pageTarget) => pageTarget.toXmlString()).join('')}'
+      '</$elementName>';
 }
