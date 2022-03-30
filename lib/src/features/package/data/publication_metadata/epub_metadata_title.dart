@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-class EpubMetadataTitle extends Equatable {
+class EpubMetadataTitle extends EquatableXml {
   static const elementName = 'dc:title';
 
   final String text;
@@ -68,4 +68,11 @@ class EpubMetadataTitle extends Equatable {
 
   @override
   List<Object> get props => [text, language ?? 'no language'];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${language != null ? ' xml:lang="$language"' : ''}'
+      '>'
+      '$text'
+      '</$elementName>';
 }
