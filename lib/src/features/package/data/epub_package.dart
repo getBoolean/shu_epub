@@ -13,7 +13,7 @@ part of shu_epub.features.package.data;
 /// this functionality.
 ///
 /// This specification neither precludes nor requires the inclusion of the OPF Package Schema in a Publication.
-class EpubPackage extends Equatable {
+class EpubPackage extends EquatableXml {
   static const kPackageFileMimeType = 'application/oebps-package+xml';
   static const elementName = 'package';
   static const namespace = 'http://www.idpf.org/2007/opf';
@@ -189,4 +189,17 @@ class EpubPackage extends Equatable {
       tours ?? 'no tours',
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${epubVersion != null ? ' version="$epubVersion"' : ''}'
+      '${uniqueIdentifier != null ? ' unique-identifier="$uniqueIdentifier"' : ''}'
+      ' xmlns="$namespace"'
+      '>'
+      '${publicationMetadata != null ? '${publicationMetadata?.toXmlString()}' : ''}'
+      '${manifest != null ? '${manifest?.toXmlString()}' : ''}'
+      '${spine == null ? '' : '${spine?.toXmlString()}'}'
+      '${guide != null ? '${guide?.toXmlString()}' : ''}'
+      '${tours != null ? '${tours?.toXmlString()}' : ''}'
+      '</$elementName>';
 }
