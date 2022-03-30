@@ -1,7 +1,7 @@
 part of shu_epub.features.package.data;
 
 /// http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.2
-class EpubPublicationMetadata extends Equatable {
+class EpubPublicationMetadata extends EquatableXml {
   static const elementName = 'metadata';
 
   /// Must not be an empty list
@@ -246,4 +246,24 @@ class EpubPublicationMetadata extends Equatable {
       rights ?? 'no rights',
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName>'
+      '${allTitles.map((title) => title.toXmlString()).join('')}'
+      '${creators.map((title) => title.toXmlString()).join('')}'
+      '${subjects.map((subject) => '<subject>$subject</subject>').join('')}'
+      '${description != null ? '<description>$description</description>' : ''}'
+      '${publisher != null ? '<publisher>$publisher</publisher>' : ''}'
+      '${contributors.map((contributor) => contributor.toXmlString()).join('')}'
+      '${extraMetadataItems.map((extraMetadataItem) => extraMetadataItem.toXmlString()).join('')}'
+      '${metadataDate == null ? '' : '${metadataDate?.toXmlString()}'}'
+      '${type != null ? '<type>$type</type>' : ''}'
+      '${format != null ? '<format>$format</format>' : ''}'
+      '${identifiers.map((identifier) => identifier.toXmlString()).join('')}'
+      '${source != null ? '<source>$source</source>' : ''}'
+      '${languages.map((language) => '<language>$language</language>').join('')}'
+      '${relation != null ? '<relation>$relation</relation>' : ''}'
+      '${coverage != null ? '<coverage>$coverage</coverage>' : ''}'
+      '${rights != null ? '<rights>$rights</rights>' : ''}'
+      '</$elementName>';
 }
