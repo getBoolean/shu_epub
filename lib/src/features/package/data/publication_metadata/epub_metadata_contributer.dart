@@ -58,7 +58,7 @@ class EpubMetadataContributer extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'file-as': fileAs,
+      'fileAs': fileAs,
       'role': role,
     };
   }
@@ -66,7 +66,7 @@ class EpubMetadataContributer extends Equatable {
   factory EpubMetadataContributer.fromMap(Map<String, dynamic> map) {
     return EpubMetadataContributer(
       name: map['name'],
-      fileAs: map['file-as'],
+      fileAs: map['fileAs'],
       role: map['role'],
     );
   }
