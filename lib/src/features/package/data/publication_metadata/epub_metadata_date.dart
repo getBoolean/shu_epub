@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-class EpubMetadataDate extends Equatable {
+class EpubMetadataDate extends EquatableXml {
   static const elementName = 'dc:date';
 
   /// Usually the date of publication, unless specified otherwise in [EpubMetadataDate.event]
@@ -73,4 +73,11 @@ class EpubMetadataDate extends Equatable {
 
   @override
   List<Object> get props => [value, event ?? 'no event'];
+
+  @override
+  String toXmlString() => '<date'
+      '${event != null ? ' event="$event"' : ''}'
+      '>'
+      '${'<text>"$value"<value/>'}'
+      '<date/>';
 }
