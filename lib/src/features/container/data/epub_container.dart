@@ -78,10 +78,11 @@ class EpubContainer extends EquatableXml {
 
   @override
   String toXmlString() {
-    return '<container'
+    return '<$elementName'
           '${containerVersion != null ? ' version="$containerVersion"' : ''}'
+          ' xmlns="$namespace"'
           '>'
           '${rootfileList != null ? rootfileList?.toXmlString() : ''}'
-          '</container>';
+          '</$elementName>';
   }
 }

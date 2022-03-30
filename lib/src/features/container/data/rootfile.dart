@@ -77,7 +77,7 @@ class Rootfile extends EquatableXml {
 
   @override
   String toXmlString() {
-    return '<rootfile'
+    return '<$elementName'
           '${fullPath != null ? ' full-path="$fullPath"' : ''}'
           '${mediaType != null ? ' media-type="$mediaType"' : ''}'
           '/>';

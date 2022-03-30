@@ -66,8 +66,8 @@ class RootfileList extends EquatableXml {
 
   @override
   String toXmlString() {
-    return '<rootfiles>'
+    return '<$elementName>'
           '${items.map((e) => e.toXmlString()).join('')}'
-          '</rootfiles>';
+          '</$elementName>';
   }
 }
