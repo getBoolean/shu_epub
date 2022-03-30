@@ -86,10 +86,10 @@ class EpubPublicationMetadataReaderController {
         .toList();
   }
 
-  List<EpubMetadataContributer> getCreators() {
+  List<EpubMetadataCreator> getCreators() {
     return compatibleMetadataElement
-        .findElements(EpubMetadataContributer.creatorElementName)
-        .map(EpubMetadataContributer.fromXmlElement)
+        .findElements(EpubMetadataCreator.elementName)
+        .map(EpubMetadataCreator.fromXmlElement)
         .toList();
   }
 
@@ -116,10 +116,10 @@ class EpubPublicationMetadataReaderController {
         .trim();
   }
 
-  List<EpubMetadataContributer> getContributors() {
+  List<EpubMetadataContributor> getContributors() {
     return compatibleMetadataElement
-        .findElements(EpubMetadataContributer.contributorElementName)
-        .map(EpubMetadataContributer.fromXmlElement)
+        .findElements(EpubMetadataContributor.elementName)
+        .map(EpubMetadataContributor.fromXmlElement)
         .toList();
   }
 

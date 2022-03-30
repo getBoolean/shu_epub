@@ -3,7 +3,7 @@ part of shu_epub.features.package.controller;
 class EpubMetadataCreatorReaderController {
   final XmlElement element;
 
-  static const elementName = EpubMetadataContributer.creatorElementName;
+  static const elementName = EpubMetadataCreator.elementName;
 
   const EpubMetadataCreatorReaderController._internal({
     required this.element,
@@ -46,7 +46,7 @@ class EpubMetadataCreatorReaderController {
 
     final xmlDocument = XmlUtils.parseToXmlDocument(content);
     final dccreatorElement = xmlDocument
-        .findElements(EpubMetadataContributer.creatorElementName)
+        .findElements(EpubMetadataCreator.elementName)
         .firstOrNull;
 
     if (dccreatorElement == null) {

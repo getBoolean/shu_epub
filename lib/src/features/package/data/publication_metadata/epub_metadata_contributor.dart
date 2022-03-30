@@ -1,7 +1,7 @@
 part of shu_epub.features.package.data;
 
-class EpubMetadataContributer extends Equatable {
-  static const contributorElementName = 'dc:contributor';
+class EpubMetadataContributor extends Equatable {
+  static const elementName = 'dc:contributor';
   static const creatorElementName = 'dc:creator';
 
   final String name;
@@ -17,7 +17,7 @@ class EpubMetadataContributer extends Equatable {
   /// Create an [EpubMetadataContributer] object from the contributor or author XmlElement.
   ///
   /// Throws [EpubException] if the contributor or author element is not the root node
-  factory EpubMetadataContributer.fromXmlElement(XmlElement element) {
+  factory EpubMetadataContributor.fromXmlElement(XmlElement element) {
     return EpubMetadataContributerReader.fromXmlElement(element);
   }
 
@@ -25,7 +25,7 @@ class EpubMetadataContributer extends Equatable {
   /// of the contributor or author element
   ///
   /// Throws [EpubException] if the string does not have the contributor or author element
-  factory EpubMetadataContributer.fromXmlString(String content) {
+  factory EpubMetadataContributor.fromXmlString(String content) {
     return EpubMetadataContributerReader.fromXmlString(content);
   }
 
@@ -33,22 +33,22 @@ class EpubMetadataContributer extends Equatable {
   /// of the contributor or author element in the navigation file.
   ///
   /// Throws [EpubException] if the data does not have the contributor or author element
-  factory EpubMetadataContributer.fromData(Uint8List data) {
+  factory EpubMetadataContributor.fromData(Uint8List data) {
     return EpubMetadataContributerReader.fromData(data);
   }
 
-  const EpubMetadataContributer({
+  const EpubMetadataContributor({
     this.name = '',
     this.fileAs,
     this.role,
   });
 
-  EpubMetadataContributer copyWith({
+  EpubMetadataContributor copyWith({
     String? name,
     String? fileAs,
     String? role,
   }) {
-    return EpubMetadataContributer(
+    return EpubMetadataContributor(
       name: name ?? this.name,
       fileAs: fileAs ?? this.fileAs,
       role: role ?? this.role,
@@ -63,8 +63,8 @@ class EpubMetadataContributer extends Equatable {
     };
   }
 
-  factory EpubMetadataContributer.fromMap(Map<String, dynamic> map) {
-    return EpubMetadataContributer(
+  factory EpubMetadataContributor.fromMap(Map<String, dynamic> map) {
+    return EpubMetadataContributor(
       name: map['name'],
       fileAs: map['fileAs'],
       role: map['role'],
@@ -73,12 +73,12 @@ class EpubMetadataContributer extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory EpubMetadataContributer.fromJson(String source) =>
-      EpubMetadataContributer.fromMap(json.decode(source));
+  factory EpubMetadataContributor.fromJson(String source) =>
+      EpubMetadataContributor.fromMap(json.decode(source));
 
   @override
   String toString() =>
-      'EpubMetadataContributer(name: $name, fileAs: $fileAs, role: $role)';
+      'EpubMetadataContributor(name: $name, fileAs: $fileAs, role: $role)';
 
   @override
   List<Object> get props => [

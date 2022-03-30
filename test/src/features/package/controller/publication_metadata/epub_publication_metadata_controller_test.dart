@@ -135,7 +135,7 @@ void main() {
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = [EpubMetadataContributer()];
+        final expectedValue = <EpubMetadataCreator>[EpubMetadataCreator()];
         final actualValue = controller.getCreators();
 
         expect(actualValue, expectedValue);
@@ -275,7 +275,7 @@ void main() {
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = [EpubMetadataContributer()];
+        final expectedValue = <EpubMetadataContributor>[EpubMetadataContributor()];
         final actualValue = controller.getContributors();
 
         expect(actualValue, expectedValue);
@@ -310,7 +310,7 @@ void main() {
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = [EpubExtraMetadata()];
+        final expectedValue = <EpubExtraMetadata>[EpubExtraMetadata()];
         final actualValue = controller.getExtraMetadataItems();
 
         expect(actualValue, expectedValue);
@@ -347,7 +347,7 @@ void main() {
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = [EpubExtraMetadata()];
+        final expectedValue = <EpubExtraMetadata>[EpubExtraMetadata()];
         final actualValue = controller.getExtraMetadataItems();
 
         expect(actualValue, expectedValue);
@@ -557,7 +557,7 @@ void main() {
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = [''];
+        final expectedValue = <String>[''];
         final actualValue = controller.getLanguages();
 
         expect(actualValue, expectedValue);

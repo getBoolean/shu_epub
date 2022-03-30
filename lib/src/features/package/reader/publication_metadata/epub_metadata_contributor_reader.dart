@@ -4,9 +4,9 @@ class EpubMetadataContributerReader {
   /// Create an [EpubMetadataContributer] object from the contributer or author XmlElement.
   ///
   /// Throws [EpubException] if the contributer or author element is not the root node
-  static EpubMetadataContributer fromXmlElement(XmlElement element) {
+  static EpubMetadataContributor fromXmlElement(XmlElement element) {
     if (element.name.qualified ==
-        EpubMetadataContributer.contributorElementName) {
+        EpubMetadataContributor.elementName) {
       final controller =
           EpubMetadataContributorReaderController.fromXmlElement(element);
       return _fromContributorController(controller);
@@ -21,10 +21,10 @@ class EpubMetadataContributerReader {
   /// of the contributer or author element
   ///
   /// Throws [EpubException] if the string does not have the contributer or author element
-  static EpubMetadataContributer fromXmlString(String content) {
+  static EpubMetadataContributor fromXmlString(String content) {
     final xmlDocument = XmlUtils.parseToXmlDocument(content);
     final dccontributorElement = xmlDocument
-        .findElements(EpubMetadataContributer.contributorElementName)
+        .findElements(EpubMetadataContributor.elementName)
         .firstOrNull;
 
     if (dccontributorElement == null) {
@@ -42,7 +42,7 @@ class EpubMetadataContributerReader {
   /// of the contributer or author element in the navigation file.
   ///
   /// Throws [EpubException] if the data does not have the contributer or author element
-  static EpubMetadataContributer fromData(Uint8List data) {
+  static EpubMetadataContributor fromData(Uint8List data) {
     final String content = utf8.decode(
       data,
       allowMalformed: true,
@@ -50,7 +50,7 @@ class EpubMetadataContributerReader {
 
     final xmlDocument = XmlUtils.parseToXmlDocument(content);
     final dccontributorElement = xmlDocument
-        .findElements(EpubMetadataContributer.contributorElementName)
+        .findElements(EpubMetadataContributor.elementName)
         .firstOrNull;
 
     if (dccontributorElement == null) {
@@ -62,20 +62,20 @@ class EpubMetadataContributerReader {
     }
   }
 
-  static EpubMetadataContributer _fromContributorController(
+  static EpubMetadataContributor _fromContributorController(
     EpubMetadataContributorReaderController controller,
   ) {
-    return EpubMetadataContributer(
+    return EpubMetadataContributor(
       name: controller.getName(),
       fileAs: controller.getFileAs(),
       role: controller.getRole(),
     );
   }
 
-  static EpubMetadataContributer _fromCreatorController(
+  static EpubMetadataContributor _fromCreatorController(
     EpubMetadataCreatorReaderController controller,
   ) {
-    return EpubMetadataContributer(
+    return EpubMetadataContributor(
       name: controller.getName(),
       fileAs: controller.getFileAs(),
       role: controller.getRole(),

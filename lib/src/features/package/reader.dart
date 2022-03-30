@@ -22,6 +22,7 @@ part 'reader/spine/epub_spine_item_ref_reader.dart';
 part 'reader/spine/epub_spine_reader.dart';
 part 'reader/publication_metadata/epub_publication_metadata_reader.dart';
 part 'reader/publication_metadata/epub_metadata_title_reader.dart';
-part 'reader/publication_metadata/epub_metadata_contributer_reader.dart';
+part 'reader/publication_metadata/epub_metadata_contributor_reader.dart';
+part 'reader/publication_metadata/epub_metadata_creator_reader.dart';
 part 'reader/publication_metadata/epub_metadata_identifier_reader.dart';
 part 'reader/publication_metadata/epub_metadata_date_reader.dart';

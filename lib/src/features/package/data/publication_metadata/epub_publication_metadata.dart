@@ -12,7 +12,7 @@ class EpubPublicationMetadata extends Equatable {
   /// The order of creator elements should be the order
   /// in which the creators' names are presented by
   /// the Reading System.
-  final List<EpubMetadataContributer> creators;
+  final List<EpubMetadataCreator> creators;
 
   /// Contains a list of arbitrary phrases or keywords. There is no
   /// standardized list of subjects.
@@ -22,7 +22,7 @@ class EpubPublicationMetadata extends Equatable {
 
   final String? publisher;
 
-  final List<EpubMetadataContributer> contributors;
+  final List<EpubMetadataContributor> contributors;
 
   final List<EpubExtraMetadata> extraMetadataItems;
 
@@ -125,11 +125,11 @@ class EpubPublicationMetadata extends Equatable {
 
   EpubPublicationMetadata copyWith({
     List<EpubMetadataTitle>? allTitles,
-    List<EpubMetadataContributer>? creators,
+    List<EpubMetadataCreator>? creators,
     List<String>? subjects,
     String? description,
     String? publisher,
-    List<EpubMetadataContributer>? contributors,
+    List<EpubMetadataContributor>? contributors,
     List<EpubExtraMetadata>? extraMetadataItems,
     EpubMetadataDate? metadataDate,
     String? type,
@@ -187,15 +187,15 @@ class EpubPublicationMetadata extends Equatable {
       allTitles: List<EpubMetadataTitle>.from(
           // ignore: unnecessary_lambdas
           map['allTitles']?.map((e) => EpubMetadataTitle.fromMap(e))),
-      creators: List<EpubMetadataContributer>.from(
+      creators: List<EpubMetadataCreator>.from(
           // ignore: unnecessary_lambdas
-          map['creators']?.map((e) => EpubMetadataContributer.fromMap(e))),
+          map['creators']?.map((e) => EpubMetadataCreator.fromMap(e))),
       subjects: List<String>.from(map['subjects']),
       description: map['description'],
       publisher: map['publisher'],
-      contributors: List<EpubMetadataContributer>.from(
+      contributors: List<EpubMetadataContributor>.from(
           // ignore: unnecessary_lambdas
-          map['contributors']?.map((e) => EpubMetadataContributer.fromMap(e))),
+          map['contributors']?.map((e) => EpubMetadataContributor.fromMap(e))),
       extraMetadataItems: List<EpubExtraMetadata>.from(
           // ignore: unnecessary_lambdas
           map['extraMetadataItems']?.map((e) => EpubExtraMetadata.fromMap(e))),
