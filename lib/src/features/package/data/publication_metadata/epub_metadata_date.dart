@@ -78,6 +78,6 @@ class EpubMetadataDate extends EquatableXml {
   String toXmlString() => '<date'
       '${event != null ? ' event="$event"' : ''}'
       '>'
-      '${'<text>"$value"<value/>'}'
-      '<date/>';
+      '${'<text>"$value"</value>'}'
+      '</date>';
 }
