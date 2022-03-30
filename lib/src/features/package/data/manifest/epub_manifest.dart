@@ -67,6 +67,6 @@ class EpubManifest extends EquatableXml {
 
   @override
   String toXmlString() => '<$elementName>'
-      '${items.map((e) => e.toXmlString()).join('')}'
+      '${items.map((item) => item.toXmlString()).join('')}'
       '</$elementName>';
 }

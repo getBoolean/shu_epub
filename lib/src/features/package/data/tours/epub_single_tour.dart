@@ -81,6 +81,6 @@ class EpubSingleTour extends EquatableXml {
         '${id != null ? ' id="$id"' : ''}'
         '${title != null ? ' title="$title"' : ''}'
         '>'
-        '${sites.map((e) => e.toXmlString()).join('')}'
+        '${sites.map((site) => site.toXmlString()).join('')}'
         '</$elementName>';
 }
