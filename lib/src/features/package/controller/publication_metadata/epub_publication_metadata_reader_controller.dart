@@ -125,14 +125,16 @@ class EpubPublicationMetadataReaderController {
 
   List<EpubExtraMetadata> getExtraMetadataItems() {
     return hasXMetadataElement
-        ? xMetadata!.childElements
-            .map((node) => EpubExtraMetadata(
-                  name: node.getAttribute('name'),
-                  content: node.getAttribute('content'),
-                ))
-            .toList()
+        ? xMetadata
+                ?.findElements(EpubExtraMetadata.elementName)
+                .map((node) => EpubExtraMetadata(
+                      name: node.getAttribute('name'),
+                      content: node.getAttribute('content'),
+                    ))
+                .toList() ??
+            []
         : element
-            .findElements('meta')
+            .findElements(EpubExtraMetadata.elementName)
             .map((node) => EpubExtraMetadata(
                   name: node.getAttribute('name'),
                   content: node.getAttribute('content'),
