@@ -5,6 +5,7 @@ part of shu_epub.features.navigation.data;
 /// [EpubNavigationTarget] in various media for presentation to the user.
 ///
 /// Can be repeated so descriptions can be provided in multiple languages.
+@Immutable()
 class EpubNavigationLabel extends EquatableXml {
   static const elementName = 'navLabel';
 

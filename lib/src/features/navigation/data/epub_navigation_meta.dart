@@ -1,6 +1,7 @@
 part of shu_epub.features.navigation.data;
 
 /// Meta Element - metadata about this NCX
+@Immutable()
 class EpubNavigationMeta extends EquatableXml {
   static const elementName = 'meta';
 

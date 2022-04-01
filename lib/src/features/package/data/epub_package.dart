@@ -13,6 +13,7 @@ part of shu_epub.features.package.data;
 /// this functionality.
 ///
 /// This specification neither precludes nor requires the inclusion of the OPF Package Schema in a Publication.
+@Immutable()
 class EpubPackage extends EquatableXml {
   static const kPackageFileMimeType = 'application/oebps-package+xml';
   static const elementName = 'package';

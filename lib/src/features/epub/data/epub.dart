@@ -1,5 +1,6 @@
 part of shu_epub.features.epub.data;
 
+@Immutable()
 class Epub extends Equatable {
   final EpubPackage package;
   final EpubContainer container;
@@ -40,7 +41,7 @@ class Epub extends Equatable {
 
   // GENERATED DO NOT MODOFY
 
-  Epub({
+  const Epub({
     required this.package,
     required this.container,
     required this.navigation,

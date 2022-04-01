@@ -2,6 +2,7 @@ part of shu_epub.features.navigation.data;
 
 /// Navigation Structure - container for all of the NCX objects that are part
 /// of the hierarchical structure of the document.
+@Immutable()
 class EpubNavigationMap extends EquatableXml {
   static const elementName = 'navMap';
 

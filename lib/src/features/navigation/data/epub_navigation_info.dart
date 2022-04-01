@@ -3,6 +3,7 @@ part of shu_epub.features.navigation.data;
 /// Navigation Information - Contains an informative comment about a
 /// [EpubNavigationMap], [EpubNavigationPageList], or [EpubNavigationList]
 /// in various media for presentation to the user.
+@Immutable()
 class EpubNavigationInfo extends EquatableXml {
   static const elementName = 'navInfo';
 

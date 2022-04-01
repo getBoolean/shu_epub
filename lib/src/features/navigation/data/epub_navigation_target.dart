@@ -4,6 +4,7 @@ part of shu_epub.features.navigation.data;
 /// to [EpubNavigationTarget.content]. [EpubNavigationTarget]s are the
 /// equivalent of [EpubNavigationMap.navigationPoints] for use in
 /// [EpubNavigation.navigationLists].
+@Immutable()
 class EpubNavigationTarget extends EquatableXml {
   static const elementName = 'navTarget';
 

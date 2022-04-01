@@ -1,6 +1,7 @@
 part of shu_epub.features.navigation.data;
 
 /// Page List -  Container for pagination information.
+@Immutable()
 class EpubNavigationPageList extends EquatableXml {
   static const elementName = 'pageList';
 

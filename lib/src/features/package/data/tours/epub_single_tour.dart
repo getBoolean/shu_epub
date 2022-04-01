@@ -1,5 +1,6 @@
 part of shu_epub.features.package.data;
 
+@Immutable()
 class EpubSingleTour extends EquatableXml {
   static const elementName = 'tour';
 

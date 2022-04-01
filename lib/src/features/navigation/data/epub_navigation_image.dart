@@ -1,6 +1,7 @@
 part of shu_epub.features.navigation.data;
 
 /// Image Element - image that may accompany heading.
+@Immutable()
 class EpubNavigationImage extends EquatableXml {
   static const elementName = 'img';
 

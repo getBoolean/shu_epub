@@ -1,5 +1,6 @@
 part of shu_epub.features.navigation.data;
 
+@Immutable()
 class EpubNavigationDocumentTitle extends EquatableXml {
   static const elementName = 'docTitle';
 

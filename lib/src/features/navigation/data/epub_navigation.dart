@@ -1,6 +1,7 @@
 part of shu_epub.features.navigation.data;
 
 /// Top Level NCX Container.
+@Immutable()
 class EpubNavigation extends EquatableXml {
   /// XML Namespace of the `ncx` element
   static const String namespace = 'http://www.daisy.org/z3986/2005/ncx/';

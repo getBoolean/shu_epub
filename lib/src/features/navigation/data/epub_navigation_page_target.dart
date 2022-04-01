@@ -5,6 +5,7 @@ part of shu_epub.features.navigation.data;
 /// positive integer representing the numeric value associated with a page.
 /// Combination of values of type and value attributes must be unique, when
 /// value attribute is present.
+@Immutable()
 class EpubNavigationPageTarget extends EquatableXml {
   static const elementName = 'pageTarget';
 

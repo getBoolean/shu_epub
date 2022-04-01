@@ -1,6 +1,7 @@
 part of shu_epub.features.navigation.data;
 
 /// Content Element - pointer into XML to beginning of navPoint.
+@Immutable()
 class EpubNavigationContent extends EquatableXml {
   static const elementName = 'content';
 

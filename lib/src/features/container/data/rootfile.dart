@@ -1,5 +1,6 @@
 part of shu_epub.features.container.data;
 
+@Immutable()
 class Rootfile extends EquatableXml {
   static const elementName = 'rootfile';
 

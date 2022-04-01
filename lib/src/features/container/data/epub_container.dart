@@ -5,6 +5,7 @@ part of shu_epub.features.container.data;
 /// for all containers that conform to this version of the specification.
 ///
 /// The rootfiles element MUST contain at least one <rootfile> element that has a media-type of `application/oebps-package+xml`.
+@Immutable()
 class EpubContainer extends EquatableXml {
   static const elementName = 'container';
   static const namespace = 'urn:oasis:names:tc:opendocument:xmlns:container';

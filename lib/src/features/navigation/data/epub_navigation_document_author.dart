@@ -1,6 +1,7 @@
 part of shu_epub.features.navigation.data;
 
 /// The author of the document, immediately follows docTitle.
+@Immutable()
 class EpubNavigationDocumentAuthor extends EquatableXml {
   static const elementName = 'docAuthor';
 

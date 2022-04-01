@@ -1,6 +1,7 @@
 part of shu_epub.features.package.data;
 
 /// http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.2
+@Immutable()
 class EpubPublicationMetadata extends EquatableXml {
   static const elementName = 'metadata';
 
