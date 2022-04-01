@@ -1,6 +1,7 @@
 part of shu_epub.features.epub.controller;
 
-class EpubArchiveController extends EpubController {
+@Immutable()
+class EpubArchiveController extends EpubControllerBase {
   final Archive archive;
 
   EpubArchiveController.fromArchive(
@@ -17,14 +18,14 @@ class EpubArchiveController extends EpubController {
   }
 
   @override
-  FutureOr<Uint8List?> getFileBytes(String path) {
+  FutureOr<Uint8List?> getFileBytes(String bookId, String path) {
     final file = archive.findFile(path);
 
     return file?.content;
   }
 
   @override
-  FutureOr<List<String>> getFilePaths() {
+  FutureOr<List<String>> getFilePaths(String bookId) {
     return archive.files.map((file) => file.name).toList();
   }
 }

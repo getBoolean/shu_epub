@@ -9,4 +9,4 @@ import '../../features.dart';
 import '../../service.dart';
 import '../../utils.dart';
 
-part 'reader/epub_reader.dart';
+part 'reader/epub_details_reader.dart';

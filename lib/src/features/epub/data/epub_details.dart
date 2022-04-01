@@ -1,22 +1,22 @@
 part of shu_epub.features.epub.data;
 
 @Immutable()
-class Epub extends Equatable {
+class EpubDetails extends Equatable {
   final EpubPackage package;
   final EpubContainer container;
   final EpubNavigation navigation;
 
-  /// Load an EPUB file into memory and return the parsed [Epub] object
+  /// Load an EPUB file into memory and return the parsed [EpubDetails] object
   ///
   /// ```
   /// final file = File("Guardian.epub");
   /// final epub = Epub.fromData(file.readAsBytesSync());
   /// ```
-  factory Epub.fromData({
+  factory EpubDetails.fromData({
     required Uint8List data,
     required String bookId,
   }) {
-    return EpubReader.fromData(data: data, bookId: bookId);
+    return EpubDetailsReader.fromData(data: data, bookId: bookId);
   }
 
   // /// Load a cached EPUB into memory and return the parsed [Epub] object. This is preferred over `Epub.loadFromData`
@@ -41,18 +41,18 @@ class Epub extends Equatable {
 
   // GENERATED DO NOT MODOFY
 
-  const Epub({
+  const EpubDetails({
     required this.package,
     required this.container,
     required this.navigation,
   });
 
-  Epub copyWith({
+  EpubDetails copyWith({
     EpubPackage? package,
     EpubContainer? container,
     EpubNavigation? navigation,
   }) {
-    return Epub(
+    return EpubDetails(
       package: package ?? this.package,
       container: container ?? this.container,
       navigation: navigation ?? this.navigation,
@@ -67,8 +67,8 @@ class Epub extends Equatable {
     };
   }
 
-  factory Epub.fromMap(Map<String, dynamic> map) {
-    return Epub(
+  factory EpubDetails.fromMap(Map<String, dynamic> map) {
+    return EpubDetails(
       package: EpubPackage.fromMap(map['package']),
       container: EpubContainer.fromMap(map['container']),
       navigation: EpubNavigation.fromMap(map['navigation']),
@@ -77,7 +77,7 @@ class Epub extends Equatable {
 
   String toJson() => json.encode(toMap());
 
-  factory Epub.fromJson(String source) => Epub.fromMap(json.decode(source));
+  factory EpubDetails.fromJson(String source) => EpubDetails.fromMap(json.decode(source));
 
   @override
   String toString() =>

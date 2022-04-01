@@ -8,7 +8,9 @@ import 'package:meta/meta.dart';
 import 'package:xml/xml.dart';
 
 import '../../enums.dart';
+import '../../exceptions.dart';
 import '../../shared.dart';
+import '../../utils.dart';
 import 'reader.dart';
 
 part 'data/publication_metadata/epub_extra_metadata.dart';

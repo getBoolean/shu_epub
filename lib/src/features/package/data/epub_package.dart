@@ -81,6 +81,29 @@ class EpubPackage extends EquatableXml {
   /// for various reading purposes, reader expertise levels, etc.
   final EpubTours? tours;
 
+  String? get navigationFilePath {
+    final navigationId = spine?.tocId;
+    // TODO(@getBoolean): Create backup plan if navigation is not found
+    if (navigationId == null || navigationId.isEmpty) {
+      return null;
+    }
+    
+    final navigationManifestItem = manifest?.items
+        .firstWhereOrNull((element) => element.id == navigationId);
+    // TODO(@getBoolean): Create backup plan if navigation is not found
+    if (navigationManifestItem == null) {
+      return null;
+    }
+
+    final navigationRelativePath = navigationManifestItem.href;
+    // TODO(@getBoolean): Create backup plan if navigation is not found
+    if (navigationRelativePath == null) {
+      return null;
+    }
+
+    return navigationRelativePath;
+  }
+
   factory EpubPackage.fromArchiveFile(ArchiveFile archiveFile) {
     return EpubPackageReader.fromArchiveFile(archiveFile);
   }

@@ -14,19 +14,22 @@ class EpubContainer extends EquatableXml {
   final RootfileList? rootfileList;
   final String? containerVersion;
 
-  /// If there are multiple [Rootfile]s with mime type [EpubXMLConstants.kOPFMimeType], the first one will be considered the rootfile
+  /// If there are multiple [Rootfile]s with mime type [EpubXMLConstants.kOPFMimeType] and non null [Rootfile.fullPath], the first one will be considered the rootfile
   ///
-  /// Returns null if [EpubContainer.rootfileList] is empty
+  /// Returns null if [EpubContainer.rootfileList] is empty, no items have OPF media type, or fullPath is null on the only OPF elements
   Rootfile? get rootfile {
     return rootfileList?.items.firstWhereOrNull(
-      (element) => element.mediaType == EpubMediaTypes.kOPFMimeType,
+      (element) => element.mediaType == EpubMediaTypes.kOPFMimeType &&
+      element.fullPath != null,
     );
   }
 
+  /// Throws [EpubException] if the data does not have the container element
   factory EpubContainer.fromData(Uint8List data) {
     return EpubContainerReader.fromData(data);
   }
 
+  /// Throws [EpubException] if the data does not have the container element
   factory EpubContainer.fromArchive(Archive archive) {
     return EpubContainerReader.fromArchive(archive);
   }

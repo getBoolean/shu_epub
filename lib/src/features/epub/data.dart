@@ -10,4 +10,4 @@ import '../navigation/data.dart';
 import '../package/data.dart';
 import 'reader.dart';
 
-part 'data/epub.dart';
+part 'data/epub_details.dart';

@@ -4,7 +4,7 @@ part of shu_epub.features.container.data;
 class Rootfile extends EquatableXml {
   static const elementName = 'rootfile';
 
-  /// Relative to the root directory for the Abstract Container and not relative to the META-INF/ directory
+  /// Relative to the root directory for the Abstract Container and not relative to the `META-INF/` directory
   final String? fullPath;
 
   /// Mimetype of the file

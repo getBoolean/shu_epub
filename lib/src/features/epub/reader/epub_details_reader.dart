@@ -1,9 +1,9 @@
 part of shu_epub.features.epub.reader;
 
-class EpubReader {
-  const EpubReader();
+class EpubDetailsReader {
+  const EpubDetailsReader();
 
-  static Epub fromData({
+  static EpubDetails fromData({
     required Uint8List data,
     required String bookId,
   }) {
@@ -83,7 +83,7 @@ class EpubReader {
     }
     final navigation = EpubNavigation.fromData(navigationFile.content);
 
-    return Epub(
+    return EpubDetails(
       package: packageFile,
       container: epubContainerFile,
       navigation: navigation,
