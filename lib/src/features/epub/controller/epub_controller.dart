@@ -4,52 +4,77 @@ part of shu_epub.features.epub.controller;
 abstract class EpubControllerBase {
   final String bookId;
 
-  EpubDetails? epub;
+  /// Gets filepaths to all files
+  ///
+  /// Must use forward slashes `/`, not backwards `\`
+  FutureOr<List<String>> getFilePaths(String bookId);
+
+  /// Get the bytes of file from the path
+  FutureOr<Uint8List?> getFileBytes(String bookId, String path);
+
+  EpubDetails? _epubDetails;
+
+  Future<EpubDetails?> getDetails() async {
+    if (_epubDetails != null) {
+      return _epubDetails;
+    }
+
+    _epubDetails = await _parseEpubDetails(bookId);
+    return _epubDetails;
+  }
 
   List<String>? filePaths;
 
-  EpubControllerBase(this.bookId) {
-    _handleParsing(bookId);
-  }
+  EpubControllerBase(this.bookId);
 
-  void _handleParsing(String bookId) async {
+  Future<EpubDetails?> _parseEpubDetails(String bookId) async {
     filePaths = await getFilePaths(bookId);
 
     // Parse container
     final containerFilePath = filePaths!.firstWhereOrNull(_isContainerFilePath);
     if (containerFilePath == null) {
-      return;
+      return null;
     }
     final containerBytes = await getFileBytes(bookId, containerFilePath);
     if (containerBytes == null) {
-      return;
+      return null;
     }
     final container = EpubContainer.fromData(containerBytes);
 
     // Parse package
     final packageFilePath = container.rootfile?.fullPath;
     if (packageFilePath == null) {
-      return;
+      return null;
     }
     final packageBytes = await getFileBytes(bookId, packageFilePath);
     if (packageBytes == null) {
-      return;
+      return null;
     }
     final package = EpubPackage.fromData(packageBytes);
 
     // Parse navigation
-    final navigationFilePath = package.navigationFilePath;
-    if (navigationFilePath == null) {
-      return;
+    final navigationFilePathRelative = package.navigationFilePath;
+    if (navigationFilePathRelative == null) {
+      return null;
     }
+
+    final packageDirectoryPathSplit = packageFilePath.split('/');
+    packageDirectoryPathSplit.removeLast();
+    final packageDirectoryPath = packageDirectoryPathSplit.join('/');
+    final navigationFilePath =
+        '$packageDirectoryPath/$navigationFilePathRelative';
+
     final navigationBytes = await getFileBytes(bookId, navigationFilePath);
     if (navigationBytes == null) {
-      return;
+      return null;
     }
     final navigation = EpubNavigation.fromData(navigationBytes);
 
-    epub = EpubDetails(
-        container: container, package: package, navigation: navigation);
+    return EpubDetails(
+      container: container,
+      package: package,
+      navigation: navigation,
+    );
   }
 
   bool _isContainerFilePath(filePath) => filePath == EpubContainer.filepath;
@@ -58,12 +83,4 @@ abstract class EpubControllerBase {
   // * Future getFileBytes - Method to get bytes of file from filepath
   // * Create instance of EPUB object when controller is created
   // * Getter for EPUB object
-
-  /// Gets filepaths to all files
-  ///
-  /// Must use forward slashes `/`, not backwards `\`
-  FutureOr<List<String>> getFilePaths(String bookId);
-
-  /// Get the bytes of file from the path
-  FutureOr<Uint8List?> getFileBytes(String bookId, String path);
 }

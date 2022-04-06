@@ -11,7 +11,7 @@ Future<void> main(List<String> arguments) async {
 
   final bytes = await file.readAsBytes();
   final controller = EpubArchiveController(data: bytes, bookId: 'Guardians');
-  // final bookDetails = await controller.getDetails();
+  final bookDetails = await controller.getDetails();
 
-  // print(bookDetails);
+  print(bookDetails);
 }

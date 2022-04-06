@@ -19,7 +19,7 @@ class EpubArchiveController extends EpubControllerBase {
 
   @override
   FutureOr<Uint8List?> getFileBytes(String bookId, String path) {
-    final file = archive.findFile(path);
+    final file = archive.findFile(path);                                                                                        
 
     return file?.content;
   }
