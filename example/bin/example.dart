@@ -10,6 +10,10 @@ Future<void> main(List<String> arguments) async {
   final File file = File(filePath);
 
   final bytes = await file.readAsBytes();
-  final book = EpubDetails.fromData(data: bytes, bookId: filePath);
+  final book = EpubDetails.fromData(
+    containerData: containerData,
+    packageData: packageData,
+    navigationData: navigationData,
+  );
   print(book);
 }

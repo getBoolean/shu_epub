@@ -24,9 +24,27 @@ class EpubContainer extends EquatableXml {
     );
   }
 
+  /// Create an [EpubContainer] object from the container XmlElement.
+  ///
+  /// Throws [EpubException] if the container element is not the root node
+  factory EpubContainer.fromXmlElement(XmlElement containerElement) {
+    return EpubContainerReader.fromXmlElement(containerElement);
+  }
+  
+  /// Create an instance of [EpubContainer] from the [String] representation
+  /// of the container element
+  ///
+  /// Throws [EpubException] if the string does not have the container element
+  factory EpubContainer.fromXmlString(String containerString) {
+    return EpubContainerReader.fromXmlString(containerString);
+  }
+  
+  /// Create an instance of [EpubContainer] from the [Uint8List] data
+  /// of the container element in the navigation file.
+  ///
   /// Throws [EpubException] if the data does not have the container element
-  factory EpubContainer.fromData(Uint8List data) {
-    return EpubContainerReader.fromData(data);
+  factory EpubContainer.fromData(Uint8List containerData) {
+    return EpubContainerReader.fromData(containerData);
   }
 
   /// Throws [EpubException] if the data does not have the container element
