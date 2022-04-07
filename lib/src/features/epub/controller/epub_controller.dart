@@ -83,4 +83,11 @@ abstract class EpubControllerBase {
   // * Future getFileBytes - Method to get bytes of file from filepath
   // * Create instance of EPUB object when controller is created
   // * Getter for EPUB object
+
+  /// Free up references so that Dart can garbage college them
+  ///
+  /// It is still safe to use this controller after calling
+  void close() {
+    _epubDetails = null;
+  }
 }
