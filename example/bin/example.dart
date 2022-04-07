@@ -80,12 +80,13 @@ class EpubExtractedController extends EpubControllerBase {
 
   EpubExtractedController(this.rootDirectory);
 
-  /// Read file from system
+  /// Read file from filesystem
   @override
   FutureOr<Uint8List?> getFileBytes(String path) {
     return io.File(p.join(rootDirectory.path, p.normalize(path))).readAsBytes();
   }
 
+  /// Get list of all files in the epub
   @override
   FutureOr<List<String>> getFilePaths() async {
     var files = <io.FileSystemEntity>[];
@@ -99,7 +100,8 @@ class EpubExtractedController extends EpubControllerBase {
     final completedFilesFound = await completer.future;
     return completedFilesFound.map(
       (io.FileSystemEntity fileSystemEntity) {
-        return fileSystemEntity.path.replaceFirst(rootDirectory.path + p.separator, '');
+        return fileSystemEntity.path
+            .replaceFirst(rootDirectory.path + p.separator, '');
       },
     ).toList();
   }
