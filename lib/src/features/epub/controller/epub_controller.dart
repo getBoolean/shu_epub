@@ -2,7 +2,6 @@ part of shu_epub.features.epub.controller;
 
 @Immutable()
 abstract class EpubControllerBase {
-
   EpubControllerBase();
 
   /// Gets filepaths to all files
@@ -57,11 +56,9 @@ abstract class EpubControllerBase {
       return null;
     }
 
-    final packageDirectoryPathSplit = packageFilePath.split('/');
-    packageDirectoryPathSplit.removeLast();
-    final packageDirectoryPath = packageDirectoryPathSplit.join('/');
+    final packageDirectoryPath = p.dirname(packageFilePath);
     final navigationFilePath =
-        '$packageDirectoryPath/$navigationFilePathRelative';
+        p.join(packageDirectoryPath, navigationFilePathRelative);
 
     final navigationBytes = await getFileBytes(navigationFilePath);
     if (navigationBytes == null) {
