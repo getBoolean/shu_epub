@@ -57,10 +57,10 @@ abstract class EpubControllerBase {
     }
 
     final packageDirectoryPath = p.dirname(packageFilePath);
-    final navigationFilePath = p.normalize(p.join(
+    final navigationFilePath = p.join(
       packageDirectoryPath,
       navigationFilePathRelative,
-    ));
+    );
 
     final navigationBytes = await getFileBytes(navigationFilePath);
     if (navigationBytes == null) {
