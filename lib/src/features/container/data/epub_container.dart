@@ -9,7 +9,7 @@ part of shu_epub.features.container.data;
 class EpubContainer extends EquatableXml {
   static const elementName = 'container';
   static const namespace = 'urn:oasis:names:tc:opendocument:xmlns:container';
-  static const filepath = 'META-INF/container.xml';
+  static String get filepath => p.join('META-INF', 'container.xml');
 
   final RootfileList? rootfileList;
   final String? containerVersion;
