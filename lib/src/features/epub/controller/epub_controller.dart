@@ -75,7 +75,7 @@ abstract class EpubControllerBase {
     );
   }
 
-  bool _isContainerFilePath(filePath) => filePath == EpubContainer.filepath;
+  bool _isContainerFilePath(String filePath) => filePath == EpubContainer.filepath;
 
   // * Future getFilePaths - Method to get filepaths to all files
   // * Future getFileBytes - Method to get bytes of file from filepath
