@@ -8,9 +8,7 @@ class EpubArchiveController extends EpubControllerBase {
     this.archive,
   );
 
-  factory EpubArchiveController({
-    required Uint8List data,
-  }) {
+  factory EpubArchiveController(Uint8List data) {
     final archive = ArchiveService.decodeZip(data);
     return EpubArchiveController.fromArchive(archive);
   }
