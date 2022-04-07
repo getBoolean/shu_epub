@@ -87,6 +87,8 @@ class EpubExtractedController extends EpubControllerBase {
   }
 
   /// Get list of all files in the epub
+  ///
+  /// Paths must be relative to the root folder of the epub
   @override
   FutureOr<List<String>> getFilePaths() async {
     var files = <io.FileSystemEntity>[];
