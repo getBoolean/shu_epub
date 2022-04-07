@@ -10,7 +10,7 @@ Future<void> main(List<String> arguments) async {
   final File file = File(filePath);
 
   final bytes = await file.readAsBytes();
-  final controller = EpubArchiveController(data: bytes, bookId: 'Guardians');
+  final controller = EpubArchiveController(data: bytes);
   final bookDetails = await controller.getDetails();
 
   print(bookDetails);

@@ -2,15 +2,16 @@ part of shu_epub.features.epub.controller;
 
 @Immutable()
 abstract class EpubControllerBase {
-  final String bookId;
+
+  EpubControllerBase();
 
   /// Gets filepaths to all files
   ///
   /// Must use forward slashes `/`, not backwards `\`
-  FutureOr<List<String>> getFilePaths(String bookId);
+  FutureOr<List<String>> getFilePaths();
 
   /// Get the bytes of file from the path
-  FutureOr<Uint8List?> getFileBytes(String bookId, String path);
+  FutureOr<Uint8List?> getFileBytes(String path);
 
   EpubDetails? _epubDetails;
 
@@ -19,23 +20,21 @@ abstract class EpubControllerBase {
       return _epubDetails;
     }
 
-    _epubDetails = await _parseEpubDetails(bookId);
+    _epubDetails = await _parseEpubDetails();
     return _epubDetails;
   }
 
   List<String>? filePaths;
 
-  EpubControllerBase(this.bookId);
-
-  Future<EpubDetails?> _parseEpubDetails(String bookId) async {
-    filePaths = await getFilePaths(bookId);
+  Future<EpubDetails?> _parseEpubDetails() async {
+    filePaths = await getFilePaths();
 
     // Parse container
     final containerFilePath = filePaths!.firstWhereOrNull(_isContainerFilePath);
     if (containerFilePath == null) {
       return null;
     }
-    final containerBytes = await getFileBytes(bookId, containerFilePath);
+    final containerBytes = await getFileBytes(containerFilePath);
     if (containerBytes == null) {
       return null;
     }
@@ -46,7 +45,7 @@ abstract class EpubControllerBase {
     if (packageFilePath == null) {
       return null;
     }
-    final packageBytes = await getFileBytes(bookId, packageFilePath);
+    final packageBytes = await getFileBytes(packageFilePath);
     if (packageBytes == null) {
       return null;
     }
@@ -64,7 +63,7 @@ abstract class EpubControllerBase {
     final navigationFilePath =
         '$packageDirectoryPath/$navigationFilePathRelative';
 
-    final navigationBytes = await getFileBytes(bookId, navigationFilePath);
+    final navigationBytes = await getFileBytes(navigationFilePath);
     if (navigationBytes == null) {
       return null;
     }

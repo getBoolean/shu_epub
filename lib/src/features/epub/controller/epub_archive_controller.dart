@@ -6,26 +6,24 @@ class EpubArchiveController extends EpubControllerBase {
 
   EpubArchiveController.fromArchive(
     this.archive,
-    String bookId,
-  ) : super(bookId);
+  );
 
   factory EpubArchiveController({
     required Uint8List data,
-    required String bookId,
   }) {
     final archive = ArchiveService.decodeZip(data);
-    return EpubArchiveController.fromArchive(archive, bookId);
+    return EpubArchiveController.fromArchive(archive);
   }
 
   @override
-  FutureOr<Uint8List?> getFileBytes(String bookId, String path) {
+  FutureOr<Uint8List?> getFileBytes(String path) {
     final file = archive.findFile(path);                                                                                        
 
     return file?.content;
   }
 
   @override
-  FutureOr<List<String>> getFilePaths(String bookId) {
+  FutureOr<List<String>> getFilePaths() {
     return archive.files.map((file) => file.name).toList();
   }
 }
