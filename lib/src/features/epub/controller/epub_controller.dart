@@ -4,6 +4,8 @@ part of shu_epub.features.epub.controller;
 abstract class EpubControllerBase {
   EpubControllerBase();
 
+  String get defaultPathSeparator => p.separator;
+
   /// Gets filepaths to all files
   ///
   /// Must use forward slashes `/`, not backwards `\`
