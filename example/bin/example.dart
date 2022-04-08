@@ -10,32 +10,28 @@ Future<void> main(List<String> arguments) async {
   var totalArchiveIOTime = 0;
   var totalExtractedTime = 0;
 
+  print('Warming up...');
   await warmUp();
 
+  print('Benchmarking...');
   for (int i = 0; i < runs; i++) {
     Stopwatch stopwatch = Stopwatch();
     stopwatch.start();
     await runArchiveExample(verbose: false);
     stopwatch.stop();
     totalArchiveTime += stopwatch.elapsedMilliseconds;
-    print(
-        '$i EpubArchiveController Example took ${stopwatch.elapsedMilliseconds}ms');
 
     stopwatch.reset();
     stopwatch.start();
     await runArchiveIOExample(verbose: false);
     stopwatch.stop();
     totalArchiveIOTime += stopwatch.elapsedMilliseconds;
-    print(
-        '$i EpubArchiveIOController Example took ${stopwatch.elapsedMilliseconds}ms');
 
     stopwatch.reset();
     stopwatch.start();
     await runExtractedExample(verbose: false);
     stopwatch.stop();
     totalExtractedTime += stopwatch.elapsedMilliseconds;
-    print(
-        '$i EpubExtractedController Example took ${stopwatch.elapsedMilliseconds}ms');
   }
   print(
       'Average EpubArchiveController Example took ${totalArchiveTime / runs}ms');
