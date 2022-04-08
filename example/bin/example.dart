@@ -5,12 +5,24 @@ import 'package:shu_epub/shu_epub.dart';
 import 'package:path/path.dart' as p;
 
 Future<void> main(List<String> arguments) async {
-  await runArchiveExample();
-  await runExtractedExample();
+  Stopwatch stopwatch = Stopwatch();
+  stopwatch.start();
+  await runArchiveExample(verbose: false);
+  stopwatch.stop();
+  print(
+      'EpubArchiveController Example took ${stopwatch.elapsedMilliseconds}ms');
+  stopwatch.reset();
+  stopwatch.start();
+  await runExtractedExample(verbose: false);
+  stopwatch.stop();
+  print(
+      'EpubExtractedController Example took ${stopwatch.elapsedMilliseconds}ms');
 }
 
-Future<void> runArchiveExample() async {
-  print('Reading from epub zip file...');
+Future<void> runArchiveExample({final bool verbose = false}) async {
+  if (verbose) {
+    print('Reading from epub zip file...');
+  }
   final filePath =
       p.join(io.Directory.current.path, 'assets', 'Guardians.epub');
 
@@ -19,41 +31,54 @@ Future<void> runArchiveExample() async {
   final bytes = await file.readAsBytes();
   final controller = EpubArchiveController(bytes);
   final EpubDetails? bookDetails = await controller.getDetails();
-  printBookDetails(bookDetails);
+  if (bookDetails == null) {
+    if (verbose) {
+      print("Failed to read epub details.");
+    }
+    return;
+  }
+  printBookDetails(bookDetails, verbose: verbose);
 }
 
-Future<void> runExtractedExample() async {
+Future<void> runExtractedExample({final bool verbose = false}) async {
   final directoryPath =
       p.join(io.Directory.current.path, 'assets', 'Guardians');
-  print('Reading from epub extracted to filesystem...');
+  if (verbose) {
+    print('Reading from epub extracted to filesystem...');
+  }
   final controller = EpubExtractedController(io.Directory(directoryPath));
-  final bookDetails = await controller.getDetails();
+  final EpubDetails? bookDetails = await controller.getDetails();
   if (bookDetails == null) {
-    print("Failed to read epub details.");
+    if (verbose) {
+      print("Failed to read epub details.");
+    }
     return;
   }
-
-  printBookDetails(bookDetails);
+  printBookDetails(bookDetails, verbose: verbose);
 }
 
-void printBookDetails(EpubDetails? bookDetails) async {
-  if (bookDetails == null) {
-    print("Failed to read epub details.");
-    return;
+void printBookDetails(
+  EpubDetails bookDetails, {
+  final bool verbose = false,
+}) async {
+  if (verbose) {
+    print('Epub Version: ${bookDetails.package?.epubVersion}');
   }
 
-  print('Epub Version: ${bookDetails.package?.epubVersion}');
-
   final titles = bookDetails.package?.publicationMetadata?.allTitles ?? [];
-  print('Epub Titles: ${titles.map((e) => e.text).join(', ')}');
+  if (verbose) {
+    print('Epub Titles: ${titles.map((e) => e.text).join(', ')}');
+  }
 
   final docAuthors = bookDetails.navigation?.docAuthors;
-  if (docAuthors != null && docAuthors.isNotEmpty) {
+  if (verbose && docAuthors != null && docAuthors.isNotEmpty) {
     print('Authors: ${docAuthors.map((e) => e.text).join(', ')}');
   }
 
   final String? tableOfContentsId = bookDetails.package?.spine?.tocId;
-  if (tableOfContentsId == null) print('Could not find table of contents');
+  if (verbose && tableOfContentsId == null) {
+    print('Could not find table of contents');
+  }
 
   final manifestItems = bookDetails.package?.manifest?.items ?? [];
   final EpubManifestItem? tocManifestItem =
@@ -61,9 +86,14 @@ void printBookDetails(EpubDetails? bookDetails) async {
     manifestItems,
     (element) => element.id == tableOfContentsId,
   );
-  print('TOC Location: ${tocManifestItem?.href}');
 
-  print('Manifest Items: ${manifestItems.map((e) => e.href).join(', ')}');
+  if (verbose) {
+    print('TOC Location: ${tocManifestItem?.href}');
+  }
+
+  if (verbose) {
+    print('Manifest Items: ${manifestItems.map((e) => e.href).join(', ')}');
+  }
 }
 
 T? firstWhereOrElseNull<T>(List<T> items, bool Function(T) test) {
