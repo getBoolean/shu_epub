@@ -154,7 +154,8 @@ void printBookDetails(
   }
 }
 
-/// Contains handler to the extracted epub file. This is on average faster than [EpubArchiveIOController] when the files are cached by the filesystem
+/// Contains handler to the extracted epub file. This is on average faster than [EpubArchiveIOController]
+/// when the files are cached by the filesystem since [EpubArchiveIOController] cannot take advantage of filesystem caching.
 class EpubExtractedController extends EpubControllerBase {
   io.Directory rootDirectory;
 
