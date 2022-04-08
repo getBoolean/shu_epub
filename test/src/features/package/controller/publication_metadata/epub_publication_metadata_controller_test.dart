@@ -275,7 +275,9 @@ void main() {
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = <EpubMetadataContributor>[EpubMetadataContributor()];
+        final expectedValue = <EpubMetadataContributor>[
+          EpubMetadataContributor()
+        ];
         final actualValue = controller.getContributors();
 
         expect(actualValue, expectedValue);

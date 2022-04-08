@@ -87,7 +87,7 @@ class EpubPackage extends EquatableXml {
     if (navigationId == null || navigationId.isEmpty) {
       return null;
     }
-    
+
     final navigationManifestItem = manifest?.items
         .firstWhereOrNull((element) => element.id == navigationId);
     // TODO(@getBoolean): Create backup plan if navigation is not found

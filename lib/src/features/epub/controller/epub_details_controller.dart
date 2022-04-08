@@ -75,8 +75,7 @@ class EpubDetailsController {
   EpubContainer? getContainer() =>
       EpubContainer.fromXmlElement(containerElement);
 
-  EpubPackage? getPackage() =>
-      EpubPackage.fromXmlElement(packageElement);
+  EpubPackage? getPackage() => EpubPackage.fromXmlElement(packageElement);
 
   EpubNavigation? getNavigation() =>
       EpubNavigation.fromXmlElement(navigationElement);

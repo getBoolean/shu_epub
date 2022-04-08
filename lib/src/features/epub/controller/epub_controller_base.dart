@@ -5,7 +5,7 @@ abstract class EpubControllerBase {
   EpubControllerBase();
 
   /// Getter for the default path separator for the current platform.
-  /// 
+  ///
   /// This should not be overridden since [EpubControllerBase] will ignore it
   String get platformPathSeparator => p.separator;
 
@@ -80,7 +80,8 @@ abstract class EpubControllerBase {
     );
   }
 
-  bool _isContainerFilePath(String filePath) => filePath == EpubContainer.filepath;
+  bool _isContainerFilePath(String filePath) =>
+      filePath == EpubContainer.filepath;
 
   // * Future getFilePaths - Method to get filepaths to all files
   // * Future getFileBytes - Method to get bytes of file from filepath

@@ -19,8 +19,9 @@ class EpubContainer extends EquatableXml {
   /// Returns null if [EpubContainer.rootfileList] is empty, no items have OPF media type, or fullPath is null on the only OPF elements
   Rootfile? get rootfile {
     return rootfileList?.items.firstWhereOrNull(
-      (element) => element.mediaType == EpubMediaTypes.kOPFMimeType &&
-      element.fullPath != null,
+      (element) =>
+          element.mediaType == EpubMediaTypes.kOPFMimeType &&
+          element.fullPath != null,
     );
   }
 
@@ -30,7 +31,7 @@ class EpubContainer extends EquatableXml {
   factory EpubContainer.fromXmlElement(XmlElement containerElement) {
     return EpubContainerReader.fromXmlElement(containerElement);
   }
-  
+
   /// Create an instance of [EpubContainer] from the [String] representation
   /// of the container element
   ///
@@ -38,7 +39,7 @@ class EpubContainer extends EquatableXml {
   factory EpubContainer.fromXmlString(String containerString) {
     return EpubContainerReader.fromXmlString(containerString);
   }
-  
+
   /// Create an instance of [EpubContainer] from the [Uint8List] data
   /// of the container element in the navigation file.
   ///
@@ -101,10 +102,10 @@ class EpubContainer extends EquatableXml {
   @override
   String toXmlString() {
     return '<$elementName'
-          '${containerVersion != null ? ' version="$containerVersion"' : ''}'
-          ' xmlns="$namespace"'
-          '>'
-          '${rootfileList != null ? rootfileList?.toXmlString() : ''}'
-          '</$elementName>';
+        '${containerVersion != null ? ' version="$containerVersion"' : ''}'
+        ' xmlns="$namespace"'
+        '>'
+        '${rootfileList != null ? rootfileList?.toXmlString() : ''}'
+        '</$elementName>';
   }
 }

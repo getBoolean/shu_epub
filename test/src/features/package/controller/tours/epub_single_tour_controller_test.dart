@@ -78,11 +78,11 @@ void main() {
   ''';
         final controller = EpubSingleTourReaderController.fromXmlString(input);
         final actualValue = controller.getId();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a id attribute, expect the String value',
       () async {
@@ -92,7 +92,7 @@ void main() {
         final controller = EpubSingleTourReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getId();
-  
+
         expect(actualValue, expectedValue);
       },
     );
@@ -107,11 +107,11 @@ void main() {
   ''';
         final controller = EpubSingleTourReaderController.fromXmlString(input);
         final actualValue = controller.getTitle();
-  
+
         expect(actualValue, isNull);
       },
     );
-  
+
     test(
       'on input with a title attribute, expect the String value',
       () async {
@@ -121,7 +121,7 @@ void main() {
         final controller = EpubSingleTourReaderController.fromXmlString(input);
         final expectedValue = 'test';
         final actualValue = controller.getTitle();
-  
+
         expect(actualValue, expectedValue);
       },
     );

@@ -5,8 +5,7 @@ class EpubMetadataContributerReader {
   ///
   /// Throws [EpubException] if the contributer or author element is not the root node
   static EpubMetadataContributor fromXmlElement(XmlElement element) {
-    if (element.name.qualified ==
-        EpubMetadataContributor.elementName) {
+    if (element.name.qualified == EpubMetadataContributor.elementName) {
       final controller =
           EpubMetadataContributorReaderController.fromXmlElement(element);
       return _fromContributorController(controller);

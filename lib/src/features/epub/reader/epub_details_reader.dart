@@ -1,7 +1,6 @@
 part of shu_epub.features.epub.reader;
 
 class EpubDetailsReader {
-
   /// Create an [EpubDetails] object from the epub container, package, and navgiation XmlElement.
   static EpubDetails fromXmlElement({
     required XmlElement containerElement,
@@ -56,7 +55,6 @@ class EpubDetailsReader {
   static EpubDetails _fromController(
     EpubDetailsController controller,
   ) {
-
     return EpubDetails(
       container: controller.getContainer(),
       package: controller.getPackage(),

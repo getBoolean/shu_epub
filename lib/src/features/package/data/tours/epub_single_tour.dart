@@ -60,7 +60,8 @@ class EpubSingleTour extends EquatableXml {
   factory EpubSingleTour.fromMap(Map<String, dynamic> map) {
     return EpubSingleTour(
       // ignore: unnecessary_lambdas
-      sites: List<EpubTourSite>.from(map['sites']?.map((x) => EpubTourSite.fromMap(x))),
+      sites: List<EpubTourSite>.from(
+          map['sites']?.map((x) => EpubTourSite.fromMap(x))),
       id: map['id'],
       title: map['title'],
     );
@@ -79,9 +80,9 @@ class EpubSingleTour extends EquatableXml {
 
   @override
   String toXmlString() => '<$elementName'
-        '${id != null ? ' id="$id"' : ''}'
-        '${title != null ? ' title="$title"' : ''}'
-        '>'
-        '${sites.map((site) => site.toXmlString()).join('')}'
-        '</$elementName>';
+      '${id != null ? ' id="$id"' : ''}'
+      '${title != null ? ' title="$title"' : ''}'
+      '>'
+      '${sites.map((site) => site.toXmlString()).join('')}'
+      '</$elementName>';
 }
