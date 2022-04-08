@@ -65,10 +65,60 @@ class EpubDetailsController {
       allowMalformed: true,
     );
 
-    return EpubDetailsController.fromXmlString(
-      containerContent: containerContent,
-      packageContent: packageContent,
-      navigationContent: navigationContent,
+    final containerXmlDocument = XmlUtils.parseToXmlDocument(containerContent);
+    final containerElement = containerXmlDocument
+            .findAllElements(
+              EpubContainer.elementName,
+              namespace: EpubContainer.namespace,
+            )
+            .firstOrNull ??
+        containerXmlDocument
+            .findAllElements(EpubContainer.elementName)
+            .firstOrNull;
+
+    if (containerElement == null) {
+      throw EpubException(
+        'Malformed container file, could not find required ${EpubContainer.elementName} element',
+      );
+    }
+
+    final packageXmlDocument = XmlUtils.parseToXmlDocument(packageContent);
+    final packageElement = packageXmlDocument
+            .findAllElements(
+              EpubPackage.elementName,
+              namespace: EpubPackage.namespace,
+            )
+            .firstOrNull ??
+        packageXmlDocument.findAllElements(EpubPackage.elementName).firstOrNull;
+
+    if (packageElement == null) {
+      throw EpubException(
+        'Malformed package file, could not find required ${EpubPackage.elementName} element',
+      );
+    }
+
+    final navigationXmlDocument =
+        XmlUtils.parseToXmlDocument(navigationContent);
+    final navigationElement = navigationXmlDocument
+            .findAllElements(
+              EpubNavigation.elementName,
+              namespace: EpubNavigation.namespace,
+            )
+            .firstOrNull ??
+        navigationXmlDocument
+            .findAllElements(EpubNavigation.elementName)
+            .firstOrNull;
+
+    if (navigationElement == null) {
+      throw EpubException(
+        'Malformed navigation file, could not find required ${EpubNavigation.elementName} element',
+      );
+    }
+
+    return EpubDetailsController.fromXmlElement(
+      containerElement: containerElement,
+      packageElement: packageElement,
+      navigationElement: navigationElement,
     );
   }
 
