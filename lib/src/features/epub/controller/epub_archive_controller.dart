@@ -2,7 +2,7 @@ part of shu_epub.features.epub.controller;
 
 @Immutable()
 class EpubArchiveController extends EpubControllerBase {
-  final Archive archive;
+  final a.Archive archive;
 
   EpubArchiveController.fromArchive(
     this.archive,

@@ -5,18 +5,63 @@ import 'package:shu_epub/shu_epub.dart';
 import 'package:path/path.dart' as p;
 
 Future<void> main(List<String> arguments) async {
-  Stopwatch stopwatch = Stopwatch();
-  stopwatch.start();
-  await runArchiveExample(verbose: false);
-  stopwatch.stop();
+  const runs = 500;
+  var totalArchiveTime = 0;
+  var totalArchiveIOTime = 0;
+  var totalExtractedTime = 0;
+
+  await warmUp();
+
+  for (int i = 0; i < runs; i++) {
+    Stopwatch stopwatch = Stopwatch();
+    stopwatch.start();
+    await runArchiveExample(verbose: false);
+    stopwatch.stop();
+    totalArchiveTime += stopwatch.elapsedMilliseconds;
+    print(
+        '$i EpubArchiveController Example took ${stopwatch.elapsedMilliseconds}ms');
+
+    stopwatch.reset();
+    stopwatch.start();
+    await runArchiveIOExample(verbose: false);
+    stopwatch.stop();
+    totalArchiveIOTime += stopwatch.elapsedMilliseconds;
+    print(
+        '$i EpubArchiveIOController Example took ${stopwatch.elapsedMilliseconds}ms');
+
+    stopwatch.reset();
+    stopwatch.start();
+    await runExtractedExample(verbose: false);
+    stopwatch.stop();
+    totalExtractedTime += stopwatch.elapsedMilliseconds;
+    print(
+        '$i EpubExtractedController Example took ${stopwatch.elapsedMilliseconds}ms');
+  }
   print(
-      'EpubArchiveController Example took ${stopwatch.elapsedMilliseconds}ms');
-  stopwatch.reset();
-  stopwatch.start();
-  await runExtractedExample(verbose: false);
-  stopwatch.stop();
+      'Average EpubArchiveController Example took ${totalArchiveTime / runs}ms');
   print(
-      'EpubExtractedController Example took ${stopwatch.elapsedMilliseconds}ms');
+      'Average EpubArchiveIOController Example took ${totalArchiveIOTime / runs}ms');
+  print(
+      'Average EpubExtractedController Example took ${totalExtractedTime / runs}ms');
+}
+
+Future<void> warmUp([int runs = 15]) async {
+  for (int i = 0; i < runs; i++) {
+    Stopwatch stopwatch = Stopwatch();
+    stopwatch.start();
+    await runArchiveExample(verbose: false);
+    stopwatch.stop();
+
+    stopwatch.reset();
+    stopwatch.start();
+    await runArchiveIOExample(verbose: false);
+    stopwatch.stop();
+
+    stopwatch.reset();
+    stopwatch.start();
+    await runExtractedExample(verbose: false);
+    stopwatch.stop();
+  }
 }
 
 Future<void> runArchiveExample({final bool verbose = false}) async {
@@ -40,13 +85,31 @@ Future<void> runArchiveExample({final bool verbose = false}) async {
   printBookDetails(bookDetails, verbose: verbose);
 }
 
+Future<void> runArchiveIOExample({final bool verbose = false}) async {
+  if (verbose) {
+    print('Reading from epub zip file...');
+  }
+  final filePath =
+      p.join(io.Directory.current.path, 'assets', 'Guardians.epub');
+
+  final controller = EpubArchiveIOController(filePath);
+  final EpubDetails? bookDetails = await controller.getDetails();
+  if (bookDetails == null) {
+    if (verbose) {
+      print("Failed to read epub details.");
+    }
+    return;
+  }
+  printBookDetails(bookDetails, verbose: verbose);
+}
+
 Future<void> runExtractedExample({final bool verbose = false}) async {
   final directoryPath =
       p.join(io.Directory.current.path, 'assets', 'Guardians');
   if (verbose) {
     print('Reading from epub extracted to filesystem...');
   }
-  final controller = EpubExtractedController(io.Directory(directoryPath));
+  final controller = EpubExtractedController.fromPath(directoryPath);
   final EpubDetails? bookDetails = await controller.getDetails();
   if (bookDetails == null) {
     if (verbose) {
@@ -81,8 +144,7 @@ void printBookDetails(
   }
 
   final manifestItems = bookDetails.package?.manifest?.items ?? [];
-  final EpubManifestItem? tocManifestItem =
-      firstWhereOrElseNull<EpubManifestItem>(
+  final EpubManifestItem? tocManifestItem = firstWhereOrNull<EpubManifestItem>(
     manifestItems,
     (element) => element.id == tableOfContentsId,
   );
@@ -96,19 +158,15 @@ void printBookDetails(
   }
 }
 
-T? firstWhereOrElseNull<T>(List<T> items, bool Function(T) test) {
-  for (final T item in items) {
-    if (test(item)) {
-      return item;
-    }
-  }
-  return null;
-}
-
+/// Contains handler to the extracted epub file. This is on average faster than [EpubArchiveIOController] when the files are cached by the filesystem
 class EpubExtractedController extends EpubControllerBase {
   io.Directory rootDirectory;
 
   EpubExtractedController(this.rootDirectory);
+
+  factory EpubExtractedController.fromPath(String directoryPath) {
+    return EpubExtractedController(io.Directory(directoryPath));
+  }
 
   /// Read file from filesystem
   @override
@@ -137,4 +195,13 @@ class EpubExtractedController extends EpubControllerBase {
       },
     ).toList();
   }
+}
+
+T? firstWhereOrNull<T>(List<T> items, bool Function(T) test) {
+  for (final T item in items) {
+    if (test(item)) {
+      return item;
+    }
+  }
+  return null;
 }
