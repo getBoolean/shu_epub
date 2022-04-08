@@ -4,11 +4,14 @@ part of shu_epub.features.epub.controller;
 abstract class EpubControllerBase {
   EpubControllerBase();
 
-  String get defaultPathSeparator => p.separator;
+  /// Getter for the default path separator for the current platform.
+  /// 
+  /// This should not be overridden since [EpubControllerBase] will ignore it
+  String get platformPathSeparator => p.separator;
 
-  /// Gets filepaths to all files
+  /// Gets filepaths to all files in the epub
   ///
-  /// Must use forward slashes `/`, not backwards `\`
+  /// Must use the corresponding platform path separator from [EpubControllerBase.platformPathSeparator]
   FutureOr<List<String>> getFilePaths();
 
   /// Get the bytes of file from the path

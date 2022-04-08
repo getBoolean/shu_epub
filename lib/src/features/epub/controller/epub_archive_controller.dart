@@ -23,6 +23,9 @@ class EpubArchiveController extends EpubControllerBase {
 
   @override
   FutureOr<List<String>> getFilePaths() {
-    return archive.files.map((file) => file.name.replaceAll(RegExp(r'[/\\]'), defaultPathSeparator)).toList();
+    return archive.files
+        .map((file) =>
+            file.name.replaceAll(RegExp(r'[/\\]'), super.platformPathSeparator))
+        .toList();
   }
 }
