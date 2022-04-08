@@ -18,5 +18,5 @@ import '../navigation/data.dart';
 import '../package/data.dart';
 
 part 'controller/epub_archive_controller.dart';
-part 'controller/epub_controller.dart';
+part 'controller/epub_controller_base.dart';
 part 'controller/epub_details_controller.dart';
