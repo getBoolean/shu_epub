@@ -59,8 +59,8 @@ class EpubSingleTour extends EquatableXml {
 
   factory EpubSingleTour.fromMap(Map<String, dynamic> map) {
     return EpubSingleTour(
-      // ignore: unnecessary_lambdas
       sites: List<EpubTourSite>.from(
+          // ignore: unnecessary_lambdas
           map['sites']?.map((x) => EpubTourSite.fromMap(x))),
       id: map['id'],
       title: map['title'],
