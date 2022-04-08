@@ -8,6 +8,36 @@ void main() {
       () async {
         final containerInput = '''
 <?xml version="1.0"?>
+<invalid>
+</invalid>
+''';
+        final packageInput = '''
+<?xml version="1.0"?>
+<invalid>
+</invalid>
+''';
+        final navigationInput = '''
+<?xml version="1.0"?>
+<invalid>
+</invalid>
+''';
+
+        expect(
+          () => EpubDetailsController.fromXmlString(
+            containerContent: containerInput,
+            packageContent: packageInput,
+            navigationContent: navigationInput,
+          ),
+          throwsA(isA<EpubException>()),
+        );
+      },
+    );
+
+    test(
+      'on input without a package element, expect a error thrown',
+      () async {
+        final containerInput = '''
+<?xml version="1.0"?>
 <container>
 </container>
 ''';
@@ -15,6 +45,36 @@ void main() {
 <?xml version="1.0"?>
 <invalid>
 </invalid>
+''';
+        final navigationInput = '''
+<?xml version="1.0"?>
+<invalid>
+</invalid>
+''';
+
+        expect(
+          () => EpubDetailsController.fromXmlString(
+            containerContent: containerInput,
+            packageContent: packageInput,
+            navigationContent: navigationInput,
+          ),
+          throwsA(isA<EpubException>()),
+        );
+      },
+    );
+
+    test(
+      'on input without a navigation element, expect a error thrown',
+      () async {
+        final containerInput = '''
+<?xml version="1.0"?>
+<container>
+</container>
+''';
+        final packageInput = '''
+<?xml version="1.0"?>
+<package>
+</package>
 ''';
         final navigationInput = '''
 <?xml version="1.0"?>
