@@ -23,7 +23,7 @@ void main() {
 ''';
 
         expect(
-          () => EpubDetailsController.fromXmlString(
+          () => EpubDetailsReaderController.fromXmlString(
             containerContent: containerInput,
             packageContent: packageInput,
             navigationContent: navigationInput,
@@ -53,7 +53,7 @@ void main() {
 ''';
 
         expect(
-          () => EpubDetailsController.fromXmlString(
+          () => EpubDetailsReaderController.fromXmlString(
             containerContent: containerInput,
             packageContent: packageInput,
             navigationContent: navigationInput,
@@ -83,7 +83,7 @@ void main() {
 ''';
 
         expect(
-          () => EpubDetailsController.fromXmlString(
+          () => EpubDetailsReaderController.fromXmlString(
             containerContent: containerInput,
             packageContent: packageInput,
             navigationContent: navigationInput,
@@ -113,7 +113,7 @@ void main() {
 <ncx>
 </ncx>
 ''';
-        final controller = EpubDetailsController.fromXmlString(
+        final controller = EpubDetailsReaderController.fromXmlString(
           containerContent: containerInput,
           packageContent: packageInput,
           navigationContent: navigationInput,
@@ -145,7 +145,7 @@ void main() {
 <ncx>
 </ncx>
 ''';
-        final controller = EpubDetailsController.fromXmlString(
+        final controller = EpubDetailsReaderController.fromXmlString(
           containerContent: containerInput,
           packageContent: packageInput,
           navigationContent: navigationInput,
@@ -177,7 +177,7 @@ void main() {
 <ncx>
 </ncx>
 ''';
-        final controller = EpubDetailsController.fromXmlString(
+        final controller = EpubDetailsReaderController.fromXmlString(
           containerContent: containerInput,
           packageContent: packageInput,
           navigationContent: navigationInput,

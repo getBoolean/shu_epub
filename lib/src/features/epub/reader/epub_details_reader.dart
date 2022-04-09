@@ -7,7 +7,7 @@ class EpubDetailsReader {
     required XmlElement packageElement,
     required XmlElement navigationElement,
   }) {
-    final controller = EpubDetailsController.fromXmlElement(
+    final controller = EpubDetailsReaderController.fromXmlElement(
       containerElement: containerElement,
       packageElement: packageElement,
       navigationElement: navigationElement,
@@ -25,7 +25,7 @@ class EpubDetailsReader {
     required String packageContent,
     required String navigationContent,
   }) {
-    final controller = EpubDetailsController.fromXmlString(
+    final controller = EpubDetailsReaderController.fromXmlString(
       containerContent: containerContent,
       packageContent: packageContent,
       navigationContent: navigationContent,
@@ -43,7 +43,7 @@ class EpubDetailsReader {
     required Uint8List packageData,
     required Uint8List navigationData,
   }) {
-    final controller = EpubDetailsController(
+    final controller = EpubDetailsReaderController(
       containerData: containerData,
       packageData: packageData,
       navigationData: navigationData,
@@ -53,7 +53,7 @@ class EpubDetailsReader {
   }
 
   static EpubDetails _fromController(
-    EpubDetailsController controller,
+    EpubDetailsReaderController controller,
   ) {
     return EpubDetails(
       container: controller.getContainer(),

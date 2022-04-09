@@ -1,33 +1,33 @@
 part of shu_epub.features.epub.controller;
 
-class EpubDetailsController {
+class EpubDetailsReaderController {
   final XmlElement containerElement;
   final XmlElement packageElement;
   final XmlElement navigationElement;
 
-  const EpubDetailsController._internal({
+  const EpubDetailsReaderController._internal({
     required this.containerElement,
     required this.packageElement,
     required this.navigationElement,
   });
 
-  factory EpubDetailsController.fromXmlElement({
+  factory EpubDetailsReaderController.fromXmlElement({
     required XmlElement containerElement,
     required XmlElement packageElement,
     required XmlElement navigationElement,
   }) {
-    return EpubDetailsController._internal(
+    return EpubDetailsReaderController._internal(
       containerElement: containerElement,
       packageElement: packageElement,
       navigationElement: navigationElement,
     );
   }
 
-  /// Create an instance of [EpubDetailsController] from the [String] representation
+  /// Create an instance of [EpubDetailsReaderController] from the [String] representation
   /// of the epub container, package, and navgiation elements
   ///
   /// Throws [EpubException] if the data does not have the corresponding element
-  factory EpubDetailsController.fromXmlString({
+  factory EpubDetailsReaderController.fromXmlString({
     required String containerContent,
     required String packageContent,
     required String navigationContent,
@@ -36,18 +36,18 @@ class EpubDetailsController {
     final packageData = Uint8List.fromList(packageContent.codeUnits);
     final navigationData = Uint8List.fromList(navigationContent.codeUnits);
 
-    return EpubDetailsController(
+    return EpubDetailsReaderController(
       containerData: containerData,
       packageData: packageData,
       navigationData: navigationData,
     );
   }
 
-  /// Create an instance of [EpubDetailsController] from the [Uint8List] data
+  /// Create an instance of [EpubDetailsReaderController] from the [Uint8List] data
   /// of the epub container, package, and navgiation elements
   ///
   /// Throws [EpubException] if the data does not have the corresponding element
-  factory EpubDetailsController({
+  factory EpubDetailsReaderController({
     required Uint8List containerData,
     required Uint8List packageData,
     required Uint8List navigationData,
@@ -115,7 +115,7 @@ class EpubDetailsController {
       );
     }
 
-    return EpubDetailsController.fromXmlElement(
+    return EpubDetailsReaderController.fromXmlElement(
       containerElement: containerElement,
       packageElement: packageElement,
       navigationElement: navigationElement,
