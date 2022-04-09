@@ -5,12 +5,16 @@ class EpubArchiveController extends EpubControllerBase {
   final a.Archive archive;
 
   EpubArchiveController.fromArchive(
-    this.archive,
-  );
+    this.archive, {
+    bool enableCache = true,
+  }) : super(enableCache: enableCache);
 
-  factory EpubArchiveController(List<int> data) {
+  factory EpubArchiveController(
+    List<int> data, {
+    bool enableCache = true,
+  }) {
     final archive = ArchiveService.decodeZip(data);
-    return EpubArchiveController.fromArchive(archive);
+    return EpubArchiveController.fromArchive(archive, enableCache: enableCache);
   }
 
   @override

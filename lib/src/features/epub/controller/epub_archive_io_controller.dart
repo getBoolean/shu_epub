@@ -8,13 +8,20 @@ class EpubArchiveIOController extends EpubControllerBase {
   final aio.Archive archive;
 
   EpubArchiveIOController.fromArchive(
-    this.archive,
-  );
+    this.archive, {
+    bool enableCache = true,
+  }) : super(enableCache: enableCache);
 
-  factory EpubArchiveIOController(String path) {
+  factory EpubArchiveIOController(
+    String path, {
+    bool enableCache = true,
+  }) {
     final inputStream = aio.InputFileStream(path);
     final archive = aio.ZipDecoder().decodeBuffer(inputStream);
-    return EpubArchiveIOController.fromArchive(archive);
+    return EpubArchiveIOController.fromArchive(
+      archive,
+      enableCache: enableCache,
+    );
   }
 
   @override

@@ -70,7 +70,7 @@ Future<void> runArchiveExample({final bool verbose = false}) async {
   final io.File file = io.File(filePath);
 
   final bytes = await file.readAsBytes();
-  final controller = EpubArchiveController(bytes);
+  final controller = EpubArchiveController(bytes, enableCache: false);
   final EpubDetails? bookDetails = await controller.getDetails();
   if (bookDetails == null) {
     if (verbose) {
@@ -88,7 +88,7 @@ Future<void> runArchiveIOExample({final bool verbose = false}) async {
   final filePath =
       p.join(io.Directory.current.path, 'assets', 'Guardians.epub');
 
-  final controller = EpubArchiveIOController(filePath);
+  final controller = EpubArchiveIOController(filePath, enableCache: false);
   final EpubDetails? bookDetails = await controller.getDetails();
   if (bookDetails == null) {
     if (verbose) {
@@ -105,7 +105,8 @@ Future<void> runExtractedExample({final bool verbose = false}) async {
   if (verbose) {
     print('Reading from epub extracted to filesystem...');
   }
-  final controller = EpubExtractedController.fromPath(directoryPath);
+  final controller =
+      EpubExtractedController.fromPath(directoryPath, enableCache: false);
   final EpubDetails? bookDetails = await controller.getDetails();
   if (bookDetails == null) {
     if (verbose) {
@@ -159,10 +160,19 @@ void printBookDetails(
 class EpubExtractedController extends EpubControllerBase {
   io.Directory rootDirectory;
 
-  EpubExtractedController(this.rootDirectory);
+  EpubExtractedController(
+    this.rootDirectory, {
+    bool enableCache = true,
+  }) : super(enableCache: enableCache);
 
-  factory EpubExtractedController.fromPath(String directoryPath) {
-    return EpubExtractedController(io.Directory(directoryPath));
+  factory EpubExtractedController.fromPath(
+    String directoryPath, {
+    bool enableCache = true,
+  }) {
+    return EpubExtractedController(
+      io.Directory(directoryPath),
+      enableCache: enableCache,
+    );
   }
 
   /// Read file from filesystem

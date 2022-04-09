@@ -2,7 +2,8 @@ part of shu_epub.features.epub.controller;
 
 @Immutable()
 abstract class EpubControllerBase {
-  EpubControllerBase();
+  final bool enableCache;
+  EpubControllerBase({this.enableCache = true});
 
   /// Getter for the default path separator for the current platform.
   ///
@@ -20,12 +21,16 @@ abstract class EpubControllerBase {
   EpubDetails? _epubDetails;
 
   Future<EpubDetails?> getDetails() async {
-    if (_epubDetails != null) {
+    if (enableCache && _epubDetails != null) {
       return _epubDetails;
     }
 
-    _epubDetails = await _parseEpubDetails();
-    return _epubDetails;
+    final epubDetails = await _parseEpubDetails();
+    if (enableCache) {
+      _epubDetails = epubDetails;
+    }
+    
+    return epubDetails;
   }
 
   List<String>? filePaths;
