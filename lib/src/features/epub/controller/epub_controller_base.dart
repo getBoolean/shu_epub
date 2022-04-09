@@ -29,7 +29,7 @@ abstract class EpubControllerBase {
     if (enableCache) {
       _epubDetails = epubDetails;
     }
-    
+
     return epubDetails;
   }
 
