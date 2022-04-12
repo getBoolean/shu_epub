@@ -57,13 +57,13 @@ and more...
   - **EpubContentsController**
     - Given file content bytes and the type and content it is (such as `.xhtml`)
 
-- [x] EpubContainerController
+- [x] EpubContainerReaderController
   - [x] Default constructor from Uint8List
   - [x] fromXmlString factory
   - [x] getVersion
   - [x] getRootfiles
   - [x] Tests
-- [x] EpubPackageController
+- [x] EpubPackageReaderController
   - [x] Default constructor from Uint8List
   - [x] fromXmlString factory
   - [x] getPackageIdentity
@@ -73,7 +73,7 @@ and more...
   - [x] getGuide
   - [x] getTours
   - [ ] Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2), removed in Epub 3
-- [x] EpubNavigationController
+- [x] EpubNavigationReaderController
   - [x] Default constructor from Uint8List
   - [x] fromXmlString factory
   - [x] getVersion
@@ -84,7 +84,19 @@ and more...
   - [x] getNavigationMap
   - [x] getPageList
   - [x] getNavigationLists
+- [x] EpubDetailsReaderController
+  - Combines the container, package, and navigation into one class
 - [ ] Publication/Content Controller
+- [ ] Epub Controllers
+  - [ ] EpubControllerBase
+    - [x] getDetails
+    - [x] getFileBytes
+    - [x] getFiles
+    - others tbd...
+  - [x] EpubArchiveController
+  - [x] EpubArchiveIOController
+  - [x] (In example.dart) EpubExtractedController
+    - requires dart:io, so not included in this package
 - [ ] EpubBook class to simplify access to Epub content and metadata
   - [x] EpubDetails (contains EpubContainer, EpubPackage, and EpubNavigation)
   - [ ] EpubFiles (all files listed in manifest)
