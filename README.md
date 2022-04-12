@@ -112,7 +112,6 @@ and more...
       - [ ] CFI Location
     - [ ] Pages *Optional* (pageList)
     - [ ] Other Navigation Lists *Optional* (navList)
-
 - [ ] CFI Generator
 
 ### flutter_shu_epub (tenative)
