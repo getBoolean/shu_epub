@@ -5,6 +5,10 @@ import 'package:shu_epub/shu_epub.dart';
 import 'package:path/path.dart' as p;
 
 Future<void> main(List<String> arguments) async {
+  await runBenchmark();
+}
+
+Future<void> runBenchmark() async {
   const runs = 500;
   var totalArchiveTime = 0;
   var totalArchiveIOTime = 0;
