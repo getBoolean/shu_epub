@@ -99,7 +99,7 @@ and more...
       - [ ] File
       - [ ] CFI Location
     - [ ] Pages *Optional* (pageList)
-    - [ ] Other Navigation Lists (navList)
+    - [ ] Other Navigation Lists *Optional* (navList)
 
 - [ ] CFI Generator
 
