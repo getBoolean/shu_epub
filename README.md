@@ -86,6 +86,21 @@ and more...
   - [x] getNavigationLists
 - [ ] Publication/Content Controller
 - [ ] EpubBook class to simplify access to Epub content and metadata
+  - [x] EpubDetails (contains EpubContainer, EpubPackage, and EpubNavigation)
+  - [ ] EpubFiles (all files listed in manifest)
+    - [ ] Don't include items that are Out-Of-Line XML Islands
+  - [ ] EpubReadingOrder (spine)
+    - [ ] Manifest items included in the spine, in the same order as listed in the spine
+  - [ ] EpubTableOfContents (ncx)
+    - [ ] Navigation Metadata
+    - [ ] Navigation Title
+    - [ ] Navigation Author
+    - [ ] Navigation Points (navMap)
+      - [ ] File
+      - [ ] CFI Location
+    - [ ] Pages *Optional* (pageList)
+    - [ ] Other Navigation Lists (navList)
+
 - [ ] CFI Generator
 
 ### flutter_shu_epub (tenative)
