@@ -20,7 +20,7 @@ abstract class EpubControllerBase {
 
   EpubDetails? _epubDetails;
 
-  Future<EpubDetails?> getDetails() async {
+  Future<EpubDetails?> getEpubDetails() async {
     if (enableCache && _epubDetails != null) {
       return _epubDetails;
     }

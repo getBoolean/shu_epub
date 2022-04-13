@@ -75,7 +75,7 @@ Future<void> runArchiveExample({final bool verbose = false}) async {
 
   final bytes = await file.readAsBytes();
   final controller = EpubArchiveController(bytes, enableCache: false);
-  final EpubDetails? bookDetails = await controller.getDetails();
+  final EpubDetails? bookDetails = await controller.getEpubDetails();
   if (bookDetails == null) {
     if (verbose) {
       print("Failed to read epub details.");
@@ -93,7 +93,7 @@ Future<void> runArchiveIOExample({final bool verbose = false}) async {
       p.join(io.Directory.current.path, 'assets', 'Guardians.epub');
 
   final controller = EpubArchiveIOController(filePath, enableCache: false);
-  final EpubDetails? bookDetails = await controller.getDetails();
+  final EpubDetails? bookDetails = await controller.getEpubDetails();
   if (bookDetails == null) {
     if (verbose) {
       print("Failed to read epub details.");
@@ -111,7 +111,7 @@ Future<void> runExtractedExample({final bool verbose = false}) async {
   }
   final controller =
       EpubExtractedController.fromPath(directoryPath, enableCache: false);
-  final EpubDetails? bookDetails = await controller.getDetails();
+  final EpubDetails? bookDetails = await controller.getEpubDetails();
   if (bookDetails == null) {
     if (verbose) {
       print("Failed to read epub details.");
