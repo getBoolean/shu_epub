@@ -181,7 +181,7 @@ class EpubExtractedController extends EpubControllerBase {
 
   /// Read file from filesystem
   @override
-  FutureOr<Uint8List?> getFileBytes(String path) {
+  Future<Uint8List?> getFileBytes(String path) async {
     return io.File(p.join(rootDirectory.path, p.normalize(path))).readAsBytes();
   }
 
@@ -189,7 +189,7 @@ class EpubExtractedController extends EpubControllerBase {
   ///
   /// Paths must be relative to the root folder of the epub
   @override
-  FutureOr<List<String>> getFilePaths() async {
+  Future<List<String>> getFilePaths() async {
     var files = <io.FileSystemEntity>[];
     var completer = Completer<List<io.FileSystemEntity>>();
     var lister = rootDirectory.list(recursive: true);

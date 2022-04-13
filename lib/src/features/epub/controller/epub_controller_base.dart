@@ -13,10 +13,10 @@ abstract class EpubControllerBase {
   /// Gets filepaths to all files in the epub
   ///
   /// Must use the corresponding platform path separator from [EpubControllerBase.platformPathSeparator]
-  FutureOr<List<String>> getFilePaths();
+  Future<List<String>> getFilePaths();
 
   /// Get the bytes of file from the path
-  FutureOr<Uint8List?> getFileBytes(String path);
+  Future<Uint8List?> getFileBytes(String path);
 
   EpubDetails? _epubDetails;
 

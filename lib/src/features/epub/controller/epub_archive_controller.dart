@@ -18,7 +18,7 @@ class EpubArchiveController extends EpubControllerBase {
   }
 
   @override
-  FutureOr<Uint8List?> getFileBytes(String path) {
+  Future<Uint8List?> getFileBytes(String path) async {
     final file = archive.files.firstWhereOrNull(
         (element) => p.normalize(element.name) == p.normalize(path));
 
@@ -26,7 +26,7 @@ class EpubArchiveController extends EpubControllerBase {
   }
 
   @override
-  FutureOr<List<String>> getFilePaths() {
+  Future<List<String>> getFilePaths() async {
     return archive.files
         .map((file) =>
             file.name.replaceAll(RegExp(r'[/\\]'), super.platformPathSeparator))
