@@ -1,70 +1,12 @@
+import 'dart:typed_data';
+
 import 'package:shu_epub/shu_epub.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('fromXmlString', () {
     test(
-      'on input without a container element, expect a error thrown',
-      () async {
-        final containerInput = '''
-<?xml version="1.0"?>
-<invalid>
-</invalid>
-''';
-        final packageInput = '''
-<?xml version="1.0"?>
-<invalid>
-</invalid>
-''';
-        final navigationInput = '''
-<?xml version="1.0"?>
-<invalid>
-</invalid>
-''';
-
-        expect(
-          () => EpubDetailsReaderController.fromXmlString(
-            containerContent: containerInput,
-            packageContent: packageInput,
-            navigationContent: navigationInput,
-          ),
-          throwsA(isA<EpubException>()),
-        );
-      },
-    );
-
-    test(
-      'on input without a package element, expect a error thrown',
-      () async {
-        final containerInput = '''
-<?xml version="1.0"?>
-<container>
-</container>
-''';
-        final packageInput = '''
-<?xml version="1.0"?>
-<invalid>
-</invalid>
-''';
-        final navigationInput = '''
-<?xml version="1.0"?>
-<invalid>
-</invalid>
-''';
-
-        expect(
-          () => EpubDetailsReaderController.fromXmlString(
-            containerContent: containerInput,
-            packageContent: packageInput,
-            navigationContent: navigationInput,
-          ),
-          throwsA(isA<EpubException>()),
-        );
-      },
-    );
-
-    test(
-      'on input without a navigation element, expect a error thrown',
+      'on input with all elements, expect the controller returned',
       () async {
         final containerInput = '''
 <?xml version="1.0"?>
@@ -78,18 +20,18 @@ void main() {
 ''';
         final navigationInput = '''
 <?xml version="1.0"?>
-<invalid>
-</invalid>
+<ncx>
+</ncx>
 ''';
-
-        expect(
-          () => EpubDetailsReaderController.fromXmlString(
-            containerContent: containerInput,
-            packageContent: packageInput,
-            navigationContent: navigationInput,
-          ),
-          throwsA(isA<EpubException>()),
+        final actual = EpubDetailsReaderController.fromXmlString(
+          containerContent: containerInput,
+          packageContent: packageInput,
+          navigationContent: navigationInput,
         );
+
+        expect(actual.containerElement, isNotNull);
+        expect(actual.navigationElement, isNotNull);
+        expect(actual.packageElement, isNotNull);
       },
     );
   });

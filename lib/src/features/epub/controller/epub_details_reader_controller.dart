@@ -1,9 +1,9 @@
 part of shu_epub.features.epub.controller;
 
 class EpubDetailsReaderController {
-  final XmlElement containerElement;
-  final XmlElement packageElement;
-  final XmlElement navigationElement;
+  final XmlElement? containerElement;
+  final XmlElement? packageElement;
+  final XmlElement? navigationElement;
 
   const EpubDetailsReaderController._internal({
     required this.containerElement,
@@ -12,9 +12,9 @@ class EpubDetailsReaderController {
   });
 
   factory EpubDetailsReaderController.fromXmlElement({
-    required XmlElement containerElement,
-    required XmlElement packageElement,
-    required XmlElement navigationElement,
+    XmlElement? containerElement,
+    XmlElement? packageElement,
+    XmlElement? navigationElement,
   }) {
     return EpubDetailsReaderController._internal(
       containerElement: containerElement,
@@ -32,14 +32,45 @@ class EpubDetailsReaderController {
     required String packageContent,
     required String navigationContent,
   }) {
-    final containerData = Uint8List.fromList(containerContent.codeUnits);
-    final packageData = Uint8List.fromList(packageContent.codeUnits);
-    final navigationData = Uint8List.fromList(navigationContent.codeUnits);
+    final containerXmlDocument =
+        XmlUtils.tryParseToXmlDocument(containerContent);
+    final containerElement = containerXmlDocument
+            ?.findAllElements(
+              EpubContainer.elementName,
+              namespace: EpubContainer.namespace,
+            )
+            .firstOrNull ??
+        containerXmlDocument
+            ?.findAllElements(EpubContainer.elementName)
+            .firstOrNull;
 
-    return EpubDetailsReaderController(
-      containerData: containerData,
-      packageData: packageData,
-      navigationData: navigationData,
+    final packageXmlDocument = XmlUtils.tryParseToXmlDocument(packageContent);
+    final packageElement = packageXmlDocument
+            ?.findAllElements(
+              EpubPackage.elementName,
+              namespace: EpubPackage.namespace,
+            )
+            .firstOrNull ??
+        packageXmlDocument
+            ?.findAllElements(EpubPackage.elementName)
+            .firstOrNull;
+
+    final navigationXmlDocument =
+        XmlUtils.tryParseToXmlDocument(navigationContent);
+    final navigationElement = navigationXmlDocument
+            ?.findAllElements(
+              EpubNavigation.elementName,
+              namespace: EpubNavigation.namespace,
+            )
+            .firstOrNull ??
+        navigationXmlDocument
+            ?.findAllElements(EpubNavigation.elementName)
+            .firstOrNull;
+
+    return EpubDetailsReaderController.fromXmlElement(
+      containerElement: containerElement,
+      packageElement: packageElement,
+      navigationElement: navigationElement,
     );
   }
 
@@ -65,68 +96,22 @@ class EpubDetailsReaderController {
       allowMalformed: true,
     );
 
-    final containerXmlDocument = XmlUtils.parseToXmlDocument(containerContent);
-    final containerElement = containerXmlDocument
-            .findAllElements(
-              EpubContainer.elementName,
-              namespace: EpubContainer.namespace,
-            )
-            .firstOrNull ??
-        containerXmlDocument
-            .findAllElements(EpubContainer.elementName)
-            .firstOrNull;
-
-    if (containerElement == null) {
-      throw EpubException(
-        'Malformed container file, could not find required ${EpubContainer.elementName} element',
-      );
-    }
-
-    final packageXmlDocument = XmlUtils.parseToXmlDocument(packageContent);
-    final packageElement = packageXmlDocument
-            .findAllElements(
-              EpubPackage.elementName,
-              namespace: EpubPackage.namespace,
-            )
-            .firstOrNull ??
-        packageXmlDocument.findAllElements(EpubPackage.elementName).firstOrNull;
-
-    if (packageElement == null) {
-      throw EpubException(
-        'Malformed package file, could not find required ${EpubPackage.elementName} element',
-      );
-    }
-
-    final navigationXmlDocument =
-        XmlUtils.parseToXmlDocument(navigationContent);
-    final navigationElement = navigationXmlDocument
-            .findAllElements(
-              EpubNavigation.elementName,
-              namespace: EpubNavigation.namespace,
-            )
-            .firstOrNull ??
-        navigationXmlDocument
-            .findAllElements(EpubNavigation.elementName)
-            .firstOrNull;
-
-    if (navigationElement == null) {
-      throw EpubException(
-        'Malformed navigation file, could not find required ${EpubNavigation.elementName} element',
-      );
-    }
-
-    return EpubDetailsReaderController.fromXmlElement(
-      containerElement: containerElement,
-      packageElement: packageElement,
-      navigationElement: navigationElement,
+    return EpubDetailsReaderController.fromXmlString(
+      containerContent: containerContent,
+      packageContent: packageContent,
+      navigationContent: navigationContent,
     );
   }
 
-  EpubContainer? getContainer() =>
-      EpubContainer.fromXmlElement(containerElement);
+  EpubContainer? getContainer() => containerElement != null
+      ? EpubContainer.fromXmlElement(containerElement!)
+      : null;
 
-  EpubPackage? getPackage() => EpubPackage.fromXmlElement(packageElement);
+  EpubPackage? getPackage() => containerElement != null
+      ? EpubPackage.fromXmlElement(packageElement!)
+      : null;
 
-  EpubNavigation? getNavigation() =>
-      EpubNavigation.fromXmlElement(navigationElement);
+  EpubNavigation? getNavigation() => containerElement != null
+      ? EpubNavigation.fromXmlElement(navigationElement!)
+      : null;
 }

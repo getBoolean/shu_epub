@@ -83,10 +83,10 @@ class EpubDetails extends Equatable {
     return EpubDetails(
       package:
           map['package'] != null ? EpubPackage.fromMap(map['package']) : null,
-      container: map['package'] != null
+      container: map['container'] != null
           ? EpubContainer.fromMap(map['container'])
           : null,
-      navigation: map['package'] != null
+      navigation: map['navigation'] != null
           ? EpubNavigation.fromMap(map['navigation'])
           : null,
     );
@@ -99,7 +99,7 @@ class EpubDetails extends Equatable {
 
   @override
   String toString() =>
-      'Epub(package: $package, container: $container, navigation: $navigation)';
+      'EpubDetails(package: $package, container: $container, navigation: $navigation)';
 
   @override
   List<Object> get props => [
