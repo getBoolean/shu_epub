@@ -8,10 +8,18 @@
 
 A Dart EPUB parser built from the ground up, and designed to support a variety of use cases and custom implementations such as on-device caching and serving content from a server. This package is current WIP and is NOT yet usuable.
 
-## Planned Features
+## Motivation
 
-- EpubController - An abstract class intended to be extended to enable flexibility inspired by Flutter's Widget class
-- EpubArchiveController - Implements EpubController, reads in bytes of an .epub file for reading
+This package enables the application to only have the files needed from the EPUB file loaded into memory, instead of the entire EPUB file
+being required in memory like in other popular epub packages.
+
+## Features
+
+- EpubControllerBase - An abstract class intended to be extended to enable flexibility inspired by Flutter's Widget class
+  - Enables use cases such asserving epubs from the web or caching epubs on the file system
+- EpubArchiveController - Implements EpubControllerBase, reads in entire bytes of an .epub file for reading and independent from dart:io
+- EpubArchiveIOController - Implements EpubControllerBase, uses file reference to the .epub file to only read in files when required.
+However, this cannot take advantage of the system cache.
 - (flutter_shu_epub) EpubCacheController - Extracts ePub contents onto an Android or iOS device and caches the location, allowing for
   the reader to only load the needed files into memory
 
@@ -21,53 +29,14 @@ and more...
 
 ### shu_epub (this package)
 
-- Provided EpubArchiveController for reading EPUB files, independent from dart:io
-- Abstract EpubController for custom implementations, such as serving epubs from
-  the web or caching epubs on the file system
-- Readers which read individual file data, they do not need the entire
-  EPUB loaded into memory. This allows the device to save memory
-- Controllers
-  - **EpubControllerBase**
-    - Getter for EPUB object
-  - **EpubArchiveController** extends **EpubController**
-    - Given the loaded `.epub` file bytes
-    - Overrides getFilePaths and getFileBytes to use `Archive`/`ArchiveFile`
-  - **EpubArchiveController** extends **EpubController**
-    - Given a file reference
-    - Overrides getFilePaths and getFileBytes to use asynchronous `Archive`/`ArchiveFile`
-  - **Reader Controllers**
-    - Parses xml, used by classes that end in "Reader"
-
 - [x] Models
-- [x] EpubContainerReaderController
-  - [x] Default constructor from Uint8List
-  - [x] fromXmlString factory
-  - [x] getVersion
-  - [x] getRootfiles
-  - [x] Tests
-- [x] EpubPackageReaderController
-  - [x] Default constructor from Uint8List
-  - [x] fromXmlString factory
-  - [x] getPackageIdentity
-  - [x] getPublicationMetadata
-  - [x] getManifest
-  - [x] getSpine
-  - [x] getGuide
-  - [x] getTours
-  - [ ] Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2), removed in Epub 3
-- [x] EpubNavigationReaderController
-  - [x] Default constructor from Uint8List
-  - [x] fromXmlString factory
-  - [x] getVersion
-  - [x] getLanguage
-  - [x] getHead
-  - [x] getDocTitle
-  - [x] getDocAuthors
-  - [x] getNavigationMap
-  - [x] getPageList
-  - [x] getNavigationLists
-- [x] EpubDetailsReaderController
-  - Combines the container, package, and navigation into one class
+- [x] Reader Controllers
+  - [x] EpubContainerReaderController
+  - [x] EpubPackageReaderController
+    - [ ] Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2), removed in Epub 3
+  - [x] EpubNavigationReaderController
+  - [x] EpubDetailsReaderController
+    - Combines the container, package, and navigation into one class
 - [ ] Publication/Content Controller
 - [ ] **EpubControllerBase** (abstract)
   - [x] Future getFilePaths - Method to get filepaths to all files in the epub
