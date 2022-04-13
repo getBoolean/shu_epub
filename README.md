@@ -26,37 +26,19 @@ and more...
   the web or caching epubs on the file system
 - Readers which read individual file data, they do not need the entire
   EPUB loaded into memory. This allows the device to save memory
-- Models
-  - **Epub**
-  - Container
-    - **ContainerFile**
-    - **Rootfile**
-  - Package
-    - **PackageFile**
-    - **PackageIdentity**
-    - **PackageMetadata**
-  - **Exception**
-  - ... many more
 - Controllers
-
-  - **EpubController**
-    - Abstract
-    - Future getFilePaths - Method to get filepaths to all files
-    - Future getFileBytes - Method to get bytes of file from filepath
-    - Create instance of EPUB object when controller is created
+  - **EpubControllerBase**
     - Getter for EPUB object
   - **EpubArchiveController** extends **EpubController**
-    - Creates EPUB object from loaded `.epub` file bytes, and supported media types
+    - Given the loaded `.epub` file bytes
     - Overrides getFilePaths and getFileBytes to use `Archive`/`ArchiveFile`
-  - **EpubContainerController**
-    - Given container (`META-INF/container.xml`) file bytes, and supported media types
-  - **EpubPackageController**
-    - Given rootfile (`.opf`) file bytes
-  - **EpubNavigationController**
-    - Given navigation (`.ncx`) file bytes
-  - **EpubContentsController**
-    - Given file content bytes and the type and content it is (such as `.xhtml`)
+  - **EpubArchiveController** extends **EpubController**
+    - Given a file reference
+    - Overrides getFilePaths and getFileBytes to use asynchronous `Archive`/`ArchiveFile`
+  - **Reader Controllers**
+    - Parses xml, used by classes that end in "Reader"
 
+- [x] Models
 - [x] EpubContainerReaderController
   - [x] Default constructor from Uint8List
   - [x] fromXmlString factory
@@ -87,22 +69,33 @@ and more...
 - [x] EpubDetailsReaderController
   - Combines the container, package, and navigation into one class
 - [ ] Publication/Content Controller
-- [ ] Epub Controllers
-  - [ ] EpubControllerBase
-    - [x] getDetails
-    - [x] getFileBytes
-    - [x] getFiles
-    - others tbd...
-  - [x] EpubArchiveController
-  - [x] EpubArchiveIOController
-  - [x] (In example.dart) EpubExtractedController
-    - requires dart:io, so not included in this package
+- [ ] **EpubControllerBase** (abstract)
+  - [x] Future getFilePaths - Method to get filepaths to all files in the epub
+  - [x] Future getFileBytes - Method to get bytes of file from the filepath
+  - [x] getEpubDetails
+  - others tbd...
+- [x] **EpubArchiveController** extends **EpubController**
+  - [x] Given the loaded `.epub` file bytes
+  - [x] Overrides getFilePaths and getFileBytes to use `Archive`/`ArchiveFile`
+- [x] **EpubArchiveIOController** extends **EpubController**
+  - [x] Given a file reference/path
+  - [x] Overrides getFilePaths and getFileBytes to use filestream `Archive`/`ArchiveFile`
+- [x] (In `example.dart`) EpubExtractedController extends **EpubController**
+  - [x] Given a directory reference/path to the root folder of the extracted epub
+  - [x] Overrides getFilePaths and getFileBytes to use async `dart:io`
+  - Due to it requiring `dart:io`, it is not included in this package
+- [ ] Function/Class to declare supported epub content media types
+  - Default is `application/xhtml+xml`
+  - Old epubs may use the deprecated `application/x-dtbook+xml` and `text/x-eob1-document`
 - [ ] EpubBook class to simplify access to Epub content and metadata
   - [x] EpubDetails (contains EpubContainer, EpubPackage, and EpubNavigation)
   - [ ] EpubFiles (all files listed in manifest)
     - [ ] Don't include items that are Out-Of-Line XML Islands
   - [ ] EpubReadingOrder (spine)
-    - [ ] Manifest items included in the spine, in the same order as listed in the spine
+    - [ ] List of EpubFile (should all be xhtml files?)
+    - [ ] Files are from manifest items included in the spine, in the same order as listed in the spine.
+    Automatically uses the fallback file if required-modules is specified, or if the media-type is not
+    included in the supported mediaTypes configuration.
   - [ ] EpubTableOfContents (ncx)
     - [ ] Navigation Metadata
     - [ ] Navigation Title
