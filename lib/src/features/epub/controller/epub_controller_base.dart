@@ -11,9 +11,11 @@ abstract class EpubControllerBase {
   /// and in file paths returned by [EpubControllerBase.getFilePaths].
   final bool isWebHosted;
 
+  /// Paths to all files in the epub. If this is null when needed,
+  /// [EpubControllerBase.getFilePaths] will be called.
   List<String>? filePaths;
 
-  EpubControllerBase({this.enableCache = true, this.isWebHosted = false});
+  EpubControllerBase({this.enableCache = true, this.isWebHosted = false, this.filePaths});
 
   /// Getter for the default path separator for the current platform.
   ///
@@ -80,7 +82,7 @@ abstract class EpubControllerBase {
     filePaths ??= await getFilePathsHelper();
 
     // Parse container
-    final containerFilePath = filePaths!.firstWhereOrNull(_isContainerFilePath);
+    final containerFilePath = filePaths!.firstWhereOrNull(isContainerFilePath);
     if (containerFilePath == null) {
       return null;
     }
@@ -126,8 +128,13 @@ abstract class EpubControllerBase {
     );
   }
 
-  bool _isContainerFilePath(String filePath) =>
-      filePath == EpubContainer.filepath;
+  /// Check if a filepath is a container at the required location of [EpubContainer.filepath]
+  bool isContainerFilePath(String filePath) {
+    if (isWebHosted) {
+      return filePath.replaceAll(RegExp(r'[/\\]'), '/') == EpubContainer.filepath.replaceAll(RegExp(r'[/\\]'), '/');
+    }
+    return filePath == EpubContainer.filepath;
+  }
 
   // * Future getFilePaths - Method to get filepaths to all files
   // * Future getFileBytes - Method to get bytes of file from filepath
