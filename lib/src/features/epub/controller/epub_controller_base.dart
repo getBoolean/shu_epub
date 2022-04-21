@@ -11,6 +11,8 @@ abstract class EpubControllerBase {
   /// and in file paths returned by [EpubControllerBase.getFilePaths].
   final bool isWebHosted;
 
+  List<String>? filePaths;
+
   EpubControllerBase({this.enableCache = true, this.isWebHosted = false});
 
   /// Getter for the default path separator for the current platform.
@@ -74,10 +76,8 @@ abstract class EpubControllerBase {
     return epubDetails;
   }
 
-  List<String>? filePaths;
-
   Future<EpubDetails?> _parseEpubDetails() async {
-    filePaths = await getFilePathsHelper();
+    filePaths ??= await getFilePathsHelper();
 
     // Parse container
     final containerFilePath = filePaths!.firstWhereOrNull(_isContainerFilePath);
