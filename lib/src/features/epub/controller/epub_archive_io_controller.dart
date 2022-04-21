@@ -10,17 +10,32 @@ class EpubArchiveIOController extends EpubControllerBase {
   EpubArchiveIOController.fromArchive(
     this.archive, {
     bool enableCache = true,
-  }) : super(enableCache: enableCache, isWebHosted: false);
+    List<String>? filePaths,
+    EpubDetails? epubDetails,
+    void Function(EpubDetails)? onEpubDetailsLoaded,
+  }) : super(
+          enableCache: enableCache,
+          isWebHosted: false,
+          filePaths: filePaths,
+          epubDetails: epubDetails,
+          onEpubDetailsLoaded: onEpubDetailsLoaded,
+        );
 
   factory EpubArchiveIOController(
     String path, {
     bool enableCache = true,
+    List<String>? filePaths,
+    EpubDetails? epubDetails,
+    void Function(EpubDetails)? onEpubDetailsLoaded,
   }) {
     final inputStream = aio.InputFileStream(path);
     final archive = aio.ZipDecoder().decodeBuffer(inputStream);
     return EpubArchiveIOController.fromArchive(
       archive,
       enableCache: enableCache,
+      filePaths: filePaths,
+      epubDetails: epubDetails,
+      onEpubDetailsLoaded: onEpubDetailsLoaded,
     );
   }
 

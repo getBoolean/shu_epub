@@ -2,6 +2,7 @@ part of shu_epub.features.epub.controller;
 
 @Immutable()
 abstract class EpubControllerBase {
+  /// Enable caching
   final bool enableCache;
 
   /// If the epub files are web hosted.
@@ -11,14 +12,28 @@ abstract class EpubControllerBase {
   /// and in file paths returned by [EpubControllerBase.getFilePaths].
   final bool isWebHosted;
 
+  /// The cached [EpubDetails]. It will be `null` until [EpubControllerBase.getEpubDetails]
+  /// is called and if the call returns `null`.
+  ///
+  /// This can optionally be initialized in the constructor for faster loading times when
+  /// opening an epub.
+  EpubDetails? epubDetails;
+
   /// Paths to all files in the epub. If this is null when needed,
   /// [EpubControllerBase.getFilePaths] will be called.
+  ///
+  /// This can optionally be initialized in the constructor for faster loading times when
+  /// opening an epub.
   List<String>? filePaths;
+
+  final void Function(EpubDetails)? onEpubDetailsLoaded;
 
   EpubControllerBase({
     this.enableCache = true,
     this.isWebHosted = false,
     this.filePaths,
+    this.epubDetails,
+    this.onEpubDetailsLoaded,
   });
 
   /// Getter for the default path separator for the current platform.
@@ -59,26 +74,25 @@ abstract class EpubControllerBase {
   /// Get the bytes of file from the path
   Future<Uint8List?> getFileBytes(String path);
 
-  EpubDetails? _epubDetails;
-
   /// Parses the epub container, package (metadata), and toc. Makes
   /// consecutive calls to [EpubControllerBase.getFileBytes] for each.
   ///
-  /// Consider overriding this and cache non image/html files when the epub
-  /// is added to the application for faster access later. This is especially
-  /// important if you are hosting the epub extracted on a server instead of
-  /// processing it server side and sending only the html/images to the client.
+  /// Consider passing in a cached [EpubDetails] in the constructor
+  /// for faster load times.
   Future<EpubDetails?> getEpubDetails() async {
-    if (enableCache && _epubDetails != null) {
-      return _epubDetails;
-    }
-
-    final epubDetails = await _parseEpubDetails();
+    final EpubDetails? loadedEpubDetails;
     if (enableCache) {
-      _epubDetails = epubDetails;
+      epubDetails ??= await _parseEpubDetails();
+      loadedEpubDetails = epubDetails;
+    } else {
+      loadedEpubDetails = await _parseEpubDetails();
     }
 
-    return epubDetails;
+    if (loadedEpubDetails != null) {
+      onEpubDetailsLoaded?.call(loadedEpubDetails);
+    }
+
+    return loadedEpubDetails;
   }
 
   Future<EpubDetails?> _parseEpubDetails() async {
@@ -149,6 +163,6 @@ abstract class EpubControllerBase {
   ///
   /// It is still safe to use this controller after calling
   void close() {
-    _epubDetails = null;
+    epubDetails = null;
   }
 }
