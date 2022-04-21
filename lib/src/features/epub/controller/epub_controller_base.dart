@@ -5,7 +5,7 @@ abstract class EpubControllerBase {
   final bool enableCache;
 
   /// If the epub files are web hosted.
-  /// 
+  ///
   /// If true, overrides [EpubControllerBase.platformPathSeparator]
   /// with forward slashes `/` before calling [EpubControllerBase.getFileBytes],
   /// and in file paths returned by [EpubControllerBase.getFilePaths].
@@ -15,7 +15,11 @@ abstract class EpubControllerBase {
   /// [EpubControllerBase.getFilePaths] will be called.
   List<String>? filePaths;
 
-  EpubControllerBase({this.enableCache = true, this.isWebHosted = false, this.filePaths});
+  EpubControllerBase({
+    this.enableCache = true,
+    this.isWebHosted = false,
+    this.filePaths,
+  });
 
   /// Getter for the default path separator for the current platform.
   ///
@@ -36,8 +40,7 @@ abstract class EpubControllerBase {
     final paths = await getFilePaths();
     if (isWebHosted) {
       return paths
-          .map((path) =>
-              path.replaceAll(RegExp(r'[/\\]'), '/'))
+          .map((path) => path.replaceAll(RegExp(r'[/\\]'), '/'))
           .toList();
     }
 
@@ -131,7 +134,8 @@ abstract class EpubControllerBase {
   /// Check if a filepath is a container at the required location of [EpubContainer.filepath]
   bool isContainerFilePath(String filePath) {
     if (isWebHosted) {
-      return filePath.replaceAll(RegExp(r'[/\\]'), '/') == EpubContainer.filepath.replaceAll(RegExp(r'[/\\]'), '/');
+      return filePath.replaceAll(RegExp(r'[/\\]'), '/') ==
+          EpubContainer.filepath.replaceAll(RegExp(r'[/\\]'), '/');
     }
     return filePath == EpubContainer.filepath;
   }
