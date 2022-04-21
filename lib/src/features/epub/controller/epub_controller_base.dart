@@ -145,7 +145,7 @@ abstract class EpubControllerBase {
   // * Create instance of EPUB object when controller is created
   // * Getter for EPUB object
 
-  /// Free up references so that Dart can garbage college them
+  /// Free up references so that Dart can garbage collect them
   ///
   /// It is still safe to use this controller after calling
   void close() {
