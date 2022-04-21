@@ -7,7 +7,7 @@ class EpubArchiveController extends EpubControllerBase {
   EpubArchiveController.fromArchive(
     this.archive, {
     bool enableCache = true,
-  }) : super(enableCache: enableCache);
+  }) : super(enableCache: enableCache, isWebHosted: false);
 
   factory EpubArchiveController(
     List<int> data, {

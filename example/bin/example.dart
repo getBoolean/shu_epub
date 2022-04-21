@@ -167,7 +167,7 @@ class EpubExtractedController extends EpubControllerBase {
   EpubExtractedController(
     this.rootDirectory, {
     bool enableCache = true,
-  }) : super(enableCache: enableCache);
+  }) : super(enableCache: enableCache, isWebHosted: false);
 
   factory EpubExtractedController.fromPath(
     String directoryPath, {

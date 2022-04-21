@@ -3,23 +3,64 @@ part of shu_epub.features.epub.controller;
 @Immutable()
 abstract class EpubControllerBase {
   final bool enableCache;
-  EpubControllerBase({this.enableCache = true});
+
+  /// If the epub files are web hosted.
+  /// 
+  /// If true, overrides [EpubControllerBase.platformPathSeparator]
+  /// with forward slashes `/` before calling [EpubControllerBase.getFileBytes],
+  /// and in file paths returned by [EpubControllerBase.getFilePaths].
+  final bool isWebHosted;
+
+  EpubControllerBase({this.enableCache = true, this.isWebHosted = false});
 
   /// Getter for the default path separator for the current platform.
   ///
-  /// This should not be overridden since [EpubControllerBase] will ignore it
+  /// This is exposed for convenience and should not be overridden
+  /// since [EpubControllerBase] will ignore it due to using p.join.
+  ///
+  /// Overriding this may cause unexpected behavior
   String get platformPathSeparator => p.separator;
 
   /// Gets filepaths to all files in the epub
   ///
-  /// Must use the corresponding platform path separator from [EpubControllerBase.platformPathSeparator]
+  /// Should use the corresponding platform path separator from [EpubControllerBase.platformPathSeparator]
   Future<List<String>> getFilePaths();
+
+  /// Overrides [EpubControllerBase.platformPathSeparator]
+  /// with forward slashes `/` in file paths returned by [EpubControllerBase.getFilePaths].
+  Future<List<String>> getFilePathsHelper() async {
+    final paths = await getFilePaths();
+    if (isWebHosted) {
+      return paths
+          .map((path) =>
+              path.replaceAll(RegExp(r'[/\\]'), '/'))
+          .toList();
+    }
+
+    return paths;
+  }
+
+  /// Overrides [EpubControllerBase.platformPathSeparator]
+  /// with forward slashes `/` before calling [EpubControllerBase.getFileBytes].
+  Future<Uint8List?> getFileBytesHelper(String path) {
+    if (isWebHosted) {
+      return getFileBytes(path.replaceAll(RegExp(r'[/\\]'), '/'));
+    }
+    return getFileBytes(path);
+  }
 
   /// Get the bytes of file from the path
   Future<Uint8List?> getFileBytes(String path);
 
   EpubDetails? _epubDetails;
 
+  /// Parses the epub container, package (metadata), and toc. Makes
+  /// consecutive calls to [EpubControllerBase.getFileBytes] for each.
+  ///
+  /// Consider overriding this and cache non image/html files when the epub
+  /// is added to the application for faster access later. This is especially
+  /// important if you are hosting the epub extracted on a server instead of
+  /// processing it server side and sending only the html/images to the client.
   Future<EpubDetails?> getEpubDetails() async {
     if (enableCache && _epubDetails != null) {
       return _epubDetails;
@@ -36,14 +77,14 @@ abstract class EpubControllerBase {
   List<String>? filePaths;
 
   Future<EpubDetails?> _parseEpubDetails() async {
-    filePaths = await getFilePaths();
+    filePaths = await getFilePathsHelper();
 
     // Parse container
     final containerFilePath = filePaths!.firstWhereOrNull(_isContainerFilePath);
     if (containerFilePath == null) {
       return null;
     }
-    final containerBytes = await getFileBytes(containerFilePath);
+    final containerBytes = await getFileBytesHelper(containerFilePath);
     if (containerBytes == null) {
       return null;
     }
@@ -54,7 +95,7 @@ abstract class EpubControllerBase {
     if (packageFilePath == null) {
       return null;
     }
-    final packageBytes = await getFileBytes(packageFilePath);
+    final packageBytes = await getFileBytesHelper(packageFilePath);
     if (packageBytes == null) {
       return null;
     }
@@ -72,7 +113,7 @@ abstract class EpubControllerBase {
       navigationFilePathRelative,
     );
 
-    final navigationBytes = await getFileBytes(navigationFilePath);
+    final navigationBytes = await getFileBytesHelper(navigationFilePath);
     if (navigationBytes == null) {
       return null;
     }
