@@ -69,7 +69,6 @@ class EpubMetadataCreatorReaderController {
   }
 
   String? getRole() {
-    return element.getAttribute('opf:role') ??
-        element.getAttribute('role');
+    return element.getAttribute('opf:role') ?? element.getAttribute('role');
   }
 }
