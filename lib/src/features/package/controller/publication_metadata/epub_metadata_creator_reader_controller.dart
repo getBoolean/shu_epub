@@ -45,9 +45,8 @@ class EpubMetadataCreatorReaderController {
     );
 
     final xmlDocument = XmlUtils.parseToXmlDocument(content);
-    final dccreatorElement = xmlDocument
-        .findElements(EpubMetadataCreator.elementName)
-        .firstOrNull;
+    final dccreatorElement =
+        xmlDocument.findElements(EpubMetadataCreator.elementName).firstOrNull;
 
     if (dccreatorElement == null) {
       throw EpubException(

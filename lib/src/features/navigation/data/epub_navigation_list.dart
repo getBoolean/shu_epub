@@ -77,8 +77,8 @@ class EpubNavigationList extends EquatableXml {
           // ignore: unnecessary_lambdas
           map['navigationLabels']?.map((e) => EpubNavigationLabel.fromMap(e)) ??
               const []),
-      navigationTargets: List<EpubNavigationTarget>.from(
-          map['navigationTargets']?.map(
+      navigationTargets:
+          List<EpubNavigationTarget>.from(map['navigationTargets']?.map(
                 // ignore: unnecessary_lambdas
                 (e) => EpubNavigationTarget.fromMap(e),
               ) ??

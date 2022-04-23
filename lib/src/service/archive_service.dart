@@ -39,8 +39,8 @@ class ArchiveService {
   /// Decode epub data
   ///
   /// TODO: Implement using Isolate (or Worker on web)
-  static Archive decodeZip(Uint8List bytes) {
-    return ZipDecoder().decodeBytes(bytes);
+  static Archive decodeZip(List<int> data) {
+    return ZipDecoder().decodeBytes(data);
   }
 
   /// Get OPF file from Archive

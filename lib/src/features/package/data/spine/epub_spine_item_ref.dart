@@ -82,7 +82,7 @@ class EpubSpineItemRef extends EquatableXml {
 
   @override
   String toXmlString() => '<$elementName'
-        '${idref != null ? ' idref="$idref"' : ''}'
-        ' linear="${linear ? 'yes' : 'no'}"'
-        '/>';
+      '${idref != null ? ' idref="$idref"' : ''}'
+      ' linear="${linear ? 'yes' : 'no'}"'
+      '/>';
 }

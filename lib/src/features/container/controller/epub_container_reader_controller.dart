@@ -56,7 +56,7 @@ class EpubContainerReaderController with VersionMixin {
 
     if (containerElement == null) {
       throw EpubException(
-        'Malformed navigation file, could not find required $elementName element',
+        'Malformed container file, could not find required $elementName element',
       );
     }
 

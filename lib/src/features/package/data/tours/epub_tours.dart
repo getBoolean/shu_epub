@@ -1,5 +1,6 @@
 part of shu_epub.features.package.data;
 
+/// Deprecated in EPUB 2.0.1 and removed in EPUB 3.0
 @Immutable()
 class EpubTours extends EquatableXml {
   static const elementName = 'tours';
@@ -69,7 +70,7 @@ class EpubTours extends EquatableXml {
   @override
   String toXmlString() {
     return '<$elementName>'
-          '${items.map((tour) => tour.toXmlString()).join('')}'
-          '</$elementName>';
+        '${items.map((tour) => tour.toXmlString()).join('')}'
+        '</$elementName>';
   }
 }

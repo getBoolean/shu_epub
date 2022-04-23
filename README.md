@@ -8,10 +8,18 @@
 
 A Dart EPUB parser built from the ground up, and designed to support a variety of use cases and custom implementations such as on-device caching and serving content from a server. This package is current WIP and is NOT yet usuable.
 
-## Planned Features
+## Motivation
 
-- EpubController - An abstract class intended to be extended to enable flexibility inspired by Flutter's Widget class
-- EpubArchiveController - Implements EpubController, reads in bytes of an .epub file for reading
+This package enables the application to only have the files needed from the EPUB file loaded into memory, instead of the entire EPUB file
+being required in memory like in other popular epub packages.
+
+## Features
+
+- EpubControllerBase - An abstract class intended to be extended to enable flexibility inspired by Flutter's Widget class
+  - Enables use cases such asserving epubs from the web or caching epubs on the file system
+- EpubArchiveController - Implements EpubControllerBase, reads in entire bytes of an .epub file for reading and independent from dart:io
+- EpubArchiveIOController - Implements EpubControllerBase, uses file reference to the .epub file to only read in files when required.
+However, this cannot take advantage of the system cache.
 - (flutter_shu_epub) EpubCacheController - Extracts ePub contents onto an Android or iOS device and caches the location, allowing for
   the reader to only load the needed files into memory
 
@@ -21,71 +29,51 @@ and more...
 
 ### shu_epub (this package)
 
-- Provided EpubArchiveController for reading EPUB files, independent from dart:io
-- Abstract EpubController for custom implementations, such as serving epubs from
-  the web or caching epubs on the file system
-- Readers which read individual file data, they do not need the entire
-  EPUB loaded into memory. This allows the device to save memory
-- Models
-  - **Epub**
-  - Container
-    - **ContainerFile**
-    - **Rootfile**
-  - Package
-    - **PackageFile**
-    - **PackageIdentity**
-    - **PackageMetadata**
-  - **Exception**
-  - ... many more
-- Controllers
-
-  - **EpubController**
-    - Abstract
-    - Future getFilePaths - Method to get filepaths to all files
-    - Future getFileBytes - Method to get bytes of file from filepath
-    - Create instance of EPUB object when controller is created
-    - Getter for EPUB object
-  - **EpubArchiveController** extends **EpubController**
-    - Creates EPUB object from loaded `.epub` file bytes, and supported media types
-    - Overrides getFilePaths and getFileBytes to use `Archive`/`ArchiveFile`
-  - **EpubContainerController**
-    - Given container (`META-INF/container.xml`) file bytes, and supported media types
-  - **EpubPackageController**
-    - Given rootfile (`.opf`) file bytes
-  - **EpubNavigationController**
-    - Given navigation (`.ncx`) file bytes
-  - **EpubContentsController**
-    - Given file content bytes and the type and content it is (such as `.xhtml`)
-
-- [x] EpubContainerController
-  - [x] Default constructor from Uint8List
-  - [x] fromXmlString factory
-  - [x] getVersion
-  - [x] getRootfiles
-  - [x] Tests
-- [x] EpubPackageController
-  - [x] Default constructor from Uint8List
-  - [x] fromXmlString factory
-  - [x] getPackageIdentity
-  - [x] getPublicationMetadata
-  - [x] getManifest
-  - [x] getSpine
-  - [x] getGuide
-  - [x] getTours
-  - [ ] Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2), removed in Epub 3
-- [x] EpubNavigationController
-  - [x] Default constructor from Uint8List
-  - [x] fromXmlString factory
-  - [x] getVersion
-  - [x] getLanguage
-  - [x] getHead
-  - [x] getDocTitle
-  - [x] getDocAuthors
-  - [x] getNavigationMap
-  - [x] getPageList
-  - [x] getNavigationLists
+- [x] Models
+- [x] Reader Controllers
+  - [x] EpubContainerReaderController
+  - [x] EpubPackageReaderController
+    - [ ] Support Epub 2 [Out-Of-Line XML Islands](http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2), removed in Epub 3
+  - [x] EpubNavigationReaderController
+  - [x] EpubDetailsReaderController
+    - Combines the container, package, and navigation into one class
 - [ ] Publication/Content Controller
+- [ ] **EpubControllerBase** (abstract)
+  - [x] Future getFilePaths - Method to get filepaths to all files in the epub
+  - [x] Future getFileBytes - Method to get bytes of file from the filepath
+  - [x] getEpubDetails
+  - others tbd...
+- [x] **EpubArchiveController** extends **EpubController**
+  - [x] Given the loaded `.epub` file bytes
+  - [x] Overrides getFilePaths and getFileBytes to use `Archive`/`ArchiveFile`
+- [x] **EpubArchiveIOController** extends **EpubController**
+  - [x] Given a file reference/path
+  - [x] Overrides getFilePaths and getFileBytes to use filestream `Archive`/`ArchiveFile`
+- [x] (In `example.dart`) EpubExtractedController extends **EpubController**
+  - [x] Given a directory reference/path to the root folder of the extracted epub
+  - [x] Overrides getFilePaths and getFileBytes to use async `dart:io`
+  - Due to it requiring `dart:io`, it is not included in this package
+- [ ] Function/Class to declare supported epub content media types
+  - Default is `application/xhtml+xml`
+  - Old epubs may use the deprecated `application/x-dtbook+xml` and `text/x-eob1-document`
 - [ ] EpubBook class to simplify access to Epub content and metadata
+  - [x] EpubDetails (contains EpubContainer, EpubPackage, and EpubNavigation)
+  - [ ] EpubFiles (all files listed in manifest)
+    - [ ] Don't include items that are Out-Of-Line XML Islands
+  - [ ] EpubReadingOrder (spine)
+    - [ ] List of EpubFile (should all be xhtml files?)
+    - [ ] Files are from manifest items included in the spine, in the same order as listed in the spine.
+    Automatically uses the fallback file if required-modules is specified, or if the media-type is not
+    included in the supported mediaTypes configuration.
+  - [ ] EpubTableOfContents (ncx)
+    - [ ] Navigation Metadata
+    - [ ] Navigation Title
+    - [ ] Navigation Author
+    - [ ] Navigation Points (navMap)
+      - [ ] File
+      - [ ] CFI Location
+    - [ ] Pages *Optional* (pageList)
+    - [ ] Other Navigation Lists *Optional* (navList)
 - [ ] CFI Generator
 
 ### flutter_shu_epub (tenative)

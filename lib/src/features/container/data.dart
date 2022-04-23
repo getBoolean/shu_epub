@@ -5,6 +5,7 @@ import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
 import 'package:meta/meta.dart';
+import 'package:path/path.dart' as p;
 import 'package:xml/xml.dart';
 
 import '../../constants.dart';
