@@ -5,8 +5,11 @@ void main() {
   late EpubArchiveIOController sut;
 
   setUpAll(() async {
-    sut = EpubArchiveIOController('test/assets/Guardians.epub',
-        enableCache: false);
+    sut = EpubArchiveIOController(
+      'test/assets/Guardians.epub',
+      enableCache: false,
+      overridePathSeparator: '/',
+    );
   });
 
   tearDownAll(() {

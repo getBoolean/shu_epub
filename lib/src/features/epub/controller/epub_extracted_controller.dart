@@ -10,12 +10,13 @@ class EpubExtractedController extends EpubControllerBase {
   EpubExtractedController(
     this.rootDirectory, {
     bool enableCache = true,
+    String? overridePathSeparator,
     List<String>? filePaths,
     EpubDetails? epubDetails,
     void Function(EpubDetails)? onEpubDetailsLoaded,
   }) : super(
           enableCache: enableCache,
-          isWebHosted: false,
+          overridePathSeparator: overridePathSeparator,
           filePaths: filePaths,
           epubDetails: epubDetails,
           onEpubDetailsLoaded: onEpubDetailsLoaded,
@@ -24,6 +25,7 @@ class EpubExtractedController extends EpubControllerBase {
   factory EpubExtractedController.fromPath(
     String directoryPath, {
     bool enableCache = true,
+    String? overridePathSeparator,
     List<String>? filePaths,
     EpubDetails? epubDetails,
     void Function(EpubDetails)? onEpubDetailsLoaded,
@@ -31,6 +33,7 @@ class EpubExtractedController extends EpubControllerBase {
     return EpubExtractedController(
       io.Directory(directoryPath),
       enableCache: enableCache,
+      overridePathSeparator: overridePathSeparator,
       filePaths: filePaths,
       epubDetails: epubDetails,
       onEpubDetailsLoaded: onEpubDetailsLoaded,

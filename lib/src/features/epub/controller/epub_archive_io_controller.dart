@@ -10,12 +10,13 @@ class EpubArchiveIOController extends EpubControllerBase {
   EpubArchiveIOController.fromArchive(
     this.archive, {
     bool enableCache = true,
+    String? overridePathSeparator,
     List<String>? filePaths,
     EpubDetails? epubDetails,
     void Function(EpubDetails)? onEpubDetailsLoaded,
   }) : super(
           enableCache: enableCache,
-          isWebHosted: false,
+          overridePathSeparator: overridePathSeparator,
           filePaths: filePaths,
           epubDetails: epubDetails,
           onEpubDetailsLoaded: onEpubDetailsLoaded,
@@ -24,6 +25,7 @@ class EpubArchiveIOController extends EpubControllerBase {
   factory EpubArchiveIOController(
     String path, {
     bool enableCache = true,
+    String? overridePathSeparator,
     List<String>? filePaths,
     EpubDetails? epubDetails,
     void Function(EpubDetails)? onEpubDetailsLoaded,
@@ -33,6 +35,7 @@ class EpubArchiveIOController extends EpubControllerBase {
     return EpubArchiveIOController.fromArchive(
       archive,
       enableCache: enableCache,
+      overridePathSeparator: overridePathSeparator,
       filePaths: filePaths,
       epubDetails: epubDetails,
       onEpubDetailsLoaded: onEpubDetailsLoaded,

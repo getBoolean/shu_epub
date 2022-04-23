@@ -5,12 +5,10 @@ abstract class EpubControllerBase {
   /// Enable caching
   final bool enableCache;
 
-  /// If the epub files are web hosted.
-  ///
-  /// If true, overrides [EpubControllerBase.platformPathSeparator]
-  /// with forward slashes `/` before calling [EpubControllerBase.getFileBytes],
+  /// If not null, overrides [EpubControllerBase.platformPathSeparator]
+  /// with the given String before calling [EpubControllerBase.getFileBytes],
   /// and in file paths returned by [EpubControllerBase.getFilePaths].
-  final bool isWebHosted;
+  final String? overridePathSeparator;
 
   /// The cached [EpubDetails]. It will be `null` until [EpubControllerBase.getEpubDetails]
   /// is called and if the call returns `null`.
@@ -30,7 +28,7 @@ abstract class EpubControllerBase {
 
   EpubControllerBase({
     this.enableCache = true,
-    this.isWebHosted = false,
+    this.overridePathSeparator,
     this.filePaths,
     this.epubDetails,
     this.onEpubDetailsLoaded,
@@ -53,9 +51,10 @@ abstract class EpubControllerBase {
   /// with forward slashes `/` in file paths returned by [EpubControllerBase.getFilePaths].
   Future<List<String>> getFilePathsHelper() async {
     final paths = await getFilePaths();
-    if (isWebHosted) {
+    if (overridePathSeparator != null) {
       return paths
-          .map((path) => path.replaceAll(RegExp(r'[/\\]'), '/'))
+          .map((path) =>
+              path.replaceAll(RegExp(r'[/\\]'), overridePathSeparator!))
           .toList();
     }
 
@@ -65,8 +64,9 @@ abstract class EpubControllerBase {
   /// Overrides [EpubControllerBase.platformPathSeparator]
   /// with forward slashes `/` before calling [EpubControllerBase.getFileBytes].
   Future<Uint8List?> getFileBytesHelper(String path) {
-    if (isWebHosted) {
-      return getFileBytes(path.replaceAll(RegExp(r'[/\\]'), '/'));
+    if (overridePathSeparator != null) {
+      return getFileBytes(
+          path.replaceAll(RegExp(r'[/\\]'), overridePathSeparator!));
     }
     return getFileBytes(path);
   }
@@ -147,9 +147,10 @@ abstract class EpubControllerBase {
 
   /// Check if a filepath is a container at the required location of [EpubContainer.filepath]
   bool isContainerFilePath(String filePath) {
-    if (isWebHosted) {
+    if (overridePathSeparator != null) {
       return filePath.replaceAll(RegExp(r'[/\\]'), '/') ==
-          EpubContainer.filepath.replaceAll(RegExp(r'[/\\]'), '/');
+          EpubContainer.filepath
+              .replaceAll(RegExp(r'[/\\]'), overridePathSeparator!);
     }
     return filePath == EpubContainer.filepath;
   }
