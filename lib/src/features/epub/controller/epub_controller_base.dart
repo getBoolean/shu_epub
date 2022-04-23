@@ -163,6 +163,7 @@ abstract class EpubControllerBase {
   ///
   /// It is still safe to use this controller after calling
   void clear() {
+    filePaths = null;
     epubDetails = null;
   }
 }
