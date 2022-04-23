@@ -97,6 +97,7 @@ class EpubPublicationMetadataReaderController {
     return compatibleMetadataElement
         .findElements('dc:subject')
         .map((node) => node.innerText.trim())
+        .where((element) => element.isNotEmpty)
         .toList();
   }
 
@@ -105,7 +106,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:description')
         .firstOrNull
         ?.innerText
-        .trim();
+        .nullIfEmpty;
   }
 
   String? getPublisher() {
@@ -113,7 +114,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:publisher')
         .firstOrNull
         ?.innerText
-        .trim();
+        .nullIfEmpty;
   }
 
   List<EpubMetadataContributor> getContributors() {
@@ -158,7 +159,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:type')
         .firstOrNull
         ?.innerText
-        .trim();
+        .nullIfEmpty;
   }
 
   String? getFormat() {
@@ -166,7 +167,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:format')
         .firstOrNull
         ?.innerText
-        .trim();
+        .nullIfEmpty;
   }
 
   List<EpubMetadataIdentifier> getIdentifiers() {
@@ -181,13 +182,14 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:source')
         .firstOrNull
         ?.innerText
-        .trim();
+        .nullIfEmpty;
   }
 
   List<String> getLanguages() {
     return compatibleMetadataElement
         .findElements('dc:language')
         .map((node) => node.innerText.trim())
+        .where((element) => element.isNotEmpty)
         .toList();
   }
 
@@ -196,7 +198,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:relation')
         .firstOrNull
         ?.innerText
-        .trim();
+        .nullIfEmpty;
   }
 
   String? getCoverage() {
@@ -204,7 +206,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:coverage')
         .firstOrNull
         ?.innerText
-        .trim();
+        .nullIfEmpty;
   }
 
   String? getRights() {
@@ -212,6 +214,6 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:rights')
         .firstOrNull
         ?.innerText
-        .trim();
+        .nullIfEmpty;
   }
 }

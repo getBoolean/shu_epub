@@ -57,7 +57,7 @@ class EpubSpineReaderController {
   }
 
   String? getTocId() {
-    return element.getAttribute('toc');
+    return element.getAttribute('toc')?.nullIfEmpty;
   }
 
   List<EpubSpineItemRef> getItemRefs() {

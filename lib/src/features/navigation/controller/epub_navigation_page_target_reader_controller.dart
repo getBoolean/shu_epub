@@ -67,11 +67,8 @@ class EpubNavigationPageTargetReaderController
     );
   }
 
-  EpubNavigationPageTargetType? getType() {
+  EpubNavigationPageTargetType getType() {
     final type = element.getAttribute('type');
-    if (type == null) {
-      return null;
-    }
 
     if (type == 'normal') {
       return EpubNavigationPageTargetType.normal;
