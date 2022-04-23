@@ -20,18 +20,10 @@ class ArchiveService {
   static String getMediaType(Archive archive) {
     for (final file in archive.files) {
       if (file.name == 'mimetype') {
-        try {
-          final Uint8List content = file.content;
-          final mimetype = String.fromCharCodes(content);
+        final Uint8List content = file.content;
+        final mimetype = String.fromCharCodes(content);
 
-          return mimetype.trim();
-        } on Exception catch (e, st) {
-          throw EpubException(
-            'Contents of mimetype file could not be parsed.',
-            e,
-            st,
-          );
-        }
+        return mimetype.trim();
       }
     }
 
