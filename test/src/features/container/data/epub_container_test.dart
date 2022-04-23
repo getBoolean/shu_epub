@@ -1,5 +1,7 @@
+import 'dart:io' as io;
 import 'dart:typed_data';
 
+import 'package:archive/archive.dart';
 import 'package:shu_epub/shu_epub.dart';
 import 'package:test/test.dart';
 
@@ -8,6 +10,34 @@ void main() {
 
   setUp(() {
     sut = EpubContainer();
+  });
+
+  group('fromXmlString', () {
+    test(
+      'with namespace, expect empty container',
+      () async {
+        final expected = EpubContainer();
+        final actual = EpubContainer.fromXmlString(
+            '<container xmlns="urn:oasis:names:tc:opendocument:xmlns:container"></container>');
+
+        expect(actual, expected);
+      },
+    );
+  });
+
+  group('fromArchive', () {
+    test(
+      'on zip archive, expect container',
+      () async {
+        final data = await io.File('test/assets/Guardians.epub').readAsBytes();
+        final archive = ZipDecoder().decodeBytes(data);
+
+        // Throws exception if fails
+        final actual = EpubContainer.fromArchive(archive);
+
+        expect(actual, isA<EpubContainer>());
+      },
+    );
   });
 
   group('copyWith', () {
@@ -57,6 +87,22 @@ void main() {
         };
 
         final expected = EpubContainer();
+
+        final actual = EpubContainer.fromMap(input);
+
+        expect(actual, expected);
+      },
+    );
+
+    test(
+      'on input, expect object with rootfileList',
+      () async {
+        final input = {
+          'rootfileList': {'items': []},
+          'containerVersion': null,
+        };
+
+        final expected = EpubContainer(rootfileList: RootfileList());
 
         final actual = EpubContainer.fromMap(input);
 
