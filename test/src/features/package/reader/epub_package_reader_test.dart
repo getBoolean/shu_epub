@@ -84,7 +84,7 @@ void main() {
         // arrange
         final data = await io.File('test/assets/Guardians.epub').readAsBytes();
         final archive = ArchiveService.decodeZip(data);
-        // Always works for this epub, may not be for others
+        // TODO: Always works for this epub, may not be for others
         final ArchiveFile archiveFile = archive.files
             .firstWhereOrNull((file) => file.name.contains('.opf'))!;
 
