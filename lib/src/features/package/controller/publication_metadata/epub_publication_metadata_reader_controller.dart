@@ -106,7 +106,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:description')
         .firstOrNull
         ?.innerText
-        .nullIfEmpty;
+        .trimThenNullIfEmpty;
   }
 
   String? getPublisher() {
@@ -114,7 +114,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:publisher')
         .firstOrNull
         ?.innerText
-        .nullIfEmpty;
+        .trimThenNullIfEmpty;
   }
 
   List<EpubMetadataContributor> getContributors() {
@@ -159,7 +159,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:type')
         .firstOrNull
         ?.innerText
-        .nullIfEmpty;
+        .trimThenNullIfEmpty;
   }
 
   String? getFormat() {
@@ -167,7 +167,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:format')
         .firstOrNull
         ?.innerText
-        .nullIfEmpty;
+        .trimThenNullIfEmpty;
   }
 
   List<EpubMetadataIdentifier> getIdentifiers() {
@@ -182,7 +182,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:source')
         .firstOrNull
         ?.innerText
-        .nullIfEmpty;
+        .trimThenNullIfEmpty;
   }
 
   List<String> getLanguages() {
@@ -198,7 +198,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:relation')
         .firstOrNull
         ?.innerText
-        .nullIfEmpty;
+        .trimThenNullIfEmpty;
   }
 
   String? getCoverage() {
@@ -206,7 +206,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:coverage')
         .firstOrNull
         ?.innerText
-        .nullIfEmpty;
+        .trimThenNullIfEmpty;
   }
 
   String? getRights() {
@@ -214,6 +214,6 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:rights')
         .firstOrNull
         ?.innerText
-        .nullIfEmpty;
+        .trimThenNullIfEmpty;
   }
 }
