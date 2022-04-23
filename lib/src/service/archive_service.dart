@@ -2,12 +2,16 @@ part of shu_epub.services;
 
 class ArchiveService {
   static bool isEpubFile(Archive archive) {
-    final String mimeType = getMediaType(archive);
-    if (mimeType.contains(EpubMediaTypes.kEpubMimeType)) {
-      return true;
-    }
+    try {
+      final String mimeType = getMediaType(archive);
+      if (mimeType.trim().contains(EpubMediaTypes.kEpubMimeType)) {
+        return true;
+      }
 
-    return false;
+      return false;
+    } on EpubException catch (_, __) {
+      return false;
+    }
   }
 
   /// Find the mediatype of the file
@@ -36,7 +40,7 @@ class ArchiveService {
     );
   }
 
-  /// Decode epub data
+  /// Decode zip data
   ///
   /// TODO: Implement using Isolate (or Worker on web)
   static Archive decodeZip(List<int> data) {
