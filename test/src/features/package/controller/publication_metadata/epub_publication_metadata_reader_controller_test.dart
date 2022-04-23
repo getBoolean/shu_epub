@@ -165,12 +165,13 @@ void main() {
         final input = '''
   <metadata>
       <dc:subject>
+          cool
       </dc:subject>
   </metadata>
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = [''];
+        final expectedValue = ['cool'];
         final actualValue = controller.getSubjects();
 
         expect(actualValue, expectedValue);
@@ -200,12 +201,13 @@ void main() {
         final input = '''
   <metadata>
       <dc:description>
+          desc
       </dc:description>
   </metadata>
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = '';
+        final expectedValue = 'desc';
         final actualValue = controller.getDescription();
 
         expect(actualValue, expectedValue);
@@ -235,12 +237,13 @@ void main() {
         final input = '''
   <metadata>
       <dc:publisher>
+          pub
       </dc:publisher>
   </metadata>
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = '';
+        final expectedValue = 'pub';
         final actualValue = controller.getPublisher();
 
         expect(actualValue, expectedValue);
@@ -394,7 +397,7 @@ void main() {
 
   group('getType', () {
     test(
-      'on input without a dc:type element, expect a null value',
+      'on input without a dc:type element, expect default value of EpubNavigationPageTargetType.normal',
       () async {
         final input = '''
   <metadata>
@@ -413,13 +416,13 @@ void main() {
       () async {
         final input = '''
   <metadata>
-      <dc:type>
+      <dc:type>normal
       </dc:type>
   </metadata>
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = '';
+        final expectedValue = 'normal';
         final actualValue = controller.getType();
 
         expect(actualValue, expectedValue);
@@ -444,17 +447,17 @@ void main() {
     );
 
     test(
-      'on input with a dc:format element, expect a dc:format object',
+      'on input with a dc:format element, expect a string value',
       () async {
         final input = '''
   <metadata>
-      <dc:format>
+      <dc:format>bool
       </dc:format>
   </metadata>
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = '';
+        final expectedValue = 'bool';
         final actualValue = controller.getFormat();
 
         expect(actualValue, expectedValue);
@@ -514,17 +517,17 @@ void main() {
     );
 
     test(
-      'on input with a dc:source element, expect a dc:source object',
+      'on input with a dc:source element, expect a dc:source string',
       () async {
         final input = '''
   <metadata>
-      <dc:source>
+      <dc:source>src
       </dc:source>
   </metadata>
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = '';
+        final expectedValue = 'src';
         final actualValue = controller.getSource();
 
         expect(actualValue, expectedValue);
@@ -553,13 +556,12 @@ void main() {
       () async {
         final input = '''
   <metadata>
-      <dc:language>
-      </dc:language>
+      <dc:language>en</dc:language>
   </metadata>
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = <String>[''];
+        final expectedValue = ['en'];
         final actualValue = controller.getLanguages();
 
         expect(actualValue, expectedValue);
@@ -584,17 +586,16 @@ void main() {
     );
 
     test(
-      'on input with a dc:relation element, expect a dc:relation object',
+      'on input with a dc:relation element, expect a dc:relation string',
       () async {
         final input = '''
   <metadata>
-      <dc:relation>
-      </dc:relation>
+      <dc:relation>author</dc:relation>
   </metadata>
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = '';
+        final expectedValue = 'author';
         final actualValue = controller.getRelation();
 
         expect(actualValue, expectedValue);
@@ -619,17 +620,17 @@ void main() {
     );
 
     test(
-      'on input with a dc:coverage element, expect a dc:coverage object',
+      'on input with a dc:coverage element, expect a dc:coverage string',
       () async {
         final input = '''
   <metadata>
-      <dc:coverage>
+      <dc:coverage>cov
       </dc:coverage>
   </metadata>
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = '';
+        final expectedValue = 'cov';
         final actualValue = controller.getCoverage();
 
         expect(actualValue, expectedValue);
@@ -658,13 +659,13 @@ void main() {
       () async {
         final input = '''
   <metadata>
-      <dc:rights>
+      <dc:rights>right
       </dc:rights>
   </metadata>
   ''';
         final controller =
             EpubPublicationMetadataReaderController.fromXmlString(input);
-        final expectedValue = '';
+        final expectedValue = 'right';
         final actualValue = controller.getRights();
 
         expect(actualValue, expectedValue);

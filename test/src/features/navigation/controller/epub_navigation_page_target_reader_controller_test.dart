@@ -101,7 +101,7 @@ void main() {
 
   group('getType', () {
     test(
-      'on input without a type attribute, expect a null value',
+      'on input without a type attribute, expect the default value EpubNavigationPageTargetType.normal',
       () async {
         final input = '''
   <pageTarget></pageTarget>
@@ -110,7 +110,7 @@ void main() {
             EpubNavigationPageTargetReaderController.fromXmlString(input);
         final actualValue = controller.getType();
 
-        expect(actualValue, isNull);
+        expect(actualValue, EpubNavigationPageTargetType.normal);
       },
     );
 
