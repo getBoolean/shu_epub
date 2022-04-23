@@ -162,7 +162,7 @@ abstract class EpubControllerBase {
   /// Free up references so that Dart can garbage collect them
   ///
   /// It is still safe to use this controller after calling
-  void close() {
+  void clear() {
     epubDetails = null;
   }
 }

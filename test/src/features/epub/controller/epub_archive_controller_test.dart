@@ -13,6 +13,10 @@ void main() {
     sut = EpubArchiveController(data);
   });
 
+  tearDownAll(() {
+    sut.clear();
+  });
+
   group('getDetails', () {
     test(
       'on a valid epub archive',
