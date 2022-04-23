@@ -2,6 +2,7 @@ library shu_epub.features.epub.controller;
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io' as io;
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart' as a;
@@ -22,3 +23,4 @@ part 'controller/epub_archive_controller.dart';
 part 'controller/epub_archive_io_controller.dart';
 part 'controller/epub_controller_base.dart';
 part 'controller/epub_details_reader_controller.dart';
+part 'controller/epub_extracted_controller.dart';

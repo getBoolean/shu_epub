@@ -1,7 +1,6 @@
 import 'dart:async';
-import 'dart:io' as io;
-import 'dart:typed_data';
 import 'package:shu_epub/shu_epub.dart';
+import 'dart:io' as io;
 import 'package:path/path.dart' as p;
 
 Future<void> main(List<String> arguments) async {
@@ -145,8 +144,8 @@ void printBookDetails(
   }
 
   final manifestItems = bookDetails.package?.manifest?.items ?? [];
-  final EpubManifestItem? tocManifestItem = firstWhereOrNull<EpubManifestItem>(
-    manifestItems,
+
+  final EpubManifestItem? tocManifestItem = manifestItems.firstWhereOrElseNull(
     (element) => element.id == tableOfContentsId,
   );
 
@@ -159,69 +158,13 @@ void printBookDetails(
   }
 }
 
-/// Contains handler to the extracted epub file. This is on average faster than [EpubArchiveIOController]
-/// when the files are cached by the filesystem since [EpubArchiveIOController] cannot take advantage of filesystem caching.
-class EpubExtractedController extends EpubControllerBase {
-  io.Directory rootDirectory;
-
-  EpubExtractedController(
-    this.rootDirectory, {
-    bool enableCache = true,
-    List<String>? filePaths,
-    EpubDetails? epubDetails,
-    void Function(EpubDetails)? onEpubDetailsLoaded,
-  }) : super(
-          enableCache: enableCache,
-          isWebHosted: false,
-          filePaths: filePaths,
-          epubDetails: epubDetails,
-          onEpubDetailsLoaded: onEpubDetailsLoaded,
-        );
-
-  factory EpubExtractedController.fromPath(
-    String directoryPath, {
-    bool enableCache = true,
-  }) {
-    return EpubExtractedController(
-      io.Directory(directoryPath),
-      enableCache: enableCache,
-    );
-  }
-
-  /// Read file from filesystem
-  @override
-  Future<Uint8List?> getFileBytes(String path) async {
-    return io.File(p.join(rootDirectory.path, p.normalize(path))).readAsBytes();
-  }
-
-  /// Get list of all files in the epub
-  ///
-  /// Paths must be relative to the root folder of the epub
-  @override
-  Future<List<String>> getFilePaths() async {
-    var files = <io.FileSystemEntity>[];
-    var completer = Completer<List<io.FileSystemEntity>>();
-    var lister = rootDirectory.list(recursive: true);
-    lister.listen(
-      (file) => files.add(file),
-      onDone: () => completer.complete(files),
-    );
-
-    final completedFilesFound = await completer.future;
-    return completedFilesFound.map(
-      (io.FileSystemEntity fileSystemEntity) {
-        return fileSystemEntity.path
-            .replaceFirst(rootDirectory.path + p.separator, '');
-      },
-    ).toList();
-  }
-}
-
-T? firstWhereOrNull<T>(List<T> items, bool Function(T) test) {
-  for (final T item in items) {
-    if (test(item)) {
-      return item;
+extension FirstWhereOrElseNull on List {
+  T? firstWhereOrElseNull<T>(bool Function(T) test) {
+    for (final T item in this) {
+      if (test(item)) {
+        return item;
+      }
     }
+    return null;
   }
-  return null;
 }
