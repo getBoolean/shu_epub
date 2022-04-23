@@ -4,7 +4,9 @@ class EpubContainerReader {
   static EpubContainer fromArchive(Archive archive) {
     // Find `META-INF/container.xml` file.
     final ArchiveFile? containerXmlFile = archive.files
-        .firstWhereOrNull((element) => element.name == EpubContainer.filepath);
+        .firstWhereOrNull((element) {
+          return element.name == EpubContainer.filepath.replaceAll(RegExp(r'[/\\]'), '/');
+        });
     if (containerXmlFile == null) {
       throw EpubException(
           'Epub Parsing Exception: Could not find required "${EpubContainer.filepath}"');
