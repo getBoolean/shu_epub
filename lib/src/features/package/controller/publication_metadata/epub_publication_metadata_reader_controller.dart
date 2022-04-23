@@ -2,7 +2,8 @@ part of shu_epub.features.package.controller;
 
 class EpubPublicationMetadataReaderController {
   final XmlElement element;
-  XmlElement get compatibleMetadataElement => hasDcMetadataElement ? dcMetadata! : element;
+  XmlElement get compatibleMetadataElement =>
+      hasDcMetadataElement ? dcMetadata! : element;
   final XmlElement? dcMetadata;
   bool get hasDcMetadataElement => dcMetadata != null;
   final XmlElement? xMetadata;
