@@ -126,4 +126,18 @@ void main() {
       },
     );
   });
+
+  group('toXmlString', () {
+    test(
+      'from object, expect the corresponding xml string',
+      () async {
+        final rootfiles = RootfileList();
+        final expected = '<rootfiles></rootfiles>';
+
+        final actual = rootfiles.toXmlString();
+
+        expect(actual, expected);
+      },
+    );
+  });
 }
