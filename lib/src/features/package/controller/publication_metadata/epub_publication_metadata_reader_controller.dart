@@ -2,21 +2,18 @@ part of shu_epub.features.package.controller;
 
 class EpubPublicationMetadataReaderController {
   final XmlElement element;
-  final XmlElement compatibleMetadataElement;
+  XmlElement get compatibleMetadataElement => hasDcMetadataElement ? dcMetadata! : element;
   final XmlElement? dcMetadata;
-  final bool hasDcMetadataElement;
+  bool get hasDcMetadataElement => dcMetadata != null;
   final XmlElement? xMetadata;
-  final bool hasXMetadataElement;
+  bool get hasXMetadataElement => xMetadata != null;
 
   static const elementName = EpubPublicationMetadata.elementName;
 
   EpubPublicationMetadataReaderController._internal({
     required this.element,
-    required this.compatibleMetadataElement,
     this.dcMetadata,
     this.xMetadata,
-    this.hasDcMetadataElement = false,
-    this.hasXMetadataElement = false,
   });
 
   /// Throws [EpubException] if the metadata element is not the root node
@@ -30,17 +27,11 @@ class EpubPublicationMetadataReaderController {
 
     final dcMetadata = metadataElement.findElements('dc-metadata').firstOrNull;
     final xMetadata = metadataElement.findElements('x-metadata').firstOrNull;
-    final hasDcMetadataElement = dcMetadata != null;
-    final hasXMetadataElement = xMetadata != null;
 
     return EpubPublicationMetadataReaderController._internal(
       element: metadataElement,
       dcMetadata: dcMetadata,
       xMetadata: xMetadata,
-      compatibleMetadataElement:
-          hasDcMetadataElement ? dcMetadata : metadataElement,
-      hasDcMetadataElement: hasDcMetadataElement,
-      hasXMetadataElement: hasXMetadataElement,
     );
   }
 
@@ -126,14 +117,13 @@ class EpubPublicationMetadataReaderController {
 
   List<EpubExtraMetadata> getExtraMetadataItems() {
     return hasXMetadataElement
-        ? xMetadata
-                ?.findElements(EpubExtraMetadata.elementName)
-                .map((node) => EpubExtraMetadata(
-                      name: node.getAttribute('name'),
-                      content: node.getAttribute('content'),
-                    ))
-                .toList() ??
-            []
+        ? xMetadata!
+            .findElements(EpubExtraMetadata.elementName)
+            .map((node) => EpubExtraMetadata(
+                  name: node.getAttribute('name'),
+                  content: node.getAttribute('content'),
+                ))
+            .toList()
         : element
             .findElements(EpubExtraMetadata.elementName)
             .map((node) => EpubExtraMetadata(
