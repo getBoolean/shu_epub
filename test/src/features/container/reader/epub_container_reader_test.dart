@@ -62,5 +62,20 @@ void main() {
         expect(containerFile, expectedValue);
       },
     );
+
+    test(
+      'parses archive file, and cannot find container file',
+      () async {
+        // arrange
+        final data = await io.File('test/assets/test.zip').readAsBytes();
+        final archive = ArchiveService.decodeZip(data);
+
+        // act
+        actual() => EpubContainerReader.fromArchive(archive);
+
+        // assert
+        expect(actual, throwsA(isA<EpubException>()));
+      },
+    );
   });
 }
