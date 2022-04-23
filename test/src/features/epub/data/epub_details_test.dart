@@ -50,7 +50,7 @@ void main() {
 
   group('fromMap', () {
     test(
-      'on input, expect object',
+      'on input with container not null, expect object',
       () async {
         final input = {
           'package': null,
@@ -62,6 +62,47 @@ void main() {
         };
 
         final expected = EpubDetails(container: EpubContainer());
+
+        final actual = EpubDetails.fromMap(input);
+
+        expect(actual, expected);
+      },
+    );
+
+    test(
+      'on input with package not null, expect object',
+      () async {
+        final input = {
+          'package': {
+            'epubVersion': '2.0',
+            'uniqueIdentifier': 'rand',
+          },
+          'container': null,
+          'navigation': null,
+        };
+
+        final expected = EpubDetails(
+            package: EpubPackage(epubVersion: '2.0', uniqueIdentifier: 'rand'));
+
+        final actual = EpubDetails.fromMap(input);
+
+        expect(actual, expected);
+      },
+    );
+
+    test(
+      'on input navigation not null, expect object',
+      () async {
+        final input = {
+          'package': null,
+          'container': null,
+          'navigation': {
+            'docAuthors': [],
+            'navigationLists': [],
+          },
+        };
+
+        final expected = EpubDetails(navigation: EpubNavigation());
 
         final actual = EpubDetails.fromMap(input);
 
