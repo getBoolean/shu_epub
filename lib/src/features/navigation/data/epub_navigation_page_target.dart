@@ -12,7 +12,7 @@ class EpubNavigationPageTarget extends EquatableXml {
   final String? id;
   final String? value;
   // enum
-  final EpubNavigationPageTargetType? type;
+  final EpubNavigationPageTargetType type;
   final String? classType;
 
   /// Should contain valid values that reflect the linear document reading
@@ -48,7 +48,7 @@ class EpubNavigationPageTarget extends EquatableXml {
   const EpubNavigationPageTarget({
     this.id,
     this.value,
-    this.type,
+    this.type = EpubNavigationPageTargetType.normal,
     this.classType,
     this.playOrder,
     this.labels = const [],
@@ -79,7 +79,7 @@ class EpubNavigationPageTarget extends EquatableXml {
     return {
       'id': id,
       'value': value,
-      'type': type?.index,
+      'type': type.index,
       'classType': classType,
       'playOrder': playOrder,
       'labels': labels.map((x) => x.toMap()).toList(),
@@ -91,9 +91,7 @@ class EpubNavigationPageTarget extends EquatableXml {
     return EpubNavigationPageTarget(
       id: map['id'],
       value: map['value'],
-      type: map['type'] != null
-          ? EpubNavigationPageTargetType.values[map['type'] ?? 0]
-          : null,
+      type: EpubNavigationPageTargetType.values[map['type'] ?? 0],
       classType: map['classType'],
       playOrder: map['playOrder'],
       labels: List<EpubNavigationLabel>.from(
@@ -120,7 +118,7 @@ class EpubNavigationPageTarget extends EquatableXml {
     return [
       id ?? 'no id',
       value ?? 'no value',
-      type ?? 'no type',
+      type,
       classType ?? 'no classType',
       playOrder ?? 'no playOrder',
       labels,
