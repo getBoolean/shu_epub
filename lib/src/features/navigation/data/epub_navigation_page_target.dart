@@ -131,7 +131,7 @@ class EpubNavigationPageTarget extends EquatableXml {
       '${id != null ? ' id="$id"' : ''}'
       '${classType != null ? ' class="$classType"' : ''}'
       '${value != null ? ' value="$value"' : ''}'
-      '${type != null ? ' type="$type"' : ''}'
+      '$type="$type"'
       '${playOrder != null ? ' playOrder="$playOrder"' : ''}'
       '>'
       '${content != null ? content!.toXmlString() : ''}'
