@@ -10,6 +10,18 @@ void main() {
     sut = Rootfile();
   });
 
+  group('fromXmlString', () {
+    test(
+      'with empty element, expect empty rootfile',
+      () async {
+        final expected = Rootfile();
+        final actual = Rootfile.fromXmlString('<rootfile></rootfile>');
+
+        expect(actual, expected);
+      },
+    );
+  });
+
   group('copyWith', () {
     test(
       'with no arguments changes nothing',
