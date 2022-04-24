@@ -6,38 +6,6 @@ class EpubDetails extends Equatable {
   final EpubContainer? container;
   final EpubNavigation? navigation;
 
-  /// Create an instance of [EpubDetails] from the [String] representation
-  /// of the epub container, package, and navgiation elements
-  ///
-  /// Throws [EpubException] if the string does not have the corresponding element
-  factory EpubDetails.fromXmlString({
-    required String containerContent,
-    required String packageContent,
-    required String navigationContent,
-  }) {
-    return EpubDetailsReader.fromXmlString(
-      containerContent: containerContent,
-      packageContent: packageContent,
-      navigationContent: navigationContent,
-    );
-  }
-
-  /// Create an instance of [EpubDetails] from the [Uint8List] data
-  /// of the epub container, package, and navgiation elements
-  ///
-  /// Throws [EpubException] if the data does not have the corresponding element
-  factory EpubDetails.fromData({
-    required Uint8List containerData,
-    required Uint8List packageData,
-    required Uint8List navigationData,
-  }) {
-    return EpubDetailsReader.fromData(
-      containerData: containerData,
-      packageData: packageData,
-      navigationData: navigationData,
-    );
-  }
-
   // GENERATED DO NOT MODOFY
 
   const EpubDetails({
