@@ -117,8 +117,7 @@ void main() {
       'from object, expect the corresponding string',
       () async {
         final input = EpubNavigationHead();
-        final expected =
-            'EpubNavigationHead(metadata: [])';
+        final expected = 'EpubNavigationHead(metadata: [])';
 
         final actual = input.toString();
 
