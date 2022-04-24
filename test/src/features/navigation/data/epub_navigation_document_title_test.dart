@@ -120,8 +120,8 @@ void main() {
           'image': {'source': ''},
         };
 
-        final expected = EpubNavigationDocumentTitle(
-            image: EpubNavigationImage(source: ''));
+        final expected =
+            EpubNavigationDocumentTitle(image: EpubNavigationImage(source: ''));
 
         final actual = EpubNavigationDocumentTitle.fromMap(input);
 
