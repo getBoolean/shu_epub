@@ -106,7 +106,7 @@ void main() {
     test(
       'on input with content json, expect a corresponding object',
       () async {
-        final input = 
+        final input =
             '{"id":null,"navigationInfoList":[],"navigationLabels":[],"navigationPoints":[]}';
         final expected = EpubNavigationMap();
         final actual = EpubNavigationMap.fromJson(input);
