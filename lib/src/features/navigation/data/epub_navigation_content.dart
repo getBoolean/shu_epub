@@ -69,7 +69,7 @@ class EpubNavigationContent extends EquatableXml {
 
   @override
   String toXmlString() => '<$elementName'
-      '${source != null ? ' source="$source"' : ''}'
+      '${source != null ? ' src="$source"' : ''}'
       '${id != null ? ' id="$id"' : ''}'
       '/>';
 }
