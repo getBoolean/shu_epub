@@ -6,19 +6,6 @@ class EpubDetails extends Equatable {
   final EpubContainer? container;
   final EpubNavigation? navigation;
 
-  /// Create an [EpubDetails] object from the epub container, package, and navgiation XmlElement.
-  factory EpubDetails.fromXmlElement({
-    required XmlElement containerElement,
-    required XmlElement packageElement,
-    required XmlElement navigationElement,
-  }) {
-    return EpubDetailsReader.fromXmlElement(
-      containerElement: containerElement,
-      packageElement: packageElement,
-      navigationElement: navigationElement,
-    );
-  }
-
   /// Create an instance of [EpubDetails] from the [String] representation
   /// of the epub container, package, and navgiation elements
   ///
