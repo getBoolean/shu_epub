@@ -219,7 +219,8 @@ void main() {
         final input = '<content/>'.codeUnits;
 
         final expected = EpubNavigationContent();
-        final actual = EpubNavigationContent.fromData(Uint8List.fromList(input));
+        final actual =
+            EpubNavigationContent.fromData(Uint8List.fromList(input));
 
         expect(actual, expected);
       },
@@ -230,7 +231,8 @@ void main() {
         final input = '<content id=""/>'.codeUnits;
 
         final expected = EpubNavigationContent(id: '');
-        final actual = EpubNavigationContent.fromData(Uint8List.fromList(input));
+        final actual =
+            EpubNavigationContent.fromData(Uint8List.fromList(input));
 
         expect(actual, expected);
       },
@@ -241,7 +243,8 @@ void main() {
         final input = '<content src=""/>'.codeUnits;
 
         final expected = EpubNavigationContent(source: '');
-        final actual = EpubNavigationContent.fromData(Uint8List.fromList(input));
+        final actual =
+            EpubNavigationContent.fromData(Uint8List.fromList(input));
 
         expect(actual, expected);
       },
