@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:shu_epub/shu_epub.dart';
 import 'package:test/test.dart';
 
@@ -105,67 +103,6 @@ void main() {
         final expected = EpubDetails(navigation: EpubNavigation());
 
         final actual = EpubDetails.fromMap(input);
-
-        expect(actual, expected);
-      },
-    );
-  });
-
-  group('fromData', () {
-    test(
-      'on data input with a package, container, and ncx, expect a EpubDetails object',
-      () async {
-        final packageInput = '''
-  <?xml version="1.0"?>
-  <package></package>
-  ''';
-        final containerInput = '''
-  <?xml version="1.0"?>
-  <container></container>
-  ''';
-        final navigationInput = '''
-  <?xml version="1.0"?>
-  <ncx></ncx>
-  ''';
-        final packageData = Uint8List.fromList(packageInput.codeUnits);
-        final containerData = Uint8List.fromList(containerInput.codeUnits);
-        final navigationData = Uint8List.fromList(navigationInput.codeUnits);
-        final expected = EpubDetails(
-          container: EpubContainer(),
-          package: EpubPackage(),
-          navigation: EpubNavigation(),
-        );
-        final actual = EpubDetails.fromData(
-          containerData: containerData,
-          packageData: packageData,
-          navigationData: navigationData,
-        );
-
-        expect(actual, expected);
-      },
-    );
-
-    test(
-      'on data input without package, container, or ncx, expect a EpubDetails object with null fields',
-      () async {
-        final packageInput = '''
-<?xml version="1.0"?>
-''';
-        final containerInput = '''
-<?xml version="1.0"?>
-''';
-        final navigationInput = '''
-<?xml version="1.0"?>
-''';
-        final packageData = Uint8List.fromList(packageInput.codeUnits);
-        final containerData = Uint8List.fromList(containerInput.codeUnits);
-        final navigationData = Uint8List.fromList(navigationInput.codeUnits);
-        final expected = EpubDetails();
-        final actual = EpubDetails.fromData(
-          containerData: containerData,
-          packageData: packageData,
-          navigationData: navigationData,
-        );
 
         expect(actual, expected);
       },
