@@ -101,7 +101,7 @@ void main() {
 
   group('fromJson', () {
     test(
-      'on input with rootfile list json, expect a corresponding object',
+      'on input with metadata list json, expect a corresponding object',
       () async {
         final input = '{"metadata":[]}';
         final expected = EpubNavigationHead();
@@ -140,7 +140,7 @@ void main() {
     );
 
     test(
-      'from object with text, expect the corresponding string',
+      'from object with meta element, expect the corresponding string',
       () async {
         final input = EpubNavigationHead(metadata: [EpubNavigationMeta()]);
         final expected = '<head><meta/></head>';

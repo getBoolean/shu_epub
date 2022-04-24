@@ -113,7 +113,7 @@ void main() {
 
   group('fromJson', () {
     test(
-      'on input with rootfile list json, expect a corresponding object',
+      'on input with content json, expect a corresponding object',
       () async {
         final input = '{"source":null,"id":null}';
         final expected = EpubNavigationContent();

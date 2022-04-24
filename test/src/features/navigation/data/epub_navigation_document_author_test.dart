@@ -146,7 +146,7 @@ void main() {
 
   group('fromJson', () {
     test(
-      'on input with rootfile list json, expect a corresponding object',
+      'on input with docAuthor json, expect a corresponding object',
       () async {
         final input = '{"id":null,"language":null,"text":null,"image":null}';
         final expected = EpubNavigationDocumentAuthor();
