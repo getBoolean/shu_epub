@@ -37,10 +37,6 @@ class EpubNavigationDocumentAuthor extends EquatableXml {
     this.image,
   });
 
-  factory EpubNavigationDocumentAuthor.zero() {
-    return EpubNavigationDocumentAuthor();
-  }
-
   EpubNavigationDocumentAuthor copyWith({
     String? id,
     String? language,
