@@ -6,7 +6,7 @@ import 'package:test/test.dart';
 void main() {
   late EpubNavigationContent sut;
 
-  setUp(() {
+  setUpAll(() {
     sut = EpubNavigationContent();
   });
 
@@ -22,7 +22,7 @@ void main() {
     );
 
     test(
-      'with soruce and id arguments changes it',
+      'with source and id arguments changes it',
       () async {
         final expectedValue = EpubNavigationContent(source: '', id: '');
         final actualValue = sut.copyWith(source: '', id: '');
