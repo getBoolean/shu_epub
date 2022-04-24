@@ -70,6 +70,6 @@ class EpubNavigationHead extends EquatableXml {
 
   @override
   String toXmlString() => '<$elementName>'
-      '${metadata.map((meta) => meta.toXmlString())}'
+      '${metadata.map((meta) => meta.toXmlString()).join()}'
       '</$elementName>';
 }
