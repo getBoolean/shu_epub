@@ -36,10 +36,6 @@ class EpubNavigationDocumentTitle extends EquatableXml {
     this.image,
   });
 
-  factory EpubNavigationDocumentTitle.zero() {
-    return EpubNavigationDocumentTitle();
-  }
-
   EpubNavigationDocumentTitle copyWith({
     String? id,
     String? language,
