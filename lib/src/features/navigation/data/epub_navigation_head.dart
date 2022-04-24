@@ -34,10 +34,6 @@ class EpubNavigationHead extends EquatableXml {
     this.metadata = const [],
   });
 
-  factory EpubNavigationHead.zero() {
-    return EpubNavigationHead(metadata: []);
-  }
-
   EpubNavigationHead copyWith({
     List<EpubNavigationMeta>? metadata,
   }) {

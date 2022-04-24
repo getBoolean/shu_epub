@@ -34,10 +34,6 @@ class EpubNavigationImage extends EquatableXml {
     this.source,
   });
 
-  factory EpubNavigationImage.zero() {
-    return EpubNavigationImage(source: '');
-  }
-
   EpubNavigationImage copyWith({
     String? id,
     String? classType,

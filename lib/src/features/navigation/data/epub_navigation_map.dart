@@ -46,14 +46,6 @@ class EpubNavigationMap extends EquatableXml {
     this.navigationPoints = const [],
   });
 
-  factory EpubNavigationMap.zero() {
-    return EpubNavigationMap(
-      navigationInfoList: [],
-      navigationLabels: [],
-      navigationPoints: [],
-    );
-  }
-
   EpubNavigationMap copyWith({
     String? id,
     List<EpubNavigationInfo>? navigationInfoList,
