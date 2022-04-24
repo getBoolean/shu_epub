@@ -164,7 +164,7 @@ void main() {
     );
 
     test(
-      'from object with source, expect the corresponding string',
+      'from object with id, expect the corresponding string',
       () async {
         final input = EpubNavigationContent(id: '');
         final expected = '<content id=""/>';
