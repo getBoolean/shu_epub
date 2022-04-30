@@ -62,21 +62,21 @@ abstract class EpubControllerBase {
   }
 
   /// Calls [EpubControllerBase.getFilePaths] and returns a [Uint8List]?
-  /// 
+  ///
   /// The `path` should always be a relative path to root of the epub.
   ///
   /// It overrides the path's [EpubControllerBase.platformPathSeparator]
   /// with [EpubControllerBase.overridePathSeparator] if not null.
   Future<Uint8List?> getFileBytesPathOverrider(String path) {
-    if (overridePathSeparator != null) {
-      return getFileBytes(
-          path.replaceAll(RegExp(r'[/\\]'), overridePathSeparator!));
+    final sep = overridePathSeparator;
+    if (sep != null) {
+      return getFileBytes(path.replaceAll(RegExp(r'[/\\]'), sep));
     }
     return getFileBytes(path);
   }
 
   /// Gets the bytes of file from the path
-  /// 
+  ///
   /// The `path` should always be a relative path to root of the epub.
   Future<Uint8List?> getFileBytes(String path);
 
