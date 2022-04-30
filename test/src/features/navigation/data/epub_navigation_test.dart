@@ -180,7 +180,8 @@ void main() {
       'from object, expect the corresponding string',
       () async {
         final input = EpubNavigation();
-        final expected = '<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/"></ncx>';
+        final expected =
+            '<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/"></ncx>';
 
         final actual = input.toXmlString();
 
@@ -192,7 +193,8 @@ void main() {
       'from object with id, expect the corresponding string',
       () async {
         final input = EpubNavigation(version: '');
-        final expected = '<ncx version="" xmlns="http://www.daisy.org/z3986/2005/ncx/"></ncx>';
+        final expected =
+            '<ncx version="" xmlns="http://www.daisy.org/z3986/2005/ncx/"></ncx>';
 
         final actual = input.toXmlString();
 
