@@ -123,8 +123,7 @@ void main() {
       'from object, expect the corresponding string',
       () async {
         final input = EpubNavigationMeta();
-        final expected =
-            '{"name":null,"content":null,"scheme":null}';
+        final expected = '{"name":null,"content":null,"scheme":null}';
 
         final actual = input.toJson();
 
@@ -137,8 +136,7 @@ void main() {
     test(
       'on input with content json, expect a corresponding object',
       () async {
-        final input =
-            '{"name":null,"content":null,"scheme":null}';
+        final input = '{"name":null,"content":null,"scheme":null}';
         final expected = EpubNavigationMeta();
         final actual = EpubNavigationMeta.fromJson(input);
 
