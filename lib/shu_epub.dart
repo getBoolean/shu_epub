@@ -1,3 +1,4 @@
+/// A Dart library for reading EPUB files.
 library shu_epub;
 
 export 'src/constants.dart';
