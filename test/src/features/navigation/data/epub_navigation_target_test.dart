@@ -229,8 +229,7 @@ void main() {
         final input = '<navTarget></navTarget>'.codeUnits;
 
         final expected = EpubNavigationTarget();
-        final actual =
-            EpubNavigationTarget.fromData(Uint8List.fromList(input));
+        final actual = EpubNavigationTarget.fromData(Uint8List.fromList(input));
 
         expect(actual, expected);
       },
