@@ -61,9 +61,13 @@ abstract class EpubControllerBase {
     return paths;
   }
 
-  /// Overrides [EpubControllerBase.platformPathSeparator]
-  /// with forward slashes `/` before calling [EpubControllerBase.getFileBytes].
-  Future<Uint8List?> getFileBytesHelper(String path) {
+  /// Calls [EpubControllerBase.getFilePaths] and returns a [Uint8List]?
+  /// 
+  /// The `path` should always be a relative path to root of the epub.
+  ///
+  /// It overrides the path's [EpubControllerBase.platformPathSeparator]
+  /// with [EpubControllerBase.overridePathSeparator] if not null.
+  Future<Uint8List?> getFileBytesPathOverrider(String path) {
     if (overridePathSeparator != null) {
       return getFileBytes(
           path.replaceAll(RegExp(r'[/\\]'), overridePathSeparator!));
@@ -71,7 +75,9 @@ abstract class EpubControllerBase {
     return getFileBytes(path);
   }
 
-  /// Get the bytes of file from the path
+  /// Gets the bytes of file from the path
+  /// 
+  /// The `path` should always be a relative path to root of the epub.
   Future<Uint8List?> getFileBytes(String path);
 
   /// Parses the epub container, package (metadata), and toc. Makes
@@ -103,7 +109,7 @@ abstract class EpubControllerBase {
     if (containerFilePath == null) {
       return null;
     }
-    final containerBytes = await getFileBytesHelper(containerFilePath);
+    final containerBytes = await getFileBytesPathOverrider(containerFilePath);
     if (containerBytes == null) {
       return null;
     }
@@ -114,7 +120,7 @@ abstract class EpubControllerBase {
     if (packageFilePath == null) {
       return null;
     }
-    final packageBytes = await getFileBytesHelper(packageFilePath);
+    final packageBytes = await getFileBytesPathOverrider(packageFilePath);
     if (packageBytes == null) {
       return null;
     }
@@ -132,7 +138,7 @@ abstract class EpubControllerBase {
       navigationFilePathRelative,
     );
 
-    final navigationBytes = await getFileBytesHelper(navigationFilePath);
+    final navigationBytes = await getFileBytesPathOverrider(navigationFilePath);
     if (navigationBytes == null) {
       return null;
     }
