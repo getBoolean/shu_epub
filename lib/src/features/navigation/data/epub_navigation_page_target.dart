@@ -79,7 +79,7 @@ class EpubNavigationPageTarget extends EquatableXml {
     return {
       'id': id,
       'value': value,
-      'type': type.index,
+      'type': type.name,
       'classType': classType,
       'playOrder': playOrder,
       'labels': labels.map((x) => x.toMap()).toList(),
@@ -91,7 +91,7 @@ class EpubNavigationPageTarget extends EquatableXml {
     return EpubNavigationPageTarget(
       id: map['id'],
       value: map['value'],
-      type: EpubNavigationPageTargetType.values[map['type'] ?? 0],
+      type: EpubNavigationPageTargetType.values.byName(map['type']),
       classType: map['classType'],
       playOrder: map['playOrder'],
       labels: List<EpubNavigationLabel>.from(
@@ -110,7 +110,7 @@ class EpubNavigationPageTarget extends EquatableXml {
 
   @override
   String toString() {
-    return 'EpubNavigationPageTarget(id: $id, value: $value, type: $type, classType: $classType, playOrder: $playOrder, labels: $labels, content: $content)';
+    return 'EpubNavigationPageTarget(id: $id, value: $value, type: ${type.name}, classType: $classType, playOrder: $playOrder, labels: $labels, content: $content)';
   }
 
   @override
@@ -131,7 +131,7 @@ class EpubNavigationPageTarget extends EquatableXml {
       '${id != null ? ' id="$id"' : ''}'
       '${classType != null ? ' class="$classType"' : ''}'
       '${value != null ? ' value="$value"' : ''}'
-      '$type="$type"'
+      ' type="${type.name}"'
       '${playOrder != null ? ' playOrder="$playOrder"' : ''}'
       '>'
       '${content != null ? content!.toXmlString() : ''}'
