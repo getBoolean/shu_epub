@@ -38,7 +38,7 @@ void main() {
 
   group('getText', () {
     test(
-      'on input without text, expect EpubMetadataContributer with no name',
+      'on input without text, expect empty string',
       () async {
         final input = '''
   <dc:contributor>
@@ -54,7 +54,7 @@ void main() {
     );
 
     test(
-      'on input with text "test", expect EpubMetadataContributer with name "test"',
+      'on input with text "test", expect string "test"',
       () async {
         final input = '''
   <dc:contributor>test</dc:contributor>

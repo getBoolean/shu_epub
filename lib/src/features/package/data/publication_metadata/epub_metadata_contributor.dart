@@ -14,27 +14,27 @@ class EpubMetadataContributor extends EquatableXml {
   /// If a value is not defined on that list, it must begin with `"oth"`
   final String? role;
 
-  /// Create an [EpubMetadataContributer] object from the contributor or author XmlElement.
+  /// Create an [EpubMetadataContributor] object from the contributor or author XmlElement.
   ///
   /// Throws [EpubException] if the contributor or author element is not the root node
   factory EpubMetadataContributor.fromXmlElement(XmlElement element) {
-    return EpubMetadataContributerReader.fromXmlElement(element);
+    return EpubMetadataContributorReader.fromXmlElement(element);
   }
 
-  /// Create an instance of [EpubMetadataContributer] from the [String] representation
+  /// Create an instance of [EpubMetadataContributor] from the [String] representation
   /// of the contributor or author element
   ///
   /// Throws [EpubException] if the string does not have the contributor or author element
   factory EpubMetadataContributor.fromXmlString(String content) {
-    return EpubMetadataContributerReader.fromXmlString(content);
+    return EpubMetadataContributorReader.fromXmlString(content);
   }
 
-  /// Create an instance of [EpubMetadataContributer] from the [Uint8List] data
+  /// Create an instance of [EpubMetadataContributor] from the [Uint8List] data
   /// of the contributor or author element in the navigation file.
   ///
   /// Throws [EpubException] if the data does not have the contributor or author element
   factory EpubMetadataContributor.fromData(Uint8List data) {
-    return EpubMetadataContributerReader.fromData(data);
+    return EpubMetadataContributorReader.fromData(data);
   }
 
   const EpubMetadataContributor({

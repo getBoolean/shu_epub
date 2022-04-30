@@ -1,6 +1,6 @@
 part of shu_epub.features.package.data;
 
-/// Deprecated in EPUB 3.0 in favor of [EpubLandmarks]
+/// Deprecated in EPUB 3.0 in favor of EpubLandmarks // TODO
 @Immutable()
 class EpubGuide extends EquatableXml {
   static const elementName = 'guide';

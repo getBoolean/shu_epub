@@ -1,7 +1,7 @@
 part of shu_epub.features.package.reader;
 
-class EpubMetadataContributerReader {
-  /// Create an [EpubMetadataContributer] object from the contributer or author XmlElement.
+class EpubMetadataContributorReader {
+  /// Create an [EpubMetadataContributor] object from the contributer or author XmlElement.
   ///
   /// Throws [EpubException] if the contributer or author element is not the root node
   static EpubMetadataContributor fromXmlElement(XmlElement element) {
@@ -16,7 +16,7 @@ class EpubMetadataContributerReader {
     }
   }
 
-  /// Create an instance of [EpubMetadataContributer] from the [String] representation
+  /// Create an instance of [EpubMetadataContributor] from the [String] representation
   /// of the contributer or author element
   ///
   /// Throws [EpubException] if the string does not have the contributer or author element
@@ -37,7 +37,7 @@ class EpubMetadataContributerReader {
     }
   }
 
-  /// Create an instance of [EpubMetadataContributer] from the [Uint8List] data
+  /// Create an instance of [EpubMetadataContributor] from the [Uint8List] data
   /// of the contributer or author element in the navigation file.
   ///
   /// Throws [EpubException] if the data does not have the contributer or author element

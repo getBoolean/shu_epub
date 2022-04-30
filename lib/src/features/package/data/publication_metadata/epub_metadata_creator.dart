@@ -14,14 +14,14 @@ class EpubMetadataCreator extends EquatableXml {
   /// If a value is not defined on that list, it must begin with `"oth"`
   final String? role;
 
-  /// Create an [EpubMetadataContributer] object from the contributor or author XmlElement.
+  /// Create an [EpubMetadataCreator] object from the contributor or author XmlElement.
   ///
   /// Throws [EpubException] if the contributor or author element is not the root node
   factory EpubMetadataCreator.fromXmlElement(XmlElement element) {
     return EpubMetadataCreatorReader.fromXmlElement(element);
   }
 
-  /// Create an instance of [EpubMetadataContributer] from the [String] representation
+  /// Create an instance of [EpubMetadataCreator] from the [String] representation
   /// of the contributor or author element
   ///
   /// Throws [EpubException] if the string does not have the contributor or author element
@@ -29,7 +29,7 @@ class EpubMetadataCreator extends EquatableXml {
     return EpubMetadataCreatorReader.fromXmlString(content);
   }
 
-  /// Create an instance of [EpubMetadataContributer] from the [Uint8List] data
+  /// Create an instance of [EpubMetadataCreator] from the [Uint8List] data
   /// of the contributor or author element in the navigation file.
   ///
   /// Throws [EpubException] if the data does not have the contributor or author element

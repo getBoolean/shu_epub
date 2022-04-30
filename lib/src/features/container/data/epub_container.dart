@@ -14,7 +14,7 @@ class EpubContainer extends EquatableXml {
   final RootfileList? rootfileList;
   final String? containerVersion;
 
-  /// If there are multiple [Rootfile]s with mime type [EpubXMLConstants.kOPFMimeType] and non null [Rootfile.fullPath], the first one will be considered the rootfile
+  /// If there are multiple [Rootfile]s with mime type [EpubMediaTypes.kOPFMimeType] and non null [Rootfile.fullPath], the first one will be considered the rootfile
   ///
   /// Returns null if [EpubContainer.rootfileList] is empty, no items have OPF media type, or fullPath is null on the only OPF elements
   Rootfile? get rootfile {
