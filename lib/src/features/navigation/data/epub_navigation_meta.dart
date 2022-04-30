@@ -70,7 +70,7 @@ class EpubNavigationMeta extends EquatableXml {
 
   @override
   String toString() =>
-      'EpubNagivationMeta(name: $name, content: $content, scheme: $scheme)';
+      'EpubNavigationMeta(name: $name, content: $content, scheme: $scheme)';
 
   @override
   List<Object> get props => [
