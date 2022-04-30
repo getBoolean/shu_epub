@@ -51,20 +51,12 @@ class EpubExtractedController extends EpubControllerBase {
   /// Paths must be relative to the root folder of the epub
   @override
   Future<List<String>> getFilePaths() async {
-    final files = <io.FileSystemEntity>[];
-    final completer = Completer<List<io.FileSystemEntity>>();
-    final lister = rootDirectory.list(recursive: true);
-    lister.listen(
-      files.add,
-      onDone: () => completer.complete(files),
-    );
-
-    return completer.future.then(
-      (value) => value
-          .map((final io.FileSystemEntity fileSystemEntity) => fileSystemEntity
-              .path
-              .replaceFirst(rootDirectory.path + platformPathSeparator, ''))
-          .toList(),
-    );
+    return rootDirectory
+        .listSync(recursive: true)
+        .map(
+          (fileSystemEntity) => fileSystemEntity.path
+              .replaceFirst(rootDirectory.path + platformPathSeparator, ''),
+        )
+        .toList();
   }
 }
