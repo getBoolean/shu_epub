@@ -154,11 +154,6 @@ abstract class EpubControllerBase {
         pathSeparatorOverrider(EpubContainer.filepath);
   }
 
-  // * Future getFilePaths - Method to get filepaths to all files
-  // * Future getFileBytes - Method to get bytes of file from filepath
-  // * Create instance of EPUB object when controller is created
-  // * Getter for EPUB object
-
   /// Clears saved [EpubDetails] and [List]<[String]> filepaths. Calling this is
   /// redundant if [enableCache] is set to false.
   ///
