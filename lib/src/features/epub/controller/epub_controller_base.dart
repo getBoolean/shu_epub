@@ -75,7 +75,7 @@ abstract class EpubControllerBase {
   Future<Uint8List?> getFileBytes(String path);
 
   /// Parses the epub container, package (metadata), and toc. Makes
-  /// consecutive calls to [getFileBytes] for each.
+  /// consecutive calls to [getFileBytes] for each file.
   ///
   /// Consider passing in a cached [EpubDetails] in the constructor
   /// for faster load times.
