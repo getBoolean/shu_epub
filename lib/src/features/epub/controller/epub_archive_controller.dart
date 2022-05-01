@@ -4,6 +4,16 @@ part of shu_epub.features.epub.controller;
 class EpubArchiveController extends EpubControllerBase {
   final a.Archive archive;
 
+  /// Creates a new [EpubArchiveController] instance.
+  /// 
+  /// Arguments:
+  /// - [archive] - the epub archive
+  /// - `enableCache` - enables caching if `true`
+  /// - `overridePathSeparator` - overrides [p.separator] with this value if it is not null
+  /// - `filePaths` - the cached paths to all files in the epub. This is also set by [getFilePaths]
+  ///  if `enableCache` is set to true.
+  /// - `epubDetails` - the cached [EpubDetails]. It is also set by [getEpubDetails] if `enableCache` is set to true.
+  /// - `onEpubDetailsLoaded` - called when [getEpubDetails] is called and the [EpubDetails] is loaded
   EpubArchiveController.fromArchive(
     this.archive, {
     bool enableCache = true,
@@ -19,6 +29,16 @@ class EpubArchiveController extends EpubControllerBase {
           onEpubDetailsLoaded: onEpubDetailsLoaded,
         );
 
+  /// Creates a new [EpubArchiveController] instance.
+  /// 
+  /// Arguments:
+  /// - `data` - the epub data
+  /// - `enableCache` - enables caching if `true`
+  /// - `overridePathSeparator` - overrides [p.separator] with this value if it is not null
+  /// - `filePaths` - the cached paths to all files in the epub. This is also set by [getFilePaths]
+  ///  if `enableCache` is set to true.
+  /// - `epubDetails` - the cached [EpubDetails]. It is also set by [getEpubDetails] if `enableCache` is set to true.
+  /// - `onEpubDetailsLoaded` - called when [getEpubDetails] is called and the [EpubDetails] is loaded
   factory EpubArchiveController(
     List<int> data, {
     bool enableCache = true,

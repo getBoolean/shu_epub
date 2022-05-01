@@ -5,8 +5,19 @@ part of shu_epub.features.epub.controller;
 ///
 /// Not available on web
 class EpubExtractedController extends EpubControllerBase {
+  /// The directory to the root of the epub file
   io.Directory rootDirectory;
 
+  /// Creates a new [EpubExtractedController] instance.
+  ///
+  /// Arguments:
+  /// - [rootDirectory] - the [Directory] to the root of the epub file
+  /// - `enableCache` - enables caching if `true`
+  /// - `overridePathSeparator` - overrides [p.separator] with this value if it is not null
+  /// - `filePaths` - the cached paths to all files in the epub. This is also set by [getFilePaths]
+  ///  if `enableCache` is set to true.
+  /// - `epubDetails` - the cached [EpubDetails]. It is also set by [getEpubDetails] if `enableCache` is set to true.
+  /// - `onEpubDetailsLoaded` - called when [getEpubDetails] is called and the [EpubDetails] is loaded
   EpubExtractedController(
     this.rootDirectory, {
     bool enableCache = true,
@@ -22,6 +33,16 @@ class EpubExtractedController extends EpubControllerBase {
           onEpubDetailsLoaded: onEpubDetailsLoaded,
         );
 
+  /// Creates a new [EpubExtractedController] instance.
+  ///
+  /// Arguments:
+  /// - `directoryPath` - the directory path to the root of the epub file
+  /// - `enableCache` - enables caching if `true`
+  /// - `overridePathSeparator` - overrides [p.separator] with this value if it is not null
+  /// - `filePaths` - the cached paths to all files in the epub. This is also set by [getFilePaths]
+  ///  if `enableCache` is set to true.
+  /// - `epubDetails` - the cached [EpubDetails]. It is also set by [getEpubDetails] if `enableCache` is set to true.
+  /// - `onEpubDetailsLoaded` - called when [getEpubDetails] is called and the [EpubDetails] is loaded
   factory EpubExtractedController.fromPath(
     String directoryPath, {
     bool enableCache = true,

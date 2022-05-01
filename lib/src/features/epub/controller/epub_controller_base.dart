@@ -42,6 +42,9 @@ abstract class EpubControllerBase {
   /// Arguments:
   /// - [enableCache] - enables caching if `true`
   /// - [overridePathSeparator] - overrides [p.separator] with this value if it is not null
+  /// - `filePaths` - the cached paths to all files in the epub. This is also set by [getFilePaths]
+  ///  if [enableCache] is set to true.
+  /// - `epubDetails` - the cached [EpubDetails]. It is also set by [getEpubDetails] if [enableCache] is set to true.
   /// - [onEpubDetailsLoaded] - called when [getEpubDetails] is called and the [EpubDetails] is loaded
   EpubControllerBase({
     this.enableCache = true,
