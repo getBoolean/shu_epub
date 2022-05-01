@@ -170,8 +170,7 @@ void main() {
       'from object, expect the corresponding string',
       () async {
         final input = EpubGuideItem();
-        final expected =
-            'EpubGuideItem(type: null, title: null, href: null)';
+        final expected = 'EpubGuideItem(type: null, title: null, href: null)';
 
         final actual = input.toString();
 

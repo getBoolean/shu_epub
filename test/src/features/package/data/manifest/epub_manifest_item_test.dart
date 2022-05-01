@@ -134,7 +134,8 @@ void main() {
     test(
       'returns expected values',
       () async {
-        final expectedValue = '{"id":null,"href":null,"mediaType":null,"fallback":null}';
+        final expectedValue =
+            '{"id":null,"href":null,"mediaType":null,"fallback":null}';
 
         final actualValue = sut.toJson();
 
@@ -149,7 +150,8 @@ void main() {
     test(
       'on input with json item, expect empty object',
       () async {
-        final input = '{"id":null,"href":null,"mediaType":null,"fallback":null}';
+        final input =
+            '{"id":null,"href":null,"mediaType":null,"fallback":null}';
 
         final expected = EpubManifestItem();
 
@@ -166,7 +168,8 @@ void main() {
     test(
       'returns expected values',
       () async {
-        final expectedValue = 'EpubManifestItem(id: null, href: null, mediaType: null, fallback: null)';
+        final expectedValue =
+            'EpubManifestItem(id: null, href: null, mediaType: null, fallback: null)';
 
         final actualValue = sut.toString();
 
