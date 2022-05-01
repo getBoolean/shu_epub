@@ -5,18 +5,23 @@ class EpubDetailsReaderController {
   final XmlElement? packageElement;
   final XmlElement? navigationElement;
 
-  const EpubDetailsReaderController._internal({
+  /// Creates a new instance of [EpubDetailsReaderController].
+  const EpubDetailsReaderController({
     required this.containerElement,
     required this.packageElement,
     required this.navigationElement,
   });
 
+  /// Returns a [EpubDetailsReaderController] with the given [containerElement],
+  /// [packageElement], and [navigationElement].
+  /// 
+  /// Alias for [EpubDetailsReaderController.new].
   factory EpubDetailsReaderController.fromXmlElement({
     XmlElement? containerElement,
     XmlElement? packageElement,
     XmlElement? navigationElement,
   }) {
-    return EpubDetailsReaderController._internal(
+    return EpubDetailsReaderController(
       containerElement: containerElement,
       packageElement: packageElement,
       navigationElement: navigationElement,
@@ -74,43 +79,17 @@ class EpubDetailsReaderController {
     );
   }
 
-  /// Create an instance of [EpubDetailsReaderController] from the [Uint8List] data
-  /// of the epub container, package, and navgiation elements
-  ///
-  /// Throws [EpubException] if the data does not have the corresponding element
-  factory EpubDetailsReaderController({
-    required Uint8List containerData,
-    required Uint8List packageData,
-    required Uint8List navigationData,
-  }) {
-    final String containerContent = utf8.decode(
-      containerData,
-      allowMalformed: true,
-    );
-    final String packageContent = utf8.decode(
-      packageData,
-      allowMalformed: true,
-    );
-    final String navigationContent = utf8.decode(
-      navigationData,
-      allowMalformed: true,
-    );
-
-    return EpubDetailsReaderController.fromXmlString(
-      containerContent: containerContent,
-      packageContent: packageContent,
-      navigationContent: navigationContent,
-    );
-  }
-
+  /// Returns a [EpubContainer] object from the [containerElement]
   EpubContainer? getContainer() => containerElement != null
       ? EpubContainer.fromXmlElement(containerElement!)
       : null;
 
+  /// Returns a [EpubPackage] object from the [packageElement]
   EpubPackage? getPackage() => containerElement != null
       ? EpubPackage.fromXmlElement(packageElement!)
       : null;
 
+  /// Returns a [EpubNavigation] object from the [navigationElement]
   EpubNavigation? getNavigation() => containerElement != null
       ? EpubNavigation.fromXmlElement(navigationElement!)
       : null;

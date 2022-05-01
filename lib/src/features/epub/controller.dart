@@ -1,7 +1,6 @@
 library shu_epub.features.epub.controller;
 
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io' as io;
 import 'dart:typed_data';
 
