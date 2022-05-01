@@ -73,7 +73,7 @@ class EpubManifestItem extends EquatableXml {
     return {
       'id': id,
       'href': href,
-      'media-type': mediaType,
+      'mediaType': mediaType,
       'fallback': fallback,
     };
   }
@@ -82,7 +82,7 @@ class EpubManifestItem extends EquatableXml {
     return EpubManifestItem(
       id: map['id'],
       href: map['href'],
-      mediaType: map['media-type'],
+      mediaType: map['mediaType'],
       fallback: map['fallback'],
     );
   }
