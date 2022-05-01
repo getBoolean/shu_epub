@@ -2,19 +2,31 @@ part of shu_epub.features.epub.controller;
 
 @Immutable()
 abstract class EpubControllerBase {
-  /// Enable caching so that subsequent calls of [getEpubDetails] and [getFilePaths] will be quicker
+  /// Enables caching if `true` so that subsequent calls of [getEpubDetails]
+  /// and [getFilePaths] can be resolved quicker.
+  ///
+  /// Specifically, it enables caching of [epubDetails] and [filePaths].
+  ///
+  /// It is recommended to manually save the results from [getEpubDetails]
+  /// and [getFilePaths] on the device and pass it to [EpubControllerBase.new],
+  /// especially if the epub is not hosted on device. This is because the method
+  /// [getEpubDetails] needs to make multiple subsequent [Future] calls to parse
+  /// parse the [EpubDetails] and this may be noticable to the user.
   final bool enableCache;
 
-  /// If not null, overrides [platformPathSeparator]
-  /// with the given String before calling [getFileBytes],
-  /// and in file paths returned by [getFilePaths].
+  /// Overrides [p.separator] with this value if it is not null.
+  ///
+  /// The modified [String] is passed to [getFileBytes] and
+  /// overrides the return value of [getFilePaths] when
+  /// calling [getEpubDetails]
   final String? overridePathSeparator;
 
   /// The cached [EpubDetails]. It will be `null` until [getEpubDetails]
-  /// is called and if the call returns `null`.
+  /// is called, or if the it returns `null`.
   ///
   /// This can optionally be initialized in the constructor for faster loading times when
-  /// opening an epub.
+  /// opening an epub. [EpubDetails] can be cached by calling [[EpubDetails.toMap]] or
+  /// [EpubDetails.toJson]
   EpubDetails? epubDetails;
 
   /// Paths to all files in the epub. If this is null when needed,
@@ -39,8 +51,9 @@ abstract class EpubControllerBase {
   /// Should use the corresponding platform path separator from [platformPathSeparator]
   Future<List<String>> getFilePaths();
 
-  /// Overrides the `path`'s [platformPathSeparator]
-  /// with [overridePathSeparator] if not null and returns the modified path.
+  /// Overrides the `path`'s separator with [overridePathSeparator] if it is
+  /// not null and returns the modified path. If it is null, the original path
+  /// is returned.
   String pathSeparatorOverrider(String path) {
     final sep = overridePathSeparator;
     if (sep != null) {
