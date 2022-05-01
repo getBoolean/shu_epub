@@ -20,14 +20,6 @@ class EpubNavigationReader {
     return _fromController(controller);
   }
 
-  /// Create an [EpubNavigation] object from the navigation [ArchiveFile].
-  ///
-  /// Throws [EpubException] if the navigation element is not the root node
-  static EpubNavigation fromArchiveFile(ArchiveFile archiveFile) {
-    final data = archiveFile.content;
-    return fromData(data);
-  }
-
   /// Create an instance of [EpubNavigation] from the [Uint8List] data
   /// of the navigation element in the navigation file.
   ///

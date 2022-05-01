@@ -20,14 +20,6 @@ class EpubPackageReader {
     return _fromController(controller);
   }
 
-  /// Create an [EpubPackage] object from the package [ArchiveFile].
-  ///
-  /// Throws [EpubException] if the package element is not the root node
-  static EpubPackage fromArchiveFile(ArchiveFile archiveFile) {
-    final data = archiveFile.content;
-    return fromData(data);
-  }
-
   /// Create an instance of [EpubPackage] from the [Uint8List] data
   /// of the package element in the navigation file.
   ///

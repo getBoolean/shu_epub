@@ -3,7 +3,6 @@ library shu_epub.features.package.data;
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:archive/archive.dart';
 import 'package:meta/meta.dart';
 import 'package:xml/xml.dart';
 

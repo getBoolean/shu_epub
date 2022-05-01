@@ -2,7 +2,6 @@ library shu_epub.features.navigation.reader;
 
 import 'dart:typed_data';
 
-import 'package:archive/archive.dart';
 import 'package:xml/xml.dart';
 
 import 'controller.dart';

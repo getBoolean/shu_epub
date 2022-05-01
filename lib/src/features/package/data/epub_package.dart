@@ -104,10 +104,6 @@ class EpubPackage extends EquatableXml {
     return navigationRelativePath;
   }
 
-  factory EpubPackage.fromArchiveFile(ArchiveFile archiveFile) {
-    return EpubPackageReader.fromArchiveFile(archiveFile);
-  }
-
   /// Create an [EpubPackage] object from the package XmlElement.
   ///
   /// Throws [EpubException] if the package element is not the root node
