@@ -44,7 +44,7 @@ class EpubTours extends EquatableXml {
 
   Map<String, dynamic> toMap() {
     return {
-      'items': items.map((item) => item.toMap()),
+      'items': items.map((item) => item.toMap()).toList(),
     };
   }
 
