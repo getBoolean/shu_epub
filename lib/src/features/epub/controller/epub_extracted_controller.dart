@@ -55,8 +55,9 @@ class EpubExtractedController extends EpubControllerBase {
         .listSync(recursive: true)
         .map(
           (fileSystemEntity) => fileSystemEntity.path
-              .replaceFirst(rootDirectory.path + platformPathSeparator, ''),
+              .replaceFirst(rootDirectory.path + p.separator, ''),
         )
+        .map(pathSeparatorOverrider)
         .toList();
   }
 }

@@ -2,15 +2,15 @@ part of shu_epub.features.epub.controller;
 
 @Immutable()
 abstract class EpubControllerBase {
-  /// Enable caching
+  /// Enable caching so that subsequent calls of [getEpubDetails] and [getFilePaths] will be quicker
   final bool enableCache;
 
-  /// If not null, overrides [EpubControllerBase.platformPathSeparator]
-  /// with the given String before calling [EpubControllerBase.getFileBytes],
-  /// and in file paths returned by [EpubControllerBase.getFilePaths].
+  /// If not null, overrides [platformPathSeparator]
+  /// with the given String before calling [getFileBytes],
+  /// and in file paths returned by [getFilePaths].
   final String? overridePathSeparator;
 
-  /// The cached [EpubDetails]. It will be `null` until [EpubControllerBase.getEpubDetails]
+  /// The cached [EpubDetails]. It will be `null` until [getEpubDetails]
   /// is called and if the call returns `null`.
   ///
   /// This can optionally be initialized in the constructor for faster loading times when
@@ -18,7 +18,7 @@ abstract class EpubControllerBase {
   EpubDetails? epubDetails;
 
   /// Paths to all files in the epub. If this is null when needed,
-  /// [EpubControllerBase.getFilePaths] will be called.
+  /// [getFilePaths] will be called.
   ///
   /// This can optionally be initialized in the constructor for faster loading times when
   /// opening an epub.
@@ -34,54 +34,29 @@ abstract class EpubControllerBase {
     this.onEpubDetailsLoaded,
   });
 
-  /// Getter for the default path separator for the current platform.
-  ///
-  /// This is exposed for convenience and should not be overridden
-  /// since [EpubControllerBase] will ignore it due to using p.join.
-  ///
-  /// Overriding this may cause unexpected behavior
-  String get platformPathSeparator => p.separator;
-
   /// Gets filepaths to all files in the epub
   ///
-  /// Should use the corresponding platform path separator from [EpubControllerBase.platformPathSeparator]
+  /// Should use the corresponding platform path separator from [platformPathSeparator]
   Future<List<String>> getFilePaths();
 
-  /// Overrides [EpubControllerBase.platformPathSeparator]
-  /// with forward slashes `/` in file paths returned by [EpubControllerBase.getFilePaths].
-  Future<List<String>> getFilePathsHelper() async {
-    final paths = await getFilePaths();
-    if (overridePathSeparator != null) {
-      return paths
-          .map((path) =>
-              path.replaceAll(RegExp(r'[/\\]'), overridePathSeparator!))
-          .toList();
-    }
-
-    return paths;
-  }
-
-  /// Calls [EpubControllerBase.getFilePaths] and returns a [Uint8List]?
-  ///
-  /// The `path` should always be a relative path to root of the epub.
-  ///
-  /// It overrides the path's [EpubControllerBase.platformPathSeparator]
-  /// with [EpubControllerBase.overridePathSeparator] if not null.
-  Future<Uint8List?> getFileBytesPathOverrider(String path) {
+  /// Overrides the `path`'s [platformPathSeparator]
+  /// with [overridePathSeparator] if not null and returns the modified path.
+  String pathSeparatorOverrider(String path) {
     final sep = overridePathSeparator;
     if (sep != null) {
-      return getFileBytes(path.replaceAll(RegExp(r'[/\\]'), sep));
+      return path.replaceAll(RegExp(r'[/\\]'), sep);
     }
-    return getFileBytes(path);
+    return path;
   }
 
   /// Gets the bytes of file from the path
   ///
   /// The `path` should always be a relative path to root of the epub.
+  /// Returns `null` if the file does not exist, or if the file is not readable.
   Future<Uint8List?> getFileBytes(String path);
 
   /// Parses the epub container, package (metadata), and toc. Makes
-  /// consecutive calls to [EpubControllerBase.getFileBytes] for each.
+  /// consecutive calls to [getFileBytes] for each.
   ///
   /// Consider passing in a cached [EpubDetails] in the constructor
   /// for faster load times.
@@ -102,14 +77,15 @@ abstract class EpubControllerBase {
   }
 
   Future<EpubDetails?> _parseEpubDetails() async {
-    filePaths ??= await getFilePathsHelper();
+    filePaths ??= (await getFilePaths()).map(pathSeparatorOverrider).toList();
 
     // Parse container
     final containerFilePath = filePaths!.firstWhereOrNull(isContainerFilePath);
     if (containerFilePath == null) {
       return null;
     }
-    final containerBytes = await getFileBytesPathOverrider(containerFilePath);
+    final containerBytes =
+        await getFileBytes(pathSeparatorOverrider(containerFilePath));
     if (containerBytes == null) {
       return null;
     }
@@ -120,7 +96,8 @@ abstract class EpubControllerBase {
     if (packageFilePath == null) {
       return null;
     }
-    final packageBytes = await getFileBytesPathOverrider(packageFilePath);
+    final packageBytes =
+        await getFileBytes(pathSeparatorOverrider(packageFilePath));
     if (packageBytes == null) {
       return null;
     }
@@ -138,7 +115,8 @@ abstract class EpubControllerBase {
       navigationFilePathRelative,
     );
 
-    final navigationBytes = await getFileBytesPathOverrider(navigationFilePath);
+    final navigationBytes =
+        await getFileBytes(pathSeparatorOverrider(navigationFilePath));
     if (navigationBytes == null) {
       return null;
     }
@@ -151,14 +129,10 @@ abstract class EpubControllerBase {
     );
   }
 
-  /// Check if a filepath is a container at the required location of [EpubContainer.filepath]
+  /// Checks if `filePath` is a container at the required location of [EpubContainer.filepath]
   bool isContainerFilePath(String filePath) {
-    if (overridePathSeparator != null) {
-      return filePath.replaceAll(RegExp(r'[/\\]'), '/') ==
-          EpubContainer.filepath
-              .replaceAll(RegExp(r'[/\\]'), overridePathSeparator!);
-    }
-    return filePath == EpubContainer.filepath;
+    return pathSeparatorOverrider(filePath) ==
+        pathSeparatorOverrider(EpubContainer.filepath);
   }
 
   // * Future getFilePaths - Method to get filepaths to all files
@@ -166,9 +140,10 @@ abstract class EpubControllerBase {
   // * Create instance of EPUB object when controller is created
   // * Getter for EPUB object
 
-  /// Free up references so that Dart can garbage collect them
+  /// Clears saved [epubDetails] and [filePaths]. This does not need
+  /// to be called if [enableCache] is set to false
   ///
-  /// It is still safe to use this controller after calling
+  /// It is still safe to use this controller after calling this method.
   void clear() {
     filePaths = null;
     epubDetails = null;
