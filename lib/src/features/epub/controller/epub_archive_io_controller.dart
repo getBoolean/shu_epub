@@ -8,7 +8,7 @@ class EpubArchiveIOController extends EpubControllerBase {
   final aio.Archive archive;
 
   /// Creates a new [EpubArchiveIOController] instance.
-  /// 
+  ///
   /// Arguments:
   /// - [archive] - the epub archive
   /// - `enableCache` - enables caching if `true`
@@ -33,7 +33,7 @@ class EpubArchiveIOController extends EpubControllerBase {
         );
 
   /// Creates a new [EpubArchiveIOController] instance.
-  /// 
+  ///
   /// Arguments:
   /// - `path` - the epub file path
   /// - `enableCache` - enables caching if `true`

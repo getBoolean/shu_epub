@@ -5,7 +5,7 @@ class EpubArchiveController extends EpubControllerBase {
   final a.Archive archive;
 
   /// Creates a new [EpubArchiveController] instance.
-  /// 
+  ///
   /// Arguments:
   /// - [archive] - the epub archive
   /// - `enableCache` - enables caching if `true`
@@ -30,7 +30,7 @@ class EpubArchiveController extends EpubControllerBase {
         );
 
   /// Creates a new [EpubArchiveController] instance.
-  /// 
+  ///
   /// Arguments:
   /// - `data` - the epub data
   /// - `enableCache` - enables caching if `true`
