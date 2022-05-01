@@ -57,7 +57,7 @@ abstract class EpubControllerBase {
 
   /// Gets filepaths to all files in the epub
   ///
-  /// Should use the corresponding platform path separator from [platformPathSeparator]
+  /// Should use the corresponding platform path separator from [p.separator]
   Future<List<String>> getFilePaths();
 
   /// Overrides the `path`'s separator with [overridePathSeparator] if it is
