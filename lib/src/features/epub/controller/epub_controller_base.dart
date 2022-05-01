@@ -5,7 +5,7 @@ abstract class EpubControllerBase {
   /// Enables caching if `true` so that subsequent calls of [getEpubDetails]
   /// and [getFilePaths] can be resolved quicker.
   ///
-  /// Specifically, it enables caching of [epubDetails] and [filePaths].
+  /// Specifically, it enables caching of [_epubDetails] and [_filePaths].
   ///
   /// It is recommended to manually save the results from [getEpubDetails]
   /// and [getFilePaths] on the device and pass it to [EpubControllerBase.new],
@@ -21,30 +21,36 @@ abstract class EpubControllerBase {
   /// calling [getEpubDetails]
   final String? overridePathSeparator;
 
-  /// The cached [EpubDetails]. It will be `null` until [getEpubDetails]
-  /// is called, or if the it returns `null`.
+  /// The cached [EpubDetails]. It is set by [getEpubDetails] if [enableCache] is set to true.
   ///
   /// This can optionally be initialized in the constructor for faster loading times when
   /// opening an epub. [EpubDetails] can be cached by calling [[EpubDetails.toMap]] or
   /// [EpubDetails.toJson]
-  EpubDetails? epubDetails;
+  EpubDetails? _epubDetails;
 
-  /// Paths to all files in the epub. If this is null when needed,
-  /// [getFilePaths] will be called.
+  /// The cached paths to all files in the epub. This is set by [getFilePaths]
+  /// if [enableCache] is set to true.
   ///
   /// This can optionally be initialized in the constructor for faster loading times when
   /// opening an epub.
-  List<String>? filePaths;
+  List<String>? _filePaths;
 
   final void Function(EpubDetails)? onEpubDetailsLoaded;
 
+  /// Creates a new [EpubControllerBase] instance from a subclass of this.
+  ///
+  /// Arguments:
+  /// - [enableCache] - enables caching if `true`
+  /// - [overridePathSeparator] - overrides [p.separator] with this value if it is not null
+  /// - [onEpubDetailsLoaded] - called when [getEpubDetails] is called and the [EpubDetails] is loaded
   EpubControllerBase({
     this.enableCache = true,
     this.overridePathSeparator,
-    this.filePaths,
-    this.epubDetails,
+    final List<String>? filePaths,
+    final EpubDetails? epubDetails,
     this.onEpubDetailsLoaded,
-  });
+  })  : _filePaths = filePaths,
+        _epubDetails = epubDetails;
 
   /// Gets filepaths to all files in the epub
   ///
@@ -76,8 +82,8 @@ abstract class EpubControllerBase {
   Future<EpubDetails?> getEpubDetails() async {
     final EpubDetails? loadedEpubDetails;
     if (enableCache) {
-      epubDetails ??= await _parseEpubDetails();
-      loadedEpubDetails = epubDetails;
+      _epubDetails ??= await _parseEpubDetails();
+      loadedEpubDetails = _epubDetails;
     } else {
       loadedEpubDetails = await _parseEpubDetails();
     }
@@ -90,10 +96,10 @@ abstract class EpubControllerBase {
   }
 
   Future<EpubDetails?> _parseEpubDetails() async {
-    filePaths ??= (await getFilePaths()).map(pathSeparatorOverrider).toList();
+    _filePaths ??= (await getFilePaths()).map(pathSeparatorOverrider).toList();
 
     // Parse container
-    final containerFilePath = filePaths!.firstWhereOrNull(isContainerFilePath);
+    final containerFilePath = _filePaths!.firstWhereOrNull(isContainerFilePath);
     if (containerFilePath == null) {
       return null;
     }
@@ -153,12 +159,12 @@ abstract class EpubControllerBase {
   // * Create instance of EPUB object when controller is created
   // * Getter for EPUB object
 
-  /// Clears saved [epubDetails] and [filePaths]. This does not need
-  /// to be called if [enableCache] is set to false
+  /// Clears saved [EpubDetails] and [List]<[String]> filepaths. Calling this is
+  /// redundant if [enableCache] is set to false.
   ///
   /// It is still safe to use this controller after calling this method.
   void clear() {
-    filePaths = null;
-    epubDetails = null;
+    _filePaths = null;
+    _epubDetails = null;
   }
 }
