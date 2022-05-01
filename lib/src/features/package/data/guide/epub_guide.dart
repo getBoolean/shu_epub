@@ -44,7 +44,7 @@ class EpubGuide extends EquatableXml {
 
   Map<String, dynamic> toMap() {
     return {
-      'items': items.map((item) => item.toMap()),
+      'items': items.map((item) => item.toMap()).toList(),
     };
   }
 
@@ -57,7 +57,10 @@ class EpubGuide extends EquatableXml {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() {
+    final Map<String, dynamic> mapped = toMap();
+    return json.encode(mapped);
+  }
 
   factory EpubGuide.fromJson(String source) =>
       EpubGuide.fromMap(json.decode(source));
