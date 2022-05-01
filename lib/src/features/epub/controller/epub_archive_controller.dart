@@ -50,7 +50,7 @@ class EpubArchiveController extends EpubControllerBase {
   Future<List<String>> getFilePaths() async {
     return archive.files
         .map((file) => file.name)
-        .map(pathSeparatorOverrider)
+        .map(super.pathSeparatorOverrider)
         .toList();
   }
 }

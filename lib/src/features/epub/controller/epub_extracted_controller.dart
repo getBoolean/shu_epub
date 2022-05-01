@@ -57,7 +57,7 @@ class EpubExtractedController extends EpubControllerBase {
           (fileSystemEntity) => fileSystemEntity.path
               .replaceFirst(rootDirectory.path + p.separator, ''),
         )
-        .map(pathSeparatorOverrider)
+        .map(super.pathSeparatorOverrider)
         .toList();
   }
 }
