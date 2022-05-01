@@ -153,10 +153,6 @@ abstract class EpubControllerBase {
 
   /// Checks if `filePath` is a container at the required location of [EpubContainer.filepath]
   bool isContainerFilePath(String filePath) {
-    if (overridePathSeparator != null) {
-      return filePath.replaceAll(RegExp(r'[/\\]'), p.separator) ==
-          EpubContainer.filepath.replaceAll(RegExp(r'[/\\]'), p.separator);
-    }
     return filePath.replaceAll(RegExp(r'[/\\]'), p.separator) ==
         EpubContainer.filepath.replaceAll(RegExp(r'[/\\]'), p.separator);
   }
