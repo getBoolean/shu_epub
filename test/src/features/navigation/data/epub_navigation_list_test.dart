@@ -40,7 +40,7 @@ void main() {
 
   group('fromMap', () {
     test(
-      'on input with with null id and empty others, expect empty object',
+      'on input with with empty items, expect empty object',
       () async {
         final input = {
           'navigationInfoList': [],
@@ -49,6 +49,78 @@ void main() {
         };
 
         final expected = EpubNavigationList();
+
+        final actual = EpubNavigationList.fromMap(input);
+
+        expect(actual, expected);
+      },
+    );
+
+    test(
+      'on input with one navLabel and empty others, expect empty object',
+      () async {
+        final input = {
+          'navigationInfoList': [],
+          'navigationLabels': [
+            {
+              'text': null,
+              'language': null,
+              'image': null,
+            },
+          ],
+          'navigationTargets': [],
+        };
+
+        final expected =
+            EpubNavigationList(navigationLabels: [EpubNavigationLabel()]);
+
+        final actual = EpubNavigationList.fromMap(input);
+
+        expect(actual, expected);
+      },
+    );
+
+    test(
+      'on input with one navInfo and empty others, expect empty object',
+      () async {
+        final input = {
+          'navigationInfoList': [
+            {
+              'text': null,
+              'language': null,
+              'image': null,
+            },
+          ],
+          'navigationLabels': [],
+          'navigationTargets': [],
+        };
+
+        final expected = EpubNavigationList(navigationInfoList: [EpubNavigationInfo()]);
+
+        final actual = EpubNavigationList.fromMap(input);
+
+        expect(actual, expected);
+      },
+    );
+
+    test(
+      'on input with one navInfo and empty others, expect empty object',
+      () async {
+        final input = {
+          'navigationInfoList': [],
+          'navigationLabels': [],
+          'navigationTargets': [
+            {
+              'id': null,
+              'classType': null,
+              'value': null,
+              'content': null,
+              'labels': [],
+            }
+          ],
+        };
+
+        final expected = EpubNavigationList(navigationTargets: [EpubNavigationTarget()]);
 
         final actual = EpubNavigationList.fromMap(input);
 
