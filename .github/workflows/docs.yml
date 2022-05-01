@@ -1,0 +1,41 @@
+name: Build and Deploy Docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy_docs:
+    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Dart SDK
+        uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+
+      - name: Install Dependencies
+        run: dart pub get
+
+      - name: Verify Formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      # Consider passing '--fatal-infos' for slightly stricter analysis.
+      - name: Analyze Project
+        run: dart analyze --fatal-infos
+
+      # Your project will need to have tests in test/ and a dependency on
+      # package:test for this step to succeed.
+      - name: Run Tests
+        run: dart test
+
+      - name: Generate Documentation
+        run: dart doc .
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: docs # The branch the action should deploy to.
+          folder: . # The folder the action should deploy.
