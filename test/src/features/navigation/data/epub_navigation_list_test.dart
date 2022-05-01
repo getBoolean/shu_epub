@@ -95,7 +95,8 @@ void main() {
           'navigationTargets': [],
         };
 
-        final expected = EpubNavigationList(navigationInfoList: [EpubNavigationInfo()]);
+        final expected =
+            EpubNavigationList(navigationInfoList: [EpubNavigationInfo()]);
 
         final actual = EpubNavigationList.fromMap(input);
 
@@ -120,7 +121,8 @@ void main() {
           ],
         };
 
-        final expected = EpubNavigationList(navigationTargets: [EpubNavigationTarget()]);
+        final expected =
+            EpubNavigationList(navigationTargets: [EpubNavigationTarget()]);
 
         final actual = EpubNavigationList.fromMap(input);
 

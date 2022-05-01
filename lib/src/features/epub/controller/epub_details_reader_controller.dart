@@ -14,7 +14,7 @@ class EpubDetailsReaderController {
 
   /// Returns a [EpubDetailsReaderController] with the given [containerElement],
   /// [packageElement], and [navigationElement].
-  /// 
+  ///
   /// Alias for [EpubDetailsReaderController.new].
   factory EpubDetailsReaderController.fromXmlElement({
     XmlElement? containerElement,
