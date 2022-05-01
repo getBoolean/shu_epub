@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the itemRefs property from the EpubSpine class, for the Dart programming language.">
+  <title>itemRefs property - EpubSpine class - shu_epub library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">shu_epub</a></li>
+    <li><a href="../../shu_epub/shu_epub-library.html">shu_epub</a></li>
+    <li><a href="../../shu_epub/EpubSpine-class.html">EpubSpine</a></li>
+    <li class="self-crumb">itemRefs property</li>
+  </ol>
+  <div class="self-name">itemRefs</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-property">itemRefs</span> property 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+        <section class="multi-line-signature">
+          <a href="https://api.dart.dev/stable/2.16.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../shu_epub/EpubSpineItemRef-class.html">EpubSpineItemRef</a></span>&gt;</span>
+          <span class="name ">itemRefs</span>
+          <div class="features">final</div>
+
+        </section>
+        
+<section class="desc markdown">
+  <p>The order of this list determines the reading order.</p>
+<p>It should not be an empty list.</p>
+<p>Each <code>EpubSpineItemRef</code> in spine must not reference media types other than OPS
+Content Documents (or documents whose fallback chain includes an OPS
+Content Document). An OPS Content Document must be of one of the
+following media types: <code>application/xhtml+xml</code>, <code>application/x-dtbook+xml</code>,
+the deprecated <code>text/x-oeb1-document</code>, and Out-Of-Line XML Island (with
+required <code>fallback</code>.) When a document with a media type not from this
+list (or a document whose <code>fallback</code> chain doesn't include a document
+with a media type from this list) is referenced in spine, Reading
+Systems <strong>must</strong> not include it as part of the spine.</p>
+<p>As items appearing in the spine must either be OPS Content Documents or
+items with a fallback chain that includes an OPS Content, it is possible
+to have a fallback chain for a spine item that "falls over" another OPS
+Core Media type. For example, a spine itemref could reference a PDF document,
+that falls back to a PNG image, that in turn falls back to a OPS XHTML Content
+Document. It is valid for this item to appear in the spine because the fallback
+chain includes (in this case terminates with) an OPS Content Document.</p>
+<p>In addition, a specific spine item (from the perspective of its <code>id</code> attribute
+value in <a href="../../shu_epub/EpubPackage/manifest.html">EpubPackage.manifest</a>) must not appear more than once in spine.</p>
+<p>All OPS Content Documents that are part of the publication (i.e. are listed in the manifest)
+which are potentially reachable by any reference mechanism allowed in this specification
+must be included in the spine. Such reference mechanisms include, as a partial list,
+hypertext links within OPS Content Documents, and references by the NCX, Tours and Guide.</p>
+<p>TODO(@getBoolean): Provide callback for user of this library to implement the below note.</p>
+<p>Should a Reading System encounter, by such reference, an OPS Content
+Document not listed in spine as required in this specification, the Reading System <strong>should</strong>
+add it to EPUB spine (the placement at the discretion of the Reading System) and assign the
+value of the linear attribute to "no" (see next.)</p>
+<p>For each itemref, the publication author may specify the optional linear attribute to designate
+whether the associated OPS Content Document is primary(<code>linear</code>=<code>true</code>, which is the default
+when linear is not present) or auxiliary (<code>linear</code>=<code>false</code>.) At least one <code>EpubSpineItemRef</code>
+in spine must be declared primary (linear=true).</p>
+<p>The Reader System may choose to display auxiliary content differently than primary content.
+They may also choose to treat all auxiliary content as primary content.</p>
+<p>The first primary item in itemRefs is the beginning of the main reading order of the publication.
+Successive primary OPS Content Documents form the remainder of the main reading order in the
+same order given in <a href="../../shu_epub/EpubSpine/itemRefs.html">EpubSpine.itemRefs</a></p>
+<p>Note about "next-page" functionality: When at the end of one primary OPS Content Document,
+the Reading System should go to the next primary <code>EpubSpineItemRef</code> in <a href="../../shu_epub/EpubSpine/itemRefs.html">EpubSpine.itemRefs</a></p>
+<p>The auxiliary (<a href="../../shu_epub/EpubSpineItemRef/isAuxiliary.html">EpubSpineItemRef.isAuxiliary</a>) content documents will be rendered by such Reading Systems, upon activation
+(such as through a hypertext link or entry in NCX), in some manner distinct from the main
+reading order. It is important that the publication author provide the necessary references
+to the auxiliary content documents, otherwise this content might not be reachable in some
+auxiliary-aware Reading Systems.</p>
+<p><a href="http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.4">http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.4</a></p>
+</section>
+
+        
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">final List&lt;EpubSpineItemRef&gt; itemRefs;
+
+</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">shu_epub</a></li>
+  <li><a href="../../shu_epub/shu_epub-library.html">shu_epub</a></li>
+  <li><a href="../../shu_epub/EpubSpine-class.html">EpubSpine</a></li>
+  <li class="self-crumb">itemRefs property</li>
+</ol>
+
+
+    <h5>EpubSpine class</h5>
+    <ol>
+
+    <li class="section-title"><a href="../../shu_epub/EpubSpine-class.html#constructors">Constructors</a></li>
+    <li><a href="../../shu_epub/EpubSpine/EpubSpine.html">EpubSpine</a></li>
+    <li><a href="../../shu_epub/EpubSpine/EpubSpine.fromData.html">fromData</a></li>
+    <li><a href="../../shu_epub/EpubSpine/EpubSpine.fromJson.html">fromJson</a></li>
+    <li><a href="../../shu_epub/EpubSpine/EpubSpine.fromMap.html">fromMap</a></li>
+    <li><a href="../../shu_epub/EpubSpine/EpubSpine.fromXmlElement.html">fromXmlElement</a></li>
+    <li><a href="../../shu_epub/EpubSpine/EpubSpine.fromXmlString.html">fromXmlString</a></li>
+
+
+    <li class="section-title">
+      <a href="../../shu_epub/EpubSpine-class.html#instance-properties">Properties</a>
+    </li>
+    <li class="inherited"><a href="https://pub.dev/documentation/equatable/2.0.3/equatable/Equatable/hashCode.html">hashCode</a></li>
+    <li><a href="../../shu_epub/EpubSpine/itemRefs.html">itemRefs</a></li>
+    <li><a href="../../shu_epub/EpubSpine/props.html">props</a></li>
+    <li class="inherited"><a href="https://api.dart.dev/stable/2.16.2/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    <li class="inherited"><a href="https://pub.dev/documentation/equatable/2.0.3/equatable/Equatable/stringify.html">stringify</a></li>
+    <li><a href="../../shu_epub/EpubSpine/tocId.html">tocId</a></li>
+
+    <li class="section-title"><a href="../../shu_epub/EpubSpine-class.html#instance-methods">Methods</a></li>
+    <li><a href="../../shu_epub/EpubSpine/copyWith.html">copyWith</a></li>
+    <li><a href="../../shu_epub/EpubSpine/getReadingOrder.html">getReadingOrder</a></li>
+    <li class="inherited"><a href="https://api.dart.dev/stable/2.16.2/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li><a href="../../shu_epub/EpubSpine/toJson.html">toJson</a></li>
+    <li><a href="../../shu_epub/EpubSpine/toMap.html">toMap</a></li>
+    <li><a href="../../shu_epub/EpubSpine/toString.html">toString</a></li>
+    <li><a href="../../shu_epub/EpubSpine/toXmlString.html">toXmlString</a></li>
+
+    <li class="section-title inherited"><a href="../../shu_epub/EpubSpine-class.html#operators">Operators</a></li>
+    <li class="inherited"><a href="https://pub.dev/documentation/equatable/2.0.3/equatable/Equatable/operator_equals.html">operator ==</a></li>
+
+
+
+
+    <li class="section-title"><a href="../../shu_epub/EpubSpine-class.html#constants">Constants</a></li>
+    <li><a href="../../shu_epub/EpubSpine/elementName-constant.html">elementName</a></li>
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    shu_epub
+      0.0.1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

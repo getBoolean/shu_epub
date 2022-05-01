@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="shu_epub library API docs, for the Dart programming language.">
+  <title>shu_epub library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">shu_epub</a></li>
+    <li class="self-crumb">shu_epub library</li>
+  </ol>
+  <div class="self-name">shu_epub</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-library">shu_epub</span> library 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>A Dart library for reading EPUB files.</p>
+</section>
+
+
+    <section class="summary offset-anchor" id="classes">
+      <h2>Classes</h2>
+
+      <dl>
+        <dt id="EpubArchiveController">
+  <span class="name "><a href="../shu_epub/EpubArchiveController-class.html">EpubArchiveController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubArchiveIOController">
+  <span class="name "><a href="../shu_epub/EpubArchiveIOController-class.html">EpubArchiveIOController</a></span> 
+
+</dt>
+<dd>
+  Contains handler to the epub file. This is on average faster than <a href="../shu_epub/EpubArchiveController-class.html">EpubArchiveController</a> when the epub
+file is NOT cached, but it may be slightly slower than <a href="../shu_epub/EpubArchiveController-class.html">EpubArchiveController</a> since the filesystem does
+not cache files when using this class 
+</dd>
+
+        <dt id="EpubContainer">
+  <span class="name "><a href="../shu_epub/EpubContainer-class.html">EpubContainer</a></span> 
+
+</dt>
+<dd>
+  The container.xml file contains XML that uses the <code>urn:oasis:names:tc:opendocument:xmlns:container</code>
+namespace for all of its elements and attributes. The <code>version="1.0"</code> attribute MUST be included
+for all containers that conform to this version of the specification. <a href="../shu_epub/EpubContainer-class.html">[...]</a>
+</dd>
+
+        <dt id="EpubContainerReader">
+  <span class="name "><a href="../shu_epub/EpubContainerReader-class.html">EpubContainerReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubContainerReaderController">
+  <span class="name "><a href="../shu_epub/EpubContainerReaderController-class.html">EpubContainerReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubContainerRootfileListReaderController">
+  <span class="name "><a href="../shu_epub/EpubContainerRootfileListReaderController-class.html">EpubContainerRootfileListReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubContainerRootfileReaderController">
+  <span class="name "><a href="../shu_epub/EpubContainerRootfileReaderController-class.html">EpubContainerRootfileReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubControllerBase">
+  <span class="name "><a href="../shu_epub/EpubControllerBase-class.html">EpubControllerBase</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubDetails">
+  <span class="name "><a href="../shu_epub/EpubDetails-class.html">EpubDetails</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubDetailsReaderController">
+  <span class="name "><a href="../shu_epub/EpubDetailsReaderController-class.html">EpubDetailsReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubExtractedController">
+  <span class="name "><a href="../shu_epub/EpubExtractedController-class.html">EpubExtractedController</a></span> 
+
+</dt>
+<dd>
+  Contains handler to the extracted epub file. This is on average faster than <a href="../shu_epub/EpubArchiveIOController-class.html">EpubArchiveIOController</a>
+when the files are cached by the filesystem since <a href="../shu_epub/EpubArchiveIOController-class.html">EpubArchiveIOController</a> cannot take advantage of filesystem caching. <a href="../shu_epub/EpubExtractedController-class.html">[...]</a>
+</dd>
+
+        <dt id="EpubExtraMetadata">
+  <span class="name "><a href="../shu_epub/EpubExtraMetadata-class.html">EpubExtraMetadata</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubGuide">
+  <span class="name "><a href="../shu_epub/EpubGuide-class.html">EpubGuide</a></span> 
+
+</dt>
+<dd>
+  Deprecated in EPUB 3.0 in favor of EpubLandmarks // TODO 
+</dd>
+
+        <dt id="EpubGuideItem">
+  <span class="name "><a href="../shu_epub/EpubGuideItem-class.html">EpubGuideItem</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubGuideItemReader">
+  <span class="name "><a href="../shu_epub/EpubGuideItemReader-class.html">EpubGuideItemReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubGuideItemReaderController">
+  <span class="name "><a href="../shu_epub/EpubGuideItemReaderController-class.html">EpubGuideItemReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubGuideReader">
+  <span class="name "><a href="../shu_epub/EpubGuideReader-class.html">EpubGuideReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubGuideReaderController">
+  <span class="name "><a href="../shu_epub/EpubGuideReaderController-class.html">EpubGuideReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubManifest">
+  <span class="name "><a href="../shu_epub/EpubManifest-class.html">EpubManifest</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubManifestItem">
+  <span class="name "><a href="../shu_epub/EpubManifestItem-class.html">EpubManifestItem</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubManifestItemReader">
+  <span class="name "><a href="../shu_epub/EpubManifestItemReader-class.html">EpubManifestItemReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubManifestItemReaderController">
+  <span class="name "><a href="../shu_epub/EpubManifestItemReaderController-class.html">EpubManifestItemReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubManifestReader">
+  <span class="name "><a href="../shu_epub/EpubManifestReader-class.html">EpubManifestReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubManifestReaderController">
+  <span class="name "><a href="../shu_epub/EpubManifestReaderController-class.html">EpubManifestReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMediaTypes">
+  <span class="name "><a href="../shu_epub/EpubMediaTypes-class.html">EpubMediaTypes</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataContributor">
+  <span class="name "><a href="../shu_epub/EpubMetadataContributor-class.html">EpubMetadataContributor</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataContributorReader">
+  <span class="name "><a href="../shu_epub/EpubMetadataContributorReader-class.html">EpubMetadataContributorReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataContributorReaderController">
+  <span class="name "><a href="../shu_epub/EpubMetadataContributorReaderController-class.html">EpubMetadataContributorReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataCreator">
+  <span class="name "><a href="../shu_epub/EpubMetadataCreator-class.html">EpubMetadataCreator</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataCreatorReader">
+  <span class="name "><a href="../shu_epub/EpubMetadataCreatorReader-class.html">EpubMetadataCreatorReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataCreatorReaderController">
+  <span class="name "><a href="../shu_epub/EpubMetadataCreatorReaderController-class.html">EpubMetadataCreatorReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataDate">
+  <span class="name "><a href="../shu_epub/EpubMetadataDate-class.html">EpubMetadataDate</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataDateReader">
+  <span class="name "><a href="../shu_epub/EpubMetadataDateReader-class.html">EpubMetadataDateReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataDateReaderController">
+  <span class="name "><a href="../shu_epub/EpubMetadataDateReaderController-class.html">EpubMetadataDateReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataIdentifier">
+  <span class="name "><a href="../shu_epub/EpubMetadataIdentifier-class.html">EpubMetadataIdentifier</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataIdentifierReader">
+  <span class="name "><a href="../shu_epub/EpubMetadataIdentifierReader-class.html">EpubMetadataIdentifierReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataIdentifierReaderController">
+  <span class="name "><a href="../shu_epub/EpubMetadataIdentifierReaderController-class.html">EpubMetadataIdentifierReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataTitle">
+  <span class="name "><a href="../shu_epub/EpubMetadataTitle-class.html">EpubMetadataTitle</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataTitleReader">
+  <span class="name "><a href="../shu_epub/EpubMetadataTitleReader-class.html">EpubMetadataTitleReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubMetadataTitleReaderController">
+  <span class="name "><a href="../shu_epub/EpubMetadataTitleReaderController-class.html">EpubMetadataTitleReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigation">
+  <span class="name "><a href="../shu_epub/EpubNavigation-class.html">EpubNavigation</a></span> 
+
+</dt>
+<dd>
+  Top Level NCX Container. 
+</dd>
+
+        <dt id="EpubNavigationContent">
+  <span class="name "><a href="../shu_epub/EpubNavigationContent-class.html">EpubNavigationContent</a></span> 
+
+</dt>
+<dd>
+  Content Element - pointer into XML to beginning of navPoint. 
+</dd>
+
+        <dt id="EpubNavigationContentReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationContentReader-class.html">EpubNavigationContentReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationContentReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationContentReaderController-class.html">EpubNavigationContentReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationDocumentAuthor">
+  <span class="name "><a href="../shu_epub/EpubNavigationDocumentAuthor-class.html">EpubNavigationDocumentAuthor</a></span> 
+
+</dt>
+<dd>
+  The author of the document, immediately follows docTitle. 
+</dd>
+
+        <dt id="EpubNavigationDocumentAuthorReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationDocumentAuthorReader-class.html">EpubNavigationDocumentAuthorReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationDocumentAuthorReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationDocumentAuthorReaderController-class.html">EpubNavigationDocumentAuthorReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationDocumentTitle">
+  <span class="name "><a href="../shu_epub/EpubNavigationDocumentTitle-class.html">EpubNavigationDocumentTitle</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationDocumentTitleReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationDocumentTitleReader-class.html">EpubNavigationDocumentTitleReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationDocumentTitleReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationDocumentTitleReaderController-class.html">EpubNavigationDocumentTitleReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationHead">
+  <span class="name "><a href="../shu_epub/EpubNavigationHead-class.html">EpubNavigationHead</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationHeadReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationHeadReader-class.html">EpubNavigationHeadReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationHeadReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationHeadReaderController-class.html">EpubNavigationHeadReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationImage">
+  <span class="name "><a href="../shu_epub/EpubNavigationImage-class.html">EpubNavigationImage</a></span> 
+
+</dt>
+<dd>
+  Image Element - image that may accompany heading. 
+</dd>
+
+        <dt id="EpubNavigationImageReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationImageReader-class.html">EpubNavigationImageReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationImageReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationImageReaderController-class.html">EpubNavigationImageReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationInfo">
+  <span class="name "><a href="../shu_epub/EpubNavigationInfo-class.html">EpubNavigationInfo</a></span> 
+
+</dt>
+<dd>
+  Navigation Information - Contains an informative comment about a
+<a href="../shu_epub/EpubNavigationMap-class.html">EpubNavigationMap</a>, <a href="../shu_epub/EpubNavigationPageList-class.html">EpubNavigationPageList</a>, or <a href="../shu_epub/EpubNavigationList-class.html">EpubNavigationList</a>
+in various media for presentation to the user. 
+</dd>
+
+        <dt id="EpubNavigationInfoReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationInfoReader-class.html">EpubNavigationInfoReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationInfoReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationInfoReaderController-class.html">EpubNavigationInfoReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationLabel">
+  <span class="name "><a href="../shu_epub/EpubNavigationLabel-class.html">EpubNavigationLabel</a></span> 
+
+</dt>
+<dd>
+  Navigation Label - Contains a description of a given
+<a href="../shu_epub/EpubNavigationMap-class.html">EpubNavigationMap</a>, <a href="../shu_epub/EpubNavigationPoint-class.html">EpubNavigationPoint</a>, <a href="../shu_epub/EpubNavigationList-class.html">EpubNavigationList</a>, or
+<a href="../shu_epub/EpubNavigationTarget-class.html">EpubNavigationTarget</a> in various media for presentation to the user. <a href="../shu_epub/EpubNavigationLabel-class.html">[...]</a>
+</dd>
+
+        <dt id="EpubNavigationLabelReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationLabelReader-class.html">EpubNavigationLabelReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationLabelReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationLabelReaderController-class.html">EpubNavigationLabelReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationList">
+  <span class="name "><a href="../shu_epub/EpubNavigationList-class.html">EpubNavigationList</a></span> 
+
+</dt>
+<dd>
+  Navigation List - container for distinct, flat sets of navigable elements,
+e.g. notes, figures, tables, etc.  Essentially a flat version of navMap.
+The "class" attribute describes the type of object contained in this
+navList, using dtbook element names, e.g., note. 
+</dd>
+
+        <dt id="EpubNavigationListReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationListReader-class.html">EpubNavigationListReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationListReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationListReaderController-class.html">EpubNavigationListReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationMap">
+  <span class="name "><a href="../shu_epub/EpubNavigationMap-class.html">EpubNavigationMap</a></span> 
+
+</dt>
+<dd>
+  Navigation Structure - container for all of the NCX objects that are part
+of the hierarchical structure of the document. 
+</dd>
+
+        <dt id="EpubNavigationMapReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationMapReader-class.html">EpubNavigationMapReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationMapReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationMapReaderController-class.html">EpubNavigationMapReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationMeta">
+  <span class="name "><a href="../shu_epub/EpubNavigationMeta-class.html">EpubNavigationMeta</a></span> 
+
+</dt>
+<dd>
+  Meta Element - metadata about this NCX 
+</dd>
+
+        <dt id="EpubNavigationMetaReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationMetaReader-class.html">EpubNavigationMetaReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationMetaReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationMetaReaderController-class.html">EpubNavigationMetaReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationPageList">
+  <span class="name "><a href="../shu_epub/EpubNavigationPageList-class.html">EpubNavigationPageList</a></span> 
+
+</dt>
+<dd>
+  Page List -  Container for pagination information. 
+</dd>
+
+        <dt id="EpubNavigationPageListReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationPageListReader-class.html">EpubNavigationPageListReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationPageListReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationPageListReaderController-class.html">EpubNavigationPageListReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationPageTarget">
+  <span class="name "><a href="../shu_epub/EpubNavigationPageTarget-class.html">EpubNavigationPageTarget</a></span> 
+
+</dt>
+<dd>
+  Page Target -  Container for text, image, and content elements
+containing navigational information for pages.  The "value" attribute is a
+positive integer representing the numeric value associated with a page.
+Combination of values of type and value attributes must be unique, when
+value attribute is present. 
+</dd>
+
+        <dt id="EpubNavigationPageTargetReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationPageTargetReader-class.html">EpubNavigationPageTargetReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationPageTargetReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationPageTargetReaderController-class.html">EpubNavigationPageTargetReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationPoint">
+  <span class="name "><a href="../shu_epub/EpubNavigationPoint-class.html">EpubNavigationPoint</a></span> 
+
+</dt>
+<dd>
+  Contains description(s) of target, as well as a pointer to entire content
+of target. Hierarchy is represented by nesting navPoints.
+<a href="../shu_epub/EpubNavigationPoint/classType.html">EpubNavigationPoint.classType</a> attribute 
+</dd>
+
+        <dt id="EpubNavigationPointReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationPointReader-class.html">EpubNavigationPointReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationPointReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationPointReaderController-class.html">EpubNavigationPointReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationReader-class.html">EpubNavigationReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationReaderController-class.html">EpubNavigationReaderController</a></span> 
+
+</dt>
+<dd>
+  Controller to parse the EPUB navigation XML document. 
+</dd>
+
+        <dt id="EpubNavigationTarget">
+  <span class="name "><a href="../shu_epub/EpubNavigationTarget-class.html">EpubNavigationTarget</a></span> 
+
+</dt>
+<dd>
+  Navigation Target - contains description(s) of target, as well as a pointer
+to <a href="../shu_epub/EpubNavigationTarget/content.html">EpubNavigationTarget.content</a>. <a href="../shu_epub/EpubNavigationTarget-class.html">EpubNavigationTarget</a>s are the
+equivalent of <a href="../shu_epub/EpubNavigationMap/navigationPoints.html">EpubNavigationMap.navigationPoints</a> for use in
+<a href="../shu_epub/EpubNavigation/navigationLists.html">EpubNavigation.navigationLists</a>. 
+</dd>
+
+        <dt id="EpubNavigationTargetReader">
+  <span class="name "><a href="../shu_epub/EpubNavigationTargetReader-class.html">EpubNavigationTargetReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationTargetReaderController">
+  <span class="name "><a href="../shu_epub/EpubNavigationTargetReaderController-class.html">EpubNavigationTargetReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubPackage">
+  <span class="name "><a href="../shu_epub/EpubPackage-class.html">EpubPackage</a></span> 
+
+</dt>
+<dd>
+  A publication conforming to this specification must include exactly one XML OPF
+Package Document, which specifies the OPS Content Documents, images, and other
+objects that make up the OPS Publication and how they relate to each other. <a href="../shu_epub/EpubPackage-class.html">[...]</a>
+</dd>
+
+        <dt id="EpubPackageReader">
+  <span class="name "><a href="../shu_epub/EpubPackageReader-class.html">EpubPackageReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubPackageReaderController">
+  <span class="name "><a href="../shu_epub/EpubPackageReaderController-class.html">EpubPackageReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubPublicationMetadata">
+  <span class="name "><a href="../shu_epub/EpubPublicationMetadata-class.html">EpubPublicationMetadata</a></span> 
+
+</dt>
+<dd>
+  <a href="http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.2">http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.2</a> 
+</dd>
+
+        <dt id="EpubPublicationMetadataReader">
+  <span class="name "><a href="../shu_epub/EpubPublicationMetadataReader-class.html">EpubPublicationMetadataReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubPublicationMetadataReaderController">
+  <span class="name "><a href="../shu_epub/EpubPublicationMetadataReaderController-class.html">EpubPublicationMetadataReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubSingleTour">
+  <span class="name "><a href="../shu_epub/EpubSingleTour-class.html">EpubSingleTour</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubSingleTourReader">
+  <span class="name "><a href="../shu_epub/EpubSingleTourReader-class.html">EpubSingleTourReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubSingleTourReaderController">
+  <span class="name "><a href="../shu_epub/EpubSingleTourReaderController-class.html">EpubSingleTourReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubSpine">
+  <span class="name "><a href="../shu_epub/EpubSpine-class.html">EpubSpine</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubSpineItemRef">
+  <span class="name "><a href="../shu_epub/EpubSpineItemRef-class.html">EpubSpineItemRef</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubSpineItemRefReader">
+  <span class="name "><a href="../shu_epub/EpubSpineItemRefReader-class.html">EpubSpineItemRefReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubSpineItemRefReaderController">
+  <span class="name "><a href="../shu_epub/EpubSpineItemRefReaderController-class.html">EpubSpineItemRefReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubSpineReader">
+  <span class="name "><a href="../shu_epub/EpubSpineReader-class.html">EpubSpineReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubSpineReaderController">
+  <span class="name "><a href="../shu_epub/EpubSpineReaderController-class.html">EpubSpineReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubTours">
+  <span class="name "><a href="../shu_epub/EpubTours-class.html">EpubTours</a></span> 
+
+</dt>
+<dd>
+  Deprecated in EPUB 2.0.1 and removed in EPUB 3.0 
+</dd>
+
+        <dt id="EpubTourSite">
+  <span class="name "><a href="../shu_epub/EpubTourSite-class.html">EpubTourSite</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubTourSiteReader">
+  <span class="name "><a href="../shu_epub/EpubTourSiteReader-class.html">EpubTourSiteReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubTourSiteReaderController">
+  <span class="name "><a href="../shu_epub/EpubTourSiteReaderController-class.html">EpubTourSiteReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubToursReader">
+  <span class="name "><a href="../shu_epub/EpubToursReader-class.html">EpubToursReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubToursReaderController">
+  <span class="name "><a href="../shu_epub/EpubToursReaderController-class.html">EpubToursReaderController</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubXMLConstants">
+  <span class="name "><a href="../shu_epub/EpubXMLConstants-class.html">EpubXMLConstants</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EquatableXml">
+  <span class="name "><a href="../shu_epub/EquatableXml-class.html">EquatableXml</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="Rootfile">
+  <span class="name "><a href="../shu_epub/Rootfile-class.html">Rootfile</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="RootfileList">
+  <span class="name "><a href="../shu_epub/RootfileList-class.html">RootfileList</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="RootfileListReader">
+  <span class="name "><a href="../shu_epub/RootfileListReader-class.html">RootfileListReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="RootfileReader">
+  <span class="name "><a href="../shu_epub/RootfileReader-class.html">RootfileReader</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="mixins">
+      <h2>Mixins</h2>
+
+      <dl>
+        <dt id="EpubClassTypeMixin">
+  <span class="name "><a href="../shu_epub/EpubClassTypeMixin-mixin.html">EpubClassTypeMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationContentMixin">
+  <span class="name "><a href="../shu_epub/EpubNavigationContentMixin-mixin.html">EpubNavigationContentMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationImageMixin">
+  <span class="name "><a href="../shu_epub/EpubNavigationImageMixin-mixin.html">EpubNavigationImageMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationInfoListMixin">
+  <span class="name "><a href="../shu_epub/EpubNavigationInfoListMixin-mixin.html">EpubNavigationInfoListMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="EpubNavigationLabelListMixin">
+  <span class="name "><a href="../shu_epub/EpubNavigationLabelListMixin-mixin.html">EpubNavigationLabelListMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="HrefMixin">
+  <span class="name "><a href="../shu_epub/HrefMixin-mixin.html">HrefMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="IdMixin">
+  <span class="name "><a href="../shu_epub/IdMixin-mixin.html">IdMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="LanguageMixin">
+  <span class="name "><a href="../shu_epub/LanguageMixin-mixin.html">LanguageMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="MediaTypeMixin">
+  <span class="name "><a href="../shu_epub/MediaTypeMixin-mixin.html">MediaTypeMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="PlayOrderMixin">
+  <span class="name "><a href="../shu_epub/PlayOrderMixin-mixin.html">PlayOrderMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="SourceMixin">
+  <span class="name "><a href="../shu_epub/SourceMixin-mixin.html">SourceMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="TextMixin">
+  <span class="name "><a href="../shu_epub/TextMixin-mixin.html">TextMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="ValueMixin">
+  <span class="name "><a href="../shu_epub/ValueMixin-mixin.html">ValueMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+        <dt id="VersionMixin">
+  <span class="name "><a href="../shu_epub/VersionMixin-mixin.html">VersionMixin</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="extensions">
+      <h2>Extensions</h2>
+
+      <dl>
+        <dt id="EpubGuideReferenceTypeExtension">
+    <span class="name "><a href="../shu_epub/EpubGuideReferenceTypeExtension.html">EpubGuideReferenceTypeExtension</a></span> 
+
+</dt>
+<dd>
+     
+</dd>
+
+
+      </dl>
+    </section>
+
+
+
+
+    <section class="summary offset-anchor" id="enums">
+      <h2>Enums</h2>
+
+      <dl>
+        <dt id="EpubGuideReferenceType">
+  <span class="name "><a href="../shu_epub/EpubGuideReferenceType.html">EpubGuideReferenceType</a></span> 
+
+</dt>
+<dd>
+  The following list of type values is derived from the 13th edition of the Chicago Manual of Style: <a href="../shu_epub/EpubGuideReferenceType.html">[...]</a>
+</dd>
+
+        <dt id="EpubNavigationPageTargetType">
+  <span class="name "><a href="../shu_epub/EpubNavigationPageTargetType.html">EpubNavigationPageTargetType</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+      </dl>
+    </section>
+
+
+    <section class="summary offset-anchor" id="exceptions">
+      <h2>Exceptions / Errors</h2>
+
+      <dl>
+        <dt id="EpubException">
+  <span class="name "><a href="../shu_epub/EpubException-class.html">EpubException</a></span> 
+
+</dt>
+<dd>
+   
+</dd>
+
+      </dl>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">shu_epub</a></li>
+  <li class="self-crumb">shu_epub library</li>
+</ol>
+
+
+    <h5><span class="package-name">shu_epub</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="../shu_epub/shu_epub-library.html">shu_epub</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <h5>shu_epub library</h5>
+    <ol>
+  <li class="section-title"><a href="../shu_epub/shu_epub-library.html#classes">Classes</a></li>
+  <li><a href="../shu_epub/EpubArchiveController-class.html">EpubArchiveController</a></li>
+  <li><a href="../shu_epub/EpubArchiveIOController-class.html">EpubArchiveIOController</a></li>
+  <li><a href="../shu_epub/EpubContainer-class.html">EpubContainer</a></li>
+  <li><a href="../shu_epub/EpubContainerReader-class.html">EpubContainerReader</a></li>
+  <li><a href="../shu_epub/EpubContainerReaderController-class.html">EpubContainerReaderController</a></li>
+  <li><a href="../shu_epub/EpubContainerRootfileListReaderController-class.html">EpubContainerRootfileListReaderController</a></li>
+  <li><a href="../shu_epub/EpubContainerRootfileReaderController-class.html">EpubContainerRootfileReaderController</a></li>
+  <li><a href="../shu_epub/EpubControllerBase-class.html">EpubControllerBase</a></li>
+  <li><a href="../shu_epub/EpubDetails-class.html">EpubDetails</a></li>
+  <li><a href="../shu_epub/EpubDetailsReaderController-class.html">EpubDetailsReaderController</a></li>
+  <li><a href="../shu_epub/EpubExtractedController-class.html">EpubExtractedController</a></li>
+  <li><a href="../shu_epub/EpubExtraMetadata-class.html">EpubExtraMetadata</a></li>
+  <li><a href="../shu_epub/EpubGuide-class.html">EpubGuide</a></li>
+  <li><a href="../shu_epub/EpubGuideItem-class.html">EpubGuideItem</a></li>
+  <li><a href="../shu_epub/EpubGuideItemReader-class.html">EpubGuideItemReader</a></li>
+  <li><a href="../shu_epub/EpubGuideItemReaderController-class.html">EpubGuideItemReaderController</a></li>
+  <li><a href="../shu_epub/EpubGuideReader-class.html">EpubGuideReader</a></li>
+  <li><a href="../shu_epub/EpubGuideReaderController-class.html">EpubGuideReaderController</a></li>
+  <li><a href="../shu_epub/EpubManifest-class.html">EpubManifest</a></li>
+  <li><a href="../shu_epub/EpubManifestItem-class.html">EpubManifestItem</a></li>
+  <li><a href="../shu_epub/EpubManifestItemReader-class.html">EpubManifestItemReader</a></li>
+  <li><a href="../shu_epub/EpubManifestItemReaderController-class.html">EpubManifestItemReaderController</a></li>
+  <li><a href="../shu_epub/EpubManifestReader-class.html">EpubManifestReader</a></li>
+  <li><a href="../shu_epub/EpubManifestReaderController-class.html">EpubManifestReaderController</a></li>
+  <li><a href="../shu_epub/EpubMediaTypes-class.html">EpubMediaTypes</a></li>
+  <li><a href="../shu_epub/EpubMetadataContributor-class.html">EpubMetadataContributor</a></li>
+  <li><a href="../shu_epub/EpubMetadataContributorReader-class.html">EpubMetadataContributorReader</a></li>
+  <li><a href="../shu_epub/EpubMetadataContributorReaderController-class.html">EpubMetadataContributorReaderController</a></li>
+  <li><a href="../shu_epub/EpubMetadataCreator-class.html">EpubMetadataCreator</a></li>
+  <li><a href="../shu_epub/EpubMetadataCreatorReader-class.html">EpubMetadataCreatorReader</a></li>
+  <li><a href="../shu_epub/EpubMetadataCreatorReaderController-class.html">EpubMetadataCreatorReaderController</a></li>
+  <li><a href="../shu_epub/EpubMetadataDate-class.html">EpubMetadataDate</a></li>
+  <li><a href="../shu_epub/EpubMetadataDateReader-class.html">EpubMetadataDateReader</a></li>
+  <li><a href="../shu_epub/EpubMetadataDateReaderController-class.html">EpubMetadataDateReaderController</a></li>
+  <li><a href="../shu_epub/EpubMetadataIdentifier-class.html">EpubMetadataIdentifier</a></li>
+  <li><a href="../shu_epub/EpubMetadataIdentifierReader-class.html">EpubMetadataIdentifierReader</a></li>
+  <li><a href="../shu_epub/EpubMetadataIdentifierReaderController-class.html">EpubMetadataIdentifierReaderController</a></li>
+  <li><a href="../shu_epub/EpubMetadataTitle-class.html">EpubMetadataTitle</a></li>
+  <li><a href="../shu_epub/EpubMetadataTitleReader-class.html">EpubMetadataTitleReader</a></li>
+  <li><a href="../shu_epub/EpubMetadataTitleReaderController-class.html">EpubMetadataTitleReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigation-class.html">EpubNavigation</a></li>
+  <li><a href="../shu_epub/EpubNavigationContent-class.html">EpubNavigationContent</a></li>
+  <li><a href="../shu_epub/EpubNavigationContentReader-class.html">EpubNavigationContentReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationContentReaderController-class.html">EpubNavigationContentReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationDocumentAuthor-class.html">EpubNavigationDocumentAuthor</a></li>
+  <li><a href="../shu_epub/EpubNavigationDocumentAuthorReader-class.html">EpubNavigationDocumentAuthorReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationDocumentAuthorReaderController-class.html">EpubNavigationDocumentAuthorReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationDocumentTitle-class.html">EpubNavigationDocumentTitle</a></li>
+  <li><a href="../shu_epub/EpubNavigationDocumentTitleReader-class.html">EpubNavigationDocumentTitleReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationDocumentTitleReaderController-class.html">EpubNavigationDocumentTitleReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationHead-class.html">EpubNavigationHead</a></li>
+  <li><a href="../shu_epub/EpubNavigationHeadReader-class.html">EpubNavigationHeadReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationHeadReaderController-class.html">EpubNavigationHeadReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationImage-class.html">EpubNavigationImage</a></li>
+  <li><a href="../shu_epub/EpubNavigationImageReader-class.html">EpubNavigationImageReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationImageReaderController-class.html">EpubNavigationImageReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationInfo-class.html">EpubNavigationInfo</a></li>
+  <li><a href="../shu_epub/EpubNavigationInfoReader-class.html">EpubNavigationInfoReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationInfoReaderController-class.html">EpubNavigationInfoReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationLabel-class.html">EpubNavigationLabel</a></li>
+  <li><a href="../shu_epub/EpubNavigationLabelReader-class.html">EpubNavigationLabelReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationLabelReaderController-class.html">EpubNavigationLabelReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationList-class.html">EpubNavigationList</a></li>
+  <li><a href="../shu_epub/EpubNavigationListReader-class.html">EpubNavigationListReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationListReaderController-class.html">EpubNavigationListReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationMap-class.html">EpubNavigationMap</a></li>
+  <li><a href="../shu_epub/EpubNavigationMapReader-class.html">EpubNavigationMapReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationMapReaderController-class.html">EpubNavigationMapReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationMeta-class.html">EpubNavigationMeta</a></li>
+  <li><a href="../shu_epub/EpubNavigationMetaReader-class.html">EpubNavigationMetaReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationMetaReaderController-class.html">EpubNavigationMetaReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationPageList-class.html">EpubNavigationPageList</a></li>
+  <li><a href="../shu_epub/EpubNavigationPageListReader-class.html">EpubNavigationPageListReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationPageListReaderController-class.html">EpubNavigationPageListReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationPageTarget-class.html">EpubNavigationPageTarget</a></li>
+  <li><a href="../shu_epub/EpubNavigationPageTargetReader-class.html">EpubNavigationPageTargetReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationPageTargetReaderController-class.html">EpubNavigationPageTargetReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationPoint-class.html">EpubNavigationPoint</a></li>
+  <li><a href="../shu_epub/EpubNavigationPointReader-class.html">EpubNavigationPointReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationPointReaderController-class.html">EpubNavigationPointReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationReader-class.html">EpubNavigationReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationReaderController-class.html">EpubNavigationReaderController</a></li>
+  <li><a href="../shu_epub/EpubNavigationTarget-class.html">EpubNavigationTarget</a></li>
+  <li><a href="../shu_epub/EpubNavigationTargetReader-class.html">EpubNavigationTargetReader</a></li>
+  <li><a href="../shu_epub/EpubNavigationTargetReaderController-class.html">EpubNavigationTargetReaderController</a></li>
+  <li><a href="../shu_epub/EpubPackage-class.html">EpubPackage</a></li>
+  <li><a href="../shu_epub/EpubPackageReader-class.html">EpubPackageReader</a></li>
+  <li><a href="../shu_epub/EpubPackageReaderController-class.html">EpubPackageReaderController</a></li>
+  <li><a href="../shu_epub/EpubPublicationMetadata-class.html">EpubPublicationMetadata</a></li>
+  <li><a href="../shu_epub/EpubPublicationMetadataReader-class.html">EpubPublicationMetadataReader</a></li>
+  <li><a href="../shu_epub/EpubPublicationMetadataReaderController-class.html">EpubPublicationMetadataReaderController</a></li>
+  <li><a href="../shu_epub/EpubSingleTour-class.html">EpubSingleTour</a></li>
+  <li><a href="../shu_epub/EpubSingleTourReader-class.html">EpubSingleTourReader</a></li>
+  <li><a href="../shu_epub/EpubSingleTourReaderController-class.html">EpubSingleTourReaderController</a></li>
+  <li><a href="../shu_epub/EpubSpine-class.html">EpubSpine</a></li>
+  <li><a href="../shu_epub/EpubSpineItemRef-class.html">EpubSpineItemRef</a></li>
+  <li><a href="../shu_epub/EpubSpineItemRefReader-class.html">EpubSpineItemRefReader</a></li>
+  <li><a href="../shu_epub/EpubSpineItemRefReaderController-class.html">EpubSpineItemRefReaderController</a></li>
+  <li><a href="../shu_epub/EpubSpineReader-class.html">EpubSpineReader</a></li>
+  <li><a href="../shu_epub/EpubSpineReaderController-class.html">EpubSpineReaderController</a></li>
+  <li><a href="../shu_epub/EpubTours-class.html">EpubTours</a></li>
+  <li><a href="../shu_epub/EpubTourSite-class.html">EpubTourSite</a></li>
+  <li><a href="../shu_epub/EpubTourSiteReader-class.html">EpubTourSiteReader</a></li>
+  <li><a href="../shu_epub/EpubTourSiteReaderController-class.html">EpubTourSiteReaderController</a></li>
+  <li><a href="../shu_epub/EpubToursReader-class.html">EpubToursReader</a></li>
+  <li><a href="../shu_epub/EpubToursReaderController-class.html">EpubToursReaderController</a></li>
+  <li><a href="../shu_epub/EpubXMLConstants-class.html">EpubXMLConstants</a></li>
+  <li><a href="../shu_epub/EquatableXml-class.html">EquatableXml</a></li>
+  <li><a href="../shu_epub/Rootfile-class.html">Rootfile</a></li>
+  <li><a href="../shu_epub/RootfileList-class.html">RootfileList</a></li>
+  <li><a href="../shu_epub/RootfileListReader-class.html">RootfileListReader</a></li>
+  <li><a href="../shu_epub/RootfileReader-class.html">RootfileReader</a></li>
+
+  <li class="section-title"><a href="../shu_epub/shu_epub-library.html#extensions">Extensions</a></li>
+  <li><a href="../shu_epub/EpubGuideReferenceTypeExtension.html">EpubGuideReferenceTypeExtension</a></li>
+
+  <li class="section-title"><a href="../shu_epub/shu_epub-library.html#mixins">Mixins</a></li>
+  <li><a href="../shu_epub/EpubClassTypeMixin-mixin.html">EpubClassTypeMixin</a></li>
+  <li><a href="../shu_epub/EpubNavigationContentMixin-mixin.html">EpubNavigationContentMixin</a></li>
+  <li><a href="../shu_epub/EpubNavigationImageMixin-mixin.html">EpubNavigationImageMixin</a></li>
+  <li><a href="../shu_epub/EpubNavigationInfoListMixin-mixin.html">EpubNavigationInfoListMixin</a></li>
+  <li><a href="../shu_epub/EpubNavigationLabelListMixin-mixin.html">EpubNavigationLabelListMixin</a></li>
+  <li><a href="../shu_epub/HrefMixin-mixin.html">HrefMixin</a></li>
+  <li><a href="../shu_epub/IdMixin-mixin.html">IdMixin</a></li>
+  <li><a href="../shu_epub/LanguageMixin-mixin.html">LanguageMixin</a></li>
+  <li><a href="../shu_epub/MediaTypeMixin-mixin.html">MediaTypeMixin</a></li>
+  <li><a href="../shu_epub/PlayOrderMixin-mixin.html">PlayOrderMixin</a></li>
+  <li><a href="../shu_epub/SourceMixin-mixin.html">SourceMixin</a></li>
+  <li><a href="../shu_epub/TextMixin-mixin.html">TextMixin</a></li>
+  <li><a href="../shu_epub/ValueMixin-mixin.html">ValueMixin</a></li>
+  <li><a href="../shu_epub/VersionMixin-mixin.html">VersionMixin</a></li>
+
+
+
+
+  <li class="section-title"><a href="../shu_epub/shu_epub-library.html#enums">Enums</a></li>
+  <li><a href="../shu_epub/EpubGuideReferenceType.html">EpubGuideReferenceType</a></li>
+  <li><a href="../shu_epub/EpubNavigationPageTargetType.html">EpubNavigationPageTargetType</a></li>
+
+
+  <li class="section-title"><a href="../shu_epub/shu_epub-library.html#exceptions">Exceptions</a></li>
+  <li><a href="../shu_epub/EpubException-class.html">EpubException</a></li>
+</ol>
+
+  </div><!--/sidebar-offcanvas-right-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    shu_epub
+      0.0.1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
