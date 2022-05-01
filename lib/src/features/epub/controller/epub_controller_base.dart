@@ -5,7 +5,7 @@ abstract class EpubControllerBase {
   /// Enables caching if `true` so that subsequent calls of [getEpubDetails]
   /// and [getFilePaths] can be resolved quicker.
   ///
-  /// Specifically, it enables caching of [_epubDetails] and [_filePaths].
+  /// Specifically, it enables caching of [EpubDetails] and [List]<[String]> filepaths.
   ///
   /// It is recommended to manually save the results from [getEpubDetails]
   /// and [getFilePaths] on the device and pass it to [EpubControllerBase.new],
