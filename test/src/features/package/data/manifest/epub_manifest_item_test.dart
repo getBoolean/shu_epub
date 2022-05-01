@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:shu_epub/shu_epub.dart';
 import 'package:test/test.dart';
 
@@ -184,6 +186,40 @@ void main() {
         final actualValue = sut.toXmlString();
 
         expect(actualValue, expectedValue);
+      },
+    );
+  });
+
+  // Group for fromXmlString
+
+  group('fromXmlString', () {
+    test(
+      'on input with xml item, expect empty object',
+      () async {
+        final input = '<item/>';
+
+        final expected = EpubManifestItem();
+
+        final actual = EpubManifestItem.fromXmlString(input);
+
+        expect(actual, expected);
+      },
+    );
+  });
+
+  // Group for fromData
+
+  group('fromData', () {
+    test(
+      'on input with data item, expect empty object',
+      () async {
+        final input = '<item/>'.codeUnits;
+
+        final expected = EpubManifestItem();
+
+        final actual = EpubManifestItem.fromData(Uint8List.fromList(input));
+
+        expect(actual, expected);
       },
     );
   });
