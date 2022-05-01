@@ -1,0 +1,200 @@
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="isbn_9780545509800" version="2.0">
+<metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+<dc:title>The Rise of a Legend</dc:title>
+<dc:creator>Kathryn Lasky</dc:creator>
+<dc:contributor>Kathryn Lasky</dc:contributor>
+<dc:publisher>Scholastic Inc.</dc:publisher>
+<dc:format/>
+<dc:date>2013</dc:date>
+<dc:subject/>
+<dc:description>&lt;p&gt;An owlet hatches out onto Stormfast Island and into a world torn by war. For one hundred years, his people have fought off enemy owls from the Ice Talons, but the tide has turned. An invasion is coming, one the Kielian League won't have the strength to resist. Soon the tyrant owl Bylyric will rule over everything, and no honorable owl will be safe.&lt;p&gt;Only the small owl from Stormfast stands between Bylyric and total victory. Lyze is not very impressive to look at, but he has a wild idea for a snake and owl strike unit that just might give the soldiers of the Kielian League the edge they need.&lt;p&gt;This is his story, the story of an ordinary owl who rose to become Ezylryb of the Great Tree. This is the story of what it takes to make a Guardian of Ga'Hoole.&lt;p&gt;&lt;li&gt;"Lyze's story can be read easily as a stand-alone tale. . . . Both thoughtful and action-packed, this adventure illuminates the fantastical world that exists between dusk and dawn." &amp;#8212; KIRKUS REVIEWS, starred...</dc:description>
+<dc:rights>Copyright © 2013 by Kathryn Lasky</dc:rights>
+<dc:identifier id="isbn_9780545509800">978-0-545-50980-0</dc:identifier>
+<dc:language>en</dc:language>
+<meta content="" name="price"/>
+<meta content="cover-jpg" name="cover"/>
+</metadata>
+<manifest>
+<item href="css/9780545509800.css" id="style" media-type="text/css"/>
+<item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>
+<item href="cover.html" id="cover" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_title001.html" id="title" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_toc001.html" id="toc01" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_copy001.html" id="copy001" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ded001.html" id="ded001" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_pt001.html" id="pt001" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_pt002.html" id="pt002" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_pt003.html" id="pt003" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_pt004.html" id="pt004" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_fm001.html" id="fm001" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_fm002.html" id="fm002" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_fm003.html" id="fm003" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch001.html" id="ch001" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch002.html" id="ch002" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch003.html" id="ch003" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch004.html" id="ch004" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch005.html" id="ch005" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch006.html" id="ch006" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch007.html" id="ch007" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch008.html" id="ch008" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch009.html" id="ch009" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch010.html" id="ch010" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch011.html" id="ch011" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch012.html" id="ch012" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch013.html" id="ch013" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch014.html" id="ch014" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch015.html" id="ch015" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch016.html" id="ch016" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch017.html" id="ch017" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch018.html" id="ch018" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch019.html" id="ch019" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch020.html" id="ch020" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch021.html" id="ch021" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch022.html" id="ch022" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch023.html" id="ch023" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch024.html" id="ch024" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch025.html" id="ch025" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch026.html" id="ch026" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch027.html" id="ch027" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch028.html" id="ch028" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch029.html" id="ch029" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch030.html" id="ch030" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch031.html" id="ch031" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch032.html" id="ch032" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch033.html" id="ch033" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch034.html" id="ch034" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch035.html" id="ch035" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch036.html" id="ch036" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch037.html" id="ch037" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch038.html" id="ch038" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_ch039.html" id="ch039" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_bm001.html" id="bm001" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_bm002.html" id="bm002" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_bm003.html" id="bm003" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_bm005.html" id="bm005" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_About_the_Author.html" id="About_the_Author" media-type="application/xhtml+xml"/>
+<item href="e9780545509800_fnote001.html" id="fnote001" media-type="application/xhtml+xml"/>
+<item href="images/cover.jpg" id="cover-jpg" media-type="image/jpeg"/>
+<item href="page-template.xpgt" id="pt" media-type="application/vnd.adobe-page-template+xml"/>
+<item href="images/p2.jpg" id="p2" media-type="image/jpeg"/>
+<item href="images/p1.jpg" id="p1" media-type="image/jpeg"/>
+<item href="images/chapter35a.jpg" id="chapter35a" media-type="image/jpeg"/>
+<item href="images/page106.jpg" id="page106" media-type="image/jpeg"/>
+<item href="images/sbni.jpg" id="sbni" media-type="image/jpeg"/>
+<item href="images/page188.jpg" id="page188" media-type="image/jpeg"/>
+<item href="images/nk.jpg" id="nk" media-type="image/jpeg"/>
+<item href="images/add1.jpg" id="add1" media-type="image/jpeg"/>
+<item href="images/add2.jpg" id="add2" media-type="image/jpeg"/>
+<item href="images/add3.jpg" id="add3" media-type="image/jpeg"/>
+<item href="images/add4.jpg" id="add4" media-type="image/jpeg"/>
+<item href="images/add5.jpg" id="add5" media-type="image/jpeg"/>
+<item href="images/ch20.jpg" id="ch20" media-type="image/jpeg"/>
+<item href="images/ch24.jpg" id="ch24" media-type="image/jpeg"/>
+<item href="images/ch32.jpg" id="ch32" media-type="image/jpeg"/>
+<item href="images/ch34.jpg" id="ch34" media-type="image/jpeg"/>
+<item href="images/ch31.jpg" id="ch31" media-type="image/jpeg"/>
+<item href="images/ch12.jpg" id="ch12" media-type="image/jpeg"/>
+<item href="images/ch33.jpg" id="ch33" media-type="image/jpeg"/>
+<item href="images/ch35.jpg" id="ch35" media-type="image/jpeg"/>
+<item href="images/ch19.jpg" id="ch19" media-type="image/jpeg"/>
+<item href="images/ch14.jpg" id="ch14" media-type="image/jpeg"/>
+<item href="images/ch2.jpg" id="ch2" media-type="image/jpeg"/>
+<item href="images/ch30.jpg" id="ch30" media-type="image/jpeg"/>
+<item href="images/ch17.jpg" id="ch17" media-type="image/jpeg"/>
+<item href="images/ch13.jpg" id="ch13" media-type="image/jpeg"/>
+<item href="images/ch11.jpg" id="ch11" media-type="image/jpeg"/>
+<item href="images/ch26.jpg" id="ch26" media-type="image/jpeg"/>
+<item href="images/ch37.jpg" id="ch37" media-type="image/jpeg"/>
+<item href="images/ch38.jpg" id="ch38" media-type="image/jpeg"/>
+<item href="images/ch39.jpg" id="ch39" media-type="image/jpeg"/>
+<item href="images/ch16.jpg" id="ch16" media-type="image/jpeg"/>
+<item href="images/ch8.jpg" id="ch8" media-type="image/jpeg"/>
+<item href="images/ch29.jpg" id="ch29" media-type="image/jpeg"/>
+<item href="images/authornote.jpg" id="authornote" media-type="image/jpeg"/>
+<item href="images/prologue.jpg" id="prologue" media-type="image/jpeg"/>
+<item href="images/ch28.jpg" id="ch28" media-type="image/jpeg"/>
+<item href="images/ch36.jpg" id="ch36" media-type="image/jpeg"/>
+<item href="images/ch4.jpg" id="ch4" media-type="image/jpeg"/>
+<item href="images/ch25.jpg" id="ch25" media-type="image/jpeg"/>
+<item href="images/ch5.jpg" id="ch5" media-type="image/jpeg"/>
+<item href="images/ch6.jpg" id="ch6" media-type="image/jpeg"/>
+<item href="images/ch10.jpg" id="ch10" media-type="image/jpeg"/>
+<item href="images/ch7.jpg" id="ch7" media-type="image/jpeg"/>
+<item href="images/ch21.jpg" id="ch21" media-type="image/jpeg"/>
+<item href="images/ch1.jpg" id="ch1" media-type="image/jpeg"/>
+<item href="images/ch15.jpg" id="ch15" media-type="image/jpeg"/>
+<item href="images/title.jpg" id="title1" media-type="image/jpeg"/>
+<item href="images/ch9.jpg" id="ch9" media-type="image/jpeg"/>
+<item href="images/ch22.jpg" id="ch22" media-type="image/jpeg"/>
+<item href="images/ch27.jpg" id="ch27" media-type="image/jpeg"/>
+<item href="images/ch3.jpg" id="ch3" media-type="image/jpeg"/>
+<item href="images/ch23.jpg" id="ch23" media-type="image/jpeg"/>
+<item href="images/ch18.jpg" id="ch18" media-type="image/jpeg"/>
+<item href="images/epilogue.jpg" id="epilogue" media-type="image/jpeg"/>
+<item href="images/chapter30.jpg" id="chapter30" media-type="image/jpeg"/>
+</manifest>
+<spine toc="ncx">
+<itemref idref="cover"/>
+<itemref idref="title"/>
+<itemref idref="ded001"/>
+<itemref idref="toc01"/>
+<itemref idref="fm001"/>
+<itemref idref="fm002"/>
+<itemref idref="fm003"/>
+<itemref idref="pt001"/>
+<itemref idref="ch001"/>
+<itemref idref="ch002"/>
+<itemref idref="ch003"/>
+<itemref idref="ch004"/>
+<itemref idref="ch005"/>
+<itemref idref="ch006"/>
+<itemref idref="ch007"/>
+<itemref idref="ch008"/>
+<itemref idref="ch009"/>
+<itemref idref="ch010"/>
+<itemref idref="ch011"/>
+<itemref idref="ch012"/>
+<itemref idref="pt002"/>
+<itemref idref="ch013"/>
+<itemref idref="ch014"/>
+<itemref idref="ch015"/>
+<itemref idref="ch016"/>
+<itemref idref="ch017"/>
+<itemref idref="ch018"/>
+<itemref idref="ch019"/>
+<itemref idref="ch020"/>
+<itemref idref="ch021"/>
+<itemref idref="ch022"/>
+<itemref idref="ch023"/>
+<itemref idref="ch024"/>
+<itemref idref="ch025"/>
+<itemref idref="ch026"/>
+<itemref idref="ch027"/>
+<itemref idref="ch028"/>
+<itemref idref="ch029"/>
+<itemref idref="ch030"/>
+<itemref idref="pt003"/>
+<itemref idref="ch031"/>
+<itemref idref="ch032"/>
+<itemref idref="ch033"/>
+<itemref idref="ch034"/>
+<itemref idref="ch035"/>
+<itemref idref="pt004"/>
+<itemref idref="ch036"/>
+<itemref idref="ch037"/>
+<itemref idref="bm001"/>
+<itemref idref="bm002"/>
+<itemref idref="bm003"/>
+<itemref idref="ch038"/>
+<itemref idref="ch039"/>
+<itemref idref="About_the_Author"/>
+<itemref idref="bm005"/>
+<itemref idref="copy001"/>
+<itemref idref="fnote001"/>
+</spine>
+<guide>
+<reference href="cover.html" title="Cover Image" type="cover"/>
+<reference href="e9780545509800_copy001.html" title="Copyright" type="copyright-page"/>
+<reference href="e9780545509800_toc001.html" title="Table of Contents" type="toc"/>
+</guide>
+</package>

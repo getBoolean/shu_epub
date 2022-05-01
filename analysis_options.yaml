@@ -1,0 +1,41 @@
+include: package:lints/recommended.yaml
+
+linter:
+  rules:
+    # Single quotes are easier to type and don't compromise on readability.
+    prefer_single_quotes: true
+
+    # Type annotations are sometimes necessary for readability
+    omit_local_variable_types: false
+
+    # Better to declare variables as final
+    prefer_final_locals: true
+
+    # Better to leave it up to the programmer
+    prefer_int_literals: false
+
+    # It is better to group related packages
+    sort_pub_dependencies: false
+
+    directives_ordering: true
+
+    unawaited_futures: true
+
+    prefer_relative_imports: true
+
+    # Some enums might need to have specific letter casing when converted to String
+    constant_identifier_names: false
+
+    unnecessary_lambdas: true
+
+    unnecessary_constructor_name: true
+
+analyzer:
+  errors:
+    todo: ignore
+  exclude:
+    - "lib/generated_plugin_registrant.dart"
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/i18n.dart"
+    - "lib/generated/intl/messages*.dart"
