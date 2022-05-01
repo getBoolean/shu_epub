@@ -13,7 +13,8 @@ part of shu_epub.features.package.data;
 /// this functionality.
 ///
 /// This specification neither precludes nor requires the inclusion of the OPF Package Schema in a Publication.
-class EpubPackage extends Equatable {
+@Immutable()
+class EpubPackage extends EquatableXml {
   static const kPackageFileMimeType = 'application/oebps-package+xml';
   static const elementName = 'package';
   static const namespace = 'http://www.idpf.org/2007/opf';
@@ -80,6 +81,29 @@ class EpubPackage extends Equatable {
   /// for various reading purposes, reader expertise levels, etc.
   final EpubTours? tours;
 
+  String? get navigationFilePath {
+    final navigationId = spine?.tocId;
+    // TODO(@getBoolean): Create backup plan if navigation is not found
+    if (navigationId == null || navigationId.isEmpty) {
+      return null;
+    }
+
+    final navigationManifestItem = manifest?.items
+        .firstWhereOrNull((element) => element.id == navigationId);
+    // TODO(@getBoolean): Create backup plan if navigation is not found
+    if (navigationManifestItem == null) {
+      return null;
+    }
+
+    final navigationRelativePath = navigationManifestItem.href;
+    // TODO(@getBoolean): Create backup plan if navigation is not found
+    if (navigationRelativePath == null) {
+      return null;
+    }
+
+    return navigationRelativePath;
+  }
+
   factory EpubPackage.fromArchiveFile(ArchiveFile archiveFile) {
     return EpubPackageReader.fromArchiveFile(archiveFile);
   }
@@ -95,8 +119,8 @@ class EpubPackage extends Equatable {
   /// of the package element
   ///
   /// Throws [EpubException] if the string does not have the package element
-  factory EpubPackage.fromString(String packageString) {
-    return EpubPackageReader.fromString(packageString);
+  factory EpubPackage.fromXmlString(String packageString) {
+    return EpubPackageReader.fromXmlString(packageString);
   }
 
   /// Create an instance of [EpubPackage] from the [Uint8List] data
@@ -189,4 +213,17 @@ class EpubPackage extends Equatable {
       tours ?? 'no tours',
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${epubVersion != null ? ' version="$epubVersion"' : ''}'
+      '${uniqueIdentifier != null ? ' unique-identifier="$uniqueIdentifier"' : ''}'
+      ' xmlns="$namespace"'
+      '>'
+      '${publicationMetadata != null ? publicationMetadata!.toXmlString() : ''}'
+      '${manifest != null ? manifest!.toXmlString() : ''}'
+      '${spine == null ? '' : spine!.toXmlString()}'
+      '${guide != null ? guide!.toXmlString() : ''}'
+      '${tours != null ? tours!.toXmlString() : ''}'
+      '</$elementName>';
 }

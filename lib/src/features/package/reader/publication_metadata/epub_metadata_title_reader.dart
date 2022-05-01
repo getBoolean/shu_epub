@@ -14,9 +14,9 @@ class EpubMetadataTitleReader {
   /// of the dc:title element
   ///
   /// Throws [EpubException] if the string does not have the dc:title element
-  static EpubMetadataTitle fromString(String dctitleString) {
+  static EpubMetadataTitle fromXmlString(String dctitleString) {
     final controller =
-        EpubMetadataTitleReaderController.fromString(dctitleString);
+        EpubMetadataTitleReaderController.fromXmlString(dctitleString);
     return _fromController(controller);
   }
 

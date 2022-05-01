@@ -28,7 +28,7 @@ class EpubGuideItemReaderController with HrefMixin {
   /// of the reference element
   ///
   /// Throws [EpubException] if the string does not have the reference element
-  factory EpubGuideItemReaderController.fromString(String referenceString) {
+  factory EpubGuideItemReaderController.fromXmlString(String referenceString) {
     final stringList = referenceString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubGuideItemReaderController(data);

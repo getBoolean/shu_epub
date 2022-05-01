@@ -28,7 +28,7 @@ class EpubContainerReaderController with VersionMixin {
   /// of the container element
   ///
   /// Throws [EpubException] if the string does not have the container element
-  factory EpubContainerReaderController.fromString(String containerString) {
+  factory EpubContainerReaderController.fromXmlString(String containerString) {
     final stringList = containerString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubContainerReaderController(data);
@@ -56,7 +56,7 @@ class EpubContainerReaderController with VersionMixin {
 
     if (containerElement == null) {
       throw EpubException(
-        'Malformed navigation file, could not find required $elementName element',
+        'Malformed container file, could not find required $elementName element',
       );
     }
 

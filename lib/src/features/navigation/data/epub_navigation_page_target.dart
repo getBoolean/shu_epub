@@ -5,13 +5,14 @@ part of shu_epub.features.navigation.data;
 /// positive integer representing the numeric value associated with a page.
 /// Combination of values of type and value attributes must be unique, when
 /// value attribute is present.
-class EpubNavigationPageTarget extends Equatable {
+@Immutable()
+class EpubNavigationPageTarget extends EquatableXml {
   static const elementName = 'pageTarget';
 
   final String? id;
   final String? value;
   // enum
-  final EpubNavigationPageTargetType? type;
+  final EpubNavigationPageTargetType type;
   final String? classType;
 
   /// Should contain valid values that reflect the linear document reading
@@ -32,8 +33,8 @@ class EpubNavigationPageTarget extends Equatable {
     return EpubNavigationPageTargetReader.fromXmlElement(pageTargetElement);
   }
 
-  factory EpubNavigationPageTarget.fromString(String pageTargetString) {
-    return EpubNavigationPageTargetReader.fromString(pageTargetString);
+  factory EpubNavigationPageTarget.fromXmlString(String pageTargetString) {
+    return EpubNavigationPageTargetReader.fromXmlString(pageTargetString);
   }
 
   /// Create an instance of [EpubNavigationPageTarget] from the [Uint8List] data
@@ -47,7 +48,7 @@ class EpubNavigationPageTarget extends Equatable {
   const EpubNavigationPageTarget({
     this.id,
     this.value,
-    this.type,
+    this.type = EpubNavigationPageTargetType.normal,
     this.classType,
     this.playOrder,
     this.labels = const [],
@@ -78,7 +79,7 @@ class EpubNavigationPageTarget extends Equatable {
     return {
       'id': id,
       'value': value,
-      'type': type?.index,
+      'type': type.name,
       'classType': classType,
       'playOrder': playOrder,
       'labels': labels.map((x) => x.toMap()).toList(),
@@ -90,13 +91,12 @@ class EpubNavigationPageTarget extends Equatable {
     return EpubNavigationPageTarget(
       id: map['id'],
       value: map['value'],
-      type: map['type'] != null
-          ? EpubNavigationPageTargetType.values[map['type'] ?? 0]
-          : null,
+      type: EpubNavigationPageTargetType.values.byName(map['type']),
       classType: map['classType'],
       playOrder: map['playOrder'],
       labels: List<EpubNavigationLabel>.from(
-          map['labels']?.map(EpubNavigationLabel.fromMap)),
+          // ignore: unnecessary_lambdas
+          map['labels']?.map((e) => EpubNavigationLabel.fromMap(e))),
       content: map['content'] != null
           ? EpubNavigationContent.fromMap(map['content'])
           : null,
@@ -110,7 +110,7 @@ class EpubNavigationPageTarget extends Equatable {
 
   @override
   String toString() {
-    return 'EpubNavigationPageTarget(id: $id, value: $value, type: $type, classType: $classType, playOrder: $playOrder, labels: $labels, content: $content)';
+    return 'EpubNavigationPageTarget(id: $id, value: $value, type: ${type.name}, classType: $classType, playOrder: $playOrder, labels: $labels, content: $content)';
   }
 
   @override
@@ -118,11 +118,23 @@ class EpubNavigationPageTarget extends Equatable {
     return [
       id ?? 'no id',
       value ?? 'no value',
-      type ?? 'no type',
+      type,
       classType ?? 'no classType',
       playOrder ?? 'no playOrder',
       labels,
       content ?? 'no content',
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${classType != null ? ' class="$classType"' : ''}'
+      '${value != null ? ' value="$value"' : ''}'
+      ' type="${type.name}"'
+      '${playOrder != null ? ' playOrder="$playOrder"' : ''}'
+      '>'
+      '${content != null ? content!.toXmlString() : ''}'
+      '${labels.map((label) => label.toXmlString()).join('')}'
+      '</$elementName>';
 }

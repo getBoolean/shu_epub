@@ -35,7 +35,7 @@ class EpubNavigationPageTargetReaderController
   /// of the navMap element
   ///
   /// Throws [EpubException] if the string does not have the navMap element
-  factory EpubNavigationPageTargetReaderController.fromString(
+  factory EpubNavigationPageTargetReaderController.fromXmlString(
       String pageTargetString) {
     final stringList = pageTargetString.codeUnits;
     final data = Uint8List.fromList(stringList);
@@ -67,11 +67,8 @@ class EpubNavigationPageTargetReaderController
     );
   }
 
-  EpubNavigationPageTargetType? getType() {
+  EpubNavigationPageTargetType getType() {
     final type = element.getAttribute('type');
-    if (type == null) {
-      return null;
-    }
 
     if (type == 'normal') {
       return EpubNavigationPageTargetType.normal;

@@ -10,9 +10,9 @@ class EpubNavigationImageReader {
     return _fromController(controller);
   }
 
-  static EpubNavigationImage fromString(String imgString) {
+  static EpubNavigationImage fromXmlString(String imgString) {
     final controller =
-        EpubNavigationImageReaderController.fromString(imgString);
+        EpubNavigationImageReaderController.fromXmlString(imgString);
     return _fromController(controller);
   }
 
@@ -29,6 +29,12 @@ class EpubNavigationImageReader {
     EpubNavigationImageReaderController controller,
   ) {
     final source = controller.getSource();
-    return EpubNavigationImage(source: source);
+    final id = controller.getId();
+    final classType = controller.getClassType();
+    return EpubNavigationImage(
+      id: id,
+      source: source,
+      classType: classType,
+    );
   }
 }

@@ -1,7 +1,8 @@
 part of shu_epub.features.navigation.data;
 
 /// Page List -  Container for pagination information.
-class EpubNavigationPageList extends Equatable {
+@Immutable()
+class EpubNavigationPageList extends EquatableXml {
   static const elementName = 'pageList';
 
   final String? id;
@@ -19,8 +20,8 @@ class EpubNavigationPageList extends Equatable {
     return EpubNavigationPageListReader.fromXmlElement(pageListElement);
   }
 
-  factory EpubNavigationPageList.fromString(String pageListString) {
-    return EpubNavigationPageListReader.fromString(pageListString);
+  factory EpubNavigationPageList.fromXmlString(String pageListString) {
+    return EpubNavigationPageListReader.fromXmlString(pageListString);
   }
 
   /// Create an instance of [EpubNavigationPageList] from the [Uint8List] data
@@ -69,14 +70,18 @@ class EpubNavigationPageList extends Equatable {
     return EpubNavigationPageList(
       id: map['id'],
       classType: map['classType'],
-      navigationInfoList: List<EpubNavigationInfo>.from(
-          map['navigationInfoList']?.map(EpubNavigationInfo.fromMap) ??
+      navigationInfoList:
+          List<EpubNavigationInfo>.from(map['navigationInfoList']
+                  // ignore: unnecessary_lambdas
+                  ?.map((e) => EpubNavigationInfo.fromMap(e)) ??
               const []),
       navigationLabels: List<EpubNavigationLabel>.from(
-          map['navigationLabels']?.map(EpubNavigationLabel.fromMap) ??
+          // ignore: unnecessary_lambdas
+          map['navigationLabels']?.map((e) => EpubNavigationLabel.fromMap(e)) ??
               const []),
       pageTargets: List<EpubNavigationPageTarget>.from(
-          map['pageTargets']?.map(EpubNavigationPageTarget.fromMap) ??
+          // ignore: unnecessary_lambdas
+          map['pageTargets']?.map((e) => EpubNavigationPageTarget.fromMap(e)) ??
               const []),
     );
   }
@@ -101,4 +106,14 @@ class EpubNavigationPageList extends Equatable {
       pageTargets,
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${classType != null ? ' class="$classType"' : ''}'
+      '>'
+      '${navigationInfoList.map((infoList) => infoList.toXmlString()).join('')}'
+      '${navigationLabels.map((label) => label.toXmlString()).join('')}'
+      '${pageTargets.map((pageTarget) => pageTarget.toXmlString()).join('')}'
+      '</$elementName>';
 }

@@ -26,7 +26,7 @@ class EpubGuideReaderController {
   /// of the guide element
   ///
   /// Throws [EpubException] if the string does not have the guide element
-  factory EpubGuideReaderController.fromString(String guideString) {
+  factory EpubGuideReaderController.fromXmlString(String guideString) {
     final stringList = guideString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubGuideReaderController(data);

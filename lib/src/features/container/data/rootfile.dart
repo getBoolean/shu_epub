@@ -1,9 +1,10 @@
 part of shu_epub.features.container.data;
 
-class Rootfile extends Equatable {
+@Immutable()
+class Rootfile extends EquatableXml {
   static const elementName = 'rootfile';
 
-  /// Relative to the root directory for the Abstract Container and not relative to the META-INF/ directory
+  /// Relative to the root directory for the Abstract Container and not relative to the `META-INF/` directory
   final String? fullPath;
 
   /// Mimetype of the file
@@ -20,8 +21,8 @@ class Rootfile extends Equatable {
   /// of the rootfile element
   ///
   /// Throws [EpubException] if the string does not have the rootfile element
-  factory Rootfile.fromString(String rootfileString) {
-    return RootfileReader.fromString(rootfileString);
+  factory Rootfile.fromXmlString(String rootfileString) {
+    return RootfileReader.fromXmlString(rootfileString);
   }
 
   /// Create an instance of [Rootfile] from the [Uint8List] data
@@ -74,4 +75,12 @@ class Rootfile extends Equatable {
   @override
   List<Object> get props =>
       [fullPath ?? 'no fullPath', mediaType ?? 'no mediaType'];
+
+  @override
+  String toXmlString() {
+    return '<$elementName'
+        '${fullPath != null ? ' full-path="$fullPath"' : ''}'
+        '${mediaType != null ? ' media-type="$mediaType"' : ''}'
+        '/>';
+  }
 }

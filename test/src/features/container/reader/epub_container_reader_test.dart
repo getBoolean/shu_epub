@@ -9,9 +9,14 @@ void main() {
       'parses container.xml file, returns EpubContainer',
       () async {
         // arrange
-        final data =
-            await io.File('test/assets/Guardians/${EpubContainer.filepath}')
-                .readAsBytes();
+        final xmlString = '''
+<?xml version="1.0"?>
+<container xmlns:svg="http://www.w3.org/2000/svg" xmlns="urn:oasis:names:tc:opendocument:xmlns:container" version="1.0">
+<rootfiles>
+<rootfile full-path="OEBPS/package.opf" media-type="application/oebps-package+xml"/>
+</rootfiles>
+</container>
+''';
         final EpubContainer? expectedValue = const EpubContainer(
           rootfileList: RootfileList(items: [
             Rootfile(
@@ -23,7 +28,8 @@ void main() {
         );
 
         // act
-        final EpubContainer container = EpubContainerReader.fromData(data);
+        final EpubContainer container =
+            EpubContainerReader.fromXmlString(xmlString);
 
         // assert
         expect(container, expectedValue);
@@ -54,6 +60,21 @@ void main() {
 
         // assert
         expect(containerFile, expectedValue);
+      },
+    );
+
+    test(
+      'parses archive file, and cannot find container file',
+      () async {
+        // arrange
+        final data = await io.File('test/assets/test.zip').readAsBytes();
+        final archive = ArchiveService.decodeZip(data);
+
+        // act
+        actual() => EpubContainerReader.fromArchive(archive);
+
+        // assert
+        expect(actual, throwsA(isA<EpubException>()));
       },
     );
   });

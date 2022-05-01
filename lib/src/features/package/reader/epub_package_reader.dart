@@ -14,8 +14,9 @@ class EpubPackageReader {
   /// of the package element
   ///
   /// Throws [EpubException] if the string does not have the package element
-  static EpubPackage fromString(String navigationString) {
-    final controller = EpubPackageReaderController.fromString(navigationString);
+  static EpubPackage fromXmlString(String navigationString) {
+    final controller =
+        EpubPackageReaderController.fromXmlString(navigationString);
     return _fromController(controller);
   }
 

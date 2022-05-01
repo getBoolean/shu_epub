@@ -1,6 +1,8 @@
 part of shu_epub.features.package.data;
 
-class EpubTours extends Equatable {
+/// Deprecated in EPUB 2.0.1 and removed in EPUB 3.0
+@Immutable()
+class EpubTours extends EquatableXml {
   static const elementName = 'tours';
 
   final List<EpubSingleTour> items;
@@ -16,8 +18,8 @@ class EpubTours extends Equatable {
   /// of the tours element
   ///
   /// Throws [EpubException] if the string does not have the tours element
-  factory EpubTours.fromString(String toursString) {
-    return EpubToursReader.fromString(toursString);
+  factory EpubTours.fromXmlString(String toursString) {
+    return EpubToursReader.fromXmlString(toursString);
   }
 
   /// Create an instance of [EpubTours] from the [Uint8List] data
@@ -48,8 +50,9 @@ class EpubTours extends Equatable {
 
   factory EpubTours.fromMap(Map<String, dynamic> map) {
     return EpubTours(
-      items:
-          List<EpubSingleTour>.from(map['items']?.map(EpubSingleTour.fromMap)),
+      items: List<EpubSingleTour>.from(
+          // ignore: unnecessary_lambdas
+          map['items']?.map((e) => EpubSingleTour.fromMap(e))),
     );
   }
 
@@ -63,4 +66,11 @@ class EpubTours extends Equatable {
 
   @override
   List<Object> get props => [items];
+
+  @override
+  String toXmlString() {
+    return '<$elementName>'
+        '${items.map((tour) => tour.toXmlString()).join('')}'
+        '</$elementName>';
+  }
 }

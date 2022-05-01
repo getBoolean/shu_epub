@@ -1,7 +1,8 @@
 part of shu_epub.features.navigation.data;
 
 /// Top Level NCX Container.
-class EpubNavigation extends Equatable {
+@Immutable()
+class EpubNavigation extends EquatableXml {
   /// XML Namespace of the `ncx` element
   static const String namespace = 'http://www.daisy.org/z3986/2005/ncx/';
   static const elementName = 'ncx';
@@ -44,8 +45,8 @@ class EpubNavigation extends Equatable {
   /// of the navigation element
   ///
   /// Throws [EpubException] if the string does not have the navigation element
-  factory EpubNavigation.fromString(String navigationString) {
-    return EpubNavigationReader.fromString(navigationString);
+  factory EpubNavigation.fromXmlString(String navigationString) {
+    return EpubNavigationReader.fromXmlString(navigationString);
   }
 
   /// Create an instance of [EpubNavigation] from the [Uint8List] data
@@ -104,19 +105,27 @@ class EpubNavigation extends Equatable {
 
   factory EpubNavigation.fromMap(Map<String, dynamic> map) {
     return EpubNavigation(
-      version: map['version'] ?? '',
-      language: map['language'] ?? '',
-      head: EpubNavigationHead.fromMap(map['head']),
-      docTitle: EpubNavigationDocumentTitle.fromMap(map['docTitle']),
-      docAuthors: List<EpubNavigationDocumentAuthor>.from(
-          map['docAuthors']?.map(EpubNavigationDocumentAuthor.fromMap) ??
-              const []),
-      navigationMap: EpubNavigationMap.fromMap(map['navigationMap']),
+      version: map['version'],
+      language: map['language'],
+      head:
+          map['head'] == null ? null : EpubNavigationHead.fromMap(map['head']),
+      docTitle: map['docTitle'] == null
+          ? null
+          : EpubNavigationDocumentTitle.fromMap(map['docTitle']),
+      docAuthors: List<EpubNavigationDocumentAuthor>.from(map['docAuthors']
+              // ignore: unnecessary_lambdas
+              ?.map((e) => EpubNavigationDocumentAuthor.fromMap(e)) ??
+          const []),
+      navigationMap: map['navigationMap'] == null
+          ? null
+          : EpubNavigationMap.fromMap(map['navigationMap']),
       pageList: map['pageList'] != null
           ? EpubNavigationPageList.fromMap(map['pageList'])
           : null,
       navigationLists: List<EpubNavigationList>.from(
-          map['navigationLists']?.map(EpubNavigationList.fromMap) ?? const []),
+          // ignore: unnecessary_lambdas
+          map['navigationLists']?.map((e) => EpubNavigationList.fromMap(e)) ??
+              const []),
     );
   }
 
@@ -143,4 +152,18 @@ class EpubNavigation extends Equatable {
       navigationLists,
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${version != null ? ' version="$version"' : ''}'
+      '${language != null ? ' xml:lang"$language"' : ''}'
+      ' xmlns="$namespace"'
+      '>'
+      '${head != null ? head!.toXmlString() : ''}'
+      '${docTitle != null ? docTitle!.toXmlString() : ''}'
+      '${docAuthors.map((docAuthor) => docAuthor.toXmlString()).join('')}'
+      '${navigationMap != null ? navigationMap!.toXmlString() : ''}'
+      '${pageList != null ? pageList!.toXmlString() : ''}'
+      '${navigationLists.map((navigationList) => navigationList.toXmlString()).join('')}'
+      '</$elementName>';
 }

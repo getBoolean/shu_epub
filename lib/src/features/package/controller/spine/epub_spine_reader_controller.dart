@@ -26,7 +26,7 @@ class EpubSpineReaderController {
   /// of the spine element
   ///
   /// Throws [EpubException] if the string does not have the spine element
-  factory EpubSpineReaderController.fromString(String spineString) {
+  factory EpubSpineReaderController.fromXmlString(String spineString) {
     final stringList = spineString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubSpineReaderController(data);
@@ -57,7 +57,7 @@ class EpubSpineReaderController {
   }
 
   String? getTocId() {
-    return element.getAttribute('toc');
+    return element.getAttribute('toc')?.trimThenNullIfEmpty;
   }
 
   List<EpubSpineItemRef> getItemRefs() {

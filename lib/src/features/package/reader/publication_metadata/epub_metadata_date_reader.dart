@@ -14,8 +14,9 @@ class EpubMetadataDateReader {
   /// of the date element
   ///
   /// Throws [EpubException] if the string does not have the date element
-  static EpubMetadataDate fromString(String dateString) {
-    final controller = EpubMetadataDateReaderController.fromString(dateString);
+  static EpubMetadataDate fromXmlString(String dateString) {
+    final controller =
+        EpubMetadataDateReaderController.fromXmlString(dateString);
     return _fromController(controller);
   }
 

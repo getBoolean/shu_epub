@@ -27,7 +27,7 @@ class EpubMetadataDateReaderController {
   /// of the date element
   ///
   /// Throws [EpubException] if the string does not have the date element
-  factory EpubMetadataDateReaderController.fromString(String dateString) {
+  factory EpubMetadataDateReaderController.fromXmlString(String dateString) {
     final stringList = dateString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubMetadataDateReaderController(data);

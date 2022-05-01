@@ -1,7 +1,8 @@
 part of shu_epub.features.navigation.data;
 
 /// Meta Element - metadata about this NCX
-class EpubNavigationMeta extends Equatable {
+@Immutable()
+class EpubNavigationMeta extends EquatableXml {
   static const elementName = 'meta';
 
   /// Due to combatibility reasons, the required meta element's name should be `dtb:id`
@@ -16,8 +17,8 @@ class EpubNavigationMeta extends Equatable {
     return EpubNavigationMetaReader.fromXmlElement(metaElement);
   }
 
-  factory EpubNavigationMeta.fromString(String metaString) {
-    return EpubNavigationMetaReader.fromString(metaString);
+  factory EpubNavigationMeta.fromXmlString(String metaString) {
+    return EpubNavigationMetaReader.fromXmlString(metaString);
   }
 
   /// Create an instance of [EpubNavigationMeta] from the [Uint8List] data
@@ -56,9 +57,9 @@ class EpubNavigationMeta extends Equatable {
 
   factory EpubNavigationMeta.fromMap(Map<String, dynamic> map) {
     return EpubNavigationMeta(
-      name: map['name'] ?? '',
-      content: map['content'] ?? '',
-      scheme: map['scheme'] ?? '',
+      name: map['name'],
+      content: map['content'],
+      scheme: map['scheme'],
     );
   }
 
@@ -69,7 +70,7 @@ class EpubNavigationMeta extends Equatable {
 
   @override
   String toString() =>
-      'EpubNagivationMeta(name: $name, content: $content, scheme: $scheme)';
+      'EpubNavigationMeta(name: $name, content: $content, scheme: $scheme)';
 
   @override
   List<Object> get props => [
@@ -77,4 +78,11 @@ class EpubNavigationMeta extends Equatable {
         content ?? 'no content',
         scheme ?? 'no scheme specified'
       ];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${name != null ? ' name="$name"' : ''}'
+      '${content != null ? ' content="$content"' : ''}'
+      '${scheme != null ? ' scheme="$scheme"' : ''}'
+      '/>';
 }

@@ -1,6 +1,7 @@
 part of shu_epub.features.package.data;
 
-class EpubMetadataDate extends Equatable {
+@Immutable()
+class EpubMetadataDate extends EquatableXml {
   static const elementName = 'dc:date';
 
   /// Usually the date of publication, unless specified otherwise in [EpubMetadataDate.event]
@@ -22,8 +23,8 @@ class EpubMetadataDate extends Equatable {
   /// of the date element
   ///
   /// Throws [EpubException] if the string does not have the date element
-  factory EpubMetadataDate.fromString(String dateString) {
-    return EpubMetadataDateReader.fromString(dateString);
+  factory EpubMetadataDate.fromXmlString(String dateString) {
+    return EpubMetadataDateReader.fromXmlString(dateString);
   }
 
   /// Create an instance of [EpubMetadataDate] from the [Uint8List] data
@@ -58,7 +59,7 @@ class EpubMetadataDate extends Equatable {
 
   factory EpubMetadataDate.fromMap(Map<String, dynamic> map) {
     return EpubMetadataDate(
-      value: map['value'] ?? '',
+      value: map['value'],
       event: map['event'],
     );
   }
@@ -73,4 +74,11 @@ class EpubMetadataDate extends Equatable {
 
   @override
   List<Object> get props => [value, event ?? 'no event'];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${event != null ? ' event="$event"' : ''}'
+      '>'
+      '$value'
+      '</$elementName>';
 }

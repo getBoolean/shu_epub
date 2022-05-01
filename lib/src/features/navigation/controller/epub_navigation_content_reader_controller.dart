@@ -28,7 +28,7 @@ class EpubNavigationContentReaderController with IdMixin, SourceMixin {
   /// of the navMap element
   ///
   /// Throws [EpubException] if the string does not have the navMap element
-  factory EpubNavigationContentReaderController.fromString(
+  factory EpubNavigationContentReaderController.fromXmlString(
       String contentString) {
     final stringList = contentString.codeUnits;
     final data = Uint8List.fromList(stringList);

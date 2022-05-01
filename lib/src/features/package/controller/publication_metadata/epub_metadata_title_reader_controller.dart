@@ -28,7 +28,8 @@ class EpubMetadataTitleReaderController with LanguageMixin {
   /// of the dc:title element
   ///
   /// Throws [EpubException] if the string does not have the dc:title element
-  factory EpubMetadataTitleReaderController.fromString(String dctitleString) {
+  factory EpubMetadataTitleReaderController.fromXmlString(
+      String dctitleString) {
     final stringList = dctitleString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubMetadataTitleReaderController(data);

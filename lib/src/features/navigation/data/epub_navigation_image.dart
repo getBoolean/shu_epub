@@ -1,7 +1,8 @@
 part of shu_epub.features.navigation.data;
 
 /// Image Element - image that may accompany heading.
-class EpubNavigationImage extends Equatable {
+@Immutable()
+class EpubNavigationImage extends EquatableXml {
   static const elementName = 'img';
 
   final String? id;
@@ -15,8 +16,8 @@ class EpubNavigationImage extends Equatable {
     return EpubNavigationImageReader.fromXmlElement(imgElement);
   }
 
-  factory EpubNavigationImage.fromString(String imgString) {
-    return EpubNavigationImageReader.fromString(imgString);
+  factory EpubNavigationImage.fromXmlString(String imgString) {
+    return EpubNavigationImageReader.fromXmlString(imgString);
   }
 
   /// Create an instance of [EpubNavigationImage] from the [Uint8List] data
@@ -32,10 +33,6 @@ class EpubNavigationImage extends Equatable {
     this.classType,
     this.source,
   });
-
-  factory EpubNavigationImage.zero() {
-    return EpubNavigationImage(source: '');
-  }
 
   EpubNavigationImage copyWith({
     String? id,
@@ -61,7 +58,7 @@ class EpubNavigationImage extends Equatable {
     return EpubNavigationImage(
       id: map['id'],
       classType: map['classType'],
-      source: map['source'] ?? '',
+      source: map['source'],
     );
   }
 
@@ -77,4 +74,11 @@ class EpubNavigationImage extends Equatable {
   @override
   List<Object> get props =>
       [id ?? 'no id', classType ?? 'no classType', source ?? 'no source'];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${classType != null ? ' class="$classType"' : ''}'
+      '${source != null ? ' src="$source"' : ''}'
+      '/>';
 }

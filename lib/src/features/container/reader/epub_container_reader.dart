@@ -3,8 +3,11 @@ part of shu_epub.features.container.reader;
 class EpubContainerReader {
   static EpubContainer fromArchive(Archive archive) {
     // Find `META-INF/container.xml` file.
-    final ArchiveFile? containerXmlFile = archive.files
-        .firstWhereOrNull((element) => element.name == EpubContainer.filepath);
+    final ArchiveFile? containerXmlFile =
+        archive.files.firstWhereOrNull((element) {
+      return element.name ==
+          EpubContainer.filepath.replaceAll(RegExp(r'[/\\]'), '/');
+    });
     if (containerXmlFile == null) {
       throw EpubException(
           'Epub Parsing Exception: Could not find required "${EpubContainer.filepath}"');
@@ -26,9 +29,9 @@ class EpubContainerReader {
   /// of the container element
   ///
   /// Throws [EpubException] if the string does not have the container element
-  static EpubContainer fromString(String containerString) {
+  static EpubContainer fromXmlString(String containerString) {
     final controller =
-        EpubContainerReaderController.fromString(containerString);
+        EpubContainerReaderController.fromXmlString(containerString);
     return _fromController(controller);
   }
 

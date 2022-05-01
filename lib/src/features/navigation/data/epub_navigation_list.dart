@@ -4,7 +4,8 @@ part of shu_epub.features.navigation.data;
 /// e.g. notes, figures, tables, etc.  Essentially a flat version of navMap.
 /// The "class" attribute describes the type of object contained in this
 /// navList, using dtbook element names, e.g., note.
-class EpubNavigationList extends Equatable {
+@Immutable()
+class EpubNavigationList extends EquatableXml {
   static const elementName = 'navList';
 
   final List<EpubNavigationInfo> navigationInfoList;
@@ -26,8 +27,8 @@ class EpubNavigationList extends Equatable {
   /// of the navList element
   ///
   /// Throws [EpubException] if the string does not have the navList element
-  factory EpubNavigationList.fromString(String navListString) {
-    return EpubNavigationListReader.fromString(navListString);
+  factory EpubNavigationList.fromXmlString(String navListString) {
+    return EpubNavigationListReader.fromXmlString(navListString);
   }
 
   /// Create an instance of [EpubNavigationList] from the [Uint8List] data
@@ -66,14 +67,21 @@ class EpubNavigationList extends Equatable {
 
   factory EpubNavigationList.fromMap(Map<String, dynamic> map) {
     return EpubNavigationList(
-      navigationInfoList: List<EpubNavigationInfo>.from(
-          map['navigationInfoList']?.map(EpubNavigationInfo.fromMap) ??
+      navigationInfoList:
+          List<EpubNavigationInfo>.from(map['navigationInfoList']?.map(
+                // ignore: unnecessary_lambdas
+                (e) => EpubNavigationInfo.fromMap(e),
+              ) ??
               const []),
       navigationLabels: List<EpubNavigationLabel>.from(
-          map['navigationLabels']?.map(EpubNavigationLabel.fromMap) ??
+          // ignore: unnecessary_lambdas
+          map['navigationLabels']?.map((e) => EpubNavigationLabel.fromMap(e)) ??
               const []),
-      navigationTargets: List<EpubNavigationTarget>.from(
-          map['navigationTargets']?.map(EpubNavigationTarget.fromMap) ??
+      navigationTargets:
+          List<EpubNavigationTarget>.from(map['navigationTargets']?.map(
+                // ignore: unnecessary_lambdas
+                (e) => EpubNavigationTarget.fromMap(e),
+              ) ??
               const []),
     );
   }
@@ -90,4 +98,11 @@ class EpubNavigationList extends Equatable {
   @override
   List<Object> get props =>
       [navigationInfoList, navigationLabels, navigationTargets];
+
+  @override
+  String toXmlString() => '<$elementName>'
+      '${navigationInfoList.map((infoList) => infoList.toXmlString()).join('')}'
+      '${navigationLabels.map((label) => label.toXmlString()).join('')}'
+      '${navigationTargets.map((target) => target.toXmlString()).join('')}'
+      '</$elementName>';
 }

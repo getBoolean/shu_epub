@@ -13,8 +13,8 @@ class EpubGuideReader {
   /// of the guide element
   ///
   /// Throws [EpubException] if the string does not have the guide element
-  static EpubGuide fromString(String guideString) {
-    final controller = EpubGuideReaderController.fromString(guideString);
+  static EpubGuide fromXmlString(String guideString) {
+    final controller = EpubGuideReaderController.fromXmlString(guideString);
     return _fromController(controller);
   }
 

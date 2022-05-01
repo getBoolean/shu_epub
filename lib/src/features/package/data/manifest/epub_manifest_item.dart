@@ -1,6 +1,7 @@
 part of shu_epub.features.package.data;
 
-class EpubManifestItem extends Equatable {
+@Immutable()
+class EpubManifestItem extends EquatableXml {
   static const elementName = 'item';
 
   final String? id;
@@ -35,8 +36,8 @@ class EpubManifestItem extends Equatable {
   /// of the item element
   ///
   /// Throws [EpubException] if the string does not have the item element
-  factory EpubManifestItem.fromString(String itemString) {
-    return EpubManifestItemReader.fromString(itemString);
+  factory EpubManifestItem.fromXmlString(String itemString) {
+    return EpubManifestItemReader.fromXmlString(itemString);
   }
 
   /// Create an instance of [EpubManifestItem] from the [Uint8List] data
@@ -105,131 +106,12 @@ class EpubManifestItem extends Equatable {
       fallback ?? 'no fallback',
     ];
   }
-}
-
-/// An item that specifies a resource that is an Out-Of-Line XML Island
-/// (an XML document that is not authored in a Preferred Vocabulary).
-/// An item is an Out-Of-Line XML Island if:
-///
-/// 1. It specifies a resource that is an XML document not authored in
-/// a Preferred Vocabulary (i.e. an XML document with a media-type
-/// that is neither application/xhtml+xml, application/x-dtbook+xml
-/// nor the deprecated text/x-eob1-document); **OR**
-/// 2. It specifies a resource that is an XML document authored in
-/// a Preferred Vocabulary and incorporates the use of Extended Modules.
-///
-/// http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.3.1.2
-class EpubManifestItemOutOfLineXMLIsland extends EpubManifestItem {
-  final String requiredNamespace;
-
-  /// If the fallback-style attribute is specified, a Reading System
-  /// may choose to process the Out-Of-Line XML Island (even though
-  /// it can not natively process the vocabulary or Extended Modules
-  /// used in the island) using the stylesheet specified by the
-  /// `fallback-style` attribute's value which must contain a reference
-  /// to the `id` of the [EpubManifestItem] containing an `htmlReference`
-  /// to the stylesheet desired for the island.
-  final String? fallbackStyle;
-
-  /// List containing the name(s) of the Extended Modules used in the
-  /// Out-of-Line XML Island.
-  ///
-  /// The names of the modules are not case-sensitive, unless specifically
-  /// defined otherwise in the XML vocabulary specification. Spaces in
-  /// module names must be replaced with `-` for listing in the
-  /// required-modules attribute value. For XHTML, in the context of OPS,
-  /// the Extended Modules include `ruby`, `forms`, `server-side-image-map`,
-  /// and `intrinsic-events`.
-  final List<String>? requiredModules;
-
-  const EpubManifestItemOutOfLineXMLIsland({
-    required String? id,
-    required String? href,
-    required String? mediaType,
-    required String? fallback,
-    required this.requiredNamespace,
-    this.fallbackStyle,
-    this.requiredModules,
-  }) : super(
-          id: id,
-          href: href,
-          mediaType: mediaType,
-          fallback: fallback,
-        );
 
   @override
-  EpubManifestItemOutOfLineXMLIsland copyWith({
-    String? id,
-    String? href,
-    String? mediaType,
-    String? fallback,
-    String? requiredNamespace,
-    String? fallbackStyle,
-    List<String>? requiredModules,
-  }) {
-    return EpubManifestItemOutOfLineXMLIsland(
-      id: id ?? this.id,
-      href: href ?? this.href,
-      mediaType: mediaType ?? this.mediaType,
-      fallback: fallback ?? this.fallback,
-      requiredNamespace: requiredNamespace ?? this.requiredNamespace,
-      fallbackStyle: fallbackStyle ?? this.fallbackStyle,
-      requiredModules: requiredModules ?? this.requiredModules,
-    );
-  }
-
-  @override
-  Map<String, dynamic> toMap() {
-    return {
-      'requiredNamespace': requiredNamespace,
-      'id': id,
-      'href': href,
-      'mediaType': mediaType,
-      'fallback': fallback,
-      'fallbackStyle': fallbackStyle,
-      'requiredModules': requiredModules,
-    };
-  }
-
-  factory EpubManifestItemOutOfLineXMLIsland.fromMap(Map<String, dynamic> map) {
-    return EpubManifestItemOutOfLineXMLIsland(
-      id: map['id'] ?? '',
-      href: map['href'] ?? '',
-      mediaType: map['mediaType'] ?? '',
-      fallback: map['fallback'],
-      requiredNamespace: map['requiredNamespace'] ?? '',
-      fallbackStyle: map['fallbackStyle'] ?? '',
-      requiredModules: map['requiredModules'] != null
-          ? List<String>.from(map['requiredModules'])
-          : null,
-    );
-  }
-
-  @override
-  String toJson() => json.encode(toMap());
-
-  factory EpubManifestItemOutOfLineXMLIsland.fromJson(String source) =>
-      EpubManifestItemOutOfLineXMLIsland.fromMap(json.decode(source));
-
-  @override
-  String toString() {
-    return 'EpubManifestItemOutOfLineXMLItem('
-        'id: $id, href: $href, mediaType: $mediaType, fallback: $fallback '
-        'requiredNamespace: $requiredNamespace '
-        'fallbackStyle: $fallbackStyle '
-        'requiredModules: $requiredModules'
-        ')';
-  }
-
-  @override
-  List<Object> get props {
-    return [
-      id ?? 'no id',
-      href ?? 'no href',
-      mediaType ?? 'mediaType',
-      fallback ?? 'no fallback',
-      requiredNamespace,
-      requiredModules ?? 'no required modules specified',
-    ];
-  }
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${href != null ? ' href="$href"' : ''}'
+      '${mediaType != null ? ' media-type="$mediaType"' : ''}'
+      '${fallback != null ? ' fallback="$fallback"' : ''}'
+      '/>';
 }

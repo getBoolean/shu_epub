@@ -29,7 +29,7 @@ class EpubNavigationImageReaderController
   /// of the navMap element
   ///
   /// Throws [EpubException] if the string does not have the navMap element
-  factory EpubNavigationImageReaderController.fromString(String imgString) {
+  factory EpubNavigationImageReaderController.fromXmlString(String imgString) {
     final stringList = imgString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubNavigationImageReaderController(data);

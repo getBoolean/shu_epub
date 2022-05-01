@@ -1,6 +1,7 @@
 part of shu_epub.features.package.data;
 
-class EpubGuideItem extends Equatable {
+@Immutable()
+class EpubGuideItem extends EquatableXml {
   static const elementName = 'reference';
 
   /// The required type attribute describes the publication component
@@ -37,8 +38,8 @@ class EpubGuideItem extends Equatable {
   /// of the reference element
   ///
   /// Throws [EpubException] if the string does not have the reference element
-  factory EpubGuideItem.fromString(String referenceString) {
-    return EpubGuideItemReader.fromString(referenceString);
+  factory EpubGuideItem.fromXmlString(String referenceString) {
+    return EpubGuideItemReader.fromXmlString(referenceString);
   }
 
   /// Create an instance of [EpubGuideItem] from the [Uint8List] data
@@ -94,4 +95,11 @@ class EpubGuideItem extends Equatable {
   @override
   List<Object> get props =>
       [type ?? 'no type', title ?? 'no title', href ?? 'no href'];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${type != null ? ' type="$type"' : ''}'
+      '${title != null ? ' title="$title"' : ''}'
+      '${href != null ? ' href="$href"' : ''}'
+      '/>';
 }

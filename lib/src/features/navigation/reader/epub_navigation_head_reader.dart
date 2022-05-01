@@ -10,9 +10,9 @@ class EpubNavigationHeadReader {
     return _fromController(controller);
   }
 
-  static EpubNavigationHead fromString(String headString) {
+  static EpubNavigationHead fromXmlString(String headString) {
     final controller =
-        EpubNavigationHeadReaderController.fromString(headString);
+        EpubNavigationHeadReaderController.fromXmlString(headString);
     return _fromController(controller);
   }
 

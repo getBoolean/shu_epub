@@ -1,6 +1,7 @@
 part of shu_epub.features.package.data;
 
-class EpubMetadataTitle extends Equatable {
+@Immutable()
+class EpubMetadataTitle extends EquatableXml {
   static const elementName = 'dc:title';
 
   final String text;
@@ -17,8 +18,8 @@ class EpubMetadataTitle extends Equatable {
   /// of the dc:title element
   ///
   /// Throws [EpubException] if the string does not have the dctitle element
-  factory EpubMetadataTitle.fromString(String dctitleString) {
-    return EpubMetadataTitleReader.fromString(dctitleString);
+  factory EpubMetadataTitle.fromXmlString(String dctitleString) {
+    return EpubMetadataTitleReader.fromXmlString(dctitleString);
   }
 
   /// Create an instance of [EpubMetadataTitle] from the [Uint8List] data
@@ -53,7 +54,7 @@ class EpubMetadataTitle extends Equatable {
 
   factory EpubMetadataTitle.fromMap(Map<String, dynamic> map) {
     return EpubMetadataTitle(
-      text: map['text'] ?? '',
+      text: map['text'],
       language: map['language'],
     );
   }
@@ -68,4 +69,11 @@ class EpubMetadataTitle extends Equatable {
 
   @override
   List<Object> get props => [text, language ?? 'no language'];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${language != null ? ' xml:lang="$language"' : ''}'
+      '>'
+      '$text'
+      '</$elementName>';
 }

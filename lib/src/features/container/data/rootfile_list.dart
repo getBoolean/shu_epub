@@ -1,6 +1,7 @@
 part of shu_epub.features.container.data;
 
-class RootfileList extends Equatable {
+@Immutable()
+class RootfileList extends EquatableXml {
   static const elementName = 'rootfiles';
 
   final List<Rootfile> items;
@@ -16,8 +17,8 @@ class RootfileList extends Equatable {
   /// of the rootfiles element
   ///
   /// Throws [EpubException] if the string does not have the rootfiles element
-  factory RootfileList.fromString(String rootfilesString) {
-    return RootfileListReader.fromString(rootfilesString);
+  factory RootfileList.fromXmlString(String rootfilesString) {
+    return RootfileListReader.fromXmlString(rootfilesString);
   }
 
   /// Create an instance of [RootfileList] from the [Uint8List] data
@@ -48,7 +49,8 @@ class RootfileList extends Equatable {
 
   factory RootfileList.fromMap(Map<String, dynamic> map) {
     return RootfileList(
-      items: List<Rootfile>.from(map['items']?.map(Rootfile.fromMap)),
+      // ignore: unnecessary_lambdas
+      items: List<Rootfile>.from(map['items']?.map((e) => Rootfile.fromMap(e))),
     );
   }
 
@@ -62,4 +64,11 @@ class RootfileList extends Equatable {
 
   @override
   List<Object> get props => [items];
+
+  @override
+  String toXmlString() {
+    return '<$elementName>'
+        '${items.map((e) => e.toXmlString()).join('')}'
+        '</$elementName>';
+  }
 }

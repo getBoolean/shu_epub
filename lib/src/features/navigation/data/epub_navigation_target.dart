@@ -4,7 +4,8 @@ part of shu_epub.features.navigation.data;
 /// to [EpubNavigationTarget.content]. [EpubNavigationTarget]s are the
 /// equivalent of [EpubNavigationMap.navigationPoints] for use in
 /// [EpubNavigation.navigationLists].
-class EpubNavigationTarget extends Equatable {
+@Immutable()
+class EpubNavigationTarget extends EquatableXml {
   static const elementName = 'navTarget';
 
   final String? id;
@@ -32,8 +33,8 @@ class EpubNavigationTarget extends Equatable {
     return EpubNavigationTargetReader.fromXmlElement(navTargetElement);
   }
 
-  factory EpubNavigationTarget.fromString(String navTargetString) {
-    return EpubNavigationTargetReader.fromString(navTargetString);
+  factory EpubNavigationTarget.fromXmlString(String navTargetString) {
+    return EpubNavigationTargetReader.fromXmlString(navTargetString);
   }
 
   /// Create an instance of [EpubNavigationTarget] from the [Uint8List] data
@@ -87,7 +88,9 @@ class EpubNavigationTarget extends Equatable {
           ? EpubNavigationContent.fromMap(map['content'])
           : null,
       labels: List<EpubNavigationLabel>.from(
-          map['labels']?.map(EpubNavigationLabel.fromMap)),
+        // ignore: unnecessary_lambdas
+        map['labels']?.map((e) => EpubNavigationLabel.fromMap(e)),
+      ),
     );
   }
 
@@ -111,4 +114,14 @@ class EpubNavigationTarget extends Equatable {
       labels,
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${classType != null ? ' class="$classType"' : ''}'
+      '${value != null ? ' value="$value"' : ''}'
+      '>'
+      '${content != null ? content!.toXmlString() : ''}'
+      '${labels.map((label) => label.toXmlString()).join('')}'
+      '</$elementName>';
 }

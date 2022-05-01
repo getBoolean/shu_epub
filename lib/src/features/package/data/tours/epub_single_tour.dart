@@ -1,9 +1,12 @@
 part of shu_epub.features.package.data;
 
-class EpubSingleTour extends Equatable {
+@Immutable()
+class EpubSingleTour extends EquatableXml {
   static const elementName = 'tour';
 
   final List<EpubTourSite> sites;
+  final String? id;
+  final String? title;
 
   /// Create an [EpubSingleTour] object from the tour XmlElement.
   ///
@@ -16,8 +19,8 @@ class EpubSingleTour extends Equatable {
   /// of the tour element
   ///
   /// Throws [EpubException] if the string does not have the tour element
-  factory EpubSingleTour.fromString(String tourString) {
-    return EpubSingleTourReader.fromString(tourString);
+  factory EpubSingleTour.fromXmlString(String tourString) {
+    return EpubSingleTourReader.fromXmlString(tourString);
   }
 
   /// Create an instance of [EpubSingleTour] from the [Uint8List] data
@@ -30,25 +33,37 @@ class EpubSingleTour extends Equatable {
 
   const EpubSingleTour({
     this.sites = const [],
+    this.id,
+    this.title,
   });
 
   EpubSingleTour copyWith({
     List<EpubTourSite>? sites,
+    String? id,
+    String? title,
   }) {
     return EpubSingleTour(
       sites: sites ?? this.sites,
+      id: id ?? this.id,
+      title: title ?? this.title,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'sites': sites.map((x) => x.toMap()).toList(),
+      'id': id,
+      'title': title,
     };
   }
 
   factory EpubSingleTour.fromMap(Map<String, dynamic> map) {
     return EpubSingleTour(
-      sites: List<EpubTourSite>.from(map['sites']?.map(EpubTourSite.fromMap)),
+      sites: List<EpubTourSite>.from(
+          // ignore: unnecessary_lambdas
+          map['sites']?.map((x) => EpubTourSite.fromMap(x))),
+      id: map['id'],
+      title: map['title'],
     );
   }
 
@@ -58,8 +73,16 @@ class EpubSingleTour extends Equatable {
       EpubSingleTour.fromMap(json.decode(source));
 
   @override
-  String toString() => 'EpubTour(sites: $sites)';
+  String toString() => 'EpubSingleTour(sites: $sites, id: $id, title: $title)';
 
   @override
-  List<Object> get props => [sites];
+  List<Object> get props => [sites, id ?? 'no id', title ?? 'no title'];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${title != null ? ' title="$title"' : ''}'
+      '>'
+      '${sites.map((site) => site.toXmlString()).join('')}'
+      '</$elementName>';
 }

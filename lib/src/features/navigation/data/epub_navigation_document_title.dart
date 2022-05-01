@@ -1,6 +1,7 @@
 part of shu_epub.features.navigation.data;
 
-class EpubNavigationDocumentTitle extends Equatable {
+@Immutable()
+class EpubNavigationDocumentTitle extends EquatableXml {
   static const elementName = 'docTitle';
 
   final String? id;
@@ -16,8 +17,8 @@ class EpubNavigationDocumentTitle extends Equatable {
     return EpubNavigationDocumentTitleReader.fromXmlElement(docTitleElement);
   }
 
-  factory EpubNavigationDocumentTitle.fromString(String docTitleString) {
-    return EpubNavigationDocumentTitleReader.fromString(docTitleString);
+  factory EpubNavigationDocumentTitle.fromXmlString(String docTitleString) {
+    return EpubNavigationDocumentTitleReader.fromXmlString(docTitleString);
   }
 
   /// Create an instance of [EpubNavigationDocumentTitle] from the [Uint8List] data
@@ -34,10 +35,6 @@ class EpubNavigationDocumentTitle extends Equatable {
     this.text,
     this.image,
   });
-
-  factory EpubNavigationDocumentTitle.zero() {
-    return EpubNavigationDocumentTitle();
-  }
 
   EpubNavigationDocumentTitle copyWith({
     String? id,
@@ -92,4 +89,13 @@ class EpubNavigationDocumentTitle extends Equatable {
       image ?? 'no image attribute',
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${language != null ? ' xml:lang="$language"' : ''}'
+      '>'
+      '${text != null ? '<text>$text</text>' : ''}'
+      '${image != null ? image!.toXmlString() : ''}'
+      '</$elementName>';
 }

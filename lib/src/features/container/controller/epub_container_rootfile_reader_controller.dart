@@ -28,7 +28,7 @@ class EpubContainerRootfileReaderController with MediaTypeMixin {
   /// of the rootfile element
   ///
   /// Throws [EpubException] if the string does not have the rootfile element
-  factory EpubContainerRootfileReaderController.fromString(
+  factory EpubContainerRootfileReaderController.fromXmlString(
       String rootfileString) {
     final stringList = rootfileString.codeUnits;
     final data = Uint8List.fromList(stringList);

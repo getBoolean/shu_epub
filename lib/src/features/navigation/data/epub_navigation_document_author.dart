@@ -1,7 +1,8 @@
 part of shu_epub.features.navigation.data;
 
 /// The author of the document, immediately follows docTitle.
-class EpubNavigationDocumentAuthor extends Equatable {
+@Immutable()
+class EpubNavigationDocumentAuthor extends EquatableXml {
   static const elementName = 'docAuthor';
 
   final String? id;
@@ -17,8 +18,8 @@ class EpubNavigationDocumentAuthor extends Equatable {
     return EpubNavigationDocumentAuthorReader.fromXmlElement(docAuthorElement);
   }
 
-  factory EpubNavigationDocumentAuthor.fromString(String docAuthorString) {
-    return EpubNavigationDocumentAuthorReader.fromString(docAuthorString);
+  factory EpubNavigationDocumentAuthor.fromXmlString(String docAuthorString) {
+    return EpubNavigationDocumentAuthorReader.fromXmlString(docAuthorString);
   }
 
   /// Create an instance of [EpubNavigationDocumentAuthor] from the [Uint8List] data
@@ -35,10 +36,6 @@ class EpubNavigationDocumentAuthor extends Equatable {
     this.text,
     this.image,
   });
-
-  factory EpubNavigationDocumentAuthor.zero() {
-    return EpubNavigationDocumentAuthor();
-  }
 
   EpubNavigationDocumentAuthor copyWith({
     String? id,
@@ -93,4 +90,13 @@ class EpubNavigationDocumentAuthor extends Equatable {
       image ?? 'no image attribute',
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${language != null ? ' xml:lang="$language"' : ''}'
+      '>'
+      '${text != null ? '<text>$text</text>' : ''}'
+      '${image != null ? image!.toXmlString() : ''}'
+      '</$elementName>';
 }

@@ -9,3 +9,6 @@ build/
 # Coverage results
 coverage/
 coverage.lcov
+
+# Docs
+doc/

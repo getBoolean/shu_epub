@@ -1,7 +1,8 @@
 part of shu_epub.features.navigation.data;
 
 /// Content Element - pointer into XML to beginning of navPoint.
-class EpubNavigationContent extends Equatable {
+@Immutable()
+class EpubNavigationContent extends EquatableXml {
   static const elementName = 'content';
 
   final String? source;
@@ -14,8 +15,8 @@ class EpubNavigationContent extends Equatable {
     return EpubNavigationContentReader.fromXmlElement(contentElement);
   }
 
-  factory EpubNavigationContent.fromString(String contentString) {
-    return EpubNavigationContentReader.fromString(contentString);
+  factory EpubNavigationContent.fromXmlString(String contentString) {
+    return EpubNavigationContentReader.fromXmlString(contentString);
   }
 
   /// Create an instance of [EpubNavigationContent] from the [Uint8List] data
@@ -50,7 +51,7 @@ class EpubNavigationContent extends Equatable {
 
   factory EpubNavigationContent.fromMap(Map<String, dynamic> map) {
     return EpubNavigationContent(
-      source: map['source'] ?? '',
+      source: map['source'],
       id: map['id'],
     );
   }
@@ -65,4 +66,10 @@ class EpubNavigationContent extends Equatable {
 
   @override
   List<Object> get props => [source ?? 'no source', id ?? 'no id'];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${source != null ? ' src="$source"' : ''}'
+      '${id != null ? ' id="$id"' : ''}'
+      '/>';
 }

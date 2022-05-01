@@ -13,8 +13,8 @@ class EpubTourSiteReader {
   /// of the site element
   ///
   /// Throws [EpubException] if the string does not have the site element
-  static EpubTourSite fromString(String siteString) {
-    final controller = EpubTourSiteReaderController.fromString(siteString);
+  static EpubTourSite fromXmlString(String siteString) {
+    final controller = EpubTourSiteReaderController.fromXmlString(siteString);
     return _fromController(controller);
   }
 

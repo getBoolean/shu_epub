@@ -1,6 +1,7 @@
 part of shu_epub.features.package.data;
 
-class EpubMetadataIdentifier extends Equatable {
+@Immutable()
+class EpubMetadataIdentifier extends EquatableXml {
   static const elementName = 'dc:identifier';
 
   final String value;
@@ -32,8 +33,8 @@ class EpubMetadataIdentifier extends Equatable {
   /// of the dc:identifier element
   ///
   /// Throws [EpubException] if the string does not have the dc:identifier element
-  factory EpubMetadataIdentifier.fromString(String dcidentifierString) {
-    return EpubMetadataIdentifierReader.fromString(dcidentifierString);
+  factory EpubMetadataIdentifier.fromXmlString(String dcidentifierString) {
+    return EpubMetadataIdentifierReader.fromXmlString(dcidentifierString);
   }
 
   /// Create an instance of [EpubMetadataIdentifier] from the [Uint8List] data
@@ -93,4 +94,12 @@ class EpubMetadataIdentifier extends Equatable {
         id ?? 'no id given',
         scheme ?? 'no scheme given',
       ];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${scheme != null ? ' scheme="$scheme"' : ''}'
+      '>'
+      '$value'
+      '</$elementName>';
 }

@@ -28,7 +28,7 @@ class EpubManifestItemReaderController with IdMixin, HrefMixin, MediaTypeMixin {
   /// of the item element
   ///
   /// Throws [EpubException] if the string does not have the item element
-  factory EpubManifestItemReaderController.fromString(String itemString) {
+  factory EpubManifestItemReaderController.fromXmlString(String itemString) {
     final stringList = itemString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubManifestItemReaderController(data);

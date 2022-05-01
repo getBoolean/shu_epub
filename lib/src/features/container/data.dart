@@ -4,10 +4,12 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
-import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
+import 'package:path/path.dart' as p;
 import 'package:xml/xml.dart';
 
 import '../../constants.dart';
+import '../../shared.dart';
 import '../../utils.dart';
 import 'reader.dart';
 

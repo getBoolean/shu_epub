@@ -1,6 +1,7 @@
 part of shu_epub.features.navigation.data;
 
-class EpubNavigationHead extends Equatable {
+@Immutable()
+class EpubNavigationHead extends EquatableXml {
   static const elementName = 'head';
 
   /// metadata about this NCX
@@ -17,8 +18,8 @@ class EpubNavigationHead extends Equatable {
     return EpubNavigationHeadReader.fromXmlElement(headElement);
   }
 
-  factory EpubNavigationHead.fromString(String headString) {
-    return EpubNavigationHeadReader.fromString(headString);
+  factory EpubNavigationHead.fromXmlString(String headString) {
+    return EpubNavigationHeadReader.fromXmlString(headString);
   }
 
   /// Create an instance of [EpubNavigationHead] from the [Uint8List] data
@@ -32,10 +33,6 @@ class EpubNavigationHead extends Equatable {
   const EpubNavigationHead({
     this.metadata = const [],
   });
-
-  factory EpubNavigationHead.zero() {
-    return EpubNavigationHead(metadata: []);
-  }
 
   EpubNavigationHead copyWith({
     List<EpubNavigationMeta>? metadata,
@@ -54,7 +51,8 @@ class EpubNavigationHead extends Equatable {
   factory EpubNavigationHead.fromMap(Map<String, dynamic> map) {
     return EpubNavigationHead(
       metadata: List<EpubNavigationMeta>.from(
-        map['metadata']?.map(EpubNavigationMeta.fromMap),
+        // ignore: unnecessary_lambdas
+        map['metadata']?.map((e) => EpubNavigationMeta.fromMap(e)),
       ),
     );
   }
@@ -69,4 +67,9 @@ class EpubNavigationHead extends Equatable {
 
   @override
   List<Object> get props => [metadata];
+
+  @override
+  String toXmlString() => '<$elementName>'
+      '${metadata.map((meta) => meta.toXmlString()).join()}'
+      '</$elementName>';
 }

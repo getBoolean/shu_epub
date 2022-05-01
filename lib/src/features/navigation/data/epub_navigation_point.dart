@@ -3,7 +3,8 @@ part of shu_epub.features.navigation.data;
 /// Contains description(s) of target, as well as a pointer to entire content
 /// of target. Hierarchy is represented by nesting navPoints.
 /// [EpubNavigationPoint.classType] attribute
-class EpubNavigationPoint extends Equatable {
+@Immutable()
+class EpubNavigationPoint extends EquatableXml {
   static const elementName = 'navPoint';
   final String? id;
 
@@ -33,8 +34,8 @@ class EpubNavigationPoint extends Equatable {
     return EpubNavigationPointReader.fromXmlElement(navPointElement);
   }
 
-  factory EpubNavigationPoint.fromString(String navPointString) {
-    return EpubNavigationPointReader.fromString(navPointString);
+  factory EpubNavigationPoint.fromXmlString(String navPointString) {
+    return EpubNavigationPointReader.fromXmlString(navPointString);
   }
 
   /// Create an instance of [EpubNavigationPoint] from the [Uint8List] data
@@ -91,12 +92,18 @@ class EpubNavigationPoint extends Equatable {
       classType: map['classType'],
       playOrder: map['playOrder'],
       childNavigationPoints: List<EpubNavigationPoint>.from(
-          map['childNavigationPoints']?.map(EpubNavigationPoint.fromMap)),
+        map['childNavigationPoints']?.map(
+          // ignore: unnecessary_lambdas
+          (e) => EpubNavigationPoint.fromMap(e),
+        ),
+      ),
       content: map['content'] != null
           ? EpubNavigationContent.fromMap(map['content'])
           : null,
       labels: List<EpubNavigationLabel>.from(
-          map['labels']?.map(EpubNavigationLabel.fromMap)),
+        // ignore: unnecessary_lambdas
+        map['labels']?.map((e) => EpubNavigationLabel.fromMap(e)),
+      ),
     );
   }
 
@@ -121,4 +128,15 @@ class EpubNavigationPoint extends Equatable {
       labels,
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${id != null ? ' id="$id"' : ''}'
+      '${classType != null ? ' class="$classType"' : ''}'
+      '${playOrder != null ? ' playOrder="$playOrder"' : ''}'
+      '>'
+      '${content != null ? content!.toXmlString() : ''}'
+      '${labels.map((label) => label.toXmlString()).join('')}'
+      '${childNavigationPoints.map((navPoint) => navPoint.toXmlString()).join('')}'
+      '</$elementName>';
 }

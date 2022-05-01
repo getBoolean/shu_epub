@@ -1,6 +1,7 @@
 part of shu_epub.features.package.data;
 
-class EpubManifest extends Equatable {
+@Immutable()
+class EpubManifest extends EquatableXml {
   static const elementName = 'manifest';
 
   final List<EpubManifestItem> items;
@@ -16,8 +17,8 @@ class EpubManifest extends Equatable {
   /// of the manifest element
   ///
   /// Throws [EpubException] if the string does not have the manifest element
-  factory EpubManifest.fromString(String manifestString) {
-    return EpubManifestReader.fromString(manifestString);
+  factory EpubManifest.fromXmlString(String manifestString) {
+    return EpubManifestReader.fromXmlString(manifestString);
   }
 
   /// Create an instance of [EpubManifest] from the [Uint8List] data
@@ -49,7 +50,8 @@ class EpubManifest extends Equatable {
   factory EpubManifest.fromMap(Map<String, dynamic> map) {
     return EpubManifest(
       items: List<EpubManifestItem>.from(
-          map['items']?.map(EpubManifestItem.fromMap)),
+          // ignore: unnecessary_lambdas
+          map['items']?.map((e) => EpubManifestItem.fromMap(e))),
     );
   }
 
@@ -63,4 +65,9 @@ class EpubManifest extends Equatable {
 
   @override
   List<Object> get props => [items];
+
+  @override
+  String toXmlString() => '<$elementName>'
+      '${items.map((item) => item.toXmlString()).join('')}'
+      '</$elementName>';
 }

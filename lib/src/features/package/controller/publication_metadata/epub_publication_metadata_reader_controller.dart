@@ -2,21 +2,19 @@ part of shu_epub.features.package.controller;
 
 class EpubPublicationMetadataReaderController {
   final XmlElement element;
-  final XmlElement compatibleMetadataElement;
+  XmlElement get compatibleMetadataElement =>
+      hasDcMetadataElement ? dcMetadata! : element;
   final XmlElement? dcMetadata;
-  final bool hasDcMetadataElement;
+  bool get hasDcMetadataElement => dcMetadata != null;
   final XmlElement? xMetadata;
-  final bool hasXMetadataElement;
+  bool get hasXMetadataElement => xMetadata != null;
 
   static const elementName = EpubPublicationMetadata.elementName;
 
   EpubPublicationMetadataReaderController._internal({
     required this.element,
-    required this.compatibleMetadataElement,
     this.dcMetadata,
     this.xMetadata,
-    this.hasDcMetadataElement = false,
-    this.hasXMetadataElement = false,
   });
 
   /// Throws [EpubException] if the metadata element is not the root node
@@ -30,17 +28,11 @@ class EpubPublicationMetadataReaderController {
 
     final dcMetadata = metadataElement.findElements('dc-metadata').firstOrNull;
     final xMetadata = metadataElement.findElements('x-metadata').firstOrNull;
-    final hasDcMetadataElement = dcMetadata != null;
-    final hasXMetadataElement = xMetadata != null;
 
     return EpubPublicationMetadataReaderController._internal(
       element: metadataElement,
       dcMetadata: dcMetadata,
       xMetadata: xMetadata,
-      compatibleMetadataElement:
-          hasDcMetadataElement ? dcMetadata : metadataElement,
-      hasDcMetadataElement: hasDcMetadataElement,
-      hasXMetadataElement: hasXMetadataElement,
     );
   }
 
@@ -48,7 +40,7 @@ class EpubPublicationMetadataReaderController {
   /// of the metadata element
   ///
   /// Throws [EpubException] if the string does not have the metadata element
-  factory EpubPublicationMetadataReaderController.fromString(
+  factory EpubPublicationMetadataReaderController.fromXmlString(
       String metadataString) {
     final stringList = metadataString.codeUnits;
     final data = Uint8List.fromList(stringList);
@@ -86,10 +78,10 @@ class EpubPublicationMetadataReaderController {
         .toList();
   }
 
-  List<EpubMetadataContributer> getCreators() {
+  List<EpubMetadataCreator> getCreators() {
     return compatibleMetadataElement
-        .findElements(EpubMetadataContributer.creatorElementName)
-        .map(EpubMetadataContributer.fromXmlElement)
+        .findElements(EpubMetadataCreator.elementName)
+        .map(EpubMetadataCreator.fromXmlElement)
         .toList();
   }
 
@@ -97,6 +89,7 @@ class EpubPublicationMetadataReaderController {
     return compatibleMetadataElement
         .findElements('dc:subject')
         .map((node) => node.innerText.trim())
+        .where((element) => element.isNotEmpty)
         .toList();
   }
 
@@ -105,7 +98,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:description')
         .firstOrNull
         ?.innerText
-        .trim();
+        .trimThenNullIfEmpty;
   }
 
   String? getPublisher() {
@@ -113,26 +106,27 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:publisher')
         .firstOrNull
         ?.innerText
-        .trim();
+        .trimThenNullIfEmpty;
   }
 
-  List<EpubMetadataContributer> getContributors() {
+  List<EpubMetadataContributor> getContributors() {
     return compatibleMetadataElement
-        .findElements(EpubMetadataContributer.contributorElementName)
-        .map(EpubMetadataContributer.fromXmlElement)
+        .findElements(EpubMetadataContributor.elementName)
+        .map(EpubMetadataContributor.fromXmlElement)
         .toList();
   }
 
   List<EpubExtraMetadata> getExtraMetadataItems() {
     return hasXMetadataElement
-        ? xMetadata!.childElements
+        ? xMetadata!
+            .findElements(EpubExtraMetadata.elementName)
             .map((node) => EpubExtraMetadata(
                   name: node.getAttribute('name'),
                   content: node.getAttribute('content'),
                 ))
             .toList()
         : element
-            .findElements('meta')
+            .findElements(EpubExtraMetadata.elementName)
             .map((node) => EpubExtraMetadata(
                   name: node.getAttribute('name'),
                   content: node.getAttribute('content'),
@@ -156,7 +150,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:type')
         .firstOrNull
         ?.innerText
-        .trim();
+        .trimThenNullIfEmpty;
   }
 
   String? getFormat() {
@@ -164,7 +158,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:format')
         .firstOrNull
         ?.innerText
-        .trim();
+        .trimThenNullIfEmpty;
   }
 
   List<EpubMetadataIdentifier> getIdentifiers() {
@@ -179,13 +173,14 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:source')
         .firstOrNull
         ?.innerText
-        .trim();
+        .trimThenNullIfEmpty;
   }
 
   List<String> getLanguages() {
     return compatibleMetadataElement
         .findElements('dc:language')
         .map((node) => node.innerText.trim())
+        .where((element) => element.isNotEmpty)
         .toList();
   }
 
@@ -194,7 +189,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:relation')
         .firstOrNull
         ?.innerText
-        .trim();
+        .trimThenNullIfEmpty;
   }
 
   String? getCoverage() {
@@ -202,7 +197,7 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:coverage')
         .firstOrNull
         ?.innerText
-        .trim();
+        .trimThenNullIfEmpty;
   }
 
   String? getRights() {
@@ -210,6 +205,6 @@ class EpubPublicationMetadataReaderController {
         .findElements('dc:rights')
         .firstOrNull
         ?.innerText
-        .trim();
+        .trimThenNullIfEmpty;
   }
 }

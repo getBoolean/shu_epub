@@ -1,6 +1,7 @@
 part of shu_epub.features.package.controller;
 
-class EpubSingleTourReaderController {
+class EpubSingleTourReaderController with IdMixin {
+  @override
   final XmlElement element;
 
   static const elementName = EpubSingleTour.elementName;
@@ -27,7 +28,7 @@ class EpubSingleTourReaderController {
   /// of the tour element
   ///
   /// Throws [EpubException] if the string does not have the tour element
-  factory EpubSingleTourReaderController.fromString(String tourString) {
+  factory EpubSingleTourReaderController.fromXmlString(String tourString) {
     final stringList = tourString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubSingleTourReaderController(data);
@@ -61,5 +62,9 @@ class EpubSingleTourReaderController {
     final siteElements = element.findElements(EpubTourSite.elementName);
 
     return siteElements.map(EpubTourSite.fromXmlElement).toList();
+  }
+
+  String? getTitle() {
+    return element.getAttribute('title');
   }
 }

@@ -1,6 +1,7 @@
 part of shu_epub.features.package.data;
 
-class EpubSpine extends Equatable {
+@Immutable()
+class EpubSpine extends EquatableXml {
   static const elementName = 'spine';
 
   /// The value is the the id attribute value of the required NCX (`.ncx` document
@@ -97,8 +98,8 @@ class EpubSpine extends Equatable {
   /// of the spine element
   ///
   /// Throws [EpubException] if the string does not have the spine element
-  factory EpubSpine.fromString(String spineString) {
-    return EpubSpineReader.fromString(spineString);
+  factory EpubSpine.fromXmlString(String spineString) {
+    return EpubSpineReader.fromXmlString(spineString);
   }
 
   /// Create an instance of [EpubSpine] from the [Uint8List] data
@@ -135,7 +136,8 @@ class EpubSpine extends Equatable {
     return EpubSpine(
       tocId: map['tocId'],
       itemRefs: List<EpubSpineItemRef>.from(
-          map['itemRefs']?.map(EpubSpineItemRef.fromMap)),
+          // ignore: unnecessary_lambdas
+          map['itemRefs']?.map((e) => EpubSpineItemRef.fromMap(e))),
     );
   }
 
@@ -149,4 +151,11 @@ class EpubSpine extends Equatable {
 
   @override
   List<Object> get props => [tocId ?? 'no tocId', itemRefs];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${tocId != null ? ' toc="$tocId"' : ''}'
+      '>'
+      '${itemRefs.map((itemRef) => itemRef.toXmlString()).join('')}'
+      '</$elementName>';
 }

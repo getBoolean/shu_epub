@@ -27,7 +27,7 @@ class EpubManifestReaderController {
   /// of the manifest element
   ///
   /// Throws [EpubException] if the string does not have the manifest element
-  factory EpubManifestReaderController.fromString(String manifestString) {
+  factory EpubManifestReaderController.fromXmlString(String manifestString) {
     final stringList = manifestString.codeUnits;
     final data = Uint8List.fromList(stringList);
     return EpubManifestReaderController(data);

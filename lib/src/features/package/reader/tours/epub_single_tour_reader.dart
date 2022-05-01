@@ -14,8 +14,8 @@ class EpubSingleTourReader {
   /// of the tour element
   ///
   /// Throws [EpubException] if the string does not have the tour element
-  static EpubSingleTour fromString(String tourString) {
-    final controller = EpubSingleTourReaderController.fromString(tourString);
+  static EpubSingleTour fromXmlString(String tourString) {
+    final controller = EpubSingleTourReaderController.fromXmlString(tourString);
     return _fromController(controller);
   }
 
@@ -31,6 +31,10 @@ class EpubSingleTourReader {
   static EpubSingleTour _fromController(
     EpubSingleTourReaderController controller,
   ) {
-    return EpubSingleTour(sites: controller.getSites());
+    return EpubSingleTour(
+      sites: controller.getSites(),
+      id: controller.getId(),
+      title: controller.getTitle(),
+    );
   }
 }

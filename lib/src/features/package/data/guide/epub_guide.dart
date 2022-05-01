@@ -1,6 +1,8 @@
 part of shu_epub.features.package.data;
 
-class EpubGuide extends Equatable {
+/// Deprecated in EPUB 3.0 in favor of EpubLandmarks // TODO
+@Immutable()
+class EpubGuide extends EquatableXml {
   static const elementName = 'guide';
 
   final List<EpubGuideItem> items;
@@ -16,8 +18,8 @@ class EpubGuide extends Equatable {
   /// of the guide element
   ///
   /// Throws [EpubException] if the string does not have the guide element
-  factory EpubGuide.fromString(String guideString) {
-    return EpubGuideReader.fromString(guideString);
+  factory EpubGuide.fromXmlString(String guideString) {
+    return EpubGuideReader.fromXmlString(guideString);
   }
 
   /// Create an instance of [EpubGuide] from the [Uint8List] data
@@ -48,7 +50,10 @@ class EpubGuide extends Equatable {
 
   factory EpubGuide.fromMap(Map<String, dynamic> map) {
     return EpubGuide(
-      items: List<EpubGuideItem>.from(map['items']?.map(EpubGuideItem.fromMap)),
+      items: List<EpubGuideItem>.from(
+        // ignore: unnecessary_lambdas
+        map['items']?.map((e) => EpubGuideItem.fromMap(e)),
+      ),
     );
   }
 
@@ -62,4 +67,9 @@ class EpubGuide extends Equatable {
 
   @override
   List<Object> get props => [items];
+
+  @override
+  String toXmlString() => '<$elementName>'
+      '${items.map((item) => item.toXmlString()).join('')}'
+      '</$elementName>';
 }

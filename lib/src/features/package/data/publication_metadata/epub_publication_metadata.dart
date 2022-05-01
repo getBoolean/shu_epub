@@ -1,7 +1,8 @@
 part of shu_epub.features.package.data;
 
 /// http://idpf.org/epub/20/spec/OPF_2.0.1_draft.htm#Section2.2
-class EpubPublicationMetadata extends Equatable {
+@Immutable()
+class EpubPublicationMetadata extends EquatableXml {
   static const elementName = 'metadata';
 
   /// Must not be an empty list
@@ -12,7 +13,7 @@ class EpubPublicationMetadata extends Equatable {
   /// The order of creator elements should be the order
   /// in which the creators' names are presented by
   /// the Reading System.
-  final List<EpubMetadataContributer> creators;
+  final List<EpubMetadataCreator> creators;
 
   /// Contains a list of arbitrary phrases or keywords. There is no
   /// standardized list of subjects.
@@ -22,7 +23,7 @@ class EpubPublicationMetadata extends Equatable {
 
   final String? publisher;
 
-  final List<EpubMetadataContributer> contributors;
+  final List<EpubMetadataContributor> contributors;
 
   final List<EpubExtraMetadata> extraMetadataItems;
 
@@ -92,8 +93,8 @@ class EpubPublicationMetadata extends Equatable {
   /// of the metadata element
   ///
   /// Throws [EpubException] if the string does not have the metadata element
-  factory EpubPublicationMetadata.fromString(String metadataString) {
-    return EpubPublicationMetadataReader.fromString(metadataString);
+  factory EpubPublicationMetadata.fromXmlString(String metadataString) {
+    return EpubPublicationMetadataReader.fromXmlString(metadataString);
   }
 
   /// Create an instance of [EpubPublicationMetadata] from the [Uint8List] data
@@ -125,11 +126,11 @@ class EpubPublicationMetadata extends Equatable {
 
   EpubPublicationMetadata copyWith({
     List<EpubMetadataTitle>? allTitles,
-    List<EpubMetadataContributer>? creators,
+    List<EpubMetadataCreator>? creators,
     List<String>? subjects,
     String? description,
     String? publisher,
-    List<EpubMetadataContributer>? contributors,
+    List<EpubMetadataContributor>? contributors,
     List<EpubExtraMetadata>? extraMetadataItems,
     EpubMetadataDate? metadataDate,
     String? type,
@@ -185,23 +186,28 @@ class EpubPublicationMetadata extends Equatable {
   factory EpubPublicationMetadata.fromMap(Map<String, dynamic> map) {
     return EpubPublicationMetadata(
       allTitles: List<EpubMetadataTitle>.from(
-          map['allTitles']?.map(EpubMetadataTitle.fromMap)),
-      creators: List<EpubMetadataContributer>.from(
-          map['creators']?.map(EpubMetadataContributer.fromMap)),
+          // ignore: unnecessary_lambdas
+          map['allTitles']?.map((e) => EpubMetadataTitle.fromMap(e))),
+      creators: List<EpubMetadataCreator>.from(
+          // ignore: unnecessary_lambdas
+          map['creators']?.map((e) => EpubMetadataCreator.fromMap(e))),
       subjects: List<String>.from(map['subjects']),
       description: map['description'],
       publisher: map['publisher'],
-      contributors: List<EpubMetadataContributer>.from(
-          map['contributors']?.map(EpubMetadataContributer.fromMap)),
+      contributors: List<EpubMetadataContributor>.from(
+          // ignore: unnecessary_lambdas
+          map['contributors']?.map((e) => EpubMetadataContributor.fromMap(e))),
       extraMetadataItems: List<EpubExtraMetadata>.from(
-          map['extraMetadataItems']?.map(EpubExtraMetadata.fromMap)),
+          // ignore: unnecessary_lambdas
+          map['extraMetadataItems']?.map((e) => EpubExtraMetadata.fromMap(e))),
       metadataDate: map['metadataDate'] != null
           ? EpubMetadataDate.fromMap(map['metadataDate'])
           : null,
       type: map['type'],
       format: map['format'],
       identifiers: List<EpubMetadataIdentifier>.from(
-          map['identifiers']?.map(EpubMetadataIdentifier.fromMap)),
+          // ignore: unnecessary_lambdas
+          map['identifiers']?.map((e) => EpubMetadataIdentifier.fromMap(e))),
       source: map['source'],
       languages: List<String>.from(map['languages']),
       relation: map['relation'],
@@ -241,4 +247,24 @@ class EpubPublicationMetadata extends Equatable {
       rights ?? 'no rights',
     ];
   }
+
+  @override
+  String toXmlString() => '<$elementName>'
+      '${allTitles.map((title) => title.toXmlString()).join('')}'
+      '${creators.map((title) => title.toXmlString()).join('')}'
+      '${subjects.map((subject) => '<subject>$subject</subject>').join('')}'
+      '${description != null ? '<description>$description</description>' : ''}'
+      '${publisher != null ? '<publisher>$publisher</publisher>' : ''}'
+      '${contributors.map((contributor) => contributor.toXmlString()).join('')}'
+      '${extraMetadataItems.map((extraMetadataItem) => extraMetadataItem.toXmlString()).join('')}'
+      '${metadataDate == null ? '' : metadataDate!.toXmlString()}'
+      '${type != null ? '<type>$type</type>' : ''}'
+      '${format != null ? '<format>$format</format>' : ''}'
+      '${identifiers.map((identifier) => identifier.toXmlString()).join('')}'
+      '${source != null ? '<source>$source</source>' : ''}'
+      '${languages.map((language) => '<language>$language</language>').join('')}'
+      '${relation != null ? '<relation>$relation</relation>' : ''}'
+      '${coverage != null ? '<coverage>$coverage</coverage>' : ''}'
+      '${rights != null ? '<rights>$rights</rights>' : ''}'
+      '</$elementName>';
 }

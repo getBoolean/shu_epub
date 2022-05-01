@@ -1,6 +1,7 @@
 part of shu_epub.features.package.data;
 
-class EpubSpineItemRef extends Equatable {
+@Immutable()
+class EpubSpineItemRef extends EquatableXml {
   static const elementName = 'itemref';
 
   final String? idref;
@@ -27,8 +28,8 @@ class EpubSpineItemRef extends Equatable {
   /// of the itemref element
   ///
   /// Throws [EpubException] if the string does not have the itemref element
-  factory EpubSpineItemRef.fromString(String itemrefString) {
-    return EpubSpineItemRefReader.fromString(itemrefString);
+  factory EpubSpineItemRef.fromXmlString(String itemrefString) {
+    return EpubSpineItemRefReader.fromXmlString(itemrefString);
   }
 
   /// Create an instance of [EpubSpineItemRef] from the [Uint8List] data
@@ -78,4 +79,10 @@ class EpubSpineItemRef extends Equatable {
 
   @override
   List<Object> get props => [idref ?? 'no idref', linear];
+
+  @override
+  String toXmlString() => '<$elementName'
+      '${idref != null ? ' idref="$idref"' : ''}'
+      ' linear="${linear ? 'yes' : 'no'}"'
+      '/>';
 }
