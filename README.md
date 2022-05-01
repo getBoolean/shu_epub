@@ -17,8 +17,8 @@ being required in memory like in other popular epub packages.
 
 - EpubControllerBase - An abstract class intended to be extended to enable flexibility inspired by Flutter's Widget class
   - Enables use cases such asserving epubs from the web or caching epubs on the file system
-- EpubArchiveController - Implements EpubControllerBase, reads in entire bytes of an .epub file for reading and independent from dart:io
-- EpubArchiveIOController - Implements EpubControllerBase, uses file reference to the .epub file to only read in files when required.
+- EpubArchiveController - Extends EpubControllerBase, reads in entire bytes of an .epub file for reading and independent from dart:io
+- EpubArchiveIOController - Extends EpubControllerBase, uses file reference to the .epub file to only read in files when required.
 However, this cannot take advantage of the system cache.
 - (flutter_shu_epub) EpubCacheController - Extracts ePub contents onto an Android or iOS device and caches the location, allowing for
   the reader to only load the needed files into memory
