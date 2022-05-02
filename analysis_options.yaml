@@ -30,6 +30,11 @@ linter:
 
     unnecessary_constructor_name: true
 
+    # Documentation
+    package_api_docs: true
+    # public_member_api_docs: true
+    slash_for_doc_comments: true
+
 analyzer:
   errors:
     todo: ignore
