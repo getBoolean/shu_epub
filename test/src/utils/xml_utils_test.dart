@@ -6,9 +6,10 @@ import 'package:xml/xml.dart';
 void main() {
   group('parseToXmlDocument', () {
     test(
-      'on input without content element, expect exception thrown',
+      'on input without valid element, expect exception thrown',
       () async {
         final input = '''
+<472-3949wqedk/qa;q]P>
   ''';
         expect(
           () => XmlUtils.parseToXmlDocument(input),
@@ -18,7 +19,7 @@ void main() {
     );
 
     test(
-      'on input without content element, expect exception thrown',
+      'on input with valid element, expect XmlDocument returned',
       () async {
         final input = '''
   <valid></valid>
@@ -33,9 +34,10 @@ void main() {
 
   group('tryParseToXmlDocument', () {
     test(
-      'on input without content element, expect exception thrown',
+      'on input without valid element, expect null returned',
       () async {
         final input = '''
+<472-3949wqedk/qa;q]P>
   ''';
         expect(
           XmlUtils.tryParseToXmlDocument(input),
@@ -45,7 +47,7 @@ void main() {
     );
 
     test(
-      'on input without content element, expect exception thrown',
+      'on input with valid element, expect XmlDocument returned',
       () async {
         final input = '''
   <valid></valid>
