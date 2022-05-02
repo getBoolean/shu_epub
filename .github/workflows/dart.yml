@@ -10,11 +10,17 @@ on:
     branches:
       - main
       - dev
+      - dependabot/*
+      - feature/*
+      - bugfix/*
   pull_request:
     types: [opened, reopened]
     branches:
       - main
       - dev
+      - dependabot/*
+      - feature/*
+      - bugfix/*
 
 jobs:
   build:
