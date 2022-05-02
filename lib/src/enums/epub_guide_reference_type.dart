@@ -11,20 +11,44 @@ part of shu_epub.enums;
 ///
 /// returns `title-page`
 enum EpubGuideReferenceType {
+  /// Image cover page
   cover,
+
+  /// Title page
   titlePage,
+
+  /// Table of contents
   toc,
+
+  /// Book Index
   bookIndex,
+
+  /// Glossary
   glossary,
+
+  /// Acknowledgements
   acknowledgements,
+
+  /// Bibliography
   bibliography,
+
+  /// Colophon
   colophon,
+
+  /// Copyright page
   copyrightPage,
+
+  /// Dedication
   dedication,
+
+  /// Epigraph (Short quotation or saying at the beginning of a book, chapter or article)
   epigraph,
+
+  /// Foreword (Piece of writing sometimes placed at the beginning of a book or other piece of literature)
   foreword,
 }
 
+/// Extension for converting [EpubGuideReferenceType] to a string.
 extension EpubGuideReferenceTypeExtension on EpubGuideReferenceType {
   /// The string equivalent of this constant property used in EPUBs
   String get value {
