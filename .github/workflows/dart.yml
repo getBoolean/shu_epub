@@ -55,8 +55,8 @@ jobs:
       - name: Run Tests
         run: dart --branch-coverage test --coverage="coverage"
 
-      # - name: Format Coverage Results
-      #   run: dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage.lcov --packages=.packages --report-on=lib
+      - name: Format Coverage Results
+        run: dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage.lcov --packages=.packages --report-on=lib
 
       - name: Upload Coverage Results
         uses: codecov/codecov-action@v3.1.0
