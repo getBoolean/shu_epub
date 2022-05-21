@@ -53,10 +53,7 @@ jobs:
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed.
       - name: Run Tests
-        run: dart --branch-coverage test --coverage="coverage"
-
-      - name: Format Coverage Results
-        run: dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage.lcov --packages=.packages --report-on=lib
+        run: dart pub global run coverage:test_with_coverage --function-coverage --branch-coverage
 
       - name: Upload Coverage Results
         uses: codecov/codecov-action@v3.1.0
