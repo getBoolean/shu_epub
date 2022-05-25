@@ -17,7 +17,7 @@ void main() {
 </rootfiles>
 </container>
 ''';
-        final EpubContainer? expectedValue = const EpubContainer(
+        final EpubContainer expectedValue = const EpubContainer(
           rootfileList: RootfileList(items: [
             Rootfile(
               fullPath: 'OEBPS/package.opf',
@@ -44,7 +44,7 @@ void main() {
         // arrange
         final data = await io.File('test/assets/Guardians.epub').readAsBytes();
         final archive = ArchiveService.decodeZip(data);
-        final EpubContainer? expectedValue = const EpubContainer(
+        final EpubContainer expectedValue = const EpubContainer(
           rootfileList: RootfileList(items: [
             Rootfile(
               fullPath: 'OEBPS/package.opf',

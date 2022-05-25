@@ -9,7 +9,7 @@ class ArchiveService {
       }
 
       return false;
-    } on EpubException catch (_, __) {
+    } on EpubException catch (_) {
       return false;
     }
   }

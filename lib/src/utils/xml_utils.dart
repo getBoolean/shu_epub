@@ -22,7 +22,7 @@ class XmlUtils {
   static XmlDocument? tryParseToXmlDocument(String content) {
     try {
       return parseToXmlDocument(content);
-    } on EpubException catch (_, __) {
+    } on EpubException catch (_) {
       return null;
     }
   }
