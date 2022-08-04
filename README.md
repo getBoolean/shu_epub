@@ -26,7 +26,7 @@ and more...
 
 ## Progress and Plans
 - [shu_epub](https://github.com/getBoolean/shu_epub/issues/18) (WIP)
-- flutter_shu_epub (not started)
+- [flutter_shu_epub](https://github.com/getBoolean/shu_epub/issues/19) (not started)
   
 
 ## Testing
