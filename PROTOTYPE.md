@@ -137,14 +137,12 @@ EpubTableOfContents(
 	// Optional
 	physics: null,
 	// * Optional
-	onJump: (String chapterName, EpubCfi cfi) {
-		print("Jumping to '$chapterName' with cfi '$cfi'");
+	onTap: (String locationName, EpubLocation location) {
+		print("Jumping to '$locationName' at location '$location'");
 	},
-	// Optional, jumps to this chapter in the list
-	currentChapterCfi: EpubCfi.fromString(currentChapterCfi),
 	// Optional, default widget is provided
-	builder: (String chapterName, EpubCfi cfi, int percent) {
-		return Text(chapterName);
+	itemBuilder: (String locationName, EpubLocation location, int percent) {
+		return Text(locationName);
 	},
 	shrinkWrap: false,
 );
@@ -195,8 +193,8 @@ EpubView.paged(
 	controller: controller,
 	// TODO: what should be provided here for the html?
 	// `builder` is called for every page in the `PageView.builder`.
-	builder: (Widget html, EpubJump? priorJump, EpubJump? forwardJump) {},
-	onPageChanged: (EpubCfi previousCfi, EpubCfi currentCfi) {},
+	itemBuilder: (Widget html, EpubLocation? prior, EpubLocation? forward) {},
+	onPageChanged: (EpubLocation previous, EpubLocation current) {},
 	reverse: false,
 	physics: null,
 	dragStartBehavior: null,
@@ -210,12 +208,31 @@ EpubView.scrollable(
 	controller: controller,
 	physics: null,
 	// `currentCfi` is the line at the top of the visible screen
-	onScroll: (EpubCfi previousCfi, EpubCfi currentCfi) {},
+	onScroll: (EpubLocation previous, EpubLocation current) {},
 	// TODO: Determine fields
 	// TODO: what should be provided here for the html?
-	builder: (Widget html, EpubJump? priorJump, EpubJump? forwardJump) {},
+	builder: (Widget html, EpubLocation? prior, EpubLocation? forward) {},
 )
 ```
 
 ## Implementation
 
+```dart
+class EpubTableOfContents extends StatelessWidget {
+	const EpubTableOfContents({
+		this.controller,
+		this.itemBuilder,
+		this.onTap;
+		// ...
+	}) : this.currentChapter = currentChapter.getChapter();
+	final EpubController controller;
+	final Function(String locationName, EpubLocation location, int percent)? itemBuilder;
+	final Function(String locationName, EpubLocation location)? onTap;
+	// ...
+
+	Widget build(BuildContext context) {
+		// Scroll to item before controller.getCurrentLocation() if not null
+		return ListView.builder(/** items **/);
+	}
+}
+```
