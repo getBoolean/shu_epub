@@ -1,82 +1,126 @@
 This file is for prototyping the public facing API for this library. This is in progress and may change. This contains prototypes for [flutter_shu_epub](https://github.com/getBoolean/shu_epub/issues/19), but is temporarily kept here since development has not started on the Flutter widgets.
 
-## Getting Started
+# shu_epub
 
-### Usage
+## What Package To Install
+
+Follow the [package install instructions](https://pub.dev/packages/shu_epub/install),
+and you can start using shu_epub in your app:
 
 ```dart
 // !!! Do not do this in the build method.
 final controller = EpubController(bytes);
-final controller = EpubController.fromData(bytes);
-final controller = await EpubController.fromFile(file);
-final controller = EpubController(bytes);
+final controllerFromData = EpubController.fromData(bytes);
+final controllerFromFile = await EpubController.fromFile(file);
+
+// Go to CFI location
+String epubCfiString = "book.epub#epubcfi(/6/4[chap01ref]!/4[body01]/10[para05]/3:10)";
+EpubLocation epubLocation = EpubLocation(epubCfiString);
+// go to new location
+EpubGoResult goResult = controller.goToLocation(epubLocation);
+// go back
+EpubGoResult goResult = controller.goToPriorLocation();
+// go to `epubLocation` again
+EpubGoResult goResult = controller.goToForwardLocation();
+
+// Previous location after tapping on EPUB CFI link
+EpubLocation? priorLocation = controller.getPriorLocation();
+// Previous location after going back to prior EpubLocation
+EpubLocation? priorLocation = controller.getForwardLocation();
 ```
 
-### Implementation
+## Implementation
 
 ```dart
 class EpubController extends ChangeNotifier {
 	// TODO: Parse bytes into epub object
 	final List<int> bytes;
-	EpubCfi? currentLocation;
-	// `EpubJumpList` is a list with utility methods that are specific to `EpubJump`. It acts similar to a stack
-	EpubJumpList previousJumps = [];
-	EpubJumpList forwardJumps = [];
+	/// null if the book has not been opened
+	EpubLocation? currentLocation;
+	// `EpubLocationList` is a list with utility methods that are specific to `EpubJump`. It acts similar to a stack
+	EpubLocationList priorLocations = [];
+	EpubLocationList forwardLocations = [];
 	EpubReadingProgress readingProgress = EpubReadingProgress();
 	
-	EpubController(this.bytes, {EpubCfi? initialLocation})
+	EpubController(this.bytes, {EpubLocation? initialLocation})
 		: currentLocation = initialLocation;
-	EpubController.fromData(this.bytes, {EpubCfi? initialLocation})
+	EpubController.fromData(this.bytes, {EpubLocation? initialLocation})
 		: currentLocation = initialLocation;;
-	static EpubController fromFile(io.File file, {EpubCfi? initialLocation}) async {
+	static EpubController fromFile(File file, {EpubLocation? initialLocation}) async {
 		final bytes = await file.readAsBytes()
 		// plus error handling for io exceptions (e.g., no such file or no permission)
 		return EpubController(bytes, initialLocation: initialLocation);
 	}
-
-	// Returns null if the book has not been opened
-	EpubCfi? getCurrentLocation() {
-		return currentLocation;
-	}
+	EpubJump getPriorJump();
+	EpubJump getForwardJump();
 
 	// The app should retrieve the reading progress once the book is closed and save it
 	EpubReadingProgress getReadingProgress() {
 		returns readingProgress;
 	}
 
-	void jumpTo(EpubCfi) {
-		// add to jump history
+	
+	EpubGoResult goToPriorLocation() {
+		// push `currentLocation` to `forwardLocations`
+		// pop top item from `priorLocations`
+		// update `currentLocation` with above result and notify listeners
+		// `EpubView` animates to the new page
+	}
+	EpubGoResult goToForwardLocation() {
+		// push `currentLocation` to `priorLocations`
+		// pop top item from `forwardLocations`
+		// update `currentLocation` with above result and notify listeners
+		// `EpubView` animates to the new page
+	}
+	EpubGoResult goToLocation(EpubLocation) {
+		// push `currentLocation` to `priorLocations`
 		// update `currentLocation` and notify listeners
+		// `EpubView` animates to the new page
 	}
 
+	// TODO: not sure about how to implement these two methods
+	void goToPreviousPage();
 	void goToNextPage() {
-		// update `currentLocation` and notify listeners
+		// update `currentLocation` to ...
+		// clear `forwardLocations` and notify listeners
+		// `EpubView` animates to the new page
 	}
 }
 
 class EpubReadingProgress {
-	final EpubCfi location;
+	final EpubLocation location;
 	final int percent;
 	// ...
 }
 
-class EpubJump {
-	final EpubCfi location;
-	final DateTime time;
+class EpubLocationList extends List<EpubLocation> {
+	EpubLocation peek() => this[this.length - 1];
+	void push(EpubJump);
+	EpubLocationList popFrom(EpubLocation);
+	EpubLocation pop();
+}
+
+class EpubLocation {
+	// TODO: https://idpf.org/epub/linking/cfi/epub-cfi.html
+	final String rawCfi;
 	// ...
 }
 
-class EpubJumpList extends List<EpubJump> {
-	EpubJump peek() => this[this.length - 1];
-	void push(EpubJump);
-	EpubJumpList popFrom(EpubJump);
-	EpubJump pop();
+class EpubGoResult {
+	final EpubGoResultType type;
+	final EpubLocation previousLocation;
+	final EpubLocation newLocation;
+	// ...
 }
 
-class EpubCfi {
-	// TODO: https://idpf.org/epub/linking/cfi/epub-cfi.html
+enum EpubGoResultType {
+	success,
+	noSuchLocation,
+	invalidLocationFormat,
 }
 ```
+
+# flutter_shu_epub
 
 ## Widgets
 
@@ -119,17 +163,17 @@ The history is kept in two stacks, one for previous locations and one for forwar
 ```dart
 EpubJumpHistory(
 	controller: controller,
-	// Each `EpubJump` has keeps the time the jump was made
-	builder: (EpubJump? previousJump, EpubJump? forwardJump) {
-		return Container(); // This could be a row with two buttons that call `controller.jumpTo(jump)` when pressed. The controller is able to determine if it is in the stack using the time of the jump.
+	// Each `EpubJump` has the time the jump was made
+	builder: (EpubJump? priorJump, EpubJump? forwardJump) {
+		return Container(); // This could be a row with two buttons that call `controller.goToLocation(jump)` when pressed. The controller is able to determine if it is in the stack using the time of the jump.
 	}
 );
 
 // By default, only the top of the previous and forward location stack is given. Use `EpubJumpHistory.all` to access a copy of the jump history stacks in the builder
 EpubJumpHistory.all(
 	controller: controller,
-	builder: (List<EpubJump> previousJumps, List<EpubJump> forwardJumps) {
-		// If the user jumps to a previous location that is not the most recent, it and all more recent previous jumps will be moved to the forward jumps stack with the selected previous jump at the top of the stack.
+	builder: (List<EpubJump> priorJumps, List<EpubJump> forwardJumps) {
+		// If the user jumps to a prior location that is not the most recent, it and all more recent prior jumps will be moved to the forward jumps stack with the selected prior jump at the top of the stack.
 		// The reverse is also true for the forward jumps stack.
 		return Container();
 	}
@@ -140,6 +184,10 @@ EpubJumpHistory.all(
 
 **Note:** The implementation of this is still in the experimental stages. Any help would be greatly appreciated. We need to somehow determine how much html text can fit on a page, and where the html for an arbitrary page starts and ends.
 
+Ideally, I would like to be able to render the html natively in Flutter, but it needs to be done in a way that can determine the height of the widget before layout. Current Flutter Html packages do not support getting the height before layout. Another option is to render the html in a webview, but this greatly complicates making `flutter_shu_epub` a cross platform library.
+
+As of now, it seems the best option is to create a custom Flutter html package which allows viewing the height before layout, using `TextPainter`, with `getPositionForOffset`. It should only support the most common html formatting such as bold and italics.
+
 #### Usage
 
 ```dart
@@ -147,7 +195,7 @@ EpubView.paged(
 	controller: controller,
 	// TODO: what should be provided here for the html?
 	// `builder` is called for every page in the `PageView.builder`.
-	builder: (Widget html, EpubJump? previousJump, EpubJump? forwardJump) {},
+	builder: (Widget html, EpubJump? priorJump, EpubJump? forwardJump) {},
 	onPageChanged: (EpubCfi previousCfi, EpubCfi currentCfi) {},
 	reverse: false,
 	physics: null,
@@ -164,11 +212,10 @@ EpubView.scrollable(
 	// `currentCfi` is the line at the top of the visible screen
 	onScroll: (EpubCfi previousCfi, EpubCfi currentCfi) {},
 	// TODO: Determine fields
+	// TODO: what should be provided here for the html?
+	builder: (Widget html, EpubJump? priorJump, EpubJump? forwardJump) {},
 )
 ```
 
-#### Implementation
+## Implementation
 
-I am still currently exploring how to implement this. Ideally, I would like to be able to render the html natively in Flutter, but it needs to be done in a way that can determine the height of the widget before layout. Current Flutter Html packages do not support getting the height before layout. Another option is to render the html in a webview, but this greatly complicates making `flutter_shu_epub` a cross platform library.
-
-As of now, it seems the best option is to create a custom Flutter html package which allows viewing the height before layout, using `TextPainter`, with `getPositionForOffset`. It should only support the most common html formatting such as bold and italics.
