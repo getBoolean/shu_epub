@@ -8,7 +8,7 @@
 
 A Dart EPUB parser built from the ground up, and designed to support a variety of use cases and custom implementations such as on-device caching and serving content from a server. This package is current WIP and is NOT yet usuable.
 
-Note: *This project is currently on hold as I am currently busy with IRL stuff.*
+Note: *This project is currently on hold while I decide on the front-facing API. See the [protoype code here](PROTOTYPE.md)*
 
 ## Motivation
 
