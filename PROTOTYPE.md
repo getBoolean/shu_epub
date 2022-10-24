@@ -13,7 +13,9 @@ This Dart-only provides an API for parsing EPUB files and extracting information
 
 ```dart
 // TODO:
-// 1. Parsing of Epub CFIs
+//   1. Parsing of Epub CFIs
+//   2. Friendly API for extracting relavent information
+//   3. Determine reading progress from Epub CFI
 ```
 
 ## Implementation
@@ -28,6 +30,8 @@ class EpubLocation {
 class EpubReadingProgress {
 	final EpubLocation location;
 	final int percent;
+	final int estimatedPage;
+	final int estimatedPageCount;
 	// ...
 }
 
