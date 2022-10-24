@@ -1,17 +1,56 @@
 This file is for prototyping the public facing API for this library. This is in progress and may change. This contains prototypes for [flutter_shu_epub](https://github.com/getBoolean/shu_epub/issues/19), but is temporarily kept here since development has not started on the Flutter widgets.
 
-# shu_epub
-
 ## What Package To Install
 
-Follow the [package install instructions](https://pub.dev/packages/shu_epub/install),
-and you can start using shu_epub in your app:
+* Flutter: [flutter_shu_epub](https://pub.dev/packages/flutter_shu_epub)
+* Dart only (No Flutter): [shu_epub](https://pub.dev/packages/shu_epub)
+
+# shu_epub
+
+This Dart-only provides an API for parsing EPUB files and extracting information from them. This is used by [flutter_shu_epub](https://pub.dev/packages/flutter_shu_epub), and could also be used by a shell/console only EPUB reader if someone was interested in implementing it.
+
+## Usage
+
+```dart
+// TODO:
+// 1. Parsing of Epub CFIs
+```
+
+## Implementation
+
+```dart
+class EpubLocation {
+	// TODO: https://idpf.org/epub/linking/cfi/epub-cfi.html
+	final String rawCfi;
+	// ...
+}
+
+class EpubReadingProgress {
+	final EpubLocation location;
+	final int percent;
+	// ...
+}
+
+class EpubLocationList extends List<EpubLocation> {
+	EpubLocation peek() => this[this.length - 1];
+	void push(EpubLocation);
+	EpubLocationList popFrom(EpubLocation);
+	EpubLocation pop();
+}
+```
+
+# flutter_shu_epub
+
+## Getting Started
+
+Create an `EpubController` with the data of the EPUB file. It is very important that the controller is not initialized in the `build` method.
 
 ```dart
 // !!! Do not do this in the build method.
 final controller = EpubController(bytes);
 final controllerFromData = EpubController.fromData(bytes);
-final controllerFromFile = await EpubController.fromFile(file);
+// If `openInPlace` is `true`, the EPUB file must be saved in the app's directory
+final controllerFromFile = await EpubController.fromFile(file, openInPlace: false);
 
 // Go to CFI location
 String epubCfiString = "book.epub#epubcfi(/6/4[chap01ref]!/4[body01]/10[para05]/3:10)";
@@ -29,98 +68,7 @@ EpubLocation? priorLocation = controller.getPriorLocation();
 EpubLocation? priorLocation = controller.getForwardLocation();
 ```
 
-## Implementation
-
-```dart
-class EpubController extends ChangeNotifier {
-	// TODO: Parse bytes into epub object
-	final List<int> bytes;
-	/// null if the book has not been opened
-	EpubLocation? currentLocation;
-	// `EpubLocationList` is a list with utility methods that are specific to `EpubLocation`. It acts similar to a stack
-	EpubLocationList priorLocations = [];
-	EpubLocationList forwardLocations = [];
-	EpubReadingProgress readingProgress = EpubReadingProgress();
-	
-	EpubController(this.bytes, {EpubLocation? initialLocation})
-		: currentLocation = initialLocation;
-	EpubController.fromData(this.bytes, {EpubLocation? initialLocation})
-		: currentLocation = initialLocation;;
-	static EpubController fromFile(File file, {EpubLocation? initialLocation}) async {
-		final bytes = await file.readAsBytes()
-		// plus error handling for io exceptions (e.g., no such file or no permission)
-		return EpubController(bytes, initialLocation: initialLocation);
-	}
-	EpubLocation getPriorLocation();
-	EpubLocation getForwardLocation();
-
-	// The app should retrieve the reading progress once the book is closed and save it
-	EpubReadingProgress getReadingProgress() {
-		returns readingProgress;
-	}
-
-	
-	EpubGoResult goToPriorLocation() {
-		// push `currentLocation` to `forwardLocations`
-		// pop top item from `priorLocations`
-		// update `currentLocation` with above result and notify listeners
-		// `EpubView` animates to the new page
-	}
-	EpubGoResult goToForwardLocation() {
-		// push `currentLocation` to `priorLocations`
-		// pop top item from `forwardLocations`
-		// update `currentLocation` with above result and notify listeners
-		// `EpubView` animates to the new page
-	}
-	EpubGoResult goTo(EpubLocation) {
-		// push `currentLocation` to `priorLocations`
-		// update `currentLocation` and notify listeners
-		// `EpubView` animates to the new page
-	}
-
-	// TODO: not sure about how to implement these two methods
-	void goToPreviousPage();
-	void goToNextPage() {
-		// update `currentLocation` to ...
-		// clear `forwardLocations` and notify listeners
-		// `EpubView` animates to the new page
-	}
-}
-
-class EpubReadingProgress {
-	final EpubLocation location;
-	final int percent;
-	// ...
-}
-
-class EpubLocationList extends List<EpubLocation> {
-	EpubLocation peek() => this[this.length - 1];
-	void push(EpubLocation);
-	EpubLocationList popFrom(EpubLocation);
-	EpubLocation pop();
-}
-
-class EpubLocation {
-	// TODO: https://idpf.org/epub/linking/cfi/epub-cfi.html
-	final String rawCfi;
-	// ...
-}
-
-class EpubGoResult {
-	final EpubGoResultType type;
-	final EpubLocation previousLocation;
-	final EpubLocation newLocation;
-	// ...
-}
-
-enum EpubGoResultType {
-	success,
-	noSuchLocation,
-	invalidLocationFormat,
-}
-```
-
-# flutter_shu_epub
+\*`Epub Cfi` stands for `Epub Canonical Fragment Identifiers`, see the [specification](https://idpf.org/epub/linking/cfi/epub-cfi.html) for more detail. TLDR, it is the link format used by EPUBs.
 
 ## Widgets
 
@@ -147,8 +95,6 @@ EpubTableOfContents(
 	shrinkWrap: false,
 );
 ```
-
-\*`EpubCfi` stands for `Epub Canonical Fragment Identifiers`, see the [specifications](https://idpf.org/epub/linking/cfi/epub-cfi.html) for more details. TLDR, it is the link format used by EPUBs.
 
 ### Epub Go History
 
@@ -217,6 +163,8 @@ EpubView.scrollable(
 
 ## Implementation
 
+### Widgets
+
 ```dart
 class EpubTableOfContents extends StatelessWidget {
 	const EpubTableOfContents({
@@ -234,5 +182,79 @@ class EpubTableOfContents extends StatelessWidget {
 		// Scroll to item before controller.getCurrentLocation() if not null
 		return ListView.builder(/** items **/);
 	}
+}
+```
+
+### Objects
+
+These are not widgets but are Flutter related.
+
+```dart
+class EpubController extends ChangeNotifier {
+	// TODO: Parse bytes into epub object
+	final List<int> bytes;
+	/// null if the book has not been opened
+	EpubLocation? currentLocation;
+	// `EpubLocationList` is a list with utility methods that are specific to `EpubLocation`. It acts similar to a stack
+	EpubLocationList priorLocations = [];
+	EpubLocationList forwardLocations = [];
+	EpubReadingProgress readingProgress = EpubReadingProgress();
+	
+	EpubController(this.bytes, {EpubLocation? initialLocation})
+		: currentLocation = initialLocation;
+	EpubController.fromData(this.bytes, {EpubLocation? initialLocation})
+		: currentLocation = initialLocation;;
+	static EpubController fromFile(File file, {EpubLocation? initialLocation}) async {
+		final bytes = await file.readAsBytes()
+		// plus error handling for io exceptions (e.g., no such file or no permission)
+		return EpubController(bytes, initialLocation: initialLocation);
+	}
+	EpubLocation getPriorLocation();
+	EpubLocation getForwardLocation();
+
+	// The app should retrieve the reading progress once the book is closed and save it
+	EpubReadingProgress getReadingProgress() {
+		returns readingProgress;
+	}
+
+	
+	EpubGoResult goToPriorLocation() {
+		// push `currentLocation` to `forwardLocations`
+		// pop top item from `priorLocations`
+		// update `currentLocation` with above result and notify listeners
+		// `EpubView` animates to the new page
+	}
+	EpubGoResult goToForwardLocation() {
+		// push `currentLocation` to `priorLocations`
+		// pop top item from `forwardLocations`
+		// update `currentLocation` with above result and notify listeners
+		// `EpubView` animates to the new page
+	}
+	EpubGoResult goTo(EpubLocation) {
+		// push `currentLocation` to `priorLocations`
+		// update `currentLocation` and notify listeners
+		// `EpubView` animates to the new page
+	}
+
+	// TODO: not sure about how to implement these two methods
+	void goToPreviousPage();
+	void goToNextPage() {
+		// update `currentLocation` to ...
+		// clear `forwardLocations` and notify listeners
+		// `EpubView` animates to the new page
+	}
+}
+
+class EpubGoResult {
+	final EpubGoResultType type;
+	final EpubLocation previousLocation;
+	final EpubLocation newLocation;
+	// ...
+}
+
+enum EpubGoResultType {
+	success,
+	noSuchLocation,
+	invalidLocationFormat,
 }
 ```
