@@ -17,7 +17,7 @@ final controllerFromFile = await EpubController.fromFile(file);
 String epubCfiString = "book.epub#epubcfi(/6/4[chap01ref]!/4[body01]/10[para05]/3:10)";
 EpubLocation epubLocation = EpubLocation(epubCfiString);
 // go to new location
-EpubGoResult goResult = controller.goToLocation(epubLocation);
+EpubGoResult goResult = controller.goTo(epubLocation);
 // go back
 EpubGoResult goResult = controller.goToPriorLocation();
 // go to `epubLocation` again
@@ -37,7 +37,7 @@ class EpubController extends ChangeNotifier {
 	final List<int> bytes;
 	/// null if the book has not been opened
 	EpubLocation? currentLocation;
-	// `EpubLocationList` is a list with utility methods that are specific to `EpubJump`. It acts similar to a stack
+	// `EpubLocationList` is a list with utility methods that are specific to `EpubLocation`. It acts similar to a stack
 	EpubLocationList priorLocations = [];
 	EpubLocationList forwardLocations = [];
 	EpubReadingProgress readingProgress = EpubReadingProgress();
@@ -51,8 +51,8 @@ class EpubController extends ChangeNotifier {
 		// plus error handling for io exceptions (e.g., no such file or no permission)
 		return EpubController(bytes, initialLocation: initialLocation);
 	}
-	EpubJump getPriorJump();
-	EpubJump getForwardJump();
+	EpubLocation getPriorLocation();
+	EpubLocation getForwardLocation();
 
 	// The app should retrieve the reading progress once the book is closed and save it
 	EpubReadingProgress getReadingProgress() {
@@ -72,7 +72,7 @@ class EpubController extends ChangeNotifier {
 		// update `currentLocation` with above result and notify listeners
 		// `EpubView` animates to the new page
 	}
-	EpubGoResult goToLocation(EpubLocation) {
+	EpubGoResult goTo(EpubLocation) {
 		// push `currentLocation` to `priorLocations`
 		// update `currentLocation` and notify listeners
 		// `EpubView` animates to the new page
@@ -95,7 +95,7 @@ class EpubReadingProgress {
 
 class EpubLocationList extends List<EpubLocation> {
 	EpubLocation peek() => this[this.length - 1];
-	void push(EpubJump);
+	void push(EpubLocation);
 	EpubLocationList popFrom(EpubLocation);
 	EpubLocation pop();
 }
@@ -150,7 +150,7 @@ EpubTableOfContents(
 
 \*`EpubCfi` stands for `Epub Canonical Fragment Identifiers`, see the [specifications](https://idpf.org/epub/linking/cfi/epub-cfi.html) for more details. TLDR, it is the link format used by EPUBs.
 
-### Jump History
+### Epub Go History
 
 Use this widget to access the jump history of an `EpubController`. The widget will be rebuilt when the jump history changes. 
 
@@ -159,18 +159,18 @@ The history is kept in two stacks, one for previous locations and one for forwar
 #### Usage
 
 ```dart
-EpubJumpHistory(
+EpubGoHistory(
 	controller: controller,
-	// Each `EpubJump` has the time the jump was made
-	builder: (EpubJump? priorJump, EpubJump? forwardJump) {
-		return Container(); // This could be a row with two buttons that call `controller.goToLocation(jump)` when pressed. The controller is able to determine if it is in the stack using the time of the jump.
+	// Each `EpubLocation` has the time the jump was made
+	builder: (EpubLocation? priorLocation, EpubLocation? forwardLocation) {
+		return Container(); // This could be a row with two buttons that call `controller.goTo(priorLocation)` when pressed. The controller is able to determine if it is at the top of one of the stacks and rebuilds with the new prior and forward locations
 	}
 );
 
-// By default, only the top of the previous and forward location stack is given. Use `EpubJumpHistory.all` to access a copy of the jump history stacks in the builder
-EpubJumpHistory.all(
+// By default, only the top of the previous and forward location stack is given. Use `EpubGoHistory.all` to access a copy of the jump history stacks in the builder
+EpubGoHistory.all(
 	controller: controller,
-	builder: (List<EpubJump> priorJumps, List<EpubJump> forwardJumps) {
+	builder: (List<EpubLocation> priorLocations, List<EpubLocation> forwardLocations) {
 		// If the user jumps to a prior location that is not the most recent, it and all more recent prior jumps will be moved to the forward jumps stack with the selected prior jump at the top of the stack.
 		// The reverse is also true for the forward jumps stack.
 		return Container();
