@@ -27,10 +27,10 @@ However, this cannot take advantage of the system cache.
 and more...
 
 ## Progress and Plans
+
 - [shu_epub](https://github.com/getBoolean/shu_epub/issues/18) (WIP)
 - [flutter_shu_epub](https://github.com/getBoolean/shu_epub/issues/19) (not started)
   
-
 ## Testing
 
 Run tests with the following command
