@@ -18,7 +18,7 @@ This Dart-only provides an API for parsing EPUB files and extracting information
 //   3. Determine reading progress from Epub CFI
 
 class EpubParser {
-	// Allows custom 
+	/// Provides ability to override how the files are retrieved. 
 	final EpubParserController controller;
 	const EpubParser({this.controller = EpubParserArchiveController()});
 	// ...
