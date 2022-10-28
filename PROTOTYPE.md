@@ -25,12 +25,14 @@ class EpubParser {
 	EpubTableOfContents getTableOfContents();
 
 	// Ordered by `EpubLocation`
-	Map<EpubLocation, EpubImage> getAllImages();
+	Map<EpubLocation, EpubImage> getImages();
+
+	List<EpubContentFile> getContentFiles();
 
 	// `EpubCSS` holds a reference to the file so it can be loaded only when needed (if applicable)
-	List<EpubCSS> getAllCSS();
+	List<EpubCSS> getCssFiles();
 
-	Future<String> readCSSFileAsString(EpubCSS);
+	Future<String> readCssFileAsString(EpubCSS);
 
 	Future<List<int>> readImageAsBytes(EpubImage);
 
