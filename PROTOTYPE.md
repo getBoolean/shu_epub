@@ -7,7 +7,7 @@ This file is for prototyping the public facing API for this library. This is in 
 
 # shu_epub
 
-This Dart-only provides an API for parsing EPUB files and extracting information from them. This is used by [flutter_shu_epub](https://pub.dev/packages/flutter_shu_epub), and could also be used by a shell/console only EPUB reader if someone was interested in implementing it.
+This Dart-only package provides an API for parsing EPUB files and extracting information from them. This is used by [flutter_shu_epub](https://pub.dev/packages/flutter_shu_epub), and could also be used by a shell/console only EPUB reader if someone was interested in implementing it.
 
 ## Usage
 
@@ -21,6 +21,21 @@ class EpubParser {
 	/// Provides ability to override how the files are retrieved. 
 	final EpubParserController controller;
 	const EpubParser({this.controller = EpubParserArchiveController()});
+
+	EpubTableOfContents getTableOfContents();
+
+	// Ordered by `EpubLocation`
+	Map<EpubLocation, EpubImage> getAllImages();
+
+	// `EpubCSS` holds a reference to the file so it can be loaded only when needed (if applicable)
+	List<EpubCSS> getAllCSS();
+
+	Future<String> readCSSFileAsString(EpubCSS);
+
+	Future<List<int>> readImageAsBytes(EpubImage);
+
+	Future<String> readFileAsString(File);
+	
 	// ...
 }
 ```
@@ -47,6 +62,10 @@ class EpubLocationList extends List<EpubLocation> {
 	void push(EpubLocation);
 	EpubLocationList popFrom(EpubLocation);
 	EpubLocation pop();
+}
+
+class EpubCSS {
+	final File file;
 }
 ```
 
@@ -191,6 +210,7 @@ class EpubTableOfContents extends StatelessWidget {
 
 	Widget build(BuildContext context) {
 		// Scroll to item before controller.getCurrentLocation() if not null
+		final toc = controller.getTableOfContents();
 		return ListView.builder(/** items **/);
 	}
 }
