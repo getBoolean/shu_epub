@@ -21,21 +21,30 @@ This Dart-only package provides an API for parsing EPUB files and extracting inf
 import 'dart:io' as io
 
 Future<void> main() async {
+
+	// Recommended only for web, or when direct file access is not available.
+	// This should be used for Flutter applications if the EPUB is not copied to the app directory.
+	// The user could delete the file after opening it in the app, so either:
+	//   1. copy the file into the app directory and use `EpubParserController.file`
+	//   2. load the entire file and use `EpubParserController.bytes`
 	final file = io.File("path/to/file.epub");
 	final bytes = await file.readAsBytes();
-	EpubParserArchiveController controller = EpubParserController.archive(
+	EpubParserControllerArchive controller = EpubParserController.bytes(
 		bytes: bytes,
 	);
 
-	// not available on web.
-	// This only reads into memory the parts of the `.epub` file as it needs it
-	EpubParserArchiveIOController controllerIO = EpubParserController.archiveIO(
+	// For Flutter and server applications, with direct file access to reduce memory usage.
+	// Not available on web.
+	EpubParserControllerArchiveIO controllerInPlace = EpubParserController.file(
 		file: file,
 	);
 
-	// Opening an extracted epub (epubs are actually just zip files)
+	// Opening an extracted epub. This works since epubs are actually just zip files
+	// Not available on web
 	final directory = io.Directory("path/to/folder.epub/");
-	final controllerEx = EpubParserController.extracted(directory: directory);
+	EpubParserControllerExtracted controllerEx = EpubParserController.extracted(
+		directory: directory,
+	);
 	Epub epub = Epub.open(controller: controller);
 	EpubTableOfContents toc = epub.tableOfContents;
 	List<EpubAuthor> authors = epub.authors;
@@ -43,7 +52,7 @@ Future<void> main() async {
 
 class Epub {
 	final EpubParser parser;
-	final EpubStructure structure;
+	final EpubStructure structure; // instead of `EpubDetails`
 
 	const Epub._({this.parser, this.structure})
 	
@@ -101,6 +110,12 @@ class EpubLocationList extends List<EpubLocation> {
 	EpubLocationList popFrom(EpubLocation);
 	EpubLocation pop();
 	// ...
+}
+
+class EpubStructure {
+	final EpubPackage package;
+	final EpubContainer container;
+	final EpubNavigation navigation;
 }
 
 class EpubCSS {
