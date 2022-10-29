@@ -181,8 +181,8 @@ Create an `EpubController` with the data of the EPUB file. It is very important 
 ```dart
 // !!! Do not do this in the build method.
 final controller = EpubController(bytes);
-final controllerFromData = EpubController.fromData(bytes);
-// If `openInPlace` is `true`, the EPUB file must be saved in the app's directory
+final controllerFromBytes = EpubController.fromBytes(bytes);
+// If `openInPlace` is `true`, the EPUB file must be saved in the app's directory (someplace the app has access to)
 final controllerFromFile = await EpubController.fromFile(file, openInPlace: false);
 
 // Go to CFI location
