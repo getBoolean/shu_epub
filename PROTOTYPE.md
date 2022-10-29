@@ -31,7 +31,6 @@ Future<void> main() async {
 	// Allows a custom implementation of `EpubParserController`
 	Epub epub = await Epub.fromCustom(controller);
 
-
 	// Recommended only for web, or when direct file access is not available.
 	// 
 	// The user could delete the file after opening it in the application, so either:
@@ -60,35 +59,34 @@ Future<void> main() async {
 ```dart
 class Epub {
 	final EpubParser parser;
-	final EpubStructure structure; // instead of `EpubDetails`
+	final EpubSchema schema; // instead of `EpubDetails`
 
-	const Epub._({this.parser, this.structure})
+	const Epub._({this.parser, this.schema})
 	
 	static Future<Epub> fromCustom<T extends EpubParserController>(T controller) async {
 		final parser = EpubParser(controller: controller);
-		final structure = await parser.readStructure();
-		return Epub._(parser: parser, structure: structure);
+		final schema = await parser.readSchema();
+		return Epub._(parser: parser, schema: schema);
 	}
 
-	static Future<Epub> fromBytes(List<int> bytes) async {
+	static Future<Epub> fromBytes(List<int> bytes) {
 		EpubParserControllerArchive controller = EpubParserController.bytes(
 			bytes);
 		return fromCustom(controller: controller)
 	}
 	
-	static Future<Epub> fromFile(io.File file) async {
+	static Future<Epub> fromFile(io.File file) {
 		EpubParserControllerArchiveIO controller = EpubParserController.file(
 			file);
 		return fromCustom(controller: controller)
 	}
 	
-	static Future<Epub> fromExtracted(io.Directory directory) async {
+	static Future<Epub> fromExtracted(io.Directory directory) {
 		EpubParserControllerExtracted controller = EpubParserController.extracted(
 			directory);
 		return fromCustom(controller: controller)
 	}
 	
-
 	EpubTableOfContents get tableOfContents;
 	List<EpubAuthor> get authors;
 	/// Allows HTML formatting
@@ -96,6 +94,9 @@ class Epub {
 	List<EpubImage> get images;
 	List<EpubContent> get content;
 	List<EpubCss> get css;
+	
+	// If no cover image, it uses the first image bigger than the min size
+	Future<EpubImage>? readCoverImage();
 	
 	// ...
 }
@@ -107,7 +108,7 @@ class EpubParser<T extends EpubParserController> {
 	const EpubParser({required this.controller});
 
 	/// Depending on `controller`, this will either only read into memory the files it needs, or read the entire `.epub` file into memory (stored in `controller`)
-	Future<EpubStructure> readStructure();
+	Future<EpubSchema> readSchema();
 	
 	// ...
 }
@@ -138,11 +139,15 @@ class EpubLocationList extends List<EpubLocation> {
 	// ...
 }
 
-class EpubStructure {
+class EpubSchema {
 	final EpubPackage package;
 	final EpubContainer container;
 	final EpubNavigation navigation;
+	// ...
 }
+
+// ---- Files ----
+// The below are still heavily WIP
 
 class EpubCSS {
 	final File file;
@@ -152,12 +157,14 @@ class EpubCSS {
 
 class EpubContent {
 	final File file;
+	final ContentType type;
 	Future<String> readAsString();
 	// ...
 }
 
 class EpubImage {
 	final File file;
+	final ContentType type;
 	Future<List<int>> readAsBytes(...);
 	/// `Image` from https://pub.dev/packages/image
 	Future<img.Image> readAsImage(...);
