@@ -64,7 +64,7 @@ class Epub {
 
 	const Epub._({this.parser, this.structure})
 	
-	static Future<Epub> fromCustom(EpubParserController controller) async {
+	static Future<Epub> fromCustom<T extends EpubParserController>(T controller) async {
 		final parser = EpubParser(controller: controller);
 		final structure = await parser.readStructure();
 		return Epub._(parser: parser, structure: structure);
