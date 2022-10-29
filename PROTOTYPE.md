@@ -23,10 +23,10 @@ import 'dart:io' as io
 Future<void> main() async {
 
 	// Recommended only for web, or when direct file access is not available.
-	// This should be used for Flutter applications if the EPUB is not copied to the app directory.
-	// The user could delete the file after opening it in the app, so either:
+	// 
+	// The user could delete the file after opening it in the application, so either:
 	//   1. copy the file into the app directory and use `EpubParserController.file`
-	//   2. load the entire file and use `EpubParserController.bytes`
+	//   2. load the file bytes and use `EpubParserController.bytes`
 	final file = io.File("path/to/file.epub");
 	final bytes = await file.readAsBytes();
 	EpubParserControllerArchive controller = EpubParserController.bytes(
@@ -45,6 +45,8 @@ Future<void> main() async {
 	EpubParserControllerExtracted controllerEx = EpubParserController.extracted(
 		directory: directory,
 	);
+
+	// TODO: Improve this API
 	Epub epub = Epub.open(controller: controller);
 	EpubTableOfContents toc = epub.tableOfContents;
 	List<EpubAuthor> authors = epub.authors;
