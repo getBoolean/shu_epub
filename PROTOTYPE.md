@@ -33,16 +33,18 @@ Future<void> main() async {
 	// Recommended only for web, or when direct file access is not available.
 	// 
 	// The user could delete the file after opening it in the application, so either:
-	//   1. copy the file into the app directory and use `EpubParserController.file`
-	//   2. load the file bytes and use `EpubParserController.bytes`
+	//   1. copy the file into the app directory and use [Epub.fromFile]
+	//   2. load the file bytes and use [Epub.fromBytes]
 	Epub epub2 = await Epub.fromBytes(bytes);
 
 	
 	// For Flutter and server applications, with direct file access to reduce memory usage.
+	//
 	// Not available on web.
 	Epub epub3 = await Epub.fromFile(file);
 	
 	// Opening an extracted epub. This works since epubs are actually just zip files
+	//
 	// Not available on web
 	final directory = io.Directory("path/to/folder.epub/");
 	Epub epub4 = await Epub.fromExtracted(directory);
