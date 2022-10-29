@@ -21,14 +21,16 @@ This Dart-only package provides an API for parsing EPUB files and extracting inf
 import 'dart:io' as io
 
 Future<void> main() async {
-
-	
+	// Get a reference to the file (or the file bytes on web)
 	final file = io.File("path/to/file.epub");
+	// This line is for demonstration only, use a file picker or network request on web
 	final bytes = await file.readAsBytes();
-	EpubParserControllerArchive controller = EpubParserController.bytes(bytes);
+
+	EpubParserControllerArchiveIO controller = EpubParserController.file(file);
 
 	// Allows a custom implementation of `EpubParserController`
 	Epub epub = await Epub.fromCustom(controller);
+
 
 	// Recommended only for web, or when direct file access is not available.
 	// 
@@ -36,7 +38,6 @@ Future<void> main() async {
 	//   1. copy the file into the app directory and use [Epub.fromFile]
 	//   2. load the file bytes and use [Epub.fromBytes]
 	Epub epub2 = await Epub.fromBytes(bytes);
-
 	
 	// For Flutter and server applications, with direct file access to reduce memory usage.
 	//
@@ -52,7 +53,11 @@ Future<void> main() async {
 	EpubTableOfContents toc = epub.tableOfContents;
 	List<EpubAuthor> authors = epub.authors;
 }
+```
 
+## Implementation
+
+```dart
 class Epub {
 	final EpubParser parser;
 	final EpubStructure structure; // instead of `EpubDetails`
@@ -95,9 +100,9 @@ class Epub {
 	// ...
 }
 
-class EpubParser {
+class EpubParser<T extends EpubParserController> {
 	/// Provides ability to override how the files are retrieved. 
-	final EpubParserController controller;
+	final T controller;
 	
 	const EpubParser({required this.controller});
 
@@ -107,11 +112,10 @@ class EpubParser {
 	// ...
 }
 
-```
+abstract EpubParserController {
+	// ...
+} 
 
-## Implementation
-
-```dart
 class EpubLocation {
 	// TODO: https://idpf.org/epub/linking/cfi/epub-cfi.html
 	final String rawCfi;
