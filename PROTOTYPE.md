@@ -46,8 +46,12 @@ Future<void> main() async {
 		directory: directory,
 	);
 
-	// TODO: Improve this API
-	Epub epub = Epub.open(controller: controller);
+	Epub epub = Epub(controller: controller);
+	Epub epub1 = Epub.fromCustom(controller: controller);
+	Epub epub2 = Epub.fromBytes(bytes: bytes);
+	Epub epub3 = Epub.fromFile(file: file);
+	Epub epub4 = Epub.fromExtracted(directory: directory);
+	
 	EpubTableOfContents toc = epub.tableOfContents;
 	List<EpubAuthor> authors = epub.authors;
 }
