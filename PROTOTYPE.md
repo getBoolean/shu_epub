@@ -77,7 +77,7 @@ class Epub {
 	
 	static Future<Epub> fromExtracted(io.Directory directory) async {
 		EpubParserControllerExtracted controllerEx = EpubParserController.extracted(
-		directory);
+			directory);
 		return fromCustom(controller: controller)
 	}
 	
