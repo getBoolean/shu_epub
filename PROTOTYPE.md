@@ -16,9 +16,10 @@ This Dart-only package provides an API for parsing EPUB files and extracting inf
 //   1. Parsing of Epub CFIs
 //   2. Friendly API for extracting relavent information
 //   3. Determine reading progress from Epub CFI
+import 'dart:io' as io
 
 Future<void> main() async {
-	final file = File("path/to/file.epub");
+	final file = io.File("path/to/file.epub");
 	final controller = EpubParserArchiveController(file: file);
 	Epub epub = Epub.open(controller: controller);
 	EpubTableOfContents toc = epub.tableOfContents;
@@ -29,7 +30,7 @@ class Epub {
 	final EpubParser parser;
 	final EpubStructure structure;
 
-	const Epub._({EpubParser parser, EpubStructure structure})
+	const Epub._({this.parser, this.structure})
 	
 	static Future<Epub> open({required EpubParserController controller}) async {
 		final parser = EpubParser(controller: controller);
