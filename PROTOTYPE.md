@@ -22,35 +22,30 @@ import 'dart:io' as io
 
 Future<void> main() async {
 
+	
+	final file = io.File("path/to/file.epub");
+	final bytes = await file.readAsBytes();
+	EpubParserControllerArchive controller = EpubParserController.bytes(bytes);
+
+	// Allows a custom implementation of `EpubParserController`
+	Epub epub = await Epub.fromCustom(controller);
+
 	// Recommended only for web, or when direct file access is not available.
 	// 
 	// The user could delete the file after opening it in the application, so either:
 	//   1. copy the file into the app directory and use `EpubParserController.file`
 	//   2. load the file bytes and use `EpubParserController.bytes`
-	final file = io.File("path/to/file.epub");
-	final bytes = await file.readAsBytes();
-	EpubParserControllerArchive controller = EpubParserController.bytes(
-		bytes: bytes,
-	);
+	Epub epub2 = await Epub.fromBytes(bytes);
 
+	
 	// For Flutter and server applications, with direct file access to reduce memory usage.
 	// Not available on web.
-	EpubParserControllerArchiveIO controllerInPlace = EpubParserController.file(
-		file: file,
-	);
-
+	Epub epub3 = await Epub.fromFile(file);
+	
 	// Opening an extracted epub. This works since epubs are actually just zip files
 	// Not available on web
 	final directory = io.Directory("path/to/folder.epub/");
-	EpubParserControllerExtracted controllerEx = EpubParserController.extracted(
-		directory: directory,
-	);
-
-	Epub epub = Epub(controller: controller);
-	Epub epub1 = Epub.fromCustom(controller: controller);
-	Epub epub2 = Epub.fromBytes(bytes: bytes);
-	Epub epub3 = Epub.fromFile(file: file);
-	Epub epub4 = Epub.fromExtracted(directory: directory);
+	Epub epub4 = await Epub.fromExtracted(directory);
 	
 	EpubTableOfContents toc = epub.tableOfContents;
 	List<EpubAuthor> authors = epub.authors;
@@ -62,11 +57,30 @@ class Epub {
 
 	const Epub._({this.parser, this.structure})
 	
-	static Future<Epub> open({required EpubParserController controller}) async {
+	static Future<Epub> fromCustom(EpubParserController controller) async {
 		final parser = EpubParser(controller: controller);
 		final structure = await parser.readStructure();
 		return Epub._(parser: parser, structure: structure);
 	}
+
+	static Future<Epub> fromBytes(List<int> bytes) async {
+		EpubParserControllerArchive controller = EpubParserController.bytes(
+			bytes);
+		return fromCustom(controller: controller)
+	}
+	
+	static Future<Epub> fromFile(io.File file) async {
+		EpubParserControllerArchiveIO controllerInPlace = EpubParserController.file(
+			file);
+		return fromCustom(controller: controller)
+	}
+	
+	static Future<Epub> fromExtracted(io.Directory directory) async {
+		EpubParserControllerExtracted controllerEx = EpubParserController.extracted(
+		directory);
+		return fromCustom(controller: controller)
+	}
+	
 
 	EpubTableOfContents get tableOfContents;
 	List<EpubAuthor> get authors;
