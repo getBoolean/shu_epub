@@ -22,7 +22,20 @@ import 'dart:io' as io
 
 Future<void> main() async {
 	final file = io.File("path/to/file.epub");
-	final controller = EpubParserArchiveController(file: file);
+	final bytes = await file.readAsBytes();
+	EpubParserArchiveController controller = EpubParserController.archive(
+		bytes: bytes,
+	);
+
+	// not available on web.
+	// This only reads into memory the parts of the `.epub` file as it needs it
+	EpubParserArchiveIOController controllerIO = EpubParserController.archiveIO(
+		file: file,
+	);
+
+	// Opening an extracted epub (epubs are actually just zip files)
+	final directory = io.Directory("path/to/folder.epub/");
+	final controllerEx = EpubParserController.extracted(directory: directory);
 	Epub epub = Epub.open(controller: controller);
 	EpubTableOfContents toc = epub.tableOfContents;
 	List<EpubAuthor> authors = epub.authors;
@@ -331,3 +344,14 @@ enum EpubGoResultType {
 	invalidLocationFormat,
 }
 ```
+
+# shu_core
+
+- Only the core classes unrelated to epubs, with the goal of adding support for other ebook standards.
+- `shu_epub` would depend on and export `shu_core`.
+
+# flutter_shu_reader
+
+- Same as `shu` but for the Flutter widgets.
+- `flutter_shu_reader` would export `shu`. 
+- `flutter_shu_epub` and related packages would be optional packages to add support for specific filetypes.
