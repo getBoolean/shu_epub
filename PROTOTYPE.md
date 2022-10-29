@@ -1,7 +1,6 @@
-This file is for prototyping the public facing API for this library. This is in progress and may change. This contains prototypes for [flutter_shu_epub](https://github.com/getBoolean/shu_epub/issues/19), but is temporarily kept here since development has not started on the Flutter widgets.
+Status: In progress
 
-Status: In Progress
-Author: getBoolean
+This is for prototyping the public facing API of this library, it is in progress and may change at any time. This also contains prototypes for [flutter_shu_epub](https://github.com/getBoolean/shu_epub/issues/19), but is temporarily kept here since development has not started on the Flutter widgets.
 
 ## What Package To Install
 
