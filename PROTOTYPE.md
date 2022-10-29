@@ -17,29 +17,49 @@ This Dart-only package provides an API for parsing EPUB files and extracting inf
 //   2. Friendly API for extracting relavent information
 //   3. Determine reading progress from Epub CFI
 
-class EpubParser {
-	/// Provides ability to override how the files are retrieved. 
-	final EpubParserController controller;
-	const EpubParser({this.controller = EpubParserArchiveController()});
+Future<void> main() async {
+	final file = File("path/to/file.epub");
+	final controller = EpubParserArchiveController(file: file);
+	Epub epub = Epub.open(controller: controller);
+	EpubTableOfContents toc = epub.tableOfContents;
+	List<EpubAuthor> authors = epub.authors;
+}
 
-	EpubTableOfContents getTableOfContents();
+class Epub {
+	final EpubParser parser;
+	final EpubStructure structure;
 
-	// Ordered by `EpubLocation`
-	Map<EpubLocation, EpubImage> getImages();
+	const Epub._({EpubParser parser, EpubStructure structure})
+	
+	static Future<Epub> open({required EpubParserController controller}) async {
+		final parser = EpubParser(controller: controller);
+		final structure = await parser.readStructure();
+		return Epub._(parser: parser, structure: structure);
+	}
 
-	List<EpubContentFile> getContentFiles();
-
-	// `EpubCSS` holds a reference to the file so it can be loaded only when needed (if applicable)
-	List<EpubCSS> getCssFiles();
-
-	Future<String> readCssFileAsString(EpubCSS);
-
-	Future<List<int>> readImageAsBytes(EpubImage);
-
-	Future<String> readFileAsString(File);
+	EpubTableOfContents get tableOfContents;
+	List<EpubAuthor> get authors;
+	/// Allows HTML formatting
+	String get description;
+	List<EpubImage> get images;
+	List<EpubContent> get content;
+	List<EpubCss> get css;
 	
 	// ...
 }
+
+class EpubParser {
+	/// Provides ability to override how the files are retrieved. 
+	final EpubParserController controller;
+	
+	const EpubParser({required this.controller});
+
+	/// Depending on `controller`, this will either only read into memory the files it needs, or read the entire `.epub` file into memory (stored in `controller`)
+	Future<EpubStructure> readStructure();
+	
+	// ...
+}
+
 ```
 
 ## Implementation
@@ -60,14 +80,31 @@ class EpubReadingProgress {
 }
 
 class EpubLocationList extends List<EpubLocation> {
-	EpubLocation peek() => this[this.length - 1];
+	EpubLocation peek() => this[length - 1];
 	void push(EpubLocation);
 	EpubLocationList popFrom(EpubLocation);
 	EpubLocation pop();
+	// ...
 }
 
 class EpubCSS {
 	final File file;
+	Future<String> readAsString();
+	// ...
+}
+
+class EpubContent {
+	final File file;
+	Future<String> readAsString();
+	// ...
+}
+
+class EpubImage {
+	final File file;
+	Future<List<int>> readAsBytes(...);
+	/// `Image` from https://pub.dev/packages/image
+	Future<img.Image> readAsImage(...);
+	// ...
 }
 ```
 
