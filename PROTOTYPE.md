@@ -70,13 +70,13 @@ class Epub {
 	}
 	
 	static Future<Epub> fromFile(io.File file) async {
-		EpubParserControllerArchiveIO controllerInPlace = EpubParserController.file(
+		EpubParserControllerArchiveIO controller = EpubParserController.file(
 			file);
 		return fromCustom(controller: controller)
 	}
 	
 	static Future<Epub> fromExtracted(io.Directory directory) async {
-		EpubParserControllerExtracted controllerEx = EpubParserController.extracted(
+		EpubParserControllerExtracted controller = EpubParserController.extracted(
 			directory);
 		return fromCustom(controller: controller)
 	}
