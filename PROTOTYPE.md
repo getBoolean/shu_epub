@@ -19,6 +19,7 @@ This Dart-only package provides an API for parsing EPUB files and extracting inf
 //   2. Friendly API for extracting relavent information
 //   3. Determine reading progress from Epub CFI
 import 'package:universal_io/io.dart' as io;
+import 'package:image/image.dart' as img;
 
 Future<void> main() async {
 	// Get a reference to the file (or the file bytes on web)
@@ -27,30 +28,42 @@ Future<void> main() async {
 	final bytes = await file.readAsBytes();
 
 	EpubParserControllerArchiveIO controller = EpubParserController.file(file);
-
-	// Allows a custom implementation of `EpubParserController`
-	Epub epub = await Epub.fromCustom(controller);
+	
+	// For Flutter and server applications, with direct file access to reduce memory usage.
+	//
+	// Not available on web.
+	Epub epub = await Epub.fromFile(file);
 
 	// Recommended only for web, or when direct file access is not available.
 	// 
 	// The user could delete the file after opening it in the application, so either:
 	//   1. copy the file into the app directory and use [Epub.fromFile]
 	//   2. load the file bytes and use [Epub.fromBytes]
-	Epub epub2 = await Epub.fromBytes(bytes);
-	
-	// For Flutter and server applications, with direct file access to reduce memory usage.
-	//
-	// Not available on web.
-	Epub epub3 = await Epub.fromFile(file);
+	Epub _ = await Epub.fromBytes(bytes);
 	
 	// Opening an extracted epub. This works since epubs are actually just zip files
 	//
 	// Not available on web
 	final directory = io.Directory("path/to/folder.epub/");
-	Epub epub4 = await Epub.fromExtracted(directory);
+	Epub __ = await Epub.fromExtracted(directory);
+
+	// Allows a custom implementation of `EpubParserController`
+	Epub ___ = await Epub.fromCustom(controller);
+	
+	String title = epub.title;
+	String description = epub.description;
+	List<EpubAuthor> authors = epub.authors;
+	img.Image image = await epub.coverImage;
 	
 	EpubTableOfContents toc = epub.tableOfContents;
-	List<EpubAuthor> authors = epub.authors;
+	EpubReadingOrder readingOrder = epub.readingOrder;
+	List<EpubImageFile> images = epub.images;
+	List<EpubCssFile> cssFiles = epub.cssFiles;
+
+	readingOrder.forEach((EpubFile file) {
+		io.ContentType type = file.type;
+		String content = await file.readAsString();
+	});
 }
 ```
 
@@ -58,6 +71,7 @@ Future<void> main() async {
 
 ```dart
 import 'package:universal_io/io.dart' as io;
+import 'package:image/image.dart' as img;
 
 class Epub {
 	final EpubParser parser;
@@ -88,17 +102,17 @@ class Epub {
 			directory);
 		return fromCustom(controller: controller)
 	}
-	
-	EpubTableOfContents get tableOfContents;
-	List<EpubAuthor> get authors;
+
+	String get title;
 	/// Allows HTML formatting
 	String get description;
-	List<EpubImage> get images;
-	List<EpubContent> get content;
-	List<EpubCss> get css;
-	
-	// If no cover image, it uses the first image bigger than the min size
-	Future<EpubImage>? readCoverImage();
+	List<EpubAuthor> get authors;
+	/// Uses the first image bigger than the min size if no cover image exists
+	Future<img.Image?> get coverImage;
+	EpubReadingOrder get readingOrder;
+	EpubTableOfContents get tableOfContents;
+	List<EpubImageFile> get images;
+	List<EpubCssFile> get cssFiles;
 	
 	// ...
 }
@@ -116,8 +130,20 @@ class EpubParser<T extends EpubParserController> {
 }
 
 abstract EpubParserController {
+	Future<List<int>?> getFileAsBytes(EpubPath path);
+	
+	Future<List<EpubPath>> get filePaths;
 	// ...
-} 
+}
+
+/// Contains utilities for normalizing paths
+class EpubPath {
+	/// Relative to the epub root.
+	///
+	/// Some paths defined in epubs are not relative to the root, their full path needs to be determined before `relativePath` can be created
+	String get relativePath;
+	String get fullPath;
+}
 
 class EpubLocation {
 	// TODO: https://idpf.org/epub/linking/cfi/epub-cfi.html
@@ -149,27 +175,48 @@ class EpubSchema {
 }
 
 // ---- Files ----
-// The below are still heavily WIP
 
-class EpubCSS {
-	final io.File file;
-	Future<String> readAsString();
+abstract EpubFile {
+	final EpubPath path;
+	/// The media-type / mimetype declared in the EPUB
+	///
+	/// `ContentType` is also from the package `universal_io`
+	final io.ContentType type;
+	final EpubParseController controller;
+	const EpubFile({this.path, this.type, this.controller});
+	
+	Future<List<int>> readAsBytes() {
+		return controller.getFileAsBytes(path);
+	};
+
+	Future<String> readAsString() async {
+		List<int> bytes = await controller.getFileBytes(path);
+		// TODO: This should use an isolate to avoid skipped frames
+		// TODO: Should this use `String.fromCharCodes`?
+		return utf8.decode(bytes);
+	};
+
 	// ...
 }
 
-class EpubContent {
-	final io.File file;
-	final io.ContentType type;
-	Future<String> readAsString();
+class EpubHtmlFile extends EpubFile {
+	const EpubHtmlFile({super.path, super.type, super.controller});
+	// `Document` from "https://pub.dev/packages/html" as html;
+	Future<html.Document> readAsDocument();
 	// ...
 }
 
-class EpubImage {
-	final io.File file;
-	final io.ContentType type;
-	Future<List<int>> readAsBytes(...);
-	/// `Image` from https://pub.dev/packages/image
-	Future<img.Image> readAsImage(...);
+class EpubCssFile extends EpubFile {
+	const EpubCssFile({super.path, super.type, super.controller});
+	// `StyleSheet` from "https://pub.dev/packages/csslib" as css;
+	Future<css.StyleSheet> readAsStylesheet();
+	// ...
+}
+
+class EpubImageFile extends EpubFile {
+	const EpubImageFile({super.path, super.type, super.controller});
+	/// `Image` from "https://pub.dev/packages/image" as img;
+	Future<img.Image> readAsImage();
 	// ...
 }
 ```
