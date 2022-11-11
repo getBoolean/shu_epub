@@ -42,3 +42,4 @@ vscode:
   extensions:
     - dart-code.dart-code
     - wakatime.vscode-wakatime
+    - jebbs.plantuml
