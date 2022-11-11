@@ -117,7 +117,7 @@ class EpubContainer extends EpubElement {
     +{method} rootfile: Rootfile?
     +toXmlString(): String
 }
-EpubSchema ..o EpubContainer
+EpubSchema --o EpubContainer
 
 class RootfileList extends EpubElement {
     +{static} elementName: String
@@ -127,7 +127,7 @@ class RootfileList extends EpubElement {
     +<<Create>> fromData(rootfileListData: List<int>)
     +toXmlString(): String
 }
-EpubContainer ..o RootfileList
+EpubContainer --o RootfileList
 
 class Rootfile extends EpubElement {
     +{static} elementName: String
@@ -138,12 +138,13 @@ class Rootfile extends EpubElement {
     +<<Create>> fromData(rootfileData: List<int>)
     +toXmlString(): String
 }
-RootfileList "1" ..o "*" Rootfile
+RootfileList "1" --o "*" Rootfile
 
 class EpubPackage extends EpubElement {
     +{static} kPackageFileMimeType: String
     +{static} elementName: String
     +{static} namespace: String
+    -_parser: EpubPackageParser
     +epubVersion: String?
     +uniqueIdentifier: String?
     +publicationMetadata: EpubPublicationMetadata?
@@ -158,6 +159,23 @@ class EpubPackage extends EpubElement {
     +{method} navigationFilePath: String?
     +toXmlString(): String
 }
-EpubSchema ..o EpubPackage
+EpubSchema --o EpubPackage
+
+class EpubPackageParser {
+    -_element: XmlElement
+    +readEpubVersion(): String
+    +readUniqueIdentifier(): String
+    +readPublicationMetadata(): EpubPublicationMetadata
+    +readManifest(): EpubManifest
+    +readSpine(): EpubSpine
+    +readGuide(): EpubGuide
+    +readTours(): EpubTours
+    +<<Create>> fromXmlElement(packageElement: XmlElement)
+    +<<Create>> fromXmlString(packageString: String)
+    +<<Create>> fromData(packageData: List<int>)
+    -_getPackageElementFromXmlDocument(document: XmlDocument): XmlElement
+}
+
+EpubPackage --o EpubPackageParser : parser
 
 @enduml
