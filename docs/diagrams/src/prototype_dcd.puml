@@ -14,7 +14,7 @@ skinparam groupInheritance 4
 class Client
 
 'Convert Epub to abstract
-interface Epub {
+interface Epub <<Abstract Factory>> {
     +{abstract} schema: EpubSchema
     +<<Create>> fromAdapter(adapter: EpubParserAdapter)
     +<<Create>> fromBytes(bytes: List<int>)
@@ -60,7 +60,7 @@ Client --> Epub
 
 'PARSER ADAPTER
 
-abstract EpubParserAdapter {
+abstract EpubParserAdapter <<Adapter>> {
     -_filePaths: Future<List<String>>
     +{abstract} getFileAsBytes(path: EpubPath): Future<List<int>>
     +{abstract} getFilePaths(): Future<List<EpubPath>>
@@ -70,6 +70,21 @@ abstract EpubParserAdapter {
     +isContainerFilePath(path: EpubPath): bool
     +clear()
 }
+
+note right of EpubParserAdapter
+    Note: It is not recommended to
+    use this to serve Epubs over
+    the network. It is intended
+    for local file access only.
+    Instead, download the entire
+    Epub and use Epub.fromBytes
+
+    Three to four consecutive
+    calls are made to the
+    abstract methods, which
+    would result in a significant
+    amount of loading time.
+end note
 
 package "package:archive" as archive {
     namespace archive.archive {
@@ -114,15 +129,15 @@ EpubParser "*" --o "1" EpubParserAdapter : adapts
 'EPUB SCHEMA
 
 class EpubSchema {
-    +container: EpubContainer
-    +package: EpubPackage
-    +navigation: EpubNavigation
+    +container: EpubContainer?
+    +package: EpubPackage?
+    +navigation: EpubNavigation?
+    +ncx: EpubNCX?
 }
-interface EpubNavigation extends EpubElement
-class EpubNavigationDocument implements EpubNavigation
-class EpubNCX implements EpubNavigation
-EpubSchema ..o EpubNavigation
-note top of EpubNavigation : TODO: How to unify API?
+class EpubNavigationDocument extends EpubElement
+class EpubNCX extends EpubElement
+EpubSchema --o EpubNavigationDocument
+EpubSchema --o EpubNCX
 
 EpubParser ..> EpubSchema : <<create>>
 Epub --o EpubSchema
@@ -194,6 +209,7 @@ class EpubPackage extends EpubElement {
     +toXmlString(): String
 }
 EpubSchema --o EpubPackage
+note top of EpubPackage : combined with EpubPackageReader
 
 class EpubData {
     +data: List<int>
@@ -220,6 +236,7 @@ class EpubPackageParser {
     +<<Create>> fromXmlString(packageString: String)
     +<<Create>> fromData(packageData: List<int>)
 }
+note left of EpubPackageParser : formerly EpubPackageReaderController
 EpubPackageParser --> EpubData
 EpubPackageParser --> XmlDocument
 EpubPackage --o EpubPackageParser : parser
