@@ -116,7 +116,14 @@ EpubParser "*" --o "1" EpubParserAdapter : adapts
 class EpubSchema {
     +container: EpubContainer
     +package: EpubPackage
+    +navigation: EpubNavigation
 }
+interface EpubNavigation extends EpubElement
+class EpubNavigationDocument implements EpubNavigation
+class EpubNCX implements EpubNavigation
+EpubSchema ..o EpubNavigation
+note top of EpubNavigation : TODO: How to unify API?
+
 EpubParser ..> EpubSchema : <<create>>
 Epub --o EpubSchema
 Epub ..> EpubParserAdapter
