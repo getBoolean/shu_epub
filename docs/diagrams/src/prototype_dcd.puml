@@ -9,26 +9,29 @@ hide empty members
 hide empty description
 'skinparam classAttributeIconSize 0
 'skinparam style strictuml
-skinparam groupInheritance 3
+skinparam groupInheritance 4
 
 class Client
 
 class Epub {
     +parser: EpubParser
     +schema: EpubSchema
-    +title: String
-    +description: String
-    +authors: List<EpubAuthor>
-    +coverImage: Future<img.Image?>
-    +readingOrder: EpubReadingOrder
-    +tableOfContents: EpubTableOfContents
-    +images: List<EpubImageFile>
-    +cssFiles: List<EpubCssFile>
     +<<Create>> fromAdapter(adapter: EpubParserAdapter)
     +<<Create>> fromBytes(bytes: List<int>)
     +<<Create>> fromFile(file: File)
     +<<Create>> fromExtracted(directory: Directory)
+    +{method} title: String
+    +{method} description: String
+    +{method} authors: List<EpubAuthor>
+    +{method} coverImage: Future<img.Image?>
+    +{method} readingOrder: EpubReadingOrder
+    +{method} tableOfContents: EpubTableOfContents
+    +{method} images: List<EpubImageFile>
+    +{method} cssFiles: List<EpubCssFile>
 }
+Client --> Epub
+
+'PARSER ADAPTER
 
 abstract EpubParserAdapter {
     -_filePaths: Future<List<String>>
@@ -41,28 +44,120 @@ abstract EpubParserAdapter {
     +clear()
 }
 
+package "package:archive" as archive {
+    namespace archive.archive {
+        class Archive
+    }
+
+    namespace archive.archive_io {
+        class Archive
+    }
+}
+
 class EpubParserArchiveAdapter extends EpubParserAdapter {
-    -_archive: a.Archive // adaptee
+    -_archive: Archive // adaptee
     +getFileAsBytes(path: EpubPath): Future<List<int>>
     +getFilePaths(): Future<List<EpubPath>>
 }
+EpubParserArchiveAdapter --> archive.archive.Archive
 class EpubParserArchiveIOAdapter extends EpubParserAdapter {
-    -_archive: aio.Archive // adaptee
+    -_archive: Archive // adaptee
     +getFileAsBytes(path: EpubPath): Future<List<int>>
     +getFilePaths(): Future<List<EpubPath>>
 }
+EpubParserArchiveIOAdapter --> archive.archive_io.Archive
+
 class EpubParserExtractedIOAdapter extends EpubParserAdapter {
     -_rootDirectory: io.Directory // adaptee
     +getFileAsBytes(path: EpubPath): Future<List<int>>
     +getFilePaths(): Future<List<EpubPath>>
 }
+EpubParserExtractedIOAdapter --> "dart:io.Directory"
 
-abstract EpubParser {
-    
+'PARSER
+
+class EpubParser {
+    -_adapter: EpubParserAdapter
+    +readSchema(): Future<EpubSchema>
+}
+Epub --o EpubParser
+EpubParser "*" --o "1" EpubParserAdapter : adapts
+'Separate parser (Abstract Factory) for navigation based on package.epubVersion
+
+'EPUB SCHEMA
+
+class EpubSchema {
+    +container: EpubContainer
+    +package: EpubPackage
+}
+EpubParser ..> EpubSchema : <<create>>
+Epub --o EpubSchema
+Epub ..> EpubParserAdapter
+
+class XmlMixin <<Mixin>> {
+    {abstract} +toXmlString(): String
 }
 
-Client o-- Epub : factory
-EpubParser --o Epub
-EpubParserAdapter <-- EpubParser
+package "package:equatable" as equatable {
+    abstract Equatable
+}
+
+class EpubElement extends XmlMixin, Equatable
+
+class EpubContainer extends EpubElement {
+    +{static} elementName: String
+    +{static} namespace: String
+    +containerVersion: String?
+    +rootfileList: RootfileList?
+    +<<Create>> fromXmlElement(containerElement: XmlElement)
+    +<<Create>> fromXmlString(containerString: String)
+    +<<Create>> fromData(containerData: List<int>)
+    +<<Create>> fromArchive(archive: Archive)
+    +{static} {method} filepath: EpubPath
+    +{method} rootfile: Rootfile?
+    +toXmlString(): String
+}
+EpubSchema ..o EpubContainer
+
+class RootfileList extends EpubElement {
+    +{static} elementName: String
+    +items: List<Rootfile>
+    +<<Create>> fromXmlElement(rootfileListElement: XmlElement)
+    +<<Create>> fromXmlString(rootfileListString: String)
+    +<<Create>> fromData(rootfileListData: List<int>)
+    +toXmlString(): String
+}
+EpubContainer ..o RootfileList
+
+class Rootfile extends EpubElement {
+    +{static} elementName: String
+    +fullPath: String?
+    +mediaType: String?
+    +<<Create>> fromXmlElement(rootfileElement: XmlElement)
+    +<<Create>> fromXmlString(rootfileString: String)
+    +<<Create>> fromData(rootfileData: List<int>)
+    +toXmlString(): String
+}
+RootfileList "1" ..o "*" Rootfile
+
+class EpubPackage extends EpubElement {
+    +{static} kPackageFileMimeType: String
+    +{static} elementName: String
+    +{static} namespace: String
+    +epubVersion: String?
+    +uniqueIdentifier: String?
+    +publicationMetadata: EpubPublicationMetadata?
+    +manifest: EpubManifest?
+    +spine: EpubSpine?
+    +guide: EpubGuide?
+    +tours: EpubTours?
+    +<<Create>> fromXmlElement(containerElement: XmlElement)
+    +<<Create>> fromXmlString(containerString: String)
+    +<<Create>> fromData(containerData: List<int>)
+    +<<Create>> fromArchive(archive: Archive)
+    +{method} navigationFilePath: String?
+    +toXmlString(): String
+}
+EpubSchema ..o EpubPackage
 
 @enduml
