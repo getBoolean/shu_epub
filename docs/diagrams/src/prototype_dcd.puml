@@ -13,22 +13,49 @@ skinparam groupInheritance 4
 
 class Client
 
-class Epub {
-    +parser: EpubParser
-    +schema: EpubSchema
+'Convert Epub to abstract
+interface Epub {
+    +{abstract} schema: EpubSchema
     +<<Create>> fromAdapter(adapter: EpubParserAdapter)
     +<<Create>> fromBytes(bytes: List<int>)
     +<<Create>> fromFile(file: File)
     +<<Create>> fromExtracted(directory: Directory)
-    +{method} title: String
-    +{method} description: String
-    +{method} authors: List<EpubAuthor>
-    +{method} coverImage: Future<img.Image?>
-    +{method} readingOrder: EpubReadingOrder
-    +{method} tableOfContents: EpubTableOfContents
-    +{method} images: List<EpubImageFile>
-    +{method} cssFiles: List<EpubCssFile>
+    +{abstract} {method} title: String?
+    +{abstract} {method} description: String?
+    +{abstract} {method} authors: List<EpubAuthor>
+    +{abstract} {method} coverImage: Future<img.Image?>
+    +{abstract} {method} readingOrder: EpubReadingOrder?
+    +{abstract} {method} tableOfContents: EpubTableOfContents?
+    +{abstract} {method} images: List<EpubImageFile>
+    +{abstract} {method} cssFiles: List<EpubCssFile>
 }
+
+class Epub2 implements Epub {
+    +schema: EpubSchema
+    +<<Create>> fromSchema(schema: EpubSchema)
+    +title: String?
+    +description: String?
+    +authors: List<EpubAuthor>
+    +coverImage: Future<img.Image?>
+    +readingOrder: EpubReadingOrder?
+    +tableOfContents: EpubTableOfContents?
+    +images: List<EpubImageFile>
+    +cssFiles: List<EpubCssFile>
+}
+
+class Epub3 implements Epub {
+    +schema: EpubSchema
+    +<<Create>> fromSchema(schema: EpubSchema)
+    +title: String?
+    +description: String?
+    +authors: List<EpubAuthor>
+    +coverImage: Future<img.Image?>
+    +readingOrder: EpubReadingOrder?
+    +tableOfContents: EpubTableOfContents?
+    +images: List<EpubImageFile>
+    +cssFiles: List<EpubCssFile>
+}
+
 Client --> Epub
 
 'PARSER ADAPTER
@@ -102,7 +129,7 @@ package "package:equatable" as equatable {
     abstract Equatable
 }
 
-class EpubElement extends XmlMixin, Equatable
+abstract EpubElement extends XmlMixin, Equatable
 
 class EpubContainer extends EpubElement {
     +{static} elementName: String
@@ -161,21 +188,33 @@ class EpubPackage extends EpubElement {
 }
 EpubSchema --o EpubPackage
 
+class EpubData {
+    +data: List<int>
+    +<<Create>> fromBytes(bytes: List<int>)
+    +toXmlDocument(): XmlDocument
+}
+
+class XmlDocument <<Extension>> {
+    +findPackageElement(): XmlElement?
+}
+EpubData ..> XmlDocument : <<create>>
+
+
 class EpubPackageParser {
     -_element: XmlElement
-    +readEpubVersion(): String
-    +readUniqueIdentifier(): String
-    +readPublicationMetadata(): EpubPublicationMetadata
-    +readManifest(): EpubManifest
-    +readSpine(): EpubSpine
-    +readGuide(): EpubGuide
-    +readTours(): EpubTours
+    +readVersion(): String?
+    +readUniqueIdentifier(): String?
+    +readPublicationMetadata(): EpubPublicationMetadata?
+    +readManifest(): EpubManifest?
+    +readSpine(): EpubSpine?
+    +readGuide(): EpubGuide?
+    +readTours(): EpubTours?
     +<<Create>> fromXmlElement(packageElement: XmlElement)
     +<<Create>> fromXmlString(packageString: String)
     +<<Create>> fromData(packageData: List<int>)
-    -_getPackageElementFromXmlDocument(document: XmlDocument): XmlElement
 }
-
+EpubPackageParser --> EpubData
+EpubPackageParser --> XmlDocument
 EpubPackage --o EpubPackageParser : parser
 
 @enduml
