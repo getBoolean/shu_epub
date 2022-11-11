@@ -1,17 +1,36 @@
+# Prototype API
+
 Status: In progress
 
 This is for prototyping the public facing API of this library, it is in progress and may change at any time. This also contains prototypes for [flutter_shu_epub](https://github.com/getBoolean/shu_epub/issues/19), but is temporarily kept here since development has not started on the Flutter widgets.
+
+- [[#What Package To Install|What Package To Install]]
+- [[#shu_epub|shu_epub]]
+	- [[#shu_epub#ShuEpub Usage|ShuEpub Usage]]
+	- [[#shu_epub#ShuEpub Implementation|ShuEpub Implementation]]
+- [[#flutter_shu_epub|flutter_shu_epub]]
+	- [[#flutter_shu_epub#Getting Started|Getting Started]]
+	- [[#flutter_shu_epub#Widgets|Widgets]]
+		- [[#Widgets#Table of Contents|Table of Contents]]
+		- [[#Widgets#Epub Go History|Epub Go History]]
+		- [[#Widgets#EpubView|EpubView]]
+	- [[#flutter_shu_epub#Implementation|Implementation]]
+		- [[#Implementation#Widget Implementation|Widget Implementation]]
+		- [[#Implementation#Objects|Objects]]
+- [[#shu_core|shu_core]]
+- [[#flutter_shu_reader|flutter_shu_reader]]
+
 
 ## What Package To Install
 
 * Flutter: [flutter_shu_epub](https://pub.dev/packages/flutter_shu_epub)
 * Dart only (No Flutter): [shu_epub](https://pub.dev/packages/shu_epub)
 
-# shu_epub
+## shu_epub
 
 This Dart-only package provides an API for parsing EPUB files and extracting information from them. This is used by [flutter_shu_epub](https://pub.dev/packages/flutter_shu_epub), and could also be used by a shell/console only EPUB reader if someone was interested in implementing it.
 
-## ShuEpub Usage
+### ShuEpub Usage
 
 ```dart
 // TODO:
@@ -67,7 +86,7 @@ Future<void> main() async {
 }
 ```
 
-## ShuEpub Implementation
+### ShuEpub Implementation
 
 ```dart
 import 'package:universal_io/io.dart' as io;
@@ -221,9 +240,9 @@ class EpubImageFile extends EpubFile {
 }
 ```
 
-# flutter_shu_epub
+## flutter_shu_epub
 
-## Getting Started
+### Getting Started
 
 Create an `EpubController` with the data of the EPUB file. It is very important that the controller is not initialized in the `build` method.
 
@@ -252,9 +271,9 @@ EpubLocation? priorLocation = controller.getForwardLocation();
 
 \*`Epub Cfi` stands for `Epub Canonical Fragment Identifiers`, see the [specification](https://idpf.org/epub/linking/cfi/epub-cfi.html) for more detail. TLDR, it is the link format used by EPUBs.
 
-## Widgets
+### Widgets
 
-### Table of Contents
+#### Table of Contents
 
 Displays the table of contents in a scrollable list. It will automatically scroll to the current chapter if it is provided.
 
@@ -276,7 +295,7 @@ EpubTableOfContents(
 );
 ```
 
-### Epub Go History
+#### Epub Go History
 
 Use this widget to access the jump history of an `EpubController`. The widget will be rebuilt when the jump history changes.
 
@@ -302,7 +321,7 @@ EpubGoHistory.all(
 );
 ```
 
-### EpubView
+#### EpubView
 
 **Note:** The implementation of this is still in the experimental stages. Any help would be greatly appreciated. We need to somehow determine how much html text can fit on a page, and where the html for an arbitrary page starts and ends.
 
@@ -337,9 +356,9 @@ EpubView.scrollable(
 )
 ```
 
-## Implementation
+### Implementation
 
-### Widgets
+#### Widget Implementation
 
 ```dart
 class EpubTableOfContents extends StatelessWidget {
@@ -362,7 +381,7 @@ class EpubTableOfContents extends StatelessWidget {
 }
 ```
 
-### Objects
+#### Objects
 
 These are not widgets but are Flutter related.
 
@@ -436,13 +455,13 @@ enum EpubGoResultType {
 }
 ```
 
-# shu_core
+## shu_core
 
 * Only the core classes unrelated to epubs, with the goal of adding support for other ebook standards.
 * `shu_epub` would depend on and export `shu_core`.
 
-# flutter_shu_reader
+## flutter_shu_reader
 
-* Same as `shu` but for the Flutter widgets.
-* `flutter_shu_reader` would export `shu`.
+* Same as `shu_core` but for the Flutter widgets.
+* `flutter_shu_reader` would export `shu_core`.
 * `flutter_shu_epub` and related packages would be optional packages to add support for specific filetypes.
