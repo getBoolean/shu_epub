@@ -131,7 +131,7 @@ EpubParser "*" --o "1" EpubParserAdapter : adapts
 class EpubSchema {
     +container: EpubContainer?
     +package: EpubPackage?
-    +navigation: EpubNavigation?
+    +navigation: EpubNavigationDocument?
     +ncx: EpubNCX?
 }
 class EpubNavigationDocument extends EpubElement
