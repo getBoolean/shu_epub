@@ -7,15 +7,62 @@
 skinparam sequenceMessageAlign direction
 hide empty members
 hide empty description
-skinparam classAttributeIconSize 0
+'skinparam classAttributeIconSize 0
 'skinparam style strictuml
 skinparam groupInheritance 3
 
+class Client
+
 class Epub {
-    <<Create>> fromCustom(controller: EpubParserController)
-    <<Create>> fromBytes(bytes: List<int>)
-    <<Create>> fromFile(file: File)
-    <<Create>> fromExtracted(directory: Directory)
+    +parser: EpubParser
+    +schema: EpubSchema
+    +title: String
+    +description: String
+    +authors: List<EpubAuthor>
+    +coverImage: Future<img.Image?>
+    +readingOrder: EpubReadingOrder
+    +tableOfContents: EpubTableOfContents
+    +images: List<EpubImageFile>
+    +cssFiles: List<EpubCssFile>
+    +<<Create>> fromAdapter(adapter: EpubParserAdapter)
+    +<<Create>> fromBytes(bytes: List<int>)
+    +<<Create>> fromFile(file: File)
+    +<<Create>> fromExtracted(directory: Directory)
 }
+
+abstract EpubParserAdapter {
+    -_filePaths: Future<List<String>>
+    +{abstract} getFileAsBytes(path: EpubPath): Future<List<int>>
+    +{abstract} getFilePaths(): Future<List<EpubPath>>
+    +getEpubSchema(): Future<EpubSchema?>
+    +pathSeparatorOverrider(): String
+    -_parseEpubDetails(): Future<EpubSchema?>
+    +isContainerFilePath(path: EpubPath): bool
+    +clear()
+}
+
+class EpubParserArchiveAdapter extends EpubParserAdapter {
+    -_archive: a.Archive // adaptee
+    +getFileAsBytes(path: EpubPath): Future<List<int>>
+    +getFilePaths(): Future<List<EpubPath>>
+}
+class EpubParserArchiveIOAdapter extends EpubParserAdapter {
+    -_archive: aio.Archive // adaptee
+    +getFileAsBytes(path: EpubPath): Future<List<int>>
+    +getFilePaths(): Future<List<EpubPath>>
+}
+class EpubParserExtractedIOAdapter extends EpubParserAdapter {
+    -_rootDirectory: io.Directory // adaptee
+    +getFileAsBytes(path: EpubPath): Future<List<int>>
+    +getFilePaths(): Future<List<EpubPath>>
+}
+
+abstract EpubParser {
+    
+}
+
+Client o-- Epub : factory
+EpubParser --o Epub
+EpubParserAdapter <-- EpubParser
 
 @enduml
