@@ -13,7 +13,7 @@ hide empty description
 
 class Client
 
-'Convert Epub to abstract
+
 abstract Epub <<Abstract Factory>> {
     +schema: EpubSchema
     +<<Create>> fromAdapter(adapter: EpubFileAccessAdapter)
@@ -84,6 +84,7 @@ class EpubTableOfContentsItem {
 Epub --o EpubTableOfContents
 EpubTableOfContents --o "*" EpubTableOfContentsItem
 
+
 'FILES
 
 class EpubPath {
@@ -142,14 +143,36 @@ class EpubContentFile extends EpubFile {
     +path: EpubPath
     +type: EpubFileType
     +fallback: EpubContentFile
-    +<<Create>> EpubContentFile(path: EpubPath,\n\tfallback: EpubContentFile,\n\tadapter: EpubFileAccessAdapter)
+    +location: EpubLocation?
+    +<<Create>> EpubContentFile(path: EpubPath,\n\tfallback: EpubContentFile,\n\tlocation: EpubLocation\n\tadapter: EpubFileAccessAdapter)
     +asBytes(): Future<List<int>>
     +asString(): Future<String>
     +bySupportedType(types: List<EpubFileType>)\n\t: Future<EpubContentFile?>
 }
 
 
-'DATA ACCESS ADAPTER
+'EPUB CFI LINKS
+
+class EpubLocation {
+    cfi: EpubCfi
+    +<<Create>> fromFragment(fragment: String)
+    +<<Create>> fromCfi(cfi: EpubCfi)
+    {method} // epub navigation methods
+}
+EpubContentFile --o EpubLocation
+
+package "package:epub_cfi" {
+    class EpubCfi {
+        fragment: String
+        {method} // parsing methods
+    }
+}
+
+EpubLocation --o EpubCfi
+
+
+'FILE ACCESS ADAPTER
+
 abstract EpubFileAccessAdapter <<Adapter>> {
     +{abstract} convertEpubPathToAdapterPath(path: EpubPath): String
     +{abstract} getFileAsBytes(path: String): Future<List<int>>
@@ -259,5 +282,4 @@ class "EpubPackage" as EpubPackage {
     +toXmlString(): String
 }
 EpubSchema --o EpubPackage
-
 @enduml
