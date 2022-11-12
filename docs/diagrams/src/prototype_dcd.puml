@@ -155,7 +155,7 @@ class EpubContentFile extends EpubFile {
 
 class EpubLocation {
     cfi: EpubCfi
-    +<<Create>> fromFragment(fragment: String)
+    +<<Create>> fromRawCfi(cfi: String)
     +<<Create>> fromCfi(cfi: EpubCfi)
     {method} // epub navigation methods
 }
