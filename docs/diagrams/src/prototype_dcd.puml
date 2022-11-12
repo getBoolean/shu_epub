@@ -69,7 +69,7 @@ enum EpubPathType {
 }
 
 class EpubPath {
-    +adapter: EpubAdapter
+    -_adapter: EpubAdapter
     +path: String
     +<<Create>> EpubPath(path: String,\n\tadapter: EpubAdapter)
     +{method} type: EpubPathType
@@ -144,7 +144,7 @@ class EpubContainer {
     +{static} elementName: String
     +{static} namespace: String
     -_element: XmlElement
-    +<<Create>> fromXmlElement(element: XmlElement)
+    +<<Create>> fromElement(element: XmlElement)
     +<<Create>> fromBytes(bytes: List<int>)
     +{method} containerVersion: String?
     +{method} rootfileList: RootfileList?
@@ -177,7 +177,7 @@ class "EpubPackage" as EpubPackage {
     +{static} elementName: String
     +{static} namespace: String
     -_element: XmlElement
-    +<<Create>> fromXmlElement(element: XmlElement)
+    +<<Create>> fromElement(element: XmlElement)
     +<<Create>> fromBytes(bytes: List<int>)
     +{method} epubVersion: String?
     +{method} uniqueIdentifier: String?
