@@ -6,25 +6,24 @@ This is for prototyping the public facing API of this library, it is in progress
 
 - [[#What Package To Install|What Package To Install]]
 - [[#shu_epub|shu_epub]]
-	- [[#shu_epub#ShuEpub Usage|ShuEpub Usage]]
-	- [[#shu_epub#ShuEpub Implementation|ShuEpub Implementation]]
+  - [[#shu_epub#ShuEpub Usage|ShuEpub Usage]]
+  - [[#shu_epub#ShuEpub Implementation|ShuEpub Implementation]]
 - [[#flutter_shu_epub|flutter_shu_epub]]
-	- [[#flutter_shu_epub#Getting Started|Getting Started]]
-	- [[#flutter_shu_epub#Widgets|Widgets]]
-		- [[#Widgets#Table of Contents|Table of Contents]]
-		- [[#Widgets#Epub Go History|Epub Go History]]
-		- [[#Widgets#EpubView|EpubView]]
-	- [[#flutter_shu_epub#Implementation|Implementation]]
-		- [[#Implementation#Widget Implementation|Widget Implementation]]
-		- [[#Implementation#Objects|Objects]]
+  - [[#flutter_shu_epub#Getting Started|Getting Started]]
+  - [[#flutter_shu_epub#Widgets|Widgets]]
+    - [[#Widgets#Table of Contents|Table of Contents]]
+    - [[#Widgets#Epub Go History|Epub Go History]]
+    - [[#Widgets#EpubView|EpubView]]
+  - [[#flutter_shu_epub#Implementation|Implementation]]
+    - [[#Implementation#Widget Implementation|Widget Implementation]]
+    - [[#Implementation#Objects|Objects]]
 - [[#shu_core|shu_core]]
 - [[#flutter_shu_reader|flutter_shu_reader]]
 
-
 ## What Package To Install
 
-* Flutter: [flutter_shu_epub](https://pub.dev/packages/flutter_shu_epub)
-* Dart only (No Flutter): [shu_epub](https://pub.dev/packages/shu_epub)
+- Flutter: [flutter_shu_epub](https://pub.dev/packages/flutter_shu_epub)
+- Dart only (No Flutter): [shu_epub](https://pub.dev/packages/shu_epub)
 
 ## shu_epub
 
@@ -457,11 +456,11 @@ enum EpubGoResultType {
 
 ## shu_core
 
-* Only the core classes unrelated to epubs, with the goal of adding support for other ebook standards.
-* `shu_epub` would depend on and export `shu_core`.
+- Only the core classes unrelated to epubs, with the goal of adding support for other ebook standards.
+- `shu_epub` would depend on and export `shu_core`.
 
 ## flutter_shu_reader
 
-* Same as `shu_core` but for the Flutter widgets.
-* `flutter_shu_reader` would export `shu_core`.
-* `flutter_shu_epub` and related packages would be optional packages to add support for specific filetypes.
+- Same as `shu_core` but for the Flutter widgets.
+- `flutter_shu_reader` would export `shu_core`.
+- `flutter_shu_epub` and related packages would be optional packages to add support for specific filetypes.
