@@ -16,28 +16,31 @@ class Client
 'Convert Epub to abstract
 abstract Epub <<Abstract Factory>> {
     +schema: EpubSchema
-    +<<Create>> fromAdapter(adapter: EpubAdapter)
+    +<<Create>> fromAdapter(adapter: EpubFileAccessAdapter)
     +<<Create>> fromBytes(bytes: List<int>)
     +<<Create>> fromFile(file: File)
     +<<Create>> fromExtracted(directory: Directory)
     +{abstract} {method} title: String?
     +{abstract} {method} description: String?
     +{abstract} {method} authors: List<EpubAuthor>
-    +{abstract} {method} coverImage: Future<img.Image?>
-    +{abstract} {method} readingOrder: EpubReadingOrder?
+    +{abstract} {method} contributors: List<EpubContributor>
+    +{abstract} {method} coverImage: Future<EpubImageFile?>
+    +{abstract} {method} readingOrder: List<EpubContentFile>
     +{abstract} {method} tableOfContents: EpubTableOfContents?
     +{abstract} {method} images: Map<EpubPath, EpubImageFile>
     +{abstract} {method} cssFiles: Map<EpubPath, EpubCssFile>
 }
+Client --> Epub
 
 class Epub2 extends Epub {
     +schema: EpubSchema
-    +<<Create>> fromSchema(schema: EpubSchema,\n\tadapter: EpubAdapter)
+    +<<Create>> fromSchema(schema: EpubSchema,\n\tadapter: EpubFileAccessAdapter)
     +{method} title: String?
     +{method} description: String?
     +{method} authors: List<EpubAuthor>
-    +{method} coverImage: Future<img.Image?>
-    +{method} readingOrder: EpubReadingOrder?
+    +{method} contributors: List<EpubContributor>
+    +{method} coverImage: Future<EpubImageFile?>
+    +{method} readingOrder: List<EpubContentFile>
     +{method} tableOfContents: EpubTableOfContents?
     +{method} images: Map<EpubPath, EpubImageFile>
     +{method} cssFiles: Map<EpubPath, EpubCssFile>
@@ -45,18 +48,66 @@ class Epub2 extends Epub {
 
 class Epub3 extends Epub {
     +schema: EpubSchema
-    +<<Create>> fromSchema(schema: EpubSchema,\n\tadapter: EpubAdapter)
+    +<<Create>> fromSchema(schema: EpubSchema,\n\tadapter: EpubFileAccessAdapter)
     +{method} title: String?
     +{method} description: String?
     +{method} authors: List<EpubAuthor>
-    +{method} coverImage: Future<img.Image?>
-    +{method} readingOrder: EpubReadingOrder?
+    +{method} contributors: List<EpubContributor>
+    +{method} coverImage: Future<EpubImageFile?>
+    +{method} readingOrder: List<EpubContentFile>
     +{method} tableOfContents: EpubTableOfContents?
-    +{method} images: Map<EpubPath, EpubImageFile>
-    +{method} cssFiles: Map<EpubPath, EpubCssFile>
+    +{method} images: Map<EpubPath, EpubFile>
+    +{method} cssFiles: Map<EpubPath, EpubFile>
 }
+class EpubAuthor {
+    +{field} name: String
+    +{field} normalizedName: String?
+    +{field} role: String?
+}
+class EpubContributor {
+    +{field} name: String
+    +{field} normalizedName: String?
+    +{field} role: String?
+}
+Epub --o "*" EpubAuthor
+Epub --o "*" EpubContributor
 
-enum EpubPathType {
+class EpubTableOfContents {
+    +{field} title: String?
+    +{field} children: List<EpubTableOfContentsItem>
+}
+class EpubTableOfContentsItem {
+    +{field} title: String?
+    +{field} content: EpubContentFile
+    +{field} children: List<EpubTableOfContentsItem>
+}
+Epub --o EpubTableOfContents
+EpubTableOfContents --o "*" EpubTableOfContentsItem
+
+'FILES
+
+class EpubPath {
+    +path: String
+    +<<Create>> EpubPath(path: String)
+    +<<Create>> fromRelativePath(path: String,\n\trelativeTo: String)
+    +withSeparator(pathSeparator: String): EpubPath
+}
+Epub ..o "*" EpubPath
+
+class EpubFile {
+    -_adapter: EpubFileAccessAdapter
+    +path: EpubPath
+    +type: EpubFileType
+    +<<Create>> EpubFile(path: EpubPath,\n\tadapter: EpubFileAccessAdapter)
+    +asBytes(): Future<List<int>>
+}
+EpubFile ..o EpubPath
+note left of EpubFile::path
+    Always relative to the root of the epub
+end note
+EpubFile --o EpubFileAccessAdapter
+Epub --o "*" EpubFile
+enum EpubFileType {
     +{static} {field} container
     +{static} {field} package
     +{static} {field} html
@@ -67,27 +118,43 @@ enum EpubPathType {
     +{static} {field} video
     +{static} {field} unknown
 }
+EpubFile --o EpubFileType
 
-class EpubPath {
-    -_adapter: EpubAdapter
-    +path: String
-    +<<Create>> EpubPath(path: String,\n\tadapter: EpubAdapter)
-    +{method} type: EpubPathType
-    +withSeparator(pathSeparator: String): EpubPath
+class EpubImageFile extends EpubFile {
+    +path: EpubPath
+    +type: EpubFileType
+    +<<Create>> EpubImageFile(path: EpubPath,\n\tadapter: EpubFileAccessAdapter)
     +asBytes(): Future<List<int>>
+    +asImage(): Future<img.Image>
 }
-EpubPath --o EpubPathType
-Epub ..> EpubPath
+EpubImageFile ..> "package:image.Image" : <<creates>>
 
-Client --> Epub
+class EpubCssFile extends EpubFile {
+    +path: EpubPath
+    +type: EpubFileType
+    +<<Create>> EpubCssFile(path: EpubPath,\n\tadapter: EpubFileAccessAdapter)
+    +asBytes(): Future<List<int>>
+    +asStyleSheet(): Future<StyleSheet>
+}
+EpubCssFile ..> "package:csslib.StyleSheet" : <<creates>>
+
+class EpubContentFile extends EpubFile {
+    +path: EpubPath
+    +type: EpubFileType
+    +fallback: EpubContentFile
+    +<<Create>> EpubContentFile(path: EpubPath,\n\tfallback: EpubContentFile,\n\tadapter: EpubFileAccessAdapter)
+    +asBytes(): Future<List<int>>
+    +asString(): Future<String>
+    +bySupportedType(types: List<EpubFileType>)\n\t: Future<EpubContentFile?>
+}
+
 
 'DATA ACCESS ADAPTER
-
-abstract EpubAdapter <<Adapter>> {
+abstract EpubFileAccessAdapter <<Adapter>> {
+    +{abstract} convertEpubPathToAdapterPath(path: EpubPath): String
     +{abstract} getFileAsBytes(path: String): Future<List<int>>
     +{abstract} {method} filePaths: Future<List<String>>
 }
-EpubPath --o EpubAdapter : adapts
 
 package "package:archive" as archive {
     namespace archive.archive {
@@ -99,21 +166,24 @@ package "package:archive" as archive {
     }
 }
 
-class EpubArchiveAdapter extends EpubAdapter {
+class EpubArchiveAdapter extends EpubFileAccessAdapter {
     -_archive: Archive // adaptee
+    +convertEpubPathToAdapterPath(path: EpubPath): String
     +getFileAsBytes(path: String): Future<List<int>>
     +{method} filePaths: Future<List<String>>
 }
 EpubArchiveAdapter --> archive.archive.Archive
-class EpubArchiveIOAdapter extends EpubAdapter {
+class EpubArchiveIOAdapter extends EpubFileAccessAdapter {
     -_archive: Archive // adaptee
+    +convertEpubPathToAdapterPath(path: EpubPath): String
     +getFileAsBytes(path: String): Future<List<int>>
     +{method} filePaths: Future<List<String>>
 }
 EpubArchiveIOAdapter --> archive.archive_io.Archive
 
-class EpubExtractedIOAdapter extends EpubAdapter {
+class EpubExtractedIOAdapter extends EpubFileAccessAdapter {
     -_rootDirectory: io.Directory // adaptee
+    +convertEpubPathToAdapterPath(path: EpubPath): String
     +getFileAsBytes(path: String): Future<List<int>>
     +{method} filePaths: Future<List<String>>
 }
@@ -122,15 +192,15 @@ EpubExtractedIOAdapter --> "dart:io.Directory"
 'EPUB SCHEMA
 
 class EpubSchema {
-    -_adapter: EpubAdapter
+    +adapter: EpubFileAccessAdapter
     -_rawFilePaths: Future<List<String>>
     +container: EpubContainer?
     +package: EpubPackage?
     +navigation: EpubNavigationDocument?
     +ncx: EpubNcx?
-    +<<Create>> fromAdapter(adapter: EpubAdapter)
+    +<<Create>> fromAdapter(adapter: EpubFileAccessAdapter)
 }
-EpubSchema --o EpubAdapter
+EpubSchema --o EpubFileAccessAdapter
 class EpubNavigationDocument
 class EpubNcx
 EpubSchema --o EpubNavigationDocument
@@ -144,8 +214,8 @@ class EpubContainer {
     +{static} elementName: String
     +{static} namespace: String
     -_element: XmlElement
-    +<<Create>> fromElement(element: XmlElement)
-    +<<Create>> fromBytes(bytes: List<int>)
+    +<<Create>> fromElement(\n\telement: XmlElement)
+    +<<Create>> fromBytes(\n\tbytes: List<int>)
     +{method} containerVersion: String?
     +{method} rootfileList: RootfileList?
     +{method} rootfile: Rootfile?
@@ -156,7 +226,7 @@ EpubSchema --o EpubContainer
 class RootfileList {
     +{static} elementName: String
     -_element: XmlElement
-    +<<Create>> fromElement(element: XmlElement)
+    +<<Create>> fromElement(\n\telement: XmlElement)
     +{method} items: List<Rootfile>
     +toXmlString(): String
 }
@@ -165,7 +235,7 @@ EpubContainer --o RootfileList
 class Rootfile {
     +{static} elementName: String
     -_element: XmlElement
-    +<<Create>> fromElement(element: XmlElement)
+    +<<Create>> fromElement(\n\telement: XmlElement)
     +{method} fullPath: String?
     +{method} mediaType: String?
     +toXmlString(): String
@@ -177,11 +247,11 @@ class "EpubPackage" as EpubPackage {
     +{static} elementName: String
     +{static} namespace: String
     -_element: XmlElement
-    +<<Create>> fromElement(element: XmlElement)
-    +<<Create>> fromBytes(bytes: List<int>)
+    +<<Create>> fromElement(\n\telement: XmlElement)
+    +<<Create>> fromBytes(\n\tbytes: List<int>)
     +{method} epubVersion: String?
     +{method} uniqueIdentifier: String?
-    +{method} publicationMetadata: EpubPublicationMetadata?
+    +{method} publicationMetadata:\n\tEpubPublicationMetadata?
     +{method} manifest: EpubManifest?
     +{method} spine: EpubSpine?
     +{method} guide: EpubGuide?
