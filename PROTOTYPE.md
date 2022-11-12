@@ -85,6 +85,10 @@ Future<void> main() async {
 }
 ```
 
+### Design Class Diagram
+
+![[PrototypeDesignClassDiagram.svg]]
+
 ### ShuEpub Implementation
 
 ```dart
