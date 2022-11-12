@@ -140,12 +140,12 @@ Epub --o EpubSchema
 Epub ..> EpubSchema : <<creates>>
 
 class EpubContainer {
+    +{static} path: String
     +{static} elementName: String
     +{static} namespace: String
     -_element: XmlElement
     +<<Create>> fromXmlElement(element: XmlElement)
     +<<Create>> fromBytes(bytes: List<int>)
-    +{static} {method} path: String
     +{method} containerVersion: String?
     +{method} rootfileList: RootfileList?
     +{method} rootfile: Rootfile?
