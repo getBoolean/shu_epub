@@ -16,6 +16,7 @@ class Client
 
 abstract Epub <<Abstract Factory>> {
     +schema: EpubSchema
+    +adapter: EpubFileAccessAdapter
     +<<Create>> fromAdapter(adapter: EpubFileAccessAdapter)
     +<<Create>> fromBytes(bytes: List<int>)
     +<<Create>> fromFile(file: File)
@@ -31,9 +32,11 @@ abstract Epub <<Abstract Factory>> {
     +{abstract} {method} cssFiles: Map<EpubPath, EpubCssFile>
 }
 Client --> Epub
+Epub --o EpubFileAccessAdapter
 
 class Epub2 extends Epub {
     +schema: EpubSchema
+    +adapter: EpubFileAccessAdapter
     +<<Create>> fromSchema(schema: EpubSchema,\n\tadapter: EpubFileAccessAdapter)
     +{method} title: String?
     +{method} description: String?
@@ -48,6 +51,7 @@ class Epub2 extends Epub {
 
 class Epub3 extends Epub {
     +schema: EpubSchema
+    +adapter: EpubFileAccessAdapter
     +<<Create>> fromSchema(schema: EpubSchema,\n\tadapter: EpubFileAccessAdapter)
     +{method} title: String?
     +{method} description: String?
@@ -215,7 +219,6 @@ EpubExtractedIOAdapter --> "dart:io.Directory"
 'EPUB SCHEMA
 
 class EpubSchema {
-    +adapter: EpubFileAccessAdapter
     -_rawFilePaths: Future<List<String>>
     +container: EpubContainer?
     +package: EpubPackage?
@@ -223,7 +226,6 @@ class EpubSchema {
     +ncx: EpubNcx?
     +<<Create>> fromAdapter(adapter: EpubFileAccessAdapter)
 }
-EpubSchema --o EpubFileAccessAdapter
 class EpubNavigationDocument
 class EpubNcx
 EpubSchema --o EpubNavigationDocument
