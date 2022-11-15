@@ -238,7 +238,7 @@ class EpubContainer {
     +{static} path: String
     +{static} elementName: String
     +{static} namespace: String
-    -_element: XmlElement
+    +element: XmlElement
     +<<Create>> fromElement(\n\telement: XmlElement)
     +<<Create>> fromBytes(\n\tbytes: List<int>)
     +{method} containerVersion: String?
@@ -250,7 +250,7 @@ EpubSchema --o EpubContainer
 
 class RootfileList {
     +{static} elementName: String
-    -_element: XmlElement
+    +element: XmlElement
     +<<Create>> fromElement(\n\telement: XmlElement)
     +{method} items: List<Rootfile>
     +toXmlString(): String
@@ -259,7 +259,7 @@ EpubContainer --o RootfileList
 
 class Rootfile {
     +{static} elementName: String
-    -_element: XmlElement
+    +element: XmlElement
     +<<Create>> fromElement(\n\telement: XmlElement)
     +{method} fullPath: String?
     +{method} mediaType: String?
@@ -271,7 +271,7 @@ class "EpubPackage" as EpubPackage {
     +{static} mimeType: String
     +{static} elementName: String
     +{static} namespace: String
-    -_element: XmlElement
+    +element: XmlElement
     +<<Create>> fromElement(\n\telement: XmlElement)
     +<<Create>> fromBytes(\n\tbytes: List<int>)
     +{method} epubVersion: String?
