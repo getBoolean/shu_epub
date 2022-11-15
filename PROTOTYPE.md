@@ -29,6 +29,10 @@ This is for prototyping the public facing API of this library, it is in progress
 
 This Dart-only package provides an API for parsing EPUB files and extracting information from them. This is used by [flutter_shu_epub](https://pub.dev/packages/flutter_shu_epub), and could also be used by a shell/console only EPUB reader if someone was interested in implementing it.
 
+Prototype Class Diagram:
+
+![PrototypeDesignClassDiagram.svg](./docs/diagrams/out/prototype_dcd/PrototypeDesignClassDiagram.svg)
+
 ### ShuEpub Usage
 
 ```dart
