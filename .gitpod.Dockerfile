@@ -41,9 +41,9 @@ RUN apt-get install -y \
 ENV QTWEBENGINE_DISABLE_SANDBOX 1
 
 # Install PlantUML dependencies
-USER root
 RUN apt-get install -y wget apt-transport-https gnupg \
   && wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | apt-key add - \
-  && echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list \
-  && apt-get install temurin-17-jdk \
+  && echo "deb https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list
+
+RUN apt-get install temurin-17-jdk \
   && apt-get install graphviz
