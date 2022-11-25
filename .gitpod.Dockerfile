@@ -48,4 +48,4 @@ RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh && \
     sdk default java ${JAVA_VERSION}"
     
 USER root
-RUN apt-get install graphviz
+RUN apt-get install -y graphviz
