@@ -46,3 +46,6 @@ USER gitpod
 RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh && \
     sdk install java ${JAVA_VERSION} && \
     sdk default java ${JAVA_VERSION}"
+    
+USER root
+RUN apt-get install graphviz
