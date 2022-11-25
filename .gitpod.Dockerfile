@@ -3,6 +3,7 @@ SHELL ["/bin/bash", "-c"]
 
 ENV FLUTTER_VERSION=3.3.9-stable
 ENV PATH=/usr/lib/dart/bin:$PATH
+ENV JAVA_VERSION=17.0.5-ms
 
 # Install Dart
 USER root
@@ -43,5 +44,5 @@ ENV QTWEBENGINE_DISABLE_SANDBOX 1
 # Install PlantUML dependencies
 USER gitpod
 RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh && \
-    sdk install java 17.0.3-ms && \
-    sdk default java 17.0.3-ms"
+    sdk install java ${JAVA_VERSION} && \
+    sdk default java ${JAVA_VERSION}"
