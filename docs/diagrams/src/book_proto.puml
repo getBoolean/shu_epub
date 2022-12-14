@@ -1,0 +1,140 @@
+@startuml BookPrototype
+'skinparam linetype ortho
+'skinparam backgroundColor transparent
+'skinparam handwritten true
+'skinparam monochrome true
+'left to right direction
+'skinparam sequenceMessageAlign direction
+hide empty members
+hide empty description
+'skinparam classAttributeIconSize 0
+'skinparam style strictuml
+'skinparam groupInheritance 3
+
+note as Details
+    Client inputs a file reference,
+    directory reference, or the bytes
+
+    The class returned changes the
+    app UI depending on the type
+    of book. (Chain of Responsibility)
+
+
+end note
+
+class AdapterConfig {
+    +mimeToAdpater: Map<String, Adapter>
+}
+
+abstract Adapter {
+    +{abstract} getIds() : List<String>
+    +{abstract} getData(String id) : List<int>
+}
+class ArchiveAdapter extends Adapter {
+    +archive: Archive
+    +getPaths() : List<String>
+    +getData(String path) : List<int>
+}
+abstract FileAdapter extends Adapter {
+    +{abstract} getData(String id) : List<int>
+}
+abstract PdfFileAdpater extends FileAdapter {
+    +getData(String id) : List<int>
+}
+
+abstract Handler <<Chain of Responsibility>> {
+    +fallback: Handler?
+    +config: AdapterConfig
+    +<<factory>> default(AdapterConfig, Handler?): Handler
+    +<<create>> (Adapter, Handler?)
+    +{abstract} handle(): Book
+    +{abstract} canHandle(): boolean
+}
+Client -- "handle()" Handler : >
+Handler -- "0..1" Handler : fallback
+Handler o--> AdapterConfig
+AdapterConfig o--> "*" Adapter
+
+abstract ArchiveHandler extends Handler {
+    +<<create>> (ArchiveAdapter, Handler?)
+    +{abstract} handle() : Book
+    +{abstract} canHandle() : boolean
+}
+
+abstract ImageArchiveHandler extends ArchiveHandler {
+    +<<create>> (ArchiveAdapter, Handler?)
+    +{abstract} handle() : Book
+    +{abstract} canHandle() : boolean
+}
+
+abstract TextArchiveHandler extends ArchiveHandler {
+    +<<create>> (ArchiveAdapter, Handler?)
+    +{abstract} handle() : Book
+    +{abstract} canHandle() : boolean
+}
+
+abstract FileHandler extends Handler {
+    +<<create>> (FileAdapter, Handler?)
+    +{abstract} handle() : Book
+    +{abstract} canHandle() : boolean
+}
+
+class PdfHandler extends FileHandler {
+    +<<create>> (FileAdapter, Handler?)
+    +handle() : Book
+    +canHandle() : boolean
+}
+
+class CbzHandler extends ImageArchiveHandler {
+    +<<create>> (ArchiveAdapter, Handler?)
+    +handle() : Book
+    +canHandle() : boolean
+}
+
+class EpubHandler extends TextArchiveHandler {
+    +<<create>> (ArchiveAdapter, Handler?)
+    +handle() : Book
+    +canHandle() : boolean
+}
+
+'abstract Book
+'abstract BookController {
+'    +Handler Handler
+'    +BookController(Handler Handler)
+'}
+
+'BookController o--> Handler
+'class ImageBook extends Book
+'class TextBook extends Book
+'class MultimediaBook extends Book
+
+'Different types of ebooks
+'class Mobipocket extends TextBook
+'class Pdf extends TextBook
+'class Epub extends TextBook
+'class Kindle extends TextBook
+'class SonyMedia extends TextBook
+'class MicrosoftCompiledHtmlHelp extends TextBook
+'class MicrosoftReader extends TextBook
+'class OpenXps extends TextBook
+'class DjVu extends TextBook
+'class PalmMedia extends TextBook
+'class FictionBook extends TextBook
+'class Daisy extends TextBook
+'class ApabiReader extends TextBook
+'class Hypertext extends TextBook
+'class IBook extends TextBook
+'class IEC62448 extends TextBook
+'class NewtonDigitalBook extends TextBook
+'class OpenEbook extends TextBook
+'class Text extends TextBook
+'class Plucker extends TextBook
+'class PostScript extends TextBook
+'class RichTextFormat extends TextBook
+'class Eveda extends MultimediaBook
+
+'class ImageArchive extends ImageBook
+
+
+
+@enduml
