@@ -24,7 +24,6 @@ tasks:
   - init: |
       flutter upgrade
       dart --disable-analytics
-      brew install git-flow
   - command: |
       dart pub get
 
